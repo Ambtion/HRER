@@ -6,26 +6,38 @@
 //  Copyright © 2016年 linjunhou. All rights reserved.
 //
 
-#import "HELocationManager.h"
+#import "HRLocationManager.h"
 #import <UIKit/UIKit.h>
 
-@interface HELocationManager()<CLLocationManagerDelegate>
+@interface HRLocationManager()<CLLocationManagerDelegate>
 
 @property(nonatomic,strong)CLLocationManager * locationManager;
-@property(nonatomic,strong)CLLocation * curLocaiton;
+@property(nonatomic,assign)BOOL isFirstGEO;
+
+@property(nonatomic,strong)CLLocation * curLocation;
+@property(nonatomic,strong)CLPlacemark * placeMark;
 
 @end
 
-@implementation HELocationManager
+@implementation HRLocationManager
 
-+ (HELocationManager *)sharedInstance {
++ (HRLocationManager *)sharedInstance {
     
-    static HELocationManager *_sharedInstance = nil;
+    static HRLocationManager *_sharedInstance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        _sharedInstance = [[HELocationManager alloc] init];
+        _sharedInstance = [[HRLocationManager alloc] init];
     });
     return _sharedInstance;
+}
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.isFirstGEO = YES;
+    }
+    return self;
 }
 
 
@@ -64,23 +76,19 @@
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations
 {
-    self.curLocaiton = [locations lastObject];
+
+    self.curLocation = [locations lastObject];
+    if (self.isFirstGEO) {
+        CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+        [geocoder reverseGeocodeLocation:self.curLocation completionHandler:^(NSArray *array, NSError *error) {
+            if (array.count > 0) {
+                
+                self.isFirstGEO = NO;
+                self.placeMark = [array objectAtIndex:0];
+            }
+        }];
+    }
     
-    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
-    [geocoder reverseGeocodeLocation:self.curLocaiton completionHandler:^(NSArray *array, NSError *error) {
-        if (array.count > 0) {
-            
-            CLPlacemark *placemark = [array objectAtIndex:0];
-//            MapLocation *annotation = [[MapLocation alloc] init];
-//            annotation.streetAddress = placemark.thoroughfare;
-//            annotation.city = placemark.locality;
-//            annotation.state = placemark.administrativeArea;
-//            annotation.zip = placemark.postalCode;
-//            annotation.coordinate = coord;
-            //将定位的点添加到地图
-//            [self.myMap addAnnotation:annotation];
-        }
-    }];
 }
 
 @end

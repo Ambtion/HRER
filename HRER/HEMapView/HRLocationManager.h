@@ -12,10 +12,14 @@
 
 @class CLLocation;
 
-@interface HELocationManager : NSObject
+@interface HRLocationManager : NSObject
 
-+ (HELocationManager *)sharedInstance;
+@property(nonatomic,strong,readonly)CLLocation * curLocation;
+@property(nonatomic,strong,readonly)CLPlacemark * placeMark;
+
++ (HRLocationManager *)sharedInstance;
 
 - (void)startLocaiton;
+
 
 @end

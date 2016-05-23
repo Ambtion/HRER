@@ -8,17 +8,23 @@
 
 #import "AppDelegate.h"
 #import "RootViewController.h"
+#import "HRLocationManager.h"
+
 
 @interface AppDelegate ()
+
 @end
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    [[HRLocationManager sharedInstance] startLocaiton];
+    
     RootViewController * vc = [[RootViewController alloc] init];
     self.window.rootViewController = vc;
     [self.window makeKeyAndVisible];
+    
     return YES;
 }
 
