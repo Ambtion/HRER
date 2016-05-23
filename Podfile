@@ -6,8 +6,8 @@ target 'HRER' do
 pod 'Masonry'
 pod 'AFNetworking'
 pod 'SDWebImage'
-pod 'JSONKit'
 pod 'iCarousel'
 pod 'MBProgressHUD'
+pod 'GCJSONKit'
 
 end
