@@ -48,12 +48,12 @@
     span.longitudeDelta =MAOLEVEL;
     MKCoordinateRegion region;
     
-    CLLocationCoordinate2D coord = CLLocationCoordinate2DMake(52.520962, 13.295667);
+    CLLocationCoordinate2D coord = CLLocationCoordinate2DMake(39.904209 , 116.407394);
     region.center = coord;
     region.span = span;
     [self.mapView setRegion:region animated:YES];
     
-    [self showPinViewWithLocation:coord title:@"夏洛滕堡宫" subTitle:@""];
+    [self showPinViewWithLocation:coord title:@"" subTitle:@""];
 }
 
 #pragma mark - 大头针
