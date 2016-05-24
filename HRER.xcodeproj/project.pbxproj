@@ -7,7 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		489048A0F2CCDB2D00A32BD9 /* libPods-HRER.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2020BD262A27F3B754DAB6EE /* libPods-HRER.a */; };
+		65F02507B9087AA3ECF2E966 /* libPods-HRER.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F257A244BFC3C4FF1BA43A2 /* libPods-HRER.a */; };
+		B89663ED1CF32F7700B2A6CA /* JWCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = B89663E41CF32F7700B2A6CA /* JWCollectionViewFlowLayout.m */; };
+		B89663EE1CF32F7700B2A6CA /* NSDictionary+StrDic.m in Sources */ = {isa = PBXBuildFile; fileRef = B89663E61CF32F7700B2A6CA /* NSDictionary+StrDic.m */; };
+		B89663EF1CF32F7700B2A6CA /* RefreshCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = B89663E81CF32F7700B2A6CA /* RefreshCollectionView.m */; };
+		B89663F01CF32F7700B2A6CA /* ToastAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = B89663EA1CF32F7700B2A6CA /* ToastAlertView.m */; };
+		B89663F11CF32F7700B2A6CA /* UIViewController+Method.m in Sources */ = {isa = PBXBuildFile; fileRef = B89663EC1CF32F7700B2A6CA /* UIViewController+Method.m */; };
+		B896640B1CF32FD100B2A6CA /* YiRefreshFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = B89663FA1CF32FD100B2A6CA /* YiRefreshFooter.m */; };
+		B896640C1CF32FD100B2A6CA /* YiRefreshHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = B89663FC1CF32FD100B2A6CA /* YiRefreshHeader.m */; };
+		B896640D1CF32FD100B2A6CA /* RFSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = B89663FF1CF32FD100B2A6CA /* RFSegmentView.m */; };
+		B896640E1CF32FD100B2A6CA /* UIView+Sizes.m in Sources */ = {isa = PBXBuildFile; fileRef = B89664041CF32FD100B2A6CA /* UIView+Sizes.m */; };
+		B896640F1CF32FD100B2A6CA /* UIView+TKCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = B89664061CF32FD100B2A6CA /* UIView+TKCategory.m */; };
+		B89664101CF32FD100B2A6CA /* UIViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = B89664081CF32FD100B2A6CA /* UIViewAdditions.m */; };
 		E14BD4921CEEF53F00C66E14 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E14BD4911CEEF53F00C66E14 /* main.m */; };
 		E14BD4951CEEF53F00C66E14 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E14BD4941CEEF53F00C66E14 /* AppDelegate.m */; };
 		E14BD49D1CEEF53F00C66E14 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E14BD49C1CEEF53F00C66E14 /* Assets.xcassets */; };
@@ -23,9 +34,35 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		16AAF9B0AF6053AC1E1ECCC4 /* Pods-HRER.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HRER.release.xcconfig"; path = "Pods/Target Support Files/Pods-HRER/Pods-HRER.release.xcconfig"; sourceTree = "<group>"; };
-		2020BD262A27F3B754DAB6EE /* libPods-HRER.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HRER.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		8000517D5E0B588C94C89325 /* Pods-HRER.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HRER.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HRER/Pods-HRER.debug.xcconfig"; sourceTree = "<group>"; };
+		26EDF89553D0EF9D05F69A42 /* Pods-HRER.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HRER.release.xcconfig"; path = "Pods/Target Support Files/Pods-HRER/Pods-HRER.release.xcconfig"; sourceTree = "<group>"; };
+		5F257A244BFC3C4FF1BA43A2 /* libPods-HRER.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HRER.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		945292EBCA75C77D85B46D4E /* Pods-HRER.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HRER.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HRER/Pods-HRER.debug.xcconfig"; sourceTree = "<group>"; };
+		B89663E31CF32F7700B2A6CA /* JWCollectionViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JWCollectionViewFlowLayout.h; sourceTree = "<group>"; };
+		B89663E41CF32F7700B2A6CA /* JWCollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JWCollectionViewFlowLayout.m; sourceTree = "<group>"; };
+		B89663E51CF32F7700B2A6CA /* NSDictionary+StrDic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+StrDic.h"; sourceTree = "<group>"; };
+		B89663E61CF32F7700B2A6CA /* NSDictionary+StrDic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+StrDic.m"; sourceTree = "<group>"; };
+		B89663E71CF32F7700B2A6CA /* RefreshCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefreshCollectionView.h; sourceTree = "<group>"; };
+		B89663E81CF32F7700B2A6CA /* RefreshCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefreshCollectionView.m; sourceTree = "<group>"; };
+		B89663E91CF32F7700B2A6CA /* ToastAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToastAlertView.h; sourceTree = "<group>"; };
+		B89663EA1CF32F7700B2A6CA /* ToastAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToastAlertView.m; sourceTree = "<group>"; };
+		B89663EB1CF32F7700B2A6CA /* UIViewController+Method.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Method.h"; sourceTree = "<group>"; };
+		B89663EC1CF32F7700B2A6CA /* UIViewController+Method.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Method.m"; sourceTree = "<group>"; };
+		B89663F81CF32FD100B2A6CA /* Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
+		B89663F91CF32FD100B2A6CA /* YiRefreshFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YiRefreshFooter.h; sourceTree = "<group>"; };
+		B89663FA1CF32FD100B2A6CA /* YiRefreshFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YiRefreshFooter.m; sourceTree = "<group>"; };
+		B89663FB1CF32FD100B2A6CA /* YiRefreshHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YiRefreshHeader.h; sourceTree = "<group>"; };
+		B89663FC1CF32FD100B2A6CA /* YiRefreshHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YiRefreshHeader.m; sourceTree = "<group>"; };
+		B89663FE1CF32FD100B2A6CA /* RFSegmentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFSegmentView.h; sourceTree = "<group>"; };
+		B89663FF1CF32FD100B2A6CA /* RFSegmentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFSegmentView.m; sourceTree = "<group>"; };
+		B89664011CF32FD100B2A6CA /* Dlog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dlog.h; sourceTree = "<group>"; };
+		B89664021CF32FD100B2A6CA /* SWCommonMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWCommonMacro.h; sourceTree = "<group>"; };
+		B89664031CF32FD100B2A6CA /* UIView+Sizes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Sizes.h"; sourceTree = "<group>"; };
+		B89664041CF32FD100B2A6CA /* UIView+Sizes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Sizes.m"; sourceTree = "<group>"; };
+		B89664051CF32FD100B2A6CA /* UIView+TKCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+TKCategory.h"; sourceTree = "<group>"; };
+		B89664061CF32FD100B2A6CA /* UIView+TKCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+TKCategory.m"; sourceTree = "<group>"; };
+		B89664071CF32FD100B2A6CA /* UIViewAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewAdditions.h; sourceTree = "<group>"; };
+		B89664081CF32FD100B2A6CA /* UIViewAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewAdditions.m; sourceTree = "<group>"; };
+		B89664111CF32FF700B2A6CA /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		E14BD48D1CEEF53F00C66E14 /* HRER.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HRER.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E14BD4911CEEF53F00C66E14 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E14BD4931CEEF53F00C66E14 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -55,28 +92,99 @@
 			buildActionMask = 2147483647;
 			files = (
 				E14BD4AE1CEEF78F00C66E14 /* MapKit.framework in Frameworks */,
-				489048A0F2CCDB2D00A32BD9 /* libPods-HRER.a in Frameworks */,
+				65F02507B9087AA3ECF2E966 /* libPods-HRER.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		01B63AFEB7D282FB08E4711D /* Frameworks */ = {
+		91AC680EC2350DF6E59E1D63 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				2020BD262A27F3B754DAB6EE /* libPods-HRER.a */,
+				5F257A244BFC3C4FF1BA43A2 /* libPods-HRER.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		4FF637A177A87C874C20C32A /* Pods */ = {
+		9B832C006F45D1D5AC7E186C /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				8000517D5E0B588C94C89325 /* Pods-HRER.debug.xcconfig */,
-				16AAF9B0AF6053AC1E1ECCC4 /* Pods-HRER.release.xcconfig */,
+				945292EBCA75C77D85B46D4E /* Pods-HRER.debug.xcconfig */,
+				26EDF89553D0EF9D05F69A42 /* Pods-HRER.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		B89663E21CF32F7700B2A6CA /* CommonUI */ = {
+			isa = PBXGroup;
+			children = (
+				B89663E31CF32F7700B2A6CA /* JWCollectionViewFlowLayout.h */,
+				B89663E41CF32F7700B2A6CA /* JWCollectionViewFlowLayout.m */,
+				B89663E51CF32F7700B2A6CA /* NSDictionary+StrDic.h */,
+				B89663E61CF32F7700B2A6CA /* NSDictionary+StrDic.m */,
+				B89663E71CF32F7700B2A6CA /* RefreshCollectionView.h */,
+				B89663E81CF32F7700B2A6CA /* RefreshCollectionView.m */,
+				B89663E91CF32F7700B2A6CA /* ToastAlertView.h */,
+				B89663EA1CF32F7700B2A6CA /* ToastAlertView.m */,
+				B89663EB1CF32F7700B2A6CA /* UIViewController+Method.h */,
+				B89663EC1CF32F7700B2A6CA /* UIViewController+Method.m */,
+			);
+			path = CommonUI;
+			sourceTree = "<group>";
+		};
+		B89663F21CF32FD100B2A6CA /* ThirdPary */ = {
+			isa = PBXGroup;
+			children = (
+				B89663F31CF32FD100B2A6CA /* AFNetworkActivityLogger */,
+				B89663F71CF32FD100B2A6CA /* Refresh */,
+				B89663FD1CF32FD100B2A6CA /* RFSegmentView */,
+				B89664001CF32FD100B2A6CA /* UIView+Sizes */,
+			);
+			path = ThirdPary;
+			sourceTree = "<group>";
+		};
+		B89663F31CF32FD100B2A6CA /* AFNetworkActivityLogger */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = AFNetworkActivityLogger;
+			sourceTree = "<group>";
+		};
+		B89663F71CF32FD100B2A6CA /* Refresh */ = {
+			isa = PBXGroup;
+			children = (
+				B89663F81CF32FD100B2A6CA /* Header.h */,
+				B89663F91CF32FD100B2A6CA /* YiRefreshFooter.h */,
+				B89663FA1CF32FD100B2A6CA /* YiRefreshFooter.m */,
+				B89663FB1CF32FD100B2A6CA /* YiRefreshHeader.h */,
+				B89663FC1CF32FD100B2A6CA /* YiRefreshHeader.m */,
+			);
+			path = Refresh;
+			sourceTree = "<group>";
+		};
+		B89663FD1CF32FD100B2A6CA /* RFSegmentView */ = {
+			isa = PBXGroup;
+			children = (
+				B89663FE1CF32FD100B2A6CA /* RFSegmentView.h */,
+				B89663FF1CF32FD100B2A6CA /* RFSegmentView.m */,
+			);
+			path = RFSegmentView;
+			sourceTree = "<group>";
+		};
+		B89664001CF32FD100B2A6CA /* UIView+Sizes */ = {
+			isa = PBXGroup;
+			children = (
+				B89664011CF32FD100B2A6CA /* Dlog.h */,
+				B89664021CF32FD100B2A6CA /* SWCommonMacro.h */,
+				B89664031CF32FD100B2A6CA /* UIView+Sizes.h */,
+				B89664041CF32FD100B2A6CA /* UIView+Sizes.m */,
+				B89664051CF32FD100B2A6CA /* UIView+TKCategory.h */,
+				B89664061CF32FD100B2A6CA /* UIView+TKCategory.m */,
+				B89664071CF32FD100B2A6CA /* UIViewAdditions.h */,
+				B89664081CF32FD100B2A6CA /* UIViewAdditions.m */,
+			);
+			path = "UIView+Sizes";
 			sourceTree = "<group>";
 		};
 		E14BD4841CEEF53F00C66E14 = {
@@ -84,11 +192,12 @@
 			children = (
 				E14BD4C61CEF073100C66E14 /* Default-568h@2x.png */,
 				E14BD4F11CF2D01600C66E14 /* 1.jpg */,
+				B89664111CF32FF700B2A6CA /* PrefixHeader.pch */,
 				E14BD48F1CEEF53F00C66E14 /* HRER */,
 				E14BD4AD1CEEF78F00C66E14 /* MapKit.framework */,
 				E14BD48E1CEEF53F00C66E14 /* Products */,
-				4FF637A177A87C874C20C32A /* Pods */,
-				01B63AFEB7D282FB08E4711D /* Frameworks */,
+				9B832C006F45D1D5AC7E186C /* Pods */,
+				91AC680EC2350DF6E59E1D63 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -103,6 +212,8 @@
 		E14BD48F1CEEF53F00C66E14 /* HRER */ = {
 			isa = PBXGroup;
 			children = (
+				B89663E21CF32F7700B2A6CA /* CommonUI */,
+				B89663F21CF32FD100B2A6CA /* ThirdPary */,
 				E14BD4BF1CEEFBF900C66E14 /* HEMapView */,
 				E14BD4931CEEF53F00C66E14 /* AppDelegate.h */,
 				E14BD4941CEEF53F00C66E14 /* AppDelegate.m */,
@@ -146,12 +257,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E14BD4A41CEEF53F00C66E14 /* Build configuration list for PBXNativeTarget "HRER" */;
 			buildPhases = (
-				6E4ACFD5D02AE898D78DAA15 /* 📦 Check Pods Manifest.lock */,
+				B5E3EEBFFB163B0A4D465853 /* 📦 Check Pods Manifest.lock */,
 				E14BD4891CEEF53F00C66E14 /* Sources */,
 				E14BD48A1CEEF53F00C66E14 /* Frameworks */,
 				E14BD48B1CEEF53F00C66E14 /* Resources */,
-				BCE75F994954D7E8D6DEFEF3 /* 📦 Embed Pods Frameworks */,
-				8589C24D8D2644CD6A307810 /* 📦 Copy Pods Resources */,
+				508F7EEA610F00A8AB1A8133 /* 📦 Embed Pods Frameworks */,
+				396543CA4BA5E0BD97782CB4 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -214,22 +325,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		6E4ACFD5D02AE898D78DAA15 /* 📦 Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "📦 Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		8589C24D8D2644CD6A307810 /* 📦 Copy Pods Resources */ = {
+		396543CA4BA5E0BD97782CB4 /* 📦 Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -244,7 +340,7 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HRER/Pods-HRER-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		BCE75F994954D7E8D6DEFEF3 /* 📦 Embed Pods Frameworks */ = {
+		508F7EEA610F00A8AB1A8133 /* 📦 Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -259,6 +355,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HRER/Pods-HRER-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		B5E3EEBFFB163B0A4D465853 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -266,13 +377,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B89664101CF32FD100B2A6CA /* UIViewAdditions.m in Sources */,
+				B896640D1CF32FD100B2A6CA /* RFSegmentView.m in Sources */,
 				E14BD4951CEEF53F00C66E14 /* AppDelegate.m in Sources */,
 				E14BD4C21CEEFBF900C66E14 /* HRMapView.m in Sources */,
+				B896640B1CF32FD100B2A6CA /* YiRefreshFooter.m in Sources */,
 				E14BD4F51CF2D76700C66E14 /* HRPinAnnomationView.m in Sources */,
+				B896640C1CF32FD100B2A6CA /* YiRefreshHeader.m in Sources */,
 				E14BD4F01CF2CAD200C66E14 /* HRAnomation.m in Sources */,
+				B89663EF1CF32F7700B2A6CA /* RefreshCollectionView.m in Sources */,
 				E14BD4921CEEF53F00C66E14 /* main.m in Sources */,
+				B89663ED1CF32F7700B2A6CA /* JWCollectionViewFlowLayout.m in Sources */,
+				B89663F01CF32F7700B2A6CA /* ToastAlertView.m in Sources */,
 				E14BD4C51CEEFC0700C66E14 /* HRLocationManager.m in Sources */,
+				B89663F11CF32F7700B2A6CA /* UIViewController+Method.m in Sources */,
+				B896640E1CF32FD100B2A6CA /* UIView+Sizes.m in Sources */,
 				E14BD4A91CEEF65200C66E14 /* RootViewController.m in Sources */,
+				B89663EE1CF32F7700B2A6CA /* NSDictionary+StrDic.m in Sources */,
+				B896640F1CF32FD100B2A6CA /* UIView+TKCategory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -375,9 +497,10 @@
 		};
 		E14BD4A51CEEF53F00C66E14 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8000517D5E0B588C94C89325 /* Pods-HRER.debug.xcconfig */;
+			baseConfigurationReference = 945292EBCA75C77D85B46D4E /* Pods-HRER.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PREFIX_HEADER = PrefixHeader.pch;
 				INFOPLIST_FILE = HRER/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Example.HRER;
@@ -387,9 +510,10 @@
 		};
 		E14BD4A61CEEF53F00C66E14 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 16AAF9B0AF6053AC1E1ECCC4 /* Pods-HRER.release.xcconfig */;
+			baseConfigurationReference = 26EDF89553D0EF9D05F69A42 /* Pods-HRER.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PREFIX_HEADER = PrefixHeader.pch;
 				INFOPLIST_FILE = HRER/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Example.HRER;
