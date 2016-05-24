@@ -10,6 +10,7 @@
 #import "RootViewController.h"
 #import "HRLocationManager.h"
 #import "HRWeChatManager.h"
+#import "AFNetworkActivityLogger.h"
 
 @interface AppDelegate ()
 
@@ -38,6 +39,8 @@
     //启动定位模块
     [[HRLocationManager sharedInstance] startLocaiton];
     
+    //开启AFNetWork
+    [[AFNetworkActivityLogger sharedLogger] startLogging];
 }
 
 
