@@ -31,6 +31,15 @@
 		E14BD4F01CF2CAD200C66E14 /* HRAnomation.m in Sources */ = {isa = PBXBuildFile; fileRef = E14BD4EF1CF2CAD200C66E14 /* HRAnomation.m */; };
 		E14BD4F21CF2D01600C66E14 /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E14BD4F11CF2D01600C66E14 /* 1.jpg */; };
 		E14BD4F51CF2D76700C66E14 /* HRPinAnnomationView.m in Sources */ = {isa = PBXBuildFile; fileRef = E14BD4F41CF2D76700C66E14 /* HRPinAnnomationView.m */; };
+		E1C303701CF43C1F001C016B /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E1C3036B1CF43C1F001C016B /* libWeChatSDK.a */; };
+		E1C303711CF43C1F001C016B /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = E1C3036C1CF43C1F001C016B /* README.txt */; };
+		E1C303731CF43CDA001C016B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1C303721CF43CDA001C016B /* SystemConfiguration.framework */; };
+		E1C303751CF43D08001C016B /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E1C303741CF43D08001C016B /* libz.tbd */; };
+		E1C303771CF43D12001C016B /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E1C303761CF43D12001C016B /* libsqlite3.0.tbd */; };
+		E1C303791CF43D1D001C016B /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E1C303781CF43D1D001C016B /* libc++.tbd */; };
+		E1C3037B1CF43DBD001C016B /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1C3037A1CF43DBD001C016B /* CoreTelephony.framework */; };
+		E1C3037F1CF43E71001C016B /* WebCatLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = E1C3037E1CF43E71001C016B /* WebCatLogin.m */; };
+		E1C303921CF442C4001C016B /* HRWeChatManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E1C303911CF442C4001C016B /* HRWeChatManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,7 +71,7 @@
 		B89664061CF32FD100B2A6CA /* UIView+TKCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+TKCategory.m"; sourceTree = "<group>"; };
 		B89664071CF32FD100B2A6CA /* UIViewAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewAdditions.h; sourceTree = "<group>"; };
 		B89664081CF32FD100B2A6CA /* UIViewAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewAdditions.m; sourceTree = "<group>"; };
-		B89664111CF32FF700B2A6CA /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		B89664111CF32FF700B2A6CA /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PrefixHeader.pch; path = ../PrefixHeader.pch; sourceTree = "<group>"; };
 		E14BD48D1CEEF53F00C66E14 /* HRER.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HRER.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E14BD4911CEEF53F00C66E14 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E14BD4931CEEF53F00C66E14 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -84,6 +93,20 @@
 		E14BD4F11CF2D01600C66E14 /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpg; sourceTree = "<group>"; };
 		E14BD4F31CF2D76700C66E14 /* HRPinAnnomationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRPinAnnomationView.h; sourceTree = "<group>"; };
 		E14BD4F41CF2D76700C66E14 /* HRPinAnnomationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRPinAnnomationView.m; sourceTree = "<group>"; };
+		E1C3036B1CF43C1F001C016B /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
+		E1C3036C1CF43C1F001C016B /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
+		E1C3036D1CF43C1F001C016B /* WechatAuthSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatAuthSDK.h; sourceTree = "<group>"; };
+		E1C3036E1CF43C1F001C016B /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
+		E1C3036F1CF43C1F001C016B /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
+		E1C303721CF43CDA001C016B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		E1C303741CF43D08001C016B /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		E1C303761CF43D12001C016B /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		E1C303781CF43D1D001C016B /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		E1C3037A1CF43DBD001C016B /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		E1C3037D1CF43E71001C016B /* WebCatLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebCatLogin.h; sourceTree = "<group>"; };
+		E1C3037E1CF43E71001C016B /* WebCatLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebCatLogin.m; sourceTree = "<group>"; };
+		E1C303901CF442C4001C016B /* HRWeChatManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRWeChatManager.h; sourceTree = "<group>"; };
+		E1C303911CF442C4001C016B /* HRWeChatManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRWeChatManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,8 +114,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1C3037B1CF43DBD001C016B /* CoreTelephony.framework in Frameworks */,
+				E1C303791CF43D1D001C016B /* libc++.tbd in Frameworks */,
+				E1C303771CF43D12001C016B /* libsqlite3.0.tbd in Frameworks */,
+				E1C303751CF43D08001C016B /* libz.tbd in Frameworks */,
+				E1C303731CF43CDA001C016B /* SystemConfiguration.framework in Frameworks */,
 				E14BD4AE1CEEF78F00C66E14 /* MapKit.framework in Frameworks */,
 				65F02507B9087AA3ECF2E966 /* libPods-HRER.a in Frameworks */,
+				E1C303701CF43C1F001C016B /* libWeChatSDK.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,6 +132,11 @@
 			isa = PBXGroup;
 			children = (
 				5F257A244BFC3C4FF1BA43A2 /* libPods-HRER.a */,
+				E1C3037A1CF43DBD001C016B /* CoreTelephony.framework */,
+				E1C303781CF43D1D001C016B /* libc++.tbd */,
+				E1C303761CF43D12001C016B /* libsqlite3.0.tbd */,
+				E1C303741CF43D08001C016B /* libz.tbd */,
+				E1C303721CF43CDA001C016B /* SystemConfiguration.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -136,19 +170,11 @@
 		B89663F21CF32FD100B2A6CA /* ThirdPary */ = {
 			isa = PBXGroup;
 			children = (
-				B89663F31CF32FD100B2A6CA /* AFNetworkActivityLogger */,
 				B89663F71CF32FD100B2A6CA /* Refresh */,
 				B89663FD1CF32FD100B2A6CA /* RFSegmentView */,
 				B89664001CF32FD100B2A6CA /* UIView+Sizes */,
 			);
 			path = ThirdPary;
-			sourceTree = "<group>";
-		};
-		B89663F31CF32FD100B2A6CA /* AFNetworkActivityLogger */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = AFNetworkActivityLogger;
 			sourceTree = "<group>";
 		};
 		B89663F71CF32FD100B2A6CA /* Refresh */ = {
@@ -192,7 +218,6 @@
 			children = (
 				E14BD4C61CEF073100C66E14 /* Default-568h@2x.png */,
 				E14BD4F11CF2D01600C66E14 /* 1.jpg */,
-				B89664111CF32FF700B2A6CA /* PrefixHeader.pch */,
 				E14BD48F1CEEF53F00C66E14 /* HRER */,
 				E14BD4AD1CEEF78F00C66E14 /* MapKit.framework */,
 				E14BD48E1CEEF53F00C66E14 /* Products */,
@@ -212,8 +237,10 @@
 		E14BD48F1CEEF53F00C66E14 /* HRER */ = {
 			isa = PBXGroup;
 			children = (
-				B89663E21CF32F7700B2A6CA /* CommonUI */,
+				E1C3037C1CF43E5E001C016B /* OAuthLogin */,
+				E1C3036A1CF43C1F001C016B /* WebCatSDK */,
 				B89663F21CF32FD100B2A6CA /* ThirdPary */,
+				B89663E21CF32F7700B2A6CA /* CommonUI */,
 				E14BD4BF1CEEFBF900C66E14 /* HEMapView */,
 				E14BD4931CEEF53F00C66E14 /* AppDelegate.h */,
 				E14BD4941CEEF53F00C66E14 /* AppDelegate.m */,
@@ -229,6 +256,7 @@
 		E14BD4901CEEF53F00C66E14 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B89664111CF32FF700B2A6CA /* PrefixHeader.pch */,
 				E14BD4CC1CEF0AC900C66E14 /* Localization.strings */,
 				E14BD4911CEEF53F00C66E14 /* main.m */,
 			);
@@ -248,6 +276,29 @@
 				E14BD4C41CEEFC0700C66E14 /* HRLocationManager.m */,
 			);
 			path = HEMapView;
+			sourceTree = "<group>";
+		};
+		E1C3036A1CF43C1F001C016B /* WebCatSDK */ = {
+			isa = PBXGroup;
+			children = (
+				E1C3036B1CF43C1F001C016B /* libWeChatSDK.a */,
+				E1C3036C1CF43C1F001C016B /* README.txt */,
+				E1C3036D1CF43C1F001C016B /* WechatAuthSDK.h */,
+				E1C3036E1CF43C1F001C016B /* WXApi.h */,
+				E1C3036F1CF43C1F001C016B /* WXApiObject.h */,
+			);
+			path = WebCatSDK;
+			sourceTree = "<group>";
+		};
+		E1C3037C1CF43E5E001C016B /* OAuthLogin */ = {
+			isa = PBXGroup;
+			children = (
+				E1C3037D1CF43E71001C016B /* WebCatLogin.h */,
+				E1C3037E1CF43E71001C016B /* WebCatLogin.m */,
+				E1C303901CF442C4001C016B /* HRWeChatManager.h */,
+				E1C303911CF442C4001C016B /* HRWeChatManager.m */,
+			);
+			path = OAuthLogin;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -319,6 +370,7 @@
 				E14BD4F21CF2D01600C66E14 /* 1.jpg in Resources */,
 				E14BD4CA1CEF0AC900C66E14 /* Localization.strings in Resources */,
 				E14BD4C71CEF073100C66E14 /* Default-568h@2x.png in Resources */,
+				E1C303711CF43C1F001C016B /* README.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -389,12 +441,14 @@
 				E14BD4921CEEF53F00C66E14 /* main.m in Sources */,
 				B89663ED1CF32F7700B2A6CA /* JWCollectionViewFlowLayout.m in Sources */,
 				B89663F01CF32F7700B2A6CA /* ToastAlertView.m in Sources */,
+				E1C303921CF442C4001C016B /* HRWeChatManager.m in Sources */,
 				E14BD4C51CEEFC0700C66E14 /* HRLocationManager.m in Sources */,
 				B89663F11CF32F7700B2A6CA /* UIViewController+Method.m in Sources */,
 				B896640E1CF32FD100B2A6CA /* UIView+Sizes.m in Sources */,
 				E14BD4A91CEEF65200C66E14 /* RootViewController.m in Sources */,
 				B89663EE1CF32F7700B2A6CA /* NSDictionary+StrDic.m in Sources */,
 				B896640F1CF32FD100B2A6CA /* UIView+TKCategory.m in Sources */,
+				E1C3037F1CF43E71001C016B /* WebCatLogin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -503,6 +557,10 @@
 				GCC_PREFIX_HEADER = PrefixHeader.pch;
 				INFOPLIST_FILE = HRER/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/HRER/WebCatSDK",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = Example.HRER;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -516,6 +574,10 @@
 				GCC_PREFIX_HEADER = PrefixHeader.pch;
 				INFOPLIST_FILE = HRER/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/HRER/WebCatSDK",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = Example.HRER;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

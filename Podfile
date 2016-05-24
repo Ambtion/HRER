@@ -4,10 +4,11 @@ platform :ios, '8.0'
 target 'HRER' do
 
 pod 'Masonry'
-pod 'AFNetworking'
+pod 'AFNetworking', '~> 2.0'
 pod 'SDWebImage'
 pod 'iCarousel'
 pod 'MBProgressHUD'
 pod 'GCJSONKit'
+pod 'AFNetworkActivityLogger'
 
 end

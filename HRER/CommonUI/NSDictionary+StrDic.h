@@ -12,8 +12,8 @@
 - (NSString *)objectStringForKey:(NSString *)key;
 - (NSArray *)objectArrayForKey:(NSString *)key;
 - (NSDictionary *)objectInfoForKey:(NSString *)key;
-- (NSString *)objectForImageStr:(NSString *)key;
-- (NSArray *)objectForImageArray:(NSString*)key;
+//- (NSString *)objectForImageStr:(NSString *)key;
+//- (NSArray *)objectForImageArray:(NSString*)key;
 @end
 
 
