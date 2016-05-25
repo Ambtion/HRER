@@ -12,7 +12,6 @@
 #import <TencentOpenAPI/TencentOAuthObject.h>
 #import <TencentOpenAPI/TencentApiInterface.h>
 #import <TencentOpenAPI/QQApiInterfaceObject.h>
-#import <TencentOpenAPI/QQApiInterface.h>
 
 
 #define TencentAppKey  @"100506074"
@@ -104,36 +103,43 @@ static HRQQManager *gInstance = nil;
 #pragma mark Share
 - (void)shareWithTitle:(NSString *)title WithCallBack:(ReqCallBack)callback;
 {
-    //开发者分享的文本内容
+    self.reqCallBack = callback;
     QQApiTextObject *txtObj = [QQApiTextObject objectWithText:title];
     SendMessageToQQReq *req = [SendMessageToQQReq reqWithContent:txtObj];
     [QQApiInterface sendReq:req];
     
 }
 
+
+- (void)shareImageToQQWithThumbImage:(UIImage *)thumbImage orignalImage:(UIImage *)oImage title:(NSString *)title withDes:(NSString *)des WithCallBack:(ReqCallBack)callback;
+{
+    
+    NSData * tData = UIImageJPEGRepresentation(thumbImage, 0.8);
+    NSData * oData = UIImageJPEGRepresentation(oImage, 0.8);
+    
+    QQApiImageObject *imgObj = [QQApiImageObject objectWithData:oData
+                                               previewImageData:tData
+                                                          title:title
+                                                   description :des];
+    
+    SendMessageToQQReq *req = [SendMessageToQQReq reqWithContent:imgObj];
+    
+    [QQApiInterface sendReq:req];
+}
+
+- (void)shareNewsWithImage:(UIImage*)image  title:(NSString *)title Des:(NSString *)des link:(NSString *)urlStr WithCallBack:(ReqCallBack)callback
+{
+    NSURL * url = [NSURL URLWithString:urlStr];
+    
+    QQApiNewsObject* img = [QQApiNewsObject objectWithURL:url title:title description:des previewImageData:UIImageJPEGRepresentation(image, 0.8)];
+    SendMessageToQQReq* req = [SendMessageToQQReq reqWithContent:img];
+    [QQApiInterface sendReq:req];
+}
+#pragma mark - CallBack
 - (void)onResp:(QQBaseResp *)resp
 {
-    
-}
-
-- (void)onReq:(QQBaseReq *)req
-{
-    
-}
-
-- (void)responseDidReceived:(APIResponse*)response forMessage:(NSString *)message
-{
-    if (self.reqCallBack) {
-        self.reqCallBack(response);
-        self.reqCallBack = nil;
-    }
-}
-
-
-- (void)getUserInfoResponse:(APIResponse*) response
-{
-    if (self.reqCallBack) {
-        self.reqCallBack(response);
+    if(self.reqCallBack){
+        self.reqCallBack(resp);
         self.reqCallBack = nil;
     }
 }

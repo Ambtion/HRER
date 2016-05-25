@@ -8,10 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import <TencentOpenAPI/sdkdef.h>
-
+#import <TencentOpenAPI/QQApiInterface.h>
 
 typedef void(^LoginCallBack)(BOOL isSucess,BOOL isCanceled);
-typedef void(^ReqCallBack)(APIResponse * response);
+typedef void(^ReqCallBack)(QQBaseResp * response);
 
 
 @interface HRQQManager : NSObject
@@ -38,8 +38,36 @@ typedef void(^ReqCallBack)(APIResponse * response);
 /**
  *  纯文本分享
  */
-- (void)shareWithTitle:(NSString *)title WithCallBack:(ReqCallBack)callback;
+- (void)shareWithTitle:(NSString *)title
+          WithCallBack:(ReqCallBack)callback;
 
+/**
+ *  纯图片分享
+ *
+ *  @param thumbImage 预览图片 <预览图像，最大1M字节
+ *  @param oImage     原始图片 <具体数据内容，必填，最大5M字节
+ *  @param title      图片Title
+ *  @param des        图片描述
+ */
+- (void)shareImageToQQWithThumbImage:(UIImage *)thumbImage
+                        orignalImage:(UIImage *)oImage
+                               title:(NSString *)title
+                             withDes:(NSString *)des
+                        WithCallBack:(ReqCallBack)callback;
+
+/**
+ *  分享新闻消息
+ *
+ *  @param image    新闻图片
+ *  @param title    新闻标题
+ *  @param des      新闻描述
+ *  @param urlStr   新闻link
+ */
+- (void)shareNewsWithImage:(UIImage*)image
+                     title:(NSString *)title
+                       Des:(NSString *)des
+                      link:(NSString *)urlStr
+              WithCallBack:(ReqCallBack)callback;
 
 
 @end
