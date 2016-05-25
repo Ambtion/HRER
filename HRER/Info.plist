@@ -10,6 +10,7 @@
 		<string>mqqopensdkapiV2</string>
 		<string>wechat</string>
 		<string>mqqOpensdkSSoLogin</string>
+		<string>mqqapi</string>
 	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>zh_CN</string>

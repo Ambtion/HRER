@@ -33,4 +33,13 @@ typedef void(^ReqCallBack)(APIResponse * response);
 - (void)loginWithLoginCallBack:(LoginCallBack)callback;
 - (BOOL)iphoneQQSupportSSOLogin;
 
+
+//QQ分享
+/**
+ *  纯文本分享
+ */
+- (void)shareWithTitle:(NSString *)title WithCallBack:(ReqCallBack)callback;
+
+
+
 @end

@@ -18,10 +18,10 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    
-    [[HRQQManager shareInstance] loginWithLoginCallBack:^(BOOL isSucess, BOOL isCanceled) {
+    [[HRQQManager  shareInstance] loginWithLoginCallBack:^(BOOL isSucess, BOOL isCanceled) {
         
     }];
+ 
 }
 
 

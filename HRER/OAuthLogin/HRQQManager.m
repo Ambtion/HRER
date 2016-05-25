@@ -11,6 +11,8 @@
 #import <TencentOpenAPI/TencentOAuth.h>
 #import <TencentOpenAPI/TencentOAuthObject.h>
 #import <TencentOpenAPI/TencentApiInterface.h>
+#import <TencentOpenAPI/QQApiInterfaceObject.h>
+#import <TencentOpenAPI/QQApiInterface.h>
 
 
 #define TencentAppKey  @"100506074"
@@ -19,7 +21,7 @@
 static HRQQManager *gInstance = nil;
 
 
-@interface HRQQManager()<TencentSessionDelegate>
+@interface HRQQManager()<TencentSessionDelegate,QQApiInterfaceDelegate>
 
 @property (nonatomic, retain)TencentOAuth *oauth;
 
@@ -54,9 +56,8 @@ static HRQQManager *gInstance = nil;
 
 - (BOOL)handdleOpneUrl:(NSURL *)url
 {
-   return [TencentApiInterface handleOpenURL:url delegate:self];
+   return [QQApiInterface handleOpenURL:url delegate:self];
 }
-
 
 
 #pragma mark - Login
@@ -100,23 +101,34 @@ static HRQQManager *gInstance = nil;
     }
 }
 
-- (NSArray *)getAuthorizedPermissions:(NSArray *)permissions withExtraParams:(NSDictionary *)extraParams
+#pragma mark Share
+- (void)shareWithTitle:(NSString *)title WithCallBack:(ReqCallBack)callback;
 {
-    return nil;
+    //开发者分享的文本内容
+    QQApiTextObject *txtObj = [QQApiTextObject objectWithText:title];
+    SendMessageToQQReq *req = [SendMessageToQQReq reqWithContent:txtObj];
+    [QQApiInterface sendReq:req];
+    
 }
 
-- (BOOL)tencentNeedPerformIncrAuth:(TencentOAuth *)tencentOAuth withPermissions:(NSArray *)permissions
+- (void)onResp:(QQBaseResp *)resp
 {
-    return YES;
+    
 }
 
-
-- (BOOL)tencentNeedPerformReAuth:(TencentOAuth *)tencentOAuth
+- (void)onReq:(QQBaseReq *)req
 {
-    return YES;
+    
 }
 
-#pragma mark Get UserInfo
+- (void)responseDidReceived:(APIResponse*)response forMessage:(NSString *)message
+{
+    if (self.reqCallBack) {
+        self.reqCallBack(response);
+        self.reqCallBack = nil;
+    }
+}
+
 
 - (void)getUserInfoResponse:(APIResponse*) response
 {
