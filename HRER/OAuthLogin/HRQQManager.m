@@ -144,5 +144,11 @@ static HRQQManager *gInstance = nil;
     }
 }
 
+- (void)onReq:(QQBaseReq *)req
+{}
+
+- (void)isOnlineResponse:(NSDictionary *)response
+{}
+
 @end
 
