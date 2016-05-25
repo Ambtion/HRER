@@ -9,8 +9,9 @@
 #import "AppDelegate.h"
 #import "RootViewController.h"
 #import "HRLocationManager.h"
-#import "HRWeChatManager.h"
+#import "HRWeCatManager.h"
 #import "AFNetworkActivityLogger.h"
+#import "HRQQManager.h"
 
 @interface AppDelegate ()
 
@@ -34,7 +35,10 @@
 - (void)initAllComCore
 {
     //注册微信
-    [[HRWeChatManager shareInstance] registerWeixin];
+    [[HRWeCatManager shareInstance] registerWeixin];
+    
+    //注册QQ
+    [[HRQQManager shareInstance] registerQQ];
     
     //启动定位模块
     [[HRLocationManager sharedInstance] startLocaiton];
@@ -44,6 +48,31 @@
 }
 
 
+#pragma mark AppDelegate FOR SSO
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    if ([[HRWeCatManager shareInstance] isWeixinssoReturn:url]) {
+        return [[HRWeCatManager shareInstance] handdleOpneUrl:url];
+    }
+    
+    if ([[HRQQManager shareInstance] isQQssoReturn:url]) {
+        return [[HRQQManager shareInstance] handdleOpneUrl:url];
+    }
+    return YES;
+}
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+    if ([[HRWeCatManager shareInstance] isWeixinssoReturn:url]) {
+        return [[HRWeCatManager shareInstance] handdleOpneUrl:url];
+    }
+    
+    if ([[HRQQManager shareInstance] isQQssoReturn:url]) {
+        return [[HRQQManager shareInstance] handdleOpneUrl:url];
+    }
+    
+    return YES;
+}
 
 
 @end

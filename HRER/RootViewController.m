@@ -7,7 +7,7 @@
 //
 
 #import "RootViewController.h"
-#import "HRMapView.h"
+#import "HRQQManager.h"
 
 @interface RootViewController ()
 
@@ -16,9 +16,12 @@
 @implementation RootViewController
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
-    HRMapView * view = [[HRMapView alloc] initWithFrame:self.view.bounds];
-    [self.view addSubview:view];
+    
+    [[HRQQManager shareInstance] loginWithLoginCallBack:^(BOOL isSucess, BOOL isCanceled) {
+        
+    }];
 }
 
 
