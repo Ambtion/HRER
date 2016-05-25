@@ -8,6 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		65F02507B9087AA3ECF2E966 /* libPods-HRER.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F257A244BFC3C4FF1BA43A2 /* libPods-HRER.a */; };
+		B88F10611CF5D005007C930F /* HRLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B88F10601CF5D005007C930F /* HRLoginViewController.m */; };
+		B88F10641CF5D00C007C930F /* LoginModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B88F10631CF5D00C007C930F /* LoginModel.m */; };
+		B88F106C1CF5E227007C930F /* MyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B88F106B1CF5E227007C930F /* MyViewController.m */; };
+		B88F106F1CF5E232007C930F /* FriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B88F106E1CF5E232007C930F /* FriendsViewController.m */; };
+		B88F10721CF5E23B007C930F /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B88F10711CF5E23B007C930F /* HomeViewController.m */; };
+		B88F10751CF5E246007C930F /* FindCityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B88F10741CF5E246007C930F /* FindCityViewController.m */; };
+		B88F10781CF5E253007C930F /* HereViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B88F10771CF5E253007C930F /* HereViewController.m */; };
+		B88F107C1CF5E273007C930F /* HRNagationController.m in Sources */ = {isa = PBXBuildFile; fileRef = B88F107B1CF5E273007C930F /* HRNagationController.m */; };
 		B89663ED1CF32F7700B2A6CA /* JWCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = B89663E41CF32F7700B2A6CA /* JWCollectionViewFlowLayout.m */; };
 		B89663EE1CF32F7700B2A6CA /* NSDictionary+StrDic.m in Sources */ = {isa = PBXBuildFile; fileRef = B89663E61CF32F7700B2A6CA /* NSDictionary+StrDic.m */; };
 		B89663EF1CF32F7700B2A6CA /* RefreshCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = B89663E81CF32F7700B2A6CA /* RefreshCollectionView.m */; };
@@ -22,14 +30,12 @@
 		E14BD4921CEEF53F00C66E14 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E14BD4911CEEF53F00C66E14 /* main.m */; };
 		E14BD4951CEEF53F00C66E14 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E14BD4941CEEF53F00C66E14 /* AppDelegate.m */; };
 		E14BD49D1CEEF53F00C66E14 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E14BD49C1CEEF53F00C66E14 /* Assets.xcassets */; };
-		E14BD4A91CEEF65200C66E14 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E14BD4A81CEEF65200C66E14 /* RootViewController.m */; };
 		E14BD4AE1CEEF78F00C66E14 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E14BD4AD1CEEF78F00C66E14 /* MapKit.framework */; };
 		E14BD4C21CEEFBF900C66E14 /* HRMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = E14BD4C11CEEFBF900C66E14 /* HRMapView.m */; };
 		E14BD4C51CEEFC0700C66E14 /* HRLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E14BD4C41CEEFC0700C66E14 /* HRLocationManager.m */; };
 		E14BD4C71CEF073100C66E14 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E14BD4C61CEF073100C66E14 /* Default-568h@2x.png */; };
 		E14BD4CA1CEF0AC900C66E14 /* Localization.strings in Resources */ = {isa = PBXBuildFile; fileRef = E14BD4CC1CEF0AC900C66E14 /* Localization.strings */; };
 		E14BD4F01CF2CAD200C66E14 /* HRAnomation.m in Sources */ = {isa = PBXBuildFile; fileRef = E14BD4EF1CF2CAD200C66E14 /* HRAnomation.m */; };
-		E14BD4F21CF2D01600C66E14 /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E14BD4F11CF2D01600C66E14 /* 1.jpg */; };
 		E14BD4F51CF2D76700C66E14 /* HRPinAnnomationView.m in Sources */ = {isa = PBXBuildFile; fileRef = E14BD4F41CF2D76700C66E14 /* HRPinAnnomationView.m */; };
 		E1C303701CF43C1F001C016B /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E1C3036B1CF43C1F001C016B /* libWeChatSDK.a */; };
 		E1C303711CF43C1F001C016B /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = E1C3036C1CF43C1F001C016B /* README.txt */; };
@@ -50,6 +56,22 @@
 		26EDF89553D0EF9D05F69A42 /* Pods-HRER.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HRER.release.xcconfig"; path = "Pods/Target Support Files/Pods-HRER/Pods-HRER.release.xcconfig"; sourceTree = "<group>"; };
 		5F257A244BFC3C4FF1BA43A2 /* libPods-HRER.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HRER.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		945292EBCA75C77D85B46D4E /* Pods-HRER.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HRER.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HRER/Pods-HRER.debug.xcconfig"; sourceTree = "<group>"; };
+		B88F105F1CF5D005007C930F /* HRLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRLoginViewController.h; sourceTree = "<group>"; };
+		B88F10601CF5D005007C930F /* HRLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRLoginViewController.m; sourceTree = "<group>"; };
+		B88F10621CF5D00C007C930F /* LoginModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginModel.h; sourceTree = "<group>"; };
+		B88F10631CF5D00C007C930F /* LoginModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginModel.m; sourceTree = "<group>"; };
+		B88F106A1CF5E227007C930F /* MyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyViewController.h; sourceTree = "<group>"; };
+		B88F106B1CF5E227007C930F /* MyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyViewController.m; sourceTree = "<group>"; };
+		B88F106D1CF5E232007C930F /* FriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsViewController.h; sourceTree = "<group>"; };
+		B88F106E1CF5E232007C930F /* FriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsViewController.m; sourceTree = "<group>"; };
+		B88F10701CF5E23B007C930F /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		B88F10711CF5E23B007C930F /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		B88F10731CF5E246007C930F /* FindCityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindCityViewController.h; sourceTree = "<group>"; };
+		B88F10741CF5E246007C930F /* FindCityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindCityViewController.m; sourceTree = "<group>"; };
+		B88F10761CF5E253007C930F /* HereViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HereViewController.h; sourceTree = "<group>"; };
+		B88F10771CF5E253007C930F /* HereViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HereViewController.m; sourceTree = "<group>"; };
+		B88F107A1CF5E273007C930F /* HRNagationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRNagationController.h; sourceTree = "<group>"; };
+		B88F107B1CF5E273007C930F /* HRNagationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRNagationController.m; sourceTree = "<group>"; };
 		B89663E31CF32F7700B2A6CA /* JWCollectionViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JWCollectionViewFlowLayout.h; sourceTree = "<group>"; };
 		B89663E41CF32F7700B2A6CA /* JWCollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JWCollectionViewFlowLayout.m; sourceTree = "<group>"; };
 		B89663E51CF32F7700B2A6CA /* NSDictionary+StrDic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+StrDic.h"; sourceTree = "<group>"; };
@@ -78,12 +100,10 @@
 		B89664111CF32FF700B2A6CA /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PrefixHeader.pch; path = ../PrefixHeader.pch; sourceTree = "<group>"; };
 		E14BD48D1CEEF53F00C66E14 /* HRER.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HRER.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E14BD4911CEEF53F00C66E14 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		E14BD4931CEEF53F00C66E14 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		E14BD4941CEEF53F00C66E14 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		E14BD4931CEEF53F00C66E14 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = HRER/AppDelegate.h; sourceTree = "<group>"; };
+		E14BD4941CEEF53F00C66E14 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = HRER/AppDelegate.m; sourceTree = "<group>"; };
 		E14BD49C1CEEF53F00C66E14 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E14BD4A11CEEF53F00C66E14 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E14BD4A71CEEF65200C66E14 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
-		E14BD4A81CEEF65200C66E14 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		E14BD4AD1CEEF78F00C66E14 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		E14BD4C01CEEFBF900C66E14 /* HRMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRMapView.h; sourceTree = "<group>"; };
 		E14BD4C11CEEFBF900C66E14 /* HRMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRMapView.m; sourceTree = "<group>"; };
@@ -94,7 +114,6 @@
 		E14BD4CD1CEF0AE600C66E14 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localization.strings"; sourceTree = "<group>"; };
 		E14BD4EE1CF2CAD200C66E14 /* HRAnomation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRAnomation.h; sourceTree = "<group>"; };
 		E14BD4EF1CF2CAD200C66E14 /* HRAnomation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRAnomation.m; sourceTree = "<group>"; };
-		E14BD4F11CF2D01600C66E14 /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpg; sourceTree = "<group>"; };
 		E14BD4F31CF2D76700C66E14 /* HRPinAnnomationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRPinAnnomationView.h; sourceTree = "<group>"; };
 		E14BD4F41CF2D76700C66E14 /* HRPinAnnomationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRPinAnnomationView.m; sourceTree = "<group>"; };
 		E1C3036B1CF43C1F001C016B /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
@@ -159,6 +178,72 @@
 				26EDF89553D0EF9D05F69A42 /* Pods-HRER.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		B88F105E1CF5CDF6007C930F /* LoginController */ = {
+			isa = PBXGroup;
+			children = (
+				B88F105F1CF5D005007C930F /* HRLoginViewController.h */,
+				B88F10601CF5D005007C930F /* HRLoginViewController.m */,
+				B88F10621CF5D00C007C930F /* LoginModel.h */,
+				B88F10631CF5D00C007C930F /* LoginModel.m */,
+			);
+			path = LoginController;
+			sourceTree = "<group>";
+		};
+		B88F10651CF5E1D3007C930F /* HomeViewContoller */ = {
+			isa = PBXGroup;
+			children = (
+				B88F10701CF5E23B007C930F /* HomeViewController.h */,
+				B88F10711CF5E23B007C930F /* HomeViewController.m */,
+			);
+			path = HomeViewContoller;
+			sourceTree = "<group>";
+		};
+		B88F10661CF5E1E2007C930F /* FindCityViewController */ = {
+			isa = PBXGroup;
+			children = (
+				B88F10731CF5E246007C930F /* FindCityViewController.h */,
+				B88F10741CF5E246007C930F /* FindCityViewController.m */,
+			);
+			path = FindCityViewController;
+			sourceTree = "<group>";
+		};
+		B88F10671CF5E1EA007C930F /* HereViewController */ = {
+			isa = PBXGroup;
+			children = (
+				B88F10761CF5E253007C930F /* HereViewController.h */,
+				B88F10771CF5E253007C930F /* HereViewController.m */,
+			);
+			name = HereViewController;
+			path = HomeViewContoller/HereViewController;
+			sourceTree = "<group>";
+		};
+		B88F10681CF5E212007C930F /* FriendsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				B88F106D1CF5E232007C930F /* FriendsViewController.h */,
+				B88F106E1CF5E232007C930F /* FriendsViewController.m */,
+			);
+			path = FriendsViewController;
+			sourceTree = "<group>";
+		};
+		B88F10691CF5E21C007C930F /* MyViewController */ = {
+			isa = PBXGroup;
+			children = (
+				B88F106A1CF5E227007C930F /* MyViewController.h */,
+				B88F106B1CF5E227007C930F /* MyViewController.m */,
+			);
+			path = MyViewController;
+			sourceTree = "<group>";
+		};
+		B88F10791CF5E26A007C930F /* HRNavigationController */ = {
+			isa = PBXGroup;
+			children = (
+				B88F107A1CF5E273007C930F /* HRNagationController.h */,
+				B88F107B1CF5E273007C930F /* HRNagationController.m */,
+			);
+			path = HRNavigationController;
 			sourceTree = "<group>";
 		};
 		B89663E21CF32F7700B2A6CA /* CommonUI */ = {
@@ -228,7 +313,8 @@
 			isa = PBXGroup;
 			children = (
 				E14BD4C61CEF073100C66E14 /* Default-568h@2x.png */,
-				E14BD4F11CF2D01600C66E14 /* 1.jpg */,
+				E14BD4931CEEF53F00C66E14 /* AppDelegate.h */,
+				E14BD4941CEEF53F00C66E14 /* AppDelegate.m */,
 				E14BD48F1CEEF53F00C66E14 /* HRER */,
 				E14BD4AD1CEEF78F00C66E14 /* MapKit.framework */,
 				E14BD48E1CEEF53F00C66E14 /* Products */,
@@ -248,16 +334,19 @@
 		E14BD48F1CEEF53F00C66E14 /* HRER */ = {
 			isa = PBXGroup;
 			children = (
+				B88F10791CF5E26A007C930F /* HRNavigationController */,
+				B88F10691CF5E21C007C930F /* MyViewController */,
+				B88F10681CF5E212007C930F /* FriendsViewController */,
+				B88F10651CF5E1D3007C930F /* HomeViewContoller */,
+				B88F10661CF5E1E2007C930F /* FindCityViewController */,
+				B88F10671CF5E1EA007C930F /* HereViewController */,
+				B88F105E1CF5CDF6007C930F /* LoginController */,
 				E1C3037C1CF43E5E001C016B /* OAuthLogin */,
 				E1C303A51CF58232001C016B /* TencentSDK */,
 				E1C3036A1CF43C1F001C016B /* WebCatSDK */,
 				B89663F21CF32FD100B2A6CA /* ThirdPary */,
 				B89663E21CF32F7700B2A6CA /* CommonUI */,
 				E14BD4BF1CEEFBF900C66E14 /* HEMapView */,
-				E14BD4931CEEF53F00C66E14 /* AppDelegate.h */,
-				E14BD4941CEEF53F00C66E14 /* AppDelegate.m */,
-				E14BD4A71CEEF65200C66E14 /* RootViewController.h */,
-				E14BD4A81CEEF65200C66E14 /* RootViewController.m */,
 				E14BD49C1CEEF53F00C66E14 /* Assets.xcassets */,
 				E14BD4A11CEEF53F00C66E14 /* Info.plist */,
 				E14BD4901CEEF53F00C66E14 /* Supporting Files */,
@@ -393,7 +482,6 @@
 			files = (
 				E1C303A91CF58232001C016B /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				E14BD49D1CEEF53F00C66E14 /* Assets.xcassets in Resources */,
-				E14BD4F21CF2D01600C66E14 /* 1.jpg in Resources */,
 				E14BD4CA1CEF0AC900C66E14 /* Localization.strings in Resources */,
 				E14BD4C71CEF073100C66E14 /* Default-568h@2x.png in Resources */,
 				E1C303711CF43C1F001C016B /* README.txt in Resources */,
@@ -457,11 +545,14 @@
 			files = (
 				B89664101CF32FD100B2A6CA /* UIViewAdditions.m in Sources */,
 				B896640D1CF32FD100B2A6CA /* RFSegmentView.m in Sources */,
+				B88F10781CF5E253007C930F /* HereViewController.m in Sources */,
 				E14BD4951CEEF53F00C66E14 /* AppDelegate.m in Sources */,
 				E14BD4C21CEEFBF900C66E14 /* HRMapView.m in Sources */,
 				B896640B1CF32FD100B2A6CA /* YiRefreshFooter.m in Sources */,
+				B88F106F1CF5E232007C930F /* FriendsViewController.m in Sources */,
 				E14BD4F51CF2D76700C66E14 /* HRPinAnnomationView.m in Sources */,
 				B896640C1CF32FD100B2A6CA /* YiRefreshHeader.m in Sources */,
+				B88F10611CF5D005007C930F /* HRLoginViewController.m in Sources */,
 				E1C303AC1CF58BE9001C016B /* HRQQManager.m in Sources */,
 				E14BD4F01CF2CAD200C66E14 /* HRAnomation.m in Sources */,
 				B89663EF1CF32F7700B2A6CA /* RefreshCollectionView.m in Sources */,
@@ -471,12 +562,16 @@
 				E1C303921CF442C4001C016B /* HRWeCatManager.m in Sources */,
 				E14BD4C51CEEFC0700C66E14 /* HRLocationManager.m in Sources */,
 				B89663F11CF32F7700B2A6CA /* UIViewController+Method.m in Sources */,
+				B88F10641CF5D00C007C930F /* LoginModel.m in Sources */,
+				B88F106C1CF5E227007C930F /* MyViewController.m in Sources */,
 				B896640E1CF32FD100B2A6CA /* UIView+Sizes.m in Sources */,
-				E14BD4A91CEEF65200C66E14 /* RootViewController.m in Sources */,
 				B89663EE1CF32F7700B2A6CA /* NSDictionary+StrDic.m in Sources */,
 				E1C303C01CF596BF001C016B /* HRWebCatShare.m in Sources */,
+				B88F10751CF5E246007C930F /* FindCityViewController.m in Sources */,
 				B896640F1CF32FD100B2A6CA /* UIView+TKCategory.m in Sources */,
 				E1C3037F1CF43E71001C016B /* HRWebCatLogin.m in Sources */,
+				B88F107C1CF5E273007C930F /* HRNagationController.m in Sources */,
+				B88F10721CF5E23B007C930F /* HomeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,30 +7,87 @@
 //
 
 #import "AppDelegate.h"
-#import "RootViewController.h"
 #import "HRLocationManager.h"
 #import "HRWeCatManager.h"
 #import "AFNetworkActivityLogger.h"
 #import "HRQQManager.h"
+#import "HRNagationController.h"
+#import "HomeViewController.h"
+#import "FindCityViewController.h"
+#import "HereViewController.h"
+#import "FriendsViewController.h"
+#import "MyViewController.h"
+
 
 @interface AppDelegate ()
+@property(nonatomic,strong)HRNagationController * navController;
 
 @end
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     
     [self initAllComCore];
     
-    RootViewController * vc = [[RootViewController alloc] init];
-    self.window.rootViewController = vc;
+    [self setDefoultNavBarStyle];
+    
+    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.navController = [[HRNagationController alloc] initWithRootViewController:[self getMainTabController]];
+    self.window.rootViewController = self.navController;
     [self.window makeKeyAndVisible];
     
     return YES;
 }
+
+
+- (UITabBarController *)getMainTabController
+{
+    HomeViewController * homeC = [[HomeViewController alloc] init];
+    FindCityViewController * findC = [[FindCityViewController alloc] init];
+    HereViewController * hVC = [[HereViewController alloc] init];
+    FriendsViewController * fVC = [[FriendsViewController alloc] init];
+    MyViewController * fView = [[MyViewController alloc] init];
+    
+    UIImage * nHome = [UIImage imageNamed:@"tab_explore"];
+    UIImage * hHome = [UIImage imageNamed:@"tab_explore_press"];
+    UIImage * nFind = [UIImage imageNamed:@"tab_feed"];
+    UIImage * hFind = [UIImage imageNamed:@"tab_feed_press"];
+    UIImage * nHere = [UIImage imageNamed:@"tab_order"];
+    UIImage * hHere = [UIImage imageNamed:@"tab_order_press"];
+    UIImage * nFriend = [UIImage imageNamed:@"tab_setting"];
+    UIImage * hFriend = [UIImage imageNamed:@"tab_setting_press"];
+    UIImage * nMy = [UIImage imageNamed:@"tab_upload_shopping"];
+    UIImage * hMy = [UIImage imageNamed:@"tab_upload_shopping_h"];
+    
+    return [self getTabWithTitleArray:@[@"主页",@"发现城市",@"这里",@"朋友",@"我的"]
+                   nimagesArray:@[nHome,nFind,nHere,nFriend,nMy]
+                        himages:@[hHome,hFind,hHere,hFriend,hMy]
+                 andControllers:@[homeC,findC,hVC,fVC,fView]];
+}
+
+- (UITabBarController *)getTabWithTitleArray:(NSArray *)item nimagesArray:(NSArray *)nImages
+                                     himages:(NSArray *)himages
+                              andControllers:(NSArray*)controllers
+{
+    UITabBarController *tabBarController = [[UITabBarController alloc] init];
+    tabBarController.tabBar.tintColor = [UIColor colorWithRed:0x35/255.f green:0xb3/255.f blue:0x64/255.f alpha:1];
+    for (int i =0; i < controllers.count;i++) {
+        UIViewController * controller = [controllers objectAtIndex:i];
+        UIImage * nimage = [nImages[i] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        UIImage * himage = [himages[i] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        UITabBarItem * tabItem = [[UITabBarItem alloc] initWithTitle:item[i] image:nimage selectedImage:himage];
+        tabItem.tag = i;
+        controller.tabBarItem = tabItem;
+    }
+    [tabBarController setViewControllers:controllers];
+    [tabBarController setHidesBottomBarWhenPushed:YES];
+    return tabBarController;
+}
+
+#pragma mark - Init
 
 - (void)initAllComCore
 {
@@ -45,11 +102,22 @@
     
     //开启AFNetWork
     [[AFNetworkActivityLogger sharedLogger] startLogging];
+    
 }
 
+- (void)setDefoultNavBarStyle
+{
+    
+    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:0 green:172/255.f blue:87/255.f alpha:1]];
+    NSDictionary *textAttributes1 = @{NSFontAttributeName: [UIFont systemFontOfSize:18.f],
+                                      NSForegroundColorAttributeName: [UIColor whiteColor]
+                                      };
+    
+    [[UINavigationBar appearance] setTitleTextAttributes:textAttributes1];
+    
+}
 
 #pragma mark AppDelegate FOR SSO
-
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
     if ([[HRWeCatManager shareInstance] isWeixinssoReturn:url]) {
