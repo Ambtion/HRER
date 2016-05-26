@@ -17,9 +17,11 @@
 #import "HereViewController.h"
 #import "FriendsViewController.h"
 #import "MyViewController.h"
-
+#import "MainTabBarController.h"
+#import "HRAddressBookManager.h"
 
 @interface AppDelegate ()
+
 @property(nonatomic,strong)HRNagationController * navController;
 
 @end
@@ -42,8 +44,7 @@
     return YES;
 }
 
-
-- (UITabBarController *)getMainTabController
+- (MainTabBarController *)getMainTabController
 {
     HomeViewController * homeC = [[HomeViewController alloc] init];
     FindCityViewController * findC = [[FindCityViewController alloc] init];
@@ -55,8 +56,8 @@
     UIImage * hHome = [UIImage imageNamed:@"tab_explore_press"];
     UIImage * nFind = [UIImage imageNamed:@"tab_feed"];
     UIImage * hFind = [UIImage imageNamed:@"tab_feed_press"];
-    UIImage * nHere = [UIImage imageNamed:@"tab_order"];
-    UIImage * hHere = [UIImage imageNamed:@"tab_order_press"];
+    UIImage * nHere = [UIImage imageNamed:@"btn_card"];
+    UIImage * hHere = [UIImage imageNamed:@"btn_card"];
     UIImage * nFriend = [UIImage imageNamed:@"tab_setting"];
     UIImage * hFriend = [UIImage imageNamed:@"tab_setting_press"];
     UIImage * nMy = [UIImage imageNamed:@"tab_upload_shopping"];
@@ -68,20 +69,27 @@
                  andControllers:@[homeC,findC,hVC,fVC,fView]];
 }
 
-- (UITabBarController *)getTabWithTitleArray:(NSArray *)item nimagesArray:(NSArray *)nImages
+- (MainTabBarController *)getTabWithTitleArray:(NSArray *)item nimagesArray:(NSArray *)nImages
                                      himages:(NSArray *)himages
                               andControllers:(NSArray*)controllers
 {
-    UITabBarController *tabBarController = [[UITabBarController alloc] init];
-    tabBarController.tabBar.tintColor = [UIColor colorWithRed:0x35/255.f green:0xb3/255.f blue:0x64/255.f alpha:1];
+    MainTabBarController *tabBarController = [[MainTabBarController alloc] init];
     for (int i =0; i < controllers.count;i++) {
         UIViewController * controller = [controllers objectAtIndex:i];
         UIImage * nimage = [nImages[i] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         UIImage * himage = [himages[i] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-        UITabBarItem * tabItem = [[UITabBarItem alloc] initWithTitle:item[i] image:nimage selectedImage:himage];
+        NSString * title = item[i];
+        if(i == 2){
+            title = nil;
+        }
+        UITabBarItem * tabItem = [[UITabBarItem alloc] initWithTitle:title image:nimage selectedImage:himage];
         tabItem.tag = i;
+//        if(i == 2){
+//            tabItem.imageInsets = UIEdgeInsetsMake(-8, 0, 8, 0);
+//        }
         controller.tabBarItem = tabItem;
     }
+    
     [tabBarController setViewControllers:controllers];
     [tabBarController setHidesBottomBarWhenPushed:YES];
     return tabBarController;
@@ -108,7 +116,7 @@
 - (void)setDefoultNavBarStyle
 {
     
-    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:0 green:172/255.f blue:87/255.f alpha:1]];
+//    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:0 green:172/255.f blue:87/255.f alpha:1]];
     NSDictionary *textAttributes1 = @{NSFontAttributeName: [UIFont systemFontOfSize:18.f],
                                       NSForegroundColorAttributeName: [UIColor whiteColor]
                                       };

@@ -27,6 +27,11 @@
 		B896640E1CF32FD100B2A6CA /* UIView+Sizes.m in Sources */ = {isa = PBXBuildFile; fileRef = B89664041CF32FD100B2A6CA /* UIView+Sizes.m */; };
 		B896640F1CF32FD100B2A6CA /* UIView+TKCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = B89664061CF32FD100B2A6CA /* UIView+TKCategory.m */; };
 		B89664101CF32FD100B2A6CA /* UIViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = B89664081CF32FD100B2A6CA /* UIViewAdditions.m */; };
+		E10DF7741CF6C1A400D5E146 /* HRNavigationTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E10DF7731CF6C1A400D5E146 /* HRNavigationTool.m */; };
+		E10DF7881CF6DAB600D5E146 /* MainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = E10DF7871CF6DAB600D5E146 /* MainTabBarController.m */; };
+		E10DF78C1CF6DB6F00D5E146 /* btn_card@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E10DF7891CF6DB6F00D5E146 /* btn_card@2x.png */; };
+		E10DF78D1CF6DB6F00D5E146 /* tabbar_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E10DF78A1CF6DB6F00D5E146 /* tabbar_bg@2x.png */; };
+		E10DF78E1CF6DB6F00D5E146 /* tabbar_bg@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E10DF78B1CF6DB6F00D5E146 /* tabbar_bg@3x.png */; };
 		E14BD4921CEEF53F00C66E14 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E14BD4911CEEF53F00C66E14 /* main.m */; };
 		E14BD4951CEEF53F00C66E14 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E14BD4941CEEF53F00C66E14 /* AppDelegate.m */; };
 		E14BD49D1CEEF53F00C66E14 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E14BD49C1CEEF53F00C66E14 /* Assets.xcassets */; };
@@ -50,6 +55,8 @@
 		E1C303A91CF58232001C016B /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E1C303A71CF58232001C016B /* TencentOpenApi_IOS_Bundle.bundle */; };
 		E1C303AC1CF58BE9001C016B /* HRQQManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E1C303AB1CF58BE9001C016B /* HRQQManager.m */; };
 		E1C303C01CF596BF001C016B /* HRWebCatShare.m in Sources */ = {isa = PBXBuildFile; fileRef = E1C303BF1CF596BF001C016B /* HRWebCatShare.m */; };
+		E1E3AB151CF6F2AC00DD5608 /* AppSysConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E3AB141CF6F2AC00DD5608 /* AppSysConfig.m */; };
+		E1F726621CF6E15500799A50 /* HRAddressBookManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F726611CF6E15500799A50 /* HRAddressBookManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -98,6 +105,13 @@
 		B89664071CF32FD100B2A6CA /* UIViewAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewAdditions.h; sourceTree = "<group>"; };
 		B89664081CF32FD100B2A6CA /* UIViewAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewAdditions.m; sourceTree = "<group>"; };
 		B89664111CF32FF700B2A6CA /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PrefixHeader.pch; path = ../PrefixHeader.pch; sourceTree = "<group>"; };
+		E10DF7721CF6C1A400D5E146 /* HRNavigationTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRNavigationTool.h; sourceTree = "<group>"; };
+		E10DF7731CF6C1A400D5E146 /* HRNavigationTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRNavigationTool.m; sourceTree = "<group>"; };
+		E10DF7861CF6DAB600D5E146 /* MainTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTabBarController.h; sourceTree = "<group>"; };
+		E10DF7871CF6DAB600D5E146 /* MainTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTabBarController.m; sourceTree = "<group>"; };
+		E10DF7891CF6DB6F00D5E146 /* btn_card@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_card@2x.png"; sourceTree = "<group>"; };
+		E10DF78A1CF6DB6F00D5E146 /* tabbar_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar_bg@2x.png"; sourceTree = "<group>"; };
+		E10DF78B1CF6DB6F00D5E146 /* tabbar_bg@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar_bg@3x.png"; sourceTree = "<group>"; };
 		E14BD48D1CEEF53F00C66E14 /* HRER.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HRER.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E14BD4911CEEF53F00C66E14 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E14BD4931CEEF53F00C66E14 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = HRER/AppDelegate.h; sourceTree = "<group>"; };
@@ -136,6 +150,10 @@
 		E1C303AB1CF58BE9001C016B /* HRQQManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRQQManager.m; sourceTree = "<group>"; };
 		E1C303BE1CF596BF001C016B /* HRWebCatShare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRWebCatShare.h; sourceTree = "<group>"; };
 		E1C303BF1CF596BF001C016B /* HRWebCatShare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRWebCatShare.m; sourceTree = "<group>"; };
+		E1E3AB131CF6F2AC00DD5608 /* AppSysConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppSysConfig.h; sourceTree = "<group>"; };
+		E1E3AB141CF6F2AC00DD5608 /* AppSysConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppSysConfig.m; sourceTree = "<group>"; };
+		E1F726601CF6E15500799A50 /* HRAddressBookManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRAddressBookManager.h; sourceTree = "<group>"; };
+		E1F726611CF6E15500799A50 /* HRAddressBookManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRAddressBookManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -309,10 +327,31 @@
 			path = "UIView+Sizes";
 			sourceTree = "<group>";
 		};
+		E10DF7711CF6C19400D5E146 /* NavigationTool */ = {
+			isa = PBXGroup;
+			children = (
+				E10DF7721CF6C1A400D5E146 /* HRNavigationTool.h */,
+				E10DF7731CF6C1A400D5E146 /* HRNavigationTool.m */,
+			);
+			path = NavigationTool;
+			sourceTree = "<group>";
+		};
+		E10DF7851CF6DAB600D5E146 /* MainTabController */ = {
+			isa = PBXGroup;
+			children = (
+				E10DF7861CF6DAB600D5E146 /* MainTabBarController.h */,
+				E10DF7871CF6DAB600D5E146 /* MainTabBarController.m */,
+			);
+			path = MainTabController;
+			sourceTree = "<group>";
+		};
 		E14BD4841CEEF53F00C66E14 = {
 			isa = PBXGroup;
 			children = (
 				E14BD4C61CEF073100C66E14 /* Default-568h@2x.png */,
+				E10DF7891CF6DB6F00D5E146 /* btn_card@2x.png */,
+				E10DF78A1CF6DB6F00D5E146 /* tabbar_bg@2x.png */,
+				E10DF78B1CF6DB6F00D5E146 /* tabbar_bg@3x.png */,
 				E14BD4931CEEF53F00C66E14 /* AppDelegate.h */,
 				E14BD4941CEEF53F00C66E14 /* AppDelegate.m */,
 				E14BD48F1CEEF53F00C66E14 /* HRER */,
@@ -334,6 +373,9 @@
 		E14BD48F1CEEF53F00C66E14 /* HRER */ = {
 			isa = PBXGroup;
 			children = (
+				E1E3AB121CF6F2AC00DD5608 /* AppSysConfig */,
+				E1F7265F1CF6E14600799A50 /* AddressBook */,
+				E10DF7851CF6DAB600D5E146 /* MainTabController */,
 				B88F10791CF5E26A007C930F /* HRNavigationController */,
 				B88F10691CF5E21C007C930F /* MyViewController */,
 				B88F10681CF5E212007C930F /* FriendsViewController */,
@@ -341,6 +383,7 @@
 				B88F10661CF5E1E2007C930F /* FindCityViewController */,
 				B88F10671CF5E1EA007C930F /* HereViewController */,
 				B88F105E1CF5CDF6007C930F /* LoginController */,
+				E10DF7711CF6C19400D5E146 /* NavigationTool */,
 				E1C3037C1CF43E5E001C016B /* OAuthLogin */,
 				E1C303A51CF58232001C016B /* TencentSDK */,
 				E1C3036A1CF43C1F001C016B /* WebCatSDK */,
@@ -415,6 +458,24 @@
 			path = TencentSDK;
 			sourceTree = "<group>";
 		};
+		E1E3AB121CF6F2AC00DD5608 /* AppSysConfig */ = {
+			isa = PBXGroup;
+			children = (
+				E1E3AB131CF6F2AC00DD5608 /* AppSysConfig.h */,
+				E1E3AB141CF6F2AC00DD5608 /* AppSysConfig.m */,
+			);
+			path = AppSysConfig;
+			sourceTree = "<group>";
+		};
+		E1F7265F1CF6E14600799A50 /* AddressBook */ = {
+			isa = PBXGroup;
+			children = (
+				E1F726601CF6E15500799A50 /* HRAddressBookManager.h */,
+				E1F726611CF6E15500799A50 /* HRAddressBookManager.m */,
+			);
+			path = AddressBook;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -482,9 +543,12 @@
 			files = (
 				E1C303A91CF58232001C016B /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				E14BD49D1CEEF53F00C66E14 /* Assets.xcassets in Resources */,
+				E10DF78E1CF6DB6F00D5E146 /* tabbar_bg@3x.png in Resources */,
+				E10DF78D1CF6DB6F00D5E146 /* tabbar_bg@2x.png in Resources */,
 				E14BD4CA1CEF0AC900C66E14 /* Localization.strings in Resources */,
 				E14BD4C71CEF073100C66E14 /* Default-568h@2x.png in Resources */,
 				E1C303711CF43C1F001C016B /* README.txt in Resources */,
+				E10DF78C1CF6DB6F00D5E146 /* btn_card@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -551,6 +615,7 @@
 				B896640B1CF32FD100B2A6CA /* YiRefreshFooter.m in Sources */,
 				B88F106F1CF5E232007C930F /* FriendsViewController.m in Sources */,
 				E14BD4F51CF2D76700C66E14 /* HRPinAnnomationView.m in Sources */,
+				E1E3AB151CF6F2AC00DD5608 /* AppSysConfig.m in Sources */,
 				B896640C1CF32FD100B2A6CA /* YiRefreshHeader.m in Sources */,
 				B88F10611CF5D005007C930F /* HRLoginViewController.m in Sources */,
 				E1C303AC1CF58BE9001C016B /* HRQQManager.m in Sources */,
@@ -566,12 +631,15 @@
 				B88F106C1CF5E227007C930F /* MyViewController.m in Sources */,
 				B896640E1CF32FD100B2A6CA /* UIView+Sizes.m in Sources */,
 				B89663EE1CF32F7700B2A6CA /* NSDictionary+StrDic.m in Sources */,
+				E1F726621CF6E15500799A50 /* HRAddressBookManager.m in Sources */,
+				E10DF7741CF6C1A400D5E146 /* HRNavigationTool.m in Sources */,
 				E1C303C01CF596BF001C016B /* HRWebCatShare.m in Sources */,
 				B88F10751CF5E246007C930F /* FindCityViewController.m in Sources */,
 				B896640F1CF32FD100B2A6CA /* UIView+TKCategory.m in Sources */,
 				E1C3037F1CF43E71001C016B /* HRWebCatLogin.m in Sources */,
 				B88F107C1CF5E273007C930F /* HRNagationController.m in Sources */,
 				B88F10721CF5E23B007C930F /* HomeViewController.m in Sources */,
+				E10DF7881CF6DAB600D5E146 /* MainTabBarController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
