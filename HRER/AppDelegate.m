@@ -37,7 +37,10 @@
     
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.navController = [[HRNagationController alloc] initWithRootViewController:[self getMainTabController]];
+    MainTabBarController * mainTab = [self getMainTabController];
+    mainTab.automaticallyAdjustsScrollViewInsets = NO;
+    self.navController = [[HRNagationController alloc] initWithRootViewController:mainTab];
+    [self.navController.navigationBar setHidden:YES];
     self.window.rootViewController = self.navController;
     [self.window makeKeyAndVisible];
     
