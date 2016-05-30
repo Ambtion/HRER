@@ -10,5 +10,6 @@ pod 'iCarousel'
 pod 'MBProgressHUD'
 pod 'GCJSONKit'
 pod 'AFNetworkActivityLogger'
+pod 'YYModel'
 
 end
