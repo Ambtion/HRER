@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		65F02507B9087AA3ECF2E966 /* libPods-HRER.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F257A244BFC3C4FF1BA43A2 /* libPods-HRER.a */; };
+		B8697D6B1CFC395E00F1BC4B /* HRLoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B8697D6A1CFC395E00F1BC4B /* HRLoginManager.m */; };
 		B88F10611CF5D005007C930F /* HRLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B88F10601CF5D005007C930F /* HRLoginViewController.m */; };
 		B88F106C1CF5E227007C930F /* MyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B88F106B1CF5E227007C930F /* MyViewController.m */; };
 		B88F106F1CF5E232007C930F /* FriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B88F106E1CF5E232007C930F /* FriendsViewController.m */; };
@@ -15,6 +16,10 @@
 		B88F10751CF5E246007C930F /* FindCityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B88F10741CF5E246007C930F /* FindCityViewController.m */; };
 		B88F10781CF5E253007C930F /* HereViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B88F10771CF5E253007C930F /* HereViewController.m */; };
 		B88F107C1CF5E273007C930F /* HRNagationController.m in Sources */ = {isa = PBXBuildFile; fileRef = B88F107B1CF5E273007C930F /* HRNagationController.m */; };
+		B8954EAA1CFC7E10006A706A /* HRRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8954EA91CFC7E10006A706A /* HRRegisterViewController.m */; };
+		B8954EAE1CFC7E1D006A706A /* HRFinPassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8954EAD1CFC7E1D006A706A /* HRFinPassViewController.m */; };
+		B8954EB11CFC7E30006A706A /* HRRegisterDealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8954EB01CFC7E30006A706A /* HRRegisterDealViewController.m */; };
+		B8954EB31CFC8877006A706A /* serviceitem.png in Resources */ = {isa = PBXBuildFile; fileRef = B8954EB21CFC8877006A706A /* serviceitem.png */; };
 		B89663ED1CF32F7700B2A6CA /* JWCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = B89663E41CF32F7700B2A6CA /* JWCollectionViewFlowLayout.m */; };
 		B89663EE1CF32F7700B2A6CA /* NSDictionary+StrDic.m in Sources */ = {isa = PBXBuildFile; fileRef = B89663E61CF32F7700B2A6CA /* NSDictionary+StrDic.m */; };
 		B89663EF1CF32F7700B2A6CA /* RefreshCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = B89663E81CF32F7700B2A6CA /* RefreshCollectionView.m */; };
@@ -60,8 +65,6 @@
 		E14BD4CA1CEF0AC900C66E14 /* Localization.strings in Resources */ = {isa = PBXBuildFile; fileRef = E14BD4CC1CEF0AC900C66E14 /* Localization.strings */; };
 		E14BD4F01CF2CAD200C66E14 /* HRAnomation.m in Sources */ = {isa = PBXBuildFile; fileRef = E14BD4EF1CF2CAD200C66E14 /* HRAnomation.m */; };
 		E14BD4F51CF2D76700C66E14 /* HRPinAnnomationView.m in Sources */ = {isa = PBXBuildFile; fileRef = E14BD4F41CF2D76700C66E14 /* HRPinAnnomationView.m */; };
-		E1AC6CD71CFC225000EADF02 /* HRRegisterView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1AC6CD61CFC225000EADF02 /* HRRegisterView.m */; };
-		E1AC6CDB1CFC225A00EADF02 /* HRLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1AC6CDA1CFC225A00EADF02 /* HRLoginView.m */; };
 		E1C303701CF43C1F001C016B /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E1C3036B1CF43C1F001C016B /* libWeChatSDK.a */; };
 		E1C303711CF43C1F001C016B /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = E1C3036C1CF43C1F001C016B /* README.txt */; };
 		E1C303731CF43CDA001C016B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1C303721CF43CDA001C016B /* SystemConfiguration.framework */; };
@@ -95,6 +98,8 @@
 		26EDF89553D0EF9D05F69A42 /* Pods-HRER.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HRER.release.xcconfig"; path = "Pods/Target Support Files/Pods-HRER/Pods-HRER.release.xcconfig"; sourceTree = "<group>"; };
 		5F257A244BFC3C4FF1BA43A2 /* libPods-HRER.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HRER.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		945292EBCA75C77D85B46D4E /* Pods-HRER.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HRER.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HRER/Pods-HRER.debug.xcconfig"; sourceTree = "<group>"; };
+		B8697D691CFC395E00F1BC4B /* HRLoginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRLoginManager.h; sourceTree = "<group>"; };
+		B8697D6A1CFC395E00F1BC4B /* HRLoginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRLoginManager.m; sourceTree = "<group>"; };
 		B88F105F1CF5D005007C930F /* HRLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRLoginViewController.h; sourceTree = "<group>"; };
 		B88F10601CF5D005007C930F /* HRLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRLoginViewController.m; sourceTree = "<group>"; };
 		B88F106A1CF5E227007C930F /* MyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyViewController.h; sourceTree = "<group>"; };
@@ -109,6 +114,13 @@
 		B88F10771CF5E253007C930F /* HereViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HereViewController.m; sourceTree = "<group>"; };
 		B88F107A1CF5E273007C930F /* HRNagationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRNagationController.h; sourceTree = "<group>"; };
 		B88F107B1CF5E273007C930F /* HRNagationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRNagationController.m; sourceTree = "<group>"; };
+		B8954EA81CFC7E10006A706A /* HRRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRRegisterViewController.h; sourceTree = "<group>"; };
+		B8954EA91CFC7E10006A706A /* HRRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRRegisterViewController.m; sourceTree = "<group>"; };
+		B8954EAC1CFC7E1D006A706A /* HRFinPassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRFinPassViewController.h; sourceTree = "<group>"; };
+		B8954EAD1CFC7E1D006A706A /* HRFinPassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRFinPassViewController.m; sourceTree = "<group>"; };
+		B8954EAF1CFC7E30006A706A /* HRRegisterDealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRRegisterDealViewController.h; sourceTree = "<group>"; };
+		B8954EB01CFC7E30006A706A /* HRRegisterDealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRRegisterDealViewController.m; sourceTree = "<group>"; };
+		B8954EB21CFC8877006A706A /* serviceitem.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = serviceitem.png; sourceTree = "<group>"; };
 		B89663E31CF32F7700B2A6CA /* JWCollectionViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JWCollectionViewFlowLayout.h; sourceTree = "<group>"; };
 		B89663E41CF32F7700B2A6CA /* JWCollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JWCollectionViewFlowLayout.m; sourceTree = "<group>"; };
 		B89663E51CF32F7700B2A6CA /* NSDictionary+StrDic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+StrDic.h"; sourceTree = "<group>"; };
@@ -183,10 +195,6 @@
 		E14BD4EF1CF2CAD200C66E14 /* HRAnomation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRAnomation.m; sourceTree = "<group>"; };
 		E14BD4F31CF2D76700C66E14 /* HRPinAnnomationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRPinAnnomationView.h; sourceTree = "<group>"; };
 		E14BD4F41CF2D76700C66E14 /* HRPinAnnomationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRPinAnnomationView.m; sourceTree = "<group>"; };
-		E1AC6CD51CFC225000EADF02 /* HRRegisterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRRegisterView.h; sourceTree = "<group>"; };
-		E1AC6CD61CFC225000EADF02 /* HRRegisterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRRegisterView.m; sourceTree = "<group>"; };
-		E1AC6CD91CFC225A00EADF02 /* HRLoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRLoginView.h; sourceTree = "<group>"; };
-		E1AC6CDA1CFC225A00EADF02 /* HRLoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRLoginView.m; sourceTree = "<group>"; };
 		E1C3036B1CF43C1F001C016B /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
 		E1C3036C1CF43C1F001C016B /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		E1C3036D1CF43C1F001C016B /* WechatAuthSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatAuthSDK.h; sourceTree = "<group>"; };
@@ -262,12 +270,16 @@
 		B88F105E1CF5CDF6007C930F /* LoginController */ = {
 			isa = PBXGroup;
 			children = (
-				E1AC6CD51CFC225000EADF02 /* HRRegisterView.h */,
-				E1AC6CD61CFC225000EADF02 /* HRRegisterView.m */,
-				E1AC6CD91CFC225A00EADF02 /* HRLoginView.h */,
-				E1AC6CDA1CFC225A00EADF02 /* HRLoginView.m */,
+				B8697D691CFC395E00F1BC4B /* HRLoginManager.h */,
+				B8697D6A1CFC395E00F1BC4B /* HRLoginManager.m */,
 				B88F105F1CF5D005007C930F /* HRLoginViewController.h */,
 				B88F10601CF5D005007C930F /* HRLoginViewController.m */,
+				B8954EA81CFC7E10006A706A /* HRRegisterViewController.h */,
+				B8954EA91CFC7E10006A706A /* HRRegisterViewController.m */,
+				B8954EAC1CFC7E1D006A706A /* HRFinPassViewController.h */,
+				B8954EAD1CFC7E1D006A706A /* HRFinPassViewController.m */,
+				B8954EAF1CFC7E30006A706A /* HRRegisterDealViewController.h */,
+				B8954EB01CFC7E30006A706A /* HRRegisterDealViewController.m */,
 				B8DF93391CFB2BF1007C4DF9 /* LoginStateManager.h */,
 				B8DF933A1CFB2BF1007C4DF9 /* LoginStateManager.m */,
 			);
@@ -449,6 +461,7 @@
 		E14BD4841CEEF53F00C66E14 = {
 			isa = PBXGroup;
 			children = (
+				B8954EB21CFC8877006A706A /* serviceitem.png */,
 				E1E3AB431CF81B3800DD5608 /* HRImageScroll.xcodeproj */,
 				E14BD4C61CEF073100C66E14 /* Default-568h@2x.png */,
 				E10DF7891CF6DB6F00D5E146 /* btn_card@2x.png */,
@@ -688,6 +701,7 @@
 				B8DF932B1CFB2AB1007C4DF9 /* guide_1_5_1.png in Resources */,
 				E14BD49D1CEEF53F00C66E14 /* Assets.xcassets in Resources */,
 				B8DF932A1CFB2AB1007C4DF9 /* guide_1_5.png in Resources */,
+				B8954EB31CFC8877006A706A /* serviceitem.png in Resources */,
 				E10DF78E1CF6DB6F00D5E146 /* tabbar_bg@3x.png in Resources */,
 				B8DF93311CFB2AB1007C4DF9 /* guide_nologin_press.png in Resources */,
 				E10DF78D1CF6DB6F00D5E146 /* tabbar_bg@2x.png in Resources */,
@@ -760,6 +774,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8DF93241CFB2AB1007C4DF9 /* FGuideViewManager.m in Sources */,
+				B8954EAE1CFC7E1D006A706A /* HRFinPassViewController.m in Sources */,
 				B89664101CF32FD100B2A6CA /* UIViewAdditions.m in Sources */,
 				B896640D1CF32FD100B2A6CA /* RFSegmentView.m in Sources */,
 				B88F10781CF5E253007C930F /* HereViewController.m in Sources */,
@@ -768,6 +783,7 @@
 				B896640B1CF32FD100B2A6CA /* YiRefreshFooter.m in Sources */,
 				B88F106F1CF5E232007C930F /* FriendsViewController.m in Sources */,
 				E14BD4F51CF2D76700C66E14 /* HRPinAnnomationView.m in Sources */,
+				B8697D6B1CFC395E00F1BC4B /* HRLoginManager.m in Sources */,
 				E1E3AB151CF6F2AC00DD5608 /* AppSysConfig.m in Sources */,
 				B896640C1CF32FD100B2A6CA /* YiRefreshHeader.m in Sources */,
 				B88F10611CF5D005007C930F /* HRLoginViewController.m in Sources */,
@@ -777,9 +793,11 @@
 				E14BD4921CEEF53F00C66E14 /* main.m in Sources */,
 				B89663ED1CF32F7700B2A6CA /* JWCollectionViewFlowLayout.m in Sources */,
 				B89663F01CF32F7700B2A6CA /* ToastAlertView.m in Sources */,
+				B8954EAA1CFC7E10006A706A /* HRRegisterViewController.m in Sources */,
 				E1C303921CF442C4001C016B /* HRWeCatManager.m in Sources */,
 				B8DF933B1CFB2BF1007C4DF9 /* LoginStateManager.m in Sources */,
 				E14BD4C51CEEFC0700C66E14 /* HRLocationManager.m in Sources */,
+				B8954EB11CFC7E30006A706A /* HRRegisterDealViewController.m in Sources */,
 				B89663F11CF32F7700B2A6CA /* UIViewController+Method.m in Sources */,
 				B88F106C1CF5E227007C930F /* MyViewController.m in Sources */,
 				B896640E1CF32FD100B2A6CA /* UIView+Sizes.m in Sources */,
@@ -788,14 +806,12 @@
 				E10DF7741CF6C1A400D5E146 /* HRNavigationTool.m in Sources */,
 				E1C303C01CF596BF001C016B /* HRWebCatShare.m in Sources */,
 				B88F10751CF5E246007C930F /* FindCityViewController.m in Sources */,
-				E1AC6CD71CFC225000EADF02 /* HRRegisterView.m in Sources */,
 				B896640F1CF32FD100B2A6CA /* UIView+TKCategory.m in Sources */,
 				E1C3037F1CF43E71001C016B /* HRWebCatLogin.m in Sources */,
 				B88F107C1CF5E273007C930F /* HRNagationController.m in Sources */,
 				B8DF93381CFB2AD8007C4DF9 /* SMPageControl.m in Sources */,
 				B88F10721CF5E23B007C930F /* HomeViewController.m in Sources */,
 				E1E3AB621CFBEE6600DD5608 /* HereDataModel.m in Sources */,
-				E1AC6CDB1CFC225A00EADF02 /* HRLoginView.m in Sources */,
 				E10DF7881CF6DAB600D5E146 /* MainTabBarController.m in Sources */,
 				B8DF93341CFB2AB1007C4DF9 /* ProjectGuideView.m in Sources */,
 			);

@@ -20,3 +20,11 @@
 - (void)showPopAlerViewWithMes:(NSString *)message;
 @end
 
+@interface UIView(Tips)
+- (void)showTotasViewWithMes:(NSString *)message;
+@end
+
+@interface UIViewController(Nav)
+- (NSArray*)createBackButtonWithTarget:(id)target seletor:(SEL)seletor;
+- (UIBarButtonItem*)barSpaingItem;
+@end

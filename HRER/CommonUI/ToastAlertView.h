@@ -14,9 +14,11 @@
     UIImageView *_alertboxImageView;
     UILabel *_title;
     __weak UIViewController * _controller;
+    __weak UIView * _superView;
 }
 
 - (id)initWithTitle:(NSString *)title;
+- (id)initWithTitle:(NSString *)title view:(UIView *)view;
 - (id)initWithTitle:(NSString *)title controller:(id)viewcontroller;
 - (void)show;
 

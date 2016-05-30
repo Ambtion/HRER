@@ -20,6 +20,9 @@
 #import "MainTabBarController.h"
 #import "HRAddressBookManager.h"
 
+//Test
+#import "HRLoginManager.h"
+
 @interface AppDelegate ()
 
 @property(nonatomic,strong)HRNagationController * navController;
@@ -43,6 +46,9 @@
     [self.navController.navigationBar setHidden:YES];
     self.window.rootViewController = self.navController;
     [self.window makeKeyAndVisible];
+    
+    
+    [HRLoginManager showLoginView];
     
     return YES;
 }
@@ -120,8 +126,8 @@
 {
     
 //    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:0 green:172/255.f blue:87/255.f alpha:1]];
-    NSDictionary *textAttributes1 = @{NSFontAttributeName: [UIFont systemFontOfSize:18.f],
-                                      NSForegroundColorAttributeName: [UIColor whiteColor]
+    NSDictionary *textAttributes1 = @{NSFontAttributeName: [UIFont systemFontOfSize:13.f],
+                                      NSForegroundColorAttributeName: [UIColor blackColor]
                                       };
     
     [[UINavigationBar appearance] setTitleTextAttributes:textAttributes1];

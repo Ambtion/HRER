@@ -13,23 +13,21 @@
 - (id)initWithTitle:(NSString *)title
 {
     if (self = [super init]) {
-        
-        CGRect rect = [[UIScreen mainScreen] bounds];
-        _alertboxImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 240, 60)];
-        _alertboxImageView.image = [UIImage imageNamed:@"popup_alert.png"];
-        _alertboxImageView.center = CGPointMake(rect.size.width / 2.f, rect.size.height / 2.f);
-        [self addSubview:_alertboxImageView];
-        
-        _title = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 220, 40)];
-        _title.textAlignment = NSTextAlignmentCenter;
-        _title.backgroundColor = [UIColor clearColor];
-        _title.font = [UIFont systemFontOfSize:16];
-        _title.textColor = [UIColor whiteColor];
-        _title.text = title;
-        [_alertboxImageView addSubview:_title];
+        [self initUIWithTitle:title];
     }
     return self;
 }
+
+- (id)initWithTitle:(NSString *)title view:(UIView *)view
+{
+    self = [super init];
+    if (self) {
+        _superView = view;
+        [self initUIWithTitle:title];
+    }
+    return self;
+}
+
 
 - (void)dismiss
 {
@@ -40,24 +38,30 @@
 {
     if (self = [super init]) {
         _controller = [viewcontroller isKindOfClass:[UIViewController class]]? viewcontroller :nil;
-        CGRect rect = [[UIScreen mainScreen] bounds];
-        _alertboxImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
-        _alertboxImageView.image = [[UIImage imageNamed:@"popup_alert.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(4, 4, 4, 4)];
-        [self addSubview:_alertboxImageView];
-        
-        _title = [[UILabel alloc] initWithFrame:CGRectZero];
-        _title.textAlignment = NSTextAlignmentCenter;
-        _title.backgroundColor = [UIColor clearColor];
-        _title.font = [UIFont systemFontOfSize:16];
-        _title.textColor = [UIColor whiteColor];
-        _title.text = title;
-        [_title sizeToFit];
-        _alertboxImageView.frame = CGRectMake(0, 0, _title.frame.size.width + 56, 44);
-        _alertboxImageView.center = CGPointMake(rect.size.width / 2.f, rect.size.height / 2.f);
-        _title.center = CGPointMake(_alertboxImageView.frame.size.width /2.f, _alertboxImageView.frame.size.height/2.f);
-        [_alertboxImageView addSubview:_title];
+        [self initUIWithTitle:title];
     }
     return self;
+}
+
+
+- (void)initUIWithTitle:(NSString *)title
+{
+    CGRect rect = [[UIScreen mainScreen] bounds];
+    _alertboxImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
+    _alertboxImageView.image = [[UIImage imageNamed:@"popup_alert.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(4, 4, 4, 4)];
+    [self addSubview:_alertboxImageView];
+    
+    _title = [[UILabel alloc] initWithFrame:CGRectZero];
+    _title.textAlignment = NSTextAlignmentCenter;
+    _title.backgroundColor = [UIColor clearColor];
+    _title.font = [UIFont systemFontOfSize:16];
+    _title.textColor = [UIColor whiteColor];
+    _title.text = title;
+    [_title sizeToFit];
+    _alertboxImageView.frame = CGRectMake(0, 0, _title.frame.size.width + 56, 44);
+    _alertboxImageView.center = CGPointMake(rect.size.width / 2.f, rect.size.height / 2.f);
+    _title.center = CGPointMake(_alertboxImageView.frame.size.width /2.f, _alertboxImageView.frame.size.height/2.f);
+    [_alertboxImageView addSubview:_title];
 }
 
 - (void)show
@@ -76,6 +80,9 @@
             }
         }
         [_controller.view addSubview:self];
+    }else if(_superView){
+        [_superView addSubview:self];
+        
     }else{
         UIWindow * win = [[UIApplication sharedApplication].delegate window];
         for (UIView * view in [win subviews]) {
