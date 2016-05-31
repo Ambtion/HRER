@@ -65,6 +65,7 @@
 		E14BD4CA1CEF0AC900C66E14 /* Localization.strings in Resources */ = {isa = PBXBuildFile; fileRef = E14BD4CC1CEF0AC900C66E14 /* Localization.strings */; };
 		E14BD4F01CF2CAD200C66E14 /* HRAnomation.m in Sources */ = {isa = PBXBuildFile; fileRef = E14BD4EF1CF2CAD200C66E14 /* HRAnomation.m */; };
 		E14BD4F51CF2D76700C66E14 /* HRPinAnnomationView.m in Sources */ = {isa = PBXBuildFile; fileRef = E14BD4F41CF2D76700C66E14 /* HRPinAnnomationView.m */; };
+		E1AC6CF51CFD3D1F00EADF02 /* HRNewPassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1AC6CF41CFD3D1F00EADF02 /* HRNewPassViewController.m */; };
 		E1C303701CF43C1F001C016B /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E1C3036B1CF43C1F001C016B /* libWeChatSDK.a */; };
 		E1C303711CF43C1F001C016B /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = E1C3036C1CF43C1F001C016B /* README.txt */; };
 		E1C303731CF43CDA001C016B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1C303721CF43CDA001C016B /* SystemConfiguration.framework */; };
@@ -195,6 +196,8 @@
 		E14BD4EF1CF2CAD200C66E14 /* HRAnomation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRAnomation.m; sourceTree = "<group>"; };
 		E14BD4F31CF2D76700C66E14 /* HRPinAnnomationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRPinAnnomationView.h; sourceTree = "<group>"; };
 		E14BD4F41CF2D76700C66E14 /* HRPinAnnomationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRPinAnnomationView.m; sourceTree = "<group>"; };
+		E1AC6CF31CFD3D1F00EADF02 /* HRNewPassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRNewPassViewController.h; sourceTree = "<group>"; };
+		E1AC6CF41CFD3D1F00EADF02 /* HRNewPassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRNewPassViewController.m; sourceTree = "<group>"; };
 		E1C3036B1CF43C1F001C016B /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
 		E1C3036C1CF43C1F001C016B /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		E1C3036D1CF43C1F001C016B /* WechatAuthSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatAuthSDK.h; sourceTree = "<group>"; };
@@ -280,6 +283,8 @@
 				B8954EAD1CFC7E1D006A706A /* HRFinPassViewController.m */,
 				B8954EAF1CFC7E30006A706A /* HRRegisterDealViewController.h */,
 				B8954EB01CFC7E30006A706A /* HRRegisterDealViewController.m */,
+				E1AC6CF31CFD3D1F00EADF02 /* HRNewPassViewController.h */,
+				E1AC6CF41CFD3D1F00EADF02 /* HRNewPassViewController.m */,
 				B8DF93391CFB2BF1007C4DF9 /* LoginStateManager.h */,
 				B8DF933A1CFB2BF1007C4DF9 /* LoginStateManager.m */,
 			);
@@ -779,6 +784,7 @@
 				B896640D1CF32FD100B2A6CA /* RFSegmentView.m in Sources */,
 				B88F10781CF5E253007C930F /* HereViewController.m in Sources */,
 				E14BD4951CEEF53F00C66E14 /* AppDelegate.m in Sources */,
+				E1AC6CF51CFD3D1F00EADF02 /* HRNewPassViewController.m in Sources */,
 				E14BD4C21CEEFBF900C66E14 /* HRMapView.m in Sources */,
 				B896640B1CF32FD100B2A6CA /* YiRefreshFooter.m in Sources */,
 				B88F106F1CF5E232007C930F /* FriendsViewController.m in Sources */,
