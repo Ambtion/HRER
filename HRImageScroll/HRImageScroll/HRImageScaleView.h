@@ -30,4 +30,12 @@
 @property(nonatomic,weak)id<ImageScaleViewDelegate> Adelegate;
 @property(nonatomic,strong)HRInfoImageView * imageView;
 @property(nonatomic,assign)BOOL tapEnabled;
+
+@property (nonatomic, assign, readonly) BOOL isScaled;
+@property (nonatomic, assign) BOOL hasLoadedImage;
+
+- (void)clear;
+
+- (void)eliminateScale;
+
 @end

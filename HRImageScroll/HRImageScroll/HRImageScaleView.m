@@ -76,6 +76,7 @@
     self.bouncesZoom = YES;
     self.delegate = self;
     self.tapEnabled = YES;
+    self.hasLoadedImage = NO;
     self.backgroundColor = [UIColor blackColor];
 }
 
@@ -120,6 +121,25 @@
 {
     return _imageView;
 }
+
+- (BOOL)isScaled
+{
+    return self.zoomScale != 1;
+}
+
+- (void)eliminateScale
+{
+    [self clear];
+}
+
+- (void)clear
+{
+    self.zoomScale = 1;
+    _imageView.frame = self.bounds;
+}
+
+
+
 - (void)scrollViewDidZoom:(UIScrollView *)aScrollView
 {
     //保持X,Y方向的偏移量一致(也就是时刻保持居中)

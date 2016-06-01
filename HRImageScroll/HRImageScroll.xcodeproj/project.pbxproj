@@ -7,10 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E1206FB81CFE8E4F00E3C9D4 /* HRPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = E1206FB41CFE8E4F00E3C9D4 /* HRPhotoBrowser.m */; };
+		E1206FB91CFE8E4F00E3C9D4 /* HRWaitingView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1206FB71CFE8E4F00E3C9D4 /* HRWaitingView.m */; };
+		E1206FBA1CFE981F00E3C9D4 /* HRPhotoBrowser.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E1206FB31CFE8E4F00E3C9D4 /* HRPhotoBrowser.h */; };
+		E1206FBB1CFE981F00E3C9D4 /* HRPhotoBrowserConfig.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E1206FB51CFE8E4F00E3C9D4 /* HRPhotoBrowserConfig.h */; };
+		E1206FBC1CFE981F00E3C9D4 /* HRWaitingView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E1206FB61CFE8E4F00E3C9D4 /* HRWaitingView.h */; };
+		E1206FBF1CFE98AB00E3C9D4 /* HRCycleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1206FBE1CFE98AB00E3C9D4 /* HRCycleScrollView.m */; };
+		E1206FC01CFE98B400E3C9D4 /* HRCycleScrollView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E1206FBD1CFE98AB00E3C9D4 /* HRCycleScrollView.h */; };
 		E1E3AB2D1CF7FA7000DD5608 /* HRImageScaleView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E3AB2C1CF7FA7000DD5608 /* HRImageScaleView.m */; };
-		E1E3AB401CF7FC5500DD5608 /* HRCycleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E3AB3F1CF7FC5500DD5608 /* HRCycleScrollView.m */; };
 		E1E3AB411CF81AFA00DD5608 /* HRImageScaleView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E1E3AB2B1CF7FA7000DD5608 /* HRImageScaleView.h */; };
-		E1E3AB421CF81AFA00DD5608 /* HRCycleScrollView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E1E3AB3E1CF7FC5500DD5608 /* HRCycleScrollView.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -20,19 +25,27 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				E1206FC01CFE98B400E3C9D4 /* HRCycleScrollView.h in CopyFiles */,
+				E1206FBA1CFE981F00E3C9D4 /* HRPhotoBrowser.h in CopyFiles */,
+				E1206FBB1CFE981F00E3C9D4 /* HRPhotoBrowserConfig.h in CopyFiles */,
+				E1206FBC1CFE981F00E3C9D4 /* HRWaitingView.h in CopyFiles */,
 				E1E3AB411CF81AFA00DD5608 /* HRImageScaleView.h in CopyFiles */,
-				E1E3AB421CF81AFA00DD5608 /* HRCycleScrollView.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		E1206FB31CFE8E4F00E3C9D4 /* HRPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRPhotoBrowser.h; sourceTree = "<group>"; };
+		E1206FB41CFE8E4F00E3C9D4 /* HRPhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRPhotoBrowser.m; sourceTree = "<group>"; };
+		E1206FB51CFE8E4F00E3C9D4 /* HRPhotoBrowserConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRPhotoBrowserConfig.h; sourceTree = "<group>"; };
+		E1206FB61CFE8E4F00E3C9D4 /* HRWaitingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRWaitingView.h; sourceTree = "<group>"; };
+		E1206FB71CFE8E4F00E3C9D4 /* HRWaitingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRWaitingView.m; sourceTree = "<group>"; };
+		E1206FBD1CFE98AB00E3C9D4 /* HRCycleScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRCycleScrollView.h; sourceTree = "<group>"; };
+		E1206FBE1CFE98AB00E3C9D4 /* HRCycleScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRCycleScrollView.m; sourceTree = "<group>"; };
 		E1E3AB1F1CF7FA0500DD5608 /* libHRImageScroll.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libHRImageScroll.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1E3AB2B1CF7FA7000DD5608 /* HRImageScaleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRImageScaleView.h; sourceTree = "<group>"; };
 		E1E3AB2C1CF7FA7000DD5608 /* HRImageScaleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRImageScaleView.m; sourceTree = "<group>"; };
-		E1E3AB3E1CF7FC5500DD5608 /* HRCycleScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRCycleScrollView.h; sourceTree = "<group>"; };
-		E1E3AB3F1CF7FC5500DD5608 /* HRCycleScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRCycleScrollView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,10 +78,15 @@
 		E1E3AB211CF7FA0500DD5608 /* HRImageScroll */ = {
 			isa = PBXGroup;
 			children = (
+				E1206FBD1CFE98AB00E3C9D4 /* HRCycleScrollView.h */,
+				E1206FBE1CFE98AB00E3C9D4 /* HRCycleScrollView.m */,
 				E1E3AB2B1CF7FA7000DD5608 /* HRImageScaleView.h */,
 				E1E3AB2C1CF7FA7000DD5608 /* HRImageScaleView.m */,
-				E1E3AB3E1CF7FC5500DD5608 /* HRCycleScrollView.h */,
-				E1E3AB3F1CF7FC5500DD5608 /* HRCycleScrollView.m */,
+				E1206FB31CFE8E4F00E3C9D4 /* HRPhotoBrowser.h */,
+				E1206FB41CFE8E4F00E3C9D4 /* HRPhotoBrowser.m */,
+				E1206FB51CFE8E4F00E3C9D4 /* HRPhotoBrowserConfig.h */,
+				E1206FB61CFE8E4F00E3C9D4 /* HRWaitingView.h */,
+				E1206FB71CFE8E4F00E3C9D4 /* HRWaitingView.m */,
 			);
 			path = HRImageScroll;
 			sourceTree = "<group>";
@@ -129,8 +147,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E1E3AB401CF7FC5500DD5608 /* HRCycleScrollView.m in Sources */,
+				E1206FB81CFE8E4F00E3C9D4 /* HRPhotoBrowser.m in Sources */,
 				E1E3AB2D1CF7FA7000DD5608 /* HRImageScaleView.m in Sources */,
+				E1206FBF1CFE98AB00E3C9D4 /* HRCycleScrollView.m in Sources */,
+				E1206FB91CFE8E4F00E3C9D4 /* HRWaitingView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,6 +276,7 @@
 				E1E3AB2A1CF7FA0500DD5608 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
