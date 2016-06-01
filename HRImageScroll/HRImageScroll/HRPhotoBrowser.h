@@ -31,3 +31,15 @@
 - (void)show;
 
 @end
+
+
+
+/*
+ SDPhotoBrowser *browser = [[SDPhotoBrowser alloc] init];
+ browser.currentImageIndex = imageView.tag;
+ browser.sourceImagesContainerView = self;
+ browser.imageCount = self.picPathStringsArray.count;
+ browser.delegate = self;
+ [browser show];
+ 
+*/
