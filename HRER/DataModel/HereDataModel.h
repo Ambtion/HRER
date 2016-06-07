@@ -6,8 +6,14 @@
 //  Copyright © 2016年 linjunhou. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 
-@interface HereDataModel : NSObject
+#import "YYModel.h"
+
+@interface CityInfo : NSObject<NSCopying,NSCopying>
+
+@property(nonatomic,assign)NSInteger city_id;
+@property(nonatomic,strong)NSString * city_name;
+@property(nonatomic,assign)CGFloat latitude;
+@property(nonatomic,assign)CGFloat longitude;
 
 @end
