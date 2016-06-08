@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		65F02507B9087AA3ECF2E966 /* libPods-HRER.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F257A244BFC3C4FF1BA43A2 /* libPods-HRER.a */; };
 		B80E94A41D07EEE1000C979A /* HRBindPhoneController.m in Sources */ = {isa = PBXBuildFile; fileRef = B80E94A31D07EEE1000C979A /* HRBindPhoneController.m */; };
+		B80E94A91D07FB62000C979A /* RefreshTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B80E94A81D07FB62000C979A /* RefreshTableView.m */; };
 		B8697D6B1CFC395E00F1BC4B /* HRLoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B8697D6A1CFC395E00F1BC4B /* HRLoginManager.m */; };
 		B88F10611CF5D005007C930F /* HRLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B88F10601CF5D005007C930F /* HRLoginViewController.m */; };
 		B88F106C1CF5E227007C930F /* MyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B88F106B1CF5E227007C930F /* MyViewController.m */; };
@@ -103,6 +104,8 @@
 		945292EBCA75C77D85B46D4E /* Pods-HRER.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HRER.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HRER/Pods-HRER.debug.xcconfig"; sourceTree = "<group>"; };
 		B80E94A21D07EEE1000C979A /* HRBindPhoneController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRBindPhoneController.h; sourceTree = "<group>"; };
 		B80E94A31D07EEE1000C979A /* HRBindPhoneController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRBindPhoneController.m; sourceTree = "<group>"; };
+		B80E94A71D07FB62000C979A /* RefreshTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefreshTableView.h; sourceTree = "<group>"; };
+		B80E94A81D07FB62000C979A /* RefreshTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefreshTableView.m; sourceTree = "<group>"; };
 		B8697D691CFC395E00F1BC4B /* HRLoginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRLoginManager.h; sourceTree = "<group>"; };
 		B8697D6A1CFC395E00F1BC4B /* HRLoginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRLoginManager.m; sourceTree = "<group>"; };
 		B88F105F1CF5D005007C930F /* HRLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRLoginViewController.h; sourceTree = "<group>"; };
@@ -357,6 +360,8 @@
 		B89663E21CF32F7700B2A6CA /* CommonUI */ = {
 			isa = PBXGroup;
 			children = (
+				B80E94A71D07FB62000C979A /* RefreshTableView.h */,
+				B80E94A81D07FB62000C979A /* RefreshTableView.m */,
 				B89663E31CF32F7700B2A6CA /* JWCollectionViewFlowLayout.h */,
 				B89663E41CF32F7700B2A6CA /* JWCollectionViewFlowLayout.m */,
 				B89663E51CF32F7700B2A6CA /* NSDictionary+StrDic.h */,
@@ -799,6 +804,7 @@
 				B8DF93241CFB2AB1007C4DF9 /* FGuideViewManager.m in Sources */,
 				B8954EAE1CFC7E1D006A706A /* HRFinPassViewController.m in Sources */,
 				B89664101CF32FD100B2A6CA /* UIViewAdditions.m in Sources */,
+				B80E94A91D07FB62000C979A /* RefreshTableView.m in Sources */,
 				B896640D1CF32FD100B2A6CA /* RFSegmentView.m in Sources */,
 				B88F10781CF5E253007C930F /* HereViewController.m in Sources */,
 				E14BD4951CEEF53F00C66E14 /* AppDelegate.m in Sources */,
