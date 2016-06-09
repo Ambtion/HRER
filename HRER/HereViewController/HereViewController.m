@@ -1,22 +1,22 @@
 //
-//  HomeViewController.m
+//  HereViewController.m
 //  HRER
 //
 //  Created by kequ on 16/5/25.
 //  Copyright © 2016年 linjunhou. All rights reserved.
 //
 
-#import "HomeViewController.h"
+#import "HereViewController.h"
 #import "RefreshTableView.h"
 
-@interface HomeViewController()<UITableViewDelegate,UITableViewDataSource>
+@interface HereViewController()<UITableViewDataSource,UITableViewDelegate>
 
 @property(nonatomic,strong)RefreshTableView * tableView;
 @property(nonatomic,strong)NSMutableArray * dataSource;
 
 @end
 
-@implementation HomeViewController
+@implementation HereViewController
 
 #pragma mark - ViewLife
 - (void)viewWillAppear:(BOOL)animated
@@ -50,7 +50,7 @@
     };
     
     self.tableView.refreshFooter.beginRefreshingBlock = ^(){
-        
+    
     };
 }
 
@@ -64,5 +64,6 @@
 {
     return self.dataSource.count;
 }
+
 
 @end

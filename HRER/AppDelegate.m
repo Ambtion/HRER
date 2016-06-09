@@ -38,7 +38,6 @@
     
     [self setDefoultNavBarStyle];
     
-    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     MainTabBarController * mainTab = [self getMainTabController];
     mainTab.automaticallyAdjustsScrollViewInsets = NO;
@@ -46,9 +45,6 @@
     [self.navController.navigationBar setHidden:YES];
     self.window.rootViewController = self.navController;
     [self.window makeKeyAndVisible];
-    
-    
-    [HRLoginManager showLoginView];
     
     return YES;
 }
@@ -61,18 +57,18 @@
     FriendsViewController * fVC = [[FriendsViewController alloc] init];
     MyViewController * fView = [[MyViewController alloc] init];
     
-    UIImage * nHome = [UIImage imageNamed:@"tab_explore"];
-    UIImage * hHome = [UIImage imageNamed:@"tab_explore_press"];
-    UIImage * nFind = [UIImage imageNamed:@"tab_feed"];
-    UIImage * hFind = [UIImage imageNamed:@"tab_feed_press"];
-    UIImage * nHere = [UIImage imageNamed:@"btn_card"];
-    UIImage * hHere = [UIImage imageNamed:@"btn_card"];
-    UIImage * nFriend = [UIImage imageNamed:@"tab_setting"];
-    UIImage * hFriend = [UIImage imageNamed:@"tab_setting_press"];
-    UIImage * nMy = [UIImage imageNamed:@"tab_upload_shopping"];
-    UIImage * hMy = [UIImage imageNamed:@"tab_upload_shopping_h"];
+    UIImage * nHome = [UIImage imageNamed:@"home"];
+    UIImage * hHome = [UIImage imageNamed:@"home_select"];
+    UIImage * nFind = [UIImage imageNamed:@"find"];
+    UIImage * hFind = [UIImage imageNamed:@"find_select"];
+    UIImage * nHere = [UIImage imageNamed:@"add"];
+    UIImage * hHere = [UIImage imageNamed:@"add"];
+    UIImage * nFriend = [UIImage imageNamed:@"friend"];
+    UIImage * hFriend = [UIImage imageNamed:@"friend_select"];
+    UIImage * nMy = [UIImage imageNamed:@"me"];
+    UIImage * hMy = [UIImage imageNamed:@"me_select"];
     
-    return [self getTabWithTitleArray:@[@"主页",@"发现城市",@"这里",@"朋友",@"我的"]
+    return [self getTabWithTitleArray:@[@"主页",@"发现城市",@"",@"朋友",@"我的"]
                    nimagesArray:@[nHome,nFind,nHere,nFriend,nMy]
                         himages:@[hHome,hFind,hHere,hFriend,hMy]
                  andControllers:@[homeC,findC,hVC,fVC,fView]];
@@ -93,9 +89,9 @@
         }
         UITabBarItem * tabItem = [[UITabBarItem alloc] initWithTitle:title image:nimage selectedImage:himage];
         tabItem.tag = i;
-//        if(i == 2){
-//            tabItem.imageInsets = UIEdgeInsetsMake(-8, 0, 8, 0);
-//        }
+        if(i == 2){
+            tabItem.imageInsets = UIEdgeInsetsMake(-8, 0, 8, 0);
+        }
         controller.tabBarItem = tabItem;
     }
     

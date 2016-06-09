@@ -19,7 +19,8 @@
     [[UITabBar appearance] setShadowImage:[self createImageWithColor:[UIColor clearColor]]];
     [[UITabBar appearance] setBackgroundImage:[self createImageWithColor:[UIColor clearColor]]];
     //设置TintColor
-    UITabBar.appearance.tintColor = [UIColor orangeColor];
+    UITabBar.appearance.tintColor = RGB_Color(226, 86, 74);
+
 }
 
 
