@@ -46,6 +46,8 @@
     self.window.rootViewController = self.navController;
     [self.window makeKeyAndVisible];
     
+    [HRLoginManager showLoginView];
+    
     return YES;
 }
 
@@ -121,13 +123,12 @@
 - (void)setDefoultNavBarStyle
 {
     
-//    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:0 green:172/255.f blue:87/255.f alpha:1]];
-    NSDictionary *textAttributes1 = @{NSFontAttributeName: [UIFont systemFontOfSize:13.f],
-                                      NSForegroundColorAttributeName: [UIColor blackColor]
+    [[UINavigationBar appearance] setBarTintColor:[UIColor clearColor]];
+    NSDictionary *textAttributes1 = @{NSFontAttributeName: [UIFont systemFontOfSize:16.f],
+                                      NSForegroundColorAttributeName: RGB_Color(0xf9, 0xfc, 0xfc)
                                       };
-    
     [[UINavigationBar appearance] setTitleTextAttributes:textAttributes1];
-    
+    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"NavigationBarBG.png"] forBarMetrics:UIBarMetricsDefault];
 }
 
 #pragma mark AppDelegate FOR SSO

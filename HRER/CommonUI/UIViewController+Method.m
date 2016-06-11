@@ -99,11 +99,11 @@
 
 -(UIBarButtonItem*)backButtonTarget:(id)target seletor:(SEL)seletor
 {
-    CGRect backframe= CGRectMake(0, 0, 40, 30);
+    CGRect backframe = CGRectMake(0, 0, 28, 28);
     UIButton* backButton= [UIButton buttonWithType:UIButtonTypeCustom];
     backButton.frame = backframe;
-    [backButton setImage:[UIImage imageNamed:@"icon_back_page"] forState:UIControlStateNormal];
-    [backButton setImage:[UIImage imageNamed:@"icon_back_page"] forState:UIControlStateHighlighted];
+    [backButton setImage:[UIImage imageNamed:@"return"] forState:UIControlStateNormal];
+    [backButton setImage:[UIImage imageNamed:@"return"] forState:UIControlStateHighlighted];
     [backButton addTarget:target action:seletor forControlEvents:UIControlEventTouchUpInside];
     
     //定制自己的风格的  UIBarButtonItem
