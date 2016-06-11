@@ -58,8 +58,6 @@
 		E10DF7741CF6C1A400D5E146 /* HRNavigationTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E10DF7731CF6C1A400D5E146 /* HRNavigationTool.m */; };
 		E10DF7881CF6DAB600D5E146 /* MainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = E10DF7871CF6DAB600D5E146 /* MainTabBarController.m */; };
 		E10DF78C1CF6DB6F00D5E146 /* btn_card@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E10DF7891CF6DB6F00D5E146 /* btn_card@2x.png */; };
-		E10DF78D1CF6DB6F00D5E146 /* tabbar_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E10DF78A1CF6DB6F00D5E146 /* tabbar_bg@2x.png */; };
-		E10DF78E1CF6DB6F00D5E146 /* tabbar_bg@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E10DF78B1CF6DB6F00D5E146 /* tabbar_bg@3x.png */; };
 		E14BD4921CEEF53F00C66E14 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E14BD4911CEEF53F00C66E14 /* main.m */; };
 		E14BD4951CEEF53F00C66E14 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E14BD4941CEEF53F00C66E14 /* AppDelegate.m */; };
 		E14BD49D1CEEF53F00C66E14 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E14BD49C1CEEF53F00C66E14 /* Assets.xcassets */; };
@@ -191,8 +189,6 @@
 		E10DF7861CF6DAB600D5E146 /* MainTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTabBarController.h; sourceTree = "<group>"; };
 		E10DF7871CF6DAB600D5E146 /* MainTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTabBarController.m; sourceTree = "<group>"; };
 		E10DF7891CF6DB6F00D5E146 /* btn_card@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_card@2x.png"; sourceTree = "<group>"; };
-		E10DF78A1CF6DB6F00D5E146 /* tabbar_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar_bg@2x.png"; sourceTree = "<group>"; };
-		E10DF78B1CF6DB6F00D5E146 /* tabbar_bg@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar_bg@3x.png"; sourceTree = "<group>"; };
 		E14BD48D1CEEF53F00C66E14 /* HRER.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HRER.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E14BD4911CEEF53F00C66E14 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E14BD4931CEEF53F00C66E14 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = HRER/AppDelegate.h; sourceTree = "<group>"; };
@@ -508,8 +504,6 @@
 				E1E3AB431CF81B3800DD5608 /* HRImageScroll.xcodeproj */,
 				E14BD4C61CEF073100C66E14 /* Default-568h@2x.png */,
 				E10DF7891CF6DB6F00D5E146 /* btn_card@2x.png */,
-				E10DF78A1CF6DB6F00D5E146 /* tabbar_bg@2x.png */,
-				E10DF78B1CF6DB6F00D5E146 /* tabbar_bg@3x.png */,
 				E14BD4931CEEF53F00C66E14 /* AppDelegate.h */,
 				E14BD4941CEEF53F00C66E14 /* AppDelegate.m */,
 				E14BD48F1CEEF53F00C66E14 /* HRER */,
@@ -747,9 +741,7 @@
 				E14BD49D1CEEF53F00C66E14 /* Assets.xcassets in Resources */,
 				B8DF932A1CFB2AB1007C4DF9 /* guide_1_5.png in Resources */,
 				B8954EB31CFC8877006A706A /* serviceitem.png in Resources */,
-				E10DF78E1CF6DB6F00D5E146 /* tabbar_bg@3x.png in Resources */,
 				B8DF93311CFB2AB1007C4DF9 /* guide_nologin_press.png in Resources */,
-				E10DF78D1CF6DB6F00D5E146 /* tabbar_bg@2x.png in Resources */,
 				E14BD4CA1CEF0AC900C66E14 /* Localization.strings in Resources */,
 				B8DF93301CFB2AB1007C4DF9 /* guide_nologin_normal.png in Resources */,
 				E14BD4C71CEF073100C66E14 /* Default-568h@2x.png in Resources */,

@@ -13,6 +13,7 @@
     [super viewDidLoad];
     UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, -8, self.tabBar.frame.size.width, self.tabBar.frame.size.height)];
     [imageView setImage:[UIImage imageNamed:@"tabbar_bg"]];
+    imageView.backgroundColor = [UIColor redColor];
     [imageView setContentMode:UIViewContentModeCenter];
     [self.tabBar insertSubview:imageView atIndex:0];
     //覆盖原生Tabbar的上横线

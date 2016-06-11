@@ -29,6 +29,5 @@
 - (void)initUI
 {
     self.imageView = [[UIImageView alloc] init];
-    self.imageView.
 }
 @end
