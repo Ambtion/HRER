@@ -8,6 +8,8 @@
 
 #import "HomeViewController.h"
 #import "RefreshTableView.h"
+#import "HRHerePoiCell.h"
+#import "HRHerePoisSetCell.h"
 
 @interface HomeViewController()<UITableViewDelegate,UITableViewDataSource>
 
@@ -29,22 +31,23 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor whiteColor];
+    
     [self initUI];
 }
 
 - (void)initUI
 {
-    self.tableView = [[RefreshTableView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height) style:UITableViewStylePlain];
+    self.tableView = [[RefreshTableView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height - 49) style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.view addSubview:self.tableView];
-    
-    [self initRefreshView];
+//    [self initRefreshView];
 }
 
 - (void)initRefreshView
 {
-    WS(ws);
+    //    WS(ws);
     self.tableView.refreshHeader.beginRefreshingBlock = ^(){
         
     };
@@ -57,12 +60,28 @@
 #pragma mark - TableViewDelegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.dataSource.count;
+    return 5;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [HRHerePoisSetCell heightForCell];
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString * identify = NSStringFromClass([HRHerePoisSetCell class]);
+    HRHerePoisSetCell * cell = [tableView dequeueReusableCellWithIdentifier:identify];
+    if (!cell) {
+        cell = [[HRHerePoisSetCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identify];
+    }
+    return cell;
 }
 
 @end

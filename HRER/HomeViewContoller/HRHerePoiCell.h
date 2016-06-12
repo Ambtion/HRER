@@ -1,5 +1,5 @@
 //
-//  HRHerePoisSetCell.h
+//  HRHerePoiCell.h
 //  HRER
 //
 //  Created by quke on 16/6/12.
@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HRHerePoisSetCell : UITableViewCell
+@interface HRHerePoiCell : UITableViewCell
+
++ (CGFloat)heightForCell;
 
 @end

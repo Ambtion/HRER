@@ -11,7 +11,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, -8, self.tabBar.frame.size.width, self.tabBar.frame.size.height)];
+    UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.tabBar.frame.size.width, self.tabBar.frame.size.height)];
     [imageView setImage:[UIImage imageNamed:@"tabbar_bg"]];
     imageView.backgroundColor = [UIColor redColor];
     [imageView setContentMode:UIViewContentModeCenter];
@@ -21,9 +21,14 @@
     [[UITabBar appearance] setBackgroundImage:[self createImageWithColor:[UIColor clearColor]]];
     //设置TintColor
     UITabBar.appearance.tintColor = RGB_Color(226, 86, 74);
-
+    self.view.backgroundColor = [UIColor clearColor];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+}
 
 -(UIImage*) createImageWithColor:(UIColor*) color
 {

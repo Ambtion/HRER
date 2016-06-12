@@ -46,7 +46,7 @@
     self.window.rootViewController = self.navController;
     [self.window makeKeyAndVisible];
     
-    [HRLoginManager showLoginView];
+//    [HRLoginManager showLoginView];
     
     return YES;
 }
