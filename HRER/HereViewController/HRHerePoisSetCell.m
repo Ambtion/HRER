@@ -29,7 +29,7 @@
 - (void)initUI
 {
     self.bgImageView = [[UIImageView alloc] init];
-    [self.contentView addSubview:self.bgImageView];    
+    [self.contentView addSubview:self.bgImageView];
 }
 
 @end
