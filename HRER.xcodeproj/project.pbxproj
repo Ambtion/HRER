@@ -12,7 +12,7 @@
 		B80E94A91D07FB62000C979A /* RefreshTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B80E94A81D07FB62000C979A /* RefreshTableView.m */; };
 		B85520101D098F2C00C56FC5 /* HomeHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = B855200F1D098F2C00C56FC5 /* HomeHeadView.m */; };
 		B85520151D098F5700C56FC5 /* HereViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B85520141D098F5700C56FC5 /* HereViewController.m */; };
-		B85520191D098FB900C56FC5 /* HRScrollItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = B85520181D098FB900C56FC5 /* HRScrollItemView.m */; };
+		B85520191D098FB900C56FC5 /* HRCatergoryItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = B85520181D098FB900C56FC5 /* HRCatergoryItemView.m */; };
 		B8697D6B1CFC395E00F1BC4B /* HRLoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B8697D6A1CFC395E00F1BC4B /* HRLoginManager.m */; };
 		B88F10611CF5D005007C930F /* HRLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B88F10601CF5D005007C930F /* HRLoginViewController.m */; };
 		B88F106C1CF5E227007C930F /* MyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B88F106B1CF5E227007C930F /* MyViewController.m */; };
@@ -68,6 +68,10 @@
 		E14BD4CA1CEF0AC900C66E14 /* Localization.strings in Resources */ = {isa = PBXBuildFile; fileRef = E14BD4CC1CEF0AC900C66E14 /* Localization.strings */; };
 		E14BD4F01CF2CAD200C66E14 /* HRAnomation.m in Sources */ = {isa = PBXBuildFile; fileRef = E14BD4EF1CF2CAD200C66E14 /* HRAnomation.m */; };
 		E14BD4F51CF2D76700C66E14 /* HRPinAnnomationView.m in Sources */ = {isa = PBXBuildFile; fileRef = E14BD4F41CF2D76700C66E14 /* HRPinAnnomationView.m */; };
+		E1A8154A1D0D483B005E4443 /* HRCatergoryScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A815491D0D483B005E4443 /* HRCatergoryScrollView.m */; };
+		E1A8155C1D0D4E78005E4443 /* HRHerePoisSetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A8155B1D0D4E78005E4443 /* HRHerePoisSetCell.m */; };
+		E1A8155F1D0D4E86005E4443 /* HRHerePoiCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A8155E1D0D4E86005E4443 /* HRHerePoiCell.m */; };
+		E1A815621D0D4E94005E4443 /* HRHereBannerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A815611D0D4E94005E4443 /* HRHereBannerCell.m */; };
 		E1AC6CF51CFD3D1F00EADF02 /* HRNewPassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1AC6CF41CFD3D1F00EADF02 /* HRNewPassViewController.m */; };
 		E1C303701CF43C1F001C016B /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E1C3036B1CF43C1F001C016B /* libWeChatSDK.a */; };
 		E1C303711CF43C1F001C016B /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = E1C3036C1CF43C1F001C016B /* README.txt */; };
@@ -110,8 +114,8 @@
 		B855200F1D098F2C00C56FC5 /* HomeHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeHeadView.m; sourceTree = "<group>"; };
 		B85520131D098F5700C56FC5 /* HereViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HereViewController.h; sourceTree = "<group>"; };
 		B85520141D098F5700C56FC5 /* HereViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HereViewController.m; sourceTree = "<group>"; };
-		B85520171D098FB900C56FC5 /* HRScrollItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRScrollItemView.h; sourceTree = "<group>"; };
-		B85520181D098FB900C56FC5 /* HRScrollItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRScrollItemView.m; sourceTree = "<group>"; };
+		B85520171D098FB900C56FC5 /* HRCatergoryItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRCatergoryItemView.h; sourceTree = "<group>"; };
+		B85520181D098FB900C56FC5 /* HRCatergoryItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRCatergoryItemView.m; sourceTree = "<group>"; };
 		B8697D691CFC395E00F1BC4B /* HRLoginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRLoginManager.h; sourceTree = "<group>"; };
 		B8697D6A1CFC395E00F1BC4B /* HRLoginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRLoginManager.m; sourceTree = "<group>"; };
 		B88F105F1CF5D005007C930F /* HRLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRLoginViewController.h; sourceTree = "<group>"; };
@@ -207,6 +211,14 @@
 		E14BD4EF1CF2CAD200C66E14 /* HRAnomation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRAnomation.m; sourceTree = "<group>"; };
 		E14BD4F31CF2D76700C66E14 /* HRPinAnnomationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRPinAnnomationView.h; sourceTree = "<group>"; };
 		E14BD4F41CF2D76700C66E14 /* HRPinAnnomationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRPinAnnomationView.m; sourceTree = "<group>"; };
+		E1A815481D0D483B005E4443 /* HRCatergoryScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRCatergoryScrollView.h; sourceTree = "<group>"; };
+		E1A815491D0D483B005E4443 /* HRCatergoryScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRCatergoryScrollView.m; sourceTree = "<group>"; };
+		E1A8155A1D0D4E78005E4443 /* HRHerePoisSetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRHerePoisSetCell.h; sourceTree = "<group>"; };
+		E1A8155B1D0D4E78005E4443 /* HRHerePoisSetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRHerePoisSetCell.m; sourceTree = "<group>"; };
+		E1A8155D1D0D4E86005E4443 /* HRHerePoiCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRHerePoiCell.h; sourceTree = "<group>"; };
+		E1A8155E1D0D4E86005E4443 /* HRHerePoiCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRHerePoiCell.m; sourceTree = "<group>"; };
+		E1A815601D0D4E94005E4443 /* HRHereBannerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRHereBannerCell.h; sourceTree = "<group>"; };
+		E1A815611D0D4E94005E4443 /* HRHereBannerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRHereBannerCell.m; sourceTree = "<group>"; };
 		E1AC6CF31CFD3D1F00EADF02 /* HRNewPassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRNewPassViewController.h; sourceTree = "<group>"; };
 		E1AC6CF41CFD3D1F00EADF02 /* HRNewPassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRNewPassViewController.m; sourceTree = "<group>"; };
 		E1C3036B1CF43C1F001C016B /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
@@ -286,6 +298,12 @@
 			children = (
 				B85520131D098F5700C56FC5 /* HereViewController.h */,
 				B85520141D098F5700C56FC5 /* HereViewController.m */,
+				E1A8155A1D0D4E78005E4443 /* HRHerePoisSetCell.h */,
+				E1A8155B1D0D4E78005E4443 /* HRHerePoisSetCell.m */,
+				E1A8155D1D0D4E86005E4443 /* HRHerePoiCell.h */,
+				E1A8155E1D0D4E86005E4443 /* HRHerePoiCell.m */,
+				E1A815601D0D4E94005E4443 /* HRHereBannerCell.h */,
+				E1A815611D0D4E94005E4443 /* HRHereBannerCell.m */,
 			);
 			path = HereViewController;
 			sourceTree = "<group>";
@@ -293,8 +311,10 @@
 		B85520161D098FAB00C56FC5 /* HRScrollItemView */ = {
 			isa = PBXGroup;
 			children = (
-				B85520171D098FB900C56FC5 /* HRScrollItemView.h */,
-				B85520181D098FB900C56FC5 /* HRScrollItemView.m */,
+				B85520171D098FB900C56FC5 /* HRCatergoryItemView.h */,
+				B85520181D098FB900C56FC5 /* HRCatergoryItemView.m */,
+				E1A815481D0D483B005E4443 /* HRCatergoryScrollView.h */,
+				E1A815491D0D483B005E4443 /* HRCatergoryScrollView.m */,
 			);
 			path = HRScrollItemView;
 			sourceTree = "<group>";
@@ -811,7 +831,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8DF93241CFB2AB1007C4DF9 /* FGuideViewManager.m in Sources */,
-				B85520191D098FB900C56FC5 /* HRScrollItemView.m in Sources */,
+				B85520191D098FB900C56FC5 /* HRCatergoryItemView.m in Sources */,
 				B8954EAE1CFC7E1D006A706A /* HRFinPassViewController.m in Sources */,
 				B89664101CF32FD100B2A6CA /* UIViewAdditions.m in Sources */,
 				B80E94A91D07FB62000C979A /* RefreshTableView.m in Sources */,
@@ -832,6 +852,8 @@
 				B89663EF1CF32F7700B2A6CA /* RefreshCollectionView.m in Sources */,
 				E14BD4921CEEF53F00C66E14 /* main.m in Sources */,
 				B89663ED1CF32F7700B2A6CA /* JWCollectionViewFlowLayout.m in Sources */,
+				E1A8155F1D0D4E86005E4443 /* HRHerePoiCell.m in Sources */,
+				E1A815621D0D4E94005E4443 /* HRHereBannerCell.m in Sources */,
 				B89663F01CF32F7700B2A6CA /* ToastAlertView.m in Sources */,
 				B8954EAA1CFC7E10006A706A /* HRRegisterViewController.m in Sources */,
 				E1C303921CF442C4001C016B /* HRWeCatManager.m in Sources */,
@@ -848,7 +870,9 @@
 				E1C303C01CF596BF001C016B /* HRWebCatShare.m in Sources */,
 				B85520101D098F2C00C56FC5 /* HomeHeadView.m in Sources */,
 				B88F10751CF5E246007C930F /* FindCityViewController.m in Sources */,
+				E1A8154A1D0D483B005E4443 /* HRCatergoryScrollView.m in Sources */,
 				B896640F1CF32FD100B2A6CA /* UIView+TKCategory.m in Sources */,
+				E1A8155C1D0D4E78005E4443 /* HRHerePoisSetCell.m in Sources */,
 				E1C3037F1CF43E71001C016B /* HRWebCatLogin.m in Sources */,
 				B88F107C1CF5E273007C930F /* HRNagationController.m in Sources */,
 				B8DF93381CFB2AD8007C4DF9 /* SMPageControl.m in Sources */,

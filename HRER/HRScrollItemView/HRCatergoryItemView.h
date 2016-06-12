@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HRScrollItemView : UIView
+@interface HRCatergoryItemView : UIView
+
+- (void)setCategoryImage:(UIImage *)image categoryNumber:(NSInteger)count;
 
 @end

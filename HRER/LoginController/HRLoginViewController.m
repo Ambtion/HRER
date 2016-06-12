@@ -187,7 +187,6 @@
         make.top.equalTo(loginButton.mas_bottom).offset(0);
     }];
     
-    //Line
     
 }
 
