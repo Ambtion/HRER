@@ -27,5 +27,7 @@
 @interface UIViewController(Nav)
 - (NSArray*)createBackButtonWithTarget:(id)target seletor:(SEL)seletor;
 - (UIBarButtonItem*)barSpaingItem;
-
+- (UINavigationItem *)myNavigationItem;
+- (UINavigationController *)myNavController;
 @end
+

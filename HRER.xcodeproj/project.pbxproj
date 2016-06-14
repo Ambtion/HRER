@@ -39,6 +39,8 @@
 		B896640E1CF32FD100B2A6CA /* UIView+Sizes.m in Sources */ = {isa = PBXBuildFile; fileRef = B89664041CF32FD100B2A6CA /* UIView+Sizes.m */; };
 		B896640F1CF32FD100B2A6CA /* UIView+TKCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = B89664061CF32FD100B2A6CA /* UIView+TKCategory.m */; };
 		B89664101CF32FD100B2A6CA /* UIViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = B89664081CF32FD100B2A6CA /* UIViewAdditions.m */; };
+		B8ACA91E1D105FCF00D58232 /* HRPoiSetsMapController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8ACA91D1D105FCF00D58232 /* HRPoiSetsMapController.m */; };
+		B8ACA9211D105FE100D58232 /* HRPoiSetsListController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8ACA9201D105FE100D58232 /* HRPoiSetsListController.m */; };
 		B8DF93241CFB2AB1007C4DF9 /* FGuideViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B8DF93031CFB2AB1007C4DF9 /* FGuideViewManager.m */; };
 		B8DF93251CFB2AB1007C4DF9 /* button_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = B8DF93051CFB2AB1007C4DF9 /* button_normal.png */; };
 		B8DF93261CFB2AB1007C4DF9 /* guide_1_1.png in Resources */ = {isa = PBXBuildFile; fileRef = B8DF93061CFB2AB1007C4DF9 /* guide_1_1.png */; };
@@ -172,6 +174,10 @@
 		B89664071CF32FD100B2A6CA /* UIViewAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewAdditions.h; sourceTree = "<group>"; };
 		B89664081CF32FD100B2A6CA /* UIViewAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewAdditions.m; sourceTree = "<group>"; };
 		B89664111CF32FF700B2A6CA /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PrefixHeader.pch; path = ../PrefixHeader.pch; sourceTree = "<group>"; };
+		B8ACA91C1D105FCF00D58232 /* HRPoiSetsMapController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRPoiSetsMapController.h; sourceTree = "<group>"; };
+		B8ACA91D1D105FCF00D58232 /* HRPoiSetsMapController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRPoiSetsMapController.m; sourceTree = "<group>"; };
+		B8ACA91F1D105FE100D58232 /* HRPoiSetsListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRPoiSetsListController.h; sourceTree = "<group>"; };
+		B8ACA9201D105FE100D58232 /* HRPoiSetsListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRPoiSetsListController.m; sourceTree = "<group>"; };
 		B8DF93021CFB2AB1007C4DF9 /* FGuideViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FGuideViewManager.h; sourceTree = "<group>"; };
 		B8DF93031CFB2AB1007C4DF9 /* FGuideViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FGuideViewManager.m; sourceTree = "<group>"; };
 		B8DF93051CFB2AB1007C4DF9 /* button_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_normal.png; sourceTree = "<group>"; };
@@ -342,6 +348,8 @@
 		B88F10651CF5E1D3007C930F /* HomeViewContoller */ = {
 			isa = PBXGroup;
 			children = (
+				B88F10701CF5E23B007C930F /* HomeViewController.h */,
+				B88F10711CF5E23B007C930F /* HomeViewController.m */,
 				B805E1EA1D0DAE970011E2F7 /* HRHereBannerCell.h */,
 				B805E1EB1D0DAE970011E2F7 /* HRHereBannerCell.m */,
 				B805E1EC1D0DAE970011E2F7 /* HRHerePoiCell.h */,
@@ -350,8 +358,6 @@
 				B805E1EF1D0DAE970011E2F7 /* HRHerePoisSetCell.m */,
 				B805E1F01D0DAE970011E2F7 /* PhotoFrameView.h */,
 				B805E1F11D0DAE970011E2F7 /* PhotoFrameView.m */,
-				B88F10701CF5E23B007C930F /* HomeViewController.h */,
-				B88F10711CF5E23B007C930F /* HomeViewController.m */,
 				B855200E1D098F2C00C56FC5 /* HomeHeadView.h */,
 				B855200F1D098F2C00C56FC5 /* HomeHeadView.m */,
 			);
@@ -459,6 +465,17 @@
 			path = "UIView+Sizes";
 			sourceTree = "<group>";
 		};
+		B8ACA9181D105F7800D58232 /* POIList */ = {
+			isa = PBXGroup;
+			children = (
+				B8ACA91C1D105FCF00D58232 /* HRPoiSetsMapController.h */,
+				B8ACA91D1D105FCF00D58232 /* HRPoiSetsMapController.m */,
+				B8ACA91F1D105FE100D58232 /* HRPoiSetsListController.h */,
+				B8ACA9201D105FE100D58232 /* HRPoiSetsListController.m */,
+			);
+			path = POIList;
+			sourceTree = "<group>";
+		};
 		B8DF92F31CFB2AB1007C4DF9 /* FunctionGuide */ = {
 			isa = PBXGroup;
 			children = (
@@ -550,6 +567,7 @@
 		E14BD48F1CEEF53F00C66E14 /* HRER */ = {
 			isa = PBXGroup;
 			children = (
+				B8ACA9181D105F7800D58232 /* POIList */,
 				B85520161D098FAB00C56FC5 /* HRScrollItemView */,
 				B85520121D098F5700C56FC5 /* HereViewController */,
 				E1206FD71D066C7900E3C9D4 /* NetWork */,
@@ -838,6 +856,7 @@
 				B8DF93241CFB2AB1007C4DF9 /* FGuideViewManager.m in Sources */,
 				B85520191D098FB900C56FC5 /* HRCatergoryItemView.m in Sources */,
 				B805E1F21D0DAE970011E2F7 /* HRHereBannerCell.m in Sources */,
+				B8ACA9211D105FE100D58232 /* HRPoiSetsListController.m in Sources */,
 				B8954EAE1CFC7E1D006A706A /* HRFinPassViewController.m in Sources */,
 				B89664101CF32FD100B2A6CA /* UIViewAdditions.m in Sources */,
 				B80E94A91D07FB62000C979A /* RefreshTableView.m in Sources */,
@@ -873,6 +892,7 @@
 				B805E1F41D0DAE970011E2F7 /* HRHerePoisSetCell.m in Sources */,
 				B89663EE1CF32F7700B2A6CA /* NSDictionary+StrDic.m in Sources */,
 				E1F726621CF6E15500799A50 /* HRAddressBookManager.m in Sources */,
+				B8ACA91E1D105FCF00D58232 /* HRPoiSetsMapController.m in Sources */,
 				E10DF7741CF6C1A400D5E146 /* HRNavigationTool.m in Sources */,
 				E1C303C01CF596BF001C016B /* HRWebCatShare.m in Sources */,
 				B85520101D098F2C00C56FC5 /* HomeHeadView.m in Sources */,

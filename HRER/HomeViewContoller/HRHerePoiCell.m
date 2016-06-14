@@ -38,6 +38,7 @@
 - (void)initUI
 {
     self.bgImageView = [[UIImageView alloc] init];
+    self.bgImageView.image = [[UIImage imageNamed:@"poi_content"] resizableImageWithCapInsets:UIEdgeInsetsMake(7, 7, 7, 7)];
     [self.contentView addSubview:self.bgImageView];
     
     self.portraitImage = [[UIImageView alloc] init];
@@ -101,7 +102,6 @@
         make.size.mas_equalTo(CGSizeMake(width, width + 2));
     }];
     
-    self.bgImageView.backgroundColor = [UIColor redColor];
     self.titleLabel.backgroundColor = [UIColor greenColor];
     self.portraitImage.backgroundColor = [UIColor greenColor];
 }

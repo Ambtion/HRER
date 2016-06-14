@@ -10,16 +10,15 @@
 
 @interface HRCatergoryItemView()
 
-@property(nonatomic,strong)UIImageView * imageView;
-@property(nonatomic,strong)UILabel * label;
+
 
 @end
 
 @implementation HRCatergoryItemView
 
-- (instancetype)init
+- (instancetype)initWithFrame:(CGRect)frame
 {
-    self = [super init];
+    self = [super initWithFrame:frame];
     if (self) {
         [self initUI];
     }
@@ -28,32 +27,27 @@
 
 - (void)initUI
 {
-    self.imageView = [[UIImageView alloc] init];
-    [self addSubview:self.imageView];
-    
-    [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self);
-        make.left.equalTo(self);
-        make.width.equalTo(self);
-        make.height.equalTo(self.imageView.mas_width);
-    }];
-    
-    self.label = [[UILabel alloc] init];
+    self.imageButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, self.width, self.width)];
+    [self addSubview:self.imageButton];
+  
+    self.label = [[UILabel alloc] initWithFrame:CGRectMake(0, self.imageButton.bottom + 6, self.width, self.height - self.imageButton.bottom - 6)];
     self.label.font = [UIFont systemFontOfSize:14.f];
     self.label.textColor = RGBA_Color(0xff, 0xff, 0xff, 0.8);
     self.label.textAlignment = NSTextAlignmentCenter;
     [self addSubview:self.label];
     
-    [self.label mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.imageView.mas_bottom).offset(8.f);
-        make.width.equalTo(self);
-        make.left.equalTo(self);
-    }];
+ 
 }
 
-- (void)setCategoryImage:(UIImage *)image categoryNumber:(NSInteger)count
+- (void)setCategoryImage:(UIImage *)image
+            seletedImage:(UIImage *)simage
+                  target:(id)target
+                 seletor:(SEL)seletor
+          categoryNumber:(NSInteger)count
 {
-    self.imageView.image = image;
+    [self.imageButton setImage:image forState:UIControlStateNormal];
+    [self.imageButton setImage:simage forState:UIControlStateSelected];
+    [self.imageButton addTarget:target action:seletor forControlEvents:UIControlEventTouchUpInside];
     self.label.text = [NSString stringWithFormat:@"%ld",(long)count];
 }
 

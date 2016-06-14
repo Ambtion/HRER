@@ -10,6 +10,13 @@
 
 @interface HRCatergoryItemView : UIView
 
-- (void)setCategoryImage:(UIImage *)image categoryNumber:(NSInteger)count;
+@property(nonatomic,strong)UILabel * label;
+@property(nonatomic,strong)UIButton * imageButton;
+
+- (void)setCategoryImage:(UIImage *)image
+            seletedImage:(UIImage *)simage
+                  target:(id)target
+                 seletor:(SEL)seletor
+          categoryNumber:(NSInteger)count;
 
 @end
