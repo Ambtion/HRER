@@ -16,6 +16,7 @@
 @property(nonatomic,copy,readonly)NSString * title;
 @property(nonatomic,copy,readonly)NSString * subtitle;
 @property(nonatomic,strong)id extData;
+@property(nonatomic,assign)NSInteger index;
 
 -(id)initWithCoordinates:(CLLocationCoordinate2D)paramCoordinates
                    title:(NSString *)paramTitle

@@ -53,15 +53,20 @@
     region.span = span;
     [self.mapView setRegion:region animated:YES];
     
-    [self showPinViewWithLocation:coord title:@"" subTitle:@""];
 }
 
 #pragma mark - 大头针
-- (void)showPinViewWithLocation:(CLLocationCoordinate2D)paramCoordinates title:(NSString *)title subTitle:(NSString *)subTitle
+- (void)showPinViews:(NSArray *)pinViews
 {
-    HRAnomation * anomation =  [[HRAnomation alloc] initWithCoordinates:paramCoordinates title:title subTitle:subTitle];
-    [self.mapView addAnnotation:anomation];
-    [self.mapView selectAnnotation:anomation animated:YES];
+    CLLocationCoordinate2D coord = CLLocationCoordinate2DMake(39.904209 , 116.407394);
+    NSMutableArray * array  = [NSMutableArray arrayWithCapacity:0];
+    for (int i = 0; i < 5; i++) {
+        coord = CLLocationCoordinate2DMake(39.904209 + 0.1 * i , 116.407394);
+        HRAnomation * anomation =  [[HRAnomation alloc] initWithCoordinates:coord title:@"1" subTitle:@""];
+        [array addObject:anomation];
+    }
+    [self.mapView addAnnotations:array];
+    
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
@@ -77,29 +82,36 @@
     }
     
     HRAnomation * senderAnnotation = (HRAnomation *)annotation;
-    MKPinAnnotationView * annotationView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:@"pingView"];
+    HRPinAnnomationView * annotationView = (HRPinAnnomationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:annotation.title];
     
     if(annotationView == nil)
     {
-        annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:senderAnnotation reuseIdentifier:@"pingView"];
+        annotationView = [[HRPinAnnomationView alloc] initWithAnnotation:senderAnnotation reuseIdentifier:annotation.title];
         [annotationView setCanShowCallout:YES];
     }
-
-    
-    UIButton * button = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-    annotationView.rightCalloutAccessoryView = button;
+    if(annotationView.isSelected){
+        annotationView.image = [UIImage imageNamed:@"find"];
+    }else{
+        annotationView.image = [UIImage imageNamed:@"location"];
+    }
     
     annotationView.opaque = NO;
-    annotationView.animatesDrop = YES;
     annotationView.draggable = YES;
-    annotationView.selected = YES;
-
     return annotationView;
 }
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
 {
-    
+    [self resetAllPinViewToUnseletd];
+    view.image = [UIImage imageNamed:@"find"];
+}
+
+- (void)resetAllPinViewToUnseletd
+{
+    for (HRAnomation * annomation in self.mapView.annotations) {
+        HRPinAnnomationView * annotationView = (HRPinAnnomationView *)[self.mapView viewForAnnotation:annomation];
+        annotationView.image = [UIImage imageNamed:@"location"];
+    }
 }
 
 @end

@@ -91,4 +91,8 @@
     }
 }
 
+- (void)setButtonSeletedAtIndex:(NSInteger)index
+{
+    [self.catergoryView setButtonSeletedAtIndex:index];
+}
 @end

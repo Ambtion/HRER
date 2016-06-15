@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HRMapView : UIView
 
+@interface HRMapView : UIView
+- (void)showPinViews:(NSArray *)pinViews;
 @end

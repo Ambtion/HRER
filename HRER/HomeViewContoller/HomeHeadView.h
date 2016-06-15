@@ -25,6 +25,9 @@
 
 - (void)setcatergortCount:(NSArray *)countArray;
 
+- (void)setButtonSeletedAtIndex:(NSInteger)index;
+
+
 + (CGFloat)heightForHeadCell;
 
 @end

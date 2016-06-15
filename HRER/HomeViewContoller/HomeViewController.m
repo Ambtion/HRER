@@ -11,11 +11,15 @@
 #import "HomeHeadView.h"
 #import "HRHerePoiCell.h"
 #import "HRHerePoisSetCell.h"
+#import "HRHereBannerCell.h"
+#import "HRPoiSetsController.h"
 
-@interface HomeViewController()<UITableViewDelegate,UITableViewDataSource>
+@interface HomeViewController()<UITableViewDelegate,UITableViewDataSource,HomeHeadViewDelegate>
 
 @property(nonatomic,strong)RefreshTableView * tableView;
-@property(nonatomic,strong)NSMutableArray * dataSource;
+@property(nonatomic,assign)NSUInteger catergoryIndex;
+@property(nonatomic,strong)NSMutableArray * poiSetsSource;
+@property(nonatomic,strong)NSMutableArray * poiSource;
 
 @end
 
@@ -33,6 +37,7 @@
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
+    self.catergoryIndex = 1;
     
     [self initUI];
 }
@@ -66,18 +71,28 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // HeadView
-    // 城市List
-    return 2;
+    // PoiSets
+    // Poi
+    // banner
+    
+    return 4;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     switch (section) {
         case 0:
-            return 1;
+            return 0;
             break;
         case 1:
-            return 20;
+            return 3;
+            break;
+        case 2:
+            return 3;
+            break;
+        case 3:
+            return 1;
+            break;
         default:
             break;
     }
@@ -86,12 +101,15 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    switch (indexPath.row) {
+    switch (indexPath.section) {
         case 0:
             return [HomeHeadView heightForHeadCell];
-            break;
         case 1:
             return [HRHerePoisSetCell heightForCell];
+        case 2:
+            return [HRHerePoiCell heightForCell];
+        case 3:
+            return [HRHereBannerCell heightForCell];
         default:
             break;
     }
@@ -113,6 +131,7 @@
                 cell.titleLabel.text = @"这里";
             }
             cell.totalCountLabel.text = @"128";
+            [cell setButtonSeletedAtIndex:self.catergoryIndex];
             [cell setcatergortCount:@[@28,@20,@20,@50,@10]];
             return cell;
         }
@@ -127,6 +146,29 @@
             return cell;
         }
             break;
+            
+        case 2:
+        {
+            NSString * identify = NSStringFromClass([HRHerePoiCell class]);
+            HRHerePoiCell * cell = [tableView dequeueReusableCellWithIdentifier:identify];
+            if (!cell) {
+                cell = [[HRHerePoiCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identify];
+            }
+            return cell;
+
+        }
+            break;
+            
+        case 3:
+        {
+            NSString * identify = NSStringFromClass([HRHereBannerCell class]);
+            HRHereBannerCell * cell = [tableView dequeueReusableCellWithIdentifier:identify];
+            if (!cell) {
+                cell = [[HRHereBannerCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identify];
+            }
+            return cell;
+            
+        }
         default:
             break;
     }
@@ -136,6 +178,34 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     [self.myNavController setNavigationBarHidden:scrollView.contentOffset.y > 0 animated:NO];
+}
+
+#pragma mark - Action
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    switch (indexPath.section) {
+        case 0:
+            break;
+        case 1:
+            //PoiSets
+            [self.myNavController pushViewController:[[HRPoiSetsController alloc] initWithDataSource:self.poiSetsSource[indexPath.row] ] animated:YES];
+            break;
+        case 2:
+
+            //Poi
+            break;
+        case 3:
+            //banner
+            
+            break;
+        default:
+            break;
+    }
+}
+
+- (void)homeHeadView:(HomeHeadView *)view DidSeletedIndex:(NSInteger)index
+{
+    
 }
 
 @end

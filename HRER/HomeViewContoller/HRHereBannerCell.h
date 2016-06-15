@@ -10,4 +10,6 @@
 
 @interface HRHereBannerCell : UITableViewCell
 
++ (CGFloat)heightForCell;
+
 @end
