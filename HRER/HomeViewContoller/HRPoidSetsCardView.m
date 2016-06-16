@@ -36,6 +36,16 @@
     return self;
 }
 
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self initUI];
+    }
+    return self;
+}
+
+
 - (void)initUI
 {
     self.bgImageView = [[UIImageView alloc] init];
@@ -79,6 +89,8 @@
     for (int i = 0; i < 4; i++) {
         
         PhotoFrameView * frameView = [[PhotoFrameView alloc] init];
+        UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(frameViewDidClick:)];
+        [frameView addGestureRecognizer:tap];
         [frameView setHidden:YES];
         frameView.tag = 100 + i;
         [self.frameImageViews addObject:frameView];
@@ -103,8 +115,28 @@
         CGFloat width = 52.f;
         make.size.mas_equalTo(CGSizeMake(width, width + 2));
     }];
+    
+    UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(fullViewTap:)];
+    [self addGestureRecognizer:tap];
+    
     self.titleLabel.backgroundColor = [UIColor greenColor];
     self.portraitImage.backgroundColor = [UIColor greenColor];
+    
+
+}
+
+- (void)fullViewTap:(UITapGestureRecognizer *)tap
+{
+    if ([_delegate respondsToSelector:@selector(poiSetsViewDidClick:)]) {
+        [_delegate poiSetsViewDidClick:self];
+    }
+}
+
+- (void)frameViewDidClick:(UITapGestureRecognizer * )tap
+{
+    if ([_delegate respondsToSelector:@selector(poiSetsView:DidClickFrameImage:)]) {
+        [_delegate poiSetsView:self DidClickFrameImage:tap.view];
+    }
 }
 
 @end

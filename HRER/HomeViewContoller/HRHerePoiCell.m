@@ -9,7 +9,7 @@
 #import "HRHerePoiCell.h"
 #import "HRPoiCardView.h"
 
-@interface HRHerePoiCell()
+@interface HRHerePoiCell()<HRPoiCardViewdelegate>
 @property(nonatomic,strong)HRPoiCardView * cardView;
 @end
 
@@ -35,6 +35,7 @@
 - (void)initUI
 {
     self.cardView = [[HRPoiCardView alloc] init];
+    self.cardView.delegate = self;
     [self.contentView addSubview:self.cardView];
     
     [self.cardView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -52,5 +53,19 @@
 
 - (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated
 {}
+
+- (void)poiView:(HRPoiCardView *)poiSetsview DidClickFrameImage:(UIImageView *)imageView
+{
+    if ([_delegate respondsToSelector:@selector(herePoiCell:DidClickFrameView:)]) {
+        [_delegate herePoiCell:self DidClickFrameView:imageView];
+    }
+}
+
+- (void)poiViewDidClick:(HRPoiCardView *)poiSetsview
+{
+    if ([_delegate respondsToSelector:@selector(herePoiCellDidClick:)]) {
+        [_delegate herePoiCellDidClick:self];
+    }
+}
 
 @end

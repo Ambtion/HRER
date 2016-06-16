@@ -7,8 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+@class HRHerePoisSetCell;
+@protocol HRHerePoisSetCellDelegate <NSObject>
+- (void)herePoisSetCell:(HRHerePoisSetCell *)cell DidClickFrameView:(UIImageView *)imageView;
+- (void)herePoisSetCellDidClick:(HRHerePoisSetCell *)cell;
+
+@end
 
 @interface HRHerePoisSetCell : UITableViewCell
+
+@property(nonatomic,weak)id<HRHerePoisSetCellDelegate>delegate;
 
 + (CGFloat)heightForCell;
 

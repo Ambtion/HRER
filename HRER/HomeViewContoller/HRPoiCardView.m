@@ -29,13 +29,22 @@
 
 + (CGFloat)heightForCardView
 {
-    return 130.f;
+    return 135.f;
 }
 
 
 - (instancetype)init
 {
     self = [super init];
+    if (self) {
+        [self initUI];
+    }
+    return self;
+}
+
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
     if (self) {
         [self initUI];
     }
@@ -111,6 +120,8 @@
     for (int i = 0; i < 4; i++) {
         
         PhotoFrameView * frameView = [[PhotoFrameView alloc] init];
+        UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(frameViewDidClick:)];
+        [frameView addGestureRecognizer:tap];
         [frameView setHidden:YES];
         frameView.tag = 100 + i;
         [self.frameImageViews addObject:frameView];
@@ -140,7 +151,6 @@
         make.right.equalTo(lastView.mas_right);
         make.bottom.equalTo(self.bgImageView.mas_bottom).offset(-10);
         make.height.equalTo(@(14.f));
-        
     }];
     
     [self.locIconView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -148,11 +158,30 @@
         make.centerY.equalTo(self.locLabel);
     }];
     
+    UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(fullViewTap:)];
+    [self addGestureRecognizer:tap];
+    
+
+    
     self.titleLabel.backgroundColor = [UIColor greenColor];
     self.portraitImage.backgroundColor = [UIColor greenColor];
     
 }
 
+
+- (void)fullViewTap:(UITapGestureRecognizer *)tap
+{
+    if ([_delegate respondsToSelector:@selector(poiViewDidClick:)]) {
+        [_delegate poiViewDidClick:self];
+    }
+}
+
+- (void)frameViewDidClick:(UITapGestureRecognizer * )tap
+{
+    if ([_delegate respondsToSelector:@selector(poiView:DidClickFrameImage:)]) {
+        [_delegate poiView:self DidClickFrameImage:(UIImageView *)tap.view];
+    }
+}
 
 
 

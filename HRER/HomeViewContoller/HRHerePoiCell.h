@@ -8,7 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+@class HRHerePoiCell;
+@protocol HRHerePoiCellDelegate <NSObject>
+- (void)herePoiCell:(HRHerePoiCell *)cell DidClickFrameView:(UIImageView *)imageView;
+- (void)herePoiCellDidClick:(HRHerePoiCell *)cell;
+
+@end
+
+
 @interface HRHerePoiCell : UITableViewCell
+
+@property(nonatomic,weak)id<HRHerePoiCellDelegate>delegate;
+
 
 + (CGFloat)heightForCell;
 

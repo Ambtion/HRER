@@ -8,6 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+@class HRPoidSetsCardView;
+@protocol HRPoidSetsCardViewdelegate <NSObject>
+- (void)poiSetsView:(HRPoidSetsCardView *)poiSetsview DidClickFrameImage:(UIImageView *)imageView;
+@optional
+- (void)poiSetsViewDidClick:(HRPoidSetsCardView *)poiSetsview;
+@end
+
 @interface HRPoidSetsCardView : UIView
+
+@property(nonatomic,weak)id<HRPoidSetsCardViewdelegate>delegate;
+
 + (CGFloat)heightForCardView;
+
 @end

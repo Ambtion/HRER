@@ -9,7 +9,7 @@
 #import "HRHerePoisSetCell.h"
 #import "HRPoidSetsCardView.h"
 
-@interface HRHerePoisSetCell()
+@interface HRHerePoisSetCell()<HRPoidSetsCardViewdelegate>
 
 @property(nonatomic,strong)HRPoidSetsCardView * cardView;
 
@@ -37,6 +37,7 @@
 - (void)initUI
 {
     self.cardView = [[HRPoidSetsCardView alloc] init];
+    self.cardView.delegate = self;
     [self.contentView addSubview:self.cardView];
     
     [self.cardView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -57,4 +58,17 @@
 
 }
 
+- (void)poiSetsView:(HRPoidSetsCardView *)poiSetsview DidClickFrameImage:(UIImageView *)imageView
+{
+    if ([_delegate respondsToSelector:@selector(herePoisSetCell: DidClickFrameView:)]) {
+        [_delegate herePoisSetCell:self DidClickFrameView:imageView];
+    }
+}
+
+- (void)poiSetsViewDidClick:(HRPoidSetsCardView *)poiSetsview
+{
+    if ([_delegate respondsToSelector:@selector(herePoisSetCellDidClick:)]) {
+        [_delegate herePoisSetCellDidClick:self];
+    }
+}
 @end

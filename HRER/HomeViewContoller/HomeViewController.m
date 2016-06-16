@@ -14,7 +14,7 @@
 #import "HRHereBannerCell.h"
 #import "HRPoiSetsController.h"
 
-@interface HomeViewController()<UITableViewDelegate,UITableViewDataSource,HomeHeadViewDelegate>
+@interface HomeViewController()<UITableViewDelegate,UITableViewDataSource,HomeHeadViewDelegate,HRHerePoisSetCellDelegate,HRHerePoiCellDelegate>
 
 @property(nonatomic,strong)RefreshTableView * tableView;
 @property(nonatomic,assign)NSUInteger catergoryIndex;
@@ -142,6 +142,8 @@
             HRHerePoisSetCell * cell = [tableView dequeueReusableCellWithIdentifier:identify];
             if (!cell) {
                 cell = [[HRHerePoisSetCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identify];
+                cell.delegate = self;
+
             }
             return cell;
         }
@@ -153,6 +155,7 @@
             HRHerePoiCell * cell = [tableView dequeueReusableCellWithIdentifier:identify];
             if (!cell) {
                 cell = [[HRHerePoiCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identify];
+                cell.delegate = self;
             }
             return cell;
 
@@ -181,31 +184,27 @@
 }
 
 #pragma mark - Action
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    switch (indexPath.section) {
-        case 0:
-            break;
-        case 1:
-            //PoiSets
-            [self.myNavController pushViewController:[[HRPoiSetsController alloc] initWithDataSource:self.poiSetsSource[indexPath.row] ] animated:YES];
-            break;
-        case 2:
-
-            //Poi
-            break;
-        case 3:
-            //banner
-            
-            break;
-        default:
-            break;
-    }
-}
-
 - (void)homeHeadView:(HomeHeadView *)view DidSeletedIndex:(NSInteger)index
 {
     
 }
+
+- (void)herePoiCell:(HRHerePoiCell *)cell DidClickFrameView:(UIImageView *)imageView
+{
+
+}
+
+- (void)herePoisSetCellDidClick:(HRHerePoisSetCell *)cell
+{
+    //PoiSets
+    NSIndexPath * indexPath = [self.tableView indexPathForCell:cell];
+    [self.myNavController pushViewController:[[HRPoiSetsController alloc] initWithDataSource:self.poiSetsSource[indexPath.row]] animated:YES];
+}
+
+- (void)herePoisSetCell:(HRHerePoisSetCell *)cell DidClickFrameView:(UIImageView *)imageView
+{
+    
+}
+
 
 @end

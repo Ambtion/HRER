@@ -8,7 +8,6 @@
 
 #import "HRPinAnnomationView.h"
 @interface HRPinAnnomationView()
-@property(nonatomic,strong)UIImageView * bgImageView;
 @end
 
 @implementation HRPinAnnomationView
@@ -24,21 +23,11 @@
 
 - (void)setAnomationData:(HRAnomation *)anomationData
 {
-    self.bgImageView.image = [UIImage imageNamed:@"location"];
 }
 
-- (UIImageView *)bgImageView
+- (void)setSelected:(BOOL)selected
 {
-    if (!_bgImageView) {
-        _bgImageView = [[UIImageView alloc] initWithFrame:self.bounds];
-        [self addSubview:_bgImageView];
-    }
-    return _bgImageView;
-}
-
-- (void)layoutSubviews
-{
-    [super layoutSubviews];
-    self.bgImageView.frame = self.bounds;
+    [super setSelected:selected];
+    self.image = selected ? [UIImage imageNamed:@"find"] : [UIImage imageNamed:@"location"];
 }
 @end
