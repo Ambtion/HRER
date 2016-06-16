@@ -102,11 +102,6 @@
         CGFloat width = 52.f;
         make.size.mas_equalTo(CGSizeMake(width, width + 2));
     }];
-    
-<<<<<<< HEAD
-//    self.bgImageView.backgroundColor = [UIColor redColor];
-=======
->>>>>>> 29ca788b200f56c826a432fccb5c16bc483624f7
     self.titleLabel.backgroundColor = [UIColor greenColor];
     self.portraitImage.backgroundColor = [UIColor greenColor];
 }
