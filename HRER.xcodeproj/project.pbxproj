@@ -65,6 +65,8 @@
 		E10DF7741CF6C1A400D5E146 /* HRNavigationTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E10DF7731CF6C1A400D5E146 /* HRNavigationTool.m */; };
 		E10DF7881CF6DAB600D5E146 /* MainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = E10DF7871CF6DAB600D5E146 /* MainTabBarController.m */; };
 		E10DF78C1CF6DB6F00D5E146 /* btn_card@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E10DF7891CF6DB6F00D5E146 /* btn_card@2x.png */; };
+		E133FD771D1283F400503D83 /* HRPoidSetsCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = E133FD761D1283F400503D83 /* HRPoidSetsCardView.m */; };
+		E133FD7A1D12854900503D83 /* HRPoiCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = E133FD791D12854900503D83 /* HRPoiCardView.m */; };
 		E14BD4921CEEF53F00C66E14 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E14BD4911CEEF53F00C66E14 /* main.m */; };
 		E14BD4951CEEF53F00C66E14 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E14BD4941CEEF53F00C66E14 /* AppDelegate.m */; };
 		E14BD49D1CEEF53F00C66E14 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E14BD49C1CEEF53F00C66E14 /* Assets.xcassets */; };
@@ -211,6 +213,10 @@
 		E10DF7861CF6DAB600D5E146 /* MainTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTabBarController.h; sourceTree = "<group>"; };
 		E10DF7871CF6DAB600D5E146 /* MainTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTabBarController.m; sourceTree = "<group>"; };
 		E10DF7891CF6DB6F00D5E146 /* btn_card@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_card@2x.png"; sourceTree = "<group>"; };
+		E133FD751D1283F400503D83 /* HRPoidSetsCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRPoidSetsCardView.h; sourceTree = "<group>"; };
+		E133FD761D1283F400503D83 /* HRPoidSetsCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRPoidSetsCardView.m; sourceTree = "<group>"; };
+		E133FD781D12854900503D83 /* HRPoiCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRPoiCardView.h; sourceTree = "<group>"; };
+		E133FD791D12854900503D83 /* HRPoiCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRPoiCardView.m; sourceTree = "<group>"; };
 		E14BD48D1CEEF53F00C66E14 /* HRER.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HRER.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E14BD4911CEEF53F00C66E14 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E14BD4931CEEF53F00C66E14 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = HRER/AppDelegate.h; sourceTree = "<group>"; };
@@ -359,6 +365,10 @@
 				B805E1ED1D0DAE970011E2F7 /* HRHerePoiCell.m */,
 				B805E1EE1D0DAE970011E2F7 /* HRHerePoisSetCell.h */,
 				B805E1EF1D0DAE970011E2F7 /* HRHerePoisSetCell.m */,
+				E133FD781D12854900503D83 /* HRPoiCardView.h */,
+				E133FD791D12854900503D83 /* HRPoiCardView.m */,
+				E133FD751D1283F400503D83 /* HRPoidSetsCardView.h */,
+				E133FD761D1283F400503D83 /* HRPoidSetsCardView.m */,
 				B805E1F01D0DAE970011E2F7 /* PhotoFrameView.h */,
 				B805E1F11D0DAE970011E2F7 /* PhotoFrameView.m */,
 				B855200E1D098F2C00C56FC5 /* HomeHeadView.h */,
@@ -881,6 +891,7 @@
 				E14BD4F01CF2CAD200C66E14 /* HRAnomation.m in Sources */,
 				B89663EF1CF32F7700B2A6CA /* RefreshCollectionView.m in Sources */,
 				E14BD4921CEEF53F00C66E14 /* main.m in Sources */,
+				E133FD7A1D12854900503D83 /* HRPoiCardView.m in Sources */,
 				B805E1F31D0DAE970011E2F7 /* HRHerePoiCell.m in Sources */,
 				B805E1F51D0DAE970011E2F7 /* PhotoFrameView.m in Sources */,
 				B89663ED1CF32F7700B2A6CA /* JWCollectionViewFlowLayout.m in Sources */,
@@ -906,6 +917,7 @@
 				E1A8154A1D0D483B005E4443 /* HRCatergoryScrollView.m in Sources */,
 				B896640F1CF32FD100B2A6CA /* UIView+TKCategory.m in Sources */,
 				E1C3037F1CF43E71001C016B /* HRWebCatLogin.m in Sources */,
+				E133FD771D1283F400503D83 /* HRPoidSetsCardView.m in Sources */,
 				B88F107C1CF5E273007C930F /* HRNagationController.m in Sources */,
 				B8DF93381CFB2AD8007C4DF9 /* SMPageControl.m in Sources */,
 				B88F10721CF5E23B007C930F /* HomeViewController.m in Sources */,

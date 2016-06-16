@@ -15,7 +15,7 @@
 #define kPoiMapMAOLEVEL        (0.05f)
 
 
-@interface HRPoiSetsMapView()<MKMapViewDelegate>
+@interface HRPoiSetsMapView()<MKMapViewDelegate,UIScrollViewDelegate>
 
 @property(nonatomic,strong)MKMapView * mapView;
 @property(nonatomic,strong)UIScrollView * scrollView;
@@ -36,7 +36,6 @@
 - (void)initUI
 {
     [self initMapView];
-    
 }
 
 
@@ -85,10 +84,13 @@
         annotationView = [[HRPinAnnomationView alloc] initWithAnnotation:senderAnnotation reuseIdentifier:annotation.title];
         [annotationView setCanShowCallout:YES];
     }
-    if(annotationView.isSelected){
-        annotationView.image = [UIImage imageNamed:@"find"];
-    }else{
-        annotationView.image = [UIImage imageNamed:@"location"];
+    
+    if(![senderAnnotation.title isEqualToString:@"当前位置"]){
+        if(annotationView.isSelected){
+            annotationView.image = [UIImage imageNamed:@"find"];
+        }else{
+            annotationView.image = [UIImage imageNamed:@"location"];
+        }
     }
     
     annotationView.opaque = NO;
@@ -114,25 +116,39 @@
 #pragma mark - ScrollView
 - (void)initScrollView
 {
-//    self.scrollView = [[UIScrollView alloc] initWithFrame:<#(CGRect)#>]
+    self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, self.height - 150 - 10, self.width, 150)];
+    self.scrollView.pagingEnabled = YES;
+    self.scrollView.showsHorizontalScrollIndicator = NO;
+    self.scrollView.delegate = self;
 }
 
-
-
-#pragma mark Data |UI
-- (void)refreshUIWithData:(NSArray *)array
+-(void)scrollViewToPage:(NSInteger)index
 {
-    self.dataArray = array;
-    [self refreshMapPinViews];
     
 }
 
+#pragma mark - Data |UI
+- (void)refreshUIWithData:(NSArray *)array
+{
+    array = @[@"1",@"3",@"3",@"4",@"5"];
+    self.dataArray = array;
+    [self refreshMapPinViews];
+}
 
+#pragma mark ScrollView
+- (void)refreshScrollViews
+{
+    CGFloat orignal = 10.f;
+    
+}
+
+#pragma mark Map
 - (void)refreshMapPinViews
 {
     CLLocationCoordinate2D coord = CLLocationCoordinate2DMake(39.904209 , 116.407394);
     NSMutableArray * array  = [NSMutableArray arrayWithCapacity:0];
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < self.dataArray.count; i++) {
+        
         coord = CLLocationCoordinate2DMake(39.904209 + 0.1 * i , 116.407394);
         HRAnomation * anomation =  [[HRAnomation alloc] initWithCoordinates:coord title:@"1" subTitle:@""];
         [array addObject:anomation];

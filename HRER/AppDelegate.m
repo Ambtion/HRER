@@ -123,11 +123,13 @@
 {
     
     [[UINavigationBar appearance] setBarTintColor:[UIColor clearColor]];
-    NSDictionary *textAttributes1 = @{NSFontAttributeName: [UIFont systemFontOfSize:24.f],
+     NSDictionary *textAttributes1 = @{NSFontAttributeName: [UIFont systemFontOfSize:24.f],
                                       NSForegroundColorAttributeName: [UIColor whiteColor]
                                       };
     [[UINavigationBar appearance] setTitleTextAttributes:textAttributes1];
-    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"NavigationBarBG.png"] forBarMetrics:UIBarMetricsDefault];
+    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"NavigationBarBG"] forBarMetrics:UIBarMetricsDefault];
+    [[UINavigationBar appearance] setShadowImage:[UIImage imageNamed:@"NavigationBarBG"]];
+ 
 }
 
 #pragma mark AppDelegate FOR SSO
