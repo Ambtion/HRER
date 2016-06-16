@@ -8,13 +8,18 @@
 
 #import "HomeViewController.h"
 #import "RefreshTableView.h"
+#import "HomeHeadView.h"
 #import "HRHerePoiCell.h"
 #import "HRHerePoisSetCell.h"
+#import "HRHereBannerCell.h"
+#import "HRPoiSetsController.h"
 
-@interface HomeViewController()<UITableViewDelegate,UITableViewDataSource>
+@interface HomeViewController()<UITableViewDelegate,UITableViewDataSource,HomeHeadViewDelegate>
 
 @property(nonatomic,strong)RefreshTableView * tableView;
-@property(nonatomic,strong)NSMutableArray * dataSource;
+@property(nonatomic,assign)NSUInteger catergoryIndex;
+@property(nonatomic,strong)NSMutableArray * poiSetsSource;
+@property(nonatomic,strong)NSMutableArray * poiSource;
 
 @end
 
@@ -32,6 +37,7 @@
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
+    self.catergoryIndex = 1;
     
     [self initUI];
 }
@@ -42,11 +48,12 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.view addSubview:self.tableView];
-//    [self initRefreshView];
+    [self initRefreshView];
 }
 
 - (void)initRefreshView
 {
+    
     //    WS(ws);
     self.tableView.refreshHeader.beginRefreshingBlock = ^(){
         
@@ -55,33 +62,150 @@
     self.tableView.refreshFooter.beginRefreshingBlock = ^(){
         
     };
+    
+    self.tableView.refreshFooter = nil;
+    self.tableView.refreshHeader = nil;
 }
 
 #pragma mark - TableViewDelegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    // HeadView
+    // PoiSets
+    // Poi
+    // banner
+    
+    return 4;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 5;
+    switch (section) {
+        case 0:
+            return 0;
+            break;
+        case 1:
+            return 3;
+            break;
+        case 2:
+            return 3;
+            break;
+        case 3:
+            return 1;
+            break;
+        default:
+            break;
+    }
+    return 0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [HRHerePoisSetCell heightForCell];
+    switch (indexPath.section) {
+        case 0:
+            return [HomeHeadView heightForHeadCell];
+        case 1:
+            return [HRHerePoisSetCell heightForCell];
+        case 2:
+            return [HRHerePoiCell heightForCell];
+        case 3:
+            return [HRHereBannerCell heightForCell];
+        default:
+            break;
+    }
+    return 0;
 }
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString * identify = NSStringFromClass([HRHerePoisSetCell class]);
-    HRHerePoisSetCell * cell = [tableView dequeueReusableCellWithIdentifier:identify];
-    if (!cell) {
-        cell = [[HRHerePoisSetCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identify];
+    
+    switch (indexPath.section) {
+        case 0:
+        {
+            NSString * identify = NSStringFromClass([HomeHeadView class]);
+            HomeHeadView * cell = [tableView dequeueReusableCellWithIdentifier:identify];
+            if (!cell) {
+                cell = [[HomeHeadView alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identify];
+                cell.bgImageView.image = [UIImage imageNamed:@"poi_head_bg"];
+                cell.mainLabel.text = @"ZHELI";
+                cell.titleLabel.text = @"这里";
+            }
+            cell.totalCountLabel.text = @"128";
+            [cell setButtonSeletedAtIndex:self.catergoryIndex];
+            [cell setcatergortCount:@[@28,@20,@20,@50,@10]];
+            return cell;
+        }
+            break;
+        case 1:
+        {
+            NSString * identify = NSStringFromClass([HRHerePoisSetCell class]);
+            HRHerePoisSetCell * cell = [tableView dequeueReusableCellWithIdentifier:identify];
+            if (!cell) {
+                cell = [[HRHerePoisSetCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identify];
+            }
+            return cell;
+        }
+            break;
+            
+        case 2:
+        {
+            NSString * identify = NSStringFromClass([HRHerePoiCell class]);
+            HRHerePoiCell * cell = [tableView dequeueReusableCellWithIdentifier:identify];
+            if (!cell) {
+                cell = [[HRHerePoiCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identify];
+            }
+            return cell;
+
+        }
+            break;
+            
+        case 3:
+        {
+            NSString * identify = NSStringFromClass([HRHereBannerCell class]);
+            HRHereBannerCell * cell = [tableView dequeueReusableCellWithIdentifier:identify];
+            if (!cell) {
+                cell = [[HRHereBannerCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identify];
+            }
+            return cell;
+            
+        }
+        default:
+            break;
     }
-    return cell;
+    return [UITableViewCell new];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    [self.myNavController setNavigationBarHidden:scrollView.contentOffset.y > 0 animated:NO];
+}
+
+#pragma mark - Action
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    switch (indexPath.section) {
+        case 0:
+            break;
+        case 1:
+            //PoiSets
+            [self.myNavController pushViewController:[[HRPoiSetsController alloc] initWithDataSource:self.poiSetsSource[indexPath.row] ] animated:YES];
+            break;
+        case 2:
+
+            //Poi
+            break;
+        case 3:
+            //banner
+            
+            break;
+        default:
+            break;
+    }
+}
+
+- (void)homeHeadView:(HomeHeadView *)view DidSeletedIndex:(NSInteger)index
+{
+    
 }
 
 @end

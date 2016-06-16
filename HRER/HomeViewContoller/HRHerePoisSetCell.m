@@ -45,7 +45,9 @@
 {
     self.bgImageView = [[UIImageView alloc] init];
     self.bgImageView.image = [[UIImage imageNamed:@"poi_content_bg"] resizableImageWithCapInsets:UIEdgeInsetsMake(7, 7, 7, 7)];
+ 
     [self.contentView addSubview:self.bgImageView];
+    
     
     self.portraitImage = [[UIImageView alloc] init];
     [self.contentView addSubview:self.portraitImage];
@@ -146,7 +148,10 @@
         make.centerY.equalTo(self.locLabel);
     }];
     
+<<<<<<< HEAD
 //    self.bgImageView.backgroundColor = [UIColor redColor];
+=======
+>>>>>>> 29ca788b200f56c826a432fccb5c16bc483624f7
     self.titleLabel.backgroundColor = [UIColor greenColor];
     self.portraitImage.backgroundColor = [UIColor greenColor];
     

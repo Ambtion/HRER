@@ -123,5 +123,21 @@
     return negativeSpacer;
 }
 
+- (UINavigationItem *)myNavigationItem
+{
+    if (self.tabBarController) {
+        return self.tabBarController.navigationItem;
+    }
+    return self.navigationItem;
+}
+
+- (UINavigationController *)myNavController
+{
+    if (self.tabBarController) {
+        return self.tabBarController.navigationController;
+    }
+    return self.navigationController;
+}
+
 @end
 

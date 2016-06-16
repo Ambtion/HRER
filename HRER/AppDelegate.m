@@ -42,7 +42,6 @@
     MainTabBarController * mainTab = [self getMainTabController];
     mainTab.automaticallyAdjustsScrollViewInsets = NO;
     self.navController = [[HRNagationController alloc] initWithRootViewController:mainTab];
-    [self.navController.navigationBar setHidden:YES];
     self.window.rootViewController = self.navController;
     [self.window makeKeyAndVisible];
     
@@ -124,8 +123,8 @@
 {
     
     [[UINavigationBar appearance] setBarTintColor:[UIColor clearColor]];
-    NSDictionary *textAttributes1 = @{NSFontAttributeName: [UIFont systemFontOfSize:16.f],
-                                      NSForegroundColorAttributeName: RGB_Color(0xf9, 0xfc, 0xfc)
+    NSDictionary *textAttributes1 = @{NSFontAttributeName: [UIFont systemFontOfSize:24.f],
+                                      NSForegroundColorAttributeName: [UIColor whiteColor]
                                       };
     [[UINavigationBar appearance] setTitleTextAttributes:textAttributes1];
     [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"NavigationBarBG.png"] forBarMetrics:UIBarMetricsDefault];

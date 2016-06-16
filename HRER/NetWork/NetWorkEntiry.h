@@ -81,4 +81,18 @@
  */
 
 
+/**
+ *  获取主页POIList或者城市List
+ *
+ *  @param cityID  城市ID
+ *  @param start   起始
+ *  @param count   获取数目
+ */
+
++ (void)getPoiListWithUserId:(NSString *)userId
+                      cityID:(NSString *)cityID
+                       start:(NSInteger)start
+                       count:(NSInteger)count
+                     success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                     failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 @end

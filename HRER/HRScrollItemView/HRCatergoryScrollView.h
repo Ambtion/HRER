@@ -8,6 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
+@class HRCatergoryScrollView;
+
+@protocol HRCatergoryScrollViewDelegate <NSObject>
+
+- (void)hrCatergoryScrollView:(HRCatergoryScrollView *)view DidSeletedIndex:(NSInteger)index;
+
+@end
+
 @interface HRCatergoryScrollView : UIView
+
+@property(nonatomic,weak)id<HRCatergoryScrollViewDelegate>delegate;
+
+- (void)setCount:(NSInteger)count atIndex:(NSInteger)index;
+
+- (void)setButtonSeletedAtIndex:(NSInteger)index;
 
 @end

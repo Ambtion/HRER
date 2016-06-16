@@ -10,7 +10,7 @@
 #import "HRAnomation.h"
 
 
-@interface HRPinAnnomationView : MKPinAnnotationView
+@interface HRPinAnnomationView : MKAnnotationView
 
 @property(nonatomic,strong)HRAnomation* anomationData;
 
