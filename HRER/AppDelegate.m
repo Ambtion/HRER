@@ -19,6 +19,7 @@
 #import "MyViewController.h"
 #import "MainTabBarController.h"
 #import "HRAddressBookManager.h"
+#import "MobClick.h"
 
 //Test
 #import "HRLoginManager.h"
@@ -116,6 +117,10 @@
     
     //开启AFNetWork
     [[AFNetworkActivityLogger sharedLogger] startLogging];
+ 
+    UMConfigInstance.appKey = @"57737e9267e58e6f780026b3";
+    UMConfigInstance.channelId = @"App Store";
+    [MobClick startWithConfigure:UMConfigInstance];
     
 }
 

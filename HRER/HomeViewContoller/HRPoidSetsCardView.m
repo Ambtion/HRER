@@ -92,13 +92,13 @@
         UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(frameViewDidClick:)];
         [frameView addGestureRecognizer:tap];
         [frameView setHidden:YES];
-        frameView.tag = 100 + i;
+        frameView.tag = i;
         [self.frameImageViews addObject:frameView];
         [self addSubview:frameView];
         
         
         [frameView mas_makeConstraints:^(MASConstraintMaker *make) {
-            if (frameView.tag - 100 == 0) {
+            if (frameView.tag == 0) {
                 make.left.equalTo(self.titleLabel);
             }else{
                 make.left.equalTo(lastView.mas_right).offset(5.f);
@@ -135,7 +135,7 @@
 - (void)frameViewDidClick:(UITapGestureRecognizer * )tap
 {
     if ([_delegate respondsToSelector:@selector(poiSetsView:DidClickFrameImage:)]) {
-        [_delegate poiSetsView:self DidClickFrameImage:tap.view];
+        [_delegate poiSetsView:self DidClickFrameImage:(UIImageView *)tap.view];
     }
 }
 

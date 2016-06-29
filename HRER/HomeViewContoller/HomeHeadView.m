@@ -13,7 +13,7 @@
 @interface HomeHeadView()<HRCatergoryScrollViewDelegate>
 
 @property(nonatomic,strong)HRCatergoryScrollView * catergoryView;
-
+@property(nonatomic,strong)UIImageView * iconImageView;
 
 @end
 
@@ -45,6 +45,9 @@
 
     [self.contentView addSubview:self.titleLabel];
     
+    self.iconImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"home_head_down"]];
+    [self.contentView addSubview:self.iconImageView];
+    
     self.mainLabel = [[UILabel alloc] init];
     self.mainLabel.font = [UIFont systemFontOfSize:30.f];
     self.mainLabel.textColor = RGBA_Color(0xff, 0xff, 0xff, 0.2);
@@ -71,7 +74,13 @@
     [super layoutSubviews];
     self.bgImageView.frame = self.bounds;
     
-    self.titleLabel.frame = CGRectMake(0, 32, self.width, 26);
+    
+    [self.titleLabel sizeToFit];
+    [self.iconImageView sizeToFit];
+    self.titleLabel.frame = CGRectMake((self.width - self.titleLabel.width)/2.f, 32, self.titleLabel.width, 26);
+    self.iconImageView.frame = CGRectMake(self.titleLabel.right + 5, 0, self.iconImageView.width, self.iconImageView.height);
+    self.iconImageView.centerY = self.titleLabel.centerY;
+    
     self.mainLabel.frame = CGRectMake(0, 72, self.width, 30);
     self.totalCountLabel.frame = CGRectMake(0, self.mainLabel.bottom + 6, self.width, 35);
     self.catergoryView.frame = CGRectMake(0, self.bottom - 10 - self.catergoryView.height, self.catergoryView.width, self.catergoryView.height);

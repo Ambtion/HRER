@@ -13,8 +13,10 @@
 #import "HRHerePoisSetCell.h"
 #import "HRHereBannerCell.h"
 #import "HRPoiSetsController.h"
+#import "HRPhotoBrowser.h"
 
-@interface HomeViewController()<UITableViewDelegate,UITableViewDataSource,HomeHeadViewDelegate,HRHerePoisSetCellDelegate,HRHerePoiCellDelegate>
+
+@interface HomeViewController()<UITableViewDelegate,UITableViewDataSource,HomeHeadViewDelegate,HRHerePoisSetCellDelegate,HRHerePoiCellDelegate,SDPhotoBrowserDelegate>
 
 @property(nonatomic,strong)RefreshTableView * tableView;
 @property(nonatomic,assign)NSUInteger catergoryIndex;
@@ -191,7 +193,19 @@
 
 - (void)herePoiCell:(HRHerePoiCell *)cell DidClickFrameView:(UIImageView *)imageView
 {
+    
+     HRPhotoBrowser *browser = [[HRPhotoBrowser alloc] init];
+     browser.currentImageIndex = imageView.tag;
+     browser.sourceImagesContainerView = self.view;
+     browser.imageCount = 4;
+     browser.delegate = self;
+     [browser show];
 
+}
+
+- (void)herePoiCellDidClick:(HRHerePoiCell *)cell
+{
+    
 }
 
 - (void)herePoisSetCellDidClick:(HRHerePoisSetCell *)cell
@@ -203,7 +217,18 @@
 
 - (void)herePoisSetCell:(HRHerePoisSetCell *)cell DidClickFrameView:(UIImageView *)imageView
 {
-    
+    HRPhotoBrowser *browser = [[HRPhotoBrowser alloc] init];
+    browser.currentImageIndex = imageView.tag;
+    browser.sourceImagesContainerView = imageView.superview;
+    browser.imageCount = 4;
+    browser.delegate = self;
+    [browser show];
+}
+
+- (BOOL)photoBrowser:(HRPhotoBrowser *)browser loadingImage:(HRImageScaleView *)hrImageView withIndexPath:(NSInteger)index
+{
+    hrImageView.backgroundColor = [UIColor redColor];
+    return YES;
 }
 
 

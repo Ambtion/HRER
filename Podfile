@@ -11,5 +11,7 @@ pod 'MBProgressHUD'
 pod 'GCJSONKit'
 pod 'AFNetworkActivityLogger'
 pod 'YYModel'
+pod 'UMengAnalytics'
+
 
 end
