@@ -105,7 +105,7 @@
     
     
     self.locIconView = [[UIImageView alloc] init];
-    self.locIconView.image = [UIImage imageNamed:@"location"];
+    self.locIconView.image = [UIImage imageNamed:@"km"];
     [self addSubview:self.locIconView];
     
     self.locLabel = [[UILabel alloc] init];

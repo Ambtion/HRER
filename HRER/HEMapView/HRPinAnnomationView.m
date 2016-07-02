@@ -28,6 +28,5 @@
 - (void)setSelected:(BOOL)selected
 {
     [super setSelected:selected];
-    self.image = selected ? [UIImage imageNamed:@"find"] : [UIImage imageNamed:@"location"];
 }
 @end

@@ -11,6 +11,8 @@
 @class HRPoiSetsMapView;
 @protocol HRPoiSetsMapViewDelegate <NSObject>
 - (void)poiSetsMapView:(HRPoiSetsMapView *)view didClickCarViewAtIndex:(NSInteger)index;
+- (void)poiSetsMapViewdidClickBackButton:(HRPoiSetsMapView *)view;
+- (void)poiSetsMapViewdidClickListButton:(HRPoiSetsMapView *)view;
 @end
 
 @interface HRPoiSetsMapView : UIView

@@ -8,6 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+@class HRPoiSetsListView;
+@protocol HRPoiSetsListViewDelegate <NSObject>
+
+- (void)poiSetsListViewdidClickBackButton:(HRPoiSetsListView *)view;
+- (void)poiSetsListViewdidClickListButton:(HRPoiSetsListView *)view;
+
+@end
+
 @interface HRPoiSetsListView : UIView
+
+@property(nonatomic,weak)id<HRPoiSetsListViewDelegate> delegate;
+
+- (void)refreshUIWithData:(NSArray *)array;
 
 @end

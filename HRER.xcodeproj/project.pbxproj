@@ -233,10 +233,10 @@
 		E14BD4C61CEF073100C66E14 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		E14BD4CB1CEF0AC900C66E14 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localization.strings; sourceTree = "<group>"; };
 		E14BD4CD1CEF0AE600C66E14 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localization.strings"; sourceTree = "<group>"; };
-		E14BD4EE1CF2CAD200C66E14 /* HRAnomation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRAnomation.h; sourceTree = "<group>"; };
-		E14BD4EF1CF2CAD200C66E14 /* HRAnomation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRAnomation.m; sourceTree = "<group>"; };
-		E14BD4F31CF2D76700C66E14 /* HRPinAnnomationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRPinAnnomationView.h; sourceTree = "<group>"; };
-		E14BD4F41CF2D76700C66E14 /* HRPinAnnomationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRPinAnnomationView.m; sourceTree = "<group>"; };
+		E14BD4EE1CF2CAD200C66E14 /* HRAnomation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HRAnomation.h; path = ../HEMapView/HRAnomation.h; sourceTree = "<group>"; };
+		E14BD4EF1CF2CAD200C66E14 /* HRAnomation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HRAnomation.m; path = ../HEMapView/HRAnomation.m; sourceTree = "<group>"; };
+		E14BD4F31CF2D76700C66E14 /* HRPinAnnomationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HRPinAnnomationView.h; path = ../HEMapView/HRPinAnnomationView.h; sourceTree = "<group>"; };
+		E14BD4F41CF2D76700C66E14 /* HRPinAnnomationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HRPinAnnomationView.m; path = ../HEMapView/HRPinAnnomationView.m; sourceTree = "<group>"; };
 		E1A815481D0D483B005E4443 /* HRCatergoryScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRCatergoryScrollView.h; sourceTree = "<group>"; };
 		E1A815491D0D483B005E4443 /* HRCatergoryScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRCatergoryScrollView.m; sourceTree = "<group>"; };
 		E1AC6CF31CFD3D1F00EADF02 /* HRNewPassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRNewPassViewController.h; sourceTree = "<group>"; };
@@ -499,10 +499,14 @@
 			children = (
 				B893807B1D117E8D005A24FB /* HRPoiSetsController.h */,
 				B893807C1D117E8D005A24FB /* HRPoiSetsController.m */,
-				B893807F1D117EC8005A24FB /* HRPoiSetsMapView.h */,
-				B89380801D117EC8005A24FB /* HRPoiSetsMapView.m */,
 				B89380821D117ED7005A24FB /* HRPoiSetsListView.h */,
 				B89380831D117ED7005A24FB /* HRPoiSetsListView.m */,
+				B893807F1D117EC8005A24FB /* HRPoiSetsMapView.h */,
+				B89380801D117EC8005A24FB /* HRPoiSetsMapView.m */,
+				E14BD4EE1CF2CAD200C66E14 /* HRAnomation.h */,
+				E14BD4EF1CF2CAD200C66E14 /* HRAnomation.m */,
+				E14BD4F31CF2D76700C66E14 /* HRPinAnnomationView.h */,
+				E14BD4F41CF2D76700C66E14 /* HRPinAnnomationView.m */,
 			);
 			path = POIList;
 			sourceTree = "<group>";
@@ -642,10 +646,6 @@
 			children = (
 				E14BD4C01CEEFBF900C66E14 /* HRMapView.h */,
 				E14BD4C11CEEFBF900C66E14 /* HRMapView.m */,
-				E14BD4EE1CF2CAD200C66E14 /* HRAnomation.h */,
-				E14BD4EF1CF2CAD200C66E14 /* HRAnomation.m */,
-				E14BD4F31CF2D76700C66E14 /* HRPinAnnomationView.h */,
-				E14BD4F41CF2D76700C66E14 /* HRPinAnnomationView.m */,
 				E14BD4C31CEEFC0700C66E14 /* HRLocationManager.h */,
 				E14BD4C41CEEFC0700C66E14 /* HRLocationManager.m */,
 			);

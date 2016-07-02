@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
 
-
 @interface HRAnomation : NSObject<MKAnnotation>
 
 @property(nonatomic,readonly)CLLocationCoordinate2D coordinate;

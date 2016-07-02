@@ -12,6 +12,8 @@
 #import "HRLocationManager.h"
 #import "HRPinAnnomationView.h"
 #import "HRPoiCardView.h"
+#import "HRAnomation.h"
+
 
 #define kPoiMapMAOLEVEL        (0.1f)
 
@@ -39,6 +41,7 @@
 {
     [self initMapView];
     [self initScrollView];
+    [self initNavBar];
 }
 
 #pragma mark - MapView
@@ -52,32 +55,79 @@
     
 }
 
+- (void)initNavBar
+{
+    UIButton * backButton = [[UIButton alloc] initWithFrame:CGRectMake(17, 26, 33, 33)];
+    [backButton setImage:[UIImage imageNamed:@"back_map"] forState:UIControlStateNormal];
+    [backButton addTarget:self action:@selector(buttonDidClick:) forControlEvents:UIControlEventTouchUpInside];
+    backButton.tag = 0;
+    [self addSubview:backButton];
+    
+    UIButton * switchButton = [[UIButton alloc] initWithFrame:CGRectMake(self.width - 17 - 33, 26, 33, 33)];
+    switchButton.tag = 1;
+    [switchButton setImage:[UIImage imageNamed:@"back_change"] forState:UIControlStateNormal];
+    [switchButton addTarget:self action:@selector(buttonDidClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:switchButton];
+}
+
+- (void)buttonDidClick:(UIButton *)button
+{
+    if (button.tag == 0) {
+        if ([_delegate respondsToSelector:@selector(poiSetsMapViewdidClickBackButton:)]) {
+            [_delegate poiSetsMapViewdidClickBackButton:self];
+        }
+    }else{
+        if ([_delegate respondsToSelector:@selector(poiSetsMapViewdidClickListButton:)]) {
+            [_delegate poiSetsMapViewdidClickListButton:self];
+        }
+    }
+}
 
 #pragma mark - 大头针
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
 {
-    if([annotation isKindOfClass:[HRAnomation class]] == NO)
-    {
-        return nil;
-    }
     
     if([mapView isEqual:self.mapView] == NO)
     {
         return nil;
     }
     
-    HRAnomation * senderAnnotation = (HRAnomation *)annotation;
-    HRPinAnnomationView * annotationView = (HRPinAnnomationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:annotation.title];
-    if(annotationView == nil)
-    {
-        annotationView = [[HRPinAnnomationView alloc] initWithAnnotation:senderAnnotation reuseIdentifier:annotation.title];
-        [annotationView setCanShowCallout:YES];
-    }
+    if ([annotation isKindOfClass:[MKUserLocation class]]) {
+        // 当前位置 返回nil用系统自己的CalloutView
+        return nil;
         
-    annotationView.anomationData = senderAnnotation;
-    annotationView.opaque = YES;
-    annotationView.draggable = YES;
-    return annotationView;
+    }else if([annotation isKindOfClass:[HRAnomation class]]){
+        
+        //水滴
+        HRAnomation * senderAnnotation = (HRAnomation *)annotation;
+        HRPinAnnomationView * annotationView = (HRPinAnnomationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:annotation.title];
+        if(annotationView == nil)
+        {
+            annotationView = [[HRPinAnnomationView alloc] initWithAnnotation:senderAnnotation reuseIdentifier:annotation.title];
+            [annotationView setCanShowCallout:NO];
+        }
+        annotationView.anomationData = senderAnnotation;
+        annotationView.opaque = YES;
+        annotationView.image = [UIImage imageNamed:@"map_food"];
+        annotationView.draggable = YES;
+        return annotationView;
+    }
+    
+    return nil;
+}
+
+#pragma mark Map
+- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
+{
+    if ([view.annotation isKindOfClass:[MKUserLocation class]]) {
+        // 点击当前位置
+        
+    } else if ([view.annotation isKindOfClass:[HRAnomation class]]) {
+        //联动
+        HRAnomation * anomaiton = (HRAnomation *)view.annotation;
+        [self scrollViewToPage:anomaiton.index];
+        
+    }
 }
 
 #pragma mark - ScrollView
@@ -122,7 +172,7 @@
     for (int i = 0; i < self.dataArray.count; i++) {
         
         coord = CLLocationCoordinate2DMake(39.904209 + 0.1 * i , 116.407394);
-        HRAnomation * anomation =  [[HRAnomation alloc] initWithCoordinates:coord title:[NSString stringWithFormat:@"%d",i] subTitle:@""];
+        HRAnomation * anomation =  [[HRAnomation alloc] initWithCoordinates:coord title:@"推荐了西单" subTitle:@"东西不错"];
         anomation.index = i;
         [array addObject:anomation];
     }
@@ -132,16 +182,6 @@
 
 
 #pragma mark - 联动效果
-#pragma mark Map
-- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
-{
-    if ([view isKindOfClass:[HRPinAnnomationView class]]) {
-        NSArray * anomations = [self.mapView selectedAnnotations];
-        HRAnomation * anomaiton = [anomations lastObject];
-        [self scrollViewToPage:anomaiton.index];
-    }
-}
-
 
 #pragma mark ScrollView
 -(void)scrollViewToPage:(NSUInteger)index
