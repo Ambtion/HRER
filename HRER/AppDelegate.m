@@ -46,7 +46,7 @@
     self.window.rootViewController = self.navController;
     [self.window makeKeyAndVisible];
     
-//    [HRLoginManager showLoginView];
+    [HRLoginManager showLoginView];
     
     return YES;
 }
@@ -128,7 +128,7 @@
 {
     
     [[UINavigationBar appearance] setBarTintColor:[UIColor clearColor]];
-     NSDictionary *textAttributes1 = @{NSFontAttributeName: [UIFont systemFontOfSize:24.f],
+     NSDictionary *textAttributes1 = @{NSFontAttributeName: [UIFont systemFontOfSize:16.f],
                                       NSForegroundColorAttributeName: [UIColor whiteColor]
                                       };
     [[UINavigationBar appearance] setTitleTextAttributes:textAttributes1];

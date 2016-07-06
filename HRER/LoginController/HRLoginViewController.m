@@ -9,6 +9,8 @@
 #import "HRLoginViewController.h"
 #import "HRRegisterViewController.h"
 #import "HRFinPassViewController.h"
+#import "HRWebCatLogin.h"
+#import "HRBindPhoneController.h"
 
 @interface HRLoginViewController()
 @property(nonatomic,strong)UIImageView * bgView;
@@ -117,10 +119,41 @@
     //找回密码
     UIButton * forgetPas = [UIButton buttonWithType:UIButtonTypeCustom];
     [forgetPas setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [forgetPas setTitle:@"找回密码" forState:UIControlStateNormal];
+    [forgetPas setTitle:@"忘记密码" forState:UIControlStateNormal];
     [[forgetPas titleLabel] setFont:[UIFont systemFontOfSize:12.f]];
     [forgetPas addTarget:self action:@selector(findPassButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:forgetPas];
+    
+    //找回密码
+    UIButton * registerButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [registerButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [registerButton setTitle:@"快速注册" forState:UIControlStateNormal];
+    [[registerButton titleLabel] setFont:[UIFont systemFontOfSize:12.f]];
+    [registerButton addTarget:self action:@selector(registerButtonDidClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:registerButton];
+
+        
+    UILabel * label = [[UILabel alloc] init];
+    label.textColor = RGB_Color(0xe4, 0xe1, 0xe5);
+    label.font = [UIFont systemFontOfSize:14.f];
+    label.text = @"第三方账号快速登陆";
+    label.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:label];
+    
+    
+    //微信登陆
+    UIButton * webLogin = [UIButton buttonWithType:UIButtonTypeCustom];
+    [webLogin setImage:[UIImage imageNamed:@"WeChat"] forState:UIControlStateNormal];
+    [webLogin setImage:[UIImage imageNamed:@"WeChat_click"] forState:UIControlStateHighlighted];
+    [webLogin addTarget:self action:@selector(webCatLogin:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:webLogin];
+    
+    UILabel * webLoginTitl = [[UILabel alloc] init];
+    webLoginTitl.textColor = RGB_Color(0xcf, 0xc7, 0xc2);
+    webLoginTitl.text = @"微信登陆";
+    webLoginTitl.font = [UIFont systemFontOfSize:14.f];
+    webLoginTitl.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:webLoginTitl];
     
     
     [[self bgView] mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -132,13 +165,13 @@
     [self.userNamebgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view).offset(10.f);
         make.right.equalTo(self.view).offset(-10.f);
-        make.height.equalTo(@(49.f));
-        make.top.equalTo(self.view).offset(105);
+        make.height.equalTo(@(42.f));
+        make.top.equalTo(self.view).offset(22.f+44+20);
     }];
     
     [self.userNameIcon mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.userNamebgView.mas_left).offset(25.f);
-        make.width.height.equalTo(@(42.f));
+        make.left.equalTo(self.userNamebgView.mas_left).offset(20.f);
+        make.width.height.equalTo(@(30.f));
         make.centerY.equalTo(self.userNamebgView);
     }];
     
@@ -153,15 +186,13 @@
     
     //密码
     [self.passbgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.view).offset(10.f);
-        make.right.equalTo(self.view).offset(-10.f);
-        make.height.equalTo(@(49.f));
+        
+        make.left.width.height.equalTo(self.userNamebgView);
         make.top.equalTo(self.userNamebgView.mas_bottom).offset(14);
     }];
     
     [self.passIcon mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.passbgView.mas_left).offset(25.f);
-        make.width.height.equalTo(@(42.f));
+        make.left.width.height.equalTo(self.userNameIcon);
         make.centerY.equalTo(self.passbgView);
     }];
     
@@ -175,18 +206,37 @@
     
     
     [loginButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.password.mas_bottom).offset(24.f);
-        make.size.equalTo(self.userNamebgView);
-        make.left.equalTo(self.userNamebgView);
+        make.top.equalTo(self.password.mas_bottom).offset(20.f);
+        make.size.left.equalTo(self.userNamebgView);
     }];
     
     
     [forgetPas mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(loginButton);
+        make.right.equalTo(loginButton).offset(-2);
         make.height.equalTo(@(30));
-        make.top.equalTo(loginButton.mas_bottom).offset(0);
+        make.top.equalTo(loginButton.mas_bottom).offset(7);
     }];
     
+    [registerButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(loginButton).offset(2);
+        make.top.height.equalTo(forgetPas);
+    }];
+    
+    [webLoginTitl mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self.view).offset(-80);
+        make.centerX.equalTo(self.view);
+    }];
+
+    [webLogin mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(webLoginTitl.mas_top).offset(-8);
+        make.centerX.equalTo(self.view);
+    }];
+
+    
+    [label mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(webLogin.mas_top).offset(-50.f);
+        make.centerX.equalTo(self.view);
+    }];
     
 }
 
@@ -208,10 +258,7 @@
     [self.password becomeFirstResponder];
 }
 
-- (void)loginButtonClicked:(id)sender
-{
-    
-}
+
 
 - (void)findPassButtonClick:(UIButton *)button
 {
@@ -241,14 +288,21 @@
     self.title = @"登录";
     self.navigationItem.leftBarButtonItems = [self createBackButtonWithTarget:self seletor:@selector(backButtonDidClick:)];
     
-    CGRect backframe= CGRectMake(0, 0, 40, 30);
-    UIButton* button= [UIButton buttonWithType:UIButtonTypeCustom];
-    [button setTitle:@"注册" forState:UIControlStateNormal];
-    button.frame = backframe;
-    [button addTarget:self action:@selector(registerButtonDidClick:) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem* someBarButtonItem= [[UIBarButtonItem alloc] initWithCustomView:button];
-    self.navigationItem.rightBarButtonItems = @[someBarButtonItem,[self barSpaingItem]];
+}
+
+
+#pragma mark - Login
+- (void)loginButtonClicked:(id)sender
+{
     
+}
+
+- (void)webCatLogin:(id)sender
+{
+    [self.navigationController  pushViewController:[[HRBindPhoneController alloc] init] animated:YES];
+    [HRWebCatLogin sendAuthRequestcallBack:^(BaseResp *resp) {
+        
+    }];
 }
 
 @end

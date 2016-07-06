@@ -7,16 +7,19 @@
 //
 
 #import "HRFinPassViewController.h"
+#import "HRInPutView.h"
 
 @interface HRFinPassViewController()
 
-@property(nonatomic,strong)UITextField * phoneNumber;
+@property(nonatomic,strong)UIImageView * bgView;
+
+@property(nonatomic,strong)HRInPutView * phoneNumber;
 @property(nonatomic,strong)UIButton * codeButton;
-@property(nonatomic,strong)UITextField * phoneCode;
+@property(nonatomic,strong)HRInPutView * phoneCode;
 @property(nonatomic,strong)NSTimer * timer;
 @property(nonatomic,assign)NSUInteger timeCount;
 
-@property(nonatomic,strong)UITextField * passWord;
+@property(nonatomic,strong)HRInPutView * passWord;
 
 @end
 
@@ -45,48 +48,79 @@
 #pragma mark - InitUI
 - (void)initUI
 {
+    
+    
+    self.bgView = [[UIImageView alloc] init];
+    self.bgView.image = [UIImage imageNamed:@"bj"];
+    [self.view addSubview:self.bgView];
+    
+    [[self bgView] mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.equalTo(self.view);
+        make.top.right.equalTo(self.view);
+    }];
+    
     self.phoneNumber = [self createTextFileWithFont:[UIFont systemFontOfSize:13] placeholderPlaceText:@"+86"];
-    self.phoneNumber.keyboardType = UIKeyboardTypeNumberPad;
+    self.phoneNumber.textField.keyboardType = UIKeyboardTypeNumberPad;
     [self.view  addSubview:self.phoneNumber];
     
+    
     self.codeButton = [[UIButton alloc] init];
-    self.codeButton.backgroundColor = [UIColor greenColor];
-    [self.codeButton setTitle:@"获取验证码" forState:UIControlStateNormal];
-    [self.codeButton setTitleColor:[UIColor colorWithRed:248/255.0f green:144/255.0f blue:34/255.0f alpha:1] forState:UIControlStateNormal];
-    [[self.codeButton titleLabel] setFont:[UIFont systemFontOfSize:10.f]];
+    
+    [self.codeButton setTitle:@"验证码" forState:UIControlStateNormal];
+    [[self.codeButton titleLabel] setFont:[UIFont systemFontOfSize:12.f]];
+    [self.codeButton setBackgroundImage:[UIImage imageNamed:@"code_fasong"] forState:UIControlStateNormal];
     [self.codeButton addTarget:self action:@selector(getValidCode:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.codeButton];
     
     self.phoneCode = [self createTextFileWithFont:[UIFont systemFontOfSize:13] placeholderPlaceText:@"发送验证码"];
-    self.phoneCode.keyboardType = UIKeyboardTypeNumberPad;
+    self.phoneCode.textField.keyboardType = UIKeyboardTypeNumberPad;
     [self.view addSubview:self.phoneCode];
     
-    self.passWord = [self createTextFileWithFont:[UIFont systemFontOfSize:13] placeholderPlaceText:@"新密码 密码不少于6位"];
+    self.passWord = [self createTextFileWithFont:[UIFont systemFontOfSize:13] placeholderPlaceText:@"新密码"];
     [self.view addSubview:self.passWord];
-
-    self.phoneNumber.backgroundColor = [UIColor redColor];
-    self.passWord.backgroundColor = [UIColor redColor];
     
+    //注册
+    UIButton * registerButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [registerButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [registerButton setTitle:@"重设密码" forState:UIControlStateNormal];
+    [[registerButton titleLabel] setFont:[UIFont systemFontOfSize:14.f]];
+    [registerButton setTitleColor:RGB_Color(0xf9, 0xda, 0xd5) forState:UIControlStateNormal];
+    [registerButton setBackgroundImage:[UIImage imageNamed:@"Login-box"] forState:UIControlStateNormal];
+    [registerButton setBackgroundImage:[UIImage imageNamed:@"Login-box_click"] forState:UIControlStateHighlighted];
+    [registerButton addTarget:self action:@selector(resetMima:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:registerButton];
+
     [self.phoneNumber mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.view).offset(64 + 30);
-        make.height.equalTo(@(30.f));
-        make.left.equalTo(self.view);
-        make.right.equalTo(self.codeButton.mas_left);
-        
+        make.left.equalTo(self.view).offset(10.f);
+        make.right.equalTo(self.view).offset(-10.f);
+        make.height.equalTo(@(42.f));
+        make.top.equalTo(@(64 + 50));
     }];
     
     [self.codeButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.phoneNumber);
-        make.right.equalTo(self.view);
+        make.right.equalTo(self.phoneNumber).offset(-5);
+        make.height.equalTo(@(30));
         make.width.equalTo(@(60.f));
-        make.height.equalTo(self.phoneNumber);
+    }];
+    
+    
+    [self.phoneCode mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.height.equalTo(self.phoneNumber);
+        make.top.equalTo(self.phoneNumber.mas_bottom).offset(10);
+        
     }];
     
     [self.passWord mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.equalTo(self.phoneNumber);
-        make.left.equalTo(self.phoneNumber);
-        make.top.equalTo(self.phoneNumber.mas_bottom).offset(5);
+        make.left.right.height.equalTo(self.phoneNumber);
+        make.top.equalTo(self.phoneCode.mas_bottom).offset(10);
     }];
+
+    [registerButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.height.equalTo(self.phoneNumber);
+        make.top.equalTo(self.passWord.mas_bottom).offset(20);
+    }];
+    
 }
 
 #pragma mark Touch
@@ -103,12 +137,12 @@
 
 - (void)getValidCode:(UIButton *)sender
 {
-    if ([self.phoneNumber.text isEqualToString:@""])
+    if ([self.phoneNumber.textField.text isEqualToString:@""])
     {
         [self showTotasViewWithMes:@"请输入手机号码"];
         return;
         
-    }else if (self.phoneNumber.text.length <11)
+    }else if (self.phoneNumber.textField.text.length <11)
     {
         [self showTotasViewWithMes:@"请输入正确的手机号码"];
         return;
@@ -137,19 +171,25 @@
 }
 
 #pragma mark - CommonMethod
-- (UITextField *)createTextFileWithFont:(UIFont *)font placeholderPlaceText:(NSString *)text
+- (HRInPutView *)createTextFileWithFont:(UIFont *)font placeholderPlaceText:(NSString *)text
 {
-    UITextField *textField=[[UITextField alloc]init];
-    textField.font = font;
-    textField.borderStyle = UITextBorderStyleNone;
+    
+    HRInPutView * textInput = [[HRInPutView alloc] init];
+    
+    textInput.textField.font = font;
+    textInput.textField.borderStyle = UITextBorderStyleNone;
     
     NSMutableAttributedString * muAt = [[NSMutableAttributedString alloc]initWithString:text];
-    
     [muAt addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:12.f]  range:NSMakeRange(0, text.length)];
-    [muAt addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor] range:NSMakeRange(0, text.length)];
-    [textField setAttributedPlaceholder:muAt];
-    
-    return textField;
+    [muAt addAttribute:NSForegroundColorAttributeName value:RGB_Color(0x5b, 0x5b, 0x5b) range:NSMakeRange(0, text.length)];
+    [textInput.textField setAttributedPlaceholder:muAt];
+    return textInput;
+}
+
+
+#pragma mark - Action
+- (void)resetMima:(id)sender
+{
     
 }
 @end
