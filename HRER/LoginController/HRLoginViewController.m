@@ -133,12 +133,8 @@
     [self.view addSubview:registerButton];
 
         
-    UILabel * label = [[UILabel alloc] init];
-    label.textColor = RGB_Color(0xe4, 0xe1, 0xe5);
-    label.font = [UIFont systemFontOfSize:14.f];
-    label.text = @"第三方账号快速登陆";
-    label.textAlignment = NSTextAlignmentCenter;
-    [self.view addSubview:label];
+    UIImageView * imageLabel = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"login_line"]];
+    [self.view addSubview:imageLabel];
     
     
     //微信登陆
@@ -233,7 +229,7 @@
     }];
 
     
-    [label mas_makeConstraints:^(MASConstraintMaker *make) {
+    [imageLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(webLogin.mas_top).offset(-50.f);
         make.centerX.equalTo(self.view);
     }];
