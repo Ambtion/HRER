@@ -353,14 +353,14 @@
 		B88F105E1CF5CDF6007C930F /* LoginController */ = {
 			isa = PBXGroup;
 			children = (
+				B845AC891D2D3C6900D26A2A /* HRInPutView.h */,
+				B845AC8A1D2D3C6900D26A2A /* HRInPutView.m */,
 				B8697D691CFC395E00F1BC4B /* HRLoginManager.h */,
 				B8697D6A1CFC395E00F1BC4B /* HRLoginManager.m */,
 				B88F105F1CF5D005007C930F /* HRLoginViewController.h */,
 				B88F10601CF5D005007C930F /* HRLoginViewController.m */,
 				B8954EA81CFC7E10006A706A /* HRRegisterViewController.h */,
 				B8954EA91CFC7E10006A706A /* HRRegisterViewController.m */,
-				B845AC891D2D3C6900D26A2A /* HRInPutView.h */,
-				B845AC8A1D2D3C6900D26A2A /* HRInPutView.m */,
 				B8954EAC1CFC7E1D006A706A /* HRFinPassViewController.h */,
 				B8954EAD1CFC7E1D006A706A /* HRFinPassViewController.m */,
 				B8954EAF1CFC7E30006A706A /* HRRegisterDealViewController.h */,

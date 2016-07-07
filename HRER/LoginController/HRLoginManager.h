@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+
 @interface HRLoginManager : NSObject
+
 + (void)showLoginView;
+
 @end

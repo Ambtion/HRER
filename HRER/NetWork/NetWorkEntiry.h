@@ -8,8 +8,7 @@
 
 #import "AFNetworking.h"
 
-
-#define  KNETBASEURL           @"http://115.29.35.157"
+#define  KNETBASEURL           @"http://58.135.93.4:8089"
 
 @interface NetWorkEntiry : NSObject
 
@@ -23,7 +22,7 @@
  *  注册
  */
 
-+ (void)regisWithUserName:(NSString *)userName
++ (void)regisWithPhotoNumber:(NSString *)PhotoNumber
                  password:(NSString *)password
                  nickName:(NSString *)nickName
                   verCode:(NSString *)verCode
@@ -45,6 +44,16 @@
                  password:(NSString *)password
                   success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                   failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+
+/**
+ *  重置密码
+ */
+
++ (void)resetPassNumber:(NSString *)photoNumber
+                verCode:(NSString *)verCode
+               password:(NSString *)password
+                success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
 /**
  *  微信登陆

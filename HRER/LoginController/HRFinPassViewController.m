@@ -157,8 +157,7 @@
 {
     self.timeCount--;
     if (self.timeCount == 0) {
-        [self.codeButton setTitle:@"发送验证码" forState:UIControlStateNormal];
-        [self.codeButton setTitleColor:[UIColor colorWithRed:248/255.0f green:144/255.0f blue:34/255.0f alpha:1] forState:UIControlStateNormal];
+        [self.codeButton setTitle:@"验证码" forState:UIControlStateNormal];
         UIButton *info = codeTimer.userInfo;
         info.enabled = YES;
         self.codeButton.userInteractionEnabled = YES;
@@ -191,5 +190,41 @@
 - (void)resetMima:(id)sender
 {
     
+    if (!self.phoneNumber.textField.text.length)
+    {
+        [self showTotasViewWithMes:@"请输入手机号码"];
+        return;
+        
+    }
+    if (!self.phoneCode.textField.text.length) {
+        [self showTotasViewWithMes:@"请输入验证码"];
+        return;
+    }
+    
+    if (!self.passWord.textField.text.length) {
+        [self showTotasViewWithMes:@"请输入密码"];
+        return;
+    }
+    
+    if (self.passWord.textField.text.length < 6) {
+        [self showTotasViewWithMes:@"密码不能小于6位"];
+        return;
+    }
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+
+    [NetWorkEntiry resetPassNumber:self.phoneNumber.textField.text  verCode:self.phoneCode.textField.text password:self.passWord.textField.text success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+        if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
+            [self showTotasViewWithMes:@"重置成功"];
+            [self.myNavController popViewControllerAnimated:YES];
+        }else{
+            [self showTotasViewWithMes:[[responseObject objectForKey:@"response"] objectForKey:@"errorText"]];
+        }
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self showTotasViewWithMes:@"网络异常，重置失败"];
+        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+    }];
 }
 @end

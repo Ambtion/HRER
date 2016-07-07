@@ -28,5 +28,6 @@
 - (void)setSelected:(BOOL)selected
 {
     [super setSelected:selected];
+    self.image = !selected ? [UIImage imageNamed:@"map_food"] : [UIImage imageNamed:@"map_food_click"];
 }
 @end

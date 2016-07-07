@@ -116,6 +116,7 @@
     [[HRLocationManager sharedInstance] startLocaiton];
     
     //开启AFNetWork
+    [[AFNetworkActivityLogger sharedLogger] setLevel:AFLoggerLevelDebug];
     [[AFNetworkActivityLogger sharedLogger] startLogging];
  
     UMConfigInstance.appKey = @"57737e9267e58e6f780026b3";

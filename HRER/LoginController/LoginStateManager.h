@@ -13,16 +13,12 @@
 
 @interface LoginStateManager : NSObject
 
-+ (BOOL)isLogin;
-+ (void)loginUserId:(NSString *)uid withToken:(NSString *)token RefreshToken:(NSString *)refreshToken;
-+ (void)refreshToken:(NSString *)token RefreshToken:(NSString *)refreshToken;
-+ (void)logout;
++ (LoginStateManager *)getInstance;
 
-+ (NSString *)currentUserId;
-+ (NSString *)currentToken;
-+ (NSString *)refreshToken;
+- (void)LoginWithUserLoginInfo:(HRUserLoginInfo *)userLoginInfo;
 
-+ (NSString *)lastUserName;
-+ (void)storelastName:(NSString *)userName;
+- (HRUserLoginInfo *)userLoginInfo;
+
+- (void)logout;
 
 @end

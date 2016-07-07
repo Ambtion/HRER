@@ -13,30 +13,38 @@
 @implementation NetWorkEntiry
 
 
-+ (void)regisWithUserName:(NSString *)userName
-                 password:(NSString *)password
-                 nickName:(NSString *)nickName
-                  verCode:(NSString *)verCode
-                  success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
-                  failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
++ (void)regisWithPhotoNumber:(NSString *)photoNumber
+                    password:(NSString *)password
+                    nickName:(NSString *)nickName
+                     verCode:(NSString *)verCode
+                     success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                     failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
     
+    if (!photoNumber.length ||
+        !password.length ||
+        !nickName.length ||
+        !verCode.length) {
+        return [self missParagramercallBackFailure:failure];
+    }
     
-    NSDictionary * dic = @{@"telephone":userName,@"password":password,@"nickname":nickName,@"verificationCode":verCode};
+    NSDictionary * dic = @{@"phone":photoNumber,
+                           @"password":password,
+                           @"name":nickName,
+                           @"verificationCode":verCode
+                           };
+    
     NSString * urlStr = [NSString stringWithFormat:@"%@/register",KNETBASEURL];
-    
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager POST:urlStr parameters:dic success:success failure:failure];
-
 }
-
 
 + (void)sendVerCodeWithPhoneNumber:(NSString *)photoNumber
                            success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                            failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
-    NSDictionary * dic = @{@"telephone":photoNumber};
-    NSString * urlStr = [NSString stringWithFormat:@"%@/sendVerificationCode",KNETBASEURL];
+    NSDictionary * dic = @{@"phone":photoNumber};
+    NSString * urlStr = [NSString stringWithFormat:@"%@/sendCode",KNETBASEURL];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager POST:urlStr parameters:dic success:success failure:failure];
 }
@@ -46,7 +54,7 @@
                    failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
     
-    NSDictionary * dic = @{@"telephone":userName,@"password":password};
+    NSDictionary * dic = @{@"phone":userName,@"password":password};
     NSString * urlStr = [NSString stringWithFormat:@"%@/login",KNETBASEURL];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -54,7 +62,21 @@
     
 }
 
-
++ (void)resetPassNumber:(NSString *)photoNumber
+                verCode:(NSString *)verCode
+               password:(NSString *)password
+                success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+{
+    NSDictionary * dic = @{@"phone":photoNumber,
+                           @"password":password,
+                           @"verificationCode":verCode};
+    NSString * urlStr = [NSString stringWithFormat:@"%@/findPassword",KNETBASEURL];
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager POST:urlStr parameters:dic success:success failure:failure];
+    
+}
 
 + (void)loginWithWebCatAccess_token:(NSString *)accessToken refresh_token:(NSString *)refreshToken
                          success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success

@@ -16,9 +16,8 @@
 - (BOOL)isEqual:(id)object { return [self yy_modelIsEqual:object]; }
 
 
-@implementation CityInfo
+@implementation HRUserLoginInfo
 
 YYModelSynthCoderAndHash
 
 @end
-

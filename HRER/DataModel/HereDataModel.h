@@ -9,11 +9,12 @@
 
 #import "YYModel.h"
 
-@interface CityInfo : NSObject<NSCopying,NSCopying>
+@interface HRUserLoginInfo : NSObject<NSCopying,NSCopying>
 
-@property(nonatomic,assign)NSInteger city_id;
-@property(nonatomic,strong)NSString * city_name;
-@property(nonatomic,assign)CGFloat latitude;
-@property(nonatomic,assign)CGFloat longitude;
+@property(nonatomic,strong)NSString * phone;
+@property(nonatomic,strong)NSString * token;
+@property(nonatomic,strong)NSString * passport_num;
+@property(nonatomic,strong)NSString * name;
 
 @end
+

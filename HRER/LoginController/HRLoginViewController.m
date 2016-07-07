@@ -295,6 +295,46 @@
 - (void)loginButtonClicked:(id)sender
 {
     
+    
+    if (!self.userName.text.length)
+    {
+        [self showTotasViewWithMes:@"请输入手机号码"];
+        return;
+        
+    }
+    
+    if (!self.password.text.length) {
+        [self showTotasViewWithMes:@"请输入密码"];
+        return;
+    }
+    
+
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [NetWorkEntiry loginWithUserName:self.userName.text password:self.password.text success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+        if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
+            
+            NSDictionary * userInfoDic  = [responseObject objectForKey:@"response"];
+            
+            HRUserLoginInfo * userInfo = [HRUserLoginInfo yy_modelWithJSON:userInfoDic];
+            if(userInfo){
+                [[LoginStateManager getInstance] LoginWithUserLoginInfo:userInfo];
+                [self showTotasViewWithMes:@"登陆成功"];
+                [self.myNavController dismissViewControllerAnimated:YES completion:^{
+                    
+                }];
+            }else{
+                [self showTotasViewWithMes:[[responseObject objectForKey:@"response"] objectForKey:@"errorText"]];
+            }
+        }else{
+            [self showTotasViewWithMes:[[responseObject objectForKey:@"response"] objectForKey:@"errorText"]];
+            
+        }
+
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+        [self showTotasViewWithMes:@"网络异常,登陆失败"];
+    }];
 }
 
 - (void)webCatLogin:(id)sender

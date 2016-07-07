@@ -41,7 +41,7 @@
     
     [self.textField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).offset(20.f);
-        make.right.height.equalTo(self).offset(-20);
+        make.right.equalTo(self).offset(-20);
         make.height.equalTo(self);
         make.centerY.equalTo(self);
     }];

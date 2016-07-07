@@ -156,8 +156,7 @@
 {
     self.timeCount--;
     if (self.timeCount == 0) {
-        [self.codeButton setTitle:@"发送验证码" forState:UIControlStateNormal];
-        [self.codeButton setTitleColor:[UIColor colorWithRed:248/255.0f green:144/255.0f blue:34/255.0f alpha:1] forState:UIControlStateNormal];
+        [self.codeButton setTitle:@"验证码" forState:UIControlStateNormal];
         UIButton *info = codeTimer.userInfo;
         info.enabled = YES;
         self.codeButton.userInteractionEnabled = YES;

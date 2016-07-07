@@ -28,4 +28,5 @@
     [super viewWillAppear:animated];
     self.title = @"这里协议";
 }
+
 @end

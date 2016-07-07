@@ -40,7 +40,7 @@
     
     UIImageView * barView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.width, 64)];
     [barView setUserInteractionEnabled:YES];
-    barView.backgroundColor = [UIColor redColor];
+    barView.image = [UIImage imageNamed:@"nav_bg"];
     [self addSubview:barView];
     
     UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, self.width, 44)];

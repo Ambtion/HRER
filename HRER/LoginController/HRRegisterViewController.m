@@ -9,6 +9,7 @@
 #import "HRRegisterViewController.h"
 #import "HRRegisterDealViewController.h"
 #import "HRInPutView.h"
+#import "LoginStateManager.h"
 
 @interface HRRegisterViewController()
 
@@ -179,11 +180,6 @@
 
 }
 
-#pragma mark - Action
-- (void)registerButtonDidClick:(id)sender
-{
-    
-}
 
 - (void)dealButtonClick:(id)sender
 {
@@ -207,30 +203,12 @@
     [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
 }
 
-- (void)getValidCode:(UIButton *)sender
-{
-    if ([self.phoneNumber.textField.text isEqualToString:@""])
-    {
-        [self showTotasViewWithMes:@"请输入手机号码"];
-        return;
-        
-    }else if (self.phoneNumber.textField.text.length <11)
-    {
-        [self showTotasViewWithMes:@"请输入正确的手机号码"];
-        return;
-    }
-    [self.timer invalidate];
-    self.timer = nil;
-    self.timeCount = 60;
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(reduceTime:) userInfo:sender repeats:YES];
-}
 
 - (void)reduceTime:(NSTimer *)codeTimer
 {
     self.timeCount--;
     if (self.timeCount == 0) {
-        [self.codeButton setTitle:@"发送验证码" forState:UIControlStateNormal];
-        [self.codeButton setTitleColor:[UIColor colorWithRed:248/255.0f green:144/255.0f blue:34/255.0f alpha:1] forState:UIControlStateNormal];
+        [self.codeButton setTitle:@"验证码" forState:UIControlStateNormal];
         UIButton *info = codeTimer.userInfo;
         info.enabled = YES;
         self.codeButton.userInteractionEnabled = YES;
@@ -257,5 +235,94 @@
     [textInput.textField setAttributedPlaceholder:muAt];
     return textInput;
 }
+
+#pragma mark - Action
+- (void)getValidCode:(UIButton *)sender
+{
+    if (!self.phoneNumber.textField.text.length)
+    {
+        [self showTotasViewWithMes:@"请输入手机号码"];
+        return;
+        
+    }else if (self.phoneNumber.textField.text.length <11)
+    {
+        [self showTotasViewWithMes:@"请输入正确的手机号码"];
+        return;
+    }
+    
+    [self.timer invalidate];
+    self.timer = nil;
+    self.timeCount = 60;
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(reduceTime:) userInfo:sender repeats:YES];
+    
+    [NetWorkEntiry sendVerCodeWithPhoneNumber:self.phoneNumber.textField.text success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
+            [self showTotasViewWithMes:@"发送成功"];
+        }else{
+            [self showTotasViewWithMes:@"方式失败"];
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self showTotasViewWithMes:@"网络异常，发送失败"];
+    }];
+}
+
+- (void)registerButtonDidClick:(id)sender
+{
+    
+    if (!self.phoneNumber.textField.text.length)
+    {
+        [self showTotasViewWithMes:@"请输入手机号码"];
+        return;
+        
+    }
+    if (!self.phoneCode.textField.text.length) {
+        [self showTotasViewWithMes:@"请输入验证码"];
+        return;
+    }
+    
+    if (!self.passWord.textField.text.length) {
+        [self showTotasViewWithMes:@"请输入密码"];
+        return;
+    }
+    
+    if (self.passWord.textField.text.length < 6) {
+        [self showTotasViewWithMes:@"密码不能小于6位"];
+        return;
+    }
+    
+    if (!self.nick.textField.text.length) {
+        [self showTotasViewWithMes:@"昵称不能为空"];
+        return;
+    }
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+
+    [NetWorkEntiry regisWithPhotoNumber:self.phoneNumber.textField.text password:self.passWord.textField.text nickName:self.nick.textField.text verCode:self.phoneCode.textField.text success:^(AFHTTPRequestOperation *operation, id responseObject) {
+  
+        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+        if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
+            
+            NSDictionary * userInfoDic  = [responseObject objectForKey:@"response"];
+            
+            HRUserLoginInfo * userInfo = [HRUserLoginInfo yy_modelWithJSON:userInfoDic];
+            if(userInfo){
+                [[LoginStateManager getInstance] LoginWithUserLoginInfo:userInfo];
+                [self showTotasViewWithMes:@"注册成功"];
+                [self.myNavController dismissViewControllerAnimated:YES completion:^{
+                    
+                }];
+            }else{
+                [self showTotasViewWithMes:[[responseObject objectForKey:@"response"] objectForKey:@"errorText"]];
+            }
+        }else{
+            [self showTotasViewWithMes:[[responseObject objectForKey:@"response"] objectForKey:@"errorText"]];
+        }
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self showTotasViewWithMes:@"网络异常，注册失败"];
+        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+    }];
+}
+
 
 @end
