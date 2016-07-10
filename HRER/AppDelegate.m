@@ -20,6 +20,7 @@
 #import "MainTabBarController.h"
 #import "HRAddressBookManager.h"
 #import "MobClick.h"
+#import "LoginStateManager.h"
 
 //Test
 #import "HRLoginManager.h"
@@ -123,6 +124,12 @@
     UMConfigInstance.channelId = @"App Store";
     [MobClick startWithConfigure:UMConfigInstance];
     
+    //访问通讯录
+    [HRAddressBookManager readAllPersonAddressWithCallBack:^(NSArray *resultList, ABAuthorizationStatus status) {
+        if ([[LoginStateManager getInstance] userLoginInfo]) {
+            //用户登录方法
+        }
+    }];
 }
 
 - (void)setDefoultNavBarStyle

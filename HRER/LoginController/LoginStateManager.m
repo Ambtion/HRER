@@ -10,19 +10,6 @@
 
 #define USER_ID             [NSString stringWithFormat:@"__USER_ID__%@",[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]]
 
-#define DEVICE_TOKEN        @"__device_token__"
-#define LASTUSERNAME        @"__last_usrName__"
-#define USER_TOKEN          @"__USER_TOKEN__"
-#define USER_NIKE           @"__USER_NIKE__"
-
-#define REFRESH_TOKEN       @"__REFRESH_TOKEN__"
-#define DEVICEDID           @"__DEVICEDID__"
-#define BAIDUDEVICEDID      @"__BAIDUDEVICEDID__"
-#define SINA_TOKEN          @"__SINA_TOKEN__"
-#define RENREN_TOKEN        @"__RENREN_TOKEN__"
-#define QQ_TOKEN            @"__QQ_TOKEN__"
-
-
 @implementation LoginStateManager (private)
 
 + (void)storeData:(id)data forKey:(NSString *)key

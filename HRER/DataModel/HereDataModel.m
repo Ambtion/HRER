@@ -21,3 +21,9 @@
 YYModelSynthCoderAndHash
 
 @end
+
+@implementation HRFriendsInfo
+
+YYModelSynthCoderAndHash
+
+@end

@@ -84,6 +84,14 @@
                failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
 
+/**
+ *  获取老朋友列表
+ */
+
++ (void)quaryFriendsListWithToken:(NSString *)token
+                          success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                          failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+
 /*
  POI列表
  ===================================================================================================================

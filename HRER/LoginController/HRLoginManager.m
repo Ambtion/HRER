@@ -12,6 +12,7 @@
 #import "HRNagationController.h"
 
 @implementation HRLoginManager
+
 + (void)showLoginView
 {
     UIViewController * rtVC = [[[UIApplication sharedApplication] delegate] window].rootViewController;
@@ -20,4 +21,5 @@
         
     }];
 }
+
 @end

@@ -116,6 +116,21 @@
 }
 
 
+/**
+ *  获取老朋友列表
+ */
+
++ (void)quaryFriendsListWithToken:(NSString *)token
+                          success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                          failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+{
+    NSMutableDictionary * dic = [self commonComonPar];
+    NSString * urlStr = [NSString stringWithFormat:@"%@/getFriends",KNETBASEURL];
+    dic[@"token"] = token;
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:urlStr parameters:dic success:success failure:failure];
+}
+
 #pragma mark - Common
 + (NSMutableDictionary *)commonComonPar
 {

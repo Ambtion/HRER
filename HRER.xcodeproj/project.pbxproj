@@ -72,6 +72,8 @@
 		E10DF78C1CF6DB6F00D5E146 /* btn_card@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E10DF7891CF6DB6F00D5E146 /* btn_card@2x.png */; };
 		E133FD771D1283F400503D83 /* HRPoidSetsCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = E133FD761D1283F400503D83 /* HRPoidSetsCardView.m */; };
 		E133FD7A1D12854900503D83 /* HRPoiCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = E133FD791D12854900503D83 /* HRPoiCardView.m */; };
+		E141782D1D323C34000CBB2E /* BMNewFriendsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E141782C1D323C34000CBB2E /* BMNewFriendsCell.m */; };
+		E14178301D323C42000CBB2E /* BMOldFriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E141782F1D323C42000CBB2E /* BMOldFriendCell.m */; };
 		E14BD4921CEEF53F00C66E14 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E14BD4911CEEF53F00C66E14 /* main.m */; };
 		E14BD4951CEEF53F00C66E14 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E14BD4941CEEF53F00C66E14 /* AppDelegate.m */; };
 		E14BD49D1CEEF53F00C66E14 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E14BD49C1CEEF53F00C66E14 /* Assets.xcassets */; };
@@ -222,6 +224,10 @@
 		E133FD761D1283F400503D83 /* HRPoidSetsCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRPoidSetsCardView.m; sourceTree = "<group>"; };
 		E133FD781D12854900503D83 /* HRPoiCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRPoiCardView.h; sourceTree = "<group>"; };
 		E133FD791D12854900503D83 /* HRPoiCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRPoiCardView.m; sourceTree = "<group>"; };
+		E141782B1D323C34000CBB2E /* BMNewFriendsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMNewFriendsCell.h; sourceTree = "<group>"; };
+		E141782C1D323C34000CBB2E /* BMNewFriendsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMNewFriendsCell.m; sourceTree = "<group>"; };
+		E141782E1D323C42000CBB2E /* BMOldFriendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMOldFriendCell.h; sourceTree = "<group>"; };
+		E141782F1D323C42000CBB2E /* BMOldFriendCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMOldFriendCell.m; sourceTree = "<group>"; };
 		E14BD48D1CEEF53F00C66E14 /* HRER.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HRER.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E14BD4911CEEF53F00C66E14 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E14BD4931CEEF53F00C66E14 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = HRER/AppDelegate.h; sourceTree = "<group>"; };
@@ -412,6 +418,10 @@
 			children = (
 				B88F106D1CF5E232007C930F /* FriendsViewController.h */,
 				B88F106E1CF5E232007C930F /* FriendsViewController.m */,
+				E141782B1D323C34000CBB2E /* BMNewFriendsCell.h */,
+				E141782C1D323C34000CBB2E /* BMNewFriendsCell.m */,
+				E141782E1D323C42000CBB2E /* BMOldFriendCell.h */,
+				E141782F1D323C42000CBB2E /* BMOldFriendCell.m */,
 			);
 			path = FriendsViewController;
 			sourceTree = "<group>";
@@ -891,6 +901,7 @@
 				B89663EF1CF32F7700B2A6CA /* RefreshCollectionView.m in Sources */,
 				E14BD4921CEEF53F00C66E14 /* main.m in Sources */,
 				E133FD7A1D12854900503D83 /* HRPoiCardView.m in Sources */,
+				E141782D1D323C34000CBB2E /* BMNewFriendsCell.m in Sources */,
 				B805E1F31D0DAE970011E2F7 /* HRHerePoiCell.m in Sources */,
 				B805E1F51D0DAE970011E2F7 /* PhotoFrameView.m in Sources */,
 				B805392E1D23B40300C8EF06 /* HRCycleScrollView.m in Sources */,
@@ -914,6 +925,7 @@
 				E1C303C01CF596BF001C016B /* HRWebCatShare.m in Sources */,
 				B89380841D117ED7005A24FB /* HRPoiSetsListView.m in Sources */,
 				B85520101D098F2C00C56FC5 /* HomeHeadView.m in Sources */,
+				E14178301D323C42000CBB2E /* BMOldFriendCell.m in Sources */,
 				B80539311D23B40300C8EF06 /* HRWaitingView.m in Sources */,
 				B88F10751CF5E246007C930F /* FindCityViewController.m in Sources */,
 				E1A8154A1D0D483B005E4443 /* HRCatergoryScrollView.m in Sources */,

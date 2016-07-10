@@ -9,7 +9,7 @@
 
 #import "YYModel.h"
 
-@interface HRUserLoginInfo : NSObject<NSCopying,NSCopying>
+@interface HRUserLoginInfo : NSObject<NSCopying,NSCoding>
 
 @property(nonatomic,strong)NSString * phone;
 @property(nonatomic,strong)NSString * token;
@@ -18,3 +18,8 @@
 
 @end
 
+
+
+@interface HRFriendsInfo : NSObject<NSCopying,NSCoding>
+
+@end
