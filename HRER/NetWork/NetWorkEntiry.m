@@ -121,12 +121,16 @@
  */
 
 + (void)quaryFriendsListWithToken:(NSString *)token
+                          fillter:(NSString *)filler
                           success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                           failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
     NSMutableDictionary * dic = [self commonComonPar];
     NSString * urlStr = [NSString stringWithFormat:@"%@/getFriends",KNETBASEURL];
     dic[@"token"] = token;
+    if (filler.length) {
+        dic[@"content"] = filler;
+    }
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager GET:urlStr parameters:dic success:success failure:failure];
 }

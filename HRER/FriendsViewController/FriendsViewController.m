@@ -9,11 +9,24 @@
 #import "FriendsViewController.h"
 #import "BMNewFriendsCell.h"
 #import "BMOldFriendCell.h"
+#import "RefreshTableView.h"
 
-@interface FriendsViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface FriendsViewController ()<UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate,UISearchDisplayDelegate>
 
-@property(nonatomic,strong)UITableView * tableView;
+@property(nonatomic,strong)RefreshTableView * tableView;
 @property(nonatomic,strong)NSArray * dataArray;
+
+@property(nonatomic,strong)NSString * fillterString;
+
+/**
+ *  搜索框
+ */
+@property (nonatomic, strong) UISearchBar *aSearchBar;
+
+/**
+ *  搜索框绑定的控制器
+ */
+@property (nonatomic, strong) UISearchDisplayController *searchController;
 
 @end
 
@@ -69,11 +82,25 @@
 
 - (void)initContentView
 {
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.view.width, self.view.height - 64) style:UITableViewStylePlain];
+    self.tableView = [[RefreshTableView alloc] initWithFrame:CGRectMake(0, 64, self.view.width, self.view.height - 64) style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.tableView.tableHeaderView = self.aSearchBar;
     [self.view addSubview:self.tableView];
+    
 }
+
+- (void)initRefreshView
+{
+    WS(ws);
+    self.tableView.refreshHeader.beginRefreshingBlock = ^(){
+        [ws quaryData];
+    };
+
+    self.tableView.refreshFooter.scrollView = nil;
+}
+
+
 
 - (void)quaryData
 {
@@ -100,6 +127,27 @@
     
 }
 
+
+#pragma mark - SearchBar
+- (UISearchBar *)aSearchBar {
+    if (!_aSearchBar) {
+        _aSearchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 44)];
+        _aSearchBar.delegate = self;
+        
+        _searchController = [[UISearchDisplayController alloc] initWithSearchBar:_aSearchBar contentsController:self];
+        _searchController.delegate = self;
+        _searchController.searchResultsDelegate = self;
+        _searchController.searchResultsDataSource = self;
+    }
+    return _aSearchBar;
+}
+
+
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(nullable NSString *)searchString
+{
+    [self.tableView reloadData];
+    return NO;
+}
 #pragma mark - 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
