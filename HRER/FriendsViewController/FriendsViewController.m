@@ -113,19 +113,20 @@
         return;
     }
     
+    return;
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    
-    [NetWorkEntiry quaryFriendsListWithToken:[[[LoginStateManager getInstance] userLoginInfo] token] success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-        if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
-            
-        }else{
-
-        }
-
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
-    }];
+//    
+//    [NetWorkEntiry quaryFriendsListWithToken:[[[LoginStateManager getInstance] userLoginInfo] token] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+//        if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
+//            
+//        }else{
+//
+//        }
+//
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        
+//    }];
     
 }
 
@@ -250,7 +251,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if (indexPath.section == 0) {
-        if (indexPath.row == 0) {
+        if (indexPath.row == 1) {
             [self shareToQQ];
         }else{
             [self shareToWeb];
@@ -260,13 +261,13 @@
 
 - (void)shareToQQ
 {
-    [[HRQQManager shareInstance] shareNewsWithImage:[UIImage imageNamed:@"add"] title:@"这里" Des:@"这里不错" link:@"http://www.baidu.con" WithCallBack:^(QQBaseResp *response) {
+    [[HRQQManager shareInstance] shareNewsWithImage:[UIImage imageNamed:@"add"] title:@"这里" Des:@"这里不错" link:@"http://www.baidu.com" WithCallBack:^(QQBaseResp *response) {
     }];
 }
 
 - (void)shareToWeb
 {
-    [HRWebCatShare sendWeixinWebContentTitle:@"这里" description:@"这里不错"  thumbImage:[UIImage imageNamed:@"add"] webpageURL:@"http://www.baidu.con" scene:WXSceneSession withcallBack:^(BaseResp *resp) {
+    [HRWebCatShare sendWeixinWebContentTitle:@"这里" description:@"这里不错"  thumbImage:[UIImage imageNamed:@"add"] webpageURL:@"http://www.baidu.com" scene:WXSceneSession withcallBack:^(BaseResp *resp) {
         
     }];
 }
