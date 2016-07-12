@@ -10,6 +10,8 @@
 #import "BMNewFriendsCell.h"
 #import "BMOldFriendCell.h"
 #import "RefreshTableView.h"
+#import "HRWebCatShare.h"
+#import "HRQQManager.h"
 
 @interface FriendsViewController ()<UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate,UISearchDisplayDelegate>
 
@@ -242,4 +244,32 @@
     return [UITableViewCell new];
 }
 
+#pragma mark - Action
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    if (indexPath.section == 0) {
+        if (indexPath.row == 0) {
+            [self shareToQQ];
+        }else{
+            [self shareToWeb];
+        }
+    }
+}
+
+- (void)shareToQQ
+{
+    [[HRQQManager shareInstance] shareNewsWithImage:[UIImage imageNamed:@"add"] title:@"这里" Des:@"这里不错" link:@"http://www.baidu.con" WithCallBack:^(QQBaseResp *response) {
+    }];
+}
+
+- (void)shareToWeb
+{
+    [HRWebCatShare sendWeixinWebContentTitle:@"这里" description:@"这里不错"  thumbImage:[UIImage imageNamed:@"add"] webpageURL:@"http://www.baidu.con" scene:WXSceneSession withcallBack:^(BaseResp *resp) {
+        
+    }];
+}
+
 @end
+

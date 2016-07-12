@@ -25,7 +25,7 @@
  *  @return 返回状态 正常（0），未安装微信（－1)
  */
 
-- (NSInteger)sendWeixinWebContentTitle:(NSString*)title description:(NSString*)description thumbImage:(UIImage*)thumbImage webpageURL:(NSString*)webpageURL scene:(NSInteger)scene withcallBack:(void(^)(BaseResp *resp))callBack;
++ (NSInteger)sendWeixinWebContentTitle:(NSString*)title description:(NSString*)description thumbImage:(UIImage*)thumbImage webpageURL:(NSString*)webpageURL scene:(NSInteger)scene withcallBack:(void(^)(BaseResp *resp))callBack;
 
 /**
  *  微信分享 (图片UIImage)
@@ -40,6 +40,6 @@
  *
  *  @return 返回状态 正常（0），未安装微信（－1）
  */
-- (NSInteger)sendWeixinWebContentTitle:(NSString*)title description:(NSString*)description thumbImage:(UIImage*)thumbImage image:(UIImage*)img webpageURL:(NSString*)webpageURL scene:(NSInteger)scene withcallBack:(void(^)(BaseResp *resp))callBack;
++ (NSInteger)sendWeixinWebContentTitle:(NSString*)title description:(NSString*)description thumbImage:(UIImage*)thumbImage image:(UIImage*)img webpageURL:(NSString*)webpageURL scene:(NSInteger)scene withcallBack:(void(^)(BaseResp *resp))callBack;
 
 @end

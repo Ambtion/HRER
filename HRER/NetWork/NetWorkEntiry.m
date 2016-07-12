@@ -120,14 +120,12 @@
  *  获取老朋友列表
  */
 
-+ (void)quaryFriendsListWithToken:(NSString *)token
-                          fillter:(NSString *)filler
++ (void)quaryFriendsListWithFillter:(NSString *)filler
                           success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                           failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
     NSMutableDictionary * dic = [self commonComonPar];
     NSString * urlStr = [NSString stringWithFormat:@"%@/getFriends",KNETBASEURL];
-    dic[@"token"] = token;
     if (filler.length) {
         dic[@"content"] = filler;
     }

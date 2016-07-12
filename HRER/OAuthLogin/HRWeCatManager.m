@@ -9,7 +9,7 @@
 #import "HRWeCatManager.h"
 #import <UIKit/UIKit.h>
 
-#define AppKey_WeiXin               @"wxd930ea5d5a258f4f"
+#define AppKey_WeiXin               @"wx06c54a4a82349930"
 
 
 static HRWeCatManager *gInstance = nil;
