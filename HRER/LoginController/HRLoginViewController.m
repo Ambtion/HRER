@@ -329,7 +329,7 @@
 
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-        [self showTotasViewWithMes:@"网络异常,登陆失败"];
+        [self showTotasViewWithMes:@"网络异常,稍后重试"];
     }];
 }
 

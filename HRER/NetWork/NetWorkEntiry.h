@@ -88,10 +88,25 @@
  *  获取老朋友列表
  */
 
-+ (void)quaryFriendsListWithToken:(NSString *)token
++ (void)quaryFriendsListWithFillter:(NSString *)filler
                           success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                           failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
+
+/**
+ *  上传通讯录
+ */
++ (void)sendPhotoNumberWithPhotoNumber:(NSArray *)photoNumbers
+                         success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                         failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+
+/**
+ *  关注/取消关注
+ */
++ (void)favFriends:(NSString *)userId
+             isFav:(BOOL)isFav
+           success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+           failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 /*
  POI列表
  ===================================================================================================================

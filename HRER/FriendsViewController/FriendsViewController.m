@@ -10,23 +10,18 @@
 #import "BMNewFriendsCell.h"
 #import "BMOldFriendCell.h"
 #import "RefreshTableView.h"
+#import "SearchInPutView.h"
+#import "HereDataModel.h"
 
-@interface FriendsViewController ()<UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate,UISearchDisplayDelegate>
+@interface FriendsViewController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,BMOldFriendCellDelegate>
 
-@property(nonatomic,strong)RefreshTableView * tableView;
+@property(nonatomic,strong)UITableView * tableView;
 @property(nonatomic,strong)NSArray * dataArray;
-
-@property(nonatomic,strong)NSString * fillterString;
 
 /**
  *  搜索框
  */
-@property (nonatomic, strong) UISearchBar *aSearchBar;
-
-/**
- *  搜索框绑定的控制器
- */
-@property (nonatomic, strong) UISearchDisplayController *searchController;
+@property (nonatomic, strong) SearchInPutView *inputView;
 
 @end
 
@@ -82,25 +77,17 @@
 
 - (void)initContentView
 {
-    self.tableView = [[RefreshTableView alloc] initWithFrame:CGRectMake(0, 64, self.view.width, self.view.height - 64) style:UITableViewStylePlain];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.view.width, self.view.height - 64) style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.tableView.tableHeaderView = self.aSearchBar;
+    self.tableView.tableHeaderView = self.inputView;
+    self.tableView.separatorStyle  = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.tableView];
     
+    UIView * view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 100)];
+    self.tableView.tableFooterView = view;
+    
 }
-
-- (void)initRefreshView
-{
-    WS(ws);
-    self.tableView.refreshHeader.beginRefreshingBlock = ^(){
-        [ws quaryData];
-    };
-
-    self.tableView.refreshFooter.scrollView = nil;
-}
-
-
 
 - (void)quaryData
 {
@@ -113,77 +100,102 @@
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
-    [NetWorkEntiry quaryFriendsListWithToken:[[[LoginStateManager getInstance] userLoginInfo] token] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    WS(weakSelf);
+    
+    [NetWorkEntiry quaryFriendsListWithFillter:self.inputView.textFiled.text  success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
         if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
-            
+            NSArray * list = [[responseObject objectForKey:@"response"] objectForKey:@"dataList"];
+            NSMutableArray * listArray = [NSMutableArray arrayWithCapacity:0];
+            if([list isKindOfClass:[NSArray class]]){
+                for (int i = 0 ; i < list.count; i++) {
+                    NSDictionary * dic = list[i];
+                    HRFriendsInfo * friends = [HRFriendsInfo  yy_modelWithJSON:dic];
+                    if (friends) {
+                        [listArray addObject:friends];
+                    }
+                }
+            }
+            weakSelf.dataArray = listArray;
+            [weakSelf.tableView reloadData];
         }else{
-
+            [self showTotasViewWithMes:[[responseObject objectForKey:@"response"] objectForKey:@"errorText"]];
         }
-
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+        [self showTotasViewWithMes:@"网络异常,稍后重试"];
     }];
     
 }
 
 
 #pragma mark - SearchBar
-- (UISearchBar *)aSearchBar {
-    if (!_aSearchBar) {
-        _aSearchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 44)];
-        _aSearchBar.delegate = self;
-        
-        _searchController = [[UISearchDisplayController alloc] initWithSearchBar:_aSearchBar contentsController:self];
-        _searchController.delegate = self;
-        _searchController.searchResultsDelegate = self;
-        _searchController.searchResultsDataSource = self;
-    }
-    return _aSearchBar;
-}
-
-
-- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(nullable NSString *)searchString
+- (SearchInPutView *)inputView
 {
-    [self.tableView reloadData];
-    return NO;
+    if (!_inputView) {
+        _inputView = [[SearchInPutView alloc] initWithFrame:CGRectMake(0, 0, 200, 55)];
+        [_inputView.textButton addTarget:self action:@selector(searchButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+        _inputView.textFiled.delegate = self;
+    }
+    return _inputView;
 }
-#pragma mark - 
+
+- (void)searchButtonClick:(UIButton *)button
+{
+    [self.inputView textBecomeFirstResponder];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [self quaryData];
+    return [[self inputView] textResignFirstResponder];
+}
+
+
+#pragma mark -
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     //新朋友
     //老朋友
-    
-    return 2;
+    return 4;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 40.f;
+    if (section == 0 || section == 2) {
+        return 40.f;
+    }
+    return 0;
 }
+
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    UIView * bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.width, 40.f)];
-    bgView.backgroundColor = RGB_Color(0xde, 0x7c, 0x68);
-    UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, tableView.width - 20, bgView.height)];
-    label.textColor = RGB_Color(0xfd, 0xff, 0xff);
-    label.font = [UIFont systemFontOfSize:12.f];
-    [bgView addSubview:label];
-    if (section == 0) {
-        label.text = @"新朋友";
-    }else{
-        label.text = @"老朋友";
+    
+    if (section == 0 || section == 2) {
+        UIView * bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.width, 40.f)];
+        bgView.backgroundColor = RGB_Color(0xde, 0x7c, 0x68);
+        UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, tableView.width - 20, bgView.height)];
+        label.textColor = RGB_Color(0xfd, 0xff, 0xff);
+        label.font = [UIFont systemFontOfSize:12.f];
+        [bgView addSubview:label];
+        if (section == 0) {
+            label.text = @"新朋友";
+        }else{
+            label.text = @"老朋友";
+        }
+        return bgView;
     }
-    return bgView;
+    return [UIView new];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 0) {
+    if (section == 1) {
         return 2;
     }
-    if (section == 1) {
+    if (section == 3) {
         return self.dataArray.count;
     }
     return 0;
@@ -191,10 +203,10 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0) {
+    if (indexPath.section == 1) {
         return [BMNewFriendsCell heighForCell];
     }
-    if (indexPath.section == 1) {
+    if (indexPath.section == 3) {
         return [BMOldFriendCell heighForCell];
     }
     return 0.f;
@@ -202,7 +214,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0) {
+    if (indexPath.section ==1) {
         
         NSString * identify = NSStringFromClass([BMNewFriendsCell class]);
         
@@ -216,30 +228,77 @@
                 newCell.subTitle.text =  @"去微信邀请朋友>";
             }else{
                 newCell.maintitle.text = @"QQ朋友";
-                newCell.subTitle.text =  @"去微信邀请朋友>";
+                newCell.subTitle.text =  @"去QQ邀请朋友>";
             }
         }
-        
-        [newCell.lineView setHidden:indexPath.row == 1];
+//        [newCell.lineView setHidden:indexPath.row != 1];
         
         return newCell;
         
-    }else if (indexPath.section == 1) {
+    }else if (indexPath.section == 3) {
         
         NSString * identify = NSStringFromClass([BMOldFriendCell class]);
         
-        BMOldFriendCell * newCell = [tableView dequeueReusableCellWithIdentifier:identify];
+        BMOldFriendCell * oldCell = [tableView dequeueReusableCellWithIdentifier:identify];
         
-        if (!newCell) {
+        if (!oldCell) {
             
-            newCell = [[BMOldFriendCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identify];
+            oldCell = [[BMOldFriendCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identify];
+            oldCell.delegate = self;
         }
-        
-        return newCell;
+        [oldCell setDataModel:self.dataArray[indexPath.row]];
+        return oldCell;
 
     }
     
     return [UITableViewCell new];
 }
+
+#pragma mark - Action
+- (void)oldFriendCell:(BMOldFriendCell *)cell didClickFavButton:(UIButton *)button
+{
+    BOOL tofavState = NO;
+    switch (cell.dataModel.isFollow) {
+        case 0:
+            //未关注
+        {
+            tofavState  = YES;
+        }
+            break;
+            //关注
+            break;
+        case 1:
+        case 2:
+        {
+            tofavState  = NO;
+        }
+            //相互关注
+            break;
+        default:
+            break;
+    }
+    
+    WS(weakSelf);
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [NetWorkEntiry favFriends:cell.dataModel.uid isFav:tofavState success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
+            if(tofavState){
+                [self showTotasViewWithMes:@"关注成功"];
+            }else{
+                [self showTotasViewWithMes:@"取消关注成功"];
+            }
+            [weakSelf quaryData];
+        }else{
+            [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+            [self showTotasViewWithMes:[[responseObject objectForKey:@"response"] objectForKey:@"errorText"]];
+        }
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+        [self showTotasViewWithMes:@"网络异常,稍后重试"];
+        
+    }];
+}
+
 
 @end

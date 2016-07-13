@@ -21,11 +21,12 @@
 #import "HRAddressBookManager.h"
 #import "MobClick.h"
 #import "LoginStateManager.h"
+#import "NetWorkEntiry.h"
 
 //Test
 #import "HRLoginManager.h"
 
-@interface AppDelegate ()
+@interface AppDelegate ()<UITabBarControllerDelegate>
 
 @property(nonatomic,strong)HRNagationController * navController;
 
@@ -46,9 +47,7 @@
     self.navController = [[HRNagationController alloc] initWithRootViewController:mainTab];
     self.window.rootViewController = self.navController;
     [self.window makeKeyAndVisible];
-    
-    [HRLoginManager showLoginView];
-    
+        
     return YES;
 }
 
@@ -82,6 +81,7 @@
                               andControllers:(NSArray*)controllers
 {
     MainTabBarController *tabBarController = [[MainTabBarController alloc] init];
+    tabBarController.delegate = self;
     for (int i =0; i < controllers.count;i++) {
         UIViewController * controller = [controllers objectAtIndex:i];
         UIImage * nimage = [nImages[i] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
@@ -101,6 +101,14 @@
     [tabBarController setViewControllers:controllers];
     [tabBarController setHidesBottomBarWhenPushed:YES];
     return tabBarController;
+}
+
+
+- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
+{
+    if([viewController isKindOfClass:[FriendsViewController class]]){
+        [(FriendsViewController *)viewController quaryData];
+    }
 }
 
 #pragma mark - Init
@@ -126,8 +134,14 @@
     
     //访问通讯录
     [HRAddressBookManager readAllPersonAddressWithCallBack:^(NSArray *resultList, ABAuthorizationStatus status) {
-        if ([[LoginStateManager getInstance] userLoginInfo]) {
+        
+        if (resultList.count && [[LoginStateManager getInstance] userLoginInfo]) {
             //用户登录方法
+            [NetWorkEntiry sendPhotoNumberWithPhotoNumber:resultList success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                
+            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                
+            }];
         }
     }];
 }
@@ -144,6 +158,8 @@
     [[UINavigationBar appearance] setShadowImage:[UIImage imageNamed:@"NavigationBarBG"]];
  
 }
+
+
 
 #pragma mark AppDelegate FOR SSO
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation

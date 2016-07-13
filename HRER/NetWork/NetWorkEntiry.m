@@ -7,8 +7,7 @@
 //
 
 #import "NetWorkEntiry.h"
-#import "JSONKit.h"
-
+#import "LoginStateManager.h"
 
 @implementation NetWorkEntiry
 
@@ -120,14 +119,12 @@
  *  获取老朋友列表
  */
 
-+ (void)quaryFriendsListWithToken:(NSString *)token
-                          fillter:(NSString *)filler
++ (void)quaryFriendsListWithFillter:(NSString *)filler
                           success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                           failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
     NSMutableDictionary * dic = [self commonComonPar];
     NSString * urlStr = [NSString stringWithFormat:@"%@/getFriends",KNETBASEURL];
-    dic[@"token"] = token;
     if (filler.length) {
         dic[@"content"] = filler;
     }
@@ -135,12 +132,68 @@
     [manager GET:urlStr parameters:dic success:success failure:failure];
 }
 
++ (NSString *)strOfPhoto:(NSDictionary *)dic
+{
+    NSString * name = [dic objectForKey:@"name"];
+    NSString * photoNumber = @"";
+    if (name.length) {
+        NSArray * array = [dic objectForKey:@"photoList"];
+        for (int i = 0; i < array.count; i++) {
+            photoNumber = [photoNumber stringByAppendingFormat:@"%@:%@",name,array[i]];
+            if (i != array.count - 1) {
+                photoNumber = [photoNumber stringByAppendingString:@"|"];
+            }
+            
+        }
+    }
+    return photoNumber;
+}
+
+
++ (void)sendPhotoNumberWithPhotoNumber:(NSArray *)photoNumbers
+                         success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                         failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+{
+    NSMutableDictionary * dic = [self commonComonPar];
+    NSString * urlStr = [NSString stringWithFormat:@"%@/addressbook",KNETBASEURL];
+    NSString * str = @"";
+    NSInteger totalCout = photoNumbers.count;
+    totalCout = 2;
+    for (int i = 0; i < totalCout; i++) {
+        NSString * pnum = [self strOfPhoto:photoNumbers[i]];
+        if (pnum.length) {
+            str = [str stringByAppendingString:pnum];
+            if (i != totalCout - 1) {
+                str = [str stringByAppendingString:@"|"];
+            }
+        }
+    }
+    if (str.length) {
+        dic[@"addressbook"] = str;
+    }
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager POST:urlStr parameters:dic success:success failure:failure];
+}
+
++ (void)favFriends:(NSString *)userId
+             isFav:(BOOL)isFav
+           success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+           failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+{
+    NSMutableDictionary * dic = [self commonComonPar];
+    NSString * urlStr = [NSString stringWithFormat:@"%@/follow",KNETBASEURL];
+    dic[@"id"] = userId;
+    dic[@"isFollow"] = @(isFav);
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager POST:urlStr parameters:dic success:success failure:failure];
+}
+
 #pragma mark - Common
 + (NSMutableDictionary *)commonComonPar
 {
     NSMutableDictionary  * paragramer = [NSMutableDictionary dictionaryWithCapacity:0];
-//    if ([[UserInfoModel defaultUserInfo] toke])
-//        [paragramer setValue:[[UserInfoModel defaultUserInfo] toke] forKey:@"token"];
+    if ([[LoginStateManager getInstance] userLoginInfo].token)
+        [paragramer setValue:[[LoginStateManager getInstance] userLoginInfo].token forKey:@"token"];
     return paragramer;
 }
 

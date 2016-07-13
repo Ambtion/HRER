@@ -262,7 +262,7 @@
             [self showTotasViewWithMes:@"方式失败"];
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [self showTotasViewWithMes:@"网络异常，发送失败"];
+        [self showTotasViewWithMes:@"网络异常,稍后重试"];
     }];
 }
 

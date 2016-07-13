@@ -14,8 +14,9 @@
 #import <TencentOpenAPI/QQApiInterfaceObject.h>
 
 
-#define TencentAppKey  @"100506074"
+#define TencentAppKey  @"1105459441"
 
+//APP KEYYJcNgXGAZmAM2xHG
 
 static HRQQManager *gInstance = nil;
 

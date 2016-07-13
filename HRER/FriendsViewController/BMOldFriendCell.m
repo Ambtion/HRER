@@ -56,14 +56,19 @@
     
     self.fromTitle = [[UILabel alloc] init];
     self.fromTitle.textColor = RGB_Color(0xc3, 0xc3, 0xc3);
-    self.fromTitle.font = [UIFont systemFontOfSize:12.f];
+    self.fromTitle.font = [UIFont systemFontOfSize:10.f];
     [self.contentView addSubview:self.fromTitle];
     
     self.favButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.favButton setTitle:@"关注" forState:UIControlStateNormal];
-    [self.favButton setTitle:@"未关注" forState:UIControlStateSelected];
     [self.favButton addTarget:self action:@selector(favButtonDidClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.favButton setBackgroundImage:[UIImage imageNamed:@"friends_fav"] forState:UIControlStateNormal];
+    [self.favButton setTitleColor:RGB_Color(0xe6, 0x4f, 0x20) forState:UIControlStateNormal];
+    [[self.favButton titleLabel] setFont:[UIFont systemFontOfSize:14.f]];
     [self.contentView addSubview:self.favButton];
+    
+    self.lineView = [[UIView alloc] init];
+    self.lineView.backgroundColor = RGB_Color(0xec, 0xec, 0xec);
+    [self addSubview:self.lineView];
     
     [self.poraitView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView).offset(14.f);
@@ -72,38 +77,77 @@
     }];
     
     [self.mainTitle mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.poraitView.mas_right).offset(5.f);
+        make.left.equalTo(self.poraitView.mas_right).offset(5.f);
         make.top.equalTo(self.contentView).offset(24.f);
     }];
 
     [self.subTitle mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.mainTitle).offset(7.f);
-        make.centerY.equalTo(self.contentView);
+        make.left.equalTo(self.mainTitle.mas_right).offset(7.f);
+        make.right.equalTo(self.favButton.mas_left).offset(-10);
+        make.centerY.equalTo(self.mainTitle);
     }];
     
     [self.favButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.contentView).offset(-10.f);
         make.centerY.equalTo(self.contentView);
         make.height.equalTo(@(36.f));
+        make.width.equalTo(@(65));
     }];
     
     [self.fromTitle mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.subTitle);
         make.top.equalTo(self.subTitle.mas_bottom).offset(10.f);
-        make.right.equalTo(self.favButton.mas_left);
+        make.right.equalTo(self.favButton.mas_left).offset(-10);
     }];
     
     [self.lineView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.mainTitle);
+        make.left.equalTo(self.poraitView);
         make.right.equalTo(self.contentView).offset(-14.f);
-        make.top.equalTo(self.contentView);
+        make.bottom.equalTo(self.contentView);
         make.height.equalTo(@(0.5));
     }];
 }
 
+- (void)setDataModel:(HRFriendsInfo *)dataModel
+{
+    if (_dataModel == dataModel) {
+        return;
+    }
+    _dataModel = dataModel;
+    self.poraitView.image = [UIImage imageNamed:@""];
+    if (self.dataModel.image) {
+        [self.poraitView sd_setImageWithURL:[NSURL URLWithString:self.dataModel.image] placeholderImage:[UIImage imageNamed:@""]];
+    }
+    self.mainTitle.text = self.dataModel.name;
+    self.subTitle.text = self.dataModel.subName;
+    self.fromTitle.text = self.dataModel.userInfo;
+    
+    switch (self.dataModel.isFollow) {
+        case 0:
+            //没有关注
+            [self.favButton setTitle:@"未关注" forState:UIControlStateNormal];
+            break;
+        case 1:
+            //关注
+            [self.favButton setTitle:@"已关注" forState:UIControlStateNormal];
+            //关注
+            break;
+        case 2:
+            [self.favButton setTitle:@"相互关注" forState:UIControlStateNormal];
+            //相互关注
+            break;
+        default:
+            break;
+    }
+}
+
+
+
 - (void)favButtonDidClick:(UIButton *)button
 {
-    
+    if ([_delegate respondsToSelector:@selector(oldFriendCell:didClickFavButton:)]){
+        [_delegate oldFriendCell:self didClickFavButton:button];
+    }
 }
 
 #pragma mark

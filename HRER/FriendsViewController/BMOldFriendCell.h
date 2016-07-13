@@ -8,8 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+@class BMOldFriendCell;
+@protocol BMOldFriendCellDelegate <NSObject>
+- (void)oldFriendCell:(BMOldFriendCell *)cell didClickFavButton:(UIButton *)button;
+@end
+
 @interface BMOldFriendCell : UITableViewCell
+
 @property(nonatomic,strong)UIView * lineView;
+@property(nonatomic,strong)HRFriendsInfo * dataModel;
+
+@property(nonatomic,weak)id<BMOldFriendCellDelegate>delegate;
 
 + (CGFloat)heighForCell;
 

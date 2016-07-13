@@ -10,4 +10,6 @@
 
 @interface FriendsViewController : UIViewController
 
+- (void)quaryData;
+
 @end

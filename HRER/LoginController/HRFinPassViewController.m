@@ -223,7 +223,7 @@
         }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [self showTotasViewWithMes:@"网络异常，重置失败"];
+        [self showTotasViewWithMes:@"网络异常,稍后重试"];
         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
     }];
 }
