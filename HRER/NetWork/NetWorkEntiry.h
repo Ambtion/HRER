@@ -1,4 +1,4 @@
-://
+//
 //  NetWorkEntiry.h
 //  JewelryApp
 //

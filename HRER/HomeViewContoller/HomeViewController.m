@@ -14,7 +14,7 @@
 #import "HRHereBannerCell.h"
 #import "HRPoiSetsController.h"
 #import "HRPhotoBrowser.h"
-
+#import "HRPoiDetailController.h"
 
 @interface HomeViewController()<UITableViewDelegate,UITableViewDataSource,HomeHeadViewDelegate,HRHerePoisSetCellDelegate,HRHerePoiCellDelegate,SDPhotoBrowserDelegate>
 
@@ -205,7 +205,7 @@
 
 - (void)herePoiCellDidClick:(HRHerePoiCell *)cell
 {
-    
+    [self.myNavController pushViewController:[[HRPoiDetailController alloc] init] animated:YES];
 }
 
 - (void)herePoisSetCellDidClick:(HRHerePoisSetCell *)cell

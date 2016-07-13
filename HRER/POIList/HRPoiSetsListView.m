@@ -49,7 +49,7 @@
     label.textColor = [UIColor whiteColor];
     [barView addSubview:label];
     
-    UIButton * backButton = [[UIButton alloc] initWithFrame:CGRectMake(17, 26, 33, 33)];
+    UIButton * backButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 26, 33, 33)];
     [backButton setImage:[UIImage imageNamed:@"list_back"] forState:UIControlStateNormal];
     [backButton addTarget:self action:@selector(buttonDidClick:) forControlEvents:UIControlEventTouchUpInside];
     backButton.tag = 0;

@@ -114,9 +114,9 @@
         return;
     }
     _dataModel = dataModel;
-    self.poraitView.image = [UIImage imageNamed:@""];
+    self.poraitView.image = [UIImage imageNamed:@"man"];
     if (self.dataModel.image) {
-        [self.poraitView sd_setImageWithURL:[NSURL URLWithString:self.dataModel.image] placeholderImage:[UIImage imageNamed:@""]];
+        [self.poraitView sd_setImageWithURL:[NSURL URLWithString:self.dataModel.image] placeholderImage:[UIImage imageNamed:@"man"]];
     }
     self.mainTitle.text = self.dataModel.name;
     self.subTitle.text = self.dataModel.subName;
