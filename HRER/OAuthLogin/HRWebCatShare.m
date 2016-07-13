@@ -12,7 +12,7 @@
 @implementation HRWebCatShare
 
 
-- (NSInteger)sendWeixinWebContentTitle:(NSString*)title description:(NSString*)description thumbImage:(UIImage*)thumbImage webpageURL:(NSString*)webpageURL scene:(NSInteger)scene withcallBack:(void (^)(BaseResp *))callBack
++ (NSInteger)sendWeixinWebContentTitle:(NSString*)title description:(NSString*)description thumbImage:(UIImage*)thumbImage webpageURL:(NSString*)webpageURL scene:(NSInteger)scene withcallBack:(void (^)(BaseResp *))callBack
 {
     
     NSInteger res = 0;
@@ -60,7 +60,7 @@
 }
 
 
-- (NSInteger)sendWeixinWebContentTitle:(NSString*)title description:(NSString*)description thumbImage:(UIImage*)thumbImage image:(UIImage*)img webpageURL:(NSString*)webpageURL scene:(NSInteger)scene withcallBack:(void(^)(BaseResp *resp))callBack
++ (NSInteger)sendWeixinWebContentTitle:(NSString*)title description:(NSString*)description thumbImage:(UIImage*)thumbImage image:(UIImage*)img webpageURL:(NSString*)webpageURL scene:(NSInteger)scene withcallBack:(void(^)(BaseResp *resp))callBack
 {
     NSInteger res = 0;
     

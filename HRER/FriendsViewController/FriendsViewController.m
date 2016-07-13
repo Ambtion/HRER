@@ -12,6 +12,9 @@
 #import "RefreshTableView.h"
 #import "SearchInPutView.h"
 #import "HereDataModel.h"
+#import "HRWebCatShare.h"
+#import "HRQQManager.h"
+
 
 @interface FriendsViewController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,BMOldFriendCellDelegate>
 
@@ -126,6 +129,7 @@
         [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
         [self showTotasViewWithMes:@"网络异常,稍后重试"];
     }];
+
     
 }
 
@@ -300,5 +304,31 @@
     }];
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    if (indexPath.section == 0) {
+        if (indexPath.row == 1) {
+            [self shareToQQ];
+        }else{
+            [self shareToWeb];
+        }
+    }
+}
+
+- (void)shareToQQ
+{
+    [[HRQQManager shareInstance] shareNewsWithImage:[UIImage imageNamed:@"add"] title:@"这里" Des:@"这里不错" link:@"http://www.baidu.com" WithCallBack:^(QQBaseResp *response) {
+    }];
+}
+
+- (void)shareToWeb
+{
+    [HRWebCatShare sendWeixinWebContentTitle:@"这里" description:@"这里不错"  thumbImage:[UIImage imageNamed:@"add"] webpageURL:@"http://www.baidu.com" scene:WXSceneSession withcallBack:^(BaseResp *resp) {
+        
+    }];
+}
 
 @end
+

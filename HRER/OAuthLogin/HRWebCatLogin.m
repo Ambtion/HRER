@@ -18,5 +18,4 @@
     [[HRWeCatManager shareInstance] sendReq:req callBack:callBack];
 }
 
-
 @end
