@@ -9,6 +9,9 @@
 #import "HRPoiDetailController.h"
 #import "HRPoiDetailPhotosCell.h"
 #import "HRPoiLocInfoCell.h"
+#import "HRPoiCreateInfoCell.h"
+#import "HRRecomendCell.h"
+
 
 @interface HRPoiDetailController()<UITableViewDelegate,UITableViewDataSource>
 
@@ -54,7 +57,7 @@
 - (void)initNavBar
 {
     UIImageView * barView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 64)];
-    barView.image = [UIImage imageNamed:@"nav_bg"];
+//    barView.image = [UIImage imageNamed:@"nav_bg"];
     [self.view addSubview:barView];
     
     self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, self.view.width, 44)];
@@ -79,15 +82,14 @@
 
 - (void)initContentView
 {
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height) style:UITableViewStylePlain];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, -20, self.view.width, self.view.height + 20) style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.tableView.backgroundColor = RGB_Color(236, 236, 236);
     self.tableView.separatorStyle  = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.tableView];
     
-    UIView * view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 100)];
-    self.tableView.tableFooterView = view;
+//    UIView * view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 100)];
+//    self.tableView.tableFooterView = view;
     
 }
 
@@ -113,7 +115,7 @@
             break;
         case 3:
             //POI评论
-            return 1;
+            return 10;
             break;
         default:
             break;
@@ -134,10 +136,18 @@
             break;
         case 2:
             //POI用户描述
+            return [HRPoiCreateInfoCell cellHeithForData:nil];
             break;
         case 3:
             //POI评论
-            
+            if (indexPath.row == 0) {
+                return 10.f;
+            }else{
+                if (indexPath.row == [self tableView:tableView numberOfRowsInSection:indexPath.section] -1) {
+                    return 6.f;
+                }
+            }
+            return [HRRecomendCell heigthForCellWithData:nil];
             break;
         default:
             break;
@@ -176,10 +186,51 @@
         case 2:
             //POI用户描述
         {
-        
+            HRPoiCreateInfoCell * cell = [tableView dequeueReusableCellWithIdentifier:@"HRPoiCreateInfoCell"];
+            if (!cell) {
+                cell = [[HRPoiCreateInfoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"HRPoiCreateInfoCell"];
+                
+            }
+            [cell setDataSource:nil];
+            return cell;
         }
             break;
         case 3:
+        {
+            
+            if (indexPath.row == 0) {
+                
+                UITableViewCell * topCell = [tableView dequeueReusableCellWithIdentifier:@"TopCell"];
+                if (!topCell) {
+                    topCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"TopCell"];
+                    [topCell setUserInteractionEnabled:NO];
+                    UIImageView * imageView = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"Comment_bg"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 50, 0, 50)]];
+                    imageView.frame = CGRectMake(10, 0,tableView.width - 20, 10);
+                    [topCell.contentView addSubview:imageView];
+                }
+                return topCell;
+                
+            }else if(indexPath.row == [self tableView:tableView numberOfRowsInSection:indexPath.section] -1){
+                UITableViewCell * bottomCell = [tableView dequeueReusableCellWithIdentifier:@"BottomCell"];
+                if (!bottomCell) {
+                    bottomCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"BottomCell"];
+                    [bottomCell setUserInteractionEnabled:NO];
+                    UIImageView * imageView = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"Comment_bg_2"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 50, 0, 50)]];
+                    imageView.frame = CGRectMake(10, 0,tableView.width - 20, 6);
+                    [bottomCell.contentView addSubview:imageView];
+                }
+                return bottomCell;
+            }
+            
+            HRRecomendCell * cell = [tableView dequeueReusableCellWithIdentifier:@"HRRecomendCell"];
+            if (!cell) {
+                cell = [[HRRecomendCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"HRRecomendCell"];
+                
+            }
+            [cell setDataSrouce:nil];
+            [cell.lineView setHidden:indexPath.row == [self tableView:tableView numberOfRowsInSection:indexPath.section] - 2];
+            return cell;
+        }
             //POI评论
             
             break;

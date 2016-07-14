@@ -12,4 +12,6 @@
 
 + (CGFloat)cellHeithForData:(id)data;
 
+- (void)setDataSource:(id)dataSource;
+
 @end

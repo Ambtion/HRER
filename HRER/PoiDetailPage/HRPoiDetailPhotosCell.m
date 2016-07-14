@@ -12,7 +12,7 @@
 @interface HRPoiDetailPhotosCell()
 
 @property(nonatomic,strong)HRPhotoScrollView * photosView;
-
+@property(nonatomic,strong)UIImageView * maskView;
 @end
 
 @implementation HRPoiDetailPhotosCell
@@ -41,6 +41,14 @@
         make.top.left.equalTo(self).offset(0);
         make.width.equalTo(self);
         make.bottom.equalTo(self).offset(-8);
+    }];
+    
+    self.maskView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"photo_mengban"]];
+    [self.contentView addSubview:self.maskView];
+    
+    [self.maskView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.equalTo(self.photosView);
+        make.size.equalTo(self.photosView);
     }];
 }
 

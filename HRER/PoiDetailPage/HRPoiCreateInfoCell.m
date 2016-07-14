@@ -7,25 +7,36 @@
 //
 
 #import "HRPoiCreateInfoCell.h"
+#import "HRPoiUserInfo.h"
+#import "HRPoiUserInfoBottomView.h"
 
-@interface HRPoiUserInfo : UIView
+@interface HRPoiCreateInfoCell()
 
-@property(nonatomic,strong)UIImageView * porImageView;
-@property(nonatomic,strong)UILabel * userName;
-@property(nonatomic,strong)UIImageView * iconImageView;
-@property(nonatomic,strong)UILabel * recomendLabel;
+@property(nonatomic,strong)HRPoiUserInfo * userInfo;
+@property(nonatomic,strong)UILabel * desLabel;
+@property(nonatomic,strong)HRPoiUserInfoBottomView * bottomView;
 
 @end
 
-@implementation HRPoiUserInfo
-+ (CGFloat)heightForView
+static NSString * str = @"驴肉火烧味道不错，驴肉火烧味道不错，驴肉火烧味道不错，驴肉火烧味道不错，驴肉火烧味道不错，驴肉火烧味道不错，驴肉火烧味道不错，驴肉火烧味道不错";
+
+static NSInteger boundsOffset = 12.f;
+
+@implementation HRPoiCreateInfoCell
+
++ (CGFloat)cellHeithForData:(id)data
 {
-    return 0;
+    CGFloat heigth = [HRPoiUserInfo heightForView];
+    CGSize size = [self sizeWithText:str font:[UIFont systemFontOfSize:15.f] maxSize:CGSizeMake([[UIScreen mainScreen] bounds].size.width - boundsOffset * 2, 10000)];
+    heigth += size.height;
+    heigth += 18.f;
+    heigth += [HRPoiUserInfoBottomView heightForView];
+    return heigth;
 }
 
-- (instancetype)init
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
-    self = [super init];
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         [self initUI];
     }
@@ -34,32 +45,55 @@
 
 - (void)initUI
 {
-    self.porImageView = [[UIImageView alloc] init];
-    [self addSubview:self.porImageView];
+    self.userInfo = [[HRPoiUserInfo alloc] init];
+    [self.contentView addSubview:self.userInfo];
     
-    self.userName = [[UILabel alloc] init];
-    [self addSubview:self.userName];
+    self.desLabel = [[UILabel alloc] init];
+    self.desLabel.textColor = RGB_Color(0x60, 0x60, 0x60);
+    self.desLabel.numberOfLines = 0;
+    self.desLabel.font = [UIFont systemFontOfSize:13.f];
+    [self.contentView addSubview:self.desLabel];
     
-    self.iconImageView = [[UIImageView alloc] init];
-    self.iconImageView.image = [UIImage imageNamed:@"tuijian"];
-    [self addSubview:self.iconImageView];
+    self.bottomView = [[HRPoiUserInfoBottomView alloc] init];
+    [self.contentView addSubview:self.bottomView];
     
-    self.recomendLabel = [[UILabel alloc] init];
-    [self addSubview:self.recomendLabel];
+    [self.userInfo mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self);
+        make.right.equalTo(self);
+        make.top.equalTo(self);
+        make.height.equalTo(@([HRPoiUserInfo heightForView]));
+    }];
+    
+    [self.desLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.userInfo).offset(12.f);
+        make.right.equalTo(self.userInfo).offset(-12.f);
+        make.top.equalTo(self.userInfo.mas_bottom);
+
+    }];
+
+    [self.bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(self);
+        make.top.equalTo(self.desLabel.mas_bottom).offset(18.f);
+        make.height.equalTo(@([HRPoiUserInfoBottomView heightForView]));
+    }];
 }
 
-
-@end
-
-@interface HRPoiCreateInfoCell()
-
-@end
-
-@implementation HRPoiCreateInfoCell
-
-+ (CGFloat)cellHeithForData:(id)data
+- (void)setDataSource:(id)dataSource
 {
-    return 0;
+    [self.userInfo setDtata:nil];
+    self.desLabel.text = str;
+    [self.bottomView setData:nil];
 }
+
++ (CGSize)sizeWithText:(NSString *)text font:(UIFont *)font maxSize:(CGSize)maxSize
+{
+    NSDictionary *attrs = @{NSFontAttributeName : font};
+    return [text boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
+}
+
+
+#pragma mark -
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {}
+- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated{}
 
 @end
