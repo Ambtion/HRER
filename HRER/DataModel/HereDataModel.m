@@ -16,6 +16,12 @@
 - (BOOL)isEqual:(id)object { return [self yy_modelIsEqual:object]; }
 
 
+@implementation HRPotoInfo
+
+YYModelSynthCoderAndHash
+
+@end
+
 @implementation HRUserLoginInfo
 
 YYModelSynthCoderAndHash
@@ -25,5 +31,15 @@ YYModelSynthCoderAndHash
 @implementation HRFriendsInfo
 
 YYModelSynthCoderAndHash
+
+@end
+
+@implementation HRPOISetInfo
+
+YYModelSynthCoderAndHash
+
++ (NSDictionary *)modelContainerPropertyGenericClass {
+    return @{@"photo" : [HRPotoInfo class]};
+}
 
 @end

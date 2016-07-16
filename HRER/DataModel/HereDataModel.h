@@ -9,6 +9,10 @@
 
 #import "YYModel.h"
 
+@interface HRPotoInfo : NSObject<NSCopying,NSCoding>
+//@property(nonatomic,strong)NSString *
+@end
+
 @interface HRUserLoginInfo : NSObject<NSCopying,NSCoding>
 
 @property(nonatomic,strong)NSString * phone;
@@ -19,7 +23,6 @@
 @end
 
 
-
 @interface HRFriendsInfo : NSObject<NSCopying,NSCoding>
 
 @property(nonatomic,strong)NSString * uid;
@@ -28,5 +31,13 @@
 @property(nonatomic,strong)NSString * subName;
 @property(nonatomic,strong)NSString * userInfo;
 @property(nonatomic,assign)NSInteger isFollow;
+
+@end
+
+@interface HRPOISetInfo : NSObject<NSCopying,NSCopying>
+
+@property(nonatomic,strong)NSString * portrait;
+@property(nonatomic,strong)NSString * title;
+@property(nonatomic,strong)NSArray * photos; ///< Array<HRImageInfo>
 
 @end

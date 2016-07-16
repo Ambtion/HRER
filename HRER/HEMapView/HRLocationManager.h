@@ -21,5 +21,6 @@
 
 - (void)startLocaiton;
 
+- (NSInteger)curCityId;
 
 @end

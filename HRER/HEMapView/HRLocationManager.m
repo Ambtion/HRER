@@ -7,9 +7,12 @@
 //
 
 #import "HRLocationManager.h"
-#import <UIKit/UIKit.h>
+#import "NetWorkEntiry.h"
 
 @interface HRLocationManager()<CLLocationManagerDelegate>
+{
+    NSInteger  _curCityID;
+}
 
 @property(nonatomic,strong)CLLocationManager * locationManager;
 @property(nonatomic,assign)BOOL isFirstGEO;
@@ -76,19 +79,39 @@
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations
 {
-
+    
     self.curLocation = [locations lastObject];
     if (self.isFirstGEO) {
+        
+        self.isFirstGEO = NO;
+        
         CLGeocoder *geocoder = [[CLGeocoder alloc] init];
         [geocoder reverseGeocodeLocation:self.curLocation completionHandler:^(NSArray *array, NSError *error) {
             if (array.count > 0) {
-                
-                self.isFirstGEO = NO;
                 self.placeMark = [array objectAtIndex:0];
+                if (self.placeMark) {
+                    [NetWorkEntiry  quaryCityInfoWithCityName:self.placeMark.locality  lat:self.curLocation.coordinate.latitude lng:self.curLocation.coordinate.longitude success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                        if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
+                            NSDictionary * userInfoDic  = [responseObject objectForKey:@"response"];
+                            _curCityID = [[userInfoDic objectForKey:@"city_id"] integerValue];
+                        }else{
+                            self.isFirstGEO = YES;
+                        }
+                    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                        self.isFirstGEO = YES;
+                    }];
+                }
+            }else{
+                self.isFirstGEO = YES;
             }
         }];
     }
     
+}
+
+- (NSInteger)curCityId
+{
+    return _curCityID;
 }
 
 @end

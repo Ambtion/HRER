@@ -47,7 +47,9 @@
     self.navController = [[HRNagationController alloc] initWithRootViewController:mainTab];
     self.window.rootViewController = self.navController;
     [self.window makeKeyAndVisible];
-        
+    
+    [HRLoginManager showLoginView];
+    
     return YES;
 }
 
@@ -69,6 +71,7 @@
     UIImage * hFriend = [UIImage imageNamed:@"friend_select"];
     UIImage * nMy = [UIImage imageNamed:@"me"];
     UIImage * hMy = [UIImage imageNamed:@"me_select"];
+    
     
     return [self getTabWithTitleArray:@[@"主页",@"发现城市",@"",@"朋友",@"我的"]
                    nimagesArray:@[nHome,nFind,nHere,nFriend,nMy]

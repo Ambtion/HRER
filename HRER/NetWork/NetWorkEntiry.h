@@ -60,17 +60,17 @@
  *  https://open.weixin.qq.com/cgi-bin/showdocument?action=dir_list&t=resource/res_list&verify=1&id=open1419317851&token=&lang=zh_CN
  */
 
-+ (void)loginWithWebCatAccess_token:(NSString *)accessToken refresh_token:(NSString *)refreshToken
-                         success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
-                         failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
++ (void)loginWithWebCatAccess_token:(NSString *)accessToken
+                            success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                            failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
 
 /**
  *  绑定手机
  */
 
-+ (void)bindPhoneWithThirdId:(NSString *)thridID
-                    verCode:(NSString *)verCode
++ (void)bindPhoneNumber:(NSString *)photoNumber
+                VerCode:(NSString *)verCode
                      success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                      failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
@@ -115,17 +115,20 @@
 
 
 /**
- *  获取主页POIList或者城市List
- *
- *  @param cityID  城市ID
- *  @param start   起始
- *  @param count   获取数目
+ *  获取城市ID
  */
++ (void)quaryCityInfoWithCityName:(NSString *)cityName lat:(CGFloat)lat lng:(CGFloat)lng
+                          success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                          failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
-+ (void)getPoiListWithUserId:(NSString *)userId
-                      cityID:(NSString *)cityID
-                       start:(NSInteger)start
-                       count:(NSInteger)count
-                     success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
-                     failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+
+/**
+ *  获取附近城市推荐列表
+ */
++ (void)quartCityNearByWithCityId:(NSInteger)cityId
+                              lat:(CGFloat)lat
+                              lng:(CGFloat)lng
+                          success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                          failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+
 @end

@@ -335,9 +335,37 @@
 
 - (void)webCatLogin:(id)sender
 {
-    [self.navigationController  pushViewController:[[HRBindPhoneController alloc] init] animated:YES];
+    
+    
     [HRWebCatLogin sendAuthRequestcallBack:^(BaseResp *resp) {
-        
+         
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        if (![(SendAuthResp *)resp code] ) {
+            [self showTotasViewWithMes:@"登录失败"];
+            return ;
+        }
+        [NetWorkEntiry loginWithWebCatAccess_token:[(SendAuthResp *)resp code] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            
+            if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
+    
+                NSDictionary * userInfoDic  = [responseObject objectForKey:@"response"];
+                HRUserLoginInfo * userInfo = [HRUserLoginInfo yy_modelWithJSON:userInfoDic];
+                if(userInfo){
+                    [[LoginStateManager getInstance] LoginWithUserLoginInfo:userInfo];
+                    [self.navigationController  pushViewController:[[HRBindPhoneController alloc] init] animated:YES];
+                }else{
+                    [self showTotasViewWithMes:[[responseObject objectForKey:@"response"] objectForKey:@"errorText"]];
+                }
+            }else{
+                [self showTotasViewWithMes:[[responseObject objectForKey:@"response"] objectForKey:@"errorText"]];
+                
+            }
+
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+            [self showTotasViewWithMes:@"网络异常,稍后重试"];
+
+        }];
     }];
 }
 

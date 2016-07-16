@@ -150,6 +150,17 @@
     self.timer = nil;
     self.timeCount = 60;
     self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(reduceTime:) userInfo:sender repeats:YES];
+    
+    [NetWorkEntiry sendVerCodeWithPhoneNumber:self.phoneNumber.textField.text success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
+            [self showTotasViewWithMes:@"发送成功"];
+        }else{
+            [self showTotasViewWithMes:@"方式失败"];
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self showTotasViewWithMes:@"网络异常,稍后重试"];
+    }];
+
 }
 
 - (void)reduceTime:(NSTimer *)codeTimer
@@ -166,6 +177,7 @@
         [self.codeButton setTitle:str forState:UIControlStateNormal];
         self.codeButton.userInteractionEnabled = NO;
     }
+
 }
 
 #pragma mark - CommonMethod
@@ -187,6 +199,22 @@
 #pragma action
 - (void)bindPhotoNumber:(id)sender
 {
-    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [NetWorkEntiry bindPhoneNumber:self.phoneNumber.textField.text VerCode:self.phoneCode.textField.text success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
+            [self showTotasViewWithMes:@"绑定成功"];
+            [self.navigationController dismissViewControllerAnimated:YES completion:^{
+                
+            }];
+        }else{
+            [self showTotasViewWithMes:[[responseObject objectForKey:@"response"] objectForKey:@"errorText"]];
+            
+        }
+
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self showTotasViewWithMes:@"网络异常,稍后重试"];
+
+    }];
 }
 @end

@@ -15,13 +15,16 @@
 #import "HRPoiSetsController.h"
 #import "HRPhotoBrowser.h"
 #import "HRPoiDetailController.h"
+#import "NetWorkEntiry.h"
+#import "HRLocationManager.h"
+#import "HereDataModel.h"
 
 @interface HomeViewController()<UITableViewDelegate,UITableViewDataSource,HomeHeadViewDelegate,HRHerePoisSetCellDelegate,HRHerePoiCellDelegate,SDPhotoBrowserDelegate>
 
 @property(nonatomic,strong)RefreshTableView * tableView;
 @property(nonatomic,assign)NSUInteger catergoryIndex;
-@property(nonatomic,strong)NSMutableArray * poiSetsSource;
-@property(nonatomic,strong)NSMutableArray * poiSource;
+@property(nonatomic,strong)NSArray * poiSetsSource;
+@property(nonatomic,strong)NSArray * poiSource;
 
 @end
 
@@ -56,18 +59,56 @@
 - (void)initRefreshView
 {
     
-    //    WS(ws);
+    WS(ws);
     self.tableView.refreshHeader.beginRefreshingBlock = ^(){
         
+        [MBProgressHUD showHUDAddedTo:ws.view animated:YES];
+        //获取附近列表
+        [NetWorkEntiry quartCityNearByWithCityId:[[HRLocationManager sharedInstance] curCityId] lat:[[HRLocationManager sharedInstance] curLocation].coordinate.latitude lng:[[HRLocationManager sharedInstance] curLocation].coordinate.longitude success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+            [MBProgressHUD hideHUDForView:ws.view animated:YES];
+            if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
+                NSArray * array = [responseObject objectForKey:@"response"];
+                ws.poiSetsSource = [ws analysisPoiSetsModelFromArray:array];
+                
+            }else{
+                
+            }
+            
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            [ws.tableView.refreshHeader endRefreshing];
+            [MBProgressHUD hideHUDForView:ws.view animated:YES];
+        }];
+        
+        //我
+        
     };
+    
+    
     
     self.tableView.refreshFooter.beginRefreshingBlock = ^(){
         
     };
     
-    self.tableView.refreshFooter = nil;
-    self.tableView.refreshHeader = nil;
+    
 }
+
+- (NSArray *)analysisPoiSetsModelFromArray:(NSArray *)array
+{
+    if (![array isKindOfClass:[NSArray class]]) {
+        return nil;
+    }
+    
+    NSMutableArray * mArray = [NSMutableArray arrayWithCapacity:0];
+    for (NSDictionary * dic  in array) {
+        HRPOISetInfo * model = [HRPOISetInfo yy_modelWithJSON:dic];
+        if (model) {
+            [mArray addObject:model];
+        }
+    }
+    return mArray;
+}
+
 
 #pragma mark - TableViewDelegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -75,7 +116,6 @@
     // HeadView
     // PoiSets
     // Poi
-    // banner
     
     return 4;
 }

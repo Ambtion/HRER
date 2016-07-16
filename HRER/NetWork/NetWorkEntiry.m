@@ -77,26 +77,27 @@
     
 }
 
-+ (void)loginWithWebCatAccess_token:(NSString *)accessToken refresh_token:(NSString *)refreshToken
++ (void)loginWithWebCatAccess_token:(NSString *)accessToken
                          success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                          failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
     
-    NSDictionary * dic = @{@"source":@"weChat"};
+    NSDictionary * dic = @{@"code":accessToken};
     //等待协议
-    NSString * urlStr = [NSString stringWithFormat:@"%@/loginByThirdApp",KNETBASEURL];
+    NSString * urlStr = [NSString stringWithFormat:@"%@/loginWeixin",KNETBASEURL];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager POST:urlStr parameters:dic success:success failure:failure];
 }
 
-+ (void)bindPhoneWithThirdId:(NSString *)thridID
-                 photoNumber:(NSString *)photoNumber
-                     verCode:(NSString *)verCode
-                     success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
-                     failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
++ (void)bindPhoneNumber:(NSString *)photoNumber
+                VerCode:(NSString *)verCode
+                success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
-    NSDictionary * dic = @{@"source":@"weChat",
-                           @"telephone":photoNumber};
+    
+    NSMutableDictionary * dic = [self commonComonPar];
+    [dic setValue:photoNumber forKey:@"phone"];
+    [dic setValue:verCode forKey:@"verificationCode"];
     //等待协议
     NSString * urlStr = [NSString stringWithFormat:@"%@/bindPhone",KNETBASEURL];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -185,7 +186,47 @@
     dic[@"id"] = userId;
     dic[@"isFollow"] = @(isFav);
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager POST:urlStr parameters:dic success:success failure:failure];
+    [manager GET:urlStr parameters:dic success:success failure:failure];
+}
+
+/*
+ POI列表
+ ===================================================================================================================
+ */
+
+/**
+ *  获取城市ID
+ */
++ (void)quaryCityInfoWithCityName:(NSString *)cityName lat:(CGFloat)lat lng:(CGFloat)lng
+                          success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                          failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+{
+    NSMutableDictionary * dic = [self commonComonPar];
+    [dic setValue:cityName forKey:@"city_name"];
+    [dic setValue:@(lat) forKey:@"lat"];
+    [dic setValue:@(lng) forKey:@"lng"];
+    NSString * urlStr = [NSString stringWithFormat:@"%@/get_city_id",KNETBASEURL];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:urlStr parameters:dic success:success failure:failure];
+
+}
+
+/**
+ *  获取附近城市推荐列表
+ */
++ (void)quartCityNearByWithCityId:(NSInteger)cityId
+                              lat:(CGFloat)lat
+                              lng:(CGFloat)lng
+                          success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                          failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+{
+    NSMutableDictionary * dic = [self commonComonPar];
+    [dic setValue:@(cityId) forKey:@"city_id"];
+    [dic setValue:@(lat) forKey:@"lat"];
+    [dic setValue:@(lng) forKey:@"lng"];
+    NSString * urlStr = [NSString stringWithFormat:@"%@/near_poi_search",KNETBASEURL];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:urlStr parameters:dic success:success failure:failure];
 }
 
 #pragma mark - Common
