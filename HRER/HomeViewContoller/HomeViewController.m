@@ -64,7 +64,7 @@
         
         [MBProgressHUD showHUDAddedTo:ws.view animated:YES];
         //获取附近列表
-        [NetWorkEntiry quartCityNearByWithCityId:[[HRLocationManager sharedInstance] curCityId] lat:[[HRLocationManager sharedInstance] curLocation].coordinate.latitude lng:[[HRLocationManager sharedInstance] curLocation].coordinate.longitude success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [NetWorkEntiry quartCityNearByWithCityId:[[HRLocationManager sharedInstance] curCityId] lat:[[HRLocationManager sharedInstance] curLocation].coordinate.latitude lng:[[HRLocationManager sharedInstance] curLocation].coordinate.longitude catergory:self.catergoryIndex + 1 success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
             [MBProgressHUD hideHUDForView:ws.view animated:YES];
             if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {

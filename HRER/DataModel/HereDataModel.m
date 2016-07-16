@@ -39,7 +39,23 @@ YYModelSynthCoderAndHash
 YYModelSynthCoderAndHash
 
 + (NSDictionary *)modelContainerPropertyGenericClass {
-    return @{@"photo" : [HRPotoInfo class]};
+    return @{@"photos" : [HRPotoInfo class]};
+}
+
+@end
+
+@implementation HRCatergpryInfo
+
+YYModelSynthCoderAndHash
+
+@end
+
+@implementation HRPOIInfo
+
+YYModelSynthCoderAndHash
+
++ (NSDictionary *)modelContainerPropertyGenericClass {
+    return @{@"photos" : [HRPotoInfo class]};
 }
 
 @end

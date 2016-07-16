@@ -209,7 +209,6 @@
             }];
         }else{
             [self showTotasViewWithMes:[[responseObject objectForKey:@"response"] objectForKey:@"errorText"]];
-            
         }
 
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

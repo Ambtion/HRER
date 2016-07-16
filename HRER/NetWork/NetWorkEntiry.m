@@ -212,11 +212,29 @@
 }
 
 /**
+ *  获取城市各个分类的count
+ */
+
++ (void)quaryCityTypeCount:(NSInteger)cityId
+                   success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                   failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+{
+    NSMutableDictionary * dic = [self commonComonPar];
+    [dic setValue:@(cityId) forKey:@"city_id"];
+    NSString * urlStr = [NSString stringWithFormat:@"%@/poi_summary",KNETBASEURL];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:urlStr parameters:dic success:success failure:failure];
+}
+
+
+
+/**
  *  获取附近城市推荐列表
  */
 + (void)quartCityNearByWithCityId:(NSInteger)cityId
                               lat:(CGFloat)lat
                               lng:(CGFloat)lng
+                        catergory:(NSInteger)catergory
                           success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                           failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
@@ -224,7 +242,93 @@
     [dic setValue:@(cityId) forKey:@"city_id"];
     [dic setValue:@(lat) forKey:@"lat"];
     [dic setValue:@(lng) forKey:@"lng"];
+    [dic setValue:@(catergory) forKey:@"type"];
     NSString * urlStr = [NSString stringWithFormat:@"%@/near_poi_search",KNETBASEURL];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:urlStr parameters:dic success:success failure:failure];
+}
+
+
+/**
+ *  获取个人和朋友创建的POI | 获取个人和朋友想去的POI
+ */
++ (void)quaryFreindsCretePoiListWithCityId:(NSInteger)cityId
+                                        lat:(CGFloat)lat
+                                        lng:(CGFloat)lng
+                                  catergory:(NSInteger)catergory
+                                    success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                                    failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+{
+    NSMutableDictionary * dic = [self commonComonPar];
+    [dic setValue:@(cityId) forKey:@"city_id"];
+    [dic setValue:@(lat) forKey:@"lat"];
+    [dic setValue:@(lng) forKey:@"lng"];
+    [dic setValue:@(catergory) forKey:@"type"];
+    NSString * urlStr = [NSString stringWithFormat:@"%@/single_poi",KNETBASEURL];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:urlStr parameters:dic success:success failure:failure];
+
+}
+
+/**
+ *  获取个人和朋友创建的POI集合
+ */
+
++ (void)quaryFreindsCretePoiSetListWithCityId:(NSInteger)cityId
+                                          lat:(CGFloat)lat
+                                          lng:(CGFloat)lng
+                                    catergory:(NSInteger)catergory
+                                      success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                                      failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+{
+    NSMutableDictionary * dic = [self commonComonPar];
+    [dic setValue:@(cityId) forKey:@"city_id"];
+    [dic setValue:@(lat) forKey:@"lat"];
+    [dic setValue:@(lng) forKey:@"lng"];
+    [dic setValue:@(catergory) forKey:@"type"];
+    NSString * urlStr = [NSString stringWithFormat:@"%@/poi_set",KNETBASEURL];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:urlStr parameters:dic success:success failure:failure];
+}
+
+
+/**
+ *  获取编辑创建的POI集合
+ */
++ (void)quaryEditorCretePoiSetListWithCityId:(NSInteger)cityId
+                                         lat:(CGFloat)lat
+                                         lng:(CGFloat)lng
+                                   catergory:(NSInteger)catergory
+                                     success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                                     failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+{
+    NSMutableDictionary * dic = [self commonComonPar];
+    [dic setValue:@(cityId) forKey:@"city_id"];
+    [dic setValue:@(lat) forKey:@"lat"];
+    [dic setValue:@(lng) forKey:@"lng"];
+    [dic setValue:@(catergory) forKey:@"type"];
+    NSString * urlStr = [NSString stringWithFormat:@"%@/editor_sets",KNETBASEURL];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:urlStr parameters:dic success:success failure:failure];
+
+}
+
+/**
+ *  获取边距创建的POI
+ */
++ (void)quaryEditCretePoiListWithCityId:(NSInteger)cityId
+                                    lat:(CGFloat)lat
+                                    lng:(CGFloat)lng
+                              catergory:(NSInteger)catergory
+                                success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                                failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+{
+    NSMutableDictionary * dic = [self commonComonPar];
+    [dic setValue:@(cityId) forKey:@"city_id"];
+    [dic setValue:@(lat) forKey:@"lat"];
+    [dic setValue:@(lng) forKey:@"lng"];
+    [dic setValue:@(catergory) forKey:@"type"];
+    NSString * urlStr = [NSString stringWithFormat:@"%@/editor_single",KNETBASEURL];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager GET:urlStr parameters:dic success:success failure:failure];
 }

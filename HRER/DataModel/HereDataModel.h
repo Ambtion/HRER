@@ -10,7 +10,9 @@
 #import "YYModel.h"
 
 @interface HRPotoInfo : NSObject<NSCopying,NSCoding>
-//@property(nonatomic,strong)NSString *
+@property(nonatomic,strong)NSString * url;
+@property(nonatomic,assign)CGFloat width;
+@property(nonatomic,assign)CGFloat height;
 @end
 
 @interface HRUserLoginInfo : NSObject<NSCopying,NSCoding>
@@ -34,10 +36,40 @@
 
 @end
 
+@interface HRCatergpryInfo : NSObject
+@property(nonatomic,assign)NSInteger food;
+@property(nonatomic,assign)NSInteger tour;
+@property(nonatomic,assign)NSInteger shop;
+@property(nonatomic,assign)NSInteger hotel;
+@end
+
 @interface HRPOISetInfo : NSObject<NSCopying,NSCopying>
+
+@property(nonatomic,strong)NSString * creatorId;
+@property(nonatomic,strong)NSString * creatorName;
+@property(nonatomic,assign)NSInteger type;
 
 @property(nonatomic,strong)NSString * portrait;
 @property(nonatomic,strong)NSString * title;
 @property(nonatomic,strong)NSArray * photos; ///< Array<HRImageInfo>
 
 @end
+
+
+@interface HRPOIInfo : NSObject<NSCopying,NSCopying>
+@property(nonatomic,assign)NSInteger ctime;
+@property(nonatomic,strong)NSString * poi_id;
+@property(nonatomic,strong)NSString * portrait;
+@property(nonatomic,strong)NSString * title;
+@property(nonatomic,strong)NSString * intro;
+
+@property(nonatomic,assign)CGFloat lat;
+@property(nonatomic,assign)CGGlyph lng;
+
+@property(nonatomic,strong)NSString * city_name;
+@property(nonatomic,assign)NSInteger city_id;
+
+@property(nonatomic,strong)NSArray * photos; ///< Array<HRImageInfo>
+
+@end
+
