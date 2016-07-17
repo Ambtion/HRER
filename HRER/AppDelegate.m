@@ -21,7 +21,7 @@
 #import "HRAddressBookManager.h"
 #import "MobClick.h"
 #import "LoginStateManager.h"
-#import "NetWorkEntiry.h"
+#import "NetWorkEntity.h"
 
 //Test
 #import "HRLoginManager.h"
@@ -138,7 +138,7 @@
         
         if (resultList.count && [[LoginStateManager getInstance] userLoginInfo]) {
             //用户登录方法
-            [NetWorkEntiry sendPhotoNumberWithPhotoNumber:resultList success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            [NetWorkEntity sendPhotoNumberWithPhotoNumber:resultList success:^(AFHTTPRequestOperation *operation, id responseObject) {
                 
             } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                 

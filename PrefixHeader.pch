@@ -18,7 +18,7 @@
 #import "UIViewController+Method.h"
 #import "NSDictionary+StrDic.h"
 #import "Masonry.h"
-#import "NetWorkEntiry.h"
+#import "NetWorkEntity.h"
 #import "HereDataModel.h"
 #import "LoginStateManager.h"
 #import "HRLoginManager.h"

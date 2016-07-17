@@ -118,8 +118,7 @@
     if (index < self.itemArrays.count && index >= 0) {
         HRCatergoryItemView * itemView = (HRCatergoryItemView *)self.itemArrays[index];
         itemView.label.text = [NSString stringWithFormat:@"%ld",(long)count];
-    }
-    
+    }    
 }
 
 @end

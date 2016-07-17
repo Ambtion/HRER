@@ -7,7 +7,7 @@
 //
 
 #import "HRLocationManager.h"
-#import "NetWorkEntiry.h"
+#import "NetWorkEntity.h"
 
 @interface HRLocationManager()<CLLocationManagerDelegate>
 {
@@ -90,7 +90,7 @@
             if (array.count > 0) {
                 self.placeMark = [array objectAtIndex:0];
                 if (self.placeMark) {
-                    [NetWorkEntiry  quaryCityInfoWithCityName:self.placeMark.locality  lat:self.curLocation.coordinate.latitude lng:self.curLocation.coordinate.longitude success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                    [NetWorkEntity  quaryCityInfoWithCityName:self.placeMark.locality  lat:self.curLocation.coordinate.latitude lng:self.curLocation.coordinate.longitude success:^(AFHTTPRequestOperation *operation, id responseObject) {
                         if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
                             NSDictionary * userInfoDic  = [responseObject objectForKey:@"response"];
                             _curCityID = [[userInfoDic objectForKey:@"city_id"] integerValue];

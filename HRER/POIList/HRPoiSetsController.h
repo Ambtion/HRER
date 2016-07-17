@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ModelDefine.h"
 
 @interface HRPoiSetsController : UIViewController
 
-- (instancetype)initWithDataSource:(NSArray *)dataSource;
+- (instancetype)initWithPoiSetCreteType:(KPoiSetsCreteType)creteType
+                                creteId:(NSString *)userID
+                          creteUserName:(NSString *)creteUserName
+                               category:(NSInteger)categoryType;
 
 @end

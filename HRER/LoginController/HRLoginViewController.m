@@ -306,7 +306,7 @@
     
 
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [NetWorkEntiry loginWithUserName:self.userName.text password:self.password.text success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [NetWorkEntity loginWithUserName:self.userName.text password:self.password.text success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
         if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
             
@@ -344,7 +344,7 @@
             [self showTotasViewWithMes:@"登录失败"];
             return ;
         }
-        [NetWorkEntiry loginWithWebCatAccess_token:[(SendAuthResp *)resp code] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [NetWorkEntity loginWithWebCatAccess_token:[(SendAuthResp *)resp code] success:^(AFHTTPRequestOperation *operation, id responseObject) {
             
             if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
     

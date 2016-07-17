@@ -13,12 +13,12 @@
 #import "HRPinAnnomationView.h"
 #import "HRPoiCardView.h"
 #import "HRAnomation.h"
-
+#import "HereDataModel.h"
 
 #define kPoiMapMAOLEVEL        (0.1f)
 
 
-@interface HRPoiSetsMapView()<MKMapViewDelegate,UIScrollViewDelegate>
+@interface HRPoiSetsMapView()<MKMapViewDelegate,UIScrollViewDelegate,HRPoiCardViewdelegate>
 
 @property(nonatomic,strong)MKMapView * mapView;
 @property(nonatomic,strong)UIScrollView * scrollView;
@@ -108,7 +108,6 @@
         }
         annotationView.anomationData = senderAnnotation;
         annotationView.opaque = YES;
-        annotationView.image = [UIImage imageNamed:@"map_food"];
         annotationView.draggable = YES;
         return annotationView;
     }
@@ -144,7 +143,6 @@
 #pragma mark - Data |UI
 - (void)refreshUIWithData:(NSArray *)array
 {
-    array = @[@"1",@"3",@"3",@"4",@"5"];
     self.dataArray = array;
     [self refreshMapPinViews];
     [self refreshScrollViews];
@@ -158,6 +156,8 @@
     for (int i = 0; i < self.dataArray.count; i++) {
         HRPoiCardView * poiCardView = [[HRPoiCardView alloc] initWithFrame:CGRectMake(offset + self.width * i, 0, self.scrollView.width - offset * 2, self.scrollView.height)];
         poiCardView.tag = i;
+        poiCardView.delegate = self;
+        [poiCardView setDataSource:self.dataArray[i]];
         [self.scrollView addSubview:poiCardView];
     }
     [self.scrollView setContentSize:CGSizeMake(self.dataArray.count * self.width, 0)];
@@ -170,10 +170,12 @@
     NSMutableArray * array  = [NSMutableArray arrayWithCapacity:0];
     
     for (int i = 0; i < self.dataArray.count; i++) {
+        HRPOIInfo * poiInfo = self.dataArray[i];
         
-        coord = CLLocationCoordinate2DMake(39.904209 + 0.1 * i , 116.407394);
-        HRAnomation * anomation =  [[HRAnomation alloc] initWithCoordinates:coord title:@"推荐了西单" subTitle:@"东西不错"];
+        coord = CLLocationCoordinate2DMake(poiInfo.lat , poiInfo.lng);
+        HRAnomation * anomation =  [[HRAnomation alloc] initWithCoordinates:coord title:poiInfo.title subTitle:poiInfo.intro];
         anomation.index = i;
+        anomation.extData = poiInfo;
         [array addObject:anomation];
     }
     self.anotionDataArray = array;
@@ -226,5 +228,20 @@
 {
     [self setMapViewSeleteIndexAnomaiton:index];
 }
+
+- (void)poiViewDidClickUserPortrait:(HRPoiCardView *)poiSetsview
+{
+    if ([_delegate respondsToSelector:@selector(poiSetsMapViewdidClickPortView:withDataSource:)]) {
+        [_delegate poiSetsMapViewdidClickPortView:self withDataSource:self.dataArray[poiSetsview.tag]];
+    }
+}
+
+- (void)poiViewDidClick:(HRPoiCardView *)poiSetsview
+{
+    if ([_delegate respondsToSelector:@selector(poiSetsMapViewdidClickDetailView:withDataSource:)]) {
+        [_delegate poiSetsMapViewdidClickDetailView:self withDataSource:self.dataArray[poiSetsview.tag]];
+    }
+}
+
 
 @end

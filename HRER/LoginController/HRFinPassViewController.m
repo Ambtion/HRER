@@ -213,7 +213,7 @@
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 
-    [NetWorkEntiry resetPassNumber:self.phoneNumber.textField.text  verCode:self.phoneCode.textField.text password:self.passWord.textField.text success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [NetWorkEntity resetPassNumber:self.phoneNumber.textField.text  verCode:self.phoneCode.textField.text password:self.passWord.textField.text success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
         if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
             [self showTotasViewWithMes:@"重置成功"];

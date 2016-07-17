@@ -255,7 +255,7 @@
     self.timeCount = 60;
     self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(reduceTime:) userInfo:sender repeats:YES];
     
-    [NetWorkEntiry sendVerCodeWithPhoneNumber:self.phoneNumber.textField.text success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [NetWorkEntity sendVerCodeWithPhoneNumber:self.phoneNumber.textField.text success:^(AFHTTPRequestOperation *operation, id responseObject) {
         if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
             [self showTotasViewWithMes:@"发送成功"];
         }else{
@@ -297,7 +297,7 @@
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 
-    [NetWorkEntiry regisWithPhotoNumber:self.phoneNumber.textField.text password:self.passWord.textField.text nickName:self.nick.textField.text verCode:self.phoneCode.textField.text success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [NetWorkEntity regisWithPhotoNumber:self.phoneNumber.textField.text password:self.passWord.textField.text nickName:self.nick.textField.text verCode:self.phoneCode.textField.text success:^(AFHTTPRequestOperation *operation, id responseObject) {
   
         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
         if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {

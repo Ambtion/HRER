@@ -27,6 +27,7 @@
 		B85520101D098F2C00C56FC5 /* HomeHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = B855200F1D098F2C00C56FC5 /* HomeHeadView.m */; };
 		B85520151D098F5700C56FC5 /* HereViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B85520141D098F5700C56FC5 /* HereViewController.m */; };
 		B85520191D098FB900C56FC5 /* HRCatergoryItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = B85520181D098FB900C56FC5 /* HRCatergoryItemView.m */; };
+		B85629411D3BBBF200E5BD4C /* HRUserHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = B85629401D3BBBF200E5BD4C /* HRUserHomeController.m */; };
 		B8697D6B1CFC395E00F1BC4B /* HRLoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B8697D6A1CFC395E00F1BC4B /* HRLoginManager.m */; };
 		B877334E1D33CBE000CC43CD /* SearchInPutView.m in Sources */ = {isa = PBXBuildFile; fileRef = B877334D1D33CBE000CC43CD /* SearchInPutView.m */; };
 		B88F10611CF5D005007C930F /* HRLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B88F10601CF5D005007C930F /* HRLoginViewController.m */; };
@@ -75,7 +76,7 @@
 		B8DF93341CFB2AB1007C4DF9 /* ProjectGuideView.m in Sources */ = {isa = PBXBuildFile; fileRef = B8DF93151CFB2AB1007C4DF9 /* ProjectGuideView.m */; };
 		B8DF93381CFB2AD8007C4DF9 /* SMPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = B8DF93371CFB2AD8007C4DF9 /* SMPageControl.m */; };
 		B8DF933B1CFB2BF1007C4DF9 /* LoginStateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B8DF933A1CFB2BF1007C4DF9 /* LoginStateManager.m */; };
-		B8F748B81D07C84B00A2EDCC /* NetWorkEntiry.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F748B71D07C84B00A2EDCC /* NetWorkEntiry.m */; };
+		B8F748B81D07C84B00A2EDCC /* NetWorkEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F748B71D07C84B00A2EDCC /* NetWorkEntity.m */; };
 		E10DF7741CF6C1A400D5E146 /* HRNavigationTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E10DF7731CF6C1A400D5E146 /* HRNavigationTool.m */; };
 		E10DF7881CF6DAB600D5E146 /* MainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = E10DF7871CF6DAB600D5E146 /* MainTabBarController.m */; };
 		E10DF78C1CF6DB6F00D5E146 /* btn_card@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E10DF7891CF6DB6F00D5E146 /* btn_card@2x.png */; };
@@ -156,6 +157,9 @@
 		B85520141D098F5700C56FC5 /* HereViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HereViewController.m; sourceTree = "<group>"; };
 		B85520171D098FB900C56FC5 /* HRCatergoryItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRCatergoryItemView.h; sourceTree = "<group>"; };
 		B85520181D098FB900C56FC5 /* HRCatergoryItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRCatergoryItemView.m; sourceTree = "<group>"; };
+		B856293F1D3BBBF200E5BD4C /* HRUserHomeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRUserHomeController.h; sourceTree = "<group>"; };
+		B85629401D3BBBF200E5BD4C /* HRUserHomeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRUserHomeController.m; sourceTree = "<group>"; };
+		B85629421D3BC67400E5BD4C /* ModelDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelDefine.h; sourceTree = "<group>"; };
 		B8697D691CFC395E00F1BC4B /* HRLoginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRLoginManager.h; sourceTree = "<group>"; };
 		B8697D6A1CFC395E00F1BC4B /* HRLoginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRLoginManager.m; sourceTree = "<group>"; };
 		B877334C1D33CBE000CC43CD /* SearchInPutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchInPutView.h; sourceTree = "<group>"; };
@@ -240,8 +244,8 @@
 		B8DF93371CFB2AD8007C4DF9 /* SMPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMPageControl.m; sourceTree = "<group>"; };
 		B8DF93391CFB2BF1007C4DF9 /* LoginStateManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginStateManager.h; sourceTree = "<group>"; };
 		B8DF933A1CFB2BF1007C4DF9 /* LoginStateManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginStateManager.m; sourceTree = "<group>"; };
-		B8F748B61D07C84B00A2EDCC /* NetWorkEntiry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWorkEntiry.h; sourceTree = "<group>"; };
-		B8F748B71D07C84B00A2EDCC /* NetWorkEntiry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWorkEntiry.m; sourceTree = "<group>"; };
+		B8F748B61D07C84B00A2EDCC /* NetWorkEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWorkEntity.h; sourceTree = "<group>"; };
+		B8F748B71D07C84B00A2EDCC /* NetWorkEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWorkEntity.m; sourceTree = "<group>"; };
 		E10DF7721CF6C1A400D5E146 /* HRNavigationTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRNavigationTool.h; sourceTree = "<group>"; };
 		E10DF7731CF6C1A400D5E146 /* HRNavigationTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRNavigationTool.m; sourceTree = "<group>"; };
 		E10DF7861CF6DAB600D5E146 /* MainTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTabBarController.h; sourceTree = "<group>"; };
@@ -404,6 +408,15 @@
 				E1A815491D0D483B005E4443 /* HRCatergoryScrollView.m */,
 			);
 			path = HRScrollItemView;
+			sourceTree = "<group>";
+		};
+		B856293E1D3BBBDE00E5BD4C /* HRUserHome */ = {
+			isa = PBXGroup;
+			children = (
+				B856293F1D3BBBF200E5BD4C /* HRUserHomeController.h */,
+				B85629401D3BBBF200E5BD4C /* HRUserHomeController.m */,
+			);
+			path = HRUserHome;
 			sourceTree = "<group>";
 		};
 		B88F105E1CF5CDF6007C930F /* LoginController */ = {
@@ -635,8 +648,8 @@
 		E1206FD71D066C7900E3C9D4 /* NetWork */ = {
 			isa = PBXGroup;
 			children = (
-				B8F748B61D07C84B00A2EDCC /* NetWorkEntiry.h */,
-				B8F748B71D07C84B00A2EDCC /* NetWorkEntiry.m */,
+				B8F748B61D07C84B00A2EDCC /* NetWorkEntity.h */,
+				B8F748B71D07C84B00A2EDCC /* NetWorkEntity.m */,
 			);
 			path = NetWork;
 			sourceTree = "<group>";
@@ -668,6 +681,7 @@
 		E14BD48F1CEEF53F00C66E14 /* HRER */ = {
 			isa = PBXGroup;
 			children = (
+				B856293E1D3BBBDE00E5BD4C /* HRUserHome */,
 				B816B10D1D3671A800318662 /* PoiDetailPage */,
 				B80539241D23B40300C8EF06 /* HRImageScroll */,
 				B8ACA9181D105F7800D58232 /* POIList */,
@@ -770,6 +784,7 @@
 			children = (
 				E1E3AB601CFBEE6600DD5608 /* HereDataModel.h */,
 				E1E3AB611CFBEE6600DD5608 /* HereDataModel.m */,
+				B85629421D3BC67400E5BD4C /* ModelDefine.h */,
 			);
 			path = DataModel;
 			sourceTree = "<group>";
@@ -969,8 +984,9 @@
 				B816B1191D367AA000318662 /* HRPoiLocInfoCell.m in Sources */,
 				B845AC8B1D2D3C6900D26A2A /* HRInPutView.m in Sources */,
 				E1C303921CF442C4001C016B /* HRWeCatManager.m in Sources */,
+				B85629411D3BBBF200E5BD4C /* HRUserHomeController.m in Sources */,
 				B8DF933B1CFB2BF1007C4DF9 /* LoginStateManager.m in Sources */,
-				B8F748B81D07C84B00A2EDCC /* NetWorkEntiry.m in Sources */,
+				B8F748B81D07C84B00A2EDCC /* NetWorkEntity.m in Sources */,
 				E14BD4C51CEEFC0700C66E14 /* HRLocationManager.m in Sources */,
 				B8954EB11CFC7E30006A706A /* HRRegisterDealViewController.m in Sources */,
 				B89663F11CF32F7700B2A6CA /* UIViewController+Method.m in Sources */,

@@ -8,6 +8,7 @@
 
 
 #import "YYModel.h"
+#import "ModelDefine.h"
 
 @interface HRPotoInfo : NSObject<NSCopying,NSCoding>
 @property(nonatomic,strong)NSString * url;
@@ -36,7 +37,7 @@
 
 @end
 
-@interface HRCatergpryInfo : NSObject
+@interface HRCatergoryInfo : NSObject
 @property(nonatomic,assign)NSInteger food;
 @property(nonatomic,assign)NSInteger tour;
 @property(nonatomic,assign)NSInteger shop;
@@ -57,9 +58,15 @@
 
 
 @interface HRPOIInfo : NSObject<NSCopying,NSCopying>
+
 @property(nonatomic,assign)NSInteger ctime;
-@property(nonatomic,strong)NSString * poi_id;
+
+@property(nonatomic,strong)NSString * creator_id;
+@property(nonatomic,strong)NSString * creator_name;
 @property(nonatomic,strong)NSString * portrait;
+
+@property(nonatomic,strong)NSString * poi_id;
+@property(nonatomic,assign)NSInteger type;
 @property(nonatomic,strong)NSString * title;
 @property(nonatomic,strong)NSString * intro;
 

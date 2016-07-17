@@ -10,4 +10,8 @@
 
 @interface HRUserHomeController : UIViewController
 
+@property(nonatomic,assign)BOOL isNeedRefresh;
+
+- (instancetype)initWithUserID:(NSString *)userId;
+
 @end

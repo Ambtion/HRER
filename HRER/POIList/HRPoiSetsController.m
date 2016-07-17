@@ -9,22 +9,35 @@
 #import "HRPoiSetsController.h"
 #import "HRPoiSetsMapView.h"
 #import "HRPoiSetsListView.h"
+#import "HRUserHomeController.h"
+#import "HRPoiDetailController.h"
 
 @interface HRPoiSetsController()<HRPoiSetsMapViewDelegate,HRPoiSetsListViewDelegate>
 
 @property(nonatomic,strong)HRPoiSetsMapView * poisetsMapView;
 @property(nonatomic,strong)HRPoiSetsListView * poisetsListView;
-@property(nonatomic,strong)NSArray * dataSource;
+
+@property(nonatomic,assign)KPoiSetsCreteType creteType;
+@property(nonatomic,assign)NSInteger categoryType;
+@property(nonatomic,strong)NSString * userId;
+@property(nonatomic,strong)NSString * userName;
 
 @end
 
 @implementation HRPoiSetsController
 
-- (instancetype)initWithDataSource:(NSArray *)dataSource
+
+- (instancetype)initWithPoiSetCreteType:(KPoiSetsCreteType)creteType
+                                creteId:(NSString *)userID
+                          creteUserName:(NSString *)creteUserName
+                               category:(NSInteger)categoryType
 {
     self = [super init];
     if (self) {
-        self.dataSource = dataSource;
+        self.userId = userID;
+        self.userName = creteUserName;
+        self.creteType = creteType;
+        self.categoryType = categoryType;
     }
     return self;
 }
@@ -52,8 +65,8 @@
 
 - (void)initUI
 {
-    [self initPoiListView];
     [self initMapView];
+    [self initPoiListView];
     
 }
 
@@ -84,6 +97,12 @@
 
 - (void)switchView
 {
+    if (self.poisetsListView.dataSource.count == 0) {
+        return;
+    }
+    
+    [self.poisetsMapView refreshUIWithData:self.poisetsListView.dataSource];
+    
     CATransition *animation = [CATransition animation];
     animation.delegate = self;
     animation.duration = 0.3;
@@ -102,10 +121,10 @@
 #pragma mark - PoiListView
 - (void)initPoiListView
 {
-    self.poisetsListView = [[HRPoiSetsListView alloc] initWithFrame:self.view.bounds];
+    self.poisetsListView = [[HRPoiSetsListView alloc] initWithFrame:self.view.bounds PoiSetCreteType:self.creteType creteId:self.userId creteUserName:self.userName category:self.categoryType];
     self.poisetsListView.delegate = self;
+    [self.poisetsListView.tableView.refreshHeader beginRefreshing];
     [self.view addSubview:self.poisetsListView];
-    [self.poisetsListView refreshUIWithData:nil];
 }
 
 - (void)poiSetsListViewdidClickBackButton:(HRPoiSetsListView *)view
@@ -116,5 +135,34 @@
 - (void)poiSetsListViewdidClickListButton:(HRPoiSetsListView *)view
 {
     [self switchView];
+}
+
+- (void)poiSetsMapViewdidClickDetailView:(HRPoiSetsMapView *)view withDataSource:(HRPOIInfo *)poiInfo
+{
+    [self.myNavController pushViewController:[[HRPoiDetailController alloc] initWithPoiId:poiInfo.poi_id] animated:YES];
+
+}
+
+- (void)poiSetsListViewdidClickDetailView:(HRPoiSetsListView *)view withDataSource:(HRPOIInfo *)poiInfo
+{
+    [self.myNavController pushViewController:[[HRPoiDetailController alloc] initWithPoiId:poiInfo.poi_id] animated:YES];
+}
+
+-(void)poiSetsMapViewdidClickPortView:(HRPoiSetsMapView *)view withDataSource:(HRPOIInfo *)poiInfo
+{
+    if (self.creteType != KPoiSetsCreteUser) {
+        return;
+    }
+    HRUserHomeController * userHomeController = [[HRUserHomeController alloc] initWithUserID:poiInfo.creator_id];
+    [self.myNavController pushViewController:userHomeController animated:YES];
+
+}
+- (void)poiSetsListViewdidClickPortView:(HRPoiSetsListView *)view withDataSource:(HRPOIInfo *)poiInfo
+{
+    if (self.creteType != KPoiSetsCreteUser) {
+        return;
+    }
+    HRUserHomeController * userHomeController = [[HRUserHomeController alloc] initWithUserID:poiInfo.creator_id];
+    [self.myNavController pushViewController:userHomeController animated:YES];
 }
 @end

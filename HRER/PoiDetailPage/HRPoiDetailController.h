@@ -10,5 +10,5 @@
 
 @interface HRPoiDetailController : UIViewController
 
-
+- (instancetype)initWithPoiId:(NSString *)poiId;
 @end

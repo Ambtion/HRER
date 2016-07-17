@@ -19,12 +19,18 @@
 @property(nonatomic,strong)UILabel * titleLabel;
 
 @property(nonatomic,strong)UITableView * tableView;
-
+@property(nonatomic,strong)NSString * poiId;
 @end
 
 @implementation HRPoiDetailController
 
-
+- (instancetype)initWithPoiId:(NSString *)poiId
+{
+    if (self = [super init]) {
+        self.poiId = poiId;
+    }
+    return self;
+}
 #pragma mark - ViewLife
 - (void)viewDidLoad
 {

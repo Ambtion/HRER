@@ -105,7 +105,7 @@
     
     WS(weakSelf);
     
-    [NetWorkEntiry quaryFriendsListWithFillter:self.inputView.textFiled.text  success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [NetWorkEntity quaryFriendsListWithFillter:self.inputView.textFiled.text  success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
         if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
             NSArray * list = [[responseObject objectForKey:@"response"] objectForKey:@"dataList"];
@@ -284,7 +284,7 @@
     
     WS(weakSelf);
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [NetWorkEntiry favFriends:cell.dataModel.uid isFav:tofavState success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [NetWorkEntity favFriends:cell.dataModel.uid isFav:tofavState success:^(AFHTTPRequestOperation *operation, id responseObject) {
         if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
             if(tofavState){
                 [self showTotasViewWithMes:@"关注成功"];

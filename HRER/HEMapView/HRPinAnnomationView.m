@@ -7,6 +7,8 @@
 //
 
 #import "HRPinAnnomationView.h"
+#import "HereDataModel.h"
+
 @interface HRPinAnnomationView()
 @end
 
@@ -23,11 +25,62 @@
 
 - (void)setAnomationData:(HRAnomation *)anomationData
 {
+    _anomationData = anomationData;
+    if ([self isSelected]) {
+        self.image = [self seletedImaeForType:[(HRPOIInfo *)_anomationData.extData type]];
+    }else{
+        self.image = [self normalImageForType:[(HRPOIInfo *)_anomationData.extData type]];
+    }
 }
 
 - (void)setSelected:(BOOL)selected
 {
     [super setSelected:selected];
-    self.image = !selected ? [UIImage imageNamed:@"map_food"] : [UIImage imageNamed:@"map_food_click"];
+    if (selected) {
+        self.image = [self seletedImaeForType:[(HRPOIInfo *)_anomationData.extData type]];
+    }else{
+        self.image = [self normalImageForType:[(HRPOIInfo *)_anomationData.extData type]];
+    }
+
 }
+
+// 1=>"美食", 2=>"观光", 3=>"休闲", 4=>"酒店"
+- (UIImage *)normalImageForType:(NSInteger)type
+{
+    switch (type) {
+        case 1:
+            return [UIImage imageNamed:@"map_food"];
+            break;
+        case 2:
+            return [UIImage imageNamed:@"map_look"];
+            break;
+        case 3:
+            return [UIImage imageNamed:@"shopping"];
+        case 4:
+            return [UIImage imageNamed:@"map_hotel_click"];
+        default:
+            break;
+    }
+    return [UIImage imageNamed:@"map_food"];;
+}
+
+- (UIImage *)seletedImaeForType:(NSInteger)type
+{
+    switch (type) {
+        case 1:
+            return [UIImage imageNamed:@"map_food_click"];
+            break;
+        case 2:
+            return [UIImage imageNamed:@"map_look_click"];
+            break;
+        case 3:
+            return [UIImage imageNamed:@"shopping_click"];
+        case 4:
+            return [UIImage imageNamed:@"map_hotel_click_click"];
+        default:
+            break;
+    }
+    return [UIImage imageNamed:@"map_food_click"];;
+}
+
 @end

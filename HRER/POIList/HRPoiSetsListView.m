@@ -8,20 +8,31 @@
 
 #import "HRPoiSetsListView.h"
 #import "HRHerePoiCell.h"
-#import "HRPhotoBrowser.h"
+#import "NetWorkEntity.h"
+#import "HRLocationManager.h"
 
-@interface HRPoiSetsListView()<UITableViewDelegate,UITableViewDataSource,HRHerePoiCellDelegate,SDPhotoBrowserDelegate>
+@interface HRPoiSetsListView()<UITableViewDelegate,UITableViewDataSource,HRHerePoiCellDelegate>
 
-@property(nonatomic,strong)UITableView * tableView;
+@property(nonatomic,assign)KPoiSetsCreteType creteType;
+@property(nonatomic,assign)NSInteger categoryType;
+@property(nonatomic,strong)NSString * userId;
+@property(nonatomic,strong)NSString * userName;
 
 @end
 
 @implementation HRPoiSetsListView
 
 - (instancetype)initWithFrame:(CGRect)frame
+              PoiSetCreteType:(KPoiSetsCreteType)creteType
+                      creteId:(NSString *)userID
+                creteUserName:(NSString *)creteUserName
+                     category:(NSInteger)categoryType
 {
-    self = [super initWithFrame:frame];
-    if (self) {
+    if (self = [super initWithFrame:frame]) {
+        self.userId = userID;
+        self.userName = creteUserName;
+        self.creteType = creteType;
+        self.categoryType = categoryType;
         [self initUI];
     }
     return self;
@@ -31,6 +42,66 @@
 {
     [self initNavBar];
     [self initTableView];
+    [self initRefreshView];
+}
+
+- (void)initRefreshView
+{
+    self.tableView.refreshFooter.scrollView = nil;
+    
+    WS(ws);
+    
+    self.tableView.refreshHeader.beginRefreshingBlock = ^(){
+        
+        [MBProgressHUD hideHUDForView:ws animated:YES];
+        
+        void (^ failure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *operation, NSError *error){
+            [ws netErrorWithTableView:ws.tableView];
+        };
+
+        [NetWorkEntity quaryPoiSetDetailListWithCreteType:ws.creteType cityId:[[HRLocationManager sharedInstance] curCityId] catergory:ws.categoryType creteUserId:ws.userId success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            
+            if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
+                NSArray * poiList = [responseObject objectForKey:@"response"];
+                ws.dataSource = [ws analysisPoiModelFromArray:poiList];
+                [[ws.tableView refreshHeader] endRefreshing];
+                [ws.tableView reloadData];
+                [MBProgressHUD hideHUDForView:ws animated:YES];
+            }else{
+                [ws dealErrorResponseWithTableView:ws.tableView info:responseObject];
+            }
+        } failure:failure];
+    };
+}
+
+- (NSArray *)analysisPoiModelFromArray:(NSArray *)array
+{
+    if (![array isKindOfClass:[NSArray class]]) {
+        return nil;
+    }
+    
+    NSMutableArray * mArray = [NSMutableArray arrayWithCapacity:0];
+    for (NSDictionary * dic  in array) {
+        HRPOIInfo * model = [HRPOIInfo yy_modelWithJSON:dic];
+        if (model) {
+            [mArray addObject:model];
+        }
+    }
+    return mArray;
+}
+
+- (void)dealErrorResponseWithTableView:(RefreshTableView *)tableview info:(NSDictionary *)dic
+{
+    [MBProgressHUD hideHUDForView:self animated:YES];
+    [self showTotasViewWithMes:[[dic objectForKey:@"response"] objectForKey:@"errorText"]];
+    [tableview.refreshHeader endRefreshing];
+}
+
+- (void)netErrorWithTableView:(RefreshTableView*)tableView
+{
+    [MBProgressHUD hideHUDForView:self animated:YES];
+    [self showTotasViewWithMes:@"网络异常，稍后重试"];
+    [tableView.refreshHeader endRefreshing];
 }
 
 #pragma mark - NavBar
@@ -43,11 +114,10 @@
     barView.image = [UIImage imageNamed:@"nav_bg"];
     [self addSubview:barView];
     
-    UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, self.width, 44)];
-    label.text = @"北京";
-    label.textAlignment = NSTextAlignmentCenter;
-    label.textColor = [UIColor whiteColor];
-    [barView addSubview:label];
+    self.titelLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, self.width, 44)];
+    self.titelLabel.textAlignment = NSTextAlignmentCenter;
+    self.titelLabel.textColor = [UIColor whiteColor];
+    [barView addSubview:self.titelLabel];
     
     UIButton * backButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 26, 33, 33)];
     [backButton setImage:[UIImage imageNamed:@"list_back"] forState:UIControlStateNormal];
@@ -80,7 +150,7 @@
 
 - (void)initTableView
 {
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.width, self.height - 64) style:UITableViewStylePlain];
+    self.tableView = [[RefreshTableView alloc] initWithFrame:CGRectMake(0, 64, self.width, self.height - 64) style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self addSubview:self.tableView];
@@ -89,7 +159,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return self.dataSource.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -106,31 +176,23 @@
         cell = [[HRHerePoiCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identify];
         cell.delegate = self;
     }
+    [cell setData:self.dataSource[indexPath.row]];
     return cell;
-}
-
-
-- (void)herePoiCell:(HRHerePoiCell *)cell DidClickFrameView:(UIImageView *)imageView
-{
-    
-    HRPhotoBrowser *browser = [[HRPhotoBrowser alloc] init];
-    browser.currentImageIndex = imageView.tag;
-    browser.sourceImagesContainerView = self;
-    browser.imageCount = 4;
-    browser.delegate = self;
-    [browser show];
-    
 }
 
 - (void)herePoiCellDidClick:(HRHerePoiCell *)cell
 {
     
+    if ([_delegate respondsToSelector:@selector(poiSetsListViewdidClickDetailView:withDataSource:)]) {
+        [_delegate poiSetsListViewdidClickDetailView:self withDataSource:cell.data];
+    }
 }
 
-- (BOOL)photoBrowser:(HRPhotoBrowser *)browser loadingImage:(HRImageScaleView *)hrImageView withIndexPath:(NSInteger)index
+- (void)herePoiCellDidClickUserPortrait:(HRHerePoiCell *)cell
 {
-    hrImageView.backgroundColor = [UIColor redColor];
-    return YES;
+    if ([_delegate respondsToSelector:@selector(poiSetsListViewdidClickPortView: withDataSource:)]) {
+        [_delegate poiSetsListViewdidClickPortView:self withDataSource:cell.data];
+    }
 }
 
 #pragma mark - Date

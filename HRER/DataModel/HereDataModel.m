@@ -44,7 +44,7 @@ YYModelSynthCoderAndHash
 
 @end
 
-@implementation HRCatergpryInfo
+@implementation HRCatergoryInfo
 
 YYModelSynthCoderAndHash
 

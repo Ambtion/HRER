@@ -22,6 +22,7 @@
 @interface HRPoiCardView : UIView
 
 @property(nonatomic,weak)id<HRPoiCardViewdelegate>delegate;
+@property(nonatomic,weak)UIViewController * controller;
 
 + (CGFloat)heightForCardView;
 

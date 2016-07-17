@@ -15,17 +15,18 @@
 #import "HRHereBannerCell.h"
 #import "HRPoiSetsController.h"
 #import "HRPoiDetailController.h"
-#import "NetWorkEntiry.h"
+#import "NetWorkEntity.h"
 #import "HRLocationManager.h"
 #import "HereDataModel.h"
 #import "LoginStateManager.h"
+#import "HRUserHomeController.h"
 
 @interface FindCityViewController()<UITableViewDelegate,UITableViewDataSource,HomeHeadViewDelegate,HRHerePoisSetCellDelegate,HRHerePoiCellDelegate>
 
 @property(nonatomic,strong)RefreshTableView * tableView;
 @property(nonatomic,assign)NSUInteger catergoryIndex;
 
-@property(nonatomic,strong)HRCatergpryInfo * catergoryInfo;
+@property(nonatomic,strong)HRCatergoryInfo * catergoryInfo;
 @property(nonatomic,strong)NSArray * nearyBySource;
 @property(nonatomic,strong)NSArray * userPoiSource;
 @property(nonatomic,strong)NSArray * editPoiSource;
@@ -89,42 +90,42 @@
         
         
         //获取类别数目
-        [NetWorkEntiry quaryCityTypeCount:[[HRLocationManager sharedInstance] curCityId] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [NetWorkEntity quaryCityTypeCount:[[HRLocationManager sharedInstance] curCityId] success:^(AFHTTPRequestOperation *operation, id responseObject) {
             if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
                 NSDictionary * response  = [responseObject objectForKey:@"response"];
-                HRCatergpryInfo * categoryInfo = [HRCatergpryInfo yy_modelWithJSON:response];
+                HRCatergoryInfo * categoryInfo = [HRCatergoryInfo yy_modelWithJSON:response];
                 if(categoryInfo){
                     
                     ws.catergoryInfo = categoryInfo;
                     
                     //获取附件条目
-                    [NetWorkEntiry quartCityNearByWithCityId:[[HRLocationManager sharedInstance] curCityId] catergory:ws.catergoryIndex success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                    [NetWorkEntity quartCityNearByWithCityId:[[HRLocationManager sharedInstance] curCityId] catergory:ws.catergoryIndex + 1 success:^(AFHTTPRequestOperation *operation, id responseObject) {
                         if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
                             NSArray * poiSets = [responseObject objectForKey:@"response"];
                             ws.nearyBySource = [ws analysisPoiSetsModelFromArray:poiSets];
                             
                             //编辑创建的POI集合
-                            [NetWorkEntiry quaryEditCretePoiListWithCityId:[[HRLocationManager sharedInstance] curCityId] catergory:ws.catergoryIndex success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                            [NetWorkEntity quaryEditCretePoiListWithCityId:[[HRLocationManager sharedInstance] curCityId] catergory:ws.catergoryIndex + 1 success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                 
                                 if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
                                     NSArray * poiSets = [responseObject objectForKey:@"response"];
                                     ws.editPoiSetsSource = [ws analysisPoiSetsModelFromArray:poiSets];
                                     
                                     //编辑创建的单个POI
-                                    [NetWorkEntiry quaryEditCretePoiListWithCityId:[[HRLocationManager sharedInstance] curCityId] catergory:ws.catergoryIndex success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                    [NetWorkEntity quaryEditCretePoiListWithCityId:[[HRLocationManager sharedInstance] curCityId] catergory:ws.catergoryIndex + 1 success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                         if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
                                             NSArray * poiList = [responseObject objectForKey:@"response"];
                                             ws.editPoiSource = [ws analysisPoiModelFromArray:poiList];
                                             
                                             //个人创建POI集合
                                             if([[LoginStateManager getInstance] userLoginInfo]){
-                                                [NetWorkEntiry quaryFreindsCretePoiSetListWithCityId:[[HRLocationManager sharedInstance] curCityId] catergory:ws.catergoryIndex success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                                [NetWorkEntity quaryFreindsCretePoiSetListWithCityId:[[HRLocationManager sharedInstance] curCityId] catergory:ws.catergoryIndex + 1 success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                                     
                                                     if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
                                                         NSArray * poiSets = [responseObject objectForKey:@"response"];
                                                         ws.userPoiSource = [ws analysisPoiModelFromArray:poiSets];
                                                         
-                                                        [NetWorkEntiry quaryFreindsCretePoiListWithCityId:[[HRLocationManager sharedInstance] curCityId] catergory:ws.catergoryIndex success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                                        [NetWorkEntity quaryFreindsCretePoiListWithCityId:[[HRLocationManager sharedInstance] curCityId] catergory:ws.catergoryIndex + 1 success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                                             
                                                             if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
                                                                 NSArray * poiList = [responseObject objectForKey:@"response"];
@@ -383,24 +384,29 @@
 
 - (void)herePoiCellDidClick:(HRHerePoiCell *)cell
 {
-    [self.myNavController pushViewController:[[HRPoiDetailController alloc] init] animated:YES];
+    [self.myNavController pushViewController:[[HRPoiDetailController alloc] initWithPoiId:cell.data.poi_id] animated:YES];
 }
 
 - (void)herePoisSetCellDidClick:(HRHerePoisSetCell *)cell
 {
     NSIndexPath * indexPath = [self.tableView indexPathForCell:cell];
+    KPoiSetsCreteType tpye = KPoiSetsCreteNearBy;
     if (indexPath.section == 1) {
         //附近
+        tpye = KPoiSetsCreteNearBy;
     }
     
     if(indexPath.section == 3){
         //朋友
+        tpye = KPoiSetsCreteUser;
     }
     
     if(indexPath.section == 5){
+        tpye = KPoiSetsCreteHere;
         //编辑
     }
-    [self.myNavController pushViewController:[[HRPoiSetsController alloc] initWithDataSource:nil] animated:YES];
+    HRPoiSetsController * poiSetController = [[HRPoiSetsController alloc] initWithPoiSetCreteType:tpye creteId:cell.data.creatorId creteUserName:cell.data.creatorName category:self.catergoryIndex];
+    [self.myNavController pushViewController:poiSetController animated:YES];
 }
 
 - (void)herePoisSetCellDidClickUserPortrait:(HRHerePoiCell *)cell
@@ -410,6 +416,9 @@
         //附近  //编辑
         return;
     }
+    HRUserHomeController * userHomeController = [[HRUserHomeController alloc] initWithUserID:cell.data.creator_id];
+    [self.myNavController pushViewController:userHomeController animated:YES];
+    
 }
 
 - (void)herePoiCellDidClickUserPortrait:(HRHerePoiCell *)cell
@@ -419,8 +428,9 @@
         //附近  //编辑
         return;
     }
+    HRUserHomeController * userHomeController = [[HRUserHomeController alloc] initWithUserID:cell.data.creator_id];
+    [self.myNavController pushViewController:userHomeController animated:YES];
 }
-
 #pragma mark - Login
 - (void)userLoginChnage:(id)sender
 {
