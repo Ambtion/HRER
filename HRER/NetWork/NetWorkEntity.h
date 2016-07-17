@@ -7,10 +7,11 @@
 //
 
 #import "AFNetworking.h"
+#import "ModelDefine.h"
 
 #define  KNETBASEURL           @"http://58.135.93.4:8089"
 
-@interface NetWorkEntiry : NSObject
+@interface NetWorkEntity : NSObject
 
 /*
  登陆模块
@@ -176,4 +177,22 @@
                                    failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
 
+/**
+ *  获取POISet详情信息
+ *
+ *  @param cretetype 因外服务端没有建索引，所以客户端处理这个逻辑
+ *  @param cityId    城市ID
+ *  @param catergory 行业类型
+ *  @param userId    用户ID
+ */
++ (void)quaryPoiSetDetailListWithCreteType:(KPoiSetsCreteType)cretetype
+                                    cityId:(NSInteger)cityId
+                                catergory:(NSInteger)catergory
+                               creteUserId:(NSString *)userId
+                                   success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                                   failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+
+
 @end
+
+

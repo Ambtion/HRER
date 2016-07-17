@@ -6,11 +6,11 @@
 //  Copyright (c) 2015年 jewelry. All rights reserved.
 //
 
-#import "NetWorkEntiry.h"
+#import "NetWorkEntity.h"
 #import "LoginStateManager.h"
 #import "HRLocationManager.h"
 
-@implementation NetWorkEntiry
+@implementation NetWorkEntity
 
 
 + (void)regisWithPhotoNumber:(NSString *)photoNumber
@@ -300,14 +300,14 @@
     [dic setValue:@([[[HRLocationManager sharedInstance] curLocation] coordinate].latitude) forKey:@"lat"];
     [dic setValue:@([[[HRLocationManager sharedInstance] curLocation] coordinate].longitude) forKey:@"lng"];
     [dic setValue:@(catergory) forKey:@"type"];
-    NSString * urlStr = [NSString stringWithFormat:@"%@/editor_sets",KNETBASEURL];
+    NSString * urlStr = [NSString stringWithFormat:@"%@/editor_set",KNETBASEURL];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager GET:urlStr parameters:dic success:success failure:failure];
 
 }
 
 /**
- *  获取边距创建的POI
+ *  获取编辑创建的POI
  */
 + (void)quaryEditCretePoiListWithCityId:(NSInteger)cityId
                               catergory:(NSInteger)catergory
@@ -322,6 +322,39 @@
     NSString * urlStr = [NSString stringWithFormat:@"%@/editor_single",KNETBASEURL];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager GET:urlStr parameters:dic success:success failure:failure];
+}
+
++ (void)quaryPoiSetDetailListWithCreteType:(KPoiSetsCreteType)cretetype
+                                    cityId:(NSInteger)cityId
+                                 catergory:(NSInteger)catergory
+                               creteUserId:(NSString *)userId
+                                   success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                                   failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+{
+    NSMutableDictionary * dic = [self commonComonPar];
+    [dic setValue:@(cityId) forKey:@"city_id"];
+    [dic setValue:@([[[HRLocationManager sharedInstance] curLocation] coordinate].latitude) forKey:@"lat"];
+    [dic setValue:@([[[HRLocationManager sharedInstance] curLocation] coordinate].longitude) forKey:@"lng"];
+    [dic setValue:@(catergory) forKey:@"type"];
+    
+    NSString * urlStr = @"";
+    switch (cretetype) {
+        case KPoiSetsCreteHere:
+            urlStr = [NSString stringWithFormat:@"%@/get_poi_by_city",KNETBASEURL];
+            break;
+        case KPoiSetsCreteUser:
+            urlStr = [NSString stringWithFormat:@"%@/get_poi_by_user",KNETBASEURL];
+            break;
+        case KPoiSetsCreteNearBy:
+            urlStr = [NSString stringWithFormat:@"%@/get_poi_nearby",KNETBASEURL];
+            break;
+        default:
+            break;
+    }
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:urlStr parameters:dic success:success failure:failure];
+
 }
 
 #pragma mark - Common
