@@ -7,10 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HereDataModel.h"
+
 @class HRHerePoisSetCell;
 @protocol HRHerePoisSetCellDelegate <NSObject>
+@optional
 - (void)herePoisSetCell:(HRHerePoisSetCell *)cell DidClickFrameView:(UIImageView *)imageView;
 - (void)herePoisSetCellDidClick:(HRHerePoisSetCell *)cell;
+- (void)herePoisSetCellDidClickUserPortrait:(HRHerePoisSetCell *)poiSetsview;
 
 @end
 
@@ -18,6 +22,9 @@
 
 @property(nonatomic,weak)id<HRHerePoisSetCellDelegate>delegate;
 
+@property(nonatomic,strong)HRPOISetInfo * data;
+
 + (CGFloat)heightForCell;
+
 
 @end

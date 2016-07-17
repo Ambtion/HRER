@@ -23,7 +23,7 @@
 
 + (CGFloat)heightForCardView
 {
-    return 110.f;
+    return 100.f;
 }
 
 
@@ -66,7 +66,7 @@
     [self.bgImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).offset(10.f);
         make.right.equalTo(self).offset(-10.f);
-        make.top.equalTo(self).offset(10);
+        make.top.equalTo(self);
         make.bottom.equalTo(self);
     }];
     
@@ -89,8 +89,8 @@
     for (int i = 0; i < 4; i++) {
         
         PhotoFrameView * frameView = [[PhotoFrameView alloc] init];
-        UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(frameViewDidClick:)];
-        [frameView addGestureRecognizer:tap];
+//        UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(frameViewDidClick:)];
+//        [frameView addGestureRecognizer:tap];
         [frameView setHidden:YES];
         frameView.tag = i;
         [self.frameImageViews addObject:frameView];
@@ -105,9 +105,6 @@
             }
         }];
         lastView = frameView;
-        
-        [frameView setHidden:NO];
-        frameView.backgroundColor = [UIColor greenColor];
     }
     
     [self.frameImageViews mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -118,11 +115,26 @@
     
     UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(fullViewTap:)];
     [self addGestureRecognizer:tap];
-    
-    self.titleLabel.backgroundColor = [UIColor greenColor];
-    self.portraitImage.backgroundColor = [UIColor greenColor];
-    
 
+    tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(userPortDidClick:)];
+    [self.portraitImage setUserInteractionEnabled:YES];
+    [self.portraitImage addGestureRecognizer:tap];
+}
+
+- (void)setData:(HRPOISetInfo *)data
+{
+    
+    [self.portraitImage sd_setImageWithURL:[NSURL URLWithString:data.portrait] placeholderImage:[UIImage imageNamed:@"man"]];
+    self.titleLabel.text = data.title;
+    
+    for (int i = 0; i < MIN(data.photos.count, 4); i++) {
+        HRPotoInfo * info = data.photos[i];
+        PhotoFrameView * frameView = self.frameImageViews[i];
+        if ([info isKindOfClass:[HRPotoInfo class]] && info.url.length) {
+            [frameView setHidden:NO];
+            [frameView.imageView sd_setImageWithURL:[NSURL URLWithString:info.url]];
+        }
+    }
 }
 
 - (void)fullViewTap:(UITapGestureRecognizer *)tap
@@ -138,5 +150,13 @@
         [_delegate poiSetsView:self DidClickFrameImage:(UIImageView *)tap.view];
     }
 }
+
+- (void)userPortDidClick:(id)sender
+{
+    if ([_delegate respondsToSelector:@selector(poiSetsViewDidClickPor:)]) {
+        [_delegate poiSetsViewDidClickPor:self];
+    }
+}
+
 
 @end

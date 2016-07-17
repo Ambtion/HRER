@@ -8,7 +8,8 @@
 
 #import "HRPoiCardView.h"
 #import "PhotoFrameView.h"
-
+#import "HRNavigationTool.h"
+#import "HRLocationManager.h"
 
 @interface HRPoiCardView ()
 
@@ -29,7 +30,7 @@
 
 + (CGFloat)heightForCardView
 {
-    return 135.f;
+    return 125.f;
 }
 
 
@@ -78,7 +79,7 @@
     [self.bgImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).offset(10.f);
         make.right.equalTo(self).offset(-10.f);
-        make.top.equalTo(self).offset(10);
+        make.top.equalTo(self);
         make.bottom.equalTo(self);
     }];
     
@@ -120,8 +121,8 @@
     for (int i = 0; i < 4; i++) {
         
         PhotoFrameView * frameView = [[PhotoFrameView alloc] init];
-        UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(frameViewDidClick:)];
-        [frameView addGestureRecognizer:tap];
+//        UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(frameViewDidClick:)];
+//        [frameView addGestureRecognizer:tap];
         [frameView setHidden:YES];
         frameView.tag = i;
         [self.frameImageViews addObject:frameView];
@@ -136,8 +137,6 @@
             }
         }];
         lastView = frameView;
-        [lastView setHidden:NO];
-        lastView.backgroundColor = [UIColor greenColor];
     }
     
     [self.frameImageViews mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -161,13 +160,32 @@
     UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(fullViewTap:)];
     [self addGestureRecognizer:tap];
     
-
-    
-    self.titleLabel.backgroundColor = [UIColor greenColor];
-    self.portraitImage.backgroundColor = [UIColor greenColor];
-    
+    tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(userPortDidClick:)];
+    [self.portraitImage setUserInteractionEnabled:YES];
+    [self.portraitImage addGestureRecognizer:tap];
 }
 
+- (void)setDataSource:(HRPOIInfo *)data
+{
+    [self.portraitImage sd_setImageWithURL:[NSURL URLWithString:data.portrait] placeholderImage:[UIImage imageNamed:@"man"]];
+    if(data.title.length)
+        self.titleLabel.text = data.title;
+    if (data.intro.length)
+        self.subLabel.text = data.intro;
+    
+    for (int i = 0; i < MIN(data.photos.count, 4); i++) {
+        HRPotoInfo * info = data.photos[i];
+        PhotoFrameView * frameView = self.frameImageViews[i];
+        if ([info isKindOfClass:[HRPotoInfo class]] && info.url.length) {
+            [frameView setHidden:NO];
+            [frameView.imageView sd_setImageWithURL:[NSURL URLWithString:info.url]];
+        }
+    }
+    CLLocation * desLocaiton = [[CLLocation alloc] initWithLatitude:data.lat longitude:data.lng];
+    NSString * distance = [HRNavigationTool distanceBetwenOriGps:[[HRLocationManager sharedInstance] curLocation].coordinate desGps:desLocaiton.coordinate];
+    self.locLabel.text = distance;
+    
+}
 
 - (void)fullViewTap:(UITapGestureRecognizer *)tap
 {
@@ -183,6 +201,11 @@
     }
 }
 
-
+- (void)userPortDidClick:(id)sender
+{
+    if ([_delegate respondsToSelector:@selector(poiViewDidClickUserPortrait:)]) {
+        [_delegate poiViewDidClickUserPortrait:self];
+    }
+}
 
 @end

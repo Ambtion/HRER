@@ -12,6 +12,7 @@
 #import "UIImageView+WebCache.h"
 #import "SDImageCache.h"
 #import "ToastAlertView.h"
+#import "RefreshTableView.h"
 
 @implementation UIViewController(Tips)
 - (MBProgressHUD *)waitForMomentsWithTitle:(NSString*)str withView:(UIView *)view
@@ -141,3 +142,22 @@
 
 @end
 
+
+@implementation UIViewController(NetWork)
+- (void)dealErrorResponseWithTableView:(RefreshTableView *)tableview info:(NSDictionary *)dic
+{
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    [self showTotasViewWithMes:[[dic objectForKey:@"response"] objectForKey:@"errorText"]];
+    [tableview.refreshHeader endRefreshing];
+    [tableview.refreshFooter endRefreshing];
+}
+
+- (void)netErrorWithTableView:(RefreshTableView*)tableView
+{
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    [self showTotasViewWithMes:@"网络异常，稍后重试"];
+    [tableView.refreshHeader endRefreshing];
+    [tableView.refreshFooter endRefreshing];
+}
+
+@end

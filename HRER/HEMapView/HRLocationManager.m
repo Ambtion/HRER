@@ -94,6 +94,7 @@
                         if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
                             NSDictionary * userInfoDic  = [responseObject objectForKey:@"response"];
                             _curCityID = [[userInfoDic objectForKey:@"city_id"] integerValue];
+                            [[NSNotificationCenter defaultCenter] postNotificationName:LocaitonDidUpdateSucess object:nil];
                         }else{
                             self.isFirstGEO = YES;
                         }
@@ -114,5 +115,14 @@
     return _curCityID;
 }
 
+- (NSString *)cityName
+{
+    return self.placeMark.locality;
+}
+
+- (NSString *)subCityName
+{
+    return self.placeMark.subLocality;
+}
 @end
 

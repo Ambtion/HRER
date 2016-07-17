@@ -83,4 +83,18 @@
     }];
 }
 
++ (NSString *)distanceBetwenOriGps:(CLLocationCoordinate2D)oriGps desGps:(CLLocationCoordinate2D)desGps
+{
+    CLLocation * location = [[CLLocation alloc] initWithLatitude:oriGps.latitude longitude:oriGps.longitude];
+    CLLocation * desLocaiton = [[CLLocation alloc] initWithLatitude:desGps.latitude longitude:desGps.longitude];
+    CLLocationDistance distance = [location distanceFromLocation:desLocaiton];
+    
+    if (distance > 1000) {
+        return [NSString stringWithFormat:@"%.2fkm",(distance / 1000)];
+    }else{
+        return [NSString stringWithFormat:@"%fm",(distance)];
+    }
+    return @"";
+}
+
 @end

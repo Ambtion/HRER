@@ -48,14 +48,19 @@
     }];
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+- (void)setData:(HRPOISetInfo *)data
 {
-    
+    if(_data == data){
+        return;
+    }
+    _data = data;
+    [self.cardView setData:_data];
 }
 
-- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated
-{
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated{
+}
 
+- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated{
 }
 
 - (void)poiSetsView:(HRPoidSetsCardView *)poiSetsview DidClickFrameImage:(UIImageView *)imageView
@@ -71,4 +76,12 @@
         [_delegate herePoisSetCellDidClick:self];
     }
 }
+
+- (void)poiSetsViewDidClickPor:(HRPoidSetsCardView *)poiSetsview
+{
+    if ([_delegate respondsToSelector:@selector(herePoisSetCellDidClickUserPortrait:)]) {
+        [_delegate herePoisSetCellDidClickUserPortrait:self];
+    }
+}
+
 @end

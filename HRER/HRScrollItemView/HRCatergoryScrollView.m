@@ -73,7 +73,7 @@
     CGFloat offset = 28;
     CGFloat orignal = 18;
     
-    for (int i = 0; i < 5; i ++) {
+    for (int i = 0; i < 4; i ++) {
         
         HRCatergoryItemView * itemView = [[HRCatergoryItemView alloc] initWithFrame:CGRectMake(orignal, 0, 50, self.height)];
         [itemView setCategoryImage:nImages[i] seletedImage:hImages[i] target:self seletor:@selector(buttonClick:) categoryNumber:0];

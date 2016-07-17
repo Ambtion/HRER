@@ -10,4 +10,6 @@
 
 @interface FindCityViewController : UIViewController
 
+@property(nonatomic,assign)BOOL isNeedRefresh;
+
 @end

@@ -8,6 +8,7 @@
 
 #import "NetWorkEntiry.h"
 #import "LoginStateManager.h"
+#import "HRLocationManager.h"
 
 @implementation NetWorkEntiry
 
@@ -232,16 +233,14 @@
  *  获取附近城市推荐列表
  */
 + (void)quartCityNearByWithCityId:(NSInteger)cityId
-                              lat:(CGFloat)lat
-                              lng:(CGFloat)lng
                         catergory:(NSInteger)catergory
                           success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                           failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
     NSMutableDictionary * dic = [self commonComonPar];
     [dic setValue:@(cityId) forKey:@"city_id"];
-    [dic setValue:@(lat) forKey:@"lat"];
-    [dic setValue:@(lng) forKey:@"lng"];
+    [dic setValue:@([[[HRLocationManager sharedInstance] curLocation] coordinate].latitude) forKey:@"lat"];
+    [dic setValue:@([[[HRLocationManager sharedInstance] curLocation] coordinate].longitude) forKey:@"lng"];
     [dic setValue:@(catergory) forKey:@"type"];
     NSString * urlStr = [NSString stringWithFormat:@"%@/near_poi_search",KNETBASEURL];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -253,16 +252,14 @@
  *  获取个人和朋友创建的POI | 获取个人和朋友想去的POI
  */
 + (void)quaryFreindsCretePoiListWithCityId:(NSInteger)cityId
-                                        lat:(CGFloat)lat
-                                        lng:(CGFloat)lng
                                   catergory:(NSInteger)catergory
                                     success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                                     failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
     NSMutableDictionary * dic = [self commonComonPar];
     [dic setValue:@(cityId) forKey:@"city_id"];
-    [dic setValue:@(lat) forKey:@"lat"];
-    [dic setValue:@(lng) forKey:@"lng"];
+    [dic setValue:@([[[HRLocationManager sharedInstance] curLocation] coordinate].latitude) forKey:@"lat"];
+    [dic setValue:@([[[HRLocationManager sharedInstance] curLocation] coordinate].longitude) forKey:@"lng"];
     [dic setValue:@(catergory) forKey:@"type"];
     NSString * urlStr = [NSString stringWithFormat:@"%@/single_poi",KNETBASEURL];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -275,16 +272,14 @@
  */
 
 + (void)quaryFreindsCretePoiSetListWithCityId:(NSInteger)cityId
-                                          lat:(CGFloat)lat
-                                          lng:(CGFloat)lng
                                     catergory:(NSInteger)catergory
                                       success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                                       failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
     NSMutableDictionary * dic = [self commonComonPar];
     [dic setValue:@(cityId) forKey:@"city_id"];
-    [dic setValue:@(lat) forKey:@"lat"];
-    [dic setValue:@(lng) forKey:@"lng"];
+    [dic setValue:@([[[HRLocationManager sharedInstance] curLocation] coordinate].latitude) forKey:@"lat"];
+    [dic setValue:@([[[HRLocationManager sharedInstance] curLocation] coordinate].longitude) forKey:@"lng"];
     [dic setValue:@(catergory) forKey:@"type"];
     NSString * urlStr = [NSString stringWithFormat:@"%@/poi_set",KNETBASEURL];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -296,16 +291,14 @@
  *  获取编辑创建的POI集合
  */
 + (void)quaryEditorCretePoiSetListWithCityId:(NSInteger)cityId
-                                         lat:(CGFloat)lat
-                                         lng:(CGFloat)lng
                                    catergory:(NSInteger)catergory
                                      success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                                      failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
     NSMutableDictionary * dic = [self commonComonPar];
     [dic setValue:@(cityId) forKey:@"city_id"];
-    [dic setValue:@(lat) forKey:@"lat"];
-    [dic setValue:@(lng) forKey:@"lng"];
+    [dic setValue:@([[[HRLocationManager sharedInstance] curLocation] coordinate].latitude) forKey:@"lat"];
+    [dic setValue:@([[[HRLocationManager sharedInstance] curLocation] coordinate].longitude) forKey:@"lng"];
     [dic setValue:@(catergory) forKey:@"type"];
     NSString * urlStr = [NSString stringWithFormat:@"%@/editor_sets",KNETBASEURL];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -317,16 +310,14 @@
  *  获取边距创建的POI
  */
 + (void)quaryEditCretePoiListWithCityId:(NSInteger)cityId
-                                    lat:(CGFloat)lat
-                                    lng:(CGFloat)lng
                               catergory:(NSInteger)catergory
                                 success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                                 failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
     NSMutableDictionary * dic = [self commonComonPar];
     [dic setValue:@(cityId) forKey:@"city_id"];
-    [dic setValue:@(lat) forKey:@"lat"];
-    [dic setValue:@(lng) forKey:@"lng"];
+    [dic setValue:@([[[HRLocationManager sharedInstance] curLocation] coordinate].latitude) forKey:@"lat"];
+    [dic setValue:@([[[HRLocationManager sharedInstance] curLocation] coordinate].longitude) forKey:@"lng"];
     [dic setValue:@(catergory) forKey:@"type"];
     NSString * urlStr = [NSString stringWithFormat:@"%@/editor_single",KNETBASEURL];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -337,8 +328,11 @@
 + (NSMutableDictionary *)commonComonPar
 {
     NSMutableDictionary  * paragramer = [NSMutableDictionary dictionaryWithCapacity:0];
-    if ([[LoginStateManager getInstance] userLoginInfo].token)
-        [paragramer setValue:[[LoginStateManager getInstance] userLoginInfo].token forKey:@"token"];
+    if ([[LoginStateManager getInstance] userLoginInfo].token){
+//    [paragramer setValue:[[LoginStateManager getInstance] userLoginInfo].token forKey:@"token"];
+        [paragramer setValue:@"94dc0f74bdcbf9223f225af188be245b" forKey:@"token"];
+    }
+    
     return paragramer;
 }
 

@@ -16,5 +16,6 @@
                       UrlScheme:(NSString *)urlScheme
                         appName:(NSString *)appName;
 
++ (NSString *)distanceBetwenOriGps:(CLLocationCoordinate2D)oriGps desGps:(CLLocationCoordinate2D)desGps;
 @end
 

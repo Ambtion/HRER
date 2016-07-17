@@ -47,9 +47,7 @@
     self.navController = [[HRNagationController alloc] initWithRootViewController:mainTab];
     self.window.rootViewController = self.navController;
     [self.window makeKeyAndVisible];
-    
-    [HRLoginManager showLoginView];
-    
+        
     return YES;
 }
 

@@ -12,6 +12,8 @@
 
 #define WRITEIMAGE @"WriteImage"
 
+@class RefreshTableView;
+
 @interface UIViewController (Tips)
 - (MBProgressHUD *)waitForMomentsWithTitle:(NSString*)str withView:(UIView *)view;
 - (void)stopWaitProgressView:(MBProgressHUD *)view;
@@ -31,3 +33,8 @@
 - (UINavigationController *)myNavController;
 @end
 
+
+@interface UIViewController(NetWork)
+- (void)dealErrorResponseWithTableView:(RefreshTableView *)tableview info:(NSDictionary *)dic;
+- (void)netErrorWithTableView:(RefreshTableView*)tableView;
+@end

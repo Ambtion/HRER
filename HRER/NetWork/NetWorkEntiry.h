@@ -135,8 +135,6 @@
  *  catergory 1=>"美食", 2=>"观光", 3=>"休闲", 4=>"酒店"
  */
 + (void)quartCityNearByWithCityId:(NSInteger)cityId
-                              lat:(CGFloat)lat
-                              lng:(CGFloat)lng
                         catergory:(NSInteger)catergory
                           success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                           failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
@@ -146,8 +144,6 @@
  *  获取个人和朋友创建的POI
  */
 + (void)quaryFreindsCretePoiListWithCityId:(NSInteger)cityId
-                                        lat:(CGFloat)lat
-                                        lng:(CGFloat)lng
                                   catergory:(NSInteger)catergory
                                     success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                                     failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
@@ -158,8 +154,6 @@
  */
 
 + (void)quaryFreindsCretePoiSetListWithCityId:(NSInteger)cityId
-                                          lat:(CGFloat)lat
-                                          lng:(CGFloat)lng
                                     catergory:(NSInteger)catergory
                                       success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                                       failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
@@ -168,19 +162,15 @@
  *  获取编辑创建的POI集合
  */
 + (void)quaryEditorCretePoiSetListWithCityId:(NSInteger)cityId
-                                          lat:(CGFloat)lat
-                                          lng:(CGFloat)lng
                                     catergory:(NSInteger)catergory
                                       success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                                       failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
 
 /**
- *  获取边距创建的POI
+ *  获取编辑创建的POI
  */
 + (void)quaryEditCretePoiListWithCityId:(NSInteger)cityId
-                                       lat:(CGFloat)lat
-                                       lng:(CGFloat)lng
                                  catergory:(NSInteger)catergory
                                    success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                                    failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;

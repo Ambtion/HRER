@@ -44,9 +44,16 @@
         make.top.equalTo(self);
         make.bottom.equalTo(self).offset(-KPoiCellSpacing);
     }];
-
 }
 
+- (void)setData:(HRPOIInfo *)data
+{
+    if (_data == data) {
+        return;
+    }
+    _data = data;
+    [[self cardView] setDataSource:data];
+}
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {}
@@ -65,6 +72,13 @@
 {
     if ([_delegate respondsToSelector:@selector(herePoiCellDidClick:)]) {
         [_delegate herePoiCellDidClick:self];
+    }
+}
+
+- (void)poiViewDidClickUserPortrait:(HRPoiCardView *)poiSetsview
+{
+    if ([_delegate respondsToSelector:@selector(herePoiCellDidClickUserPortrait:)]) {
+        [_delegate herePoiCellDidClickUserPortrait:self];
     }
 }
 

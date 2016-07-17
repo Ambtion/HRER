@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 
+#define LocaitonDidUpdateSucess @"LocaitonDidUpdateSucess"
 
 @class CLLocation;
 
@@ -23,4 +24,7 @@
 
 - (NSInteger)curCityId;
 
+- (NSString *)cityName;
+
+- (NSString *)subCityName;
 @end
