@@ -139,6 +139,19 @@
 {
     if (!_inputView) {
         _inputView = [[SearchInPutView alloc] initWithFrame:CGRectMake(0, 0, 200, 55)];
+        NSMutableAttributedString * str = [[NSMutableAttributedString alloc] initWithString:@"查找朋友  输入朋友昵称或这里护照号"];
+        
+        UIFont * font1 = [UIFont systemFontOfSize:14.f];
+        UIColor * color1 = RGB_Color(0x59, 0x59, 0x59);
+        UIFont * font2 = [UIFont systemFontOfSize:12.f];
+        UIColor * color2 = RGB_Color(0xb9, 0xb9, 0xb9);
+        
+        [str addAttribute:NSFontAttributeName value:font1 range:NSMakeRange(0, 4)];
+        [str addAttribute:NSForegroundColorAttributeName value:color1 range:NSMakeRange(0, 4)];
+        
+        [str addAttribute:NSFontAttributeName value:font2 range:NSMakeRange(4, str.length - 4)];
+        [str addAttribute:NSForegroundColorAttributeName value:color2 range:NSMakeRange(4, str.length - 4)];
+        _inputView.textFiled.attributedPlaceholder = str;
         [_inputView.textButton addTarget:self action:@selector(searchButtonClick:) forControlEvents:UIControlEventTouchUpInside];
         _inputView.textFiled.delegate = self;
     }

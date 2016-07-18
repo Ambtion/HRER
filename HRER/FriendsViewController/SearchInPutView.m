@@ -43,20 +43,6 @@
     self.textFiled.returnKeyType = UIReturnKeyDone;
     self.textFiled.textAlignment = NSTextAlignmentLeft;
     
-    NSMutableAttributedString * str = [[NSMutableAttributedString alloc] initWithString:@"查找朋友  输入朋友昵称或这里护照号"];
-    
-    UIFont * font1 = [UIFont systemFontOfSize:14.f];
-    UIColor * color1 = RGB_Color(0x59, 0x59, 0x59);
-    UIFont * font2 = [UIFont systemFontOfSize:12.f];
-    UIColor * color2 = RGB_Color(0xb9, 0xb9, 0xb9);
-    
-    [str addAttribute:NSFontAttributeName value:font1 range:NSMakeRange(0, 4)];
-    [str addAttribute:NSForegroundColorAttributeName value:color1 range:NSMakeRange(0, 4)];
-    
-    [str addAttribute:NSFontAttributeName value:font2 range:NSMakeRange(4, str.length - 4)];
-    [str addAttribute:NSForegroundColorAttributeName value:color2 range:NSMakeRange(4, str.length - 4)];
-    
-    self.textFiled.attributedPlaceholder = str;
     [self.borderbgView addSubview:self.textFiled];
     
     self.textButton = [[UIButton alloc] init];
