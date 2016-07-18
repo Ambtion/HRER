@@ -94,6 +94,8 @@
 		E14BD4CA1CEF0AC900C66E14 /* Localization.strings in Resources */ = {isa = PBXBuildFile; fileRef = E14BD4CC1CEF0AC900C66E14 /* Localization.strings */; };
 		E14BD4F01CF2CAD200C66E14 /* HRAnomation.m in Sources */ = {isa = PBXBuildFile; fileRef = E14BD4EF1CF2CAD200C66E14 /* HRAnomation.m */; };
 		E14BD4F51CF2D76700C66E14 /* HRPinAnnomationView.m in Sources */ = {isa = PBXBuildFile; fileRef = E14BD4F41CF2D76700C66E14 /* HRPinAnnomationView.m */; };
+		E198B99D1D3C80A400BC8237 /* HRNavMapController.m in Sources */ = {isa = PBXBuildFile; fileRef = E198B99C1D3C80A400BC8237 /* HRNavMapController.m */; };
+		E198B9A01D3C82E000BC8237 /* HRPoiCardAddressView.m in Sources */ = {isa = PBXBuildFile; fileRef = E198B99F1D3C82E000BC8237 /* HRPoiCardAddressView.m */; };
 		E1A8154A1D0D483B005E4443 /* HRCatergoryScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A815491D0D483B005E4443 /* HRCatergoryScrollView.m */; };
 		E1AC6CF51CFD3D1F00EADF02 /* HRNewPassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1AC6CF41CFD3D1F00EADF02 /* HRNewPassViewController.m */; };
 		E1C303701CF43C1F001C016B /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E1C3036B1CF43C1F001C016B /* libWeChatSDK.a */; };
@@ -277,6 +279,10 @@
 		E14BD4EF1CF2CAD200C66E14 /* HRAnomation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HRAnomation.m; path = ../HEMapView/HRAnomation.m; sourceTree = "<group>"; };
 		E14BD4F31CF2D76700C66E14 /* HRPinAnnomationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HRPinAnnomationView.h; path = ../HEMapView/HRPinAnnomationView.h; sourceTree = "<group>"; };
 		E14BD4F41CF2D76700C66E14 /* HRPinAnnomationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HRPinAnnomationView.m; path = ../HEMapView/HRPinAnnomationView.m; sourceTree = "<group>"; };
+		E198B99B1D3C80A400BC8237 /* HRNavMapController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRNavMapController.h; sourceTree = "<group>"; };
+		E198B99C1D3C80A400BC8237 /* HRNavMapController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRNavMapController.m; sourceTree = "<group>"; };
+		E198B99E1D3C82E000BC8237 /* HRPoiCardAddressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRPoiCardAddressView.h; sourceTree = "<group>"; };
+		E198B99F1D3C82E000BC8237 /* HRPoiCardAddressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRPoiCardAddressView.m; sourceTree = "<group>"; };
 		E1A815481D0D483B005E4443 /* HRCatergoryScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRCatergoryScrollView.h; sourceTree = "<group>"; };
 		E1A815491D0D483B005E4443 /* HRCatergoryScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRCatergoryScrollView.m; sourceTree = "<group>"; };
 		E1AC6CF31CFD3D1F00EADF02 /* HRNewPassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRNewPassViewController.h; sourceTree = "<group>"; };
@@ -681,6 +687,7 @@
 		E14BD48F1CEEF53F00C66E14 /* HRER */ = {
 			isa = PBXGroup;
 			children = (
+				E198B99A1D3C808F00BC8237 /* HRNaiMapController */,
 				B856293E1D3BBBDE00E5BD4C /* HRUserHome */,
 				B816B10D1D3671A800318662 /* PoiDetailPage */,
 				B80539241D23B40300C8EF06 /* HRImageScroll */,
@@ -732,6 +739,17 @@
 				E14BD4C41CEEFC0700C66E14 /* HRLocationManager.m */,
 			);
 			path = HEMapView;
+			sourceTree = "<group>";
+		};
+		E198B99A1D3C808F00BC8237 /* HRNaiMapController */ = {
+			isa = PBXGroup;
+			children = (
+				E198B99B1D3C80A400BC8237 /* HRNavMapController.h */,
+				E198B99C1D3C80A400BC8237 /* HRNavMapController.m */,
+				E198B99E1D3C82E000BC8237 /* HRPoiCardAddressView.h */,
+				E198B99F1D3C82E000BC8237 /* HRPoiCardAddressView.m */,
+			);
+			path = HRNaiMapController;
 			sourceTree = "<group>";
 		};
 		E1C3036A1CF43C1F001C016B /* WebCatSDK */ = {
@@ -961,6 +979,7 @@
 				B89380811D117EC8005A24FB /* HRPoiSetsMapView.m in Sources */,
 				E14BD4F51CF2D76700C66E14 /* HRPinAnnomationView.m in Sources */,
 				B877334E1D33CBE000CC43CD /* SearchInPutView.m in Sources */,
+				E198B9A01D3C82E000BC8237 /* HRPoiCardAddressView.m in Sources */,
 				B8697D6B1CFC395E00F1BC4B /* HRLoginManager.m in Sources */,
 				E1E3AB151CF6F2AC00DD5608 /* AppSysConfig.m in Sources */,
 				B896640C1CF32FD100B2A6CA /* YiRefreshHeader.m in Sources */,
@@ -1002,6 +1021,7 @@
 				B89380841D117ED7005A24FB /* HRPoiSetsListView.m in Sources */,
 				B85520101D098F2C00C56FC5 /* HomeHeadView.m in Sources */,
 				E14178301D323C42000CBB2E /* BMOldFriendCell.m in Sources */,
+				E198B99D1D3C80A400BC8237 /* HRNavMapController.m in Sources */,
 				B80539311D23B40300C8EF06 /* HRWaitingView.m in Sources */,
 				B88F10751CF5E246007C930F /* FindCityViewController.m in Sources */,
 				E1A8154A1D0D483B005E4443 /* HRCatergoryScrollView.m in Sources */,

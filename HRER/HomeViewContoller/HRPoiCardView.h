@@ -13,8 +13,8 @@
 
 @class HRPoiCardView;
 @protocol HRPoiCardViewdelegate <NSObject>
-- (void)poiView:(HRPoiCardView *)poiSetsview DidClickFrameImage:(UIImageView *)imageView;
 @optional
+- (void)poiView:(HRPoiCardView *)poiSetsview DidClickFrameImage:(UIImageView *)imageView;
 - (void)poiViewDidClick:(HRPoiCardView *)poiSetsview;
 - (void)poiViewDidClickUserPortrait:(HRPoiCardView *)poiSetsview;
 @end

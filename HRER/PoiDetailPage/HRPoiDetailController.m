@@ -11,7 +11,7 @@
 #import "HRPoiLocInfoCell.h"
 #import "HRPoiCreateInfoCell.h"
 #import "HRRecomendCell.h"
-
+#import "HRNavMapController.h"
 
 @interface HRPoiDetailController()<UITableViewDelegate,UITableViewDataSource>
 
@@ -256,5 +256,32 @@
 - (void)onShareButtonClick:(UIButton *)button
 {
     
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    switch (indexPath.section) {
+        case 0:
+            break;
+        case 1:
+            //POI地理信息
+        {
+            HRNavMapController * navMap = [[HRNavMapController alloc] initWithPoiInfo:nil barTitle:@"北京"];
+            [self.navigationController  pushViewController:navMap animated:YES];
+        }
+            break;
+        case 2:
+        {
+        
+        }
+            break;
+        case 3:
+        {
+            
+        }
+            break;
+        default:
+            break;
+    }
 }
 @end

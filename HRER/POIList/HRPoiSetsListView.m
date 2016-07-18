@@ -117,6 +117,7 @@
     self.titelLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, self.width, 44)];
     self.titelLabel.textAlignment = NSTextAlignmentCenter;
     self.titelLabel.textColor = [UIColor whiteColor];
+    self.titelLabel.text = [self bartitle];
     [barView addSubview:self.titelLabel];
     
     UIButton * backButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 26, 33, 33)];
@@ -195,9 +196,47 @@
     }
 }
 
-#pragma mark - Date
-- (void)refreshUIWithData:(NSArray *)array
+#pragma mark - Title
+- (NSString *)bartitle
 {
-
+    NSString * catergory = [self typeNameWithType:self.categoryType];
+    NSString * str = @"";
+    switch (self.creteType) {
+        case KPoiSetsCreteNearBy: {
+            str =  @"附近";
+            break;
+        }
+        case KPoiSetsCreteUser: {
+            str = [NSString stringWithFormat:@"%@",self.userName];
+            break;
+        }
+        case KPoiSetsCreteHere: {
+            str = @"这里";
+            break;
+        }
+    }
+    if (catergory.length) {
+        str = [str stringByAppendingFormat:@" %@",catergory];
+    }
+    return str;
 }
+
+- (NSString *)typeNameWithType:(NSInteger)type
+{
+    switch (type) {
+        case 1:
+            return @"美食";
+            break;
+        case 2:
+            return @"观光";
+        case 3:
+            return @"购物";
+        case 4:
+            return @"酒店";
+        default:
+            break;
+    }
+    return @"";
+}
+
 @end

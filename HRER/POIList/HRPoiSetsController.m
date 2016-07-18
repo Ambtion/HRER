@@ -76,7 +76,6 @@
 {
     self.poisetsMapView = [[HRPoiSetsMapView alloc] initWithFrame:self.view.bounds];
     self.poisetsMapView.delegate = self;
-    [self.poisetsMapView refreshUIWithData:nil];
     [self.view addSubview:self.poisetsMapView];
 }
 
