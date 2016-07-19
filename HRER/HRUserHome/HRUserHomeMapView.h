@@ -22,6 +22,7 @@
 @property(nonatomic,weak)id<HRUserHomeMapViewDelegate>delegate;
 
 - (void)refreshUIWithData:(NSArray *)array;
-- (void)setSeletedIndexCarD:(NSInteger)index;
+- (void)setSeltedAtIndex:(NSInteger)index;
+
 
 @end

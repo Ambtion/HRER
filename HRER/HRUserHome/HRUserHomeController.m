@@ -97,6 +97,8 @@
     
     [self.mapView refreshUIWithData:self.dataSorece];
     [self.listView setDataSource:self.dataSorece];
+    [self.mapView setSeltedAtIndex:self.caterIndex];
+    [self.listView setSeltedAtIndex:self.caterIndex];
     
     CATransition *animation = [CATransition animation];
     animation.delegate = self;

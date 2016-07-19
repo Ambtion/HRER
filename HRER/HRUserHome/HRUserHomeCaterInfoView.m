@@ -63,7 +63,13 @@
 - (void)setSeleted:(BOOL)isSeleted
 {
     _seleted = isSeleted;
-    
+    if(_seleted){
+        self.titleLabel.textColor = RGB_Color(0xd7, 0x47, 0x2a);
+        self.valueLabel.textColor = RGB_Color(0xd7, 0x47, 0x2a);
+    }else{
+        self.titleLabel.textColor = RGB_Color(0xcc, 0xcc, 0xcc);
+        self.valueLabel.textColor = [UIColor whiteColor];
+    }
 }
 
 @end

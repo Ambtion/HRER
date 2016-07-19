@@ -96,6 +96,7 @@
 {
 //    self.dataArray = array;
 //    [self refreshMapPinViews];
+    [self setMapViewSeleteIndexAnomaiton:0];
 }
 
 #pragma mark Map
@@ -141,9 +142,9 @@
 }
 
 #pragma mark - Total
-- (void)setSeletedIndexCarD:(NSInteger)index
+- (void)setSeltedAtIndex:(NSInteger)index
 {
-    [self setMapViewSeleteIndexAnomaiton:index];
+    [self.headView setSeltedAtIndex:index];
 }
 
 #pragma mark HEADView
