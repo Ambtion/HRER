@@ -8,10 +8,25 @@
 
 #import <UIKit/UIKit.h>
 
+@class HRUserHomeCaterInfoView;
+
+@protocol HRUserHomeCaterInfoViewDelegate <NSObject>
+
+- (void)userHomeCaterInfoViewDidSeletedIndex:(NSInteger)index;
+- (void)userHomeCaterSwithButtonDidClick:(HRUserHomeCaterInfoView *)view;
+
+@end
+
 @interface HRUserHomeCaterInfoView : UIView
+
+@property(nonatomic,weak)id<HRUserHomeCaterInfoViewDelegate>delegate;
 
 + (CGFloat)heigthForView;
 
 - (void)setDataSource:(id)dataSource;
+
+- (void)setSeletedAtIndex:(NSInteger)index;
+
+- (NSInteger)seletedIndex;
 
 @end

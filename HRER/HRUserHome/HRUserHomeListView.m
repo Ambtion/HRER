@@ -7,11 +7,11 @@
 //
 
 #import "HRUserHomeListView.h"
-#import "RefreshTableView.h"
 #import "HRUserHomeHeadView.h"
 #import "HRUserTimeLineHeadView.h"
+#import "HRUserHomeCell.h"
 
-@interface HRUserHomeListView()<UITableViewDelegate,UITableViewDataSource>
+@interface HRUserHomeListView()<UITableViewDelegate,UITableViewDataSource,HRUserHomeHeadViewDelegate>
 
 @property(nonatomic,strong)NSString * userId;
 
@@ -46,8 +46,6 @@
     self.tableView = [[RefreshTableView alloc] initWithFrame:CGRectMake(0, 0, self.width, self.height) style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.headView =  [[HRUserHomeHeadView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.width, [HRUserHomeHeadView heightForView])];
-    [self.headView setDataSource:nil];
     self.tableView.tableHeaderView = self.headView;
     [self addSubview:self.tableView];
 }
@@ -58,13 +56,21 @@
     
     WS(ws);
     self.tableView.refreshHeader.beginRefreshingBlock = ^(){
-        
+        if ([ws.delegate respondsToSelector:@selector(userHomeListView:DidNeedRefreshData:)]) {
+            [ws.delegate userHomeListView:ws DidNeedRefreshData:ws.tableView];
+        }
     };
 }
 
--(void)quaryDataWithVisitUserid:(NSString *)userId
+-(void)setDataSource:(id)dataSource
 {
-    
+    _dataSource = dataSource;
+    [[self tableView] reloadData];
+}
+
+- (void)setSeltedAtIndex:(NSInteger)index
+{
+    [self.headView setSeltedAtIndex:index];
 }
 
 #pragma mark - TableDelegate
@@ -88,6 +94,12 @@
     return lineHeadView;
 }
 
+#pragma mark - Cell
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [HRUserHomeCell heightForView];
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return 10;
@@ -95,6 +107,63 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [UITableViewCell new];
+    HRUserHomeCell * cell = [tableView dequeueReusableCellWithIdentifier:@"HRUserHomeCell"];
+    if (!cell) {
+        cell = [[HRUserHomeCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"HRUserHomeCell"];
+    }
+    [cell setDatsSource:nil];
+    NSInteger count = [self tableView:tableView numberOfRowsInSection:indexPath.section];
+    if (count == 1) {
+        [cell setCellStation:KCellstationFull];
+    }else if(indexPath.row == 0){
+        [cell setCellStation:KCellstationTop];
+    }else if(indexPath.row == count -1){
+        [cell setCellStation:KCellstationBottom];
+    }else{
+        [cell setCellStation:KCellstationMiddle];
+    }
+    return cell;
 }
+
+#pragma mark HEADView
+- (HRUserHomeHeadView *)headView
+{
+    if (!_headView) {
+        _headView = [[HRUserHomeHeadView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.width, [HRUserHomeHeadView heightForView])];
+        _headView.delegate = self;
+        [_headView setDataSource:nil];
+    }
+    return _headView;
+}
+
+#pragma mark - Action
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    HRUserHomeCell * cell = [tableView cellForRowAtIndexPath:indexPath];
+    if ([_delegate respondsToSelector:@selector(userHomeListView:DidClickCellWithSource:)]) {
+        [_delegate userHomeListView:self DidClickCellWithSource:cell.datsSource];
+    }
+}
+
+- (void)userHomeHeadView:(HRUserHomeHeadView *)headView DidClickCateAtIndex:(NSInteger)index
+{
+    if ([_delegate respondsToSelector:@selector(userHomeListView:DidCategoryAtIndex:)]) {
+        [_delegate userHomeListView:self DidCategoryAtIndex:index];
+    }
+}
+
+- (void)userHomeHeadViewDidClickSwitchButton:(HRUserHomeHeadView *)headView
+{
+    if ([_delegate respondsToSelector:@selector(userHomeListViewDidClickSwitchButton:)]) {
+        [_delegate userHomeListViewDidClickSwitchButton:self];
+    }
+}
+
+- (void)userHomeHeadView:(HRUserHomeHeadView *)headView DidClickRightButton:(UIButton *)button
+{
+    if ([_delegate respondsToSelector:@selector(userHomeListViewDidClickRightButton:)]) {
+        [_delegate userHomeListViewDidClickRightButton:self];
+    }
+}
+
 @end

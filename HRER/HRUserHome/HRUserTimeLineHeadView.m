@@ -96,6 +96,7 @@
     [self.hotelIcon mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.hotelTitle.mas_left).offset(-4);
         make.centerY.equalTo(self.locCityTitle);
+        make.size.mas_equalTo(CGSizeMake(17, 17));
     }];
     
     
@@ -107,6 +108,7 @@
     [self.shopIcon mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.shopTitle.mas_left).offset(-4);
         make.centerY.equalTo(self.locCityTitle);
+        make.size.mas_equalTo(CGSizeMake(17, 17));
     }];
 
     //观光
@@ -117,6 +119,7 @@
     [self.lookIcon mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.lookTitle.mas_left).offset(-4);
         make.centerY.equalTo(self.locCityTitle);
+        make.size.mas_equalTo(CGSizeMake(17, 17));
     }];
 
     //食物
@@ -127,6 +130,7 @@
     [self.foodIcon mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.foodTitle.mas_left).offset(-4);
         make.centerY.equalTo(self.locCityTitle);
+        make.size.mas_equalTo(CGSizeMake(17, 17));
     }];
     
 }

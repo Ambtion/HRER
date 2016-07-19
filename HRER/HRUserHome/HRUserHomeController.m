@@ -9,10 +9,10 @@
 #import "HRUserHomeController.h"
 #import "HRUserHomeListView.h"
 #import "HRUserHomeMapView.h"
-
+#import "HRPoiDetailController.h"
 #import "LoginStateManager.h"
 
-@interface HRUserHomeController()
+@interface HRUserHomeController()<HRUserHomeListViewDelegate,HRUserHomeMapViewDelegate>
 
 @property(nonatomic,strong)NSString * userId;
 @property(nonatomic,assign)KUserHomeControllerState state;
@@ -21,7 +21,8 @@
 
 @property(nonatomic,strong)HRUserHomeListView * listView;
 @property(nonatomic,strong)HRUserHomeMapView * mapView;
-
+@property(nonatomic,strong)id dataSorece;
+@property(nonatomic,assign)NSInteger caterIndex;
 @end
 
 @implementation HRUserHomeController
@@ -32,7 +33,8 @@
     if (self) {
         
         self.state = state;
-        self.userId = userId;   
+        self.userId = userId;
+        self.caterIndex = 0;
     }
     
     return self;
@@ -75,12 +77,15 @@
 - (void)initListView
 {
     self.listView = [[HRUserHomeListView alloc] initWithFrame:self.view.bounds];
+    self.listView.delegate = self;
+    [self.listView setSeltedAtIndex:self.caterIndex];
     [self.view addSubview:self.listView];
 }
 
 - (void)initMapView
 {
     self.mapView = [[HRUserHomeMapView alloc] initWithFrame:self.view.bounds];
+    self.mapView.delegate = self;
     [self.view addSubview:self.mapView];
 }
 
@@ -90,7 +95,8 @@
 //        return;
 //    }
     
-//    [self.mapView refreshUIWithData:self.poisetsListView.dataSource];
+    [self.mapView refreshUIWithData:self.dataSorece];
+    [self.listView setDataSource:self.dataSorece];
     
     CATransition *animation = [CATransition animation];
     animation.delegate = self;
@@ -117,14 +123,14 @@
 }
 
 #pragma mark - Data
-- (void)quaryData
+- (void)quaryDataWithTableView:(RefreshTableView *)tableView
 {
     //用户主页，并且未登录，要求登录
     if (![[LoginStateManager getInstance] userLoginInfo] && self.state == KUserHomeControllerStateRoot) {
         [HRLoginManager showLoginView];
         return;
     }
-    [self.listView quaryDataWithVisitUserid:self.userId];
+    
 }
 
 - (void)loginSucess:(id)sucess
@@ -132,12 +138,68 @@
     if (self.state == KUserHomeControllerStateRoot) {
         self.userId = [[[LoginStateManager getInstance] userLoginInfo] user_id];
     }
-    [self quaryData];
+    [self quaryDataWithTableView:nil];
 }
 
 #pragma mark - Action
+
 - (void)backButtonDidClick:(id)sender
 {
     [self.myNavController popViewControllerAnimated:YES];
+}
+
+#pragma mark Refresh Loading
+- (void)userHomeListView:(HRUserHomeListView *)listView DidNeedRefreshData:(RefreshTableView *)refreshTableView
+{
+    [self quaryDataWithTableView:refreshTableView];
+}
+
+#pragma mark PoiDetail
+- (void)userHomeListView:(HRUserHomeListView *)listView DidClickCellWithSource:(id)dataSource
+{
+    [self.myNavController pushViewController:[[HRPoiDetailController alloc] initWithPoiId:nil] animated:YES];
+}
+- (void)userHomeMapView:(HRUserHomeMapView *)mapView DidClickCellWithSource:(id)dataSource
+{
+    [self.myNavController pushViewController:[[HRPoiDetailController alloc] initWithPoiId:nil] animated:YES];
+}
+
+#pragma mark  SwitchView
+- (void)userHomeListViewDidClickSwitchButton:(HRUserHomeListView *)listView
+{
+    [self switchView];
+}
+
+- (void)userHomeMapViewDidClickSwitchButton:(HRUserHomeMapView *)mapView
+{
+    [self switchView];
+}
+
+#pragma mark RightButton
+- (void)userHomeListViewDidClickRightButton:(HRUserHomeListView *)listView
+{
+    
+}
+-(void)userHomeMapViewDidClickRightButton:(HRUserHomeMapView *)mapView
+{
+
+}
+
+#pragma mar CategoryIndex
+- (void)userHomeListView:(HRUserHomeListView *)listView DidCategoryAtIndex:(NSInteger)index
+{
+    if (self.caterIndex == index) {
+        return;
+    }
+    self.caterIndex = index;
+    [self quaryDataWithTableView:nil];
+}
+- (void)userHomeMapView:(HRUserHomeMapView *)mapView DidCategoryAtIndex:(NSInteger)index
+{
+    if (self.caterIndex == index) {
+        return;
+    }
+    self.caterIndex = index;
+    [self quaryDataWithTableView:nil];
 }
 @end

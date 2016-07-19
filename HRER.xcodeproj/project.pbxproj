@@ -53,6 +53,7 @@
 		B896640E1CF32FD100B2A6CA /* UIView+Sizes.m in Sources */ = {isa = PBXBuildFile; fileRef = B89664041CF32FD100B2A6CA /* UIView+Sizes.m */; };
 		B896640F1CF32FD100B2A6CA /* UIView+TKCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = B89664061CF32FD100B2A6CA /* UIView+TKCategory.m */; };
 		B89664101CF32FD100B2A6CA /* UIViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = B89664081CF32FD100B2A6CA /* UIViewAdditions.m */; };
+		B8ACA4291D3E4C7400011763 /* HRUserHomeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B8ACA4281D3E4C7400011763 /* HRUserHomeCell.m */; };
 		B8C00DFB1D3CFEAA009FB17F /* CityHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8C00DFA1D3CFEAA009FB17F /* CityHomeViewController.m */; };
 		B8C00E0E1D3D0518009FB17F /* HRUserHomeHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = B8C00E0D1D3D0518009FB17F /* HRUserHomeHeadView.m */; };
 		B8CDA7641D37BD6B00136AF7 /* HRPoiUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B8CDA7631D37BD6B00136AF7 /* HRPoiUserInfo.m */; };
@@ -221,6 +222,8 @@
 		B89664071CF32FD100B2A6CA /* UIViewAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewAdditions.h; sourceTree = "<group>"; };
 		B89664081CF32FD100B2A6CA /* UIViewAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewAdditions.m; sourceTree = "<group>"; };
 		B89664111CF32FF700B2A6CA /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PrefixHeader.pch; path = ../PrefixHeader.pch; sourceTree = "<group>"; };
+		B8ACA4271D3E4C7400011763 /* HRUserHomeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRUserHomeCell.h; sourceTree = "<group>"; };
+		B8ACA4281D3E4C7400011763 /* HRUserHomeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRUserHomeCell.m; sourceTree = "<group>"; };
 		B8C00DF91D3CFEAA009FB17F /* CityHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityHomeViewController.h; sourceTree = "<group>"; };
 		B8C00DFA1D3CFEAA009FB17F /* CityHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityHomeViewController.m; sourceTree = "<group>"; };
 		B8C00E0C1D3D0518009FB17F /* HRUserHomeHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRUserHomeHeadView.h; sourceTree = "<group>"; };
@@ -443,6 +446,8 @@
 				E198BA0E1D3E124E00BC8237 /* HRUserTimeLineHeadView.m */,
 				E198B9F51D3DFF9800BC8237 /* HRUserHomeListView.h */,
 				E198B9F61D3DFF9800BC8237 /* HRUserHomeListView.m */,
+				B8ACA4271D3E4C7400011763 /* HRUserHomeCell.h */,
+				B8ACA4281D3E4C7400011763 /* HRUserHomeCell.m */,
 				E198B9F81D3DFFA500BC8237 /* HRUserHomeMapView.h */,
 				E198B9F91D3DFFA500BC8237 /* HRUserHomeMapView.m */,
 				B8C00E0C1D3D0518009FB17F /* HRUserHomeHeadView.h */,
@@ -1002,6 +1007,7 @@
 				B88F106F1CF5E232007C930F /* FriendsViewController.m in Sources */,
 				B89380811D117EC8005A24FB /* HRPoiSetsMapView.m in Sources */,
 				E14BD4F51CF2D76700C66E14 /* HRPinAnnomationView.m in Sources */,
+				B8ACA4291D3E4C7400011763 /* HRUserHomeCell.m in Sources */,
 				B877334E1D33CBE000CC43CD /* SearchInPutView.m in Sources */,
 				E198B9A01D3C82E000BC8237 /* HRPoiCardAddressView.m in Sources */,
 				B8697D6B1CFC395E00F1BC4B /* HRLoginManager.m in Sources */,

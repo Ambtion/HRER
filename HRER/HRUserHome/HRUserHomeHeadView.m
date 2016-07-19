@@ -10,7 +10,7 @@
 #import "HRUserHomeInfoCardView.h"
 #import "HRUserHomeCaterInfoView.h"
 
-@interface HRUserHomeHeadView()
+@interface HRUserHomeHeadView()<HRUserHomeInfoCardViewDelegate,HRUserHomeCaterInfoViewDelegate>
 
 
 @property(nonatomic,strong)UIImageView * bgImageView;
@@ -49,6 +49,7 @@
     [self addSubview:self.carView];
     
     self.caterInfoView = [[HRUserHomeCaterInfoView alloc] init];
+    self.caterInfoView.delegate = self;
     [self addSubview:self.caterInfoView];
     
     [self.bgImageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -74,6 +75,38 @@
 {
     [self.carView setDataSource:nil];
     [self.caterInfoView setDataSource:nil];
+}
+
+- (void)setSeltedAtIndex:(NSInteger)index
+{
+    [self.caterInfoView setSeletedAtIndex:index];
+}
+
+- (NSInteger)seltedIndex
+{
+    return [self.caterInfoView seletedIndex];
+}
+
+#pragma mark Action
+- (void)userHomeInfoCardViewDidClickRightButton:(UIButton *)button
+{
+    if ([_delegate respondsToSelector:@selector(userHomeHeadView:DidClickRightButton:)]) {
+        [_delegate userHomeHeadView:self DidClickRightButton:button];
+    }
+}
+
+- (void)userHomeCaterSwithButtonDidClick:(HRUserHomeCaterInfoView *)view
+{
+    if ([_delegate respondsToSelector:@selector(userHomeHeadViewDidClickSwitchButton:)]) {
+        [_delegate userHomeHeadViewDidClickSwitchButton:self];
+    }
+}
+
+- (void)userHomeCaterInfoViewDidSeletedIndex:(NSInteger)index
+{
+    if ([_delegate respondsToSelector:@selector(userHomeHeadView:DidClickCateAtIndex:)]) {
+        [_delegate userHomeHeadView:self DidClickCateAtIndex:index];
+    }
 }
 
 @end

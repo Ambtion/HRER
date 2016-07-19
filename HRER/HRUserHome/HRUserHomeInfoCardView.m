@@ -116,6 +116,7 @@
     
 }
 
+#pragma mark Data
 - (void)setDataSource:(id)dataSource
 {
     self.nameLabel.text = @"姓名: DJ";
@@ -126,9 +127,12 @@
     [self.shareButton setImage:[UIImage imageNamed:@"userhome_share"] forState:UIControlStateNormal];
 }
 
+#pragma mark Action
 - (void)buttonDidClick:(UIButton *)button
 {
-    
+    if ([_delegate respondsToSelector:@selector(userHomeInfoCardViewDidClickRightButton:)]) {
+        [_delegate userHomeInfoCardViewDidClickRightButton:button];
+    }
 }
 
 

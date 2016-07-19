@@ -8,7 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+@class HRUserHomeInfoCardView;
+
+@protocol HRUserHomeInfoCardViewDelegate <NSObject>
+
+- (void)userHomeInfoCardViewDidClickRightButton:(UIButton *)button;
+
+@end
+
 @interface HRUserHomeInfoCardView : UIImageView
+
+@property(nonatomic,weak)id<HRUserHomeInfoCardViewDelegate>delegate;
 
 + (CGFloat)heightForView;
 

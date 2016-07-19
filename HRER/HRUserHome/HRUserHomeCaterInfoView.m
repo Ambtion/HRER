@@ -160,13 +160,17 @@
 
         }];
         
+        
         lastView = categoryView;
 
+        UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onSeletedIndex:)];
+        [categoryView addGestureRecognizer:tap];
     }
     self.caterItemArray = mArray;
   
 }
 
+#pragma mark Data
 - (void)setDataSource:(id)dataSource
 {
     self.cityItemView.valueLabel.text = @"20";
@@ -179,8 +183,46 @@
     view.valueLabel.text = [NSString stringWithFormat:@"%ld",(long)count];
 }
 
+#pragma mark Action
+
+- (void)onSeletedIndex:(UITapGestureRecognizer *)tap
+{
+    [self cancelAllSelted];
+    HRCategoryItemView * itemView = (HRCategoryItemView *)tap.view;
+    [itemView setSeleted:YES];
+    if ([_delegate respondsToSelector:@selector(userHomeCaterInfoViewDidSeletedIndex:)]) {
+        [_delegate userHomeCaterInfoViewDidSeletedIndex:[self.caterItemArray indexOfObject:itemView]];
+    }
+}
+
+- (void)setSeletedAtIndex:(NSInteger)index
+{
+    HRCategoryItemView * itemView = self.caterItemArray[index];
+    [self cancelAllSelted];
+    [itemView setSeleted:YES];
+}
+
+- (NSInteger)seletedIndex
+{
+    for (HRCategoryItemView * view in self.caterItemArray) {
+        if (view.isSeleted) {
+            return [self.caterItemArray indexOfObject:view];
+        }
+    }
+    return 0;
+}
+
+- (void)cancelAllSelted
+{
+    for (HRCategoryItemView * imtemView in self.caterItemArray ) {
+        [imtemView setSeleted:NO];
+    }
+}
+
 - (void)switchButtonDidClick:(UIButton *)button
 {
-    
+    if([_delegate respondsToSelector:@selector(userHomeCaterSwithButtonDidClick:)]){
+        [_delegate userHomeCaterSwithButtonDidClick:self];
+    }
 }
 @end
