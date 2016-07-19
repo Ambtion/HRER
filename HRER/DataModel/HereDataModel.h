@@ -18,6 +18,7 @@
 
 @interface HRUserLoginInfo : NSObject<NSCopying,NSCoding>
 
+@property(nonatomic,strong)NSString * user_id;
 @property(nonatomic,strong)NSString * phone;
 @property(nonatomic,strong)NSString * token;
 @property(nonatomic,strong)NSString * passport_num;

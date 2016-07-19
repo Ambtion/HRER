@@ -16,13 +16,12 @@
 #import "FindCityViewController.h"
 #import "HereViewController.h"
 #import "FriendsViewController.h"
-#import "MyViewController.h"
 #import "MainTabBarController.h"
 #import "HRAddressBookManager.h"
 #import "MobClick.h"
 #import "LoginStateManager.h"
 #import "NetWorkEntity.h"
-
+#import "HRUserHomeController.h"
 //Test
 #import "HRLoginManager.h"
 
@@ -57,7 +56,7 @@
     FindCityViewController * findC = [[FindCityViewController alloc] init];
     HereViewController * hVC = [[HereViewController alloc] init];
     FriendsViewController * fVC = [[FriendsViewController alloc] init];
-    MyViewController * fView = [[MyViewController alloc] init];
+    HRUserHomeController * fView = [[HRUserHomeController alloc] initWithUserID:[[[LoginStateManager getInstance] userLoginInfo] user_id] controllerState:KUserHomeControllerStateRoot];
     
     UIImage * nHome = [UIImage imageNamed:@"home"];
     UIImage * hHome = [UIImage imageNamed:@"home_select"];

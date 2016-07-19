@@ -1,16 +1,16 @@
 //
-//  HRUserHomeHeadView.h
+//  HRUserHomeCaterInfoView.h
 //  HRER
 //
-//  Created by kequ on 16/7/18.
+//  Created by quke on 16/7/19.
 //  Copyright © 2016年 linjunhou. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface HRUserHomeHeadView : UIView
+@interface HRUserHomeCaterInfoView : UIView
 
-+ (CGFloat)heightForView;
++ (CGFloat)heigthForView;
 
 - (void)setDataSource:(id)dataSource;
 

@@ -1,13 +1,13 @@
 //
-//  MyViewController.h
+//  HRUserHomeMapView.h
 //  HRER
 //
-//  Created by kequ on 16/5/25.
+//  Created by quke on 16/7/19.
 //  Copyright © 2016年 linjunhou. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface MyViewController : UIViewController
+@interface HRUserHomeMapView : UIView
 
 @end

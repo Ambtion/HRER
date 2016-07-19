@@ -10,8 +10,6 @@
 
 @interface CityHomeViewController : UIViewController
 
-@property(nonatomic,assign)BOOL isNeedRefresh;
-
 - (instancetype)initWithCityId:(NSInteger)cityId cityName:(NSString *)cityName;
 
 @end

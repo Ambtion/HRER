@@ -55,25 +55,18 @@
 }
 
 #pragma mark - ViewLife
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    if(self.isNeedRefresh){
-        [self.tableView.refreshHeader beginRefreshing];
-    }
-    self.isNeedRefresh = NO;
-}
+
 #pragma mark - Init
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    self.catergoryIndex = 0;
-    self.isNeedRefresh = YES;
-    [self initUI];
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userLoginChnage:) name:LOGIN_IN object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userLoginChnage:) name:LOGIN_OUT object:nil];    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userLoginChnage:) name:LOGIN_OUT object:nil];
+    
+    self.catergoryIndex = 0;
+    [self initUI];
+    [self quaryData];
 }
 
 - (void)initUI
@@ -89,103 +82,109 @@
 {
     self.tableView.refreshFooter.scrollView = nil;
     
+    WS(ws);
+    self.tableView.refreshHeader.beginRefreshingBlock = ^(){
+        [ws quaryData];
+    };
+}
+
+- (void)quaryData
+{
+    
+    
     void (^ failure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *operation, NSError *error){
         [self netErrorWithTableView:self.tableView];
     };
     
-    WS(ws);
-    self.tableView.refreshHeader.beginRefreshingBlock = ^(){
-        
-        [MBProgressHUD showHUDAddedTo:ws.view animated:YES];
-        
-        //获取类别数目
-        [NetWorkEntity quaryCityTypeCount:ws.cityID success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
-                NSDictionary * response  = [responseObject objectForKey:@"response"];
-                HRCatergoryInfo * categoryInfo = [HRCatergoryInfo yy_modelWithJSON:response];
-                if(categoryInfo){
-                    
-                    ws.catergoryInfo = categoryInfo;
-                    
-                    //获取附件条目
-                    [NetWorkEntity quartCityNearByWithCityId:ws.cityID catergory:ws.catergoryIndex + 1 success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                        if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
-                            NSArray * poiSets = [responseObject objectForKey:@"response"];
-                            ws.nearyBySource = [ws analysisPoiSetsModelFromArray:poiSets];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+
+    //获取类别数目
+    [NetWorkEntity quaryCityTypeCount:self.cityID success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
+            NSDictionary * response  = [responseObject objectForKey:@"response"];
+            HRCatergoryInfo * categoryInfo = [HRCatergoryInfo yy_modelWithJSON:response];
+            if(categoryInfo){
+                
+                self.catergoryInfo = categoryInfo;
+                
+                //获取附件条目
+                [NetWorkEntity quartCityNearByWithCityId:self.cityID catergory:self.catergoryIndex + 1 success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                    if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
+                        NSArray * poiSets = [responseObject objectForKey:@"response"];
+                        self.nearyBySource = [self analysisPoiSetsModelFromArray:poiSets];
+                        
+                        //编辑创建的POI集合
+                        [NetWorkEntity quaryEditCretePoiListWithCityId:self.cityID catergory:self.catergoryIndex + 1 success:^(AFHTTPRequestOperation *operation, id responseObject) {
                             
-                            //编辑创建的POI集合
-                            [NetWorkEntity quaryEditCretePoiListWithCityId:ws.cityID catergory:ws.catergoryIndex + 1 success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                            if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
+                                NSArray * poiSets = [responseObject objectForKey:@"response"];
+                                self.editPoiSetsSource = [self analysisPoiSetsModelFromArray:poiSets];
                                 
-                                if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
-                                    NSArray * poiSets = [responseObject objectForKey:@"response"];
-                                    ws.editPoiSetsSource = [ws analysisPoiSetsModelFromArray:poiSets];
-                                    
-                                    //编辑创建的单个POI
-                                    [NetWorkEntity quaryEditCretePoiListWithCityId:ws.cityID catergory:ws.catergoryIndex + 1 success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                                        if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
-                                            NSArray * poiList = [responseObject objectForKey:@"response"];
-                                            ws.editPoiSource = [ws analysisPoiModelFromArray:poiList];
-                                            
-                                            //个人创建POI集合
-                                            if([[LoginStateManager getInstance] userLoginInfo]){
-                                                [NetWorkEntity quaryFreindsCretePoiSetListWithCityId:ws.cityID catergory:ws.catergoryIndex + 1 success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                //编辑创建的单个POI
+                                [NetWorkEntity quaryEditCretePoiListWithCityId:self.cityID catergory:self.catergoryIndex + 1 success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                    if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
+                                        NSArray * poiList = [responseObject objectForKey:@"response"];
+                                        self.editPoiSource = [self analysisPoiModelFromArray:poiList];
+                                        
+                                        //个人创建POI集合
+                                        if([[LoginStateManager getInstance] userLoginInfo]){
+                                            [NetWorkEntity quaryFreindsCretePoiSetListWithCityId:self.cityID catergory:self.catergoryIndex + 1 success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                                
+                                                if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
+                                                    NSArray * poiSets = [responseObject objectForKey:@"response"];
+                                                    self.userPoiSource = [self analysisPoiModelFromArray:poiSets];
                                                     
-                                                    if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
-                                                        NSArray * poiSets = [responseObject objectForKey:@"response"];
-                                                        ws.userPoiSource = [ws analysisPoiModelFromArray:poiSets];
+                                                    [NetWorkEntity quaryFreindsCretePoiListWithCityId:self.cityID catergory:self.catergoryIndex + 1 success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                                         
-                                                        [NetWorkEntity quaryFreindsCretePoiListWithCityId:ws.cityID catergory:ws.catergoryIndex + 1 success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                                                            
-                                                            if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
-                                                                NSArray * poiList = [responseObject objectForKey:@"response"];
-                                                                ws.userPoiSetsSource = [ws analysisPoiSetsModelFromArray:poiList];
-                                                                [ws.tableView reloadData];
-                                                                [ws.tableView.refreshHeader endRefreshing];
-                                                                [MBProgressHUD hideHUDForView:ws.view animated:YES];
-                                                            }else{
-                                                                [ws dealErrorResponseWithTableView:ws.tableView info:responseObject];
-                                                            }
-                                                            
-                                                        } failure:failure];
+                                                        if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
+                                                            NSArray * poiList = [responseObject objectForKey:@"response"];
+                                                            self.userPoiSetsSource = [self analysisPoiSetsModelFromArray:poiList];
+                                                            [self.tableView reloadData];
+                                                            [self.tableView.refreshHeader endRefreshing];
+                                                            [MBProgressHUD hideHUDForView:self.view animated:YES];
+                                                        }else{
+                                                            [self dealErrorResponseWithTableView:self.tableView info:responseObject];
+                                                        }
                                                         
-                                                    }else{
-                                                        [ws dealErrorResponseWithTableView:ws.tableView info:responseObject];
-                                                    }
+                                                    } failure:failure];
                                                     
-                                                } failure:failure];
-                                            }else{
-                                                [ws.tableView reloadData];
-                                                [ws.tableView.refreshHeader endRefreshing];
-                                                [MBProgressHUD hideHUDForView:ws.view animated:YES];
-                                            }
-                                            
+                                                }else{
+                                                    [self dealErrorResponseWithTableView:self.tableView info:responseObject];
+                                                }
+                                                
+                                            } failure:failure];
                                         }else{
-                                            [ws dealErrorResponseWithTableView:ws.tableView info:responseObject];
+                                            [self.tableView reloadData];
+                                            [self.tableView.refreshHeader endRefreshing];
+                                            [MBProgressHUD hideHUDForView:self.view animated:YES];
                                         }
                                         
-                                    } failure:failure];
+                                    }else{
+                                        [self dealErrorResponseWithTableView:self.tableView info:responseObject];
+                                    }
                                     
-                                }else{
-                                    [ws dealErrorResponseWithTableView:ws.tableView info:responseObject];
-                                }
+                                } failure:failure];
                                 
-                            } failure:failure];
+                            }else{
+                                [self dealErrorResponseWithTableView:self.tableView info:responseObject];
+                            }
                             
-                        }else{
-                            [ws dealErrorResponseWithTableView:ws.tableView info:responseObject];
-                        }
+                        } failure:failure];
                         
-                    } failure:failure];
+                    }else{
+                        [self dealErrorResponseWithTableView:self.tableView info:responseObject];
+                    }
                     
-                }else{
-                }
+                } failure:failure];
+                
             }else{
-                [ws dealErrorResponseWithTableView:ws.tableView info:responseObject];
             }
-        } failure:failure];
-        
-    };
+        }else{
+            [self dealErrorResponseWithTableView:self.tableView info:responseObject];
+        }
+    } failure:failure];
     
+
 }
 
 
@@ -235,7 +234,7 @@
     return 6;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (NSInteger)tableView:(UITableView *)tableView numberOfRoselfInSection:(NSInteger)section
 {
     switch (section) {
         case 0:
@@ -425,7 +424,7 @@
         //附近  //编辑
         return;
     }
-    HRUserHomeController * userHomeController = [[HRUserHomeController alloc] initWithUserID:cell.data.creator_id];
+    HRUserHomeController * userHomeController = [[HRUserHomeController alloc] initWithUserID:cell.data.creator_id controllerState:KUserHomeControllerStatePush];
     [self.myNavController pushViewController:userHomeController animated:YES];
     
 }
@@ -437,7 +436,7 @@
         //附近  //编辑
         return;
     }
-    HRUserHomeController * userHomeController = [[HRUserHomeController alloc] initWithUserID:cell.data.creator_id];
+    HRUserHomeController * userHomeController = [[HRUserHomeController alloc] initWithUserID:cell.data.creator_id controllerState:KUserHomeControllerStatePush];
     [self.myNavController pushViewController:userHomeController animated:YES];
 }
 #pragma mark - Login

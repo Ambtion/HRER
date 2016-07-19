@@ -11,6 +11,4 @@
 
 @interface HomeViewController : UIViewController
 
-@property(nonatomic,assign)BOOL isNeedRefresh;
-
 @end

@@ -152,7 +152,7 @@
     if (self.creteType != KPoiSetsCreteUser) {
         return;
     }
-    HRUserHomeController * userHomeController = [[HRUserHomeController alloc] initWithUserID:poiInfo.creator_id];
+    HRUserHomeController * userHomeController = [[HRUserHomeController alloc] initWithUserID:poiInfo.creator_id controllerState:KUserHomeControllerStatePush];
     [self.myNavController pushViewController:userHomeController animated:YES];
 
 }
@@ -161,7 +161,7 @@
     if (self.creteType != KPoiSetsCreteUser) {
         return;
     }
-    HRUserHomeController * userHomeController = [[HRUserHomeController alloc] initWithUserID:poiInfo.creator_id];
+    HRUserHomeController * userHomeController = [[HRUserHomeController alloc] initWithUserID:poiInfo.creator_id controllerState:KUserHomeControllerStatePush];
     [self.myNavController pushViewController:userHomeController animated:YES];
 }
 @end

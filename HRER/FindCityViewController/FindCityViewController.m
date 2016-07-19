@@ -25,24 +25,13 @@
 
 @implementation FindCityViewController
 
-
-
-#pragma mark - ViewLife
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    
-    if(self.isNeedRefresh){
-        [self.tableView.refreshHeader beginRefreshing];
-    }
-    self.isNeedRefresh = NO;
-}
 #pragma mark - Init
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     [self initUI];
+    [self quaryData];
 }
 
 - (void)initUI
@@ -85,10 +74,6 @@
 {
     self.tableView.refreshFooter.scrollView = nil;
     
-    void (^ failure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *operation, NSError *error){
-        [self netErrorWithTableView:self.tableView];
-    };
-    
     WS(ws);
     self.tableView.refreshHeader.beginRefreshingBlock = ^(){
         [ws quaryData];
@@ -97,7 +82,10 @@
 
 - (void)quaryData
 {
-    
+    void (^ failure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *operation, NSError *error){
+        [self netErrorWithTableView:self.tableView];
+    };
+
 }
 
 
