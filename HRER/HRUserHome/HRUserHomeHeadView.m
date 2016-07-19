@@ -34,7 +34,6 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor blackColor];
         [self initUI];
     }
     return self;
@@ -43,6 +42,7 @@
 - (void)initUI
 {
     self.bgImageView = [[UIImageView alloc] init];
+    self.bgImageView.image = [UIImage imageNamed:@"image_bg"];
     [self addSubview:self.bgImageView];
     
     self.carView = [[HRUserHomeInfoCardView alloc] init];
