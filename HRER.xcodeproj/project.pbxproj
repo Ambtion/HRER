@@ -28,6 +28,9 @@
 		B85520151D098F5700C56FC5 /* HereViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B85520141D098F5700C56FC5 /* HereViewController.m */; };
 		B85520191D098FB900C56FC5 /* HRCatergoryItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = B85520181D098FB900C56FC5 /* HRCatergoryItemView.m */; };
 		B85629411D3BBBF200E5BD4C /* HRUserHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = B85629401D3BBBF200E5BD4C /* HRUserHomeController.m */; };
+		B856FF451D3F929A002EF2C4 /* HRLocationInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = B856FF441D3F929A002EF2C4 /* HRLocationInputView.m */; };
+		B856FF481D3F9720002EF2C4 /* HRLocationCategoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = B856FF471D3F9720002EF2C4 /* HRLocationCategoryView.m */; };
+		B856FF4B1D3F9734002EF2C4 /* HRCreteCategoryItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = B856FF4A1D3F9734002EF2C4 /* HRCreteCategoryItemView.m */; };
 		B8697D6B1CFC395E00F1BC4B /* HRLoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B8697D6A1CFC395E00F1BC4B /* HRLoginManager.m */; };
 		B877334E1D33CBE000CC43CD /* SearchInPutView.m in Sources */ = {isa = PBXBuildFile; fileRef = B877334D1D33CBE000CC43CD /* SearchInPutView.m */; };
 		B88F10611CF5D005007C930F /* HRLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B88F10601CF5D005007C930F /* HRLoginViewController.m */; };
@@ -175,6 +178,12 @@
 		B856293F1D3BBBF200E5BD4C /* HRUserHomeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRUserHomeController.h; sourceTree = "<group>"; };
 		B85629401D3BBBF200E5BD4C /* HRUserHomeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRUserHomeController.m; sourceTree = "<group>"; };
 		B85629421D3BC67400E5BD4C /* ModelDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelDefine.h; sourceTree = "<group>"; };
+		B856FF431D3F929A002EF2C4 /* HRLocationInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRLocationInputView.h; sourceTree = "<group>"; };
+		B856FF441D3F929A002EF2C4 /* HRLocationInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRLocationInputView.m; sourceTree = "<group>"; };
+		B856FF461D3F9720002EF2C4 /* HRLocationCategoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRLocationCategoryView.h; sourceTree = "<group>"; };
+		B856FF471D3F9720002EF2C4 /* HRLocationCategoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRLocationCategoryView.m; sourceTree = "<group>"; };
+		B856FF491D3F9734002EF2C4 /* HRCreteCategoryItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRCreteCategoryItemView.h; sourceTree = "<group>"; };
+		B856FF4A1D3F9734002EF2C4 /* HRCreteCategoryItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRCreteCategoryItemView.m; sourceTree = "<group>"; };
 		B8697D691CFC395E00F1BC4B /* HRLoginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRLoginManager.h; sourceTree = "<group>"; };
 		B8697D6A1CFC395E00F1BC4B /* HRLoginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRLoginManager.m; sourceTree = "<group>"; };
 		B877334C1D33CBE000CC43CD /* SearchInPutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchInPutView.h; sourceTree = "<group>"; };
@@ -818,6 +827,8 @@
 				E1A23F891D3F45D700D73CE6 /* HRCreateCategoryCell.m */,
 				E1A23F8E1D3F530D00D73CE6 /* HRCretePoiCell.h */,
 				E1A23F8F1D3F530D00D73CE6 /* HRCretePoiCell.m */,
+				B856FF491D3F9734002EF2C4 /* HRCreteCategoryItemView.h */,
+				B856FF4A1D3F9734002EF2C4 /* HRCreteCategoryItemView.m */,
 				E1A23FB51D3F74B200D73CE6 /* HRPoiNoFoundTipsView.h */,
 				E1A23FB61D3F74B200D73CE6 /* HRPoiNoFoundTipsView.m */,
 			);
@@ -829,6 +840,10 @@
 			children = (
 				E11876AA1D3F29C800A23429 /* HRLocationMapController.h */,
 				E11876AB1D3F29C800A23429 /* HRLocationMapController.m */,
+				B856FF461D3F9720002EF2C4 /* HRLocationCategoryView.h */,
+				B856FF471D3F9720002EF2C4 /* HRLocationCategoryView.m */,
+				B856FF431D3F929A002EF2C4 /* HRLocationInputView.h */,
+				B856FF441D3F929A002EF2C4 /* HRLocationInputView.m */,
 			);
 			name = MapPoi;
 			sourceTree = "<group>";
@@ -1063,6 +1078,7 @@
 				B89380811D117EC8005A24FB /* HRPoiSetsMapView.m in Sources */,
 				E14BD4F51CF2D76700C66E14 /* HRPinAnnomationView.m in Sources */,
 				B8ACA4291D3E4C7400011763 /* HRUserHomeCell.m in Sources */,
+				B856FF4B1D3F9734002EF2C4 /* HRCreteCategoryItemView.m in Sources */,
 				E11876A91D3F29B900A23429 /* HRCreteLocationController.m in Sources */,
 				B877334E1D33CBE000CC43CD /* SearchInPutView.m in Sources */,
 				E198B9A01D3C82E000BC8237 /* HRPoiCardAddressView.m in Sources */,
@@ -1088,6 +1104,8 @@
 				B893807D1D117E8D005A24FB /* HRPoiSetsController.m in Sources */,
 				B89663F01CF32F7700B2A6CA /* ToastAlertView.m in Sources */,
 				B8CDA7641D37BD6B00136AF7 /* HRPoiUserInfo.m in Sources */,
+				B856FF451D3F929A002EF2C4 /* HRLocationInputView.m in Sources */,
+				B856FF481D3F9720002EF2C4 /* HRLocationCategoryView.m in Sources */,
 				B8954EAA1CFC7E10006A706A /* HRRegisterViewController.m in Sources */,
 				B816B1101D3671C200318662 /* HRPoiDetailController.m in Sources */,
 				B816B1191D367AA000318662 /* HRPoiLocInfoCell.m in Sources */,

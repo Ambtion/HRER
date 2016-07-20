@@ -7,10 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import <MapKit/MapKit.h>
 
 @protocol HRLocationMapControllerDelegate <NSObject>
 
+- (void)locationMapControllerDidChangePoiName:(NSString *)poiName
+                                   poiAddress:(NSString *)address
+                                      poiType:(NSInteger)poiType
+                       CLLocationCoordinate2D:(CLLocationCoordinate2D)coord;
 
 @end
 

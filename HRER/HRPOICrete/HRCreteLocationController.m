@@ -14,7 +14,7 @@
 #import "HRPoiNoFoundTipsView.h"
 #import "HRLocationMapController.h"
 
-@interface HRCreteLocationController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,HRCreateCategoryCell>
+@interface HRCreteLocationController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,HRCreateCategoryCell,HRLocationMapControllerDelegate>
 
 @property(nonatomic,strong)UITableView * tableView;
 @property(nonatomic,strong)NSArray * dataArray;
@@ -115,7 +115,6 @@
     [view addSubview:tipsView];
     
     self.tableView.tableFooterView = view;
-    
 }
 
 - (void)quaryData
@@ -256,6 +255,14 @@
     
 }
 
+
+- (void)createCategoryCellDidSeletedIndex:(NSInteger)index
+{
+    self.categortIndex = index;
+    [self quaryData];
+}
+
+#pragma mark MapPoi
 - (void)onNoFoundTipsDidClick:(id)sender
 {
     HRLocationMapController * controller =  [[HRLocationMapController alloc] init];
@@ -263,10 +270,9 @@
     [self.myNavController pushViewController:controller animated:YES];
 }
 
-- (void)createCategoryCellDidSeletedIndex:(NSInteger)index
+- (void)locationMapControllerDidChangePoiName:(NSString *)poiName poiAddress:(NSString *)address poiType:(NSInteger)poiType CLLocationCoordinate2D:(CLLocationCoordinate2D)coord
 {
-    self.categortIndex = index;
-    [self quaryData];
+    
 }
 
 @end
