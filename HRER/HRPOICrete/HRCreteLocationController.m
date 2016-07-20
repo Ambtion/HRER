@@ -10,7 +10,7 @@
 #import "SearchInPutView.h"
 #import "HRLocationManager.h"
 #import "HRCreateCategoryCell.h"
-
+#import "HRCretePoiCell.h"
 
 @interface HRCreteLocationController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,HRCreateCategoryCell>
 
@@ -18,11 +18,14 @@
 @property(nonatomic,strong)NSArray * dataArray;
 
 @property(nonatomic,strong)UIButton * rightButton;
+
 /**
  *  CityInfo
  */
 @property(nonatomic,strong)NSString * cityName;
 @property(nonatomic,assign)NSInteger cityId;
+@property(nonatomic,assign)CGFloat lat;
+@property(nonatomic,assign)CGFloat lng;
 
 /**
  *  搜索框
@@ -61,9 +64,11 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(quaryData) name:LOGIN_IN object:nil];
     self.cityId = [[HRLocationManager  sharedInstance] curCityId];
     self.cityName = [[HRLocationManager  sharedInstance] cityName];
+    self.lat = [[[HRLocationManager  sharedInstance] curLocation] coordinate].latitude;
+    self.lng = [[[HRLocationManager  sharedInstance] curLocation] coordinate].longitude;
     self.categortIndex = 0;
     [self initUI];
-    [self quaryData];
+//    [self quaryData];
 }
 
 - (void)initUI
@@ -120,13 +125,30 @@
     
     WS(weakSelf);
     
-    [NetWorkEntity quartPoiListWithKeyWord:self.inputView.textFiled.text poiType:self.categortIndex success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
+    [NetWorkEntity quartPoiListWithKeyWord:!self.inputView.textFiled.text.length ? @"美食" : self.inputView.textFiled.text poiType:self.categortIndex lat:self.lat  loc:self.lng success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [MBProgressHUD hideAllHUDsForView:weakSelf.view animated:YES];
+        NSArray * poiS = [responseObject objectForKey:@"pois"];
+        weakSelf.dataArray = [weakSelf analysisPoiModelFromArray:poiS];
+        [weakSelf.tableView reloadData];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
+        [MBProgressHUD hideAllHUDsForView:weakSelf.view animated:YES];
     }];
+}
+
+- (NSArray *)analysisPoiModelFromArray:(NSArray *)array
+{
+    if (![array isKindOfClass:[NSArray class]]) {
+        return nil;
+    }
     
-    
+    NSMutableArray * mArray = [NSMutableArray arrayWithCapacity:0];
+    for (NSDictionary * dic  in array) {
+        HRCretePOIInfo * model = [HRCretePOIInfo yy_modelWithJSON:dic];
+        if (model) {
+            [mArray addObject:model];
+        }
+    }
+    return mArray;
 }
 
 
@@ -157,21 +179,40 @@
 #pragma mark -
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 3;
+    return 2;
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if(section == 0){
-        return 1;
+    
+    switch (section) {
+        case 0:
+            return 1;
+            break;
+        case 1:
+            return self.dataArray.count;
+            break;
+        default:
+            break;
     }
     return 0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [HRCreateCategoryCell heightForCell];
+    switch (indexPath.section) {
+        case 0:
+            return [HRCreateCategoryCell heightForCell];
+            break;
+        case 1:
+            return [HRCretePoiCell heightforCell];
+            break;
+        default:
+            break;
+    }
+    return 0;
+
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -185,6 +226,15 @@
         [cateCell setSeletedAtIndex:self.categortIndex];
         return cateCell;
     }
+    if (indexPath.section == 1) {
+        HRCretePoiCell * poiCell = [tableView dequeueReusableCellWithIdentifier:@"HRCretePoiCell"];
+        if (!poiCell) {
+            poiCell = [[HRCretePoiCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"HRCretePoiCell"];
+        }
+        poiCell.data = self.dataArray[indexPath.row];
+        return poiCell;
+    }
+    
     return [UITableViewCell new];
 }
 

@@ -7,7 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HereDataModel.h"
 
 @interface HRCretePoiCell : UITableViewCell
 
+@property(nonatomic,strong)HRCretePOIInfo * data;
+@property(nonatomic,strong)UIView * lineView;
+
+
++ (CGFloat)heightforCell;
+
 @end
+

@@ -55,7 +55,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(quaryData) name:LOGIN_IN object:nil];
     [self initUI];
-    [self quaryData];
+//    [self quaryData];
 }
 
 - (void)initUI

@@ -32,7 +32,7 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        
+        [self initUI];
     }
     return self;
 }
@@ -40,6 +40,8 @@
 - (void)initUI
 {
     self.portraitImage = [[UIImageView alloc] init];
+    self.portraitImage.layer.cornerRadius = 23.f;
+    self.portraitImage.clipsToBounds = YES;
     [self addSubview:self.portraitImage];
     
     self.titleLabel = [[UILabel alloc] init];
@@ -54,6 +56,16 @@
     self.subLabel.textColor = RGB_Color(0xa6, 0xa6, 0xa6);
     self.subLabel.textAlignment = NSTextAlignmentLeft;
     [self addSubview:self.subLabel];
+    
+    
+    self.locIconView = [[UIImageView alloc] init];
+    self.locIconView.image = [UIImage imageNamed:@"km"];
+    [self addSubview:self.locIconView];
+    
+    self.locLabel = [[UILabel alloc] init];
+    self.locLabel.font = [UIFont systemFontOfSize:12.f];
+    self.locLabel.textColor = RGB_Color(0x4c, 0x4c, 0x4c);
+    [self addSubview:self.locLabel];
     
     [self.portraitImage mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(46.f, 46.f));
@@ -72,22 +84,15 @@
     
     [self.subLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.titleLabel);
-        make.width.equalTo(self.titleLabel);
+        make.right.lessThanOrEqualTo(self.locIconView.mas_left).offset(-10);
         make.top.equalTo(self.titleLabel.mas_bottom).offset(12.f);
+        
     }];
     
     
-    self.locIconView = [[UIImageView alloc] init];
-    self.locIconView.image = [UIImage imageNamed:@"km"];
-    [self addSubview:self.locIconView];
-    
-    self.locLabel = [[UILabel alloc] init];
-    self.locLabel.font = [UIFont systemFontOfSize:12.f];
-    self.locLabel.textColor = RGB_Color(0x4c, 0x4c, 0x4c);
-    [self addSubview:self.locLabel];
     
     [self.locLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.mas_right).offset(19.f);
+        make.right.equalTo(self).offset(-19.f);
         make.height.equalTo(@(14.f));
         make.centerY.equalTo(self.subLabel);
     }];
@@ -97,7 +102,28 @@
         make.centerY.equalTo(self.locLabel);
     }];
 
+    
+    self.lineView = [[UIView alloc] init];
+    self.lineView.backgroundColor = RGB_Color(0xec, 0xec, 0xec);
+    [self addSubview:self.lineView];
+    
+    [self.lineView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.portraitImage.mas_left);
+        make.right.equalTo(self.contentView).offset(-14.f);
+        make.bottom.equalTo(self.contentView);
+        make.height.equalTo(@(0.5));
+    }];
 
+
+}
+
+- (void)setData:(HRCretePOIInfo *)data
+{
+    _data = data;
+    self.portraitImage.backgroundColor = [UIColor redColor];
+    self.titleLabel.text = data.title;
+    self.subLabel.text = data.subTitle;
+    self.locLabel.text = [NSString stringWithFormat:@"%ldm",(long)data.distance];
 }
 
 #pragma mark

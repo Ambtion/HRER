@@ -59,3 +59,19 @@ YYModelSynthCoderAndHash
 }
 
 @end
+
+@implementation HRCretePOIInfo
+
+YYModelSynthCoderAndHash
+
++ (nullable NSDictionary<NSString *, id> *)modelCustomPropertyMapper
+{
+    return @{
+             @"iconStr" : @"pname",
+             @"location": @"location",
+             @"title": @"name",
+             @"subTitle":@"address"
+             };
+}
+
+@end

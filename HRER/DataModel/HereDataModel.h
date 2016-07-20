@@ -81,3 +81,13 @@
 
 @end
 
+@interface HRCretePOIInfo : NSObject<NSCopying,NSCopying>
+
+@property(nonatomic,strong)NSString * iconStr;
+@property(nonatomic,strong)NSString * location;
+@property(nonatomic,strong)NSString * title;
+@property(nonatomic,strong)NSString * subTitle;
+@property(nonatomic,assign)NSInteger distance;
+
+@end
+

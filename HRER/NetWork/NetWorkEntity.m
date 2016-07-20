@@ -363,53 +363,88 @@
  */
 + (void)quartPoiListWithKeyWord:(NSString *)keyWord
                         poiType:(NSInteger)poiType
+                            lat:(CGFloat)lat
+                            loc:(CGFloat)lng
                         success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                         failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
     
     
-    AFSecurityPolicy *securityPolicy = [AFSecurityPolicy defaultPolicy];
-    securityPolicy.allowInvalidCertificates = YES;
-    [AFHTTPRequestOperationManager manager].securityPolicy = securityPolicy;
-    
+    /**
+     *  高德
+     */
     NSMutableDictionary * dic = [NSMutableDictionary dictionaryWithCapacity:0];
-    NSString * loc = [NSString stringWithFormat:@"%f,%f",[[HRLocationManager sharedInstance] curLocation].coordinate.latitude,[[HRLocationManager sharedInstance] curLocation].coordinate.longitude];
-    [dic setValue:loc forKey:@"location"];
-    [dic setValue:@"en" forKey:@"language"];
-    [dic setValue:@(50000) forKey:@"radius"];
-    [dic setValue:@"AIzaSyAFjcj5LmbOxOLPRbums3DvZiMaT38DfVI" forKey:@"key"];
+    [dic setValue:@"b5646e547c5bc722d99bdd34795fcf11" forKey:@"key"];
+    [dic setValue:keyWord forKey:@"keywords"];
+    [dic setValue:[NSString stringWithFormat:@"%.5f,%.5f",lat,lng] forKey:@"location"];
+    NSString *  urlStr = @"http://restapi.amap.com/v3/place/around";
     
-    
-    [dic setValue:keyWord forKey:@"name"];
-    
-    NSString * keytype = nil;
-    switch (poiType) {
-        case 0:
-            // 美食 food
-            keytype = @"bakery | bar | cafe | food | restaurant";
-            break;
-        case 1:
-            // 观光
-            
-            keytype = @"beauty_salon | bowling_alley | campground | casino | gym | hair_care | movie_rental | movie_theater | night_club | spa";
-            break;
-        case 2:
-            keytype = @"aquarium | art_gallery | bicycle_store | book_store | church|city_hall | clothing_store | embassy|florist | furniture_store | grocery_or_supermarket | hardware_store | home_goods_store | jewelry_store | library | mosque | museum |park | post_office | university | shoe_store | shopping_mall | stadium | train_station | zoo";
-            // 购物 shopping_mall
-            break;
-        case 3:
-            keytype = @"lodging";
-            // 酒店
-            break;
-        default:
-            break;
-    }
-    
-    NSString *  urlStr = @"https://maps.googleapis.com/maps/api/place/nearbysearch/json";
-
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager GET:urlStr parameters:dic success:success failure:failure];
+    
 
+    
+    
+//    /**
+//     *  sougou
+//     */
+//    
+//    NSMutableDictionary * dic = [NSMutableDictionary dictionaryWithCapacity:0];
+//    [dic setValue:@"city:全国" forKey:@"range"];
+//    [dic setValue:[NSString stringWithFormat:@"keyword:%@",keyWord] forKey:@"what"];
+//    
+//    NSString *  urlStr = @"http://api.go2map.com/engine/api/search/json";
+//
+//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+//    [manager GET:urlStr parameters:dic success:success failure:failure];
+//
+    
+//    /**
+//     *  谷歌
+//     */
+//    
+//    AFSecurityPolicy *securityPolicy = [AFSecurityPolicy defaultPolicy];
+//    securityPolicy.allowInvalidCertificates = YES;
+//    [AFHTTPRequestOperationManager manager].securityPolicy = securityPolicy;
+//    
+//    NSMutableDictionary * dic = [NSMutableDictionary dictionaryWithCapacity:0];
+//    NSString * loc = [NSString stringWithFormat:@"%f,%f",lat,lng];;
+//    [dic setValue:loc forKey:@"location"];
+//    [dic setValue:@"en" forKey:@"language"];
+//    [dic setValue:@(50000) forKey:@"radius"];
+//    [dic setValue:@"AIzaSyAFjcj5LmbOxOLPRbums3DvZiMaT38DfVI" forKey:@"key"];
+//    
+//    
+//    [dic setValue:keyWord forKey:@"name"];
+//    
+//    NSString * keytype = nil;
+//    switch (poiType) {
+//        case 0:
+//            // 美食 food
+//            keytype = @"bakery | bar | cafe | food | restaurant";
+//            break;
+//        case 1:
+//            // 观光
+//            
+//            keytype = @"beauty_salon | bowling_alley | campground | casino | gym | hair_care | movie_rental | movie_theater | night_club | spa";
+//            break;
+//        case 2:
+//            keytype = @"aquarium | art_gallery | bicycle_store | book_store | church|city_hall | clothing_store | embassy|florist | furniture_store | grocery_or_supermarket | hardware_store | home_goods_store | jewelry_store | library | mosque | museum |park | post_office | university | shoe_store | shopping_mall | stadium | train_station | zoo";
+//            // 购物 shopping_mall
+//            break;
+//        case 3:
+//            keytype = @"lodging";
+//            // 酒店
+//            break;
+//        default:
+//            break;
+//    }
+//    
+//    NSString *  urlStr = @"https://maps.googleapis.com/maps/api/place/nearbysearch/json";
+//
+//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+//    [manager GET:urlStr parameters:dic success:success failure:failure];
+//
 }
 
 

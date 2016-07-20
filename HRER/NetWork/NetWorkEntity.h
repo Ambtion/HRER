@@ -205,6 +205,8 @@
  */
 + (void)quartPoiListWithKeyWord:(NSString *)keyWord
                         poiType:(NSInteger)poiType
+                            lat:(CGFloat)lat
+                            loc:(CGFloat)lng
                         success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                         failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
