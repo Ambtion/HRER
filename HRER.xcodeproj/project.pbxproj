@@ -108,6 +108,7 @@
 		E198BA0F1D3E124E00BC8237 /* HRUserTimeLineHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = E198BA0E1D3E124E00BC8237 /* HRUserTimeLineHeadView.m */; };
 		E1A23F8A1D3F45D700D73CE6 /* HRCreateCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A23F891D3F45D700D73CE6 /* HRCreateCategoryCell.m */; };
 		E1A23F901D3F530D00D73CE6 /* HRCretePoiCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A23F8F1D3F530D00D73CE6 /* HRCretePoiCell.m */; };
+		E1A23FB71D3F74B200D73CE6 /* HRPoiNoFoundTipsView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A23FB61D3F74B200D73CE6 /* HRPoiNoFoundTipsView.m */; };
 		E1A8154A1D0D483B005E4443 /* HRCatergoryScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A815491D0D483B005E4443 /* HRCatergoryScrollView.m */; };
 		E1AC6CF51CFD3D1F00EADF02 /* HRNewPassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1AC6CF41CFD3D1F00EADF02 /* HRNewPassViewController.m */; };
 		E1C303701CF43C1F001C016B /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E1C3036B1CF43C1F001C016B /* libWeChatSDK.a */; };
@@ -319,6 +320,8 @@
 		E1A23F891D3F45D700D73CE6 /* HRCreateCategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRCreateCategoryCell.m; sourceTree = "<group>"; };
 		E1A23F8E1D3F530D00D73CE6 /* HRCretePoiCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRCretePoiCell.h; sourceTree = "<group>"; };
 		E1A23F8F1D3F530D00D73CE6 /* HRCretePoiCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRCretePoiCell.m; sourceTree = "<group>"; };
+		E1A23FB51D3F74B200D73CE6 /* HRPoiNoFoundTipsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRPoiNoFoundTipsView.h; sourceTree = "<group>"; };
+		E1A23FB61D3F74B200D73CE6 /* HRPoiNoFoundTipsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRPoiNoFoundTipsView.m; sourceTree = "<group>"; };
 		E1A815481D0D483B005E4443 /* HRCatergoryScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRCatergoryScrollView.h; sourceTree = "<group>"; };
 		E1A815491D0D483B005E4443 /* HRCatergoryScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRCatergoryScrollView.m; sourceTree = "<group>"; };
 		E1AC6CF31CFD3D1F00EADF02 /* HRNewPassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRNewPassViewController.h; sourceTree = "<group>"; };
@@ -697,16 +700,10 @@
 		E11876A01D3F27D000A23429 /* HRPOICrete */ = {
 			isa = PBXGroup;
 			children = (
-				E11876A71D3F29B900A23429 /* HRCreteLocationController.h */,
-				E11876A81D3F29B900A23429 /* HRCreteLocationController.m */,
-				E1A23F881D3F45D700D73CE6 /* HRCreateCategoryCell.h */,
-				E1A23F891D3F45D700D73CE6 /* HRCreateCategoryCell.m */,
-				E11876AA1D3F29C800A23429 /* HRLocationMapController.h */,
-				E11876AB1D3F29C800A23429 /* HRLocationMapController.m */,
+				E1A23FC91D3F78F900D73CE6 /* MapPoi */,
+				E1A23FB41D3F745100D73CE6 /* CreatePoiList */,
 				E11876AD1D3F29D700A23429 /* HRUpLoadImageController.h */,
 				E11876AE1D3F29D700A23429 /* HRUpLoadImageController.m */,
-				E1A23F8E1D3F530D00D73CE6 /* HRCretePoiCell.h */,
-				E1A23F8F1D3F530D00D73CE6 /* HRCretePoiCell.m */,
 			);
 			path = HRPOICrete;
 			sourceTree = "<group>";
@@ -810,6 +807,30 @@
 				E198B99F1D3C82E000BC8237 /* HRPoiCardAddressView.m */,
 			);
 			path = HRNaiMapController;
+			sourceTree = "<group>";
+		};
+		E1A23FB41D3F745100D73CE6 /* CreatePoiList */ = {
+			isa = PBXGroup;
+			children = (
+				E11876A71D3F29B900A23429 /* HRCreteLocationController.h */,
+				E11876A81D3F29B900A23429 /* HRCreteLocationController.m */,
+				E1A23F881D3F45D700D73CE6 /* HRCreateCategoryCell.h */,
+				E1A23F891D3F45D700D73CE6 /* HRCreateCategoryCell.m */,
+				E1A23F8E1D3F530D00D73CE6 /* HRCretePoiCell.h */,
+				E1A23F8F1D3F530D00D73CE6 /* HRCretePoiCell.m */,
+				E1A23FB51D3F74B200D73CE6 /* HRPoiNoFoundTipsView.h */,
+				E1A23FB61D3F74B200D73CE6 /* HRPoiNoFoundTipsView.m */,
+			);
+			name = CreatePoiList;
+			sourceTree = "<group>";
+		};
+		E1A23FC91D3F78F900D73CE6 /* MapPoi */ = {
+			isa = PBXGroup;
+			children = (
+				E11876AA1D3F29C800A23429 /* HRLocationMapController.h */,
+				E11876AB1D3F29C800A23429 /* HRLocationMapController.m */,
+			);
+			name = MapPoi;
 			sourceTree = "<group>";
 		};
 		E1C3036A1CF43C1F001C016B /* WebCatSDK */ = {
@@ -1024,6 +1045,7 @@
 				B8DF93241CFB2AB1007C4DF9 /* FGuideViewManager.m in Sources */,
 				B8C00DFB1D3CFEAA009FB17F /* CityHomeViewController.m in Sources */,
 				B85520191D098FB900C56FC5 /* HRCatergoryItemView.m in Sources */,
+				E1A23FB71D3F74B200D73CE6 /* HRPoiNoFoundTipsView.m in Sources */,
 				B805E1F21D0DAE970011E2F7 /* HRHereBannerCell.m in Sources */,
 				B8954EAE1CFC7E1D006A706A /* HRFinPassViewController.m in Sources */,
 				B89664101CF32FD100B2A6CA /* UIViewAdditions.m in Sources */,

@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+
+@protocol HRLocationMapControllerDelegate <NSObject>
+
+
+@end
+
 @interface HRLocationMapController : UIViewController
+
+@property(nonatomic,weak)id<HRLocationMapControllerDelegate> delegate;
 
 @end

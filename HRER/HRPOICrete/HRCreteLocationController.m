@@ -11,6 +11,8 @@
 #import "HRLocationManager.h"
 #import "HRCreateCategoryCell.h"
 #import "HRCretePoiCell.h"
+#import "HRPoiNoFoundTipsView.h"
+#import "HRLocationMapController.h"
 
 @interface HRCreteLocationController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,HRCreateCategoryCell>
 
@@ -107,7 +109,11 @@
     self.tableView.separatorStyle  = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.tableView];
     
-    UIView * view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 100)];
+    UIView * view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 150)];
+    HRPoiNoFoundTipsView* tipsView = [[HRPoiNoFoundTipsView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.width, [HRPoiNoFoundTipsView heightForView])];
+    [tipsView addTarget:self action:@selector(onNoFoundTipsDidClick:) forControlEvents:UIControlEventTouchUpInside];
+    [view addSubview:tipsView];
+    
     self.tableView.tableFooterView = view;
     
 }
@@ -248,6 +254,13 @@
 - (void)onRignthButtonDidClick:(UIButton *)button
 {
     
+}
+
+- (void)onNoFoundTipsDidClick:(id)sender
+{
+    HRLocationMapController * controller =  [[HRLocationMapController alloc] init];
+    controller.delegate = self;
+    [self.myNavController pushViewController:controller animated:YES];
 }
 
 - (void)createCategoryCellDidSeletedIndex:(NSInteger)index
