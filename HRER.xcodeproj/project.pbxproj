@@ -82,6 +82,9 @@
 		E10DF7741CF6C1A400D5E146 /* HRNavigationTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E10DF7731CF6C1A400D5E146 /* HRNavigationTool.m */; };
 		E10DF7881CF6DAB600D5E146 /* MainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = E10DF7871CF6DAB600D5E146 /* MainTabBarController.m */; };
 		E10DF78C1CF6DB6F00D5E146 /* btn_card@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E10DF7891CF6DB6F00D5E146 /* btn_card@2x.png */; };
+		E11876A91D3F29B900A23429 /* HRCreteLocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = E11876A81D3F29B900A23429 /* HRCreteLocationController.m */; };
+		E11876AC1D3F29C800A23429 /* HRLocationMapController.m in Sources */ = {isa = PBXBuildFile; fileRef = E11876AB1D3F29C800A23429 /* HRLocationMapController.m */; };
+		E11876AF1D3F29D700A23429 /* HRUpLoadImageController.m in Sources */ = {isa = PBXBuildFile; fileRef = E11876AE1D3F29D700A23429 /* HRUpLoadImageController.m */; };
 		E133FD771D1283F400503D83 /* HRPoidSetsCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = E133FD761D1283F400503D83 /* HRPoidSetsCardView.m */; };
 		E133FD7A1D12854900503D83 /* HRPoiCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = E133FD791D12854900503D83 /* HRPoiCardView.m */; };
 		E141782D1D323C34000CBB2E /* BMNewFriendsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E141782C1D323C34000CBB2E /* BMNewFriendsCell.m */; };
@@ -103,6 +106,8 @@
 		E198B9F71D3DFF9800BC8237 /* HRUserHomeListView.m in Sources */ = {isa = PBXBuildFile; fileRef = E198B9F61D3DFF9800BC8237 /* HRUserHomeListView.m */; };
 		E198B9FA1D3DFFA500BC8237 /* HRUserHomeMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = E198B9F91D3DFFA500BC8237 /* HRUserHomeMapView.m */; };
 		E198BA0F1D3E124E00BC8237 /* HRUserTimeLineHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = E198BA0E1D3E124E00BC8237 /* HRUserTimeLineHeadView.m */; };
+		E1A23F8A1D3F45D700D73CE6 /* HRCreateCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A23F891D3F45D700D73CE6 /* HRCreateCategoryCell.m */; };
+		E1A23F901D3F530D00D73CE6 /* HRCretePoiCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A23F8F1D3F530D00D73CE6 /* HRCretePoiCell.m */; };
 		E1A8154A1D0D483B005E4443 /* HRCatergoryScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A815491D0D483B005E4443 /* HRCatergoryScrollView.m */; };
 		E1AC6CF51CFD3D1F00EADF02 /* HRNewPassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1AC6CF41CFD3D1F00EADF02 /* HRNewPassViewController.m */; };
 		E1C303701CF43C1F001C016B /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E1C3036B1CF43C1F001C016B /* libWeChatSDK.a */; };
@@ -264,6 +269,12 @@
 		E10DF7861CF6DAB600D5E146 /* MainTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTabBarController.h; sourceTree = "<group>"; };
 		E10DF7871CF6DAB600D5E146 /* MainTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTabBarController.m; sourceTree = "<group>"; };
 		E10DF7891CF6DB6F00D5E146 /* btn_card@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_card@2x.png"; sourceTree = "<group>"; };
+		E11876A71D3F29B900A23429 /* HRCreteLocationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRCreteLocationController.h; sourceTree = "<group>"; };
+		E11876A81D3F29B900A23429 /* HRCreteLocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRCreteLocationController.m; sourceTree = "<group>"; };
+		E11876AA1D3F29C800A23429 /* HRLocationMapController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRLocationMapController.h; sourceTree = "<group>"; };
+		E11876AB1D3F29C800A23429 /* HRLocationMapController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRLocationMapController.m; sourceTree = "<group>"; };
+		E11876AD1D3F29D700A23429 /* HRUpLoadImageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRUpLoadImageController.h; sourceTree = "<group>"; };
+		E11876AE1D3F29D700A23429 /* HRUpLoadImageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRUpLoadImageController.m; sourceTree = "<group>"; };
 		E133FD751D1283F400503D83 /* HRPoidSetsCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRPoidSetsCardView.h; sourceTree = "<group>"; };
 		E133FD761D1283F400503D83 /* HRPoidSetsCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRPoidSetsCardView.m; sourceTree = "<group>"; };
 		E133FD781D12854900503D83 /* HRPoiCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRPoiCardView.h; sourceTree = "<group>"; };
@@ -304,6 +315,10 @@
 		E198B9F91D3DFFA500BC8237 /* HRUserHomeMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRUserHomeMapView.m; sourceTree = "<group>"; };
 		E198BA0D1D3E124E00BC8237 /* HRUserTimeLineHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRUserTimeLineHeadView.h; sourceTree = "<group>"; };
 		E198BA0E1D3E124E00BC8237 /* HRUserTimeLineHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRUserTimeLineHeadView.m; sourceTree = "<group>"; };
+		E1A23F881D3F45D700D73CE6 /* HRCreateCategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRCreateCategoryCell.h; sourceTree = "<group>"; };
+		E1A23F891D3F45D700D73CE6 /* HRCreateCategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRCreateCategoryCell.m; sourceTree = "<group>"; };
+		E1A23F8E1D3F530D00D73CE6 /* HRCretePoiCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRCretePoiCell.h; sourceTree = "<group>"; };
+		E1A23F8F1D3F530D00D73CE6 /* HRCretePoiCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRCretePoiCell.m; sourceTree = "<group>"; };
 		E1A815481D0D483B005E4443 /* HRCatergoryScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRCatergoryScrollView.h; sourceTree = "<group>"; };
 		E1A815491D0D483B005E4443 /* HRCatergoryScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRCatergoryScrollView.m; sourceTree = "<group>"; };
 		E1AC6CF31CFD3D1F00EADF02 /* HRNewPassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRNewPassViewController.h; sourceTree = "<group>"; };
@@ -679,6 +694,23 @@
 			path = MainTabController;
 			sourceTree = "<group>";
 		};
+		E11876A01D3F27D000A23429 /* HRPOICrete */ = {
+			isa = PBXGroup;
+			children = (
+				E11876A71D3F29B900A23429 /* HRCreteLocationController.h */,
+				E11876A81D3F29B900A23429 /* HRCreteLocationController.m */,
+				E1A23F881D3F45D700D73CE6 /* HRCreateCategoryCell.h */,
+				E1A23F891D3F45D700D73CE6 /* HRCreateCategoryCell.m */,
+				E11876AA1D3F29C800A23429 /* HRLocationMapController.h */,
+				E11876AB1D3F29C800A23429 /* HRLocationMapController.m */,
+				E11876AD1D3F29D700A23429 /* HRUpLoadImageController.h */,
+				E11876AE1D3F29D700A23429 /* HRUpLoadImageController.m */,
+				E1A23F8E1D3F530D00D73CE6 /* HRCretePoiCell.h */,
+				E1A23F8F1D3F530D00D73CE6 /* HRCretePoiCell.m */,
+			);
+			path = HRPOICrete;
+			sourceTree = "<group>";
+		};
 		E1206FD71D066C7900E3C9D4 /* NetWork */ = {
 			isa = PBXGroup;
 			children = (
@@ -715,6 +747,7 @@
 		E14BD48F1CEEF53F00C66E14 /* HRER */ = {
 			isa = PBXGroup;
 			children = (
+				E11876A01D3F27D000A23429 /* HRPOICrete */,
 				E198B99A1D3C808F00BC8237 /* HRNaiMapController */,
 				B856293E1D3BBBDE00E5BD4C /* HRUserHome */,
 				B816B10D1D3671A800318662 /* PoiDetailPage */,
@@ -1008,6 +1041,7 @@
 				B89380811D117EC8005A24FB /* HRPoiSetsMapView.m in Sources */,
 				E14BD4F51CF2D76700C66E14 /* HRPinAnnomationView.m in Sources */,
 				B8ACA4291D3E4C7400011763 /* HRUserHomeCell.m in Sources */,
+				E11876A91D3F29B900A23429 /* HRCreteLocationController.m in Sources */,
 				B877334E1D33CBE000CC43CD /* SearchInPutView.m in Sources */,
 				E198B9A01D3C82E000BC8237 /* HRPoiCardAddressView.m in Sources */,
 				B8697D6B1CFC395E00F1BC4B /* HRLoginManager.m in Sources */,
@@ -1017,6 +1051,7 @@
 				E198B9EE1D3DCB6200BC8237 /* HRUserHomeInfoCardView.m in Sources */,
 				B88F10611CF5D005007C930F /* HRLoginViewController.m in Sources */,
 				E1C303AC1CF58BE9001C016B /* HRQQManager.m in Sources */,
+				E11876AC1D3F29C800A23429 /* HRLocationMapController.m in Sources */,
 				E198BA0F1D3E124E00BC8237 /* HRUserTimeLineHeadView.m in Sources */,
 				E14BD4F01CF2CAD200C66E14 /* HRAnomation.m in Sources */,
 				B89663EF1CF32F7700B2A6CA /* RefreshCollectionView.m in Sources */,
@@ -1026,6 +1061,7 @@
 				B805E1F31D0DAE970011E2F7 /* HRHerePoiCell.m in Sources */,
 				B805E1F51D0DAE970011E2F7 /* PhotoFrameView.m in Sources */,
 				B805392E1D23B40300C8EF06 /* HRCycleScrollView.m in Sources */,
+				E1A23F901D3F530D00D73CE6 /* HRCretePoiCell.m in Sources */,
 				B89663ED1CF32F7700B2A6CA /* JWCollectionViewFlowLayout.m in Sources */,
 				B893807D1D117E8D005A24FB /* HRPoiSetsController.m in Sources */,
 				B89663F01CF32F7700B2A6CA /* ToastAlertView.m in Sources */,
@@ -1053,11 +1089,13 @@
 				B89380841D117ED7005A24FB /* HRPoiSetsListView.m in Sources */,
 				B85520101D098F2C00C56FC5 /* HomeHeadView.m in Sources */,
 				E14178301D323C42000CBB2E /* BMOldFriendCell.m in Sources */,
+				E1A23F8A1D3F45D700D73CE6 /* HRCreateCategoryCell.m in Sources */,
 				E198B99D1D3C80A400BC8237 /* HRNavMapController.m in Sources */,
 				B80539311D23B40300C8EF06 /* HRWaitingView.m in Sources */,
 				E198B9FA1D3DFFA500BC8237 /* HRUserHomeMapView.m in Sources */,
 				B88F10751CF5E246007C930F /* FindCityViewController.m in Sources */,
 				E1A8154A1D0D483B005E4443 /* HRCatergoryScrollView.m in Sources */,
+				E11876AF1D3F29D700A23429 /* HRUpLoadImageController.m in Sources */,
 				B896640F1CF32FD100B2A6CA /* UIView+TKCategory.m in Sources */,
 				E1C3037F1CF43E71001C016B /* HRWebCatLogin.m in Sources */,
 				E133FD771D1283F400503D83 /* HRPoidSetsCardView.m in Sources */,

@@ -193,6 +193,23 @@
                                    failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
 
+
+/*
+ 创建列表
+ ===================================================================================================================
+ */
+/**
+ *  https://developers.google.com/places/web-service/search
+ *
+ *  @param poiType  0 -> 美食 1 ->观光 2->购物 3->酒店
+ */
++ (void)quartPoiListWithKeyWord:(NSString *)keyWord
+                        poiType:(NSInteger)poiType
+                        success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                        failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+
+
+
 @end
 
 

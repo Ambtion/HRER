@@ -22,8 +22,10 @@
 #import "LoginStateManager.h"
 #import "NetWorkEntity.h"
 #import "HRUserHomeController.h"
+#import "HRCreteLocationController.h"
 //Test
 #import "HRLoginManager.h"
+
 
 @interface AppDelegate ()<UITabBarControllerDelegate>
 
@@ -54,7 +56,7 @@
 {
     HomeViewController * homeC = [[HomeViewController alloc] init];
     FindCityViewController * findC = [[FindCityViewController alloc] init];
-    HereViewController * hVC = [[HereViewController alloc] init];
+    HRCreteLocationController * hVC = [[HRCreteLocationController alloc] init];
     FriendsViewController * fVC = [[FriendsViewController alloc] init];
     HRUserHomeController * fView = [[HRUserHomeController alloc] initWithUserID:[[[LoginStateManager getInstance] userLoginInfo] user_id] controllerState:KUserHomeControllerStateRoot];
     
@@ -109,6 +111,11 @@
     if([viewController isKindOfClass:[FriendsViewController class]]){
         [(FriendsViewController *)viewController quaryData];
     }
+    
+    if([viewController isKindOfClass:[HRCreteLocationController class]]){
+        [(HRCreteLocationController *)viewController quaryData];
+    }
+
 }
 
 #pragma mark - Init
