@@ -31,7 +31,6 @@
 		B856FF451D3F929A002EF2C4 /* HRLocationInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = B856FF441D3F929A002EF2C4 /* HRLocationInputView.m */; };
 		B856FF481D3F9720002EF2C4 /* HRLocationCategoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = B856FF471D3F9720002EF2C4 /* HRLocationCategoryView.m */; };
 		B856FF4B1D3F9734002EF2C4 /* HRCreteCategoryItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = B856FF4A1D3F9734002EF2C4 /* HRCreteCategoryItemView.m */; };
-		B856FF4F1D3FA5B5002EF2C4 /* HRUploadImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = B856FF4E1D3FA5B5002EF2C4 /* HRUploadImageView.m */; };
 		B8697D6B1CFC395E00F1BC4B /* HRLoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B8697D6A1CFC395E00F1BC4B /* HRLoginManager.m */; };
 		B877334E1D33CBE000CC43CD /* SearchInPutView.m in Sources */ = {isa = PBXBuildFile; fileRef = B877334D1D33CBE000CC43CD /* SearchInPutView.m */; };
 		B88F10611CF5D005007C930F /* HRLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B88F10601CF5D005007C930F /* HRLoginViewController.m */; };
@@ -57,6 +56,7 @@
 		B896640E1CF32FD100B2A6CA /* UIView+Sizes.m in Sources */ = {isa = PBXBuildFile; fileRef = B89664041CF32FD100B2A6CA /* UIView+Sizes.m */; };
 		B896640F1CF32FD100B2A6CA /* UIView+TKCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = B89664061CF32FD100B2A6CA /* UIView+TKCategory.m */; };
 		B89664101CF32FD100B2A6CA /* UIViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = B89664081CF32FD100B2A6CA /* UIViewAdditions.m */; };
+		B8AC37C41D40FD7C00D99BF8 /* HRUPloadImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = B8AC37C31D40FD7C00D99BF8 /* HRUPloadImageView.m */; };
 		B8ACA4291D3E4C7400011763 /* HRUserHomeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B8ACA4281D3E4C7400011763 /* HRUserHomeCell.m */; };
 		B8C00DFB1D3CFEAA009FB17F /* CityHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8C00DFA1D3CFEAA009FB17F /* CityHomeViewController.m */; };
 		B8C00E0E1D3D0518009FB17F /* HRUserHomeHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = B8C00E0D1D3D0518009FB17F /* HRUserHomeHeadView.m */; };
@@ -128,7 +128,6 @@
 		E1C303AC1CF58BE9001C016B /* HRQQManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E1C303AB1CF58BE9001C016B /* HRQQManager.m */; };
 		E1C303C01CF596BF001C016B /* HRWebCatShare.m in Sources */ = {isa = PBXBuildFile; fileRef = E1C303BF1CF596BF001C016B /* HRWebCatShare.m */; };
 		E1CC469A1D409BE500202F98 /* BaseAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1CC46951D409BE500202F98 /* BaseAlertView.m */; };
-		E1CC469F1D40A1C400202F98 /* HRUPloadImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1CC469E1D40A1C400202F98 /* HRUPloadImageView.m */; };
 		E1E3AB151CF6F2AC00DD5608 /* AppSysConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E3AB141CF6F2AC00DD5608 /* AppSysConfig.m */; };
 		E1E3AB621CFBEE6600DD5608 /* HereDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E3AB611CFBEE6600DD5608 /* HereDataModel.m */; };
 		E1F726621CF6E15500799A50 /* HRAddressBookManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F726611CF6E15500799A50 /* HRAddressBookManager.m */; };
@@ -186,8 +185,6 @@
 		B856FF471D3F9720002EF2C4 /* HRLocationCategoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRLocationCategoryView.m; sourceTree = "<group>"; };
 		B856FF491D3F9734002EF2C4 /* HRCreteCategoryItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRCreteCategoryItemView.h; sourceTree = "<group>"; };
 		B856FF4A1D3F9734002EF2C4 /* HRCreteCategoryItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRCreteCategoryItemView.m; sourceTree = "<group>"; };
-		B856FF4D1D3FA5B5002EF2C4 /* HRUploadImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRUploadImageView.h; sourceTree = "<group>"; };
-		B856FF4E1D3FA5B5002EF2C4 /* HRUploadImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRUploadImageView.m; sourceTree = "<group>"; };
 		B8697D691CFC395E00F1BC4B /* HRLoginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRLoginManager.h; sourceTree = "<group>"; };
 		B8697D6A1CFC395E00F1BC4B /* HRLoginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRLoginManager.m; sourceTree = "<group>"; };
 		B877334C1D33CBE000CC43CD /* SearchInPutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchInPutView.h; sourceTree = "<group>"; };
@@ -241,6 +238,8 @@
 		B89664071CF32FD100B2A6CA /* UIViewAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewAdditions.h; sourceTree = "<group>"; };
 		B89664081CF32FD100B2A6CA /* UIViewAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewAdditions.m; sourceTree = "<group>"; };
 		B89664111CF32FF700B2A6CA /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PrefixHeader.pch; path = ../PrefixHeader.pch; sourceTree = "<group>"; };
+		B8AC37C21D40FD7C00D99BF8 /* HRUPloadImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRUPloadImageView.h; sourceTree = "<group>"; };
+		B8AC37C31D40FD7C00D99BF8 /* HRUPloadImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRUPloadImageView.m; sourceTree = "<group>"; };
 		B8ACA4271D3E4C7400011763 /* HRUserHomeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRUserHomeCell.h; sourceTree = "<group>"; };
 		B8ACA4281D3E4C7400011763 /* HRUserHomeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRUserHomeCell.m; sourceTree = "<group>"; };
 		B8C00DF91D3CFEAA009FB17F /* CityHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityHomeViewController.h; sourceTree = "<group>"; };
@@ -359,8 +358,6 @@
 		E1C303BF1CF596BF001C016B /* HRWebCatShare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRWebCatShare.m; sourceTree = "<group>"; };
 		E1CC46941D409BE500202F98 /* BaseAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseAlertView.h; sourceTree = "<group>"; };
 		E1CC46951D409BE500202F98 /* BaseAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseAlertView.m; sourceTree = "<group>"; };
-		E1CC469D1D40A1C400202F98 /* HRUPloadImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRUPloadImageView.h; sourceTree = "<group>"; };
-		E1CC469E1D40A1C400202F98 /* HRUPloadImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRUPloadImageView.m; sourceTree = "<group>"; };
 		E1E3AB131CF6F2AC00DD5608 /* AppSysConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppSysConfig.h; sourceTree = "<group>"; };
 		E1E3AB141CF6F2AC00DD5608 /* AppSysConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppSysConfig.m; sourceTree = "<group>"; };
 		E1E3AB601CFBEE6600DD5608 /* HereDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HereDataModel.h; sourceTree = "<group>"; };
@@ -491,15 +488,6 @@
 				E198B9F01D3DD2D500BC8237 /* HRUserHomeCaterInfoView.m */,
 			);
 			path = HRUserHome;
-			sourceTree = "<group>";
-		};
-		B856FF4C1D3FA5A7002EF2C4 /* UploadImageView */ = {
-			isa = PBXGroup;
-			children = (
-				B856FF4D1D3FA5B5002EF2C4 /* HRUploadImageView.h */,
-				B856FF4E1D3FA5B5002EF2C4 /* HRUploadImageView.m */,
-			);
-			name = UploadImageView;
 			sourceTree = "<group>";
 		};
 		B88F105E1CF5CDF6007C930F /* LoginController */ = {
@@ -724,7 +712,6 @@
 		E11876A01D3F27D000A23429 /* HRPOICrete */ = {
 			isa = PBXGroup;
 			children = (
-				B856FF4C1D3FA5A7002EF2C4 /* UploadImageView */,
 				E1CC46931D409BD400202F98 /* UloadView */,
 				E1A23FC91D3F78F900D73CE6 /* MapPoi */,
 				E1A23FB41D3F745100D73CE6 /* CreatePoiList */,
@@ -904,8 +891,8 @@
 			children = (
 				E1CC46941D409BE500202F98 /* BaseAlertView.h */,
 				E1CC46951D409BE500202F98 /* BaseAlertView.m */,
-				E1CC469D1D40A1C400202F98 /* HRUPloadImageView.h */,
-				E1CC469E1D40A1C400202F98 /* HRUPloadImageView.m */,
+				B8AC37C21D40FD7C00D99BF8 /* HRUPloadImageView.h */,
+				B8AC37C31D40FD7C00D99BF8 /* HRUPloadImageView.m */,
 			);
 			name = UloadView;
 			sourceTree = "<group>";
@@ -1139,7 +1126,6 @@
 				B845AC8B1D2D3C6900D26A2A /* HRInPutView.m in Sources */,
 				E198B9F11D3DD2D500BC8237 /* HRUserHomeCaterInfoView.m in Sources */,
 				E1C303921CF442C4001C016B /* HRWeCatManager.m in Sources */,
-				B856FF4F1D3FA5B5002EF2C4 /* HRUploadImageView.m in Sources */,
 				B85629411D3BBBF200E5BD4C /* HRUserHomeController.m in Sources */,
 				B8DF933B1CFB2BF1007C4DF9 /* LoginStateManager.m in Sources */,
 				B8F748B81D07C84B00A2EDCC /* NetWorkEntity.m in Sources */,
@@ -1147,7 +1133,7 @@
 				B8954EB11CFC7E30006A706A /* HRRegisterDealViewController.m in Sources */,
 				B89663F11CF32F7700B2A6CA /* UIViewController+Method.m in Sources */,
 				B816B1131D36731500318662 /* HRPhotoScrollView.m in Sources */,
-				E1CC469F1D40A1C400202F98 /* HRUPloadImageView.m in Sources */,
+				B8AC37C41D40FD7C00D99BF8 /* HRUPloadImageView.m in Sources */,
 				B896640E1CF32FD100B2A6CA /* UIView+Sizes.m in Sources */,
 				B805E1F41D0DAE970011E2F7 /* HRHerePoisSetCell.m in Sources */,
 				B89663EE1CF32F7700B2A6CA /* NSDictionary+StrDic.m in Sources */,
