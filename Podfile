@@ -12,6 +12,6 @@ pod 'GCJSONKit'
 pod 'AFNetworkActivityLogger'
 pod 'YYModel'
 pod 'UMengAnalytics'
-
+pod 'iCarousel'
 
 end
