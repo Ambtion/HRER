@@ -13,6 +13,7 @@
 #import "HRCretePoiCell.h"
 #import "HRPoiNoFoundTipsView.h"
 #import "HRLocationMapController.h"
+#import "HRUPloadImageView.h"
 
 @interface HRCreteLocationController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,HRCreateCategoryCell,HRLocationMapControllerDelegate>
 
@@ -247,7 +248,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-
+    HRCretePOIInfo * creteInfo = self.dataArray[indexPath.row];
+    [HRUPloadImageView showInView:[self.myNavController view] withPoiTitle:creteInfo.title address:creteInfo.subTitle loc:creteInfo.location categoryType:self.categortIndex callBack:^(BOOL isSucesss) {
+        
+    }];
 }
 
 - (void)onRignthButtonDidClick:(UIButton *)button
