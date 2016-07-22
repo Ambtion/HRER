@@ -8,15 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-typedef NS_ENUM(NSInteger,KUserHomeControllerState) {
-    KUserHomeControllerStateRoot,
-    KUserHomeControllerStatePush
-};
-
-
 @interface HRUserHomeController : UIViewController
 
 
-- (instancetype)initWithUserID:(NSString *)userId controllerState:(KUserHomeControllerState)state;
+- (instancetype)initWithUserID:(NSString *)userId;
 
 @end

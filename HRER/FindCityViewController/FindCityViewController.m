@@ -10,33 +10,30 @@
 #import "RefreshTableView.h"
 #import "SearchInPutView.h"
 
-@interface FindCityViewController()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
-
-@property(nonatomic,strong)RefreshTableView * tableView;
-
-@property(nonatomic,strong)NSArray * dataArray;
-
-/**
- *  搜索框
- */
-@property (nonatomic, strong) SearchInPutView *inputView;
+@interface FindCityViewController()<UITableViewDelegate,UITableViewDataSource,UISearchDisplayDelegate,UISearchBarDelegate>
 
 @end
 
 @implementation FindCityViewController
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.myNavController setNavigationBarHidden:YES];
+    
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self.myNavController setNavigationBarHidden:NO];
+}
 
 #pragma mark - Init
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    [self initUI];
-    [self quaryData];
-}
-
-- (void)initUI
-{
-    [self initContentView];
     [self initNavBar];
 }
 
@@ -52,84 +49,24 @@
     label.textAlignment = NSTextAlignmentCenter;
     label.textColor = [UIColor whiteColor];
     [barView addSubview:label];
-}
-
-- (void)initContentView
-{
-    self.tableView = [[RefreshTableView alloc] initWithFrame:CGRectMake(0, 64, self.view.width, self.view.height - 64) style:UITableViewStylePlain];
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    self.tableView.tableHeaderView = self.inputView;
-    self.tableView.separatorStyle  = UITableViewCellSeparatorStyleNone;
-    [self.view addSubview:self.tableView];
     
-    UIView * view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 100)];
-    self.tableView.tableFooterView = view;
-    
-    [self initRefreshView];
-
-}
-
-- (void)initRefreshView
-{
-    self.tableView.refreshFooter.scrollView = nil;
-    
-    WS(ws);
-    self.tableView.refreshHeader.beginRefreshingBlock = ^(){
-        [ws quaryData];
-    };
-}
-
-- (void)quaryData
-{
-    void (^ failure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *operation, NSError *error){
-        [self netErrorWithTableView:self.tableView];
-    };
-
-}
-
-
-#pragma mark - TableViewDelegate
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    
-    return 0;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 0;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return [UITableViewCell new];
-}
-
-#pragma mark - SearchBar
-- (SearchInPutView *)inputView
-{
-    if (!_inputView) {
-        _inputView = [[SearchInPutView alloc] initWithFrame:CGRectMake(0, 0, 200, 55)];
-        [_inputView.textButton addTarget:self action:@selector(searchButtonClick:) forControlEvents:UIControlEventTouchUpInside];
-        _inputView.textFiled.placeholder = @"输入城市名 支持拼音和英文";
-        _inputView.textFiled.delegate = self;
-    }
-    return _inputView;
-}
-
-- (void)searchButtonClick:(UIButton *)button
-{
-    [self.inputView textBecomeFirstResponder];
-}
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    [self quaryData];
-    return [[self inputView] textResignFirstResponder];
+    UIButton * backButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 26, 33, 33)];
+    [backButton setImage:[UIImage imageNamed:@"list_back"] forState:UIControlStateNormal];
+    [backButton addTarget:self action:@selector(backButtonDidClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:backButton];
+    [backButton setHidden:[self.myNavController viewControllers].count == 1 ? YES : NO];
 }
 
 #pragma mark - Action
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return [UITableViewCell new];
+}
+
+
+#pragma mark - Action
+- (void)backButtonDidClick:(UIButton *)button
+{
+    [self.myNavController popViewControllerAnimated:YES];
+}
 
 @end

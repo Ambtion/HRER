@@ -128,6 +128,8 @@
 		E1C303AC1CF58BE9001C016B /* HRQQManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E1C303AB1CF58BE9001C016B /* HRQQManager.m */; };
 		E1C303C01CF596BF001C016B /* HRWebCatShare.m in Sources */ = {isa = PBXBuildFile; fileRef = E1C303BF1CF596BF001C016B /* HRWebCatShare.m */; };
 		E1CC469A1D409BE500202F98 /* BaseAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1CC46951D409BE500202F98 /* BaseAlertView.m */; };
+		E1CC46EA1D41E7F900202F98 /* HRBaseSearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1CC46E91D41E7F900202F98 /* HRBaseSearchTableViewController.m */; };
+		E1CC46ED1D41E80500202F98 /* HRBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1CC46EC1D41E80500202F98 /* HRBaseTableViewController.m */; };
 		E1E3AB151CF6F2AC00DD5608 /* AppSysConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E3AB141CF6F2AC00DD5608 /* AppSysConfig.m */; };
 		E1E3AB621CFBEE6600DD5608 /* HereDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E3AB611CFBEE6600DD5608 /* HereDataModel.m */; };
 		E1F726621CF6E15500799A50 /* HRAddressBookManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F726611CF6E15500799A50 /* HRAddressBookManager.m */; };
@@ -358,6 +360,10 @@
 		E1C303BF1CF596BF001C016B /* HRWebCatShare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRWebCatShare.m; sourceTree = "<group>"; };
 		E1CC46941D409BE500202F98 /* BaseAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseAlertView.h; sourceTree = "<group>"; };
 		E1CC46951D409BE500202F98 /* BaseAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseAlertView.m; sourceTree = "<group>"; };
+		E1CC46E81D41E7F900202F98 /* HRBaseSearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRBaseSearchTableViewController.h; sourceTree = "<group>"; };
+		E1CC46E91D41E7F900202F98 /* HRBaseSearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRBaseSearchTableViewController.m; sourceTree = "<group>"; };
+		E1CC46EB1D41E80500202F98 /* HRBaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRBaseTableViewController.h; sourceTree = "<group>"; };
+		E1CC46EC1D41E80500202F98 /* HRBaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRBaseTableViewController.m; sourceTree = "<group>"; };
 		E1E3AB131CF6F2AC00DD5608 /* AppSysConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppSysConfig.h; sourceTree = "<group>"; };
 		E1E3AB141CF6F2AC00DD5608 /* AppSysConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppSysConfig.m; sourceTree = "<group>"; };
 		E1E3AB601CFBEE6600DD5608 /* HereDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HereDataModel.h; sourceTree = "<group>"; };
@@ -541,6 +547,10 @@
 		B88F10661CF5E1E2007C930F /* FindCityViewController */ = {
 			isa = PBXGroup;
 			children = (
+				E1CC46EB1D41E80500202F98 /* HRBaseTableViewController.h */,
+				E1CC46EC1D41E80500202F98 /* HRBaseTableViewController.m */,
+				E1CC46E81D41E7F900202F98 /* HRBaseSearchTableViewController.h */,
+				E1CC46E91D41E7F900202F98 /* HRBaseSearchTableViewController.m */,
 				B88F10731CF5E246007C930F /* FindCityViewController.h */,
 				B88F10741CF5E246007C930F /* FindCityViewController.m */,
 				B8C00DF91D3CFEAA009FB17F /* CityHomeViewController.h */,
@@ -1094,6 +1104,7 @@
 				B8ACA4291D3E4C7400011763 /* HRUserHomeCell.m in Sources */,
 				B856FF4B1D3F9734002EF2C4 /* HRCreteCategoryItemView.m in Sources */,
 				E11876A91D3F29B900A23429 /* HRCreteLocationController.m in Sources */,
+				E1CC46ED1D41E80500202F98 /* HRBaseTableViewController.m in Sources */,
 				B877334E1D33CBE000CC43CD /* SearchInPutView.m in Sources */,
 				E198B9A01D3C82E000BC8237 /* HRPoiCardAddressView.m in Sources */,
 				B8697D6B1CFC395E00F1BC4B /* HRLoginManager.m in Sources */,
@@ -1150,6 +1161,7 @@
 				E198B9FA1D3DFFA500BC8237 /* HRUserHomeMapView.m in Sources */,
 				B88F10751CF5E246007C930F /* FindCityViewController.m in Sources */,
 				E1A8154A1D0D483B005E4443 /* HRCatergoryScrollView.m in Sources */,
+				E1CC46EA1D41E7F900202F98 /* HRBaseSearchTableViewController.m in Sources */,
 				B896640F1CF32FD100B2A6CA /* UIView+TKCategory.m in Sources */,
 				E1C3037F1CF43E71001C016B /* HRWebCatLogin.m in Sources */,
 				E133FD771D1283F400503D83 /* HRPoidSetsCardView.m in Sources */,

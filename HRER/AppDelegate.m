@@ -58,7 +58,7 @@
     FindCityViewController * findC = [[FindCityViewController alloc] init];
     HRCreteLocationController * hVC = [[HRCreteLocationController alloc] init];
     FriendsViewController * fVC = [[FriendsViewController alloc] init];
-    HRUserHomeController * fView = [[HRUserHomeController alloc] initWithUserID:[[[LoginStateManager getInstance] userLoginInfo] user_id] controllerState:KUserHomeControllerStateRoot];
+    HRUserHomeController * fView = [[HRUserHomeController alloc] initWithUserID:[[[LoginStateManager getInstance] userLoginInfo] user_id]];
     
     UIImage * nHome = [UIImage imageNamed:@"home"];
     UIImage * hHome = [UIImage imageNamed:@"home_select"];

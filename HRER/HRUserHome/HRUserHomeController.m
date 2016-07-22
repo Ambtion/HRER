@@ -15,7 +15,6 @@
 @interface HRUserHomeController()<HRUserHomeListViewDelegate,HRUserHomeMapViewDelegate>
 
 @property(nonatomic,strong)NSString * userId;
-@property(nonatomic,assign)KUserHomeControllerState state;
 
 @property(nonatomic,strong)UIButton * backButton;
 
@@ -27,14 +26,14 @@
 
 @implementation HRUserHomeController
 
-- (instancetype)initWithUserID:(NSString *)userId  controllerState:(KUserHomeControllerState)state
+- (instancetype)initWithUserID:(NSString *)userId
 {
     self = [super init];
     if (self) {
         
-        self.state = state;
         self.userId = userId;
         self.caterIndex = 0;
+        
     }
     
     return self;
@@ -121,14 +120,14 @@
     [self.backButton setImage:[UIImage imageNamed:@"list_back"] forState:UIControlStateNormal];
     [self.backButton addTarget:self action:@selector(backButtonDidClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.backButton];
-    [self.backButton setHidden:self.state == KUserHomeControllerStateRoot];
+    [self.backButton setHidden:[self.myNavController viewControllers].count == 1 ? YES : NO];
 }
 
 #pragma mark - Data
 - (void)quaryDataWithTableView:(RefreshTableView *)tableView
 {
     //用户主页，并且未登录，要求登录
-    if (![[LoginStateManager getInstance] userLoginInfo] && self.state == KUserHomeControllerStateRoot) {
+    if (![[LoginStateManager getInstance] userLoginInfo] && [self isRootController]) {
         [HRLoginManager showLoginView];
         return;
     }
@@ -137,10 +136,15 @@
 
 - (void)loginSucess:(id)sucess
 {
-    if (self.state == KUserHomeControllerStateRoot) {
+    if ([self isRootController]) {
         self.userId = [[[LoginStateManager getInstance] userLoginInfo] user_id];
     }
     [self quaryDataWithTableView:nil];
+}
+
+- (BOOL)isRootController
+{
+    return [self.myNavController viewControllers].count == 1;
 }
 
 #pragma mark - Action

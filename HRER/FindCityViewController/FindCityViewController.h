@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HRBaseSearchTableViewController.h"
 
-@interface FindCityViewController : UIViewController
+@interface FindCityViewController : HRBaseSearchTableViewController
 
 @end

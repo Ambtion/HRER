@@ -76,6 +76,7 @@
     [backButton setImage:[UIImage imageNamed:@"list_back"] forState:UIControlStateNormal];
     [backButton addTarget:self action:@selector(onBackButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:backButton];
+    [backButton setHidden:[self.myNavController viewControllers].count == 1 ? YES : NO];
     
     UIButton * shareButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.width - 33 - 12, 26, 33, 33)];
     [shareButton setTitle:@"分享" forState:UIControlStateNormal];

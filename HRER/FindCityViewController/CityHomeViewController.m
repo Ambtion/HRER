@@ -424,7 +424,7 @@
         //附近  //编辑
         return;
     }
-    HRUserHomeController * userHomeController = [[HRUserHomeController alloc] initWithUserID:cell.data.creator_id controllerState:KUserHomeControllerStatePush];
+    HRUserHomeController * userHomeController = [[HRUserHomeController alloc] initWithUserID:cell.data.creator_id];
     [self.myNavController pushViewController:userHomeController animated:YES];
     
 }
@@ -436,7 +436,7 @@
         //附近  //编辑
         return;
     }
-    HRUserHomeController * userHomeController = [[HRUserHomeController alloc] initWithUserID:cell.data.creator_id controllerState:KUserHomeControllerStatePush];
+    HRUserHomeController * userHomeController = [[HRUserHomeController alloc] initWithUserID:cell.data.creator_id];
     [self.myNavController pushViewController:userHomeController animated:YES];
 }
 #pragma mark - Login
