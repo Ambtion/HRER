@@ -9,17 +9,17 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 
-@protocol HRLocationMapControllerDelegate <NSObject>
-
-- (void)locationMapControllerDidChangePoiName:(NSString *)poiName
-                                   poiAddress:(NSString *)address
-                                      poiType:(NSInteger)poiType
-                       CLLocationCoordinate2D:(CLLocationCoordinate2D)coord;
-
-@end
+//@protocol HRLocationMapControllerDelegate <NSObject>
+//
+//- (void)locationMapControllerDidChangePoiName:(NSString *)poiName
+//                                   poiAddress:(NSString *)address
+//                                      poiType:(NSInteger)poiType
+//                       CLLocationCoordinate2D:(CLLocationCoordinate2D)coord;
+//
+//@end
 
 @interface HRLocationMapController : UIViewController
 
-@property(nonatomic,weak)id<HRLocationMapControllerDelegate> delegate;
+//@property(nonatomic,weak)id<HRLocationMapControllerDelegate> delegate;
 
 @end

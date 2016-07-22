@@ -15,7 +15,7 @@
 #import "HRLocationMapController.h"
 #import "HRUPloadImageView.h"
 
-@interface HRCreteLocationController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,HRCreateCategoryCell,HRLocationMapControllerDelegate>
+@interface HRCreteLocationController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,HRCreateCategoryCell>
 
 @property(nonatomic,strong)UITableView * tableView;
 @property(nonatomic,strong)NSArray * dataArray;
@@ -250,7 +250,6 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     HRCretePOIInfo * creteInfo = self.dataArray[indexPath.row];
     [HRUPloadImageView showInView:[self.myNavController view] withPoiTitle:creteInfo.title address:creteInfo.subTitle loc:creteInfo.location categoryType:self.categortIndex callBack:^(BOOL isSucesss) {
-        
     }];
 }
 
@@ -270,13 +269,7 @@
 - (void)onNoFoundTipsDidClick:(id)sender
 {
     HRLocationMapController * controller =  [[HRLocationMapController alloc] init];
-    controller.delegate = self;
     [self.myNavController pushViewController:controller animated:YES];
-}
-
-- (void)locationMapControllerDidChangePoiName:(NSString *)poiName poiAddress:(NSString *)address poiType:(NSInteger)poiType CLLocationCoordinate2D:(CLLocationCoordinate2D)coord
-{
-    
 }
 
 @end

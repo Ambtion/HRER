@@ -10,6 +10,7 @@
 #import "HRLocationInputView.h"
 #import "HRLocationCategoryView.h"
 #import "HRLocationManager.h"
+#import "HRUPloadImageView.h"
 
 #define MAPLocationLEVEL        (0.03f)
 
@@ -172,10 +173,11 @@
         [self showTotasViewWithMes:@"请在地图选择合适的POI"];
         return;
     }
-    if ([_delegate respondsToSelector:@selector(locationMapControllerDidChangePoiName:poiAddress: poiType: CLLocationCoordinate2D:)]) {
-        [_delegate locationMapControllerDidChangePoiName:self.titleInputView.textField.text poiAddress:self.addressInputView.textField.text poiType:[self.categoryView seletedIndex] CLLocationCoordinate2D:self.pinLocation.coordinate];
-    }
     
+    [HRUPloadImageView showInView:[self.myNavController view] withPoiTitle:self.titleInputView.textField.text address:self.addressInputView.textField.text loc:[NSString stringWithFormat:@"%f,%f",self.pinLocation.coordinate.latitude,self.pinLocation.coordinate.longitude] categoryType:[self.categoryView seletedIndex] callBack:^(BOOL isSucesss) {
+        
+    }];
+
 }
 
 @end
