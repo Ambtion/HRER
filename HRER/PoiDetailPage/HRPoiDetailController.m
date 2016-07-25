@@ -14,16 +14,20 @@
 #import "HRNavMapController.h"
 #import "HRPhotoBrowser.h"
 #import "HRUserHomeController.h"
-#import "YFInputBar.h"
+#import "RDRGrowingTextView.h"
+
+static CGFloat const MaxToolbarHeight = 200.0f;
 
 @interface HRPoiDetailController()<UITableViewDelegate,
                                     UITableViewDataSource,
                                     SDPhotoBrowserDelegate,
                                     HRPoiDetailPhotosCellDelegat,
                                     HRRecomendCellDelegate,
-                                    YFInputBarDelegate,
-                                    HRPoiCreateInfoCellDelegate>
+                                    HRPoiCreateInfoCellDelegate,UITextViewDelegate>
+{
+    UIToolbar *_toolbar;
 
+}
 
 @property(nonatomic,strong)UILabel * titleLabel;
 
@@ -31,16 +35,26 @@
 @property(nonatomic,strong)NSString * poiId;
 
 @property(nonatomic,strong)HRPoiDetailPhotosCell * photoesCell;
-@property(nonatomic,strong)YFInputBar *inputBar;
+
+@property(nonatomic,strong)RDRGrowingTextView * textView;
 
 @end
 
 @implementation HRPoiDetailController
 
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (instancetype)initWithPoiId:(NSString *)poiId
 {
     if (self = [super init]) {
         self.poiId = poiId;
+        
+        //注册键盘通知
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     }
     return self;
 }
@@ -70,7 +84,6 @@
 {
     [self initContentView];
     [self initNavBar];
-    [self initIntPutView];
 }
 
 - (void)initNavBar
@@ -112,19 +125,6 @@
 //    self.tableView.tableFooterView = view;
     
 }
-
-- (void)initIntPutView
-{
-    self.inputBar = [[YFInputBar alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY([UIScreen mainScreen].bounds), 320, 44)];
-    self.inputBar.backgroundColor = [UIColor colorWithRed:arc4random_uniform(255)/255.0 green:arc4random_uniform(255)/255.0 blue:arc4random_uniform(255)/255.0 alpha:1];
-    
-    self.inputBar.delegate = self;
-    self.inputBar.clearInputWhenSend = YES;
-    self.inputBar.resignFirstResponderWhenSend = YES;
-    
-    [self.view addSubview:self.inputBar];
-}
-
 
 #pragma delegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -340,20 +340,100 @@
     
 }
 
+#pragma mark -
+- (BOOL)canBecomeFirstResponder
+{
+    return YES;
+}
+- (UIView *)inputAccessoryView
+{
+    if (_toolbar) {
+        return _toolbar;
+    }
+    
+    _toolbar = [UIToolbar new];
+    
+    RDRGrowingTextView *textView = [RDRGrowingTextView new];
+    textView.font = [UIFont systemFontOfSize:17.0f];
+    textView.textContainerInset = UIEdgeInsetsMake(4.0f, 3.0f, 3.0f, 3.0f);
+    textView.layer.cornerRadius = 4.0f;
+    textView.layer.borderColor = [UIColor colorWithRed:200.0f/255.0f green:200.0f/255.0f blue:205.0f/255.0f alpha:1.0f].CGColor;
+    textView.layer.borderWidth = 1.0f;
+    textView.layer.masksToBounds = YES;
+    textView.returnKeyType = UIReturnKeySend;
+    textView.delegate = self;
+    [_toolbar addSubview:textView];
+    
+    textView.translatesAutoresizingMaskIntoConstraints = NO;
+    _toolbar.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    [_toolbar addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-8-[textView]-8-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(textView)]];
+    [_toolbar addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-8-[textView]-8-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(textView)]];
+    
+    [textView setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisHorizontal];
+    [textView setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
+    [_toolbar setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
+    
+    [_toolbar addConstraint:[NSLayoutConstraint constraintWithItem:_toolbar attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationLessThanOrEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0f constant:MaxToolbarHeight]];
+    
+    self.textView = textView;
+    [_toolbar setHidden:YES];
+    
+    return _toolbar;
+}
+
+#pragma mark 键盘出现和消失
+#pragma mark keyBoard show/hide
+- (void)keyboardWillShow:(NSNotification *)notification
+{
+    NSDictionary * dic = [notification userInfo];
+    CGRect boundsRect = [[dic objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    if (boundsRect.size.height == _toolbar.height) {
+        return;
+    }
+    
+    [_toolbar setHidden:NO];
+//    CGFloat heigth = [[dic objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height;
+//    //    CGFloat duration = [[dic objectForKey:UIKeyboardAnimationDurationUserInfoKey] floatValue];
+//    
+//    [UIView animateWithDuration:0.3 delay:0 usingSpringWithDamping:0.9 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+////        self.contentView.bottom = self.height - heigth;
+//    } completion:^(BOOL finished) {
+//        
+//    }];
+}
+
+- (void)keyboardWillHide:(NSNotification *)notification
+{
+    NSDictionary * dic = [notification userInfo];
+    CGRect boundsRect = [[dic objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    if (boundsRect.size.height == _toolbar.height) {
+        return;
+    }
+    [_toolbar setHidden:YES];
+    //    NSDictionary * dic = [notification userInfo];
+    //    CGFloat duration = [[dic objectForKey:UIKeyboardAnimationDurationUserInfoKey] floatValue];
+//    [UIView animateWithDuration:0.3 delay:0 usingSpringWithDamping:0.9 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+////        self.contentView.centerY = self.height/2.f;
+//    } completion:^(BOOL finished) {
+//        
+//    }];
+}
+
 #pragma mark - Recomend
 - (void)poiUserInfoCellDidClickRecomend:(HRPoiCreateInfoCell *)cell
 {
-    [self.inputBar.textField becomeFirstResponder];
+    [self.textView becomeFirstResponder];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    [self.inputBar.textField resignFirstResponder];
+    [self.textView resignFirstResponder];
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    [self.inputBar.textField resignFirstResponder];
+    [self.textView resignFirstResponder];
 }
 
 - (void)recomendCellDidClickUserButton:(HRRecomendCell *)cell
@@ -363,12 +443,7 @@
 }
 - (void)recomendCellDidClickRecomendButton:(HRRecomendCell *)cell
 {
-    [self.inputBar.textField becomeFirstResponder];
-}
-
--(void)inputBar:(YFInputBar *)inputBar sendBtnPress:(UIButton *)sendBtn withInputString:(NSString *)str
-{
-    NSLog(@"%@",str);
+    [self.textView becomeFirstResponder];
 }
 
 @end

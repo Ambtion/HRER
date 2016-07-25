@@ -130,7 +130,7 @@
 		E1CC469A1D409BE500202F98 /* BaseAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1CC46951D409BE500202F98 /* BaseAlertView.m */; };
 		E1CC46EA1D41E7F900202F98 /* HRBaseSearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1CC46E91D41E7F900202F98 /* HRBaseSearchTableViewController.m */; };
 		E1CC46ED1D41E80500202F98 /* HRBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1CC46EC1D41E80500202F98 /* HRBaseTableViewController.m */; };
-		E1CC472D1D45EF4300202F98 /* YFInputBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E1CC472C1D45EF4300202F98 /* YFInputBar.m */; };
+		E1CC47331D45F92800202F98 /* RDRGrowingTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1CC47321D45F92800202F98 /* RDRGrowingTextView.m */; };
 		E1E3AB151CF6F2AC00DD5608 /* AppSysConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E3AB141CF6F2AC00DD5608 /* AppSysConfig.m */; };
 		E1E3AB621CFBEE6600DD5608 /* HereDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E3AB611CFBEE6600DD5608 /* HereDataModel.m */; };
 		E1F726621CF6E15500799A50 /* HRAddressBookManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F726611CF6E15500799A50 /* HRAddressBookManager.m */; };
@@ -365,8 +365,8 @@
 		E1CC46E91D41E7F900202F98 /* HRBaseSearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRBaseSearchTableViewController.m; sourceTree = "<group>"; };
 		E1CC46EB1D41E80500202F98 /* HRBaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRBaseTableViewController.h; sourceTree = "<group>"; };
 		E1CC46EC1D41E80500202F98 /* HRBaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRBaseTableViewController.m; sourceTree = "<group>"; };
-		E1CC472B1D45EF4300202F98 /* YFInputBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YFInputBar.h; sourceTree = "<group>"; };
-		E1CC472C1D45EF4300202F98 /* YFInputBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YFInputBar.m; sourceTree = "<group>"; };
+		E1CC47311D45F92800202F98 /* RDRGrowingTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RDRGrowingTextView.h; sourceTree = "<group>"; };
+		E1CC47321D45F92800202F98 /* RDRGrowingTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RDRGrowingTextView.m; sourceTree = "<group>"; };
 		E1E3AB131CF6F2AC00DD5608 /* AppSysConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppSysConfig.h; sourceTree = "<group>"; };
 		E1E3AB141CF6F2AC00DD5608 /* AppSysConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppSysConfig.m; sourceTree = "<group>"; };
 		E1E3AB601CFBEE6600DD5608 /* HereDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HereDataModel.h; sourceTree = "<group>"; };
@@ -452,8 +452,8 @@
 				B8CDA7661D37BDE800136AF7 /* HRPoiUserInfoBottomView.m */,
 				B8CDA7681D37C7E900136AF7 /* HRRecomendCell.h */,
 				B8CDA7691D37C7E900136AF7 /* HRRecomendCell.m */,
-				E1CC472B1D45EF4300202F98 /* YFInputBar.h */,
-				E1CC472C1D45EF4300202F98 /* YFInputBar.m */,
+				E1CC47311D45F92800202F98 /* RDRGrowingTextView.h */,
+				E1CC47321D45F92800202F98 /* RDRGrowingTextView.m */,
 			);
 			path = PoiDetailPage;
 			sourceTree = "<group>";
@@ -1099,6 +1099,7 @@
 				E14BD4951CEEF53F00C66E14 /* AppDelegate.m in Sources */,
 				E1AC6CF51CFD3D1F00EADF02 /* HRNewPassViewController.m in Sources */,
 				B8CDA7671D37BDE800136AF7 /* HRPoiUserInfoBottomView.m in Sources */,
+				E1CC47331D45F92800202F98 /* RDRGrowingTextView.m in Sources */,
 				E14BD4C21CEEFBF900C66E14 /* HRMapView.m in Sources */,
 				B85520151D098F5700C56FC5 /* HereViewController.m in Sources */,
 				B80539301D23B40300C8EF06 /* HRPhotoBrowser.m in Sources */,
@@ -1160,7 +1161,6 @@
 				B89380841D117ED7005A24FB /* HRPoiSetsListView.m in Sources */,
 				B85520101D098F2C00C56FC5 /* HomeHeadView.m in Sources */,
 				E14178301D323C42000CBB2E /* BMOldFriendCell.m in Sources */,
-				E1CC472D1D45EF4300202F98 /* YFInputBar.m in Sources */,
 				E1A23F8A1D3F45D700D73CE6 /* HRCreateCategoryCell.m in Sources */,
 				E198B99D1D3C80A400BC8237 /* HRNavMapController.m in Sources */,
 				B80539311D23B40300C8EF06 /* HRWaitingView.m in Sources */,
