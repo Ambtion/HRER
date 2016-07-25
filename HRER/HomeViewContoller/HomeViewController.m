@@ -74,7 +74,7 @@
     
     WS(ws);
     self.tableView.refreshHeader.beginRefreshingBlock = ^(){
-    
+        [ws quartData];
     };
     
 }

@@ -10,7 +10,8 @@
 
 @interface HRPhotoScrollView : UIView
 
-- (void)setDataImages:(NSArray *)array;
+@property(nonatomic,assign,readonly)NSInteger curPage;
 
+@property(nonatomic,strong)NSArray * dataArray;
 
 @end

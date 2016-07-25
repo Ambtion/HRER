@@ -12,14 +12,18 @@
 #import "HRPoiCreateInfoCell.h"
 #import "HRRecomendCell.h"
 #import "HRNavMapController.h"
+#import "HRPhotoBrowser.h"
 
-@interface HRPoiDetailController()<UITableViewDelegate,UITableViewDataSource>
+@interface HRPoiDetailController()<UITableViewDelegate,UITableViewDataSource,SDPhotoBrowserDelegate,HRPoiDetailPhotosCellDelegat>
 
 
 @property(nonatomic,strong)UILabel * titleLabel;
 
 @property(nonatomic,strong)UITableView * tableView;
 @property(nonatomic,strong)NSString * poiId;
+
+@property(nonatomic,strong)HRPoiDetailPhotosCell * photoesCell;
+
 @end
 
 @implementation HRPoiDetailController
@@ -168,13 +172,20 @@
         case 0:
             //图片
         {
-            HRPoiDetailPhotosCell * cell = [tableView dequeueReusableCellWithIdentifier:@"HRPoiDetailPhotosCell"];
-            if (!cell) {
-                cell = [[HRPoiDetailPhotosCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"HRPoiDetailPhotosCell"];
+            self.photoesCell = [tableView dequeueReusableCellWithIdentifier:@"HRPoiDetailPhotosCell"];
+            if (!self.photoesCell) {
+                self.photoesCell = [[HRPoiDetailPhotosCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"HRPoiDetailPhotosCell"];
+                self.photoesCell.delegate = self;
                 
             }
-            [cell setDataImages:nil];
-            return cell;
+            [self.photoesCell setDataImages: @[
+                                               @"2",
+                                               @"3",
+                                               @"4",
+                                               @"4",
+                                               @"5"
+                                               ]];
+            return self.photoesCell;
         }
             break;
         case 1:
@@ -263,6 +274,7 @@
 {
     switch (indexPath.section) {
         case 0:
+        {}
             break;
         case 1:
             //POI地理信息
@@ -284,5 +296,22 @@
         default:
             break;
     }
+}
+
+- (void)poiDetailPhotosCellDidClickPhoto:(HRPoiDetailPhotosCell *)cell
+{
+    HRPhotoBrowser *browser = [[HRPhotoBrowser alloc] init];
+    browser.currentImageIndex = [self.photoesCell seletedIndex];
+    browser.sourceImagesContainerView = self.photoesCell;
+    browser.imageCount = self.photoesCell.photosView.dataArray.count;
+    browser.delegate = self;
+    [browser show];
+
+}
+
+- (BOOL)photoBrowser:(HRPhotoBrowser *)browser loadingImage:(HRImageScaleView *)hrImageView withIndexPath:(NSInteger)index
+{
+    [hrImageView.imageView sd_setImageWithURL:[NSURL URLWithString:@"http://b.hiphotos.baidu.com/zhidao/pic/item/f636afc379310a5562bec3ceb64543a982261075.jpg"] placeholderImage:[UIImage imageNamed:@""]];
+    return YES;
 }
 @end

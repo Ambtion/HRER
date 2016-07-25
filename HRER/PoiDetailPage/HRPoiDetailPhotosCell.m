@@ -7,11 +7,9 @@
 //
 
 #import "HRPoiDetailPhotosCell.h"
-#import "HRPhotoScrollView.h"
 
 @interface HRPoiDetailPhotosCell()
 
-@property(nonatomic,strong)HRPhotoScrollView * photosView;
 @property(nonatomic,strong)UIImageView * maskView;
 @end
 
@@ -42,7 +40,7 @@
         make.width.equalTo(self);
         make.bottom.equalTo(self).offset(-8);
     }];
-    
+
     self.maskView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"photo_mengban"]];
     [self.contentView addSubview:self.maskView];
     
@@ -50,17 +48,30 @@
         make.top.left.equalTo(self.photosView);
         make.size.equalTo(self.photosView);
     }];
+    
+    UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTapImage:)];
+    [self.contentView addGestureRecognizer:tap];
 }
 
 - (void)setDataImages:(NSArray *)array
 {
-    [self.photosView setDataImages:array];
+    [self.photosView setDataArray:array];
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{}
+- (NSInteger)seletedIndex
+{
+    return self.photosView.curPage;
+}
 
-- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated
-{}
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated{}
+
+- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated{}
+
+- (void)onTapImage:(id)sender
+{
+    if ([_delegate respondsToSelector:@selector(poiDetailPhotosCellDidClickPhoto:)]) {
+        [_delegate poiDetailPhotosCellDidClickPhoto:self];
+    }
+}
 
 @end

@@ -15,7 +15,6 @@
 @property(nonatomic,strong)UILabel * idLabel;
 
 @property(nonatomic,strong)NSArray * imageArray;
-@property(nonatomic,strong)NSArray * dataSource;
 
 @end
 
@@ -55,14 +54,21 @@
     
 }
 
-- (void)setDataImages:(NSArray *)array
+- (void)setDataArray:(NSArray *)dataArray
 {
+
+    if (_dataArray == dataArray) {
+        return;
+    }
+    
     [[self.scrollView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
     
-    self.dataSource = array;
+    _curPage = 0;
+
+    _dataArray = dataArray;
+
+    NSInteger count = _dataArray.count;
     
-    NSInteger count = array.count;
-    count = 6;
     NSMutableArray * imagemArray = [NSMutableArray arrayWithCapacity:0];
     for (int i =0 ; i < count; i++) {
         UIImageView * imageView = [[UIImageView alloc] init];
@@ -72,7 +78,7 @@
         [imagemArray addObject:imageView];
     }
     self.imageArray = imagemArray;
-    self.idLabel.text = [NSString stringWithFormat:@"1/6"];
+    self.idLabel.text = [NSString stringWithFormat:@"%ld/%lu",(long)_curPage + 1,(unsigned long)_dataArray.count];
 
     [self setNeedsLayout];
 }
@@ -96,8 +102,8 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    NSInteger curPage = floorf(([_scrollView contentOffset].x+ 161) / _scrollView.bounds.size.width);
-    self.idLabel.text = [NSString stringWithFormat:@"%ld/%d",(long)curPage + 1,6];
+    _curPage = floorf(([_scrollView contentOffset].x+ 161) / _scrollView.bounds.size.width);
+    self.idLabel.text = [NSString stringWithFormat:@"%ld/%lu",(long)_curPage + 1,(unsigned long)_dataArray.count];
 }
 
 @end
