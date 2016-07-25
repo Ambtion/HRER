@@ -8,7 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@class HRPoiUserInfoBottomView;
+@protocol HRPoiUserInfoBottomViewDelegate <NSObject>
+- (void)poiUserInfoBottomViewDidClickWantTogo:(HRPoiUserInfoBottomView *)vew;
+- (void)poiUserInfoBottomViewDidClickRecomend:(HRPoiUserInfoBottomView *)vew;
+@end
+
 @interface HRPoiUserInfoBottomView : UIView
+
+@property(nonatomic,weak)id<HRPoiUserInfoBottomViewDelegate>delegate;
 
 + (CGFloat)heightForView;
 

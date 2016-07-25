@@ -72,13 +72,17 @@
 
 - (void)wantGoButton:(UIButton *)button
 {
-    
+    if ([_delegate respondsToSelector:@selector(poiUserInfoBottomViewDidClickWantTogo:)]) {
+        [_delegate poiUserInfoBottomViewDidClickWantTogo:self];
+    }
 }
 
 
 - (void)recomendButtonDidClick:(UIButton *)button
 {
-    
+    if ([_delegate respondsToSelector:@selector(poiUserInfoBottomViewDidClickRecomend:)]) {
+        [_delegate poiUserInfoBottomViewDidClickRecomend:self];
+    }
 }
 
 - (void)setData:(id)data

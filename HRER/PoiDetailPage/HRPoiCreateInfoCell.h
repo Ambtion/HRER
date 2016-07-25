@@ -8,7 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+@class HRPoiCreateInfoCell;
+@protocol HRPoiCreateInfoCellDelegate <NSObject>
+
+- (void)poiUserInfoCellDidClickWantTogo:(HRPoiCreateInfoCell *)cell;
+- (void)poiUserInfoCellDidClickRecomend:(HRPoiCreateInfoCell *)cell;
+
+@end
+
+
 @interface HRPoiCreateInfoCell : UITableViewCell
+
+@property(nonatomic,weak)id<HRPoiCreateInfoCellDelegate>delegate;
 
 + (CGFloat)cellHeithForData:(id)data;
 

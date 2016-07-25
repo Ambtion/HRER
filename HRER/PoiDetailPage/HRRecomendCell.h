@@ -8,7 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+@class HRRecomendCell;
+
+@protocol HRRecomendCellDelegate <NSObject>
+
+- (void)recomendCellDidClickRecomendButton:(HRRecomendCell *)cell;
+- (void)recomendCellDidClickUserButton:(HRRecomendCell *)cell;
+
+@end
+
 @interface HRRecomendCell : UITableViewCell
+
+@property(nonatomic,weak)id<HRRecomendCellDelegate>delegate;
 
 @property(nonatomic,strong)UIView * lineView;
 

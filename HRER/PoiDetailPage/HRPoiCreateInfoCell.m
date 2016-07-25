@@ -10,7 +10,7 @@
 #import "HRPoiUserInfo.h"
 #import "HRPoiUserInfoBottomView.h"
 
-@interface HRPoiCreateInfoCell()
+@interface HRPoiCreateInfoCell()<HRPoiUserInfoBottomViewDelegate>
 
 @property(nonatomic,strong)HRPoiUserInfo * userInfo;
 @property(nonatomic,strong)UILabel * desLabel;
@@ -55,6 +55,7 @@ static NSInteger boundsOffset = 12.f;
     [self.contentView addSubview:self.desLabel];
     
     self.bottomView = [[HRPoiUserInfoBottomView alloc] init];
+    self.bottomView.delegate = self;
     [self.contentView addSubview:self.bottomView];
     
     [self.userInfo mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -96,4 +97,21 @@ static NSInteger boundsOffset = 12.f;
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {}
 - (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated{}
 
+
+#pragma mark - Action
+- (void)poiUserInfoBottomViewDidClickRecomend:(HRPoiUserInfoBottomView *)vew
+{
+    if ([_delegate respondsToSelector:@selector(poiUserInfoCellDidClickRecomend:)]) {
+        [_delegate poiUserInfoCellDidClickRecomend:self];
+    }
+}
+
+- (void)poiUserInfoBottomViewDidClickWantTogo:(HRPoiUserInfoBottomView *)vew
+{
+    if ([_delegate respondsToSelector:@selector(poiUserInfoCellDidClickWantTogo:)]) {
+        [_delegate poiUserInfoCellDidClickWantTogo:self];
+    }
+}
+
 @end
+

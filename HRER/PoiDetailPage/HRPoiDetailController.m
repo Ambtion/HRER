@@ -13,8 +13,16 @@
 #import "HRRecomendCell.h"
 #import "HRNavMapController.h"
 #import "HRPhotoBrowser.h"
+#import "HRUserHomeController.h"
+#import "YFInputBar.h"
 
-@interface HRPoiDetailController()<UITableViewDelegate,UITableViewDataSource,SDPhotoBrowserDelegate,HRPoiDetailPhotosCellDelegat>
+@interface HRPoiDetailController()<UITableViewDelegate,
+                                    UITableViewDataSource,
+                                    SDPhotoBrowserDelegate,
+                                    HRPoiDetailPhotosCellDelegat,
+                                    HRRecomendCellDelegate,
+                                    YFInputBarDelegate,
+                                    HRPoiCreateInfoCellDelegate>
 
 
 @property(nonatomic,strong)UILabel * titleLabel;
@@ -23,6 +31,7 @@
 @property(nonatomic,strong)NSString * poiId;
 
 @property(nonatomic,strong)HRPoiDetailPhotosCell * photoesCell;
+@property(nonatomic,strong)YFInputBar *inputBar;
 
 @end
 
@@ -61,7 +70,7 @@
 {
     [self initContentView];
     [self initNavBar];
-
+    [self initIntPutView];
 }
 
 - (void)initNavBar
@@ -104,6 +113,17 @@
     
 }
 
+- (void)initIntPutView
+{
+    self.inputBar = [[YFInputBar alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY([UIScreen mainScreen].bounds), 320, 44)];
+    self.inputBar.backgroundColor = [UIColor colorWithRed:arc4random_uniform(255)/255.0 green:arc4random_uniform(255)/255.0 blue:arc4random_uniform(255)/255.0 alpha:1];
+    
+    self.inputBar.delegate = self;
+    self.inputBar.clearInputWhenSend = YES;
+    self.inputBar.resignFirstResponderWhenSend = YES;
+    
+    [self.view addSubview:self.inputBar];
+}
 
 
 #pragma delegate
@@ -207,7 +227,7 @@
             HRPoiCreateInfoCell * cell = [tableView dequeueReusableCellWithIdentifier:@"HRPoiCreateInfoCell"];
             if (!cell) {
                 cell = [[HRPoiCreateInfoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"HRPoiCreateInfoCell"];
-                
+                cell.delegate = self;
             }
             [cell setDataSource:nil];
             return cell;
@@ -243,7 +263,7 @@
             HRRecomendCell * cell = [tableView dequeueReusableCellWithIdentifier:@"HRRecomendCell"];
             if (!cell) {
                 cell = [[HRRecomendCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"HRRecomendCell"];
-                
+                cell.delegate = self;
             }
             [cell setDataSrouce:nil];
             [cell.lineView setHidden:indexPath.row == [self tableView:tableView numberOfRowsInSection:indexPath.section] - 2];
@@ -285,12 +305,10 @@
             break;
         case 2:
         {
-        
         }
             break;
         case 3:
         {
-            
         }
             break;
         default:
@@ -314,4 +332,43 @@
     [hrImageView.imageView sd_setImageWithURL:[NSURL URLWithString:@"http://b.hiphotos.baidu.com/zhidao/pic/item/f636afc379310a5562bec3ceb64543a982261075.jpg"] placeholderImage:[UIImage imageNamed:@""]];
     return YES;
 }
+
+
+#pragma nark WantTogo
+- (void)poiUserInfoCellDidClickWantTogo:(HRPoiCreateInfoCell *)cell
+{
+    
+}
+
+#pragma mark - Recomend
+- (void)poiUserInfoCellDidClickRecomend:(HRPoiCreateInfoCell *)cell
+{
+    [self.inputBar.textField becomeFirstResponder];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    [self.inputBar.textField resignFirstResponder];
+}
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self.inputBar.textField resignFirstResponder];
+}
+
+- (void)recomendCellDidClickUserButton:(HRRecomendCell *)cell
+{
+    HRUserHomeController * userHomeController = [[HRUserHomeController alloc] initWithUserID:nil];
+    [self.myNavController pushViewController:userHomeController animated:YES];
+}
+- (void)recomendCellDidClickRecomendButton:(HRRecomendCell *)cell
+{
+    [self.inputBar.textField becomeFirstResponder];
+}
+
+-(void)inputBar:(YFInputBar *)inputBar sendBtnPress:(UIButton *)sendBtn withInputString:(NSString *)str
+{
+    NSLog(@"%@",str);
+}
+
 @end
