@@ -354,7 +354,8 @@ static CGFloat const MaxToolbarHeight = 200.0f;
     _toolbar = [UIToolbar new];
     
     RDRGrowingTextView *textView = [RDRGrowingTextView new];
-    textView.font = [UIFont systemFontOfSize:17.0f];
+    textView.font = [UIFont systemFontOfSize:14.0f];
+//    textView.textColor = [UIColor blackColor];
     textView.textContainerInset = UIEdgeInsetsMake(4.0f, 3.0f, 3.0f, 3.0f);
     textView.layer.cornerRadius = 4.0f;
     textView.layer.borderColor = [UIColor colorWithRed:200.0f/255.0f green:200.0f/255.0f blue:205.0f/255.0f alpha:1.0f].CGColor;
@@ -381,6 +382,8 @@ static CGFloat const MaxToolbarHeight = 200.0f;
     
     return _toolbar;
 }
+
+
 
 #pragma mark 键盘出现和消失
 #pragma mark keyBoard show/hide
@@ -420,15 +423,26 @@ static CGFloat const MaxToolbarHeight = 200.0f;
 //    }];
 }
 
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    
+    if([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+        return NO;
+    }
+    return YES;
+}
 #pragma mark - Recomend
 - (void)poiUserInfoCellDidClickRecomend:(HRPoiCreateInfoCell *)cell
 {
+    [self.textView setPlaceText:@"评论"];
     [self.textView becomeFirstResponder];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    [self.textView resignFirstResponder];
+    if(scrollView.isDragging)
+        [self.textView resignFirstResponder];
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event

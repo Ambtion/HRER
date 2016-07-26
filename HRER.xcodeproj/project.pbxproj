@@ -727,7 +727,7 @@
 		E11876A01D3F27D000A23429 /* HRPOICrete */ = {
 			isa = PBXGroup;
 			children = (
-				E1CC46931D409BD400202F98 /* UloadView */,
+				E1CC46931D409BD400202F98 /* UploadView */,
 				E1A23FC91D3F78F900D73CE6 /* MapPoi */,
 				E1A23FB41D3F745100D73CE6 /* CreatePoiList */,
 			);
@@ -901,7 +901,7 @@
 			path = TencentSDK;
 			sourceTree = "<group>";
 		};
-		E1CC46931D409BD400202F98 /* UloadView */ = {
+		E1CC46931D409BD400202F98 /* UploadView */ = {
 			isa = PBXGroup;
 			children = (
 				E1CC46941D409BE500202F98 /* BaseAlertView.h */,
@@ -909,7 +909,7 @@
 				B8AC37C21D40FD7C00D99BF8 /* HRUPloadImageView.h */,
 				B8AC37C31D40FD7C00D99BF8 /* HRUPloadImageView.m */,
 			);
-			name = UloadView;
+			name = UploadView;
 			sourceTree = "<group>";
 		};
 		E1E3AB121CF6F2AC00DD5608 /* AppSysConfig */ = {

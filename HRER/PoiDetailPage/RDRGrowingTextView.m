@@ -29,6 +29,10 @@
 
 #import "RDRGrowingTextView.h"
 
+@interface RDRGrowingTextView()
+@property(nonatomic,strong)UILabel * placeLabel;
+@end
+
 @implementation RDRGrowingTextView
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -59,6 +63,7 @@
 
 - (void)textDidChange:(NSNotification *)notification
 {
+    [self.placeLabel setHidden:self.text.length];
     [self updateLayout];
 }
 
@@ -66,6 +71,27 @@
 {
     [self invalidateIntrinsicContentSize];
     [self scrollRangeToVisible:self.selectedRange];
+}
+
+- (UILabel *)placeLabel
+{
+    if (!_placeLabel) {
+        _placeLabel = [[UILabel alloc] init];
+        _placeLabel.font = [UIFont systemFontOfSize:14.f];
+        _placeLabel.textAlignment = NSTextAlignmentLeft;
+        _placeLabel.textColor = RGB_Color(0xa6, 0xa6, 0xa6);
+        [self addSubview:_placeLabel];
+        [_placeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.offset(8);
+            make.top.height.equalTo(self);
+        }];
+    }
+    return _placeLabel;
+}
+
+- (void)setPlaceText:(NSString *)placeText
+{
+    self.placeLabel.text = placeText;
 }
 
 @end

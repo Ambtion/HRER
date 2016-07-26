@@ -31,4 +31,6 @@
 
 @interface RDRGrowingTextView : UITextView
 
+- (void)setPlaceText:(NSString *)placeText;
+
 @end
