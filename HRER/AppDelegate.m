@@ -14,7 +14,6 @@
 #import "HRNagationController.h"
 #import "HomeViewController.h"
 #import "FindCityViewController.h"
-#import "HereViewController.h"
 #import "FriendsViewController.h"
 #import "MainTabBarController.h"
 #import "HRAddressBookManager.h"

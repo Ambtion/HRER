@@ -10,6 +10,8 @@
 #import "HRUPloadImageView.h"
 #import "iCarousel.h"
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
 
 #define MAXSEARCHCOUNT (100)
 

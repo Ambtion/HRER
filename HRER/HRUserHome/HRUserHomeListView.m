@@ -48,6 +48,13 @@
     self.tableView.dataSource = self;
     self.tableView.tableHeaderView = self.headView;
     [self addSubview:self.tableView];
+    
+    
+    UINavigationController * nav = (UINavigationController *)[[[UIApplication sharedApplication] delegate] window].rootViewController;
+    if([nav viewControllers].count > 1){
+        UIView * view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.width, 80)];
+        self.tableView.tableFooterView = view;
+    }
 }
 
 - (void)initRefreshView

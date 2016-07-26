@@ -46,6 +46,7 @@
     [self addSubview:self.bgImageView];
     
     self.carView = [[HRUserHomeInfoCardView alloc] init];
+    self.carView.delegate = self;
     [self addSubview:self.carView];
     
     self.caterInfoView = [[HRUserHomeCaterInfoView alloc] init];

@@ -6,6 +6,9 @@
 //  Copyright © 2016年 linjunhou. All rights reserved.
 //
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+
 #import "HRBaseSearchTableViewController.h"
 
 @interface HRBaseSearchTableViewController () <UISearchDisplayDelegate, UISearchBarDelegate>

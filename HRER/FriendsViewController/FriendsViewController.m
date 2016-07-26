@@ -87,9 +87,10 @@
     self.tableView.separatorStyle  = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.tableView];
     
-    UIView * view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 100)];
-    self.tableView.tableFooterView = view;
-    
+    if([self.myNavController viewControllers].count > 1){
+        UIView * view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 80)];
+        self.tableView.tableFooterView = view;
+    }
 }
 
 - (void)quaryData

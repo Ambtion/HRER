@@ -25,7 +25,6 @@
 		B816B11C1D367B0300318662 /* HRPoiCreateInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B816B11B1D367B0300318662 /* HRPoiCreateInfoCell.m */; };
 		B845AC8B1D2D3C6900D26A2A /* HRInPutView.m in Sources */ = {isa = PBXBuildFile; fileRef = B845AC8A1D2D3C6900D26A2A /* HRInPutView.m */; };
 		B85520101D098F2C00C56FC5 /* HomeHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = B855200F1D098F2C00C56FC5 /* HomeHeadView.m */; };
-		B85520151D098F5700C56FC5 /* HereViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B85520141D098F5700C56FC5 /* HereViewController.m */; };
 		B85520191D098FB900C56FC5 /* HRCatergoryItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = B85520181D098FB900C56FC5 /* HRCatergoryItemView.m */; };
 		B85629411D3BBBF200E5BD4C /* HRUserHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = B85629401D3BBBF200E5BD4C /* HRUserHomeController.m */; };
 		B856FF451D3F929A002EF2C4 /* HRLocationInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = B856FF441D3F929A002EF2C4 /* HRLocationInputView.m */; };
@@ -102,6 +101,8 @@
 		E14BD4CA1CEF0AC900C66E14 /* Localization.strings in Resources */ = {isa = PBXBuildFile; fileRef = E14BD4CC1CEF0AC900C66E14 /* Localization.strings */; };
 		E14BD4F01CF2CAD200C66E14 /* HRAnomation.m in Sources */ = {isa = PBXBuildFile; fileRef = E14BD4EF1CF2CAD200C66E14 /* HRAnomation.m */; };
 		E14BD4F51CF2D76700C66E14 /* HRPinAnnomationView.m in Sources */ = {isa = PBXBuildFile; fileRef = E14BD4F41CF2D76700C66E14 /* HRPinAnnomationView.m */; };
+		E19385301D47356F0097018B /* PoiRecomendListController.m in Sources */ = {isa = PBXBuildFile; fileRef = E193852F1D47356F0097018B /* PoiRecomendListController.m */; };
+		E19385331D47375C0097018B /* PoiRecomendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E19385321D47375C0097018B /* PoiRecomendCell.m */; };
 		E198B99D1D3C80A400BC8237 /* HRNavMapController.m in Sources */ = {isa = PBXBuildFile; fileRef = E198B99C1D3C80A400BC8237 /* HRNavMapController.m */; };
 		E198B9A01D3C82E000BC8237 /* HRPoiCardAddressView.m in Sources */ = {isa = PBXBuildFile; fileRef = E198B99F1D3C82E000BC8237 /* HRPoiCardAddressView.m */; };
 		E198B9EE1D3DCB6200BC8237 /* HRUserHomeInfoCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = E198B9ED1D3DCB6200BC8237 /* HRUserHomeInfoCardView.m */; };
@@ -175,8 +176,6 @@
 		B845AC8A1D2D3C6900D26A2A /* HRInPutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRInPutView.m; sourceTree = "<group>"; };
 		B855200E1D098F2C00C56FC5 /* HomeHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeHeadView.h; sourceTree = "<group>"; };
 		B855200F1D098F2C00C56FC5 /* HomeHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeHeadView.m; sourceTree = "<group>"; };
-		B85520131D098F5700C56FC5 /* HereViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HereViewController.h; sourceTree = "<group>"; };
-		B85520141D098F5700C56FC5 /* HereViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HereViewController.m; sourceTree = "<group>"; };
 		B85520171D098FB900C56FC5 /* HRCatergoryItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRCatergoryItemView.h; sourceTree = "<group>"; };
 		B85520181D098FB900C56FC5 /* HRCatergoryItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRCatergoryItemView.m; sourceTree = "<group>"; };
 		B856293F1D3BBBF200E5BD4C /* HRUserHomeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRUserHomeController.h; sourceTree = "<group>"; };
@@ -315,6 +314,10 @@
 		E14BD4EF1CF2CAD200C66E14 /* HRAnomation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HRAnomation.m; path = ../HEMapView/HRAnomation.m; sourceTree = "<group>"; };
 		E14BD4F31CF2D76700C66E14 /* HRPinAnnomationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HRPinAnnomationView.h; path = ../HEMapView/HRPinAnnomationView.h; sourceTree = "<group>"; };
 		E14BD4F41CF2D76700C66E14 /* HRPinAnnomationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HRPinAnnomationView.m; path = ../HEMapView/HRPinAnnomationView.m; sourceTree = "<group>"; };
+		E193852E1D47356F0097018B /* PoiRecomendListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PoiRecomendListController.h; sourceTree = "<group>"; };
+		E193852F1D47356F0097018B /* PoiRecomendListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PoiRecomendListController.m; sourceTree = "<group>"; };
+		E19385311D47375C0097018B /* PoiRecomendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PoiRecomendCell.h; sourceTree = "<group>"; };
+		E19385321D47375C0097018B /* PoiRecomendCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PoiRecomendCell.m; sourceTree = "<group>"; };
 		E198B99B1D3C80A400BC8237 /* HRNavMapController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRNavMapController.h; sourceTree = "<group>"; };
 		E198B99C1D3C80A400BC8237 /* HRNavMapController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRNavMapController.m; sourceTree = "<group>"; };
 		E198B99E1D3C82E000BC8237 /* HRPoiCardAddressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRPoiCardAddressView.h; sourceTree = "<group>"; };
@@ -456,15 +459,6 @@
 				E1CC47321D45F92800202F98 /* RDRGrowingTextView.m */,
 			);
 			path = PoiDetailPage;
-			sourceTree = "<group>";
-		};
-		B85520121D098F5700C56FC5 /* HereViewController */ = {
-			isa = PBXGroup;
-			children = (
-				B85520131D098F5700C56FC5 /* HereViewController.h */,
-				B85520141D098F5700C56FC5 /* HereViewController.m */,
-			);
-			path = HereViewController;
 			sourceTree = "<group>";
 		};
 		B85520161D098FAB00C56FC5 /* HRScrollItemView */ = {
@@ -770,6 +764,7 @@
 		E14BD48F1CEEF53F00C66E14 /* HRER */ = {
 			isa = PBXGroup;
 			children = (
+				E193852D1D4735610097018B /* POiListRecomend */,
 				E11876A01D3F27D000A23429 /* HRPOICrete */,
 				E198B99A1D3C808F00BC8237 /* HRNaiMapController */,
 				B856293E1D3BBBDE00E5BD4C /* HRUserHome */,
@@ -777,7 +772,6 @@
 				B80539241D23B40300C8EF06 /* HRImageScroll */,
 				B8ACA9181D105F7800D58232 /* POIList */,
 				B85520161D098FAB00C56FC5 /* HRScrollItemView */,
-				B85520121D098F5700C56FC5 /* HereViewController */,
 				E1206FD71D066C7900E3C9D4 /* NetWork */,
 				E1E3AB5E1CFBEE5300DD5608 /* DataModel */,
 				B8DF92F31CFB2AB1007C4DF9 /* FunctionGuide */,
@@ -822,6 +816,17 @@
 				E14BD4C41CEEFC0700C66E14 /* HRLocationManager.m */,
 			);
 			path = HEMapView;
+			sourceTree = "<group>";
+		};
+		E193852D1D4735610097018B /* POiListRecomend */ = {
+			isa = PBXGroup;
+			children = (
+				E193852E1D47356F0097018B /* PoiRecomendListController.h */,
+				E193852F1D47356F0097018B /* PoiRecomendListController.m */,
+				E19385311D47375C0097018B /* PoiRecomendCell.h */,
+				E19385321D47375C0097018B /* PoiRecomendCell.m */,
+			);
+			path = POiListRecomend;
 			sourceTree = "<group>";
 		};
 		E198B99A1D3C808F00BC8237 /* HRNaiMapController */ = {
@@ -1092,6 +1097,7 @@
 				B805E1F21D0DAE970011E2F7 /* HRHereBannerCell.m in Sources */,
 				B8954EAE1CFC7E1D006A706A /* HRFinPassViewController.m in Sources */,
 				B89664101CF32FD100B2A6CA /* UIViewAdditions.m in Sources */,
+				E19385301D47356F0097018B /* PoiRecomendListController.m in Sources */,
 				B80E94A91D07FB62000C979A /* RefreshTableView.m in Sources */,
 				B896640D1CF32FD100B2A6CA /* RFSegmentView.m in Sources */,
 				B8C00E0E1D3D0518009FB17F /* HRUserHomeHeadView.m in Sources */,
@@ -1101,7 +1107,6 @@
 				B8CDA7671D37BDE800136AF7 /* HRPoiUserInfoBottomView.m in Sources */,
 				E1CC47331D45F92800202F98 /* RDRGrowingTextView.m in Sources */,
 				E14BD4C21CEEFBF900C66E14 /* HRMapView.m in Sources */,
-				B85520151D098F5700C56FC5 /* HereViewController.m in Sources */,
 				B80539301D23B40300C8EF06 /* HRPhotoBrowser.m in Sources */,
 				B896640B1CF32FD100B2A6CA /* YiRefreshFooter.m in Sources */,
 				B88F106F1CF5E232007C930F /* FriendsViewController.m in Sources */,
@@ -1163,6 +1168,7 @@
 				E14178301D323C42000CBB2E /* BMOldFriendCell.m in Sources */,
 				E1A23F8A1D3F45D700D73CE6 /* HRCreateCategoryCell.m in Sources */,
 				E198B99D1D3C80A400BC8237 /* HRNavMapController.m in Sources */,
+				E19385331D47375C0097018B /* PoiRecomendCell.m in Sources */,
 				B80539311D23B40300C8EF06 /* HRWaitingView.m in Sources */,
 				E198B9FA1D3DFFA500BC8237 /* HRUserHomeMapView.m in Sources */,
 				B88F10751CF5E246007C930F /* FindCityViewController.m in Sources */,

@@ -6,8 +6,25 @@
 //  Copyright © 2016年 linjunhou. All rights reserved.
 //
 
-@interface UILabel(SubStirngRect)
 
+@interface HRUIButton : UIButton
+@property(nonatomic,strong)UIColor * highColor;
+@end
+
+@implementation HRUIButton
+- (void)setHighlighted:(BOOL)highlighted
+{
+    [super setHighlighted:highlighted];
+    if (highlighted) {
+        self.backgroundColor = self.highColor;
+    }else{
+        self.backgroundColor = [UIColor clearColor];
+    }
+}
+@end
+
+
+@interface UILabel(SubStirngRect)
 @end
 @implementation UILabel(SubStirngRect)
 
@@ -36,8 +53,8 @@
 @property(nonatomic,strong)UIImageView * porImageView;
 @property(nonatomic,strong)UIView * bgView;
 @property(nonatomic,strong)UILabel * desLabel;
-@property(nonatomic,strong)UIButton * userButton;
-@property(nonatomic,strong)UIButton * recomendButton;
+@property(nonatomic,strong)HRUIButton * userButton;
+@property(nonatomic,strong)HRUIButton * recomendButton;
 @end
 
 @implementation HRRecomendCell
@@ -73,6 +90,17 @@ static NSString * str = @"小李回复:他说斯蒂芬妮闪电废是打发是�
     self.bgView.backgroundColor = RGB_Color(0xf2, 0xf2, 0xf2);
     [self.contentView addSubview:self.bgView];
     
+    
+    self.recomendButton = [HRUIButton buttonWithType:UIButtonTypeCustom];
+    self.recomendButton.highColor = RGB_Color(0xd6, 0xde, 0xe9);
+    [self.recomendButton addTarget:self action:@selector(onRecomendDidClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.contentView addSubview:self.recomendButton];
+    
+    self.userButton = [HRUIButton buttonWithType:UIButtonTypeCustom];
+    self.userButton.highColor = RGB_Color(0xe1, 0xe1, 0xe1);
+    [self.userButton addTarget:self action:@selector(onUserButtonDidClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.contentView addSubview:self.userButton];
+    
     self.porImageView = [[UIImageView alloc] init];
     self.porImageView.layer.cornerRadius = 20.f;
     [self.contentView addSubview:self.porImageView];
@@ -81,7 +109,7 @@ static NSString * str = @"小李回复:他说斯蒂芬妮闪电废是打发是�
     self.desLabel.textColor = RGB_Color(0x4d,0x4d , 0x4d);
     self.desLabel.numberOfLines = 0;
     self.desLabel.font = [UIFont systemFontOfSize:14.f];
-    [self.desLabel setUserInteractionEnabled:YES];
+    [self.desLabel setUserInteractionEnabled:NO];
     [self.contentView addSubview:self.desLabel];
     
     
@@ -103,10 +131,6 @@ static NSString * str = @"小李回复:他说斯蒂芬妮闪电废是打发是�
         
     }];
     
-    self.recomendButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.recomendButton addTarget:self action:@selector(onRecomendDidClick:) forControlEvents:UIControlEventTouchUpInside];
-    self.recomendButton.backgroundColor = [[UIColor greenColor] colorWithAlphaComponent:0.2];
-    [self.contentView addSubview:self.recomendButton];
     
     [self.recomendButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.height.equalTo(self.desLabel);
@@ -126,11 +150,6 @@ static NSString * str = @"小李回复:他说斯蒂芬妮闪电废是打发是�
         make.height.equalTo(@(0.5));
     }];
     
-    self.userButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.userButton addTarget:self action:@selector(onUserButtonDidClick:) forControlEvents:UIControlEventTouchUpInside];
-    self.userButton.backgroundColor = [[UIColor blueColor] colorWithAlphaComponent:0.2];
-    [self.desLabel addSubview:self.userButton];
-    
     
 }
 
@@ -142,8 +161,11 @@ static NSString * str = @"小李回复:他说斯蒂芬妮闪电废是打发是�
     self.desLabel.attributedText = attS;
     
     CGRect rect  = [[self desLabel] boundingRectForCharacterRange:NSMakeRange(0, 5)];
-//    rect = [self.contentView convertRect:rect fromView:self.desLabel];
-    self.userButton.frame = rect;
+    rect.size.width += 3.f;
+    [self.userButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.top.equalTo(self.desLabel);
+        make.size.mas_equalTo(rect.size);
+    }];
 }
 
 #pragma mark -

@@ -87,6 +87,7 @@
     self.addresssLabel.text = @"上地五接士大夫是方式";
     CLLocation * desLocaiton = [[CLLocation alloc] initWithLatitude:data.lat longitude:data.lng];
     NSString * distance = [HRNavigationTool distanceBetwenOriGps:[[HRLocationManager sharedInstance] curLocation].coordinate desGps:desLocaiton.coordinate];
+    NSLog(@"%@",distance);
     self.locLabel.text = @"距离1000km";
 }
 

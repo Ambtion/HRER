@@ -65,7 +65,7 @@
 
 - (void)disAppear
 {
-    [UIView animateWithDuration:0.3  delay:0.f options:UIViewAnimationCurveEaseInOut animations:^{
+    [UIView animateWithDuration:0.3  delay:0.f options:UIViewAnimationOptionCurveEaseInOut animations:^{
         self.backGroudView.alpha = 0.f;
         self.contentView.frame = CGRectOffset(self.contentView.frame, 0, CGRectGetHeight(self.bounds));
     } completion:^(BOOL finished) {

@@ -8,7 +8,7 @@
 
 #import "HRNagationController.h"
 
-@interface HRNagationController()<UINavigationControllerDelegate>
+@interface HRNagationController()<UINavigationControllerDelegate,UIGestureRecognizerDelegate>
 @property(nonatomic,assign)BOOL isAnimaiton;
 @end
 
@@ -19,10 +19,17 @@
     self = [super initWithRootViewController:rootViewController];
     if (self) {
         self.delegate = self;
+        self.interactivePopGestureRecognizer.delegate = self;
         self.isAnimaiton = NO;
     }
     return self;
 }
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldBeRequiredToFailByGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+    return YES;
+}
+
 
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
 

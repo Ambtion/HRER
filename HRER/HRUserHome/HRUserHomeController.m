@@ -12,6 +12,9 @@
 #import "HRPoiDetailController.h"
 #import "LoginStateManager.h"
 
+//Test
+#import "PoiRecomendListController.h"
+
 @interface HRUserHomeController()<HRUserHomeListViewDelegate,HRUserHomeMapViewDelegate>
 
 @property(nonatomic,strong)NSString * userId;
@@ -184,7 +187,7 @@
 #pragma mark RightButton
 - (void)userHomeListViewDidClickRightButton:(HRUserHomeListView *)listView
 {
-    
+    [self.myNavController pushViewController:[[PoiRecomendListController alloc] init] animated:YES];
 }
 -(void)userHomeMapViewDidClickRightButton:(HRUserHomeMapView *)mapView
 {
