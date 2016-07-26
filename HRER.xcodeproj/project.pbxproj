@@ -436,7 +436,7 @@
 			path = HRImageScroll;
 			sourceTree = "<group>";
 		};
-		B816B10D1D3671A800318662 /* PoiDetailPage */ = {
+		B816B10D1D3671A800318662 /* PoiDetailViewController */ = {
 			isa = PBXGroup;
 			children = (
 				B816B10E1D3671C200318662 /* HRPoiDetailController.h */,
@@ -458,6 +458,7 @@
 				E1CC47311D45F92800202F98 /* RDRGrowingTextView.h */,
 				E1CC47321D45F92800202F98 /* RDRGrowingTextView.m */,
 			);
+			name = PoiDetailViewController;
 			path = PoiDetailPage;
 			sourceTree = "<group>";
 		};
@@ -472,7 +473,7 @@
 			path = HRScrollItemView;
 			sourceTree = "<group>";
 		};
-		B856293E1D3BBBDE00E5BD4C /* HRUserHome */ = {
+		B856293E1D3BBBDE00E5BD4C /* HRUserHomeController */ = {
 			isa = PBXGroup;
 			children = (
 				B856293F1D3BBBF200E5BD4C /* HRUserHomeController.h */,
@@ -492,6 +493,7 @@
 				E198B9EF1D3DD2D500BC8237 /* HRUserHomeCaterInfoView.h */,
 				E198B9F01D3DD2D500BC8237 /* HRUserHomeCaterInfoView.m */,
 			);
+			name = HRUserHomeController;
 			path = HRUserHome;
 			sourceTree = "<group>";
 		};
@@ -520,7 +522,7 @@
 			path = LoginController;
 			sourceTree = "<group>";
 		};
-		B88F10651CF5E1D3007C930F /* HomeViewContoller */ = {
+		B88F10651CF5E1D3007C930F /* HomeFeedViewContoller */ = {
 			isa = PBXGroup;
 			children = (
 				B88F10701CF5E23B007C930F /* HomeViewController.h */,
@@ -540,6 +542,7 @@
 				B855200E1D098F2C00C56FC5 /* HomeHeadView.h */,
 				B855200F1D098F2C00C56FC5 /* HomeHeadView.m */,
 			);
+			name = HomeFeedViewContoller;
 			path = HomeViewContoller;
 			sourceTree = "<group>";
 		};
@@ -718,13 +721,14 @@
 			path = MainTabController;
 			sourceTree = "<group>";
 		};
-		E11876A01D3F27D000A23429 /* HRPOICrete */ = {
+		E11876A01D3F27D000A23429 /* HRPOICreteController */ = {
 			isa = PBXGroup;
 			children = (
 				E1CC46931D409BD400202F98 /* UploadView */,
 				E1A23FC91D3F78F900D73CE6 /* MapPoi */,
 				E1A23FB41D3F745100D73CE6 /* CreatePoiList */,
 			);
+			name = HRPOICreteController;
 			path = HRPOICrete;
 			sourceTree = "<group>";
 		};
@@ -764,11 +768,14 @@
 		E14BD48F1CEEF53F00C66E14 /* HRER */ = {
 			isa = PBXGroup;
 			children = (
+				B88F10651CF5E1D3007C930F /* HomeFeedViewContoller */,
+				B88F10661CF5E1E2007C930F /* FindCityViewController */,
+				E11876A01D3F27D000A23429 /* HRPOICreteController */,
+				B88F10681CF5E212007C930F /* FriendsViewController */,
+				B856293E1D3BBBDE00E5BD4C /* HRUserHomeController */,
 				E193852D1D4735610097018B /* POiListRecomend */,
-				E11876A01D3F27D000A23429 /* HRPOICrete */,
 				E198B99A1D3C808F00BC8237 /* HRNaiMapController */,
-				B856293E1D3BBBDE00E5BD4C /* HRUserHome */,
-				B816B10D1D3671A800318662 /* PoiDetailPage */,
+				B816B10D1D3671A800318662 /* PoiDetailViewController */,
 				B80539241D23B40300C8EF06 /* HRImageScroll */,
 				B8ACA9181D105F7800D58232 /* POIList */,
 				B85520161D098FAB00C56FC5 /* HRScrollItemView */,
@@ -779,9 +786,6 @@
 				E1F7265F1CF6E14600799A50 /* AddressBook */,
 				E10DF7851CF6DAB600D5E146 /* MainTabController */,
 				B88F10791CF5E26A007C930F /* HRNavigationController */,
-				B88F10681CF5E212007C930F /* FriendsViewController */,
-				B88F10651CF5E1D3007C930F /* HomeViewContoller */,
-				B88F10661CF5E1E2007C930F /* FindCityViewController */,
 				B88F105E1CF5CDF6007C930F /* LoginController */,
 				E10DF7711CF6C19400D5E146 /* NavigationTool */,
 				E1C3037C1CF43E5E001C016B /* OAuthLogin */,
