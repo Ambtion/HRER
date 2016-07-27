@@ -32,6 +32,9 @@
 		B856FF4B1D3F9734002EF2C4 /* HRCreteCategoryItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = B856FF4A1D3F9734002EF2C4 /* HRCreteCategoryItemView.m */; };
 		B8697D6B1CFC395E00F1BC4B /* HRLoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B8697D6A1CFC395E00F1BC4B /* HRLoginManager.m */; };
 		B877334E1D33CBE000CC43CD /* SearchInPutView.m in Sources */ = {isa = PBXBuildFile; fileRef = B877334D1D33CBE000CC43CD /* SearchInPutView.m */; };
+		B87F91741D4905CD004C1867 /* HRSettingNickController.m in Sources */ = {isa = PBXBuildFile; fileRef = B87F91731D4905CD004C1867 /* HRSettingNickController.m */; };
+		B87F917A1D4908FC004C1867 /* HRSetBindController.m in Sources */ = {isa = PBXBuildFile; fileRef = B87F91791D4908FC004C1867 /* HRSetBindController.m */; };
+		B87F917D1D490BF9004C1867 /* HRResetPassControlller.m in Sources */ = {isa = PBXBuildFile; fileRef = B87F917C1D490BF9004C1867 /* HRResetPassControlller.m */; };
 		B88F10611CF5D005007C930F /* HRLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B88F10601CF5D005007C930F /* HRLoginViewController.m */; };
 		B88F106F1CF5E232007C930F /* FriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B88F106E1CF5E232007C930F /* FriendsViewController.m */; };
 		B88F10721CF5E23B007C930F /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B88F10711CF5E23B007C930F /* HomeViewController.m */; };
@@ -196,6 +199,12 @@
 		B8697D6A1CFC395E00F1BC4B /* HRLoginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRLoginManager.m; sourceTree = "<group>"; };
 		B877334C1D33CBE000CC43CD /* SearchInPutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchInPutView.h; sourceTree = "<group>"; };
 		B877334D1D33CBE000CC43CD /* SearchInPutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchInPutView.m; sourceTree = "<group>"; };
+		B87F91721D4905CD004C1867 /* HRSettingNickController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRSettingNickController.h; sourceTree = "<group>"; };
+		B87F91731D4905CD004C1867 /* HRSettingNickController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRSettingNickController.m; sourceTree = "<group>"; };
+		B87F91781D4908FC004C1867 /* HRSetBindController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRSetBindController.h; sourceTree = "<group>"; };
+		B87F91791D4908FC004C1867 /* HRSetBindController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRSetBindController.m; sourceTree = "<group>"; };
+		B87F917B1D490BF9004C1867 /* HRResetPassControlller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRResetPassControlller.h; sourceTree = "<group>"; };
+		B87F917C1D490BF9004C1867 /* HRResetPassControlller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRResetPassControlller.m; sourceTree = "<group>"; };
 		B88F105F1CF5D005007C930F /* HRLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRLoginViewController.h; sourceTree = "<group>"; };
 		B88F10601CF5D005007C930F /* HRLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRLoginViewController.m; sourceTree = "<group>"; };
 		B88F106D1CF5E232007C930F /* FriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsViewController.h; sourceTree = "<group>"; };
@@ -509,6 +518,33 @@
 			);
 			name = HRUserHomeController;
 			path = HRUserHome;
+			sourceTree = "<group>";
+		};
+		B87F91751D4905D7004C1867 /* Nick */ = {
+			isa = PBXGroup;
+			children = (
+				B87F91721D4905CD004C1867 /* HRSettingNickController.h */,
+				B87F91731D4905CD004C1867 /* HRSettingNickController.m */,
+			);
+			name = Nick;
+			sourceTree = "<group>";
+		};
+		B87F91761D4908B2004C1867 /* ResetPass */ = {
+			isa = PBXGroup;
+			children = (
+				B87F917B1D490BF9004C1867 /* HRResetPassControlller.h */,
+				B87F917C1D490BF9004C1867 /* HRResetPassControlller.m */,
+			);
+			name = ResetPass;
+			sourceTree = "<group>";
+		};
+		B87F91771D4908E1004C1867 /* BindPhotoNumer */ = {
+			isa = PBXGroup;
+			children = (
+				B87F91781D4908FC004C1867 /* HRSetBindController.h */,
+				B87F91791D4908FC004C1867 /* HRSetBindController.m */,
+			);
+			name = BindPhotoNumer;
 			sourceTree = "<group>";
 		};
 		B88F105E1CF5CDF6007C930F /* LoginController */ = {
@@ -855,6 +891,9 @@
 			children = (
 				E19385791D487F7D0097018B /* HRSettingViewController.h */,
 				E193857A1D487F7D0097018B /* HRSettingViewController.m */,
+				B87F91751D4905D7004C1867 /* Nick */,
+				B87F91761D4908B2004C1867 /* ResetPass */,
+				B87F91771D4908E1004C1867 /* BindPhotoNumer */,
 				E1D9BF5F1D48A89F003F9849 /* HRSettingUserinfoCell.h */,
 				E1D9BF601D48A89F003F9849 /* HRSettingUserinfoCell.m */,
 				E193857C1D48889D0097018B /* BMSystemConfigPageCell.h */,
@@ -1174,6 +1213,7 @@
 				E141782D1D323C34000CBB2E /* BMNewFriendsCell.m in Sources */,
 				B805E1F31D0DAE970011E2F7 /* HRHerePoiCell.m in Sources */,
 				B805E1F51D0DAE970011E2F7 /* PhotoFrameView.m in Sources */,
+				B87F917D1D490BF9004C1867 /* HRResetPassControlller.m in Sources */,
 				B805392E1D23B40300C8EF06 /* HRCycleScrollView.m in Sources */,
 				E1A23F901D3F530D00D73CE6 /* HRCretePoiCell.m in Sources */,
 				B89663ED1CF32F7700B2A6CA /* JWCollectionViewFlowLayout.m in Sources */,
@@ -1184,6 +1224,7 @@
 				B856FF481D3F9720002EF2C4 /* HRLocationCategoryView.m in Sources */,
 				B8954EAA1CFC7E10006A706A /* HRRegisterViewController.m in Sources */,
 				B816B1101D3671C200318662 /* HRPoiDetailController.m in Sources */,
+				B87F91741D4905CD004C1867 /* HRSettingNickController.m in Sources */,
 				B816B1191D367AA000318662 /* HRPoiLocInfoCell.m in Sources */,
 				E193857B1D487F7D0097018B /* HRSettingViewController.m in Sources */,
 				B845AC8B1D2D3C6900D26A2A /* HRInPutView.m in Sources */,
@@ -1213,6 +1254,7 @@
 				B80539311D23B40300C8EF06 /* HRWaitingView.m in Sources */,
 				E198B9FA1D3DFFA500BC8237 /* HRUserHomeMapView.m in Sources */,
 				B88F10751CF5E246007C930F /* FindCityViewController.m in Sources */,
+				B87F917A1D4908FC004C1867 /* HRSetBindController.m in Sources */,
 				E1A8154A1D0D483B005E4443 /* HRCatergoryScrollView.m in Sources */,
 				E1CC46EA1D41E7F900202F98 /* HRBaseSearchTableViewController.m in Sources */,
 				B896640F1CF32FD100B2A6CA /* UIView+TKCategory.m in Sources */,

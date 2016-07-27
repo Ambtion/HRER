@@ -12,6 +12,9 @@
 #import "SectionHeaderView.h"
 #import "LoginStateManager.h"
 #import "HRSettingUserinfoCell.h"
+#import "HRSettingNickController.h"
+#import "HRSetBindController.h"
+#import "HRResetPassControlller.h"
 
 #define TRIPHELPSYSCONFIGCELLHEIGTH (50.f)
 
@@ -325,16 +328,20 @@
             //用户信息
             if(indexPath.row == 1){
                 //昵称
+                HRSettingNickController * nickViewController = [[HRSettingNickController alloc] init];
+                nickViewController.nickName = [[LoginStateManager getInstance] userLoginInfo].name;
+                [self.myNavController pushViewController:nickViewController animated:YES];
                 
             }
             
             if(indexPath.row == 2){
                 //手机号
+                [self.myNavController pushViewController:[[HRSetBindController alloc] init] animated:YES];
             }
             
             if(indexPath.row == 3){
                 //修改密码
-                
+                [[self myNavController] pushViewController:[[HRResetPassControlller alloc] init] animated:YES];
             }
         }
             break;
