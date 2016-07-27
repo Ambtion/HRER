@@ -161,7 +161,11 @@
             cell = [[HRSettingUserinfoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"HRSettingUserinfoCell"];
             [cell.uploadImageButton addTarget:self action:@selector(uploadImagedidClic:) forControlEvents:UIControlEventTouchUpInside];
         }
-        [cell.porView sd_setImageWithURL:nil placeholderImage:[UIImage imageNamed:@"man"]];
+        NSURL * imageUrl = nil;
+        if (loginUserInfo.image.length) {
+            imageUrl = [NSURL URLWithString:loginUserInfo.image];
+        }
+        [cell.porView sd_setImageWithURL:imageUrl placeholderImage:[UIImage imageNamed:@"man"]];
         cell.passLabel.text = loginUserInfo.passport_num;
         
         return cell;
@@ -172,9 +176,7 @@
         
         BMSystemConfigPageCell *cell = [tableView dequeueReusableCellWithIdentifier:defaultIdentifier];
         if (!cell) {
-            
             cell = [[BMSystemConfigPageCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:defaultIdentifier];
-
         }
         
     
@@ -203,10 +205,12 @@
         }else{
             switch (indexPath.row) {
                 case 0:
-                    rightLabel.text = @"";
+                    rightLabel.text = loginUserInfo.weixin ? @"已绑定"  : @"未绑定";
+                    rightLabel.textColor = !loginUserInfo.weixin ? RGBA(0xdb, 0x42, 0x22, 1) : RGBA(0x99, 0x99, 0x99, 1);
                     break;
                 case 1:
-                    
+                    rightLabel.text = loginUserInfo.qq ? @"已绑定"  : @"未绑定";
+                    rightLabel.textColor = !loginUserInfo.qq ? RGBA(0xdb, 0x42, 0x22, 1) : RGBA(0x99, 0x99, 0x99, 1);
                     break;
                 default:
                     break;
