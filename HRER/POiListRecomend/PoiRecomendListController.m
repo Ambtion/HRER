@@ -75,12 +75,16 @@
     self.tableView.dataSource = self;
     self.tableView.tableHeaderView = self.inputView;
     self.tableView.separatorStyle  = UITableViewCellSeparatorStyleNone;
+    self.tableView.backgroundColor = RGB_Color(0xec, 0xec, 0xec);
     [self.view addSubview:self.tableView];
     
     UIView * view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 150)];
-    UIButton * button  = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, self.tableView.width,51)];
+    view.backgroundColor = [UIColor clearColor];
+    UIButton * button  = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, self.tableView.width,45)];
     [button setTitleColor:RGB_Color(0x79, 0x79, 0x79) forState:UIControlStateNormal];
     [button titleLabel].font = [UIFont systemFontOfSize:14.f];
+    [button setTitle:@"查看之前的评论消息" forState:UIControlStateNormal];
+    button.backgroundColor = [UIColor whiteColor];
     [button addTarget:self action:@selector(onMoreRecomendClick:) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:button];
     

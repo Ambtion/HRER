@@ -773,7 +773,7 @@
 				E11876A01D3F27D000A23429 /* HRPOICreteController */,
 				B88F10681CF5E212007C930F /* FriendsViewController */,
 				B856293E1D3BBBDE00E5BD4C /* HRUserHomeController */,
-				E193852D1D4735610097018B /* POiListRecomend */,
+				E193852D1D4735610097018B /* POiRecomendListController */,
 				E198B99A1D3C808F00BC8237 /* HRNaiMapController */,
 				B816B10D1D3671A800318662 /* PoiDetailViewController */,
 				B80539241D23B40300C8EF06 /* HRImageScroll */,
@@ -822,7 +822,7 @@
 			path = HEMapView;
 			sourceTree = "<group>";
 		};
-		E193852D1D4735610097018B /* POiListRecomend */ = {
+		E193852D1D4735610097018B /* POiRecomendListController */ = {
 			isa = PBXGroup;
 			children = (
 				E193852E1D47356F0097018B /* PoiRecomendListController.h */,
@@ -830,6 +830,7 @@
 				E19385311D47375C0097018B /* PoiRecomendCell.h */,
 				E19385321D47375C0097018B /* PoiRecomendCell.m */,
 			);
+			name = POiRecomendListController;
 			path = POiListRecomend;
 			sourceTree = "<group>";
 		};

@@ -175,7 +175,6 @@
     } failure:failure];
 }
 
-
 - (NSArray *)analysisPoiSetsModelFromArray:(NSArray *)array
 {
     if (![array isKindOfClass:[NSArray class]]) {
