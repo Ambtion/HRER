@@ -19,10 +19,14 @@
 @interface HRUserLoginInfo : NSObject<NSCopying,NSCoding>
 
 @property(nonatomic,strong)NSString * user_id;
+@property(nonatomic,strong)NSString * name;
+@property(nonatomic,strong)NSString * image;
 @property(nonatomic,strong)NSString * phone;
 @property(nonatomic,strong)NSString * token;
 @property(nonatomic,strong)NSString * passport_num;
-@property(nonatomic,strong)NSString * name;
+
+@property(nonatomic,assign)BOOL weixin;
+@property(nonatomic,assign)BOOL qq;
 
 @end
 

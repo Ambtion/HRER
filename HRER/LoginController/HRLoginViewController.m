@@ -11,6 +11,7 @@
 #import "HRFinPassViewController.h"
 #import "HRWebCatLogin.h"
 #import "HRBindPhoneController.h"
+#import "HRAddressBookManager.h"
 
 @interface HRLoginViewController()
 @property(nonatomic,strong)UIImageView * bgView;
@@ -318,9 +319,21 @@
                 [self showTotasViewWithMes:@"登陆成功"];
                 [self.myNavController dismissViewControllerAnimated:YES completion:^{
                     
+                    //访问通讯录
+                    [HRAddressBookManager readAllPersonAddressWithCallBack:^(NSArray *resultList, ABAuthorizationStatus status) {
+                        
+                        if (resultList.count && [[LoginStateManager getInstance] userLoginInfo]) {
+                            //用户登录方法
+                            [NetWorkEntity sendPhotoNumberWithPhotoNumber:resultList success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                
+                            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                
+                            }];
+                        }
+                    }];
                 }];
             }else{
-                [self showTotasViewWithMes:[[responseObject objectForKey:@"response"] objectForKey:@"errorText"]];
+                [self showTotasViewWithMes:[[responseObject objectForKey:@"response"] objectForKey:@"   "]];
             }
         }else{
             [self showTotasViewWithMes:[[responseObject objectForKey:@"response"] objectForKey:@"errorText"]];
