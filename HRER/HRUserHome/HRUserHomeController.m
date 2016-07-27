@@ -11,6 +11,8 @@
 #import "HRUserHomeMapView.h"
 #import "HRPoiDetailController.h"
 #import "LoginStateManager.h"
+#import "HRSettingViewController.h"
+
 
 //Test
 #import "PoiRecomendListController.h"
@@ -192,6 +194,19 @@
 -(void)userHomeMapViewDidClickRightButton:(HRUserHomeMapView *)mapView
 {
 
+}
+
+#pragma mark - Detail
+- (void)userHomeMapViewDidClickDetailButton:(HRUserHomeMapView *)mapView
+{
+    if([self.userId isEqualToString:[[LoginStateManager getInstance] userLoginInfo].user_id] &&
+       [self.myNavController viewControllers].count == 1){
+        [self.myNavController pushViewController:[[HRSettingViewController alloc] init] animated:YES];
+    }
+}
+- (void)userHomeListViewDidDetailButton:(HRUserHomeListView *)listView
+{
+    [self.myNavController pushViewController:[[HRSettingViewController alloc] init] animated:YES];
 }
 
 #pragma mar CategoryIndex

@@ -96,6 +96,13 @@
     }
 }
 
+- (void)userHomeInfoCardViewDidClickDetail:(HRUserHomeInfoCardView *)view
+{
+    if ([_delegate respondsToSelector:@selector(userHomeHeadViewDidClickDetail:)]) {
+        [_delegate userHomeHeadViewDidClickDetail:self];
+    }
+}
+
 - (void)userHomeCaterSwithButtonDidClick:(HRUserHomeCaterInfoView *)view
 {
     if ([_delegate respondsToSelector:@selector(userHomeHeadViewDidClickSwitchButton:)]) {

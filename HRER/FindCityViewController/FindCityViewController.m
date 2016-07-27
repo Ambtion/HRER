@@ -9,6 +9,7 @@
 #import "FindCityViewController.h"
 #import "RefreshTableView.h"
 #import "SearchInPutView.h"
+#import "JSonKit.h"
 
 @interface FindCityViewController()<UITableViewDelegate,UITableViewDataSource,UISearchDisplayDelegate,UISearchBarDelegate>
 
@@ -35,6 +36,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     [self initNavBar];
+    [self loadDataSource];
 }
 
 - (void)initNavBar
@@ -55,6 +57,14 @@
     [backButton addTarget:self action:@selector(backButtonDidClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:backButton];
     [backButton setHidden:[self.myNavController viewControllers].count == 1 ? YES : NO];
+}
+
+- (void)loadDataSource
+{
+//    NSString * path = [[NSBundle mainBundle] pathForResource:@"city" ofType:@"txt"];
+//    NSData * date = [[NSData alloc] initWithContentsOfFile:path];
+//    NSDictionary * dic = [date objectFromJSONData];
+    
 }
 
 #pragma mark - Action

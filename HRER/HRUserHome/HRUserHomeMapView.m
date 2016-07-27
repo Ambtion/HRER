@@ -196,5 +196,10 @@
     }
 }
 
-
+- (void)userHomeHeadViewDidClickDetail:(HRUserHomeHeadView *)headView
+{
+    if ([_delegate respondsToSelector:@selector(userHomeMapViewDidClickDetailButton:)]) {
+        [_delegate userHomeMapViewDidClickDetailButton:self];
+    }
+}
 @end

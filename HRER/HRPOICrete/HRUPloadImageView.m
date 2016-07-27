@@ -306,78 +306,6 @@
 }
 
 
-#pragma mark Photo
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    switch (buttonIndex) {
-        case 0:
-            //相机
-            [self addImmagesFormCamera:YES];
-            break;
-        case 1:
-            //相册
-            [self addImmagesFormCamera:NO];
-            break;
-        default:
-            break;
-    }
-}
-
-- (void)addImmagesFormCamera:(BOOL)isFromCamera
-{
-    UIImagePickerController* imagePickerController = [[UIImagePickerController alloc] init];
-    if (isFromCamera) {
-        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-            imagePickerController.sourceType =
-            UIImagePickerControllerSourceTypeCamera;
-        }
-        
-    }else{
-        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
-            imagePickerController.sourceType =
-            UIImagePickerControllerSourceTypePhotoLibrary;
-        }
-        
-    }
-    imagePickerController.allowsEditing = YES;
-    //设置委托对象
-    imagePickerController.delegate = self;
-    [[self appController] presentViewController:imagePickerController animated:YES completion:^{
-        
-    }];
-}
-
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
-{
-    
-    //获得编辑过的图片
-    UIImage * editImage = [editingInfo objectForKey: @"UIImagePickerControllerEditedImage"];
-    [self.photosArray addObject:editImage];
-    [self.icarousel reloadData];
-    
-    [[self appController] dismissViewControllerAnimated:YES completion:^{
-        
-    }];
-}
-
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
-{
-    //获得编辑过的图片
-    UIImage * editImage = [info objectForKey: @"UIImagePickerControllerEditedImage"];
-    [self.photosArray addObject:editImage];
-    [self.icarousel reloadData];
-
-    [[[[UIApplication sharedApplication] delegate] window].rootViewController dismissViewControllerAnimated:YES completion:^{
-        
-    }];}
-
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
-{
-    [[self appController] dismissViewControllerAnimated:YES completion:^{
-        
-    }];
-}
-
 - (UIViewController *)appController
 {
     return [[[UIApplication sharedApplication] delegate] window].rootViewController;
@@ -480,6 +408,79 @@
     UIActionSheet * action = [[UIActionSheet alloc] initWithTitle:@"选择照片" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"相机",@"相册", nil];
     [action showInView:self];
 }
+
+#pragma mark Photo
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    switch (buttonIndex) {
+        case 0:
+            //相机
+            [self addImmagesFormCamera:YES];
+            break;
+        case 1:
+            //相册
+            [self addImmagesFormCamera:NO];
+            break;
+        default:
+            break;
+    }
+}
+
+- (void)addImmagesFormCamera:(BOOL)isFromCamera
+{
+    UIImagePickerController* imagePickerController = [[UIImagePickerController alloc] init];
+    if (isFromCamera) {
+        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+            imagePickerController.sourceType =
+            UIImagePickerControllerSourceTypeCamera;
+        }
+        
+    }else{
+        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
+            imagePickerController.sourceType =
+            UIImagePickerControllerSourceTypePhotoLibrary;
+        }
+        
+    }
+    imagePickerController.allowsEditing = YES;
+    //设置委托对象
+    imagePickerController.delegate = self;
+    [[self appController] presentViewController:imagePickerController animated:YES completion:^{
+        
+    }];
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
+{
+    
+    //获得编辑过的图片
+    UIImage * editImage = [editingInfo objectForKey: @"UIImagePickerControllerEditedImage"];
+    [self.photosArray addObject:editImage];
+    [self.icarousel reloadData];
+    
+    [[self appController] dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    //获得编辑过的图片
+    UIImage * editImage = [info objectForKey: @"UIImagePickerControllerEditedImage"];
+    [self.photosArray addObject:editImage];
+    [self.icarousel reloadData];
+    
+    [[[[UIApplication sharedApplication] delegate] window].rootViewController dismissViewControllerAnimated:YES completion:^{
+        
+    }];}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [[self appController] dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+}
+
 
 
 - (void)uploadButtonDidClick:(UIButton *)button

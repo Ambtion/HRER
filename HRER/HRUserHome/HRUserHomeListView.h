@@ -15,6 +15,8 @@
 
 - (void)userHomeListViewDidClickSwitchButton:(HRUserHomeListView *)listView;
 - (void)userHomeListViewDidClickRightButton:(HRUserHomeListView *)listView;
+- (void)userHomeListViewDidDetailButton:(HRUserHomeListView *)listView;
+
 - (void)userHomeListView:(HRUserHomeListView *)listView DidCategoryAtIndex:(NSInteger)index;
 - (void)userHomeListView:(HRUserHomeListView *)listView DidClickCellWithSource:(id)dataSource;
 - (void)userHomeListView:(HRUserHomeListView *)listView DidNeedRefreshData:(RefreshTableView *)refreshTableView;

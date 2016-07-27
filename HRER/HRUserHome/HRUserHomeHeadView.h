@@ -14,6 +14,7 @@
 - (void)userHomeHeadView:(HRUserHomeHeadView *)headView DidClickRightButton:(UIButton *)button;
 - (void)userHomeHeadView:(HRUserHomeHeadView *)headView DidClickCateAtIndex:(NSInteger)index;
 - (void)userHomeHeadViewDidClickSwitchButton:(HRUserHomeHeadView *)headView;
+- (void)userHomeHeadViewDidClickDetail:(HRUserHomeHeadView *)headView;
 
 @end
 

@@ -173,4 +173,10 @@
     }
 }
 
+- (void)userHomeHeadViewDidClickDetail:(HRUserHomeHeadView *)headView
+{
+    if([_delegate respondsToSelector:@selector(userHomeListViewDidDetailButton:)]){
+        [_delegate userHomeListViewDidDetailButton:self];
+    }
+}
 @end

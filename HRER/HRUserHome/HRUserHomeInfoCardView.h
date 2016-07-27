@@ -13,6 +13,7 @@
 @protocol HRUserHomeInfoCardViewDelegate <NSObject>
 
 - (void)userHomeInfoCardViewDidClickRightButton:(UIButton *)button;
+- (void)userHomeInfoCardViewDidClickDetail:(HRUserHomeInfoCardView *)view;
 
 @end
 

@@ -114,6 +114,9 @@
         make.top.equalTo(self.visitCityLabel.mas_bottom).offset(12.f);
     }];
     
+    [self setUserInteractionEnabled:YES];
+    UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onClickDetailInfo:)];
+    [self addGestureRecognizer:tap];
 }
 
 #pragma mark Data
@@ -135,5 +138,11 @@
     }
 }
 
+- (void)onClickDetailInfo:(UITapGestureRecognizer *)tap
+{
+    if ([_delegate respondsToSelector:@selector(userHomeInfoCardViewDidClickDetail:)]) {
+        [_delegate userHomeInfoCardViewDidClickDetail:self];
+    }
+}
 
 @end
