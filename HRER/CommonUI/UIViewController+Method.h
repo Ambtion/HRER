@@ -31,6 +31,7 @@
 - (UIBarButtonItem*)barSpaingItem;
 - (UINavigationItem *)myNavigationItem;
 - (UINavigationController *)myNavController;
+- (void)jumpToHomePage;
 @end
 
 

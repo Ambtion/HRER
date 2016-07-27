@@ -140,6 +140,13 @@
     return self.navigationController;
 }
 
+- (void)jumpToHomePage
+{
+    [self.myNavController popToRootViewControllerAnimated:NO];
+    UITabBarController * tabBar = [[(UINavigationController *)[[[[UIApplication sharedApplication] delegate] window] rootViewController] viewControllers] firstObject];
+    [tabBar setSelectedIndex:0];
+}
+
 @end
 
 

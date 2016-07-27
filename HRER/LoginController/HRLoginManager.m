@@ -17,7 +17,7 @@
 {
     UIViewController * rtVC = [[[UIApplication sharedApplication] delegate] window].rootViewController;
     HRNagationController * nav = [[HRNagationController alloc] initWithRootViewController:[[HRLoginViewController alloc] init]];
-    [rtVC presentViewController:nav animated:NO completion:^{
+    [rtVC presentViewController:nav animated:YES completion:^{
         
     }];
 }

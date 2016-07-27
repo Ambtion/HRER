@@ -22,6 +22,8 @@
 
 @property(nonatomic,strong)UITableView * tableView;
 @property(nonatomic,strong)NSArray * dataSource;
+@property(nonatomic,strong)UIButton * loginOutButton;
+
 @end
 
 @implementation HRSettingViewController
@@ -94,11 +96,20 @@
     self.tableView.separatorStyle  = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.tableView];
     
-    if([self.myNavController viewControllers].count > 1){
-        UIView * view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 80)];
-        self.tableView.tableFooterView = view;
-    }
+    UIView * view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 80)];
+    self.tableView.tableFooterView = view;
+    
+    self.loginOutButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 20, self.tableView.width - 20, 53)];
+    [self.loginOutButton setBackgroundImage:[[UIImage imageNamed:@"button_bg"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 40, 0, 40)] forState:UIControlStateNormal];
+    [self.loginOutButton setTitle:@"退出登陆" forState:UIControlStateNormal];
+    [self.loginOutButton titleLabel].font = [UIFont systemFontOfSize:14.f];
+    [self.loginOutButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self.loginOutButton addTarget:self action:@selector(loginButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+    [view addSubview:self.loginOutButton];
+    
 }
+
+
 
 
 #pragma mark - DataSource
@@ -330,6 +341,22 @@
         default:
             break;
     }
+}
+
+
+#pragma mark - LoginOut
+- (void)loginButtonClick:(UIButton *)button
+{
+    UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:nil message:@"确定退出登录" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    alertView.tag = 200;
+    alertView.delegate = self;
+    [alertView show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    [[LoginStateManager getInstance] logout];
+    [self  jumpToHomePage];
 }
 
 @end
