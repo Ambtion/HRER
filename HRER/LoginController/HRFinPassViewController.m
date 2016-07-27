@@ -41,9 +41,7 @@
 - (void)customNavBar
 {
     self.title = @"找回密码";
-    
 }
-
 
 #pragma mark - InitUI
 - (void)initUI

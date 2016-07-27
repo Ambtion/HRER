@@ -34,7 +34,7 @@
 {
     
     self.passBgView = [[UIImageView alloc] init];
-    self.passBgView.image = [[UIImage imageNamed:@"BJ01"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 30, 0, 30)];
+    self.passBgView.image = [UIImage imageNamed:@"BJ01"];
     [self.contentView addSubview:self.passBgView];
 
     self.porView = [[UIImageView alloc] init];
@@ -55,13 +55,13 @@
     [self.passLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.porView);
         make.left.equalTo(self.porView.mas_right).offset(10);
+        make.width.priorityHigh();
     }];
-    self.passLabel.backgroundColor = [UIColor greenColor];
     
     [self.passBgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.porView);
         make.left.equalTo(self.porView.mas_right).offset(-15);
-        make.right.equalTo(self.passLabel.mas_right).offset(15.f);
+        make.right.equalTo(self.passLabel.mas_right).offset(10.f);
         
     }];
     
@@ -74,5 +74,9 @@
         make.left.equalTo(self.porView.mas_left).offset(-6);
     }];
 }
+
+#pragma mark - 
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated{}
+- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated{}
 
 @end

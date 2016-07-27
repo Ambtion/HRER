@@ -184,6 +184,7 @@
                     break;
                 case 3:
                     rightLabel.text = @"修改";
+                    break;
                 default:
                     rightLabel.text = @"";
                     break;
@@ -299,7 +300,37 @@
     }];
 }
 
-
+#pragma mark Action
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    switch (indexPath.section) {
+        case 0:
+        {
+            //用户信息
+            if(indexPath.row == 1){
+                //昵称
+                
+            }
+            
+            if(indexPath.row == 2){
+                //手机号
+            }
+            
+            if(indexPath.row == 3){
+                //修改密码
+                
+            }
+        }
+            break;
+        case 1:
+        {
+            //绑定设置
+        }
+        default:
+            break;
+    }
+}
 
 @end
 
