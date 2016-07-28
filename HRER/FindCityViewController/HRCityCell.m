@@ -35,7 +35,7 @@
     [self.contentView addSubview:self.nameLabel];
     
     [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(@(10.f));
+        make.left.equalTo(self).offset(10);
         make.centerY.equalTo(self);
         make.right.equalTo(self).offset(-20);
     }];
@@ -52,7 +52,6 @@
     [self.toplineView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(@(10));
         make.right.equalTo(self).offset(-10);
-        make.width.equalTo(self);
         make.height.equalTo(@(0.5));
     }];
     
