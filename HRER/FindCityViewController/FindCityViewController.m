@@ -61,9 +61,9 @@
 
 - (void)loadDataSource
 {
-//    NSString * path = [[NSBundle mainBundle] pathForResource:@"city" ofType:@"txt"];
-//    NSData * date = [[NSData alloc] initWithContentsOfFile:path];
-//    NSDictionary * dic = [date objectFromJSONData];
+    NSString * path = [[NSBundle mainBundle] pathForResource:@"city" ofType:@"txt"];
+    NSData * date = [[NSData alloc] initWithContentsOfFile:path];
+    NSDictionary * dic = [date objectFromJSONData];
     
 }
 
