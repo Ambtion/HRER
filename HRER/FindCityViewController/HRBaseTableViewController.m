@@ -45,11 +45,12 @@
     if (!_tableView) {
         CGRect tableViewFrame = CGRectMake(0, 64, self.view.width, self.view.height - 64);
         _tableView = [[UITableView alloc] initWithFrame:tableViewFrame style:self.tableViewStyle];
+        _tableView.clipsToBounds = YES;
         _tableView.delegate = self;
-        _tableView.dataSource = self;        
+        _tableView.dataSource = self;
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         UIView * view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 100)];
         _tableView.tableFooterView = view;
-
     }
     return _tableView;
 }

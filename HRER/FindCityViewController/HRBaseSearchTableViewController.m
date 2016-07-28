@@ -51,6 +51,7 @@
 
 - (UISearchBar *)aSearchBar {
     if (!_aSearchBar) {
+        
         _aSearchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 44)];
         _aSearchBar.delegate = self;
         
@@ -58,6 +59,28 @@
         _searchController.delegate = self;
         _searchController.searchResultsDelegate = self;
         _searchController.searchResultsDataSource = self;
+        _searchController.searchResultsTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _searchController.searchResultsTableView.clipsToBounds = YES;
+        UIView * view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 100)];
+        _searchController.searchResultsTableView.tableFooterView = view;
+
+        //自定义Search Bar样式
+        _aSearchBar.backgroundImage = [[UIImage alloc] init];
+        _aSearchBar.backgroundColor = RGBA(244, 246, 245, 1);
+        
+        UITextField *searchField = [_aSearchBar valueForKey:@"searchField"];
+        if (searchField) {
+            [searchField setBackgroundColor:[UIColor whiteColor]];
+            searchField.font = [UIFont systemFontOfSize:14.f];
+            searchField.placeholder = @"输入城市名字";
+            searchField.textColor = RGBA(0x5b, 0x5b, 0x5b, 1);
+            searchField.layer.cornerRadius = 4.0f;
+            searchField.layer.borderColor = RGBA(0xcc, 0xcc, 0xcc, 1).CGColor;
+            searchField.layer.borderWidth = 1;
+            searchField.layer.masksToBounds = YES;
+            searchField.top = 20;
+        }
+        
     }
     return _aSearchBar;
 }
@@ -75,9 +98,18 @@
     self.tableView.tableHeaderView = self.aSearchBar;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)searchDisplayController:(UISearchDisplayController *)controller didShowSearchResultsTableView:(UITableView *)tableView
+{
+    tableView.contentOffset = CGPointMake(0, -44);
+    tableView.frame = CGRectMake(0, 20, self.view.width, self.view.height - 20);
+    for (UIView * view in tableView.subviews) {
+        if (view.height == 0.5) {
+            [view setHidden:YES];
+        }
+        if([view isKindOfClass:NSClassFromString(@"UITableViewIndex")]){
+            [view setHidden:YES];
+        }
+    }
 }
 
 #pragma mark Content Filtering
@@ -85,9 +117,10 @@
 - (void)filterContentForSearchText:(NSString *)searchText scope:(NSString *)scope {
 	[self.filteredDataSource removeAllObjects];
     
-    for (NSArray *contacts in self.dataSource) {
-        for (id contact in contacts) {
-            NSString *contactName = [contact valueForKey:@"contactName"];
+    for (NSDictionary *contacts in self.dataSource) {
+        NSArray * list = [contacts objectForKey:@"list"];
+        for (NSDictionary *  contact in list) {
+            NSString *contactName = [contact valueForKey:@"city_name"];
             NSComparisonResult result = [contactName compare:searchText options:(NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch) range:NSMakeRange(0, [searchText length])];
             if (result == NSOrderedSame) {
                 [self.filteredDataSource addObject:contact];
@@ -128,11 +161,6 @@
 }
 
 #pragma mark - UITableView DataSource
-
-- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index {
-    return [[UILocalizedIndexedCollation currentCollation] sectionForSectionIndexTitleAtIndex:index];
-}
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     if ([self enableForSearchTableView:tableView]) {
         return 1;
@@ -144,11 +172,22 @@
     if ([self enableForSearchTableView:tableView]) {
         return self.filteredDataSource.count;
     }
-    return [self.dataSource[section] count];
+    NSArray * list = [self.dataSource[section] objectForKey:@"list"];
+    return [list count];
 }
 
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
     return self.sectionIndexTitles;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index
+{
+    if (index == 0) {
+        [self.tableView scrollRectToVisible:self.aSearchBar.frame animated:NO];
+        return -1;
+    }
+    return index - 1;
+    
 }
 
 #pragma mark - UITableView Delegate
@@ -156,9 +195,9 @@
     if ([self enableForSearchTableView:tableView]) {
         return nil;
     }
-    BOOL showSection = [[self.dataSource objectAtIndex:section] count] != 0;
+    BOOL showSection = [[self.dataSource[section] objectForKey:@"list"] count] != 0;
     //only show the section title if there are rows in the section
-    return (showSection) ? [[UILocalizedIndexedCollation.currentCollation sectionTitles] objectAtIndex:section] : nil;
+    return (showSection) ?  [self.dataSource[section] objectForKey:@"section"] : nil;
     
 }
 
