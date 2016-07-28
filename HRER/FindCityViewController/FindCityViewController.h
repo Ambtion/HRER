@@ -9,6 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "HRBaseSearchTableViewController.h"
 
+
+@protocol FindCityViewControllerDelegate <NSObject>
+
+- (void)findCityViewControllerDidSeltedCityInfo:(NSDictionary *)cityInfo;
+- (void)findCityViewControllerDidCurCity;
+@end
+
 @interface FindCityViewController : HRBaseSearchTableViewController
+
+@property(nonatomic,weak)id<FindCityViewControllerDelegate>delegate;
 
 @end

@@ -14,8 +14,9 @@
 #import "HRPoiNoFoundTipsView.h"
 #import "HRLocationMapController.h"
 #import "HRUPloadImageView.h"
+#import "FindCityViewController.h"
 
-@interface HRCreteLocationController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,HRCreateCategoryCell>
+@interface HRCreteLocationController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,HRCreateCategoryCell,FindCityViewControllerDelegate>
 
 @property(nonatomic,strong)UITableView * tableView;
 @property(nonatomic,strong)NSArray * dataArray;
@@ -255,9 +256,46 @@
 
 - (void)onRignthButtonDidClick:(UIButton *)button
 {
+    FindCityViewController * controller = [[FindCityViewController alloc] init];
+    controller.delegate = self;
+    [self.myNavController pushViewController:controller animated:YES];
     
 }
 
+- (void)findCityViewControllerDidCurCity
+{
+    self.cityName = [[HRLocationManager sharedInstance] cityName];
+    self.cityId = [[HRLocationManager sharedInstance] curCityId];
+    self.lat = [[HRLocationManager sharedInstance] curLocation].coordinate.latitude;
+    self.lng = [[HRLocationManager sharedInstance] curLocation].coordinate.longitude;
+    [self.rightButton setTitle:self.cityName.length ? self.cityName : @"北京" forState:UIControlStateNormal];
+    [self quaryData];
+    [self.myNavController popViewControllerAnimated:YES];
+}
+
+- (void)findCityViewControllerDidSeltedCityInfo:(NSDictionary *)cityInfo
+{
+/*
+    beentocounts = 16;
+    "city_name" = "\U963f\U5df4\U574e";
+    "country_id" = 208;
+    "en_name" = Abakan;
+    id = 7092;
+    latitude = "53.715557";
+    livedcounts = 0;
+    longitude = "91.429169";
+    pingyin = abakan;
+    plantocounts = 6;
+    status = 1;
+*/
+    self.cityId = [[cityInfo objectForKey:@"id"] integerValue];
+    self.cityName = [cityInfo objectForKey:@"city_name"];
+    self.lat = [[cityInfo objectForKey:@"latitude"] floatValue];
+    self.lng = [[cityInfo objectForKey:@"longitude"] floatValue];
+    [self.rightButton setTitle:self.cityName.length ? self.cityName : @"北京" forState:UIControlStateNormal];
+    [self quaryData];
+    [self.myNavController popViewControllerAnimated:YES];
+}
 
 - (void)createCategoryCellDidSeletedIndex:(NSInteger)index
 {

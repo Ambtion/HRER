@@ -10,4 +10,9 @@
 
 @interface HRLocationCurCityCell : UITableViewCell
 
+@property(nonatomic,strong)UILabel * cityLabel;
+
++ (CGFloat)heightForCell;
+
+
 @end

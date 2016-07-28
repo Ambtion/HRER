@@ -34,6 +34,7 @@
 		B877334E1D33CBE000CC43CD /* SearchInPutView.m in Sources */ = {isa = PBXBuildFile; fileRef = B877334D1D33CBE000CC43CD /* SearchInPutView.m */; };
 		B87AE3981D4A277E00FF83BA /* HRCityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B87AE3971D4A277E00FF83BA /* HRCityCell.m */; };
 		B87AE39B1D4A3D6E00FF83BA /* HRLocationCurCityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B87AE39A1D4A3D6E00FF83BA /* HRLocationCurCityCell.m */; };
+		B87AE39E1D4A4FC100FF83BA /* HRHotCityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B87AE39D1D4A4FC100FF83BA /* HRHotCityCell.m */; };
 		B87F91741D4905CD004C1867 /* HRSettingNickController.m in Sources */ = {isa = PBXBuildFile; fileRef = B87F91731D4905CD004C1867 /* HRSettingNickController.m */; };
 		B87F917A1D4908FC004C1867 /* HRSetBindController.m in Sources */ = {isa = PBXBuildFile; fileRef = B87F91791D4908FC004C1867 /* HRSetBindController.m */; };
 		B87F917D1D490BF9004C1867 /* HRResetPassControlller.m in Sources */ = {isa = PBXBuildFile; fileRef = B87F917C1D490BF9004C1867 /* HRResetPassControlller.m */; };
@@ -205,6 +206,8 @@
 		B87AE3971D4A277E00FF83BA /* HRCityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRCityCell.m; sourceTree = "<group>"; };
 		B87AE3991D4A3D6E00FF83BA /* HRLocationCurCityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRLocationCurCityCell.h; sourceTree = "<group>"; };
 		B87AE39A1D4A3D6E00FF83BA /* HRLocationCurCityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRLocationCurCityCell.m; sourceTree = "<group>"; };
+		B87AE39C1D4A4FC100FF83BA /* HRHotCityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRHotCityCell.h; sourceTree = "<group>"; };
+		B87AE39D1D4A4FC100FF83BA /* HRHotCityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRHotCityCell.m; sourceTree = "<group>"; };
 		B87F91721D4905CD004C1867 /* HRSettingNickController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRSettingNickController.h; sourceTree = "<group>"; };
 		B87F91731D4905CD004C1867 /* HRSettingNickController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRSettingNickController.m; sourceTree = "<group>"; };
 		B87F91781D4908FC004C1867 /* HRSetBindController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRSetBindController.h; sourceTree = "<group>"; };
@@ -613,6 +616,8 @@
 				B88F10741CF5E246007C930F /* FindCityViewController.m */,
 				B87AE3991D4A3D6E00FF83BA /* HRLocationCurCityCell.h */,
 				B87AE39A1D4A3D6E00FF83BA /* HRLocationCurCityCell.m */,
+				B87AE39C1D4A4FC100FF83BA /* HRHotCityCell.h */,
+				B87AE39D1D4A4FC100FF83BA /* HRHotCityCell.m */,
 				B87AE3961D4A277E00FF83BA /* HRCityCell.h */,
 				B87AE3971D4A277E00FF83BA /* HRCityCell.m */,
 				B8C00DF91D3CFEAA009FB17F /* CityHomeViewController.h */,
@@ -1246,6 +1251,7 @@
 				B8F748B81D07C84B00A2EDCC /* NetWorkEntity.m in Sources */,
 				E14BD4C51CEEFC0700C66E14 /* HRLocationManager.m in Sources */,
 				B8954EB11CFC7E30006A706A /* HRRegisterDealViewController.m in Sources */,
+				B87AE39E1D4A4FC100FF83BA /* HRHotCityCell.m in Sources */,
 				B89663F11CF32F7700B2A6CA /* UIViewController+Method.m in Sources */,
 				B816B1131D36731500318662 /* HRPhotoScrollView.m in Sources */,
 				B8AC37C41D40FD7C00D99BF8 /* HRUPloadImageView.m in Sources */,

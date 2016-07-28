@@ -78,7 +78,6 @@
         make.right.equalTo(self).offset(-14.f);
         make.top.equalTo(self).offset(23.f);
         make.height.equalTo(@(16.f));
-        
     }];
     
     
@@ -86,7 +85,7 @@
         make.left.equalTo(self.titleLabel);
         make.right.lessThanOrEqualTo(self.locIconView.mas_left).offset(-10);
         make.top.equalTo(self.titleLabel.mas_bottom).offset(12.f);
-        
+        make.width.priorityLow();
     }];
     
     

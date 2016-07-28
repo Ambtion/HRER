@@ -11,12 +11,16 @@
 #import "SearchInPutView.h"
 #import "JSonKit.h"
 #import "HRCityCell.h"
+#import "HRLocationCurCityCell.h"
+#import "HRLocationManager.h"
+#import "HRHotCityCell.h"
+#import "CityHomeViewController.h"
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
 
 
-@interface FindCityViewController()<UITableViewDelegate,UITableViewDataSource,UISearchDisplayDelegate,UISearchBarDelegate>
+@interface FindCityViewController()<UITableViewDelegate,UITableViewDataSource,UISearchDisplayDelegate,UISearchBarDelegate,HRHotCityCellDelegate>
 @property(nonatomic,strong)UIView * navBarView;
 @end
 
@@ -74,16 +78,51 @@
     
     NSMutableArray * titleArray = [NSMutableArray arrayWithCapacity:0];
     [titleArray addObject:UITableViewIndexSearch];
+    [titleArray addObject:@"#"];
     for (NSDictionary * dic in self.dataSource) {
         [titleArray addObject:[dic objectForKey:@"section"]];
     }
     [titleArray addObject:@"#"];
     self.sectionIndexTitles = titleArray;
-
 }
 
 #pragma mark - Action
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 0 && tableView != self.searchDisplayController.searchResultsTableView) {
+        if(indexPath.row == 0){
+            return [HRLocationCurCityCell heightForCell];
+        }else{
+            return [HRHotCityCell heightForCell];
+        }
+    }
+    return 44.f;
+}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    //定位城市
+    if (indexPath.section == 0 && tableView != self.searchDisplayController.searchResultsTableView) {
+        
+        if (indexPath.row == 0) {
+            HRLocationCurCityCell * cell = [tableView dequeueReusableCellWithIdentifier:@"HRLocationCurCityCell"];
+            if (!cell) {
+                cell = [[HRLocationCurCityCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"HRLocationCurCityCell"];
+            }
+            cell.cityLabel.text = [[HRLocationManager sharedInstance] cityName];
+            return cell;
+ 
+        }else{
+            HRHotCityCell * hotCell = [tableView dequeueReusableCellWithIdentifier:@"HRHotCityCell"];
+            if (!hotCell) {
+                hotCell = [[HRHotCityCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"HRHotCityCell"];
+                hotCell.delegate = self;
+            }
+            hotCell.hotArray = self.hotSource;
+            return hotCell;
+        }
+    }
+    
+    //热们城市
     
     HRCityCell * cell = [tableView dequeueReusableCellWithIdentifier:@"HRCityCell"];
     if (!cell) {
@@ -99,7 +138,7 @@
         
      }else{
         
-        NSDictionary * dic = [self.dataSource objectAtIndex:indexPath.section];
+        NSDictionary * dic = [self.dataSource objectAtIndex:indexPath.section - 1];
         NSArray * listArray = [dic objectForKey:@"list"];
         cityInfo = [listArray objectAtIndex:indexPath.row];
          
@@ -155,4 +194,42 @@
     [self.myNavController popViewControllerAnimated:YES];
 }
 
+- (void)hotCityCellDidSeletedHotCity:(NSDictionary *)cityInfo
+{
+    
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    if (indexPath.section == 0 && tableView != self.searchDisplayController.searchResultsTableView) {
+        //当前城市
+        if ([_delegate respondsToSelector:@selector(findCityViewControllerDidCurCity)]) {
+            [_delegate findCityViewControllerDidCurCity];
+        }else{
+            NSString * cityName = [[HRLocationManager sharedInstance] cityName];
+            NSInteger cityId = [[HRLocationManager sharedInstance] curCityId];
+            [self.myNavController pushViewController:[[CityHomeViewController alloc] initWithCityId:cityId cityName:cityName] animated:YES];
+        }
+    }
+    
+    NSDictionary * cityInfo = nil;
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        cityInfo = self.filteredDataSource[indexPath.row];
+    }else{
+        NSDictionary * dic = [self.dataSource objectAtIndex:indexPath.section - 1];
+        NSArray * listArray = [dic objectForKey:@"list"];
+        cityInfo = [listArray objectAtIndex:indexPath.row];
+    }
+    
+    if([_delegate respondsToSelector:@selector(findCityViewControllerDidSeltedCityInfo:)]){
+        [_delegate findCityViewControllerDidSeltedCityInfo:cityInfo];
+    }else{
+        NSString * cityName = [cityInfo objectForKey:@"city_name"];
+        NSInteger cityId = [[cityInfo objectForKey:@"id"] integerValue];
+        [self.myNavController pushViewController:[[CityHomeViewController alloc] initWithCityId:cityId cityName:cityName] animated:YES];
+    }
+    
+}
 @end

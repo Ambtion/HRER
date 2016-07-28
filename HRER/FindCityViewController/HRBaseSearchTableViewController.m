@@ -165,14 +165,19 @@
     if ([self enableForSearchTableView:tableView]) {
         return 1;
     }
-    return self.dataSource.count;
+    return self.dataSource.count + 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if ([self enableForSearchTableView:tableView]) {
         return self.filteredDataSource.count;
     }
-    NSArray * list = [self.dataSource[section] objectForKey:@"list"];
+    
+    if (section == 0) {
+        return 2;
+//        return 1 + (self.hotSource.count ? 1 : 0);
+    }
+    NSArray * list = [self.dataSource[section - 1] objectForKey:@"list"];
     return [list count];
 }
 
@@ -186,7 +191,11 @@
         [self.tableView scrollRectToVisible:self.aSearchBar.frame animated:NO];
         return -1;
     }
-    return index - 1;
+    if(index == 1){
+        [self.tableView setContentOffset:CGPointMake(0, 44)];
+        return -1;
+    }
+    return index - 2;
     
 }
 
@@ -195,9 +204,11 @@
     if ([self enableForSearchTableView:tableView]) {
         return nil;
     }
-    BOOL showSection = [[self.dataSource[section] objectForKey:@"list"] count] != 0;
+    if(section == 0) return nil;
+    
+    BOOL showSection = [[self.dataSource[section - 1] objectForKey:@"list"] count] != 0;
     //only show the section title if there are rows in the section
-    return (showSection) ?  [self.dataSource[section] objectForKey:@"section"] : nil;
+    return (showSection) ?  [self.dataSource[section - 1] objectForKey:@"section"] : nil;
     
 }
 

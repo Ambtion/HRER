@@ -44,7 +44,6 @@
     self.toplineView.backgroundColor = RGBA(0xe2, 0xe2, 0xe2, 1);
     [self.contentView addSubview:self.toplineView];
     
-    
     self.bottomLineView = [[UIView alloc] init];
     self.bottomLineView.backgroundColor = RGBA(0xe2, 0xe2, 0xe2, 1);
     [self.contentView addSubview:self.bottomLineView];

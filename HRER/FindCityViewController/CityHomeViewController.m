@@ -289,8 +289,8 @@
             if (!cell) {
                 cell = [[HomeHeadView alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identify];
                 cell.bgImageView.image = [UIImage imageNamed:@"poi_head_bg"];
-                cell.mainLabel.text =  [[HRLocationManager sharedInstance] cityName];
-                cell.titleLabel.text =  [[HRLocationManager sharedInstance] subCityName];
+                cell.mainLabel.text = @"ZHELI";
+                cell.titleLabel.text = self.cityName;
                 cell.delegate = self;
             }
             NSInteger totalCount = self.catergoryInfo.food + self.catergoryInfo.tour + self.catergoryInfo.shop + self.catergoryInfo.hotel;
