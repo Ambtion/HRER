@@ -492,8 +492,6 @@
     }];
 }
 
-
-
 - (void)uploadButtonDidClick:(UIButton *)button
 {
     
@@ -501,6 +499,7 @@
     if (!self.photosArray.count) {
         [self showTotasViewWithMes:@"请上传至少一张图片"];
     }
+    
     
     NSArray * locArray = [self.location componentsSeparatedByString:@","];
     

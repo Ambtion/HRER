@@ -161,11 +161,11 @@ static CGFloat const MaxToolbarHeight = 200.0f;
             ws.poiInfo = [HRPOIInfo yy_modelWithJSON:poiInfo];
             ws.recomendList = [ws analysisPoiModelFromArray:[response objectForKey:@"comments"]];
             [ws.tableView reloadData];
+            [[ws.tableView refreshHeader] endRefreshing];
         }else{
             [ws dealErrorResponseWithTableView:self.tableView info:responseObject];
         }
     } failure:failure];
-    
 }
 
 - (NSArray *)analysisPoiModelFromArray:(NSArray *)array
