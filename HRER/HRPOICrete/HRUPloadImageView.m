@@ -350,7 +350,6 @@
     CGFloat heigth = [[dic objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height;
 //    CGFloat duration = [[dic objectForKey:UIKeyboardAnimationDurationUserInfoKey] floatValue];
     
-    
     [UIView animateWithDuration:0.3 delay:0 usingSpringWithDamping:0.9 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         self.contentView.bottom = self.height - heigth;
     } completion:^(BOOL finished) {
@@ -500,8 +499,11 @@
         [self showTotasViewWithMes:@"请上传至少一张图片"];
     }
     
-    
+    [MBProgressHUD showHUDAddedTo:[[[UIApplication sharedApplication] delegate] window] animated:YES];
+
     NSArray * locArray = [self.location componentsSeparatedByString:@","];
+    
+    WS(ws);
     
     [NetWorkEntity uploadPoiWithTitle:self.titleLabel.text
                                   des:self.textDesView.text
@@ -512,6 +514,10 @@
                                   loc:[[locArray lastObject] floatValue]
                                images:self.photosArray  success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
+                                   if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
+                                       [MBProgressHUD hideHUDForView:[[[UIApplication sharedApplication] delegate] window] animated:YES];
+                                    
+                                   }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
     }];
