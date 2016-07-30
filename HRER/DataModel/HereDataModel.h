@@ -65,15 +65,20 @@
 @interface HRPOIInfo : NSObject<NSCopying,NSCopying>
 
 @property(nonatomic,assign)NSInteger ctime;
+@property(nonatomic,strong)NSString * ctimeStr;
+
+@property(nonatomic,strong)NSString * poi_id;
+@property(nonatomic,assign)NSInteger type;
+@property(nonatomic,strong)NSString * typeName;
+@property(nonatomic,strong)NSString * title;
+@property(nonatomic,strong)NSString * address;
 
 @property(nonatomic,strong)NSString * creator_id;
 @property(nonatomic,strong)NSString * creator_name;
 @property(nonatomic,strong)NSString * portrait;
-
-@property(nonatomic,strong)NSString * poi_id;
-@property(nonatomic,assign)NSInteger type;
-@property(nonatomic,strong)NSString * title;
+@property(nonatomic,assign)NSInteger recommand;
 @property(nonatomic,strong)NSString * intro;
+
 
 @property(nonatomic,assign)CGFloat lat;
 @property(nonatomic,assign)CGGlyph lng;
@@ -92,6 +97,19 @@
 @property(nonatomic,strong)NSString * title;
 @property(nonatomic,strong)NSString * subTitle;
 @property(nonatomic,assign)NSInteger distance;
+
+@end
+
+@interface HRRecomend : NSObject<NSCopying,NSCopying>
+
+@property(nonatomic,strong)NSString * cmnt_id; //评论Id
+@property(nonatomic,strong)NSString * content;  //评论内容
+
+@property(nonatomic,strong)NSString * user_id;
+@property(nonatomic,strong)NSString * user_name;
+
+@property(nonatomic,strong)NSString * reply_id; //回复人
+@property(nonatomic,strong)NSString * reply_name;
 
 @end
 

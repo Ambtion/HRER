@@ -21,8 +21,8 @@
 
 @property(nonatomic,weak)id<HRPoiCreateInfoCellDelegate>delegate;
 
-+ (CGFloat)cellHeithForData:(id)data;
++ (CGFloat)cellHeithForData:(HRPOIInfo *)data;
 
-- (void)setDataSource:(id)dataSource;
+- (void)setDataSource:(HRPOIInfo *)dataSource;
 
 @end

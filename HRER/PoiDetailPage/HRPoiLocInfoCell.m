@@ -7,6 +7,8 @@
 //
 
 #import "HRPoiLocInfoCell.h"
+#import "HRNavigationTool.h"
+#import "HRLocationManager.h"
 
 @interface HRPoiLocInfoCell()
 
@@ -108,6 +110,7 @@
         make.left.equalTo(self.titleLabel);
         make.top.equalTo(self.titleLabel.mas_bottom).offset(11.f);
         make.right.lessThanOrEqualTo(self.locIcon.mas_left);
+        make.width.priorityLow();
     }];
     
     [self.cityName mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -127,13 +130,36 @@
     }];
 }
 
-- (void)setDataSource:(id)dataSource
+- (void)setDataSource:(HRPOIInfo *)dataSource
 {
-    self.titleLabel.text = @"老张路透辉石";
-    self.catergortLabel.text = @"美食";
-    self.addressLabel.text = @"北京上地五金大厦";
-    self.distanceLabel.text = @"1000km";
-    self.cityName.text = @"北京";
+    self.titleLabel.text = dataSource.title;
+    self.catergortLabel.text = dataSource.typeName;
+    self.addressLabel.text = dataSource.address;
+    
+    CLLocation * desLocaiton = [[CLLocation alloc] initWithLatitude:dataSource.lat longitude:dataSource.lng];
+    NSString * distance = [HRNavigationTool distanceBetwenOriGps:[[HRLocationManager sharedInstance] curLocation].coordinate desGps:desLocaiton.coordinate];
+    self.distanceLabel.text = distance;
+    self.cityName.text = dataSource.city_name;
+    
+    switch (dataSource.type) {
+        case 0:
+            break;
+        case 1:
+            self.caterBgView.backgroundColor = UIColorFromRGBA(0xdc4630, 1);
+            break;
+        case 2:
+            self.caterBgView.backgroundColor = UIColorFromRGBA(0x43a2fe, 1);
+
+            break;
+        case 3:
+            self.caterBgView.backgroundColor = RGB_Color(0x3b, 0xc4, 0xba);
+            break;
+        case 4:
+            self.caterBgView.backgroundColor = RGB_Color(0xfb, 0xb3, 0x3a);
+            break;
+        default:
+            break;
+    }
     
 //    颜色酒店：#fbb33a    购物：#3bc4ba    观光：#43a2fe    美食：#dc4630
     self.caterBgView.backgroundColor = RGB_Color(0xfb, 0xb3, 0x3a);
@@ -148,3 +174,4 @@
 
 
 @end
+

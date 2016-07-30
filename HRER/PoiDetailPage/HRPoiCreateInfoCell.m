@@ -18,16 +18,14 @@
 
 @end
 
-static NSString * str = @"驴肉火烧味道不错，驴肉火烧味道不错，驴肉火烧味道不错，驴肉火烧味道不错，驴肉火烧味道不错，驴肉火烧味道不错，驴肉火烧味道不错，驴肉火烧味道不错";
-
 static NSInteger boundsOffset = 12.f;
 
 @implementation HRPoiCreateInfoCell
 
-+ (CGFloat)cellHeithForData:(id)data
++ (CGFloat)cellHeithForData:(HRPOIInfo *)data
 {
     CGFloat heigth = [HRPoiUserInfo heightForView];
-    CGSize size = [self sizeWithText:str font:[UIFont systemFontOfSize:15.f] maxSize:CGSizeMake([[UIScreen mainScreen] bounds].size.width - boundsOffset * 2, 10000)];
+    CGSize size = [self sizeWithText:data.intro font:[UIFont systemFontOfSize:15.f] maxSize:CGSizeMake([[UIScreen mainScreen] bounds].size.width - boundsOffset * 2, 10000)];
     heigth += size.height;
     heigth += 18.f;
     heigth += [HRPoiUserInfoBottomView heightForView];
@@ -79,11 +77,11 @@ static NSInteger boundsOffset = 12.f;
     }];
 }
 
-- (void)setDataSource:(id)dataSource
+- (void)setDataSource:(HRPOIInfo *)dataSource
 {
-    [self.userInfo setDtata:nil];
-    self.desLabel.text = str;
-    [self.bottomView setData:nil];
+    [self.userInfo setDtata:dataSource];
+    self.desLabel.text = dataSource.intro;
+    [self.bottomView setData:dataSource];
 }
 
 + (CGSize)sizeWithText:(NSString *)text font:(UIFont *)font maxSize:(CGSize)maxSize
@@ -91,7 +89,6 @@ static NSInteger boundsOffset = 12.f;
     NSDictionary *attrs = @{NSFontAttributeName : font};
     return [text boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
 }
-
 
 #pragma mark -
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {}

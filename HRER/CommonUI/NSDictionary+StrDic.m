@@ -71,16 +71,3 @@
 }
 @end
 
-@implementation NSArray(StrDic)
-- (NSArray*)stripImageUrlBase:(NSArray *)array
-{
-    NSMutableArray * fArray  = [NSMutableArray arrayWithCapacity:array.count];
-//    for (NSString * str in array) {
-//        NSRange range = [str rangeOfString:[NSString stringWithFormat:@"%@/",KNETBASEURL]];
-//        NSString * fstr = [str substringFromIndex:range.length];
-//        if (fstr)
-//            [fArray addObject:fstr];
-//    }
-    return fArray.count ? fArray : nil;
-}
-@end

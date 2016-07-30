@@ -131,7 +131,6 @@
         [self showTotasViewWithMes:@"网络异常,稍后重试"];
     }];
 
-    
 }
 
 

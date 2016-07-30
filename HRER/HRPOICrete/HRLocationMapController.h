@@ -9,17 +9,15 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 
-//@protocol HRLocationMapControllerDelegate <NSObject>
-//
-//- (void)locationMapControllerDidChangePoiName:(NSString *)poiName
-//                                   poiAddress:(NSString *)address
-//                                      poiType:(NSInteger)poiType
-//                       CLLocationCoordinate2D:(CLLocationCoordinate2D)coord;
-//
-//@end
 
 @interface HRLocationMapController : UIViewController
 
-//@property(nonatomic,weak)id<HRLocationMapControllerDelegate> delegate;
+/**
+ *  CityInfo
+ */
+@property(nonatomic,strong)NSString * cityName;
+@property(nonatomic,assign)NSInteger cityId;
+@property(nonatomic,assign)CGFloat lat;
+@property(nonatomic,assign)CGFloat lng;
 
 @end

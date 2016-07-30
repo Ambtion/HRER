@@ -59,7 +59,6 @@
 
 @implementation HRRecomendCell
 
-static NSString * str = @"小李回复:他说斯蒂芬妮闪电废是打发是打发是电风扇的f,斯蒂芬妮闪电废是打发,斯蒂芬妮闪电废是打发,斯蒂芬妮闪电废是打发";
 
 + (CGSize)sizeWithText:(NSString *)text font:(UIFont *)font maxSize:(CGSize)maxSize
 {
@@ -68,9 +67,15 @@ static NSString * str = @"小李回复:他说斯蒂芬妮闪电废是打发是�
 }
 
 
-+ (CGFloat)heigthForCellWithData:(id)dataSource
++ (CGFloat)heigthForCellWithData:(HRRecomend *)dataSource
 {
     CGFloat height = 44;
+    
+    NSString * str = [NSString stringWithFormat:@"%@",dataSource.content];
+    if (dataSource.reply_name.length) {
+        str = [NSString stringWithFormat:@"%@回复:%@",dataSource.reply_name,str];
+    }
+
     CGSize size = [self sizeWithText:str font:[UIFont systemFontOfSize:14.f] maxSize:CGSizeMake([[UIScreen mainScreen] bounds].size.width - 75 - 20.f, 10000)];
     return MAX(size.height + height, 60);
 }
@@ -153,19 +158,31 @@ static NSString * str = @"小李回复:他说斯蒂芬妮闪电废是打发是�
     
 }
 
-- (void)setDataSrouce:(id)dataSource
+- (void)setDataSrouce:(HRRecomend * )dataSource
 {
     [self.porImageView sd_setImageWithURL:nil placeholderImage:[UIImage imageNamed:@"man"]];
+    NSString * str = [NSString stringWithFormat:@"%@",dataSource.content];
+    if (dataSource.reply_name.length) {
+        str = [NSString stringWithFormat:@"%@回复:%@",dataSource.reply_name,str];
+    }
+    
     NSMutableAttributedString * attS = [[NSMutableAttributedString alloc] initWithString:str];
-    [attS addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0, 5)];
+    NSInteger replyLenth = dataSource.reply_name.length + 2;
+    
+    if (dataSource.reply_name.length) {
+        [self.userButton setHidden:NO];
+        [attS addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0, replyLenth)];
+        CGRect rect  = [[self desLabel] boundingRectForCharacterRange:NSMakeRange(0, replyLenth)];
+        rect.size.width += 3.f;
+        [self.userButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.top.equalTo(self.desLabel);
+            make.size.mas_equalTo(rect.size);
+        }];
+    }else{
+        [self.userButton setHidden:YES];
+    }
     self.desLabel.attributedText = attS;
     
-    CGRect rect  = [[self desLabel] boundingRectForCharacterRange:NSMakeRange(0, 5)];
-    rect.size.width += 3.f;
-    [self.userButton mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.left.top.equalTo(self.desLabel);
-        make.size.mas_equalTo(rect.size);
-    }];
 }
 
 #pragma mark -

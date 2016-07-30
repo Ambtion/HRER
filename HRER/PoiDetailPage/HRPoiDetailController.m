@@ -15,6 +15,7 @@
 #import "HRPhotoBrowser.h"
 #import "HRUserHomeController.h"
 #import "RDRGrowingTextView.h"
+#import "RefreshTableView.h"
 
 static CGFloat const MaxToolbarHeight = 200.0f;
 
@@ -31,12 +32,15 @@ static CGFloat const MaxToolbarHeight = 200.0f;
 
 @property(nonatomic,strong)UILabel * titleLabel;
 
-@property(nonatomic,strong)UITableView * tableView;
+@property(nonatomic,strong)RefreshTableView * tableView;
 @property(nonatomic,strong)NSString * poiId;
 
 @property(nonatomic,strong)HRPoiDetailPhotosCell * photoesCell;
 
 @property(nonatomic,strong)RDRGrowingTextView * textView;
+
+@property(nonatomic,strong)HRPOIInfo * poiInfo;
+@property(nonatomic,strong)NSArray * recomendList;
 
 @end
 
@@ -51,7 +55,7 @@ static CGFloat const MaxToolbarHeight = 200.0f;
 {
     if (self = [super init]) {
         self.poiId = poiId;
-        
+        self.poiId = @"14598";
         //注册键盘通知
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
@@ -64,6 +68,7 @@ static CGFloat const MaxToolbarHeight = 200.0f;
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     [self initUI];
+    [self quartData];
 }
 
 
@@ -109,13 +114,12 @@ static CGFloat const MaxToolbarHeight = 200.0f;
     [shareButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     shareButton.titleLabel.font = [UIFont systemFontOfSize:12.f];
     [shareButton addTarget:self action:@selector(onShareButtonClick:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:shareButton];
-    
+    [self.view addSubview:shareButton];    
 }
 
 - (void)initContentView
 {
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, -20, self.view.width, self.view.height + 20) style:UITableViewStylePlain];
+    self.tableView = [[RefreshTableView alloc] initWithFrame:CGRectMake(0, -20, self.view.width, self.view.height + 20) style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.separatorStyle  = UITableViewCellSeparatorStyleNone;
@@ -123,8 +127,63 @@ static CGFloat const MaxToolbarHeight = 200.0f;
     
 //    UIView * view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 100)];
 //    self.tableView.tableFooterView = view;
+    [self initRefreshView];
     
 }
+
+#pragma mark - Data
+- (void)initRefreshView
+{
+    self.tableView.refreshFooter.scrollView = nil;
+    
+    WS(ws);
+    self.tableView.refreshHeader.beginRefreshingBlock = ^(){
+        [ws quartData];
+    };
+}
+
+- (void)quartData
+{
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    WS(ws);
+    void (^ failure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *operation, NSError *error){
+        [ws netErrorWithTableView:ws.tableView];
+    };
+    
+    [NetWorkEntity quaryPoiDetailInfoWithPoiId:self.poiId success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        [MBProgressHUD hideHUDForView:ws.view animated:YES];
+        if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
+            NSDictionary * response = [responseObject objectForKey:@"response"];
+            NSDictionary * poiInfo = [response objectForKey:@"poi_detail"];
+            ws.poiInfo = [HRPOIInfo yy_modelWithJSON:poiInfo];
+            ws.recomendList = [ws analysisPoiModelFromArray:[response objectForKey:@"comments"]];
+            [ws.tableView reloadData];
+        }else{
+            [ws dealErrorResponseWithTableView:self.tableView info:responseObject];
+        }
+    } failure:failure];
+    
+}
+
+- (NSArray *)analysisPoiModelFromArray:(NSArray *)array
+{
+    if (![array isKindOfClass:[NSArray class]]) {
+        return nil;
+    }
+    
+    NSMutableArray * mArray = [NSMutableArray arrayWithCapacity:0];
+    for (NSDictionary * dic  in array) {
+        HRRecomend * model = [HRRecomend yy_modelWithJSON:dic];
+        if (model) {
+            [mArray addObject:model];
+        }
+    }
+    return mArray;
+}
+
 
 #pragma delegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -146,7 +205,7 @@ static CGFloat const MaxToolbarHeight = 200.0f;
             break;
         case 3:
             //POI评论
-            return 10;
+            return self.recomendList.count;
             break;
         default:
             break;
@@ -167,7 +226,7 @@ static CGFloat const MaxToolbarHeight = 200.0f;
             break;
         case 2:
             //POI用户描述
-            return [HRPoiCreateInfoCell cellHeithForData:nil];
+            return [HRPoiCreateInfoCell cellHeithForData:self.poiInfo];
             break;
         case 3:
             //POI评论
@@ -178,7 +237,7 @@ static CGFloat const MaxToolbarHeight = 200.0f;
                     return 6.f;
                 }
             }
-            return [HRRecomendCell heigthForCellWithData:nil];
+            return [HRRecomendCell heigthForCellWithData:self.recomendList[indexPath.row]];
             break;
         default:
             break;
@@ -198,13 +257,7 @@ static CGFloat const MaxToolbarHeight = 200.0f;
                 self.photoesCell.delegate = self;
                 
             }
-            [self.photoesCell setDataImages: @[
-                                               @"2",
-                                               @"3",
-                                               @"4",
-                                               @"4",
-                                               @"5"
-                                               ]];
+            [self.photoesCell setDataImages:self.poiInfo.photos];
             return self.photoesCell;
         }
             break;
@@ -217,7 +270,7 @@ static CGFloat const MaxToolbarHeight = 200.0f;
                 cell = [[HRPoiLocInfoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"HRPoiLocInfoCell"];
                 
             }
-            [cell setDataSource:nil];
+            [cell setDataSource:self.poiInfo];
             return cell;
         }
             break;
@@ -229,7 +282,7 @@ static CGFloat const MaxToolbarHeight = 200.0f;
                 cell = [[HRPoiCreateInfoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"HRPoiCreateInfoCell"];
                 cell.delegate = self;
             }
-            [cell setDataSource:nil];
+            [cell setDataSource:self.poiInfo];
             return cell;
         }
             break;
@@ -265,7 +318,7 @@ static CGFloat const MaxToolbarHeight = 200.0f;
                 cell = [[HRRecomendCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"HRRecomendCell"];
                 cell.delegate = self;
             }
-            [cell setDataSrouce:nil];
+            [cell setDataSrouce:self.recomendList[indexPath.row]];
             [cell.lineView setHidden:indexPath.row == [self tableView:tableView numberOfRowsInSection:indexPath.section] - 2];
             return cell;
         }
@@ -396,14 +449,6 @@ static CGFloat const MaxToolbarHeight = 200.0f;
     }
     
     [_toolbar setHidden:NO];
-//    CGFloat heigth = [[dic objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height;
-//    //    CGFloat duration = [[dic objectForKey:UIKeyboardAnimationDurationUserInfoKey] floatValue];
-//    
-//    [UIView animateWithDuration:0.3 delay:0 usingSpringWithDamping:0.9 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-////        self.contentView.bottom = self.height - heigth;
-//    } completion:^(BOOL finished) {
-//        
-//    }];
 }
 
 - (void)keyboardWillHide:(NSNotification *)notification

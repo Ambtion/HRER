@@ -10,6 +10,11 @@
 #import "LoginStateManager.h"
 #import "HRLocationManager.h"
 
+
+typedef     void (^CallBack)(AFHTTPRequestOperation *operation, id responseObject);
+static CallBack upSucess;
+
+
 @implementation NetWorkEntity
 
 
@@ -362,7 +367,7 @@
  创建列表
  ===================================================================================================================
  */
-+ (void)quartPoiListWithKeyWord:(NSString *)keyWord
++ (void)quaryPoiListWithKeyWord:(NSString *)keyWord
                         poiType:(NSInteger)poiType
                             lat:(CGFloat)lat
                             loc:(CGFloat)lng
@@ -384,8 +389,6 @@
     [manager GET:urlStr parameters:dic success:success failure:failure];
     
 
-    
-    
 //    /**
 //     *  sougou
 //     */
@@ -449,13 +452,113 @@
 }
 
 
+/**
+ *  POI详情页面
+ ===================================================================================================================
+ */
+
++ (void)quaryPoiDetailInfoWithPoiId:(NSString *)poiId
+                            success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                            failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+{
+    NSMutableDictionary * dic = [self commonComonPar];
+    [dic setObject:poiId forKey:@"poi_id"];
+    NSString *  urlStr= [NSString stringWithFormat:@"%@/poi_detail",KNETBASEURL];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:urlStr parameters:dic success:success failure:failure];
+}
+
+
+/**
+ *  创建POI
+ *  ===================================================================================================================
+ */
++ (void)uploadPoiWithTitle:(NSString *)title
+                       des:(NSString *)PoiDes
+                      type:(NSInteger)type
+                     price:(CGFloat)price
+                    locDes:(NSString *)locDes
+                    cityID:(NSInteger)cityId
+                       lat:(CGFloat)lat
+                       loc:(CGFloat)lng
+                    images:(NSArray *)images
+                   success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                   failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+{
+    
+    NSMutableDictionary * dic = [self commonComonPar];
+
+    if(title.length)
+        [dic setValue:title forKey:@"poi_name"];
+    if (locDes.length)
+        [dic setValue:locDes forKey:@"address"];
+    if (PoiDes.length)
+        [dic setValue:PoiDes forKey:@"introduction"];
+    
+    [dic setValue:@(cityId) forKey:@"city_id"];
+    [dic setValue:@(type) forKey:@"type"];
+    [dic setValue:@(lat) forKey:@"latitude"];
+    [dic setValue:@(lng) forKey:@"longitude"];
+    [dic setValue:@(price) forKey:@"avg_cost"];
+    
+    NSString *  urlStr= [NSString stringWithFormat:@"%@/create_poi",KNETBASEURL];
+    
+    NSMutableArray * netImages = [NSMutableArray arrayWithCapacity:0];
+    [self uploadImags:images sucess:^(NSArray *array) {
+        [netImages addObjectsFromArray:array];
+        [self uploadWithNetImages:netImages baseUrl:urlStr par:dic success:success failure:failure];
+    }];
+}
+
++ (void)uploadWithNetImages:(NSArray *)netImages baseUrl:(NSString *)baseUrl par:(NSDictionary *)dic
+                    success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                    failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+{
+    NSString * str = [netImages  componentsJoinedByString:@","];
+    [dic setValue:str forKey:@"image"];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager POST:baseUrl parameters:dic success:success failure:failure];
+}
++ (void)uploadImags:(NSArray*)images sucess:(void(^)(NSArray *array))sucess
+{
+    
+    __block NSInteger index = 0;
+    NSMutableArray * arrayNs = [NSMutableArray arrayWithCapacity:0];
+    upSucess = ^(AFHTTPRequestOperation *operation, id responseObject){
+        if([responseObject isKindOfClass:[NSDictionary class]]){
+            if([responseObject objectForKey:@"path"] && [[responseObject objectForKey:@"path"] isKindOfClass:[NSString class]]){
+                [arrayNs addObject:[responseObject objectForKey:@"path"]];
+            }
+        }
+        index++;
+        if (index < images.count) {
+            [self uploadImage:images[index] success:upSucess failure:upSucess];
+        }else{
+            sucess(arrayNs);
+        }
+    };
+    [self uploadImage:images[index] success:upSucess failure:upSucess];
+}
+
++ (void)uploadImage:(UIImage *)image success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+            failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+{
+    NSString * urlStr = [NSString stringWithFormat:@"%@/upload_image",KNETBASEURL];
+    NSMutableDictionary * dic = [self commonComonPar];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    NSData * data = UIImageJPEGRepresentation(image, 1);
+    [manager POST:urlStr parameters:dic constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        [formData appendPartWithFileData:data name:@"image" fileName:@"1" mimeType:@"image/jpeg"];
+    } success:success failure:failure];
+}
+
+
 #pragma mark - Common
 + (NSMutableDictionary *)commonComonPar
 {
     NSMutableDictionary  * paragramer = [NSMutableDictionary dictionaryWithCapacity:0];
     if ([[LoginStateManager getInstance] userLoginInfo].token){
-//    [paragramer setValue:[[LoginStateManager getInstance] userLoginInfo].token forKey:@"token"];
-        [paragramer setValue:@"94dc0f74bdcbf9223f225af188be245b" forKey:@"token"];
+        [paragramer setValue:[[LoginStateManager getInstance] userLoginInfo].token forKey:@"token"];
     }
     
     return paragramer;

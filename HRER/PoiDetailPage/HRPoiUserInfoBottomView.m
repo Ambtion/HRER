@@ -85,9 +85,9 @@
     }
 }
 
-- (void)setData:(id)data
+- (void)setData:(HRPOIInfo *)data
 {
-    self.timeLabel.text = @"2016-5-1";
+    self.timeLabel.text = data.ctimeStr;
 }
 
 

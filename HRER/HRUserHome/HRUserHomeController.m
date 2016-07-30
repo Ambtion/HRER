@@ -136,7 +136,6 @@
         [HRLoginManager showLoginView];
         return;
     }
-    
 }
 
 - (void)loginSucess:(id)sucess

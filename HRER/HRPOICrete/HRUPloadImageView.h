@@ -15,6 +15,7 @@ typedef void (^UPloadCallBack)(BOOL isSucesss);
 
 + (void)showInView:(UIView *)view
       withPoiTitle:(NSString *)title
+            cityId:(NSInteger)cityId
            address:(NSString *)addRess
                loc:(NSString *)loc
       categoryType:(NSInteger)poiType

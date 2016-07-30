@@ -95,11 +95,11 @@
     [barView addSubview:label];
     
     self.rightButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.width - 66, 26, 66, 33)];
+    self.rightButton.backgroundColor = [UIColor clearColor];
     [self.rightButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.rightButton addTarget:self action:@selector(onRignthButtonDidClick:) forControlEvents:UIControlEventTouchUpInside];
     self.rightButton.titleLabel.font = [UIFont systemFontOfSize:15.f];
     [self.view addSubview:self.rightButton];
-    
 }
 
 - (void)initContentView
@@ -115,7 +115,6 @@
     HRPoiNoFoundTipsView* tipsView = [[HRPoiNoFoundTipsView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.width, [HRPoiNoFoundTipsView heightForView])];
     [tipsView addTarget:self action:@selector(onNoFoundTipsDidClick:) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:tipsView];
-    
     self.tableView.tableFooterView = view;
 }
 
@@ -132,7 +131,7 @@
     
     WS(weakSelf);
     
-    [NetWorkEntity quartPoiListWithKeyWord:!self.inputView.textFiled.text.length ? @"美食" : self.inputView.textFiled.text poiType:self.categortIndex lat:self.lat  loc:self.lng success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [NetWorkEntity quaryPoiListWithKeyWord:!self.inputView.textFiled.text.length ? @"美食" : self.inputView.textFiled.text poiType:self.categortIndex + 1 lat:self.lat  loc:self.lng success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [MBProgressHUD hideAllHUDsForView:weakSelf.view animated:YES];
         NSArray * poiS = [responseObject objectForKey:@"pois"];
         weakSelf.dataArray = [weakSelf analysisPoiModelFromArray:poiS];
@@ -250,7 +249,7 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     HRCretePOIInfo * creteInfo = self.dataArray[indexPath.row];
-    [HRUPloadImageView showInView:[self.myNavController view] withPoiTitle:creteInfo.title address:creteInfo.subTitle loc:creteInfo.location categoryType:self.categortIndex callBack:^(BOOL isSucesss) {
+    [HRUPloadImageView showInView:[self.myNavController view] withPoiTitle:creteInfo.title cityId:self.cityId address:creteInfo.subTitle loc:creteInfo.location categoryType:self.categortIndex + 1 callBack:^(BOOL isSucesss) {
     }];
 }
 

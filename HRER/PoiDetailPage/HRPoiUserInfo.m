@@ -78,11 +78,11 @@
     }];
 }
 
-- (void)setDtata:(id)data
+- (void)setDtata:(HRPOIInfo *)data
 {
-    self.userName.text = @"CJ";
-    self.recomendLabel.text = @"推荐了279美食";
-    [self.porImageView sd_setImageWithURL:nil placeholderImage:[UIImage imageNamed:@"man"]];
+    self.userName.text = data.creator_name;
+    self.recomendLabel.text = [NSString stringWithFormat:@"推荐%ld%@",(long)data.recommand,data.typeName];
+    [self.porImageView sd_setImageWithURL:[NSURL URLWithString:data.portrait] placeholderImage:[UIImage imageNamed:@"man"]];
 }
 
 

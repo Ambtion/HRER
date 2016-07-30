@@ -39,6 +39,19 @@
 
 @implementation CityHomeViewController
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.myNavController setNavigationBarHidden:YES];
+    
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self.myNavController setNavigationBarHidden:NO];
+}
+
 - (instancetype)initWithCityId:(NSInteger )cityId cityName:(NSString *)cityName
 {
     self = [super init];
@@ -71,7 +84,10 @@
 
 - (void)initUI
 {
-    self.tableView = [[RefreshTableView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height - 49) style:UITableViewStylePlain];
+    UIView * view  = [UIView new];
+    [self.view addSubview:view];
+    
+    self.tableView = [[RefreshTableView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height) style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.view addSubview:self.tableView];
@@ -90,7 +106,6 @@
 
 - (void)quaryData
 {
-    
     
     void (^ failure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *operation, NSError *error){
         [self netErrorWithTableView:self.tableView];
@@ -291,8 +306,12 @@
                 cell.bgImageView.image = [UIImage imageNamed:@"poi_head_bg"];
                 cell.mainLabel.text = @"ZHELI";
                 cell.titleLabel.text = self.cityName;
+                UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backButtonDidClick:)];
+                [cell.titleLabel setUserInteractionEnabled:YES];
+                [cell.titleLabel addGestureRecognizer:tap];
                 cell.delegate = self;
             }
+            
             NSInteger totalCount = self.catergoryInfo.food + self.catergoryInfo.tour + self.catergoryInfo.shop + self.catergoryInfo.hotel;
             cell.totalCountLabel.text =  [NSString stringWithFormat:@"%ld",totalCount];
             [cell setButtonSeletedAtIndex:self.catergoryIndex];
@@ -387,7 +406,7 @@
 - (void)homeHeadView:(HomeHeadView *)view DidSeletedIndex:(NSInteger)index
 {
     self.catergoryIndex = index;
-    [self.tableView.refreshHeader beginRefreshing];
+    [self quaryData];
 }
 
 - (void)herePoiCellDidClick:(HRHerePoiCell *)cell
@@ -442,6 +461,12 @@
 #pragma mark - Login
 - (void)userLoginChnage:(id)sender
 {
-    [[[self tableView] refreshHeader] beginRefreshing];
+    [self quaryData];
 }
+
+- (void)backButtonDidClick:(id)sender
+{
+    [self.myNavController popViewControllerAnimated:YES];
+}
+
 @end

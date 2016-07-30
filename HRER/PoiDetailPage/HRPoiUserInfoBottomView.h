@@ -20,7 +20,7 @@
 
 + (CGFloat)heightForView;
 
-- (void)setData:(id)data;
+- (void)setData:(HRPOIInfo *)data;
 
 
 @end

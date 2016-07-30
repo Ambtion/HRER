@@ -12,6 +12,6 @@
 
 + (CGFloat)heightForCell;
 
-- (void)setDataSource:(id)dataSource;
+- (void)setDataSource:(HRPOIInfo *)dataSource;
 
 @end

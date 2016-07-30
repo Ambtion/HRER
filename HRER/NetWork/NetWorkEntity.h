@@ -203,7 +203,7 @@
  *
  *  @param poiType  0 -> 美食 1 ->观光 2->购物 3->酒店
  */
-+ (void)quartPoiListWithKeyWord:(NSString *)keyWord
++ (void)quaryPoiListWithKeyWord:(NSString *)keyWord
                         poiType:(NSInteger)poiType
                             lat:(CGFloat)lat
                             loc:(CGFloat)lng
@@ -211,6 +211,36 @@
                         failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
 
+
+/**
+ *  POI详情页面
+ ===================================================================================================================
+ */
+
+/**
+ *  POI详情
+ */
+
++ (void)quaryPoiDetailInfoWithPoiId:(NSString *)poiId
+                            success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                            failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+
+
+/**
+ *  创建POI
+ *  ===================================================================================================================
+ */
++ (void)uploadPoiWithTitle:(NSString *)title
+                       des:(NSString *)PoiDes
+                      type:(NSInteger)type
+                     price:(CGFloat)price
+                    locDes:(NSString *)locDes
+                    cityID:(NSInteger)cityId
+                       lat:(CGFloat)lat
+                       loc:(CGFloat)lng
+                    images:(NSArray *)images
+                   success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                   failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
 @end
 

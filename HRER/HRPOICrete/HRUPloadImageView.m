@@ -9,6 +9,7 @@
 
 #import "HRUPloadImageView.h"
 #import "iCarousel.h"
+#import "NetWorkEntity.h"
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
@@ -28,7 +29,6 @@
 @property(nonatomic,strong)UILabel * titleLabel;
 @property(nonatomic,strong)UIImageView * locIconImageView;
 @property(nonatomic,strong)UILabel * addressLabel;
-@property(nonatomic,strong)NSString * location;
 
 @property(nonatomic,strong)UITextView * textDesView;
 @property(nonatomic,strong)UILabel * placeLabel;
@@ -43,6 +43,12 @@
 
 @property(nonatomic,strong)NSMutableArray * photosArray;
 
+
+
+//Data
+@property(nonatomic,strong)NSString * location;
+@property(nonatomic,assign)NSInteger cityId;
+@property(nonatomic,assign)NSInteger poiType;
 @end
 
 
@@ -50,6 +56,7 @@
 
 + (void)showInView:(UIView *)view
       withPoiTitle:(NSString *)title
+            cityId:(NSInteger)cityId
            address:(NSString *)addRess
                loc:(NSString *)loc
       categoryType:(NSInteger)poiType
@@ -65,6 +72,10 @@
     uploadView.callBack = callBack;
     uploadView.titleLabel.text = title;
     uploadView.addressLabel.text = addRess;
+    
+    uploadView.cityId = cityId;
+    uploadView.location = loc;
+    uploadView.poiType = poiType;
     
     [uploadView showInView:view completion:^(BOOL finished) {
         
@@ -490,6 +501,21 @@
     if (!self.photosArray.count) {
         [self showTotasViewWithMes:@"请上传至少一张图片"];
     }
+    
+    NSArray * locArray = [self.location componentsSeparatedByString:@","];
+    
+    [NetWorkEntity uploadPoiWithTitle:self.titleLabel.text
+                                  des:self.textDesView.text
+                                 type:self.poiType
+                                price:[self.priceTextField.text integerValue]
+                               locDes:self.addressLabel.text cityID:self.cityId
+                                  lat:[[locArray firstObject] floatValue]
+                                  loc:[[locArray lastObject] floatValue]
+                               images:self.photosArray  success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
     
 }
 

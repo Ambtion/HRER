@@ -76,7 +76,6 @@
     self.tableView.refreshHeader.beginRefreshingBlock = ^(){
         [ws quartData];
     };
-    
 }
 
 - (void)quartData
