@@ -11,6 +11,6 @@
 
 @interface HomeViewController : UIViewController
 
-- (void)quartData;
+- (void)quaryData;
 
 @end

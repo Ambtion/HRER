@@ -369,39 +369,30 @@ static CallBack upSucess;
  */
 + (void)quaryPoiListWithKeyWord:(NSString *)keyWord
                         poiType:(NSInteger)poiType
+                      countyId:(NSInteger)countyId
                             lat:(CGFloat)lat
                             loc:(CGFloat)lng
                         success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                         failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
     
+    if(countyId == 11){
     
-    /**
-     *  高德
-     */
-    NSMutableDictionary * dic = [NSMutableDictionary dictionaryWithCapacity:0];
-    [dic setValue:@"b5646e547c5bc722d99bdd34795fcf11" forKey:@"key"];
-    [dic setValue:keyWord forKey:@"keywords"];
-    [dic setValue:[NSString stringWithFormat:@"%.5f,%.5f",lat,lng] forKey:@"location"];
-    NSString *  urlStr = @"http://restapi.amap.com/v3/place/around";
-    
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager GET:urlStr parameters:dic success:success failure:failure];
-    
+        /**
+         *  国内用高德
+         */
+        NSMutableDictionary * dic = [NSMutableDictionary dictionaryWithCapacity:0];
+        [dic setValue:@"b5646e547c5bc722d99bdd34795fcf11" forKey:@"key"];
+        [dic setValue:keyWord forKey:@"keywords"];
+        [dic setValue:[NSString stringWithFormat:@"%.5f,%.5f",lat,lng] forKey:@"location"];
+        NSString *  urlStr = @"http://restapi.amap.com/v3/place/around";
+        
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        [manager GET:urlStr parameters:dic success:success failure:failure];
 
-//    /**
-//     *  sougou
-//     */
-//    
-//    NSMutableDictionary * dic = [NSMutableDictionary dictionaryWithCapacity:0];
-//    [dic setValue:@"city:全国" forKey:@"range"];
-//    [dic setValue:[NSString stringWithFormat:@"keyword:%@",keyWord] forKey:@"what"];
-//    
-//    NSString *  urlStr = @"http://api.go2map.com/engine/api/search/json";
-//
-//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-//    [manager GET:urlStr parameters:dic success:success failure:failure];
-//
+    }else{
+        
+    }
     
 //    /**
 //     *  谷歌

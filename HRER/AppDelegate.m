@@ -107,8 +107,8 @@
 
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
 {
-    if ([viewController respondsToSelector:@selector(quartData)]) {
-        [viewController performSelector:@selector(quartData)];
+    if ([viewController respondsToSelector:@selector(quaryData)]) {
+        [viewController performSelector:@selector(quaryData)];
     }
 }
 

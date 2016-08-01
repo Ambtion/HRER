@@ -15,7 +15,7 @@
 
 @implementation HRHerePoiCell
 
-#define KPoiCellSpacing (10.f)
+#define KPoiCellSpacing (8.f)
 
 + (CGFloat)heightForCell
 {
@@ -41,8 +41,8 @@
     [self.cardView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self);
         make.width.equalTo(self);
-        make.top.equalTo(self);
-        make.bottom.equalTo(self).offset(-KPoiCellSpacing);
+        make.top.equalTo(self).offset(KPoiCellSpacing);
+        make.bottom.equalTo(self).offset(0);
     }];
 }
 

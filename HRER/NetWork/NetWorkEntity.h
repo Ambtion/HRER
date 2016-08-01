@@ -205,11 +205,11 @@
  */
 + (void)quaryPoiListWithKeyWord:(NSString *)keyWord
                         poiType:(NSInteger)poiType
+                       countyId:(NSInteger)countyId
                             lat:(CGFloat)lat
                             loc:(CGFloat)lng
                         success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                         failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
-
 
 
 /**

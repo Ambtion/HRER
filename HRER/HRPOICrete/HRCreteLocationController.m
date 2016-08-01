@@ -30,6 +30,7 @@
 @property(nonatomic,assign)NSInteger cityId;
 @property(nonatomic,assign)CGFloat lat;
 @property(nonatomic,assign)CGFloat lng;
+@property(nonatomic,assign)NSInteger countyId;
 
 /**
  *  搜索框
@@ -70,6 +71,7 @@
     self.cityName = [[HRLocationManager  sharedInstance] cityName];
     self.lat = [[[HRLocationManager  sharedInstance] curLocation] coordinate].latitude;
     self.lng = [[[HRLocationManager  sharedInstance] curLocation] coordinate].longitude;
+    self.countyId = 11;
     self.categortIndex = 0;
     [self initUI];
 //    [self quaryData];
@@ -131,7 +133,10 @@
     
     WS(weakSelf);
     
-    [NetWorkEntity quaryPoiListWithKeyWord:!self.inputView.textFiled.text.length ? @"美食" : self.inputView.textFiled.text poiType:self.categortIndex + 1 lat:self.lat  loc:self.lng success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [NetWorkEntity quaryPoiListWithKeyWord:!self.inputView.textFiled.text.length ? @"美食" : self.inputView.textFiled.text
+                                   poiType:self.categortIndex + 1
+                                  countyId:self.countyId
+                                       lat:self.lat  loc:self.lng success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [MBProgressHUD hideAllHUDsForView:weakSelf.view animated:YES];
         NSArray * poiS = [responseObject objectForKey:@"pois"];
         weakSelf.dataArray = [weakSelf analysisPoiModelFromArray:poiS];
@@ -267,6 +272,7 @@
     self.cityId = [[HRLocationManager sharedInstance] curCityId];
     self.lat = [[HRLocationManager sharedInstance] curLocation].coordinate.latitude;
     self.lng = [[HRLocationManager sharedInstance] curLocation].coordinate.longitude;
+    self.countyId = 11;
     [self.rightButton setTitle:self.cityName.length ? self.cityName : @"北京" forState:UIControlStateNormal];
     [self quaryData];
     [self.myNavController popViewControllerAnimated:YES];
@@ -291,6 +297,7 @@
     self.cityName = [cityInfo objectForKey:@"city_name"];
     self.lat = [[cityInfo objectForKey:@"latitude"] floatValue];
     self.lng = [[cityInfo objectForKey:@"longitude"] floatValue];
+//    self.countyId = 
     [self.rightButton setTitle:self.cityName.length ? self.cityName : @"北京" forState:UIControlStateNormal];
     [self quaryData];
     [self.myNavController popViewControllerAnimated:YES];

@@ -15,7 +15,7 @@
 
 @end
 
-#define  KPoiSetSpacing (10.f)
+#define  KPoiSetSpacing (8.f)
 
 @implementation HRHerePoisSetCell
 
@@ -43,8 +43,8 @@
     [self.cardView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self);
         make.width.equalTo(self);
-        make.top.equalTo(self);
-        make.bottom.equalTo(self).offset(-KPoiSetSpacing);
+        make.top.equalTo(self).offset(KPoiSetSpacing);
+        make.bottom.equalTo(self);
     }];
 }
 

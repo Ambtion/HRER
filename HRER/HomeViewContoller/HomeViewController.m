@@ -55,7 +55,7 @@
 
     self.catergoryIndex = 0;
     [self initUI];
-    [self quartData];
+    [self quaryData];
 }
 
 
@@ -74,11 +74,11 @@
     
     WS(ws);
     self.tableView.refreshHeader.beginRefreshingBlock = ^(){
-        [ws quartData];
+        [ws quaryData];
     };
 }
 
-- (void)quartData
+- (void)quaryData
 {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
