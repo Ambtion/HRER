@@ -60,18 +60,19 @@
  
     [self.bgImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).offset(10.f);
-        make.right.equalTo(self).offset(10.f);
+        make.right.equalTo(self).offset(-10.f);
         make.top.height.equalTo(self);
     }];
     
     [self.addresssLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.bgImageView).offset(10);
+        make.left.equalTo(self.bgImageView).offset(15);
         make.height.top.equalTo(self.bgImageView);
+        make.width.priorityLow();
         make.right.lessThanOrEqualTo(self.locIconView.mas_left);
     }];
     
     [self.locLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.bgImageView).offset(-10);
+        make.right.equalTo(self.bgImageView).offset(-15);
         make.top.height.equalTo(self);
     }];
     
@@ -84,11 +85,10 @@
 
 - (void)setDataSource:(HRPOIInfo *)data
 {
-    self.addresssLabel.text = @"上地五接士大夫是方式";
+    self.addresssLabel.text = data.address;
     CLLocation * desLocaiton = [[CLLocation alloc] initWithLatitude:data.lat longitude:data.lng];
     NSString * distance = [HRNavigationTool distanceBetwenOriGps:[[HRLocationManager sharedInstance] curLocation].coordinate desGps:desLocaiton.coordinate];
-    NSLog(@"%@",distance);
-    self.locLabel.text = @"距离1000km";
+    self.locLabel.text = distance;
 }
 
 

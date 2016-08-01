@@ -355,7 +355,7 @@ static CGFloat const MaxToolbarHeight = 200.0f;
         case 1:
             //POI地理信息
         {
-            HRNavMapController * navMap = [[HRNavMapController alloc] initWithPoiInfo:nil barTitle:@"北京"];
+            HRNavMapController * navMap = [[HRNavMapController alloc] initWithPoiInfo:@[self.poiInfo] barTitle:self.poiInfo.city_name];
             [self.navigationController  pushViewController:navMap animated:YES];
         }
             break;

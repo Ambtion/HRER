@@ -46,6 +46,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     [self initUI];
+    [self refreshUI];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -175,10 +176,8 @@
 }
 
 #pragma mark - Data |UI
-- (void)refreshUIWithData:(NSArray *)array
+- (void)refreshUI
 {
-    array = @[@"s",@"d",@"2",@"s"];
-    self.dataArray = array;
     [self refreshMapPinViews];
     [self refreshScrollViews];
     [self setMapViewSeleteIndexAnomaiton:0];
@@ -191,8 +190,7 @@
     for (int i = 0; i < self.dataArray.count; i++) {
         HRPoiCardAddressView * poiAddresssCardView = [[HRPoiCardAddressView alloc] initWithFrame:CGRectMake(offset + self.view.width * i, 0, self.scrollView.width - offset * 2, self.scrollView.height)];
         poiAddresssCardView.tag = i;
-//        [poiAddresssCardView setDataSource:self.dataArray[i]];
-        [poiAddresssCardView setDataSource:nil];
+        [poiAddresssCardView setDataSource:self.dataArray[i]];
         [self.scrollView addSubview:poiAddresssCardView];
     }
     [self.scrollView setContentSize:CGSizeMake(self.dataArray.count * self.view.width, 0)];
@@ -201,13 +199,11 @@
 #pragma mark Map
 - (void)refreshMapPinViews
 {
-    CLLocationCoordinate2D coord = CLLocationCoordinate2DMake(39.904209 , 116.407394);
-    NSMutableArray * array  = [NSMutableArray arrayWithCapacity:0];
-    
+    NSMutableArray * array  = [NSMutableArray arrayWithCapacity:0];    
     for (int i = 0; i < self.dataArray.count; i++) {
         HRPOIInfo * poiInfo = self.dataArray[i];
         
-//        coord = CLLocationCoordinate2DMake(poiInfo.lat , poiInfo.lng);
+        CLLocationCoordinate2D  coord = CLLocationCoordinate2DMake(poiInfo.lat , poiInfo.lng);
         HRAnomation * anomation =  [[HRAnomation alloc] initWithCoordinates:coord title:poiInfo.title subTitle:poiInfo.intro];
         anomation.index = i;
         anomation.extData = poiInfo;
