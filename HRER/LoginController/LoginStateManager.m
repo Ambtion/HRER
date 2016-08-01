@@ -88,9 +88,9 @@
 - (void)LoginWithUserLoginInfo:(HRUserLoginInfo *)userLoginInfo
 {
     if (userLoginInfo) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:LOGIN_IN object:nil];
         self.userLoginInfo = userLoginInfo;
         [self saveUserInfoInCache:userLoginInfo];
+        [[NSNotificationCenter defaultCenter] postNotificationName:LOGIN_IN object:nil];
     }
 }
 

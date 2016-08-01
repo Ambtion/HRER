@@ -13,4 +13,6 @@
 
 + (void)showLoginView;
 
++ (void)showLoginViewWithNavgation:(UINavigationController *)nav;
+
 @end

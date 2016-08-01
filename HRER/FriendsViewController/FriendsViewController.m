@@ -18,7 +18,7 @@
 
 @interface FriendsViewController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,BMOldFriendCellDelegate>
 
-@property(nonatomic,strong)UITableView * tableView;
+@property(nonatomic,strong)RefreshTableView * tableView;
 @property(nonatomic,strong)NSArray * dataArray;
 
 /**
@@ -55,7 +55,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(quaryData) name:LOGIN_IN object:nil];
     [self initUI];
-//    [self quaryData];
+    [self quaryData];
 }
 
 - (void)initUI
@@ -80,27 +80,42 @@
 
 - (void)initContentView
 {
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.view.width, self.view.height - 64) style:UITableViewStylePlain];
+    self.tableView = [[RefreshTableView alloc] initWithFrame:CGRectMake(0, 64, self.view.width, self.view.height - 64) style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.tableHeaderView = self.inputView;
     self.tableView.separatorStyle  = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.tableView];
     
-    if([self.myNavController viewControllers].count > 1){
-        UIView * view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 80)];
-        self.tableView.tableFooterView = view;
-    }
+    self.tableView.tableFooterView  = [self footView];
+    
+    [self initRefreshView];
+    
 }
+
+- (void)showLoginPage
+{
+    //未登录弹出登录
+    if (![[LoginStateManager getInstance] userLoginInfo]) {
+        [HRLoginManager showLoginViewWithNavgation:self.myNavController];
+        return;
+    }
+    
+}
+
+- (void)initRefreshView
+{
+    self.tableView.refreshFooter.scrollView = nil;
+    
+    WS(ws);
+    self.tableView.refreshHeader.beginRefreshingBlock = ^(){
+        [ws quaryData];
+    };
+}
+
 
 - (void)quaryData
 {
- 
-    //未登录弹出登录
-    if (![[LoginStateManager getInstance] userLoginInfo]) {
-        [HRLoginManager showLoginView];
-        return;
-    }
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
@@ -130,9 +145,7 @@
         [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
         [self showTotasViewWithMes:@"网络异常,稍后重试"];
     }];
-
 }
-
 
 #pragma mark - SearchBar
 - (SearchInPutView *)inputView

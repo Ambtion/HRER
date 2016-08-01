@@ -28,8 +28,6 @@
 
 @interface AppDelegate ()<UITabBarControllerDelegate>
 
-@property(nonatomic,strong)HRNagationController * navController;
-
 @end
 
 @implementation AppDelegate
@@ -44,8 +42,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     MainTabBarController * mainTab = [self getMainTabController];
     mainTab.automaticallyAdjustsScrollViewInsets = NO;
-    self.navController = [[HRNagationController alloc] initWithRootViewController:mainTab];
-    self.window.rootViewController = self.navController;
+    self.window.rootViewController = mainTab;
     [self.window makeKeyAndVisible];
         
     return YES;
@@ -55,9 +52,9 @@
 {
     HomeViewController * homeC = [[HomeViewController alloc] init];
     FindCityViewController * findC = [[FindCityViewController alloc] init];
-    HRCreteLocationController * hVC = [[HRCreteLocationController alloc] init];
+    HRCreteLocationController * creteC = [[HRCreteLocationController alloc] init];
     FriendsViewController * fVC = [[FriendsViewController alloc] init];
-    HRUserHomeController * fView = [[HRUserHomeController alloc] initWithUserID:[[[LoginStateManager getInstance] userLoginInfo] user_id]];
+    HRUserHomeController * fuserHome = [[HRUserHomeController alloc] initWithUserID:[[[LoginStateManager getInstance] userLoginInfo] user_id]];
     
     UIImage * nHome = [UIImage imageNamed:@"home"];
     UIImage * hHome = [UIImage imageNamed:@"home_select"];
@@ -71,10 +68,15 @@
     UIImage * hMy = [UIImage imageNamed:@"me_select"];
     
     
+    HRNagationController * navHc = [[HRNagationController alloc] initWithRootViewController:homeC];
+    HRNagationController * navfc = [[HRNagationController alloc] initWithRootViewController:findC];
+    HRNagationController * navcrete = [[HRNagationController alloc] initWithRootViewController:creteC];
+    HRNagationController * navFriend = [[HRNagationController alloc] initWithRootViewController:fVC];
+    HRNagationController * navUser = [[HRNagationController alloc] initWithRootViewController:fuserHome];
     return [self getTabWithTitleArray:@[@"主页",@"发现城市",@"",@"朋友",@"我的"]
                    nimagesArray:@[nHome,nFind,nHere,nFriend,nMy]
                         himages:@[hHome,hFind,hHere,hFriend,hMy]
-                 andControllers:@[homeC,findC,hVC,fVC,fView]];
+                 andControllers:@[navHc,navfc,navcrete,navFriend,navUser]];
 }
 
 - (MainTabBarController *)getTabWithTitleArray:(NSArray *)item nimagesArray:(NSArray *)nImages
@@ -107,9 +109,9 @@
 
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
 {
-//    if ([viewController respondsToSelector:@selector(quaryData)]) {
-//        [viewController performSelector:@selector(quaryData)];
-//    }
+    if ([[(UINavigationController *)viewController topViewController] respondsToSelector:@selector(showLoginPage)]) {
+        [[(UINavigationController *)viewController topViewController] performSelector:@selector(showLoginPage)];
+    }
 }
 
 #pragma mark - Init

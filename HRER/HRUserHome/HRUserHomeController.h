@@ -13,4 +13,6 @@
 
 - (instancetype)initWithUserID:(NSString *)userId;
 
+- (void)showLoginPage;
+
 @end

@@ -22,4 +22,8 @@
     }];
 }
 
++ (void)showLoginViewWithNavgation:(UINavigationController *)nav
+{
+    [nav pushViewController:[[HRLoginViewController alloc] init] animated:NO];
+}
 @end

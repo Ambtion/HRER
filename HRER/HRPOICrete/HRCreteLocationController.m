@@ -15,10 +15,11 @@
 #import "HRLocationMapController.h"
 #import "HRUPloadImageView.h"
 #import "FindCityViewController.h"
+#import "RefreshTableView.h"
 
 @interface HRCreteLocationController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,HRCreateCategoryCell,FindCityViewControllerDelegate>
 
-@property(nonatomic,strong)UITableView * tableView;
+@property(nonatomic,strong)RefreshTableView * tableView;
 @property(nonatomic,strong)NSArray * dataArray;
 
 @property(nonatomic,strong)UIButton * rightButton;
@@ -74,7 +75,16 @@
     self.countyId = 11;
     self.categortIndex = 0;
     [self initUI];
-//    [self quaryData];
+}
+
+- (void)showLoginPage
+{
+    //未登录弹出登录
+    if (![[LoginStateManager getInstance] userLoginInfo]) {
+        [HRLoginManager showLoginViewWithNavgation:self.myNavController];
+        return;
+    }
+
 }
 
 - (void)initUI
@@ -106,7 +116,7 @@
 
 - (void)initContentView
 {
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.view.width, self.view.height - 64) style:UITableViewStylePlain];
+    self.tableView = [[RefreshTableView alloc] initWithFrame:CGRectMake(0, 64, self.view.width, self.view.height - 64) style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.tableHeaderView = self.inputView;
@@ -118,16 +128,22 @@
     [tipsView addTarget:self action:@selector(onNoFoundTipsDidClick:) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:tipsView];
     self.tableView.tableFooterView = view;
+    [self initRefreshView];
 }
+
+- (void)initRefreshView
+{
+    self.tableView.refreshFooter.scrollView = nil;
+    
+    WS(ws);
+    self.tableView.refreshHeader.beginRefreshingBlock = ^(){
+        [ws quaryData];
+    };
+}
+
 
 - (void)quaryData
 {
-    
-    //未登录弹出登录
-    if (![[LoginStateManager getInstance] userLoginInfo]) {
-        [HRLoginManager showLoginView];
-        return;
-    }
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
@@ -137,13 +153,17 @@
                                    poiType:self.categortIndex + 1
                                   countyId:self.countyId
                                        lat:self.lat  loc:self.lng success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [MBProgressHUD hideAllHUDsForView:weakSelf.view animated:YES];
-        NSArray * poiS = [responseObject objectForKey:@"pois"];
-        weakSelf.dataArray = [weakSelf analysisPoiModelFromArray:poiS];
-        [weakSelf.tableView reloadData];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [MBProgressHUD hideAllHUDsForView:weakSelf.view animated:YES];
-    }];
+                                           
+                                           [MBProgressHUD hideAllHUDsForView:weakSelf.view animated:YES];
+                                           [weakSelf.tableView.refreshHeader endRefreshing];
+                                           NSArray * poiS = [responseObject objectForKey:@"pois"];
+                                           weakSelf.dataArray = [weakSelf analysisPoiModelFromArray:poiS];
+                                           [weakSelf.tableView reloadData];
+                                       } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                           [MBProgressHUD hideAllHUDsForView:weakSelf.view animated:YES];
+                                           [weakSelf.tableView.refreshHeader endRefreshing];
+                                       }];
+    
 }
 
 - (NSArray *)analysisPoiModelFromArray:(NSArray *)array

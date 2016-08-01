@@ -62,15 +62,6 @@
 - (void)showTotasViewWithMes:(NSString *)message
 {
     if(!message || ![message isKindOfClass:[NSString class]] || ![message length]) return;
-    if ([[self.myNavController viewControllers] count] == 1) {
-        UITabBarController * tab = [[self.myNavController viewControllers] firstObject];
-        if (tab.selectedViewController != self) {
-            return;
-        }
-    }else{
-        if([self.myNavController topViewController] != self) return;
-    }
-
     ToastAlertView * alertView = [[ToastAlertView alloc] initWithTitle:message controller:self];
     [alertView show];
 }
@@ -129,17 +120,11 @@
 
 - (UINavigationItem *)myNavigationItem
 {
-    if (self.tabBarController) {
-        return self.tabBarController.navigationItem;
-    }
     return self.navigationItem;
 }
 
 - (UINavigationController *)myNavController
 {
-    if (self.tabBarController) {
-        return self.tabBarController.navigationController;
-    }
     return self.navigationController;
 }
 
@@ -170,10 +155,18 @@
 
 - (void)jumpToHomePage
 {
-    UINavigationController * nav = (UINavigationController *)[[[[UIApplication sharedApplication] delegate] window] rootViewController];
-    [nav popToRootViewControllerAnimated:NO];
-    UITabBarController * tabBar = [[nav viewControllers] firstObject];
+    UITabBarController * tabBar = (UITabBarController *)[[[[UIApplication sharedApplication] delegate] window] rootViewController];
     [tabBar setSelectedIndex:0];
+}
+
+@end
+
+@implementation UIViewController(TopTableView)
+
+- (UIView *)footView
+{
+    UIView * view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 80)];
+    return view;
 }
 
 @end

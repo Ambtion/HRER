@@ -7,6 +7,7 @@
 //
 
 #import "HRNagationController.h"
+#import "HRLoginViewController.h"
 
 @interface HRNagationController()<UINavigationControllerDelegate,UIGestureRecognizerDelegate>
 @property(nonatomic,assign)BOOL isAnimaiton;
@@ -38,14 +39,16 @@
         return;
     }
     @try {
+        if (self.viewControllers.count && ![viewController isKindOfClass:[HRLoginViewController class]]) {
+            viewController.hidesBottomBarWhenPushed = YES;
+        }
         [super pushViewController:viewController animated:animated];
         [viewController.navigationItem setHidesBackButton:YES];
         if (viewController.navigationItem.leftBarButtonItem == nil && [self.viewControllers count] >= 2)
             
         {
-//            viewController.navigationItem.leftBarButtonItems = @[[self barSpaingItem],[self createBackButton]];
+            viewController.navigationItem.leftBarButtonItems = @[[self barSpaingItem],[self createBackButton]];
         }
-        
     }
     @catch (NSException *exception) {
         

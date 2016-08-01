@@ -10,6 +10,6 @@
 
 @interface FriendsViewController : UIViewController
 
-- (void)quaryData;
+- (void)showLoginPage;
 
 @end

@@ -367,6 +367,7 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     [[LoginStateManager getInstance] logout];
+    [self.myNavController popToRootViewControllerAnimated:NO];
     [self  jumpToHomePage];
 }
 

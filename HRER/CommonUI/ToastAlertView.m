@@ -66,8 +66,7 @@
 
 - (void)show
 {
-    UINavigationController * rsm = (UINavigationController *)[[UIApplication sharedApplication].delegate window].rootViewController;
-    if (_controller && [[rsm visibleViewController] class] == _controller) {
+    if (_controller && [self isTopShowController:_controller]){
         UIWindow * win = [[UIApplication sharedApplication].delegate window];
         for (UIView * view in [win subviews]) {
             if ([view isKindOfClass:[ToastAlertView class]] ) {
@@ -98,5 +97,18 @@
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         [self dismiss];
     });
+}
+
+- (BOOL)isTopShowController:(UIViewController *)controller
+{
+    UIViewController * rootController = [[UIApplication sharedApplication].delegate window].rootViewController;
+    if ([rootController isKindOfClass:[UINavigationController class]]) {
+        return controller == [(UINavigationController *)rootController topViewController];
+    }
+    
+    if ([rootController isKindOfClass:[UITabBarController class]]) {
+        return controller == [(UITabBarController *)rootController selectedViewController];
+    }
+    return controller == rootController;
 }
 @end

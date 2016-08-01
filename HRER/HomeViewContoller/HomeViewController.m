@@ -58,11 +58,14 @@
 
 - (void)initUI
 {
-    self.tableView = [[RefreshTableView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height - 49) style:UITableViewStylePlain];
+    UIView * view = [UIView new];
+    [self.view addSubview:view];
+    self.tableView = [[RefreshTableView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, [[UIScreen mainScreen] bounds].size.height) style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.view addSubview:self.tableView];
     [self initRefreshView];
+    self.tableView.tableFooterView  = [self footView];
 }
 
 - (void)initRefreshView

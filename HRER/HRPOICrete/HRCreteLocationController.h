@@ -10,6 +10,6 @@
 
 @interface HRCreteLocationController : UIViewController
 
-- (void)quaryData;
+- (void)showLoginPage;
 
 @end

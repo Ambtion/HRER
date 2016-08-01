@@ -16,6 +16,7 @@
 #import "HRUserHomeController.h"
 #import "RDRGrowingTextView.h"
 #import "RefreshTableView.h"
+#import "HcdActionSheet.h"
 
 static CGFloat const MaxToolbarHeight = 200.0f;
 
@@ -404,6 +405,7 @@ static CGFloat const MaxToolbarHeight = 200.0f;
         if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
             ws.poiInfo.intend = !ws.poiInfo.intend;
             [button setSelected:ws.poiInfo.intend];
+            [self showTotasViewWithMes:@"操作成功"];
         }else{
             [ws showTotasViewWithMes:[[responseObject objectForKey:@"response"] objectForKey:@"errorText"]];
         }
@@ -537,9 +539,10 @@ static CGFloat const MaxToolbarHeight = 200.0f;
 
 - (void)recomendCellDidClickUserButton:(HRRecomendCell *)cell
 {
-    HRUserHomeController * userHomeController = [[HRUserHomeController alloc] initWithUserID:nil];
+    HRUserHomeController * userHomeController = [[HRUserHomeController alloc] initWithUserID:cell.dataSource.user_id];
     [self.myNavController pushViewController:userHomeController animated:YES];
 }
+
 - (void)recomendCellDidClickRecomendButton:(HRRecomendCell *)cell
 {
     if([cell.dataSource.user_id isEqualToString:[[LoginStateManager getInstance] userLoginInfo].user_id] ||
@@ -588,37 +591,39 @@ static CGFloat const MaxToolbarHeight = 200.0f;
 #pragma mark - 删除评论
 - (void)deleteRecoemdWithCmtId:(NSString *)cmtId
 {
-    UIAlertController * actionSheet = [UIAlertController alertControllerWithTitle:@"" message:@"删除我的评论" preferredStyle:UIAlertControllerStyleActionSheet];
     
-    WS(ws);
-    UIAlertAction * enstureAction = [UIAlertAction actionWithTitle:@"删除" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        [MBProgressHUD showHUDAddedTo:ws.view animated:YES];
+    for (UIView * view in [UIApplication sharedApplication].keyWindow.subviews) {
+        if ([view isKindOfClass:[HcdActionSheet class]]) {
+            return;
+        }
+    }
+    
+    HcdActionSheet *sheet = [[HcdActionSheet alloc] initWithCancelStr:@"取消"
+                                                    otherButtonTitles:@[@"删除"]
+                                                          attachTitle:@"删除我的评论"];
+    
+    sheet.selectButtonAtIndex = ^(NSInteger index) {
+        if (index == 1) {
+            [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            
+            [NetWorkEntity deleteRecomendWithCmtId:cmtId success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
+                    [self showTotasViewWithMes:@"删除成功"];
+                    [self quartData];
+                }else{
+                    [self showTotasViewWithMes:@"删除失败"];
+                }
+                
+            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                [self showTotasViewWithMes:@"网络异常,稍后重试"];
+            }];
 
-        [NetWorkEntity deleteRecomendWithCmtId:cmtId success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            [MBProgressHUD hideHUDForView:ws.view animated:YES];
-            if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
-                [ws showTotasViewWithMes:@"删除成功"];
-                [ws quartData];
-            }else{
-                [ws showTotasViewWithMes:@"删除失败"];
-            }
+        }
+    };
+    [[UIApplication sharedApplication].keyWindow addSubview:sheet];
+    [sheet showHcdActionSheet];
 
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            [MBProgressHUD hideHUDForView:ws.view animated:YES];
-            [ws showTotasViewWithMes:@"网络异常,稍后重试"];
-        }];
-    }];
-
-    
-    UIAlertAction * cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        
-    }];
-    
-    [actionSheet addAction:enstureAction];
-    [actionSheet addAction:cancelAction];
-    
-    [self presentViewController:actionSheet animated:YES completion:^{
-        
-    }];
 }
 @end

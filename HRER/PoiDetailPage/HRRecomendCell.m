@@ -73,7 +73,7 @@
     
     NSString * str = [NSString stringWithFormat:@"%@",dataSource.content];
     if (dataSource.reply_name.length) {
-        str = [NSString stringWithFormat:@"%@回复:%@",dataSource.reply_name,str];
+        str = [NSString stringWithFormat:@"%@回复:%@",dataSource.user_name,str];
     }
 
     CGSize size = [self sizeWithText:str font:[UIFont systemFontOfSize:14.f] maxSize:CGSizeMake([[UIScreen mainScreen] bounds].size.width - 75 - 20.f, 10000)];

@@ -49,8 +49,7 @@
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        UIView * view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 100)];
-        _tableView.tableFooterView = view;
+        _tableView.tableFooterView = [self footView];
     }
     return _tableView;
 }
@@ -66,6 +65,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    UIView * view = [UIView new];
+    [self.view addSubview:view];
     [self.view addSubview:self.tableView];
 }
 

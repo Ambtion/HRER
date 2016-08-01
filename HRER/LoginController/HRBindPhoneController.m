@@ -204,9 +204,13 @@
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
             [self showTotasViewWithMes:@"绑定成功"];
-            [self.navigationController dismissViewControllerAnimated:YES completion:^{
-                
-            }];
+            if (self.navigationController.presentingViewController) {
+                [self.navigationController dismissViewControllerAnimated:YES completion:^{
+                    
+                }];
+            }else{
+                [self.navigationController popToRootViewControllerAnimated:YES];
+            }
         }else{
             [self showTotasViewWithMes:[[responseObject objectForKey:@"response"] objectForKey:@"errorText"]];
         }

@@ -283,15 +283,16 @@
 - (void)cusTomerNavBarItem
 {
     self.title = @"登录";
-    self.navigationItem.leftBarButtonItems = [self createBackButtonWithTarget:self seletor:@selector(backButtonDidClick:)];
+    if(self.navigationController.presentingViewController)
+        self.navigationItem.leftBarButtonItems = [self createBackButtonWithTarget:self seletor:@selector(backButtonDidClick:)];
+    else
+        self.navigationItem.leftBarButtonItems = nil;
     
 }
-
 
 #pragma mark - Login
 - (void)loginButtonClicked:(id)sender
 {
-    
     
     if (!self.userName.text.length)
     {
@@ -317,21 +318,27 @@
             if(userInfo){
                 [[LoginStateManager getInstance] LoginWithUserLoginInfo:userInfo];
                 [self showTotasViewWithMes:@"登陆成功"];
-                [self.myNavController dismissViewControllerAnimated:YES completion:^{
+                
+                //访问通讯录
+                [HRAddressBookManager readAllPersonAddressWithCallBack:^(NSArray *resultList, ABAuthorizationStatus status) {
                     
-                    //访问通讯录
-                    [HRAddressBookManager readAllPersonAddressWithCallBack:^(NSArray *resultList, ABAuthorizationStatus status) {
-                        
-                        if (resultList.count && [[LoginStateManager getInstance] userLoginInfo]) {
-                            //用户登录方法
-                            [NetWorkEntity sendPhotoNumberWithPhotoNumber:resultList success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                                
-                            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                
-                            }];
-                        }
-                    }];
+                    if (resultList.count && [[LoginStateManager getInstance] userLoginInfo]) {
+                        //用户登录方法
+                        [NetWorkEntity sendPhotoNumberWithPhotoNumber:resultList success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                            
+                        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                            
+                        }];
+                    }
                 }];
+                
+                if ([self.myNavController presentedViewController]) {
+                    [self.myNavController dismissViewControllerAnimated:YES completion:^{
+                    }];
+                    
+                }else{
+                    [self.myNavController popToRootViewControllerAnimated:YES];
+                }
             }else{
                 [self showTotasViewWithMes:[[responseObject objectForKey:@"response"] objectForKey:@"   "]];
             }

@@ -43,3 +43,7 @@
 @interface NSObject(HomePage)
 - (void)jumpToHomePage;
 @end
+
+@interface UIViewController(TopTableView)
+- (UIView *)footView;
+@end

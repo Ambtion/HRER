@@ -177,7 +177,6 @@
         make.centerY.equalTo(dealButton);
 
     }];
-
 }
 
 
@@ -308,9 +307,14 @@
             if(userInfo){
                 [[LoginStateManager getInstance] LoginWithUserLoginInfo:userInfo];
                 [self showTotasViewWithMes:@"注册成功"];
-                [self.myNavController dismissViewControllerAnimated:YES completion:^{
+                
+                if ([self.myNavController presentedViewController]) {
+                    [self.myNavController dismissViewControllerAnimated:YES completion:^{
+                    }];
                     
-                }];
+                }else{
+                    [self.myNavController popToRootViewControllerAnimated:YES];
+                }
             }else{
                 [self showTotasViewWithMes:[[responseObject objectForKey:@"response"] objectForKey:@"errorText"]];
             }

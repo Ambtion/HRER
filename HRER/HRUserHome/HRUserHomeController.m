@@ -70,6 +70,15 @@
     [self initUI];
 }
 
+- (void)showLoginPage
+{
+    //未登录弹出登录
+    if (![[LoginStateManager getInstance] userLoginInfo] && [self.myNavController viewControllers].count == 1) {
+        [HRLoginManager showLoginViewWithNavgation:self.myNavController];
+        return;
+    }
+}
+
 #pragma mark - initUI
 - (void)initUI
 {
@@ -152,7 +161,6 @@
 }
 
 #pragma mark - Action
-
 - (void)backButtonDidClick:(id)sender
 {
     [self.myNavController popViewControllerAnimated:YES];
