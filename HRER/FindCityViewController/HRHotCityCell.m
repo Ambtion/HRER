@@ -84,14 +84,13 @@
             make.left.equalTo(@(x));
         }];
     }
-    
 }
 
 - (UIButton *)creteOneButton
 {
     UIButton * button = [[UIButton alloc] init];
     [button setTitleColor:RGBA(0x5c, 0x5b, 0x5b, 1) forState:UIControlStateNormal];
-    button.titleLabel.font = [UIFont systemFontOfSize:16.f];
+    button.titleLabel.font = [UIFont systemFontOfSize:14.f];
     button.layer.cornerRadius = 2.f;
     button.layer.borderColor = RGBA(0xd7, 0xd7, 0xd7, 1).CGColor;
     button.layer.borderWidth = 0.5;
@@ -108,13 +107,9 @@
         return;
     }
     
-    if (hotArray.count != 6) {
-        return;
-    }
-    
     _hotArray = hotArray;
     
-    for (NSInteger i = 0; i < _hotArray.count; i++) {
+    for (NSInteger i = 0; i < MIN(_hotArray.count, 6); i++) {
         NSDictionary * cityInfo = _hotArray[i];
         UIButton * button = self.hotItems[i];
         [button setTitle:[cityInfo objectForKey:@"city_name"] forState:UIControlStateNormal];
@@ -126,7 +121,7 @@
 {
     if (button.tag < self.hotItems.count) {
         if ([_delegate respondsToSelector:@selector(hotCityCellDidSeletedHotCity:)]) {
-            [_delegate hotCityCellDidSeletedHotCity:self.hotItems[button.tag]];
+            [_delegate hotCityCellDidSeletedHotCity:self.hotArray[button.tag]];
         }
     }
 }

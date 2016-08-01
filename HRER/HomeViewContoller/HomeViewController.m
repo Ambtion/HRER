@@ -50,9 +50,6 @@
     self.view.backgroundColor = [UIColor whiteColor];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userLoginChnage:) name:LOGIN_IN object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userLoginChnage:) name:LOGIN_OUT object:nil];
-    
-    
-
     self.catergoryIndex = 0;
     [self initUI];
     [self quaryData];
@@ -373,7 +370,7 @@
 - (void)homeHeadView:(HomeHeadView *)view DidSeletedIndex:(NSInteger)index
 {
     self.catergoryIndex = index;
-    [self.tableView.refreshHeader beginRefreshing];
+    [self quaryData];
 }
 
 - (void)herePoiCellDidClick:(HRHerePoiCell *)cell
@@ -429,6 +426,6 @@
 #pragma mark - Login
 - (void)userLoginChnage:(id)sender
 {
-    [[[self tableView] refreshHeader] beginRefreshing];
+    [self quaryData];
 }
 @end

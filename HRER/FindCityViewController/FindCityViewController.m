@@ -84,6 +84,35 @@
     }
     [titleArray addObject:@"#"];
     self.sectionIndexTitles = titleArray;
+    
+    [self quaryData];
+    
+}
+
+
+- (void)quaryData
+{
+    
+    WS(weakSelf);
+
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [NetWorkEntity quaryHotCityListSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+        if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
+            NSArray * list = [responseObject objectForKey:@"response"];
+            if([list isKindOfClass:[NSArray class]]){
+                weakSelf.hotSource = list;
+                [weakSelf.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
+            }
+        }else{
+            [self showTotasViewWithMes:[[responseObject objectForKey:@"response"] objectForKey:@"errorText"]];
+        }
+
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+        [self showTotasViewWithMes:@"网络异常,稍后重试"];
+
+    }];
 }
 
 #pragma mark - Action
@@ -196,7 +225,9 @@
 
 - (void)hotCityCellDidSeletedHotCity:(NSDictionary *)cityInfo
 {
-    
+    NSString * cityName = [cityInfo objectForKey:@"city_name"];
+    NSInteger cityId = [[cityInfo objectForKey:@"id"] integerValue];
+    [self.myNavController pushViewController:[[CityHomeViewController alloc] initWithCityId:cityId cityName:cityName] animated:YES];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

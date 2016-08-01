@@ -107,9 +107,9 @@
 
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
 {
-    if ([viewController respondsToSelector:@selector(quaryData)]) {
-        [viewController performSelector:@selector(quaryData)];
-    }
+//    if ([viewController respondsToSelector:@selector(quaryData)]) {
+//        [viewController performSelector:@selector(quaryData)];
+//    }
 }
 
 #pragma mark - Init

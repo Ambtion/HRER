@@ -26,7 +26,7 @@
 /**
  *  热门城市
  */
-@property (nonatomic,strong) NSMutableArray * hotSource;
+@property (nonatomic,strong) NSArray * hotSource;
 
 /**
  *  去除iOS7新的功能api，tableView的分割线变成iOS6正常的样式

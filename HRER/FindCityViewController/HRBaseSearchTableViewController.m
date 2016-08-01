@@ -115,16 +115,22 @@
 #pragma mark Content Filtering
 
 - (void)filterContentForSearchText:(NSString *)searchText scope:(NSString *)scope {
+    
 	[self.filteredDataSource removeAllObjects];
     
     for (NSDictionary *contacts in self.dataSource) {
         NSArray * list = [contacts objectForKey:@"list"];
         for (NSDictionary *  contact in list) {
             NSString *contactName = [contact valueForKey:@"city_name"];
-            NSComparisonResult result = [contactName compare:searchText options:(NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch) range:NSMakeRange(0, [searchText length])];
-            if (result == NSOrderedSame) {
+            NSString *enName = [contact valueForKey:@"en_name"];
+
+            NSRange nameRange = [[contactName lowercaseString] rangeOfString:[scope lowercaseString]];
+            NSRange enNameResult = [[enName lowercaseString] rangeOfString:[scope lowercaseString]];
+            
+            if (nameRange.length || enNameResult.length) {
                 [self.filteredDataSource addObject:contact];
             }
+            
         }
     }
 }
@@ -141,9 +147,7 @@
 #pragma mark - UISearchDisplayController Delegate Methods
 
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
-    [self filterContentForSearchText:searchString scope:
-     [self.searchDisplayController.searchBar scopeButtonTitles][[self.searchDisplayController.searchBar selectedScopeButtonIndex]]];
-    
+    [self filterContentForSearchText:searchString scope:self.searchDisplayController.searchBar.text];
     return YES;
 }
 

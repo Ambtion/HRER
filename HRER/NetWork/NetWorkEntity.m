@@ -218,6 +218,16 @@ static CallBack upSucess;
 
 }
 
++ (void)quaryHotCityListSuccess:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                        failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+{
+    NSMutableDictionary * dic = [self commonComonPar];
+    NSString * urlStr = [NSString stringWithFormat:@"%@/hot_city",KNETBASEURL];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:urlStr parameters:dic success:success failure:failure];
+
+}
+
 /**
  *  获取城市各个分类的count
  */
