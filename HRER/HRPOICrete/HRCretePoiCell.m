@@ -80,14 +80,12 @@
         make.height.equalTo(@(16.f));
     }];
     
-    
     [self.subLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.titleLabel);
         make.right.lessThanOrEqualTo(self.locIconView.mas_left).offset(-10);
         make.top.equalTo(self.titleLabel.mas_bottom).offset(12.f);
         make.width.priorityLow();
     }];
-    
     
     
     [self.locLabel mas_makeConstraints:^(MASConstraintMaker *make) {

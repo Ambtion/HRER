@@ -10,6 +10,8 @@
 #import "HRPhotoBrowser.h"
 #import "HRImageScaleView.h"
 #import "HRPhotoBrowserConfig.h"
+#import "SMPageControl.h"
+#import "HcdActionSheet.h"
 
 @interface HRPhotoBrowser()<ImageScaleViewDelegate>
 
@@ -19,10 +21,10 @@
 {
     UIScrollView *_scrollView;
     BOOL _hasShowedFistView;
-    UILabel *_indexLabel;
-    UIButton *_saveButton;
     UIActivityIndicatorView *_indicatorView;
     BOOL _willDisappear;
+    
+    SMPageControl * _pageControll;
 }
 
 - (id)initWithFrame:(CGRect)frame
@@ -49,39 +51,58 @@
 
 - (void)setupToolbars
 {
-    // 1. 序标
-    UILabel *indexLabel = [[UILabel alloc] init];
-    indexLabel.bounds = CGRectMake(0, 0, 80, 30);
-    indexLabel.textAlignment = NSTextAlignmentCenter;
-    indexLabel.textColor = [UIColor whiteColor];
-    indexLabel.font = [UIFont boldSystemFontOfSize:20];
-    indexLabel.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
-    indexLabel.layer.cornerRadius = indexLabel.bounds.size.height * 0.5;
-    indexLabel.clipsToBounds = YES;
-    if (self.imageCount > 1) {
-        indexLabel.text = [NSString stringWithFormat:@"1/%ld", (long)self.imageCount];
+    [self addPageControll];
+}
+
+- (void)addPageControll
+{
+    _pageControll = [[SMPageControl alloc] initWithFrame:CGRectMake(110, _scrollView.bounds.size.height - 44, 100, 40)];
+    _pageControll.backgroundColor = [UIColor clearColor];
+    [_pageControll setIndicatorMargin:2];
+    [_pageControll setIndicatorDiameter:5];
+    [_pageControll setIndicatorMargin:2];
+    [_pageControll setIndicatorDiameter:5];
+    [_pageControll setPageIndicatorImage:[UIImage imageNamed:@"xiaoyuanquan"]];
+    [_pageControll setCurrentPageIndicatorImage:[UIImage imageNamed:@"xiaoyuanquan-cur"]];
+    _pageControll.numberOfPages = self.imageCount;
+    _pageControll.hidesForSinglePage = YES;
+    [_pageControll setUserInteractionEnabled:NO];
+    [self addSubview:_pageControll];
+}
+
+- (void)longpressToSaveImamge:(UILongPressGestureRecognizer *)gesture
+{
+    for (UIView * view in [UIApplication sharedApplication].keyWindow.subviews) {
+        if ([view isKindOfClass:[HcdActionSheet class]]) {
+            return;
+        }
     }
-    _indexLabel = indexLabel;
-    [self addSubview:indexLabel];
     
-    // 2.保存按钮
-    UIButton *saveButton = [[UIButton alloc] init];
-    [saveButton setTitle:@"保存" forState:UIControlStateNormal];
-    [saveButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    saveButton.backgroundColor = [UIColor colorWithRed:0.1f green:0.1f blue:0.1f alpha:0.90f];
-    saveButton.layer.cornerRadius = 5;
-    saveButton.clipsToBounds = YES;
-    [saveButton addTarget:self action:@selector(saveImage) forControlEvents:UIControlEventTouchUpInside];
-    _saveButton = saveButton;
-    [self addSubview:saveButton];
+    HcdActionSheet *sheet = [[HcdActionSheet alloc] initWithCancelStr:@"取消"
+                                                    otherButtonTitles:@[@"保存图片"]
+                                                          attachTitle:nil];
+    
+    sheet.selectButtonAtIndex = ^(NSInteger index) {
+        if (index == 1) {
+            [self saveImage];
+        }
+    };
+    [[UIApplication sharedApplication].keyWindow addSubview:sheet];
+    [sheet showHcdActionSheet];
 }
 
 - (void)saveImage
 {
-    int index = _scrollView.contentOffset.x / _scrollView.bounds.size.width;
-    UIImageView *currentImageView = _scrollView.subviews[index];
     
-    UIImageWriteToSavedPhotosAlbum(currentImageView.image, self, @selector(image:didFinishSavingWithError:contextInfo:), NULL);
+    int index = _scrollView.contentOffset.x / _scrollView.bounds.size.width;
+    HRImageScaleView *currentImageView = _scrollView.subviews[index];
+    
+    if (!currentImageView.imageView.image) {
+        return;
+    }
+
+    
+    UIImageWriteToSavedPhotosAlbum(currentImageView.imageView.image, self, @selector(image:didFinishSavingWithError:contextInfo:), NULL);
     
     UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] init];
     indicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
@@ -94,24 +115,17 @@
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo;
 {
     [_indicatorView removeFromSuperview];
-    
-    UILabel *label = [[UILabel alloc] init];
-    label.textColor = [UIColor whiteColor];
-    label.backgroundColor = [UIColor colorWithRed:0.1f green:0.1f blue:0.1f alpha:0.90f];
-    label.layer.cornerRadius = 5;
-    label.clipsToBounds = YES;
-    label.bounds = CGRectMake(0, 0, 150, 30);
-    label.center = self.center;
-    label.textAlignment = NSTextAlignmentCenter;
-    label.font = [UIFont boldSystemFontOfSize:17];
-    [[UIApplication sharedApplication].keyWindow addSubview:label];
-    [[UIApplication sharedApplication].keyWindow bringSubviewToFront:label];
     if (error) {
-        label.text = SDPhotoBrowserSaveImageFailText;
+        [self showTotasViewWithMes:@"保存失败"];
     }   else {
-        label.text = SDPhotoBrowserSaveImageSuccessText;
+        [self showTotasViewWithMes:@"保存成功"];
     }
-    [label performSelector:@selector(removeFromSuperview) withObject:nil afterDelay:1.0];
+}
+
+- (void)showTotasViewWithMes:(NSString *)message
+{
+    ToastAlertView * alertView = [[ToastAlertView alloc] initWithTitle:message controller:self];
+    [alertView show];
 }
 
 - (void)setupScrollView
@@ -122,22 +136,11 @@
     _scrollView.showsVerticalScrollIndicator = NO;
     _scrollView.pagingEnabled = YES;
     [self addSubview:_scrollView];
-    
+    _pageControll.numberOfPages = self.imageCount;
     for (int i = 0; i < self.imageCount; i++) {
         HRImageScaleView *imageView = [[HRImageScaleView alloc] initWithFrame:_scrollView.bounds];
         imageView.tag = i;
         imageView.Adelegate = self;
-        // 单击图片
-//        UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(photoClick:)];
-//
-//        // 双击放大图片
-//        UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageViewDoubleTaped:)];
-//        doubleTap.numberOfTapsRequired = 2;
-//        
-//        [singleTap requireGestureRecognizerToFail:doubleTap];
-//        
-//        [imageView addGestureRecognizer:singleTap];
-//        [imageView addGestureRecognizer:doubleTap];
         [_scrollView addSubview:imageView];
     }
     
@@ -185,16 +188,20 @@
     
     [self addSubview:tempView];
     
-    _saveButton.hidden = YES;
     
     [UIView animateWithDuration:SDPhotoBrowserHideImageAnimationDuration animations:^{
         tempView.frame = targetTemp;
         self.backgroundColor = [UIColor clearColor];
-        _indexLabel.alpha = 0.1;
+        _pageControll.alpha = 0.1;
     } completion:^(BOOL finished) {
         [self removeFromSuperview];
     }];
 
+}
+
+- (void)imageViewScale:(HRImageScaleView *)imageScale longPressCurImage:(UIImageView *)imageview
+{
+    [self longpressToSaveImamge:nil];
 }
 
 - (void)layoutSubviews
@@ -226,8 +233,10 @@
         [self showFirstImage];
     }
     
-    _indexLabel.center = CGPointMake(self.bounds.size.width * 0.5, 35);
-    _saveButton.frame = CGRectMake(30, self.bounds.size.height - 70, 50, 25);
+//    _indexLabel.center = CGPointMake(self.bounds.size.width * 0.5, 35);
+//    _saveButton.frame = CGRectMake(30, self.bounds.size.height - 70, 50, 25);
+    _pageControll.frame = CGRectMake(_scrollView.width /2.5 - 50.f, _scrollView.bounds.size.height - 44, 100, 40);
+    _pageControll.centerX = _scrollView.width/2.f;
 }
 
 - (void)show
@@ -260,7 +269,7 @@
     tempView.image = currentImageView.imageView.image;
     [self addSubview:tempView];
     
-    CGRect targetTemp = [_scrollView.subviews[self.currentImageIndex] bounds];
+    CGRect targetTemp = [[(HRImageScaleView *)_scrollView.subviews[self.currentImageIndex] imageView] frame];
     
     tempView.frame = rect;
     tempView.contentMode = [_scrollView.subviews[self.currentImageIndex] contentMode];
@@ -299,7 +308,8 @@
     
     
     if (!_willDisappear) {
-        _indexLabel.text = [NSString stringWithFormat:@"%d/%ld", index + 1, (long)self.imageCount];
+//        _indexLabel.text = [NSString stringWithFormat:@"%d/%ld", index + 1, (long)self.imageCount];
+        _pageControll.currentPage = index + 1;
     }
     [self setupImageOfImageViewForIndex:index];
 }

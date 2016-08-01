@@ -20,6 +20,8 @@
 @class HRImageScaleView;
 @protocol ImageScaleViewDelegate <NSObject>
 - (void)imageViewScale:(HRImageScaleView *)imageScale clickCurImage:(UIImageView *)imageview;
+- (void)imageViewScale:(HRImageScaleView *)imageScale longPressCurImage:(UIImageView *)imageview;
+
 @end
 
 @interface HRImageScaleView : UIScrollView<UIScrollViewDelegate,UIGestureRecognizerDelegate>

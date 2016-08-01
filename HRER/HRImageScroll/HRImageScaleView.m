@@ -86,6 +86,8 @@
     _imageView.backgroundColor = [UIColor clearColor];
     [self addSubview:_imageView];
     [_imageView setUserInteractionEnabled:YES];
+    
+    
     UITapGestureRecognizer * tapGesture1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapgestureWithTap:)];
     tapGesture1.delegate= self;
     tapGesture1.numberOfTapsRequired = 1;
@@ -96,7 +98,13 @@
     [_imageView addGestureRecognizer:tapGesture2];
     [tapGesture1 requireGestureRecognizerToFail:tapGesture2];
     
+    UILongPressGestureRecognizer * longpress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressImage:)];
+    longpress.delegate = self;
+    [_imageView addGestureRecognizer:longpress];
+    [tapGesture1 requireGestureRecognizerToFail:longpress];
+    
 }
+
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
 {
     return self.tapEnabled;
@@ -114,6 +122,13 @@
     if (tap.numberOfTapsRequired == 1) {
         if ([_Adelegate respondsToSelector:@selector(imageViewScale:clickCurImage:)])
             [_Adelegate imageViewScale:self clickCurImage:_imageView];
+    }
+}
+
+- (void)longPressImage:(UILongPressGestureRecognizer *)longpress
+{
+    if([_Adelegate respondsToSelector:@selector(imageViewScale:longPressCurImage:)]){
+        [_Adelegate imageViewScale:self longPressCurImage:(UIImageView *)longpress.view];
     }
 }
 
@@ -137,8 +152,6 @@
     self.zoomScale = 1;
     _imageView.frame = self.bounds;
 }
-
-
 
 - (void)scrollViewDidZoom:(UIScrollView *)aScrollView
 {

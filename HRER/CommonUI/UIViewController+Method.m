@@ -62,11 +62,14 @@
 - (void)showTotasViewWithMes:(NSString *)message
 {
     if(!message || ![message isKindOfClass:[NSString class]] || ![message length]) return;
-//    if (self.tabBarController) {
-//        if([self.myNavController topViewController] != self.tabBarController) return;
-//    }else{
-//        if([self.myNavController topViewController] != self) return;
-//    }
+    if ([[self.myNavController viewControllers] count] == 1) {
+        UITabBarController * tab = [[self.myNavController viewControllers] firstObject];
+        if (tab.selectedViewController != self) {
+            return;
+        }
+    }else{
+        if([self.myNavController topViewController] != self) return;
+    }
 
     ToastAlertView * alertView = [[ToastAlertView alloc] initWithTitle:message controller:self];
     [alertView show];
