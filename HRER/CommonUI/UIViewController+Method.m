@@ -140,13 +140,6 @@
     return self.navigationController;
 }
 
-- (void)jumpToHomePage
-{
-    [self.myNavController popToRootViewControllerAnimated:NO];
-    UITabBarController * tabBar = [[(UINavigationController *)[[[[UIApplication sharedApplication] delegate] window] rootViewController] viewControllers] firstObject];
-    [tabBar setSelectedIndex:0];
-}
-
 @end
 
 
@@ -165,6 +158,19 @@
     [self showTotasViewWithMes:@"网络异常，稍后重试"];
     [tableView.refreshHeader endRefreshing];
     [tableView.refreshFooter endRefreshing];
+}
+
+@end
+
+
+@implementation NSObject(HomePage)
+
+- (void)jumpToHomePage
+{
+    UINavigationController * nav = (UINavigationController *)[[[[UIApplication sharedApplication] delegate] window] rootViewController];
+    [nav popToRootViewControllerAnimated:NO];
+    UITabBarController * tabBar = [[nav viewControllers] firstObject];
+    [tabBar setSelectedIndex:0];
 }
 
 @end

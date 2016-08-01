@@ -78,7 +78,7 @@
 @property(nonatomic,strong)NSString * portrait;
 @property(nonatomic,assign)NSInteger recommand;
 @property(nonatomic,strong)NSString * intro;
-
+@property(nonatomic,assign)BOOL intend;
 
 @property(nonatomic,assign)CGFloat lat;
 @property(nonatomic,assign)CGGlyph lng;

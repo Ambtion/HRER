@@ -31,11 +31,15 @@
 - (UIBarButtonItem*)barSpaingItem;
 - (UINavigationItem *)myNavigationItem;
 - (UINavigationController *)myNavController;
-- (void)jumpToHomePage;
 @end
 
 
 @interface UIViewController(NetWork)
 - (void)dealErrorResponseWithTableView:(RefreshTableView *)tableview info:(NSDictionary *)dic;
 - (void)netErrorWithTableView:(RefreshTableView*)tableView;
+@end
+
+
+@interface NSObject(HomePage)
+- (void)jumpToHomePage;
 @end

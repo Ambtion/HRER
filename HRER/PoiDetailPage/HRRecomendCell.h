@@ -23,8 +23,9 @@
 
 @property(nonatomic,strong)UIView * lineView;
 
+@property(nonatomic,strong)HRRecomend * dataSource;
+
 + (CGFloat)heigthForCellWithData:(HRRecomend *)dataSource;
 
-- (void)setDataSrouce:(HRRecomend *)dataSource;
 
 @end

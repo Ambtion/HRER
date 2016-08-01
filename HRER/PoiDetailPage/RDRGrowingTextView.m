@@ -91,6 +91,7 @@
 
 - (void)setPlaceText:(NSString *)placeText
 {
+    [self.placeLabel setHidden:self.text.length];
     self.placeLabel.text = placeText;
 }
 

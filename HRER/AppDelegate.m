@@ -107,14 +107,9 @@
 
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
 {
-    if([viewController isKindOfClass:[FriendsViewController class]]){
-        [(FriendsViewController *)viewController quaryData];
+    if ([viewController respondsToSelector:@selector(quartData)]) {
+        [viewController performSelector:@selector(quartData)];
     }
-    
-    if([viewController isKindOfClass:[HRCreteLocationController class]]){
-        [(HRCreteLocationController *)viewController quaryData];
-    }
-
 }
 
 #pragma mark - Init

@@ -105,8 +105,8 @@ static NSInteger boundsOffset = 12.f;
 
 - (void)poiUserInfoBottomViewDidClickWantTogo:(HRPoiUserInfoBottomView *)vew
 {
-    if ([_delegate respondsToSelector:@selector(poiUserInfoCellDidClickWantTogo:)]) {
-        [_delegate poiUserInfoCellDidClickWantTogo:self];
+    if ([_delegate respondsToSelector:@selector(poiUserInfoCell:DidClickWantTogo:)]) {
+        [_delegate poiUserInfoCell:self DidClickWantTogo:vew.wantTogoButton];
     }
 }
 

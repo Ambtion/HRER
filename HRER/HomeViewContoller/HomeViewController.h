@@ -11,4 +11,6 @@
 
 @interface HomeViewController : UIViewController
 
+- (void)quartData;
+
 @end

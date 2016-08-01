@@ -42,6 +42,9 @@ static CGFloat const MaxToolbarHeight = 200.0f;
 @property(nonatomic,strong)HRPOIInfo * poiInfo;
 @property(nonatomic,strong)NSArray * recomendList;
 
+//评论
+@property(nonatomic,assign)CGFloat offsetY;
+@property(nonatomic,strong)NSString * cmt_id; //要回复的评论
 @end
 
 @implementation HRPoiDetailController
@@ -318,7 +321,7 @@ static CGFloat const MaxToolbarHeight = 200.0f;
                 cell = [[HRRecomendCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"HRRecomendCell"];
                 cell.delegate = self;
             }
-            [cell setDataSrouce:self.recomendList[indexPath.row]];
+            [cell setDataSource:self.recomendList[indexPath.row]];
             [cell.lineView setHidden:indexPath.row == [self tableView:tableView numberOfRowsInSection:indexPath.section] - 2];
             return cell;
         }
@@ -388,9 +391,26 @@ static CGFloat const MaxToolbarHeight = 200.0f;
 
 
 #pragma nark WantTogo
-- (void)poiUserInfoCellDidClickWantTogo:(HRPoiCreateInfoCell *)cell
+- (void)poiUserInfoCell:(HRPoiCreateInfoCell *)cell DidClickWantTogo:(UIButton *)button
 {
     
+    WS(ws);
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [NetWorkEntity quaryWantTogoPoidetailWithPoiId:self.poiInfo.poi_id wantTogo:!button.isSelected success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
+            ws.poiInfo.intend = !ws.poiInfo.intend;
+            [button setSelected:ws.poiInfo.intend];
+        }else{
+            [ws showTotasViewWithMes:[[responseObject objectForKey:@"response"] objectForKey:@"errorText"]];
+        }
+
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [MBProgressHUD hideHUDForView:ws.view animated:YES];
+        [ws showTotasViewWithMes:@"网络异常,稍后重试"];
+
+    }];
 }
 
 #pragma mark -
@@ -414,6 +434,7 @@ static CGFloat const MaxToolbarHeight = 200.0f;
     textView.layer.borderColor = [UIColor colorWithRed:200.0f/255.0f green:200.0f/255.0f blue:205.0f/255.0f alpha:1.0f].CGColor;
     textView.layer.borderWidth = 1.0f;
     textView.layer.masksToBounds = YES;
+    textView.enablesReturnKeyAutomatically = YES;
     textView.returnKeyType = UIReturnKeySend;
     textView.delegate = self;
     [_toolbar addSubview:textView];
@@ -448,6 +469,20 @@ static CGFloat const MaxToolbarHeight = 200.0f;
         return;
     }
     
+    
+    NSValue *keyboardBoundsValue = [[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey];
+    CGRect keyboardBounds;
+    [keyboardBoundsValue getValue:&keyboardBounds];
+    
+    if (self.tableView.contentInset.bottom == 0) {
+        self.offsetY =  self.tableView.contentOffset.y;
+    }
+    
+    UIEdgeInsets e = UIEdgeInsetsMake(0, 0, keyboardBounds.size.height, 0);
+    [[self tableView] setScrollIndicatorInsets:e];
+    [[self tableView] setContentInset:e];
+    [self.tableView setContentOffset:CGPointMake(0,
+                                                 self.tableView.contentSize.height + self.tableView.contentInset.bottom - self.tableView.height)];
     [_toolbar setHidden:NO];
 }
 
@@ -458,28 +493,31 @@ static CGFloat const MaxToolbarHeight = 200.0f;
     if (boundsRect.size.height == _toolbar.height) {
         return;
     }
+    UIEdgeInsets e = UIEdgeInsetsMake(0, 0, 0, 0);
+    [[self tableView] setScrollIndicatorInsets:e];
+    [[self tableView] setContentInset:e];
+
+    [self.tableView setContentOffset:CGPointMake(0,self.offsetY)];
     [_toolbar setHidden:YES];
-    //    NSDictionary * dic = [notification userInfo];
-    //    CGFloat duration = [[dic objectForKey:UIKeyboardAnimationDurationUserInfoKey] floatValue];
-//    [UIView animateWithDuration:0.3 delay:0 usingSpringWithDamping:0.9 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-////        self.contentView.centerY = self.height/2.f;
-//    } completion:^(BOOL finished) {
-//        
-//    }];
 }
 
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
     
     if([text isEqualToString:@"\n"]) {
+        [self recomendTocmToRec:self.cmt_id];
+        self.textView.text = nil;
+        self.cmt_id = nil;
         [textView resignFirstResponder];
         return NO;
     }
     return YES;
 }
+
 #pragma mark - Recomend
 - (void)poiUserInfoCellDidClickRecomend:(HRPoiCreateInfoCell *)cell
 {
+    self.cmt_id = nil;
     [self.textView setPlaceText:@"评论"];
     [self.textView becomeFirstResponder];
 }
@@ -502,7 +540,83 @@ static CGFloat const MaxToolbarHeight = 200.0f;
 }
 - (void)recomendCellDidClickRecomendButton:(HRRecomendCell *)cell
 {
-    [self.textView becomeFirstResponder];
+    if([cell.dataSource.user_id isEqualToString:[[LoginStateManager getInstance] userLoginInfo].user_id] ||
+       [cell.dataSource.reply_id isEqualToString:[[LoginStateManager getInstance] userLoginInfo].user_id]){
+        //删除个人评论或者个人的回复
+        [self  deleteRecoemdWithCmtId:cell.dataSource.cmnt_id];
+    }else if (cell.dataSource.reply_id.length) {
+        
+        self.cmt_id = cell.dataSource.cmnt_id;
+        //回复回复了评论的某人的评论
+        [self.textView setPlaceText:[NSString stringWithFormat:@"回复%@:",cell.dataSource.reply_name]];
+        [self.textView becomeFirstResponder];
+    }else{
+        self.cmt_id = cell.dataSource.cmnt_id;
+        //回复某条评论
+        [self.textView setPlaceText:[NSString stringWithFormat:@"回复%@:",cell.dataSource.user_name]];
+        [self.textView becomeFirstResponder];
+    }
 }
 
+- (void)recomendTocmToRec:(NSString *)recId
+{
+    
+    WS(ws);
+
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+
+    [NetWorkEntity recomendPoiWithPoiId:self.poiInfo.poi_id cmtToRec:recId content:self.textView.text success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        [MBProgressHUD hideHUDForView:ws.view animated:YES];
+        if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
+            [ws showTotasViewWithMes:@"评论成功"];
+            [ws quartData];
+        }else{
+            [ws showTotasViewWithMes:@"评论失败"];
+        }
+
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [MBProgressHUD hideHUDForView:ws.view animated:YES];
+        [ws showTotasViewWithMes:@"网络异常,稍后重试"];
+
+    }];
+}
+
+
+#pragma mark - 删除评论
+- (void)deleteRecoemdWithCmtId:(NSString *)cmtId
+{
+    UIAlertController * actionSheet = [UIAlertController alertControllerWithTitle:@"" message:@"删除我的评论" preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    WS(ws);
+    UIAlertAction * enstureAction = [UIAlertAction actionWithTitle:@"删除" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        [MBProgressHUD showHUDAddedTo:ws.view animated:YES];
+
+        [NetWorkEntity deleteRecomendWithCmtId:cmtId success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            [MBProgressHUD hideHUDForView:ws.view animated:YES];
+            if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
+                [ws showTotasViewWithMes:@"删除成功"];
+                [ws quartData];
+            }else{
+                [ws showTotasViewWithMes:@"删除失败"];
+            }
+
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            [MBProgressHUD hideHUDForView:ws.view animated:YES];
+            [ws showTotasViewWithMes:@"网络异常,稍后重试"];
+        }];
+    }];
+
+    
+    UIAlertAction * cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    
+    [actionSheet addAction:enstureAction];
+    [actionSheet addAction:cancelAction];
+    
+    [self presentViewController:actionSheet animated:YES completion:^{
+        
+    }];
+}
 @end

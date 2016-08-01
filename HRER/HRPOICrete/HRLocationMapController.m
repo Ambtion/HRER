@@ -147,7 +147,17 @@
         
         if (array.count > 0) {
             CLPlacemark * placeMark = [array objectAtIndex:0];
-            self.addressInputView.textField.text = placeMark.name;
+            [NetWorkEntity  quaryCityInfoWithCityName:placeMark.locality  lat:self.pinLocation.coordinate.latitude lng:self.pinLocation.coordinate.longitude success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
+                    NSDictionary * userInfoDic  = [responseObject objectForKey:@"response"];
+                    self.cityId = [[userInfoDic objectForKey:@"city_id"] integerValue];
+                    self.addressInputView.textField.text = placeMark.name;
+                }
+                
+            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                
+            }];
+
         }
      }];
 

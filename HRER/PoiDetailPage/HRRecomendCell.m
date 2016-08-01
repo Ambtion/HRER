@@ -158,8 +158,14 @@
     
 }
 
-- (void)setDataSrouce:(HRRecomend * )dataSource
+- (void)setDataSource:(HRRecomend *)dataSource
 {
+    
+    if (_dataSource == dataSource) {
+        return;
+    }
+    _dataSource = dataSource;
+    
     [self.porImageView sd_setImageWithURL:nil placeholderImage:[UIImage imageNamed:@"man"]];
     NSString * str = [NSString stringWithFormat:@"%@",dataSource.content];
     if (dataSource.reply_name.length) {

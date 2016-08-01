@@ -11,7 +11,7 @@
 @class HRPoiCreateInfoCell;
 @protocol HRPoiCreateInfoCellDelegate <NSObject>
 
-- (void)poiUserInfoCellDidClickWantTogo:(HRPoiCreateInfoCell *)cell;
+- (void)poiUserInfoCell:(HRPoiCreateInfoCell *)cell DidClickWantTogo:(UIButton *)button;
 - (void)poiUserInfoCellDidClickRecomend:(HRPoiCreateInfoCell *)cell;
 
 @end

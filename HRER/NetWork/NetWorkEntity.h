@@ -226,6 +226,40 @@
                             failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
 
++ (void)quaryWantTogoPoidetailWithPoiId:(NSString *)poiId
+                               wantTogo:(BOOL)wantTogo
+                                success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                                failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+
+
+/**
+ 评论
+ ===================================================================================================================
+ */
+
+/**
+ *  评论 or 回复评论
+ *
+ *  @param poiId   poi ID
+ *  @param recId   回复的评论ID，如果没有着表示不是回复评论
+ *  @param content 评论内容
+ */
+
++ (void)recomendPoiWithPoiId:(NSString *)poiId
+                    cmtToRec:(NSString *)recId
+                     content:(NSString *)content
+                     success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                     failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+
+
+/**
+ *  删除评论
+ */
+
++ (void)deleteRecomendWithCmtId:(NSString *)cmtId
+                        success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                        failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+
 /**
  *  创建POI
  *  ===================================================================================================================

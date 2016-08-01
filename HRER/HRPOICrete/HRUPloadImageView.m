@@ -502,9 +502,7 @@
     [MBProgressHUD showHUDAddedTo:[[[UIApplication sharedApplication] delegate] window] animated:YES];
 
     NSArray * locArray = [self.location componentsSeparatedByString:@","];
-    
     WS(ws);
-    
     [NetWorkEntity uploadPoiWithTitle:self.titleLabel.text
                                   des:self.textDesView.text
                                  type:self.poiType
@@ -513,13 +511,19 @@
                                   lat:[[locArray firstObject] floatValue]
                                   loc:[[locArray lastObject] floatValue]
                                images:self.photosArray  success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
+                                   [MBProgressHUD hideHUDForView:[[[UIApplication sharedApplication] delegate] window] animated:YES];
                                    if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
-                                       [MBProgressHUD hideHUDForView:[[[UIApplication sharedApplication] delegate] window] animated:YES];
-                                    
+                                       
+                                       [ws showTotasViewWithMes:@"上传成功"];
+                                       [ws jumpToHomePage];
+                                       [ws disAppear];
+                                       
+                                   }else{
+                                       [ws showTotasViewWithMes:[[responseObject objectForKey:@"response"] objectForKey:@"errorText"]];
                                    }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
+        [MBProgressHUD hideHUDForView:ws animated:YES];
+        [ws showTotasViewWithMes:@"网络异常,稍后重试"]; 
     }];
     
 }

@@ -468,6 +468,50 @@ static CallBack upSucess;
     [manager GET:urlStr parameters:dic success:success failure:failure];
 }
 
++ (void)quaryWantTogoPoidetailWithPoiId:(NSString *)poiId
+                               wantTogo:(BOOL)wantTogo
+                                success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                                failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+{
+    NSMutableDictionary * dic = [self commonComonPar];
+    [dic setObject:poiId forKey:@"poi_id"];
+    [dic setObject:@(wantTogo) forKey:@"intend"];
+    NSString *  urlStr= [NSString stringWithFormat:@"%@/poi_intend",KNETBASEURL];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager POST:urlStr parameters:dic success:success failure:failure];
+
+}
+
++ (void)recomendPoiWithPoiId:(NSString *)poiId
+                    cmtToRec:(NSString *)recId
+                     content:(NSString *)content
+                     success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                     failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+{
+    NSMutableDictionary * dic = [self commonComonPar];
+    [dic setObject:poiId forKey:@"poi_id"];
+    if(recId.length){
+        [dic setValue:recId forKey:@"to_cmt"];
+    }
+    if (content.length) {
+        [dic setValue:content forKey:@"content"];
+    }
+    NSString *  urlStr= [NSString stringWithFormat:@"%@/poi_comment",KNETBASEURL];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager POST:urlStr parameters:dic success:success failure:failure];
+
+}
+
++ (void)deleteRecomendWithCmtId:(NSString *)cmtId
+                        success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                        failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+{
+    NSMutableDictionary * dic = [self commonComonPar];
+    [dic setObject:cmtId forKey:@"cmt_id"];
+        NSString *  urlStr= [NSString stringWithFormat:@"%@/poi_comment_del",KNETBASEURL];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager POST:urlStr parameters:dic success:success failure:failure];
+}
 
 /**
  *  创建POI

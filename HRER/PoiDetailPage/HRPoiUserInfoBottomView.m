@@ -11,7 +11,6 @@
 @interface HRPoiUserInfoBottomView()
 
 @property(nonatomic,strong)UILabel * timeLabel;
-@property(nonatomic,strong)UIButton * wantTogoButton;
 @property(nonatomic,strong)UIButton * recomendButton;
 
 @end
@@ -42,6 +41,7 @@
     
     self.wantTogoButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.wantTogoButton addTarget:self action:@selector(wantGoButton:) forControlEvents:UIControlEventTouchUpInside];
+    [self.wantTogoButton setImage:[UIImage imageNamed:@"add"] forState:UIControlStateSelected];
     [self.wantTogoButton setImage:[UIImage imageNamed:@"xiangqu"] forState:UIControlStateNormal];
     [self addSubview:self.wantTogoButton];
     
@@ -88,6 +88,7 @@
 - (void)setData:(HRPOIInfo *)data
 {
     self.timeLabel.text = data.ctimeStr;
+    [self.recomendButton setSelected:data.intend];
 }
 
 
