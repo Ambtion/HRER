@@ -386,7 +386,7 @@ static CallBack upSucess;
                         failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
     
-    if(countyId == 11 && 0){
+    if(countyId == 11){
     
         /**
          *  国内用高德
