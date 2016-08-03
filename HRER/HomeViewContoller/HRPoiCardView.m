@@ -30,7 +30,7 @@
 
 + (CGFloat)heightForCardView
 {
-    return 125.f;
+    return 140.f;
 }
 
 
@@ -121,8 +121,6 @@
     for (int i = 0; i < 4; i++) {
         
         PhotoFrameView * frameView = [[PhotoFrameView alloc] init];
-//        UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(frameViewDidClick:)];
-//        [frameView addGestureRecognizer:tap];
         [frameView setHidden:YES];
         frameView.tag = i;
         [self.frameImageViews addObject:frameView];
@@ -140,14 +138,14 @@
     }
     
     [self.frameImageViews mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.titleLabel.mas_bottom).offset(8.f);
+        make.top.equalTo(self.subLabel.mas_bottom).offset(8.f);
         CGFloat width = 52.f;
         make.size.mas_equalTo(CGSizeMake(width, width + 2));
     }];
     
     
     [self.locLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(lastView.mas_right);
+        make.right.equalTo(self.bgImageView.mas_right).offset(-10);
         make.bottom.equalTo(self.bgImageView.mas_bottom).offset(-10);
         make.height.equalTo(@(14.f));
     }];

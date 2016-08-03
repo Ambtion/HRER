@@ -62,7 +62,7 @@
     self.totalCountLabel.textAlignment = NSTextAlignmentCenter;
     [self.contentView addSubview:self.totalCountLabel];
     
-    self.catergoryView = [[HRCatergoryScrollView alloc] initWithFrame:CGRectMake(0, 0, self.width, 67)];
+    self.catergoryView = [[HRCatergoryScrollView alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, 67)];
     self.catergoryView.delegate = self;
     [self.contentView addSubview:self.catergoryView];
 

@@ -23,7 +23,7 @@
 
 + (CGFloat)heightForCardView
 {
-    return 100.f;
+    return 105.f;
 }
 
 

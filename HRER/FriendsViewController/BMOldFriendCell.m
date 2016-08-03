@@ -79,11 +79,12 @@
     [self.mainTitle mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.poraitView.mas_right).offset(5.f);
         make.top.equalTo(self.contentView).offset(24.f);
+        make.width.priorityLow();
     }];
-
+    
     [self.subTitle mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.mainTitle.mas_right).offset(7.f);
-        make.right.equalTo(self.favButton.mas_left).offset(-10);
+//        make.right.equalTo(self.favButton.mas_left).offset(-10).priorityLow();
         make.centerY.equalTo(self.mainTitle);
     }];
     
