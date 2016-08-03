@@ -92,7 +92,7 @@
     
     textInput.textField.font = font;
     textInput.textField.borderStyle = UITextBorderStyleNone;
-    
+    textInput.textField.keyboardType = UIKeyboardTypeDefault;
     NSMutableAttributedString * muAt = [[NSMutableAttributedString alloc]initWithString:text];
     [muAt addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:12.f]  range:NSMakeRange(0, text.length)];
     [muAt addAttribute:NSForegroundColorAttributeName value:RGB_Color(0x5b, 0x5b, 0x5b) range:NSMakeRange(0, text.length)];

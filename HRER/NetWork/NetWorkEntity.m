@@ -447,7 +447,7 @@ static CallBack upSucess;
         }
         
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-        [manager GET:@"http://47.89.13.167/redirect_request" parameters:@{
+        [manager POST:@"http://47.89.13.167/redirect_request" parameters:@{
                                          @"url":urlStr
                                          } success:success failure:failure];
         
