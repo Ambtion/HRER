@@ -199,7 +199,7 @@
 #pragma mark Map
 - (void)refreshMapPinViews
 {
-    NSMutableArray * array  = [NSMutableArray arrayWithCapacity:0];    
+    NSMutableArray * array  = [NSMutableArray arrayWithCapacity:0];
     for (int i = 0; i < self.dataArray.count; i++) {
         HRPOIInfo * poiInfo = self.dataArray[i];
         

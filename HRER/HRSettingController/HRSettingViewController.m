@@ -15,6 +15,7 @@
 #import "HRSettingNickController.h"
 #import "HRSetBindController.h"
 #import "HRResetPassControlller.h"
+#import "NetWorkEntity.h"
 
 #define TRIPHELPSYSCONFIGCELLHEIGTH (50.f)
 
@@ -35,6 +36,7 @@
 {
     [super viewWillAppear:animated];
     [self.myNavController setNavigationBarHidden:YES];
+    [self loadData];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -48,7 +50,6 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     [self initUI];
-    [self loadData];
 
 }
 
@@ -111,9 +112,6 @@
     [view addSubview:self.loginOutButton];
     
 }
-
-
-
 
 #pragma mark - DataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -296,19 +294,54 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
 {
     
-    //获得编辑过的图片
-//    UIImage * editImage = [editingInfo objectForKey: @"UIImagePickerControllerEditedImage"];
-
-    
     [[self myNavController] dismissViewControllerAnimated:YES completion:^{
         
     }];
+
+    //获得编辑过的图片
+    UIImage * editImage = [editingInfo objectForKey: @"UIImagePickerControllerEditedImage"];
+    [self uploadUserImage:editImage];
+    
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
+    
+    [[self myNavController] dismissViewControllerAnimated:YES completion:^{
+        
+    }];
     //获得编辑过的图片
-//    UIImage * editImage = [info objectForKey: @"UIImagePickerControllerEditedImage"];
+    UIImage * editImage = [info objectForKey: @"UIImagePickerControllerEditedImage"];
+    [self uploadUserImage:editImage];
+}
+
+- (void)uploadUserImage:(UIImage *)image
+{
+    
+    WS(ws);
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    [NetWorkEntity updateUserName:nil password:nil image:image bindweixin:-1 success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+
+        if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
+            [ws showTotasViewWithMes:@"修改成功"];
+            NSDictionary * userInfoDic  = [responseObject objectForKey:@"response"];
+            HRUserLoginInfo * userInfo = [HRUserLoginInfo yy_modelWithJSON:userInfoDic];
+            [[LoginStateManager getInstance] updateUserInfo:userInfo];
+            [ws.tableView reloadData];
+            
+        }else{
+            [ws showTotasViewWithMes:[[responseObject objectForKey:@"response"] objectForKey:@"errorText"]];
+        }
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self showTotasViewWithMes:@"网络异常,稍后重试"];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+
+    }];
+    
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker

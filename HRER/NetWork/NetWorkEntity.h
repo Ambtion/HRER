@@ -279,6 +279,19 @@
                    success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                    failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
+
+/**
+ *  修改用户信息
+ */
+
++ (void)updateUserName:(NSString *)nickName
+              password:(NSString *)password
+                 image:(UIImage *)image
+            bindweixin:(NSInteger)bindWeixin
+               success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+               failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+
+
 @end
 
 

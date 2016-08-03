@@ -386,7 +386,7 @@ static CallBack upSucess;
                         failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
     
-    if(countyId == 11){
+    if(countyId == 11 && 0){
     
         /**
          *  国内用高德
@@ -402,54 +402,57 @@ static CallBack upSucess;
 
     }else{
         
+//        http://47.89.13.167/redirect_request
+        /**
+         *  谷歌
+         */
+        
+        NSMutableDictionary * dic = [NSMutableDictionary dictionaryWithCapacity:0];
+        NSString * loc = [NSString stringWithFormat:@"%f,%f",lat,lng];;
+        [dic setValue:loc forKey:@"location"];
+        [dic setValue:@"en" forKey:@"language"];
+        [dic setValue:@(50000) forKey:@"radius"];
+        [dic setValue:@"AIzaSyAFjcj5LmbOxOLPRbums3DvZiMaT38DfVI" forKey:@"key"];
+        
+        [dic setValue:keyWord forKey:@"name"];
+        
+        NSString * keytype = nil;
+        switch (poiType) {
+            case 0:
+                // 美食 food
+                keytype = @"bakery | bar | cafe | food | restaurant";
+                break;
+            case 1:
+                // 观光
+                
+                keytype = @"beauty_salon | bowling_alley | campground | casino | gym | hair_care | movie_rental | movie_theater | night_club | spa";
+                break;
+            case 2:
+                keytype = @"aquarium | art_gallery | bicycle_store | book_store | church|city_hall | clothing_store | embassy|florist | furniture_store | grocery_or_supermarket | hardware_store | home_goods_store | jewelry_store | library | mosque | museum |park | post_office | university | shoe_store | shopping_mall | stadium | train_station | zoo";
+                // 购物 shopping_mall
+                break;
+            case 3:
+                keytype = @"lodging";
+                // 酒店
+                break;
+            default:
+                break;
+        }
+        
+        NSString *  urlStr = @"https://maps.googleapis.com/maps/api/place/nearbysearch/json";
+        
+        
+        for (NSString * key in [dic allKeys]) {
+            urlStr = [urlStr stringByAppendingString:[NSString stringWithFormat:@"%@=%@&",key,[dic objectForKey:key]]];
+        }
+        
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        [manager GET:@"http://47.89.13.167/redirect_request" parameters:@{
+                                         @"url":urlStr
+                                         } success:success failure:failure];
+        
     }
     
-//    /**
-//     *  谷歌
-//     */
-//    
-//    AFSecurityPolicy *securityPolicy = [AFSecurityPolicy defaultPolicy];
-//    securityPolicy.allowInvalidCertificates = YES;
-//    [AFHTTPRequestOperationManager manager].securityPolicy = securityPolicy;
-//    
-//    NSMutableDictionary * dic = [NSMutableDictionary dictionaryWithCapacity:0];
-//    NSString * loc = [NSString stringWithFormat:@"%f,%f",lat,lng];;
-//    [dic setValue:loc forKey:@"location"];
-//    [dic setValue:@"en" forKey:@"language"];
-//    [dic setValue:@(50000) forKey:@"radius"];
-//    [dic setValue:@"AIzaSyAFjcj5LmbOxOLPRbums3DvZiMaT38DfVI" forKey:@"key"];
-//    
-//    
-//    [dic setValue:keyWord forKey:@"name"];
-//    
-//    NSString * keytype = nil;
-//    switch (poiType) {
-//        case 0:
-//            // 美食 food
-//            keytype = @"bakery | bar | cafe | food | restaurant";
-//            break;
-//        case 1:
-//            // 观光
-//            
-//            keytype = @"beauty_salon | bowling_alley | campground | casino | gym | hair_care | movie_rental | movie_theater | night_club | spa";
-//            break;
-//        case 2:
-//            keytype = @"aquarium | art_gallery | bicycle_store | book_store | church|city_hall | clothing_store | embassy|florist | furniture_store | grocery_or_supermarket | hardware_store | home_goods_store | jewelry_store | library | mosque | museum |park | post_office | university | shoe_store | shopping_mall | stadium | train_station | zoo";
-//            // 购物 shopping_mall
-//            break;
-//        case 3:
-//            keytype = @"lodging";
-//            // 酒店
-//            break;
-//        default:
-//            break;
-//    }
-//    
-//    NSString *  urlStr = @"https://maps.googleapis.com/maps/api/place/nearbysearch/json";
-//
-//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-//    [manager GET:urlStr parameters:dic success:success failure:failure];
-//
 }
 
 
@@ -509,7 +512,7 @@ static CallBack upSucess;
 {
     NSMutableDictionary * dic = [self commonComonPar];
     [dic setObject:cmtId forKey:@"cmt_id"];
-        NSString *  urlStr= [NSString stringWithFormat:@"%@/poi_comment_del",KNETBASEURL];
+    NSString *  urlStr= [NSString stringWithFormat:@"%@/poi_comment_del",KNETBASEURL];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager POST:urlStr parameters:dic success:success failure:failure];
 }
@@ -595,6 +598,49 @@ static CallBack upSucess;
     [manager POST:urlStr parameters:dic constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         [formData appendPartWithFileData:data name:@"image" fileName:@"1" mimeType:@"image/jpeg"];
     } success:success failure:failure];
+}
+
+/**
+ *  修改用户信息
+ */
+
++ (void)updateUserName:(NSString *)nickName
+              password:(NSString *)password
+                 image:(UIImage *)image
+            bindweixin:(NSInteger)bindWeixin
+               success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+               failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+{
+    NSMutableDictionary * dic = [self commonComonPar];
+    if (nickName.length) {
+        [dic setValue:nickName forKey:@"name"];
+    }
+    if (password.length) {
+        [dic setValue:password forKey:@"password"];
+    }
+    if (bindWeixin != -1) {
+        [dic setValue:@(bindWeixin) forKey:@"weixin"];
+    }
+    if (bindWeixin != -1) {
+        [dic setValue:@(bindWeixin) forKey:@"weixin"];
+    }
+
+    if (image) {
+        [self uploadImags:@[image] sucess:^(NSArray *array) {
+            if(array.count){
+                [dic setValue:[array firstObject] forKey:@"image"];
+                NSString *  urlStr= [NSString stringWithFormat:@"%@/edit_user_info",KNETBASEURL];
+                AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+                [manager POST:urlStr parameters:dic success:success failure:failure];
+            }else{
+                return [self missParagramercallBackFailure:failure];
+            }
+        }];
+    }else{
+        NSString *  urlStr= [NSString stringWithFormat:@"%@/edit_user_info",KNETBASEURL];
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        [manager POST:urlStr parameters:dic success:success failure:failure];
+    }
 }
 
 

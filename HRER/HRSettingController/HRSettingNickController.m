@@ -122,5 +122,29 @@
         [self showTotasViewWithMes:@"请输入要修改昵称"];
         return;
     }
+    
+    WS(ws);
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    [NetWorkEntity updateUserName:self.nickText.textField.text password:nil image:nil bindweixin:-1 success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
+            [ws showTotasViewWithMes:@"修改成功"];
+            NSDictionary * userInfoDic  = [responseObject objectForKey:@"response"];
+            HRUserLoginInfo * userInfo = [HRUserLoginInfo yy_modelWithJSON:userInfoDic];
+            [[LoginStateManager getInstance] updateUserInfo:userInfo];
+            [ws.navigationController popViewControllerAnimated:YES];
+            
+        }else{
+            [ws showTotasViewWithMes:[[responseObject objectForKey:@"response"] objectForKey:@"errorText"]];
+        }
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self showTotasViewWithMes:@"网络异常,稍后重试"];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+    }];
+
 }
 @end

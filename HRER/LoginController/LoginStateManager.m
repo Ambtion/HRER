@@ -94,6 +94,14 @@
     }
 }
 
+- (void)updateUserInfo:(HRUserLoginInfo *)userLoginInfo
+{
+    if (userLoginInfo) {
+        self.userLoginInfo = userLoginInfo;
+        [self saveUserInfoInCache:userLoginInfo];
+    }
+}
+
 - (void)logout
 {
     self.userLoginInfo = nil;

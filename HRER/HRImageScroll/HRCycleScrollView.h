@@ -13,6 +13,8 @@
 
 @protocol HRCycleScrollViewDataSource <NSObject>
 
+@optional
+
 - (NSInteger)hrCycleScrollViewNumberofPage:(HRCycleScrollView *)scrollView;
 - (HRImageScaleView *)hrCycleScrollView:(HRCycleScrollView *)cycleScrollView pageAtIndex:(NSInteger)index;
 

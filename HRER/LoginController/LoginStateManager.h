@@ -17,6 +17,8 @@
 
 - (void)LoginWithUserLoginInfo:(HRUserLoginInfo *)userLoginInfo;
 
+- (void)updateUserInfo:(HRUserLoginInfo *)userLoginInfo;
+
 - (HRUserLoginInfo *)userLoginInfo;
 
 - (void)logout;
