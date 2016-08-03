@@ -377,16 +377,17 @@ static CallBack upSucess;
  创建列表
  ===================================================================================================================
  */
-+ (void)quaryPoiListWithKeyWord:(NSString *)keyWord
-                        poiType:(NSInteger)poiType
-                      countyId:(NSInteger)countyId
-                            lat:(CGFloat)lat
-                            loc:(CGFloat)lng
-                        success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
-                        failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
++ (void)quaryPoiListWith:(BOOL)isUseGoogleSearve
+                 keyWord:(NSString *)keyWord
+                 poiType:(NSInteger)poiType
+                countyId:(NSInteger)countyId
+                     lat:(CGFloat)lat
+                     loc:(CGFloat)lng
+                 success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                 failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
     
-    if(countyId == 11){
+    if(!isUseGoogleSearve){
     
         /**
          *  国内用高德
@@ -439,7 +440,7 @@ static CallBack upSucess;
                 break;
         }
         
-        NSString *  urlStr = @"https://maps.googleapis.com/maps/api/place/nearbysearch/json";
+        NSString *  urlStr = @"https://maps.googleapis.com/maps/api/place/nearbysearch/json?";
         
         
         for (NSString * key in [dic allKeys]) {
@@ -447,7 +448,7 @@ static CallBack upSucess;
         }
         
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-        [manager POST:@"http://47.89.13.167/redirect_request" parameters:@{
+        [manager GET:@"http://47.89.13.167/redirect_request" parameters:@{
                                          @"url":urlStr
                                          } success:success failure:failure];
         

@@ -100,6 +100,11 @@
 
 @end
 
+@interface HRGooglPoiInfo : HRCretePOIInfo
+
+@end
+
+
 @interface HRRecomend : NSObject<NSCopying,NSCopying>
 
 @property(nonatomic,strong)NSString * cmnt_id; //评论Id

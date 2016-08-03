@@ -75,6 +75,7 @@
     self.countyId = 11;
     self.categortIndex = 0;
     [self initUI];
+    [self quaryData];
 }
 
 - (void)showLoginPage
@@ -147,22 +148,33 @@
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
+    BOOL isUseGoogle = (self.countyId != 11);
+
+    //暂时写死
+    isUseGoogle = YES;
+    
     WS(weakSelf);
     
-    [NetWorkEntity quaryPoiListWithKeyWord:!self.inputView.textFiled.text.length ? @"美食" : self.inputView.textFiled.text
-                                   poiType:self.categortIndex + 1
-                                  countyId:self.countyId
-                                       lat:self.lat  loc:self.lng success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                                           
-                                           [MBProgressHUD hideAllHUDsForView:weakSelf.view animated:YES];
-                                           [weakSelf.tableView.refreshHeader endRefreshing];
-                                           NSArray * poiS = [responseObject objectForKey:@"pois"];
-                                           weakSelf.dataArray = [weakSelf analysisPoiModelFromArray:poiS];
-                                           [weakSelf.tableView reloadData];
-                                       } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                           [MBProgressHUD hideAllHUDsForView:weakSelf.view animated:YES];
-                                           [weakSelf.tableView.refreshHeader endRefreshing];
-                                       }];
+    [NetWorkEntity quaryPoiListWith:isUseGoogle
+                            keyWord:!self.inputView.textFiled.text.length ? @"美食" : self.inputView.textFiled.text
+                            poiType:self.categortIndex + 1
+                           countyId:self.countyId
+                                lat:self.lat  loc:self.lng success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                    
+                                    [MBProgressHUD hideAllHUDsForView:weakSelf.view animated:YES];
+                                    [weakSelf.tableView.refreshHeader endRefreshing];
+                                    if(!isUseGoogle){
+                                        NSArray * poiS = [responseObject objectForKey:@"pois"];
+                                        weakSelf.dataArray = [weakSelf analysisPoiModelFromArray:poiS];
+                                    }else{
+                                        NSArray * poiS = [responseObject objectForKey:@"results"];
+                                        weakSelf.dataArray = [weakSelf analysisGooglePoiModelFromArray:poiS];
+                                    }
+                                    [weakSelf.tableView reloadData];
+                                } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                    [MBProgressHUD hideAllHUDsForView:weakSelf.view animated:YES];
+                                    [weakSelf.tableView.refreshHeader endRefreshing];
+                                }];
     
 }
 
@@ -182,6 +194,25 @@
     return mArray;
 }
 
+
+- (NSArray *)analysisGooglePoiModelFromArray:(NSArray *)array
+{
+    if (![array isKindOfClass:[NSArray class]]) {
+        return nil;
+    }
+    
+    NSMutableArray * mArray = [NSMutableArray arrayWithCapacity:0];
+    for (NSDictionary * dic  in array) {
+        HRGooglPoiInfo * model = [HRGooglPoiInfo yy_modelWithJSON:dic];
+        if (model) {
+            NSDictionary * geometry = [dic objectForKey:@"geometry"];
+            NSDictionary * loc = [geometry objectForKey:@"location"];
+            model.location = [NSString stringWithFormat:@"%@,%@",[loc objectForKey:@"lat"],[loc objectForKey:@"lng"]];
+            [mArray addObject:model];
+        }
+    }
+    return mArray;
+}
 
 #pragma mark - SearchBar
 - (SearchInPutView *)inputView

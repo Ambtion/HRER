@@ -123,6 +123,9 @@ static CGFloat const MaxToolbarHeight = 200.0f;
 
 - (void)initContentView
 {
+    
+    UIView * view = [UIView new];
+    [self.view addSubview:view];
     self.tableView = [[RefreshTableView alloc] initWithFrame:CGRectMake(0, -20, self.view.width, self.view.height + 20) style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;

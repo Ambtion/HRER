@@ -206,13 +206,14 @@
  *
  *  @param poiType  0 -> 美食 1 ->观光 2->购物 3->酒店
  */
-+ (void)quaryPoiListWithKeyWord:(NSString *)keyWord
-                        poiType:(NSInteger)poiType
-                       countyId:(NSInteger)countyId
-                            lat:(CGFloat)lat
-                            loc:(CGFloat)lng
-                        success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
-                        failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
++ (void)quaryPoiListWith:(BOOL)isUseGoogleSearve
+                 keyWord:(NSString *)keyWord
+                 poiType:(NSInteger)poiType
+                countyId:(NSInteger)countyId
+                     lat:(CGFloat)lat
+                     loc:(CGFloat)lng
+                 success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                 failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
 
 /**

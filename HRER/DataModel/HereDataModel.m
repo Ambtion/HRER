@@ -74,6 +74,19 @@ YYModelSynthCoderAndHash
              };
 }
 
+
+@end
+
+@implementation HRGooglPoiInfo
++ (nullable NSDictionary<NSString *, id> *)modelCustomPropertyMapper
+{
+    return @{
+             @"iconStr" : @"icon",
+             @"location": @"location",
+             @"title": @"name",
+             @"subTitle":@"vicinity"
+             };
+}
 @end
 
 @implementation HRRecomend

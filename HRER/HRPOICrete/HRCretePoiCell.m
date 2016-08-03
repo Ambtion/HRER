@@ -116,8 +116,13 @@
 
 - (void)setData:(HRCretePOIInfo *)data
 {
+    if (_data == data) {
+        return;
+    }
+    
     _data = data;
-    self.portraitImage.backgroundColor = [UIColor redColor];
+    NSString * url  = [NSString stringWithFormat:@"%@?url=%@",@"http://47.89.13.167/redirect_request",data.iconStr];
+    [self.portraitImage sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"man"]];
     self.titleLabel.text = data.title;
     self.subLabel.text = data.subTitle;
     self.locLabel.text = [NSString stringWithFormat:@"%ldm",(long)data.distance];
