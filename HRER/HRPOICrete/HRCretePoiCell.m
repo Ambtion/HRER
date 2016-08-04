@@ -68,7 +68,7 @@
     [self addSubview:self.locLabel];
     
     [self.portraitImage mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake(46.f, 46.f));
+        make.size.mas_equalTo(CGSizeMake(48.f, 48.f));
         make.left.equalTo(self).offset(10.f);
         make.centerY.equalTo(self);
     }];

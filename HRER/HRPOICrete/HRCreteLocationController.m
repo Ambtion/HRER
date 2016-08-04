@@ -151,7 +151,7 @@
     BOOL isUseGoogle = (self.countyId != 11);
 
     //暂时写死
-    isUseGoogle = YES;
+//    isUseGoogle = YES;
     
     WS(weakSelf);
     

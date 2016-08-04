@@ -114,6 +114,8 @@
     self.icarousel.pagingEnabled = YES;
     self.icarousel.dataSource = self;
     self.icarousel.bounces = NO;
+//    self.icarousel.layer.borderColor = [RGB_Color(0xe5, 0xe5, 0xe5) CGColor];
+//    self.icarousel.layer.borderWidth = 0.5;
     [self.icarousel reloadData];
     [self.contentView addSubview:self.icarousel];
     
@@ -170,8 +172,8 @@
     [self.contentView addSubview:bgView];
     
     [bgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self).offset(12.f);
-        make.right.equalTo(self).offset(-12.f);
+        make.left.equalTo(self.contentView).offset(12.f);
+        make.right.equalTo(self.contentView).offset(-12.f);
         make.top.equalTo(self.addressLabel.mas_bottom).offset(22.f);
         make.height.equalTo(@(142.f));
     }];
@@ -247,7 +249,7 @@
     
     
     [priceBgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.contentView).offset(11.f);
+        make.left.equalTo(bgView).offset(11.f);
         make.height.equalTo(@(30.f));
         make.width.equalTo(@(69 + 20.f));
         make.centerY.equalTo(bgView.mas_bottom).offset(-21);
