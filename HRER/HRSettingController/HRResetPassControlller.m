@@ -76,7 +76,7 @@
 - (void)initContentView
 {
     
-    self.phoneNumber = [self createTextFileWithFont:[UIFont systemFontOfSize:13] placeholderPlaceText:@"+86"];
+    self.phoneNumber = [self createTextFileWithFont:[UIFont systemFontOfSize:14] placeholderPlaceText:@"+86"];
     self.phoneNumber.textField.keyboardType = UIKeyboardTypeNumberPad;
     [self.view  addSubview:self.phoneNumber];
     
@@ -88,11 +88,11 @@
     [self.codeButton addTarget:self action:@selector(getValidCode:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.codeButton];
     
-    self.phoneCode = [self createTextFileWithFont:[UIFont systemFontOfSize:13] placeholderPlaceText:@"发送验证码"];
+    self.phoneCode = [self createTextFileWithFont:[UIFont systemFontOfSize:14] placeholderPlaceText:@"发送验证码"];
     self.phoneCode.textField.keyboardType = UIKeyboardTypeNumberPad;
     [self.view addSubview:self.phoneCode];
     
-    self.passWord = [self createTextFileWithFont:[UIFont systemFontOfSize:13] placeholderPlaceText:@"新密码"];
+    self.passWord = [self createTextFileWithFont:[UIFont systemFontOfSize:14] placeholderPlaceText:@"新密码"];
     [self.view addSubview:self.passWord];
     
     //注册
@@ -109,7 +109,7 @@
     [self.phoneNumber mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view).offset(10.f);
         make.right.equalTo(self.view).offset(-10.f);
-        make.height.equalTo(@(42.f));
+        make.height.equalTo(@(49.f));
         make.top.equalTo(@(64 + 15));
     }];
     

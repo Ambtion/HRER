@@ -73,14 +73,14 @@
 
 - (void)initContentView
 {
-    self.nickText = [self createTextFileWithFont:[UIFont systemFontOfSize:13] placeholderPlaceText:@"输入昵称"];
+    self.nickText = [self createTextFileWithFont:[UIFont systemFontOfSize:14] placeholderPlaceText:@"输入昵称"];
     self.nickText.textField.keyboardType = UIKeyboardTypeNumberPad;
     [self.view  addSubview:self.nickText];
     
     [self.nickText mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view).offset(10.f);
         make.right.equalTo(self.view).offset(-10.f);
-        make.height.equalTo(@(42.f));
+        make.height.equalTo(@(49.f));
         make.top.equalTo(@(64 + 15));
     }];
 }
@@ -94,7 +94,7 @@
     textInput.textField.borderStyle = UITextBorderStyleNone;
     textInput.textField.keyboardType = UIKeyboardTypeDefault;
     NSMutableAttributedString * muAt = [[NSMutableAttributedString alloc]initWithString:text];
-    [muAt addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:12.f]  range:NSMakeRange(0, text.length)];
+    [muAt addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:14.f]  range:NSMakeRange(0, text.length)];
     [muAt addAttribute:NSForegroundColorAttributeName value:RGB_Color(0x5b, 0x5b, 0x5b) range:NSMakeRange(0, text.length)];
     [textInput.textField setAttributedPlaceholder:muAt];
     return textInput;

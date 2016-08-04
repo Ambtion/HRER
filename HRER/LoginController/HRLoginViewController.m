@@ -55,7 +55,7 @@
     
     self.userName = [[UITextField alloc] init];
     self.userName = [[UITextField alloc] initWithFrame:CGRectZero];
-    self.userName.font = [UIFont systemFontOfSize:13.f];
+    self.userName.font = [UIFont systemFontOfSize:14.f];
     self.userName.returnKeyType = UIReturnKeyNext;
     self.userName.keyboardType = UIKeyboardTypeNumberPad;
     self.userName.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
@@ -89,8 +89,8 @@
     self.passIcon.image = [UIImage imageNamed:@"password"];
     [self.view addSubview:self.passIcon];
     
-    self.password = [[UITextField alloc] initWithFrame:CGRectMake(18 + 10, 39, 205, 35)];
-    self.password.font = [UIFont systemFontOfSize:13];
+    self.password = [[UITextField alloc] initWithFrame:CGRectMake(18 + 10, 39, 205, 49)];
+    self.password.font = [UIFont systemFontOfSize:14];
     self.password.textColor = RGB_Color(86, 86, 86);
     self.password.backgroundColor = [UIColor clearColor];
     self.password.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
@@ -121,7 +121,7 @@
     UIButton * forgetPas = [UIButton buttonWithType:UIButtonTypeCustom];
     [forgetPas setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [forgetPas setTitle:@"忘记密码" forState:UIControlStateNormal];
-    [[forgetPas titleLabel] setFont:[UIFont systemFontOfSize:12.f]];
+    [[forgetPas titleLabel] setFont:[UIFont systemFontOfSize:14.f]];
     [forgetPas addTarget:self action:@selector(findPassButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:forgetPas];
     
@@ -129,7 +129,7 @@
     UIButton * registerButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [registerButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [registerButton setTitle:@"快速注册" forState:UIControlStateNormal];
-    [[registerButton titleLabel] setFont:[UIFont systemFontOfSize:12.f]];
+    [[registerButton titleLabel] setFont:[UIFont systemFontOfSize:14.f]];
     [registerButton addTarget:self action:@selector(registerButtonDidClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:registerButton];
 
@@ -162,7 +162,7 @@
     [self.userNamebgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view).offset(10.f);
         make.right.equalTo(self.view).offset(-10.f);
-        make.height.equalTo(@(42.f));
+        make.height.equalTo(@(49.f));
         make.top.equalTo(self.view).offset(22.f+44+20);
     }];
     
@@ -356,7 +356,7 @@
 - (void)webCatLogin:(id)sender
 {
     
-    
+    WS(ws);
     [HRWebCatLogin sendAuthRequestcallBack:^(BaseResp *resp) {
          
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -366,13 +366,19 @@
         }
         [NetWorkEntity loginWithWebCatAccess_token:[(SendAuthResp *)resp code] success:^(AFHTTPRequestOperation *operation, id responseObject) {
             
+            [MBProgressHUD hideHUDForView:ws.view animated:YES];
             if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
     
                 NSDictionary * userInfoDic  = [responseObject objectForKey:@"response"];
                 HRUserLoginInfo * userInfo = [HRUserLoginInfo yy_modelWithJSON:userInfoDic];
                 if(userInfo){
-                    [[LoginStateManager getInstance] LoginWithUserLoginInfo:userInfo];
-                    [self.navigationController  pushViewController:[[HRBindPhoneController alloc] init] animated:YES];
+                    if (userInfo.phone.length) {
+                        [[LoginStateManager getInstance] LoginWithUserLoginInfo:userInfo];
+                        [self.navigationController popViewControllerAnimated:YES];
+                    }else{
+                        [self.navigationController  pushViewController:[[HRBindPhoneController alloc] init] animated:YES];
+                    }
+                    
                 }else{
                     [self showTotasViewWithMes:[[responseObject objectForKey:@"response"] objectForKey:@"errorText"]];
                 }

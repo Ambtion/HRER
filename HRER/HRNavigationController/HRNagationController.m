@@ -31,9 +31,7 @@
     return YES;
 }
 
-
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
-
 {
     if(self.isAnimaiton){
         return;
@@ -83,6 +81,9 @@
 - (NSArray *)popToRootViewControllerAnimated:(BOOL)animated
 {
     if(self.isAnimaiton){
+        return nil;
+    }
+    if ([[self topViewController] isKindOfClass:[HRLoginViewController class]]) {
         return nil;
     }
     return [super popToRootViewControllerAnimated:animated];

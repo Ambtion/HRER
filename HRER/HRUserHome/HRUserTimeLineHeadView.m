@@ -82,7 +82,7 @@
     }];
     
     [self.locCityTitle mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.bgImageView).offset(17.f);
+        make.left.equalTo(self.bgImageView).offset(18.f);
         make.centerY.equalTo(self.bgImageView);
         make.right.lessThanOrEqualTo(self.foodIcon.mas_left);
     }];

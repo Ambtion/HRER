@@ -25,7 +25,7 @@
 
 + (CGFloat)heightForView
 {
-    return 145;
+    return 160;
 }
 
 - (instancetype)init
@@ -40,28 +40,27 @@
 
 - (void)initUI
 {
-    self.image = [[UIImage imageNamed:@"information_bg"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
-    
+    self.image = [UIImage imageNamed:@"information_bg"];
     self.portraitView = [[UIImageView alloc] init];
     [self addSubview:self.portraitView];
     
     self.nameLabel = [[UILabel alloc] init];
-    self.nameLabel.font = [UIFont systemFontOfSize:12.f];
+    self.nameLabel.font = [UIFont systemFontOfSize:14.f];
     self.nameLabel.textColor = [UIColor whiteColor];
     [self addSubview:self.nameLabel];
     
     self.passLabel = [[UILabel alloc] init];
-    self.passLabel.font = [UIFont systemFontOfSize:12.f];
+    self.passLabel.font = [UIFont systemFontOfSize:14.f];
     self.passLabel.textColor = [UIColor whiteColor];
     [self addSubview:self.passLabel];
     
     self.friendsLabel = [[UILabel alloc] init];
-    self.friendsLabel.font = [UIFont systemFontOfSize:12.f];
+    self.friendsLabel.font = [UIFont systemFontOfSize:14.f];
     self.friendsLabel.textColor = [[UIColor whiteColor] colorWithAlphaComponent:0.6];
     [self addSubview:self.friendsLabel];
     
     self.visitCityLabel = [[UILabel alloc] init];
-    self.visitCityLabel.font = [UIFont systemFontOfSize:12.f];
+    self.visitCityLabel.font = [UIFont systemFontOfSize:14.f];
     self.visitCityLabel.textColor = [[UIColor whiteColor] colorWithAlphaComponent:0.6];
     [self addSubview:self.visitCityLabel];
     

@@ -29,12 +29,12 @@
 {
     self.maintitle = [[UILabel alloc] init];
     self.maintitle.textColor = RGB_Color(0x5b, 0x5b, 0x5b);
-    self.maintitle.font = [UIFont systemFontOfSize:15.f];
+    self.maintitle.font = [UIFont systemFontOfSize:16.f];
     [self.contentView addSubview:self.maintitle];
     
     self.subTitle = [[UILabel alloc] init];
     self.subTitle.textColor = RGB_Color(0xcc, 0xcc, 0xcc);
-    self.subTitle.font = [UIFont systemFontOfSize:12.f];
+    self.subTitle.font = [UIFont systemFontOfSize:14.f];
     [self.contentView addSubview:self.subTitle];
 
     self.lineView = [[UIView alloc] init];

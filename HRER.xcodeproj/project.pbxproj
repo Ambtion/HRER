@@ -112,7 +112,6 @@
 		E1A23F901D3F530D00D73CE6 /* HRCretePoiCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A23F8F1D3F530D00D73CE6 /* HRCretePoiCell.m */; };
 		E1A23FB71D3F74B200D73CE6 /* HRPoiNoFoundTipsView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A23FB61D3F74B200D73CE6 /* HRPoiNoFoundTipsView.m */; };
 		E1A8154A1D0D483B005E4443 /* HRCatergoryScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A815491D0D483B005E4443 /* HRCatergoryScrollView.m */; };
-		E1AC6CF51CFD3D1F00EADF02 /* HRNewPassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1AC6CF41CFD3D1F00EADF02 /* HRNewPassViewController.m */; };
 		E1C303701CF43C1F001C016B /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E1C3036B1CF43C1F001C016B /* libWeChatSDK.a */; };
 		E1C303711CF43C1F001C016B /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = E1C3036C1CF43C1F001C016B /* README.txt */; };
 		E1C303731CF43CDA001C016B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1C303721CF43CDA001C016B /* SystemConfiguration.framework */; };
@@ -347,8 +346,6 @@
 		E1A23FB61D3F74B200D73CE6 /* HRPoiNoFoundTipsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRPoiNoFoundTipsView.m; sourceTree = "<group>"; };
 		E1A815481D0D483B005E4443 /* HRCatergoryScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRCatergoryScrollView.h; sourceTree = "<group>"; };
 		E1A815491D0D483B005E4443 /* HRCatergoryScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRCatergoryScrollView.m; sourceTree = "<group>"; };
-		E1AC6CF31CFD3D1F00EADF02 /* HRNewPassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRNewPassViewController.h; sourceTree = "<group>"; };
-		E1AC6CF41CFD3D1F00EADF02 /* HRNewPassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRNewPassViewController.m; sourceTree = "<group>"; };
 		E1C3036B1CF43C1F001C016B /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
 		E1C3036C1CF43C1F001C016B /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		E1C3036D1CF43C1F001C016B /* WechatAuthSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatAuthSDK.h; sourceTree = "<group>"; };
@@ -554,8 +551,6 @@
 				B80E94A31D07EEE1000C979A /* HRBindPhoneController.m */,
 				B8DF93391CFB2BF1007C4DF9 /* LoginStateManager.h */,
 				B8DF933A1CFB2BF1007C4DF9 /* LoginStateManager.m */,
-				E1AC6CF31CFD3D1F00EADF02 /* HRNewPassViewController.h */,
-				E1AC6CF41CFD3D1F00EADF02 /* HRNewPassViewController.m */,
 			);
 			path = LoginController;
 			sourceTree = "<group>";
@@ -1149,7 +1144,6 @@
 				B8C00E0E1D3D0518009FB17F /* HRUserHomeHeadView.m in Sources */,
 				E1CC469A1D409BE500202F98 /* BaseAlertView.m in Sources */,
 				E14BD4951CEEF53F00C66E14 /* AppDelegate.m in Sources */,
-				E1AC6CF51CFD3D1F00EADF02 /* HRNewPassViewController.m in Sources */,
 				B8CDA7671D37BDE800136AF7 /* HRPoiUserInfoBottomView.m in Sources */,
 				E1CC47331D45F92800202F98 /* RDRGrowingTextView.m in Sources */,
 				E14BD4C21CEEFBF900C66E14 /* HRMapView.m in Sources */,

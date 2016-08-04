@@ -14,7 +14,7 @@
 #import "HereDataModel.h"
 #import "HRWebCatShare.h"
 #import "HRQQManager.h"
-
+#import "HRUserHomeController.h"
 
 @interface FriendsViewController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,BMOldFriendCellDelegate>
 
@@ -96,11 +96,11 @@
 - (void)showLoginPage
 {
     //未登录弹出登录
-    if (![[LoginStateManager getInstance] userLoginInfo]) {
+    if (![[LoginStateManager getInstance] userLoginInfo] &&
+        ![[self.navigationController topViewController] isKindOfClass:[HRLoginViewController class]]) {
         [HRLoginManager showLoginViewWithNavgation:self.myNavController];
         return;
     }
-    
 }
 
 - (void)initRefreshView
@@ -152,18 +152,19 @@
 {
     if (!_inputView) {
         _inputView = [[SearchInPutView alloc] initWithFrame:CGRectMake(0, 0, 200, 55)];
-        NSMutableAttributedString * str = [[NSMutableAttributedString alloc] initWithString:@"查找朋友  输入朋友昵称或这里护照号"];
+        NSMutableAttributedString * str = [[NSMutableAttributedString alloc] initWithString:@" 查找朋友/找到老朋友输入朋友昵称或这里护照号"];
         
         UIFont * font1 = [UIFont systemFontOfSize:14.f];
         UIColor * color1 = RGB_Color(0x59, 0x59, 0x59);
         UIFont * font2 = [UIFont systemFontOfSize:12.f];
         UIColor * color2 = RGB_Color(0xb9, 0xb9, 0xb9);
         
-        [str addAttribute:NSFontAttributeName value:font1 range:NSMakeRange(0, 4)];
-        [str addAttribute:NSForegroundColorAttributeName value:color1 range:NSMakeRange(0, 4)];
+        CGFloat length = 11;
+        [str addAttribute:NSFontAttributeName value:font1 range:NSMakeRange(0, length)];
+        [str addAttribute:NSForegroundColorAttributeName value:color1 range:NSMakeRange(0, length)];
         
-        [str addAttribute:NSFontAttributeName value:font2 range:NSMakeRange(4, str.length - 4)];
-        [str addAttribute:NSForegroundColorAttributeName value:color2 range:NSMakeRange(4, str.length - 4)];
+        [str addAttribute:NSFontAttributeName value:font2 range:NSMakeRange(length, str.length - length)];
+        [str addAttribute:NSForegroundColorAttributeName value:color2 range:NSMakeRange(length, str.length - length)];
         _inputView.textFiled.attributedPlaceholder = str;
         [_inputView.textButton addTarget:self action:@selector(searchButtonClick:) forControlEvents:UIControlEventTouchUpInside];
         _inputView.textFiled.delegate = self;
@@ -326,7 +327,6 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
         [self showTotasViewWithMes:@"网络异常,稍后重试"];
-        
     }];
 }
 
@@ -340,6 +340,9 @@
         }else{
             [self shareToWeb];
         }
+    }else{
+        HRFriendsInfo * info = [self.dataArray objectAtIndex:indexPath.row];
+        [self.navigationController pushViewController:[[HRUserHomeController alloc] initWithUserID:info.uid] animated:YES];
     }
 }
 

@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "HRLoginViewController.h"
 
 #define LOGIN_IN            @"__LOGIN_IN__"
 #define LOGIN_OUT           @"__LOGIN_OUT__"

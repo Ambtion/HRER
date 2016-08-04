@@ -30,6 +30,12 @@
 {
     [super viewWillAppear:animated];
     self.title = @"绑定手机";
+    
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
 }
 
 - (void)viewDidLoad
@@ -53,12 +59,12 @@
     
     self.titleLabel = [[UILabel alloc] init];
     self.titleLabel.textColor = RGB_Color(0xbd, 0xb7, 0xb9);
-    self.titleLabel.font = [UIFont systemFontOfSize:13.f];
+    self.titleLabel.font = [UIFont systemFontOfSize:14.f];
     self.titleLabel.text = @"使用手机号注册快速找到通讯录朋友";
     [self.view addSubview:self.titleLabel];
     
     
-    self.phoneNumber = [self createTextFileWithFont:[UIFont systemFontOfSize:13] placeholderPlaceText:@"+86"];
+    self.phoneNumber = [self createTextFileWithFont:[UIFont systemFontOfSize:14] placeholderPlaceText:@"+86"];
     self.phoneNumber.textField.keyboardType = UIKeyboardTypeNumberPad;
     [self.view  addSubview:self.phoneNumber];
     
@@ -95,7 +101,7 @@
     [self.phoneNumber mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view).offset(10.f);
         make.right.equalTo(self.view).offset(-10.f);
-        make.height.equalTo(@(42.f));
+        make.height.equalTo(@(49.f));
         make.top.equalTo(self.titleLabel.mas_bottom).offset(15);
         
     }];
@@ -103,11 +109,10 @@
     [self.codeButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.phoneNumber);
         make.right.equalTo(self.phoneNumber).offset(-5);
-        make.height.equalTo(@(30));
+        make.height.equalTo(@(42));
         make.width.equalTo(@(60.f));
     }];
-    
-    
+        
     [self.phoneCode mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.height.equalTo(self.phoneNumber);
         make.top.equalTo(self.phoneNumber.mas_bottom).offset(10);
@@ -190,7 +195,7 @@
     textInput.textField.borderStyle = UITextBorderStyleNone;
     
     NSMutableAttributedString * muAt = [[NSMutableAttributedString alloc]initWithString:text];
-    [muAt addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:12.f]  range:NSMakeRange(0, text.length)];
+    [muAt addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:14.f]  range:NSMakeRange(0, text.length)];
     [muAt addAttribute:NSForegroundColorAttributeName value:RGB_Color(0x5b, 0x5b, 0x5b) range:NSMakeRange(0, text.length)];
     [textInput.textField setAttributedPlaceholder:muAt];
     return textInput;
@@ -203,7 +208,7 @@
     [NetWorkEntity bindPhoneNumber:self.phoneNumber.textField.text VerCode:self.phoneCode.textField.text success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
-            [self showTotasViewWithMes:@"绑定成功"];
+            [self showTotasViewWithMes:@"绑定成功"]; 
             if (self.navigationController.presentingViewController) {
                 [self.navigationController dismissViewControllerAnimated:YES completion:^{
                     

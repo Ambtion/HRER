@@ -30,13 +30,13 @@
 - (void)initUI
 {
     self.valueLabel = [[UILabel alloc] init];
-    self.valueLabel.font = [UIFont boldSystemFontOfSize:16.f];
+    self.valueLabel.font = [UIFont boldSystemFontOfSize:21.f];
     self.valueLabel.textAlignment = NSTextAlignmentCenter;
     self.valueLabel.textColor = [UIColor whiteColor];
     [self addSubview:self.valueLabel];
     
     self.titleLabel = [[UILabel alloc] init];
-    self.titleLabel.font = [UIFont systemFontOfSize:12.f];
+    self.titleLabel.font = [UIFont systemFontOfSize:14.f];
     self.titleLabel.textColor = RGB_Color(0xcc, 0xcc, 0xcc);
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
     [self addSubview:self.titleLabel];

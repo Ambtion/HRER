@@ -39,6 +39,7 @@
 
     self.porView = [[UIImageView alloc] init];
     self.porView.layer.cornerRadius = 35.f;
+    self.porView.clipsToBounds = YES;
     [self.contentView addSubview:self.porView];
 
     self.passLabel = [[UILabel alloc] init];

@@ -17,6 +17,7 @@
 #import "FindCityViewController.h"
 #import "RefreshTableView.h"
 
+
 @interface HRCreteLocationController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,HRCreateCategoryCell,FindCityViewControllerDelegate>
 
 @property(nonatomic,strong)RefreshTableView * tableView;
@@ -81,7 +82,7 @@
 - (void)showLoginPage
 {
     //未登录弹出登录
-    if (![[LoginStateManager getInstance] userLoginInfo]) {
+    if (![[LoginStateManager getInstance] userLoginInfo] && ![[self.navigationController topViewController] isKindOfClass:[HRLoginViewController class]]) {
         [HRLoginManager showLoginViewWithNavgation:self.myNavController];
         return;
     }

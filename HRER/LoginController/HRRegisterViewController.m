@@ -67,12 +67,12 @@
     
     self.titleLabel = [[UILabel alloc] init];
     self.titleLabel.textColor = RGB_Color(0xbd, 0xb7, 0xb9);
-    self.titleLabel.font = [UIFont systemFontOfSize:13.f];
+    self.titleLabel.font = [UIFont systemFontOfSize:14.f];
     self.titleLabel.text = @"使用手机号注册快速找到通讯录朋友";
     [self.view addSubview:self.titleLabel];
     
     
-    self.phoneNumber = [self createTextFileWithFont:[UIFont systemFontOfSize:13] placeholderPlaceText:@"+86"];
+    self.phoneNumber = [self createTextFileWithFont:[UIFont systemFontOfSize:14] placeholderPlaceText:@"+86"];
     self.phoneNumber.textField.keyboardType = UIKeyboardTypeNumberPad;
     [self.view  addSubview:self.phoneNumber];
     
@@ -85,14 +85,14 @@
     [self.codeButton addTarget:self action:@selector(getValidCode:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.codeButton];
     
-    self.phoneCode = [self createTextFileWithFont:[UIFont systemFontOfSize:13] placeholderPlaceText:@"发送验证码"];
+    self.phoneCode = [self createTextFileWithFont:[UIFont systemFontOfSize:14] placeholderPlaceText:@"发送验证码"];
     self.phoneCode.textField.keyboardType = UIKeyboardTypeNumberPad;
     [self.view addSubview:self.phoneCode];
     
-    self.passWord = [self createTextFileWithFont:[UIFont systemFontOfSize:13] placeholderPlaceText:@"密码 密码不少于6位"];
+    self.passWord = [self createTextFileWithFont:[UIFont systemFontOfSize:14] placeholderPlaceText:@"密码 密码不少于6位"];
     [self.view addSubview:self.passWord];
     
-    self.nick = [self createTextFileWithFont:[UIFont systemFontOfSize:13] placeholderPlaceText:@"昵称"];
+    self.nick = [self createTextFileWithFont:[UIFont systemFontOfSize:14] placeholderPlaceText:@"昵称"];
     [self.view addSubview:self.nick];
     
     //注册
@@ -117,7 +117,7 @@
     //协议
     UIButton * dealButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [dealButton setTitle:@"我已阅读并同意 这里协议" forState:UIControlStateNormal];
-    [[dealButton titleLabel] setFont:[UIFont systemFontOfSize:10.f]];
+    [[dealButton titleLabel] setFont:[UIFont systemFontOfSize:14.f]];
     [dealButton setTitleColor:RGB_Color(0xf9, 0xda, 0xd5) forState:UIControlStateNormal];
     [dealButton addTarget:self action:@selector(dealButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:dealButton];
@@ -132,7 +132,7 @@
     [self.phoneNumber mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view).offset(10.f);
         make.right.equalTo(self.view).offset(-10.f);
-        make.height.equalTo(@(42.f));
+        make.height.equalTo(@(49.f));
         make.top.equalTo(self.titleLabel.mas_bottom).offset(15);
         
     }];

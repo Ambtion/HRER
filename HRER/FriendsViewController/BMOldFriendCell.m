@@ -50,13 +50,13 @@
     
     self.subTitle = [[UILabel alloc] init];
     self.subTitle.textColor = RGB_Color(0x79, 0x79, 0x79);
-    self.subTitle.font = [UIFont systemFontOfSize:13.f];
+    self.subTitle.font = [UIFont systemFontOfSize:14.f];
     [self.contentView addSubview:self.subTitle];
     
     
     self.fromTitle = [[UILabel alloc] init];
     self.fromTitle.textColor = RGB_Color(0xc3, 0xc3, 0xc3);
-    self.fromTitle.font = [UIFont systemFontOfSize:10.f];
+    self.fromTitle.font = [UIFont systemFontOfSize:12.f];
     [self.contentView addSubview:self.fromTitle];
     
     self.favButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -84,7 +84,6 @@
     
     [self.subTitle mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.mainTitle.mas_right).offset(7.f);
-//        make.right.equalTo(self.favButton.mas_left).offset(-10).priorityLow();
         make.centerY.equalTo(self.mainTitle);
     }];
     
@@ -141,7 +140,6 @@
             break;
     }
 }
-
 
 
 - (void)favButtonDidClick:(UIButton *)button
