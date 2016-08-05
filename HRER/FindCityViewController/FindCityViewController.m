@@ -225,9 +225,15 @@
 
 - (void)hotCityCellDidSeletedHotCity:(NSDictionary *)cityInfo
 {
-    NSString * cityName = [cityInfo objectForKey:@"city_name"];
-    NSInteger cityId = [[cityInfo objectForKey:@"id"] integerValue];
-    [self.myNavController pushViewController:[[CityHomeViewController alloc] initWithCityId:cityId cityName:cityName] animated:YES];
+    
+    if([_delegate respondsToSelector:@selector(findCityViewControllerDidSeltedCityInfo:)]){
+        [_delegate findCityViewControllerDidSeltedCityInfo:cityInfo];
+    }else{
+        NSString * cityName = [cityInfo objectForKey:@"city_name"];
+        NSInteger cityId = [[cityInfo objectForKey:@"id"] integerValue];
+        [self.myNavController pushViewController:[[CityHomeViewController alloc] initWithCityId:cityId cityName:cityName] animated:YES];
+    }
+
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

@@ -12,7 +12,7 @@
 {
     [super viewDidLoad];
     UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.tabBar.frame.size.width, self.tabBar.frame.size.height)];
-    [imageView setImage:[UIImage imageNamed:@"tabbar_bg"]];
+    [imageView setImage:[[UIImage imageNamed:@"tabbar_bg"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)]];
     imageView.backgroundColor = [UIColor redColor];
     [imageView setContentMode:UIViewContentModeCenter];
     [self.tabBar insertSubview:imageView atIndex:0];
