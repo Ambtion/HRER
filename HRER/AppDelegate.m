@@ -135,18 +135,21 @@
     UMConfigInstance.channelId = @"App Store";
     [MobClick startWithConfigure:UMConfigInstance];
     
-    //访问通讯录
-    [HRAddressBookManager readAllPersonAddressWithCallBack:^(NSArray *resultList, ABAuthorizationStatus status) {
-        
-        if (resultList.count && [[LoginStateManager getInstance] userLoginInfo]) {
-            //用户登录方法
-            [NetWorkEntity sendPhotoNumberWithPhotoNumber:resultList success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                
-            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                
-            }];
-        }
-    }];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        //访问通讯录
+        [HRAddressBookManager readAllPersonAddressWithCallBack:^(NSArray *resultList, ABAuthorizationStatus status) {
+            
+            if (resultList.count && [[LoginStateManager getInstance] userLoginInfo]) {
+                //用户登录方法
+                [NetWorkEntity sendPhotoNumberWithPhotoNumber:resultList success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                    
+                } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                    
+                }];
+            }
+        }];
+    });
 }
 
 - (void)setDefoultNavBarStyle
