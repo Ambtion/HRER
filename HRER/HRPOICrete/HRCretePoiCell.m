@@ -130,7 +130,7 @@
     
     NSArray * locArray = [[_data location] componentsSeparatedByString:@","];
     if (locArray.count == 2) {
-        CLLocation * desLocaiton = [[CLLocation alloc] initWithLatitude:[[locArray firstObject] floatValue] longitude:[[locArray lastObject] floatValue]];
+        CLLocation * desLocaiton = [[CLLocation alloc] initWithLatitude:[[locArray lastObject] floatValue] longitude:[[locArray firstObject] floatValue]];
         NSString * distance = [HRNavigationTool distanceBetwenOriGps:[[HRLocationManager sharedInstance] curLocation].coordinate desGps:desLocaiton.coordinate];
         
         self.locLabel.text = distance;

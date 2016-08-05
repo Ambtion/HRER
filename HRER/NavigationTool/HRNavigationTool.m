@@ -90,9 +90,9 @@
     CLLocationDistance distance = [location distanceFromLocation:desLocaiton];
     
     if (distance > 1000) {
-        return [NSString stringWithFormat:@"%.2fkm",(distance / 1000)];
+        return [NSString stringWithFormat:@"%.1fkm",(distance / 1000)];
     }else{
-        return [NSString stringWithFormat:@"%fm",(distance)];
+        return [NSString stringWithFormat:@"%.1fm",(distance)];
     }
     return @"";
 }

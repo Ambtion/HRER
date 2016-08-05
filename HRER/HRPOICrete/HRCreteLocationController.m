@@ -208,7 +208,7 @@
         if (model) {
             NSDictionary * geometry = [dic objectForKey:@"geometry"];
             NSDictionary * loc = [geometry objectForKey:@"location"];
-            model.location = [NSString stringWithFormat:@"%@,%@",[loc objectForKey:@"lat"],[loc objectForKey:@"lng"]];
+            model.location = [NSString stringWithFormat:@"%@,%@",[loc objectForKey:@"lng"],[loc objectForKey:@"lat"]];
             [mArray addObject:model];
         }
     }

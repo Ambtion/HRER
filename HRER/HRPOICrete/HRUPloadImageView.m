@@ -510,8 +510,8 @@
                                  type:self.poiType
                                 price:[self.priceTextField.text integerValue]
                                locDes:self.addressLabel.text cityID:self.cityId
-                                  lat:[[locArray firstObject] floatValue]
-                                  loc:[[locArray lastObject] floatValue]
+                                  lat:[[locArray lastObject] floatValue]
+                                  loc:[[locArray firstObject] floatValue]
                                images:self.photosArray  success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                    [MBProgressHUD hideHUDForView:[[[UIApplication sharedApplication] delegate] window] animated:YES];
                                    if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
