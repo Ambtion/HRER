@@ -19,6 +19,7 @@
 
 @class HRImageScaleView;
 @protocol ImageScaleViewDelegate <NSObject>
+@optional
 - (void)imageViewScale:(HRImageScaleView *)imageScale clickCurImage:(UIImageView *)imageview;
 - (void)imageViewScale:(HRImageScaleView *)imageScale longPressCurImage:(UIImageView *)imageview;
 
