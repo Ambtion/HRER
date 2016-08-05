@@ -151,7 +151,7 @@
     
     BOOL isUseGoogle = (self.countyId != 11);
 
-    //暂时写死
+//    暂时写死
 //    isUseGoogle = YES;
     
     WS(weakSelf);
@@ -349,7 +349,7 @@
     self.cityName = [cityInfo objectForKey:@"city_name"];
     self.lat = [[cityInfo objectForKey:@"latitude"] floatValue];
     self.lng = [[cityInfo objectForKey:@"longitude"] floatValue];
-//    self.countyId = 
+    self.countyId = [[cityInfo objectForKey:@"country_id"] intValue];
     [self.rightButton setTitle:self.cityName.length ? self.cityName : @"北京" forState:UIControlStateNormal];
     [self quaryData];
     [self.myNavController popViewControllerAnimated:YES];

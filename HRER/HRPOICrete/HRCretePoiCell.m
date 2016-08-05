@@ -7,6 +7,8 @@
 //
 
 #import "HRCretePoiCell.h"
+#import "HRNavigationTool.h"
+#import "HRLocationManager.h"
 
 @interface HRCretePoiCell()
 
@@ -125,7 +127,15 @@
     [self.portraitImage sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"man"]];
     self.titleLabel.text = data.title;
     self.subLabel.text = data.subTitle;
-    self.locLabel.text = [NSString stringWithFormat:@"%ldm",(long)data.distance];
+    
+    NSArray * locArray = [[_data location] componentsSeparatedByString:@","];
+    if (locArray.count == 2) {
+        CLLocation * desLocaiton = [[CLLocation alloc] initWithLatitude:[[locArray firstObject] floatValue] longitude:[[locArray lastObject] floatValue]];
+        NSString * distance = [HRNavigationTool distanceBetwenOriGps:[[HRLocationManager sharedInstance] curLocation].coordinate desGps:desLocaiton.coordinate];
+        
+        self.locLabel.text = distance;
+
+    }
 }
 
 #pragma mark
