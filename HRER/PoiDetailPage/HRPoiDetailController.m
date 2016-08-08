@@ -59,7 +59,6 @@ static CGFloat const MaxToolbarHeight = 200.0f;
 {
     if (self = [super init]) {
         self.poiId = poiId;
-        self.poiId = @"14598";
         //注册键盘通知
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];

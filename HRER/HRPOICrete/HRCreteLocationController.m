@@ -294,11 +294,31 @@
         if (!poiCell) {
             poiCell = [[HRCretePoiCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"HRCretePoiCell"];
         }
+        UIImage * image =  [self imageForType:self.categortIndex];
+        poiCell.portraitImage.image = image;
         poiCell.data = self.dataArray[indexPath.row];
         return poiCell;
     }
     
     return [UITableViewCell new];
+}
+
+- (UIImage *)imageForType:(NSInteger)type
+{
+    switch (type) {
+        case 0:
+            return [UIImage imageNamed:@"food_select"];
+            break;
+        case 1:
+            return [UIImage imageNamed:@"look_select"];
+        case 2:
+            return [UIImage imageNamed:@"shopping_select"];
+        case 3:
+            return [UIImage imageNamed:@"hotel_select"];
+        default:
+            break;
+    }
+    return [UIImage imageNamed:@"man"];
 }
 
 #pragma mark - Action

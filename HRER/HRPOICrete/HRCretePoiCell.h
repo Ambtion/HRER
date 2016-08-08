@@ -11,6 +11,7 @@
 
 @interface HRCretePoiCell : UITableViewCell
 
+@property(nonatomic,strong)UIImageView * portraitImage;
 @property(nonatomic,strong)HRCretePOIInfo * data;
 @property(nonatomic,strong)UIView * lineView;
 

@@ -185,6 +185,7 @@
         return;
     }
     
+    [self.titleInputView.textField resignFirstResponder];
     [HRUPloadImageView showInView:[self.myNavController view] withPoiTitle:self.titleInputView.textField.text cityId:self.cityId address:self.addressInputView.textField.text loc:[NSString stringWithFormat:@"%f,%f",self.pinLocation.coordinate.latitude,self.pinLocation.coordinate.longitude] categoryType:[self.categoryView seletedIndex] callBack:^(BOOL isSucesss) {
         
     }];

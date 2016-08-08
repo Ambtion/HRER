@@ -398,6 +398,27 @@ static CallBack upSucess;
         [dic setValue:[NSString stringWithFormat:@"%.5f,%.5f",lat,lng] forKey:@"location"];
         NSString *  urlStr = @"http://restapi.amap.com/v3/place/around";
         
+        NSString * type = @"";
+        switch (poiType) {
+            case 1:
+                type = @"美食";
+                break;
+            case 2:
+                type = @"观光";
+                break;
+            case 3:
+                type = @"购物";
+                break;
+            case 4:
+                type = @"酒店";
+                break;
+            default:
+                break;
+        }
+        
+        if (type.length) {
+            [dic setValue:type forKey:@"types"];
+        }
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
         [manager GET:urlStr parameters:dic success:success failure:failure];
 

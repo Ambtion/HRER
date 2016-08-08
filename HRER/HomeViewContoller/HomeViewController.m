@@ -55,7 +55,6 @@
     [self quaryData];
 }
 
-
 - (void)initUI
 {
     UIView * view = [UIView new];
@@ -144,8 +143,6 @@
             if (toutalNetCount == 0) {
                 [MBProgressHUD hideHUDForView:self.view animated:YES];
             }
-
-
         }else{
             [self dealErrorResponseWithTableView:self.tableView info:responseObject];
         }

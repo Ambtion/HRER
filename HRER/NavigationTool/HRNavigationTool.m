@@ -89,10 +89,17 @@
     CLLocation * desLocaiton = [[CLLocation alloc] initWithLatitude:desGps.latitude longitude:desGps.longitude];
     CLLocationDistance distance = [location distanceFromLocation:desLocaiton];
     
-    if (distance > 1000) {
-        return [NSString stringWithFormat:@"%.1fkm",(distance / 1000)];
-    }else{
+    
+    
+    if (distance < 1000) {
         return [NSString stringWithFormat:@"%.1fm",(distance)];
+    }else{
+        CGFloat kmDistance = (distance / 1000.f);
+        if (kmDistance > 5000) {
+            return @"5000+km";
+        }else{
+            return [NSString stringWithFormat:@"%.1fkm",kmDistance];
+        }
     }
     return @"";
 }

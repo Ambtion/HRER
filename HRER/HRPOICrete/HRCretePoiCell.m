@@ -12,7 +12,6 @@
 
 @interface HRCretePoiCell()
 
-@property(nonatomic,strong)UIImageView * portraitImage;
 @property(nonatomic,strong)UILabel * titleLabel;
 @property(nonatomic,strong)UILabel * subLabel;
 
@@ -44,6 +43,7 @@
     self.portraitImage = [[UIImageView alloc] init];
     self.portraitImage.layer.cornerRadius = 23.f;
     self.portraitImage.clipsToBounds = YES;
+    self.portraitImage.backgroundColor = [UIColor clearColor];
     [self addSubview:self.portraitImage];
     
     self.titleLabel = [[UILabel alloc] init];
@@ -123,8 +123,8 @@
     }
     
     _data = data;
-    NSString * url  = [NSString stringWithFormat:@"%@?url=%@",@"http://47.89.13.167/redirect_request",data.iconStr];
-    [self.portraitImage sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"man"]];
+//    NSString * url  = [NSString stringWithFormat:@"%@?url=%@",@"http://47.89.13.167/redirect_request",data.iconStr];
+//    [self.portraitImage sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"man"]];
     self.titleLabel.text = data.title;
     self.subLabel.text = data.subTitle;
     
