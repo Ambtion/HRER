@@ -78,7 +78,6 @@
             [ws dealErrorResponseWithTableView:ws.tableView info:responseObject];
         }
     } failure:failure];
-
 }
 
 - (NSArray *)analysisPoiModelFromArray:(NSArray *)array

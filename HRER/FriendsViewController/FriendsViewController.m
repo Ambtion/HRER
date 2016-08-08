@@ -147,6 +147,16 @@
     }];
 }
 
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    [self.inputView.textFiled resignFirstResponder];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    [self.inputView.textFiled resignFirstResponder];
+}
+
 #pragma mark - SearchBar
 - (SearchInPutView *)inputView
 {
@@ -334,7 +344,7 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    if (indexPath.section == 0) {
+    if (indexPath.section == 1) {
         if (indexPath.row == 1) {
             [self shareToQQ];
         }else{
