@@ -131,10 +131,9 @@
     [[AFNetworkActivityLogger sharedLogger] setLevel:AFLoggerLevelDebug];
     [[AFNetworkActivityLogger sharedLogger] startLogging];
  
-    UMConfigInstance.appKey = @"57737e9267e58e6f780026b3";
+    UMConfigInstance.appKey = @"5797013767e58ea5d9000e99";
     UMConfigInstance.channelId = @"App Store";
     [MobClick startWithConfigure:UMConfigInstance];
-    
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
         //访问通讯录
