@@ -24,5 +24,6 @@
 
 - (void)refreshUIWithData:(NSArray *)array;
 - (void)setSeletedIndexCar:(NSInteger)index;
+- (HRPOIInfo *)seletedPoiInfo;
 
 @end

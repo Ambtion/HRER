@@ -31,5 +31,6 @@
                       creteId:(NSString *)userID
                 creteUserName:(NSString *)creteUserName
                      category:(NSInteger)categoryType;
+- (void)quaryData;
 
 @end

@@ -49,6 +49,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     [self initUI];
+    [self.poisetsListView quaryData];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -67,7 +68,6 @@
 {
     [self initMapView];
     [self initPoiListView];
-    
 }
 
 #pragma mark - MapView
@@ -92,6 +92,10 @@
 - (void)poiSetsMapView:(HRPoiSetsMapView *)view didClickCarViewAtIndex:(NSInteger)index
 {
     
+    if ([view seletedPoiInfo]) {
+        [self.myNavController pushViewController:[[HRPoiDetailController alloc] initWithPoiId:[view seletedPoiInfo].poi_id] animated:YES];
+
+    }
 }
 
 - (void)switchView
@@ -138,12 +142,20 @@
 
 - (void)poiSetsMapViewdidClickDetailView:(HRPoiSetsMapView *)view withDataSource:(HRPOIInfo *)poiInfo
 {
+    if(!poiInfo.poi_id.length){
+        [self showTotasViewWithMes:@"POI数据格式错误，POI Id是空"];
+        return;
+    }
     [self.myNavController pushViewController:[[HRPoiDetailController alloc] initWithPoiId:poiInfo.poi_id] animated:YES];
 
 }
 
 - (void)poiSetsListViewdidClickDetailView:(HRPoiSetsListView *)view withDataSource:(HRPOIInfo *)poiInfo
 {
+    if(!poiInfo.poi_id.length){
+        [self showTotasViewWithMes:@"POI数据格式错误，POI Id是空"];
+        return;
+    }
     [self.myNavController pushViewController:[[HRPoiDetailController alloc] initWithPoiId:poiInfo.poi_id] animated:YES];
 }
 
@@ -152,6 +164,11 @@
     if (self.creteType != KPoiSetsCreteUser) {
         return;
     }
+    if(!poiInfo.creator_id.length){
+        [self showTotasViewWithMes:@"POI数据格式错误，用户ID是空"];
+        return;
+    }
+
     HRUserHomeController * userHomeController = [[HRUserHomeController alloc] initWithUserID:poiInfo.creator_id ];
     [self.myNavController pushViewController:userHomeController animated:YES];
 
@@ -159,6 +176,10 @@
 - (void)poiSetsListViewdidClickPortView:(HRPoiSetsListView *)view withDataSource:(HRPOIInfo *)poiInfo
 {
     if (self.creteType != KPoiSetsCreteUser) {
+        return;
+    }
+    if(!poiInfo.creator_id.length){
+        [self showTotasViewWithMes:@"POI数据格式错误，用户ID是空"];
         return;
     }
     HRUserHomeController * userHomeController = [[HRUserHomeController alloc] initWithUserID:poiInfo.creator_id];

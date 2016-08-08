@@ -50,28 +50,35 @@
     self.tableView.refreshFooter.scrollView = nil;
     
     WS(ws);
-    
     self.tableView.refreshHeader.beginRefreshingBlock = ^(){
-        
-        [MBProgressHUD hideHUDForView:ws animated:YES];
-        
-        void (^ failure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *operation, NSError *error){
-            [ws netErrorWithTableView:ws.tableView];
-        };
-
-        [NetWorkEntity quaryPoiSetDetailListWithCreteType:ws.creteType cityId:[[HRLocationManager sharedInstance] curCityId] catergory:ws.categoryType creteUserId:ws.userId success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            
-            if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
-                NSArray * poiList = [responseObject objectForKey:@"response"];
-                ws.dataSource = [ws analysisPoiModelFromArray:poiList];
-                [[ws.tableView refreshHeader] endRefreshing];
-                [ws.tableView reloadData];
-                [MBProgressHUD hideHUDForView:ws animated:YES];
-            }else{
-                [ws dealErrorResponseWithTableView:ws.tableView info:responseObject];
-            }
-        } failure:failure];
+        [ws quaryData];
     };
+}
+
+- (void)quaryData
+{
+    
+    WS(ws);
+
+    [MBProgressHUD hideHUDForView:self animated:YES];
+    
+    void (^ failure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *operation, NSError *error){
+        [ws netErrorWithTableView:ws.tableView];
+    };
+    
+    [NetWorkEntity quaryPoiSetDetailListWithCreteType:ws.creteType cityId:[[HRLocationManager sharedInstance] curCityId] catergory:ws.categoryType creteUserId:ws.userId success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
+            NSArray * poiList = [responseObject objectForKey:@"response"];
+            ws.dataSource = [ws analysisPoiModelFromArray:poiList];
+            [[ws.tableView refreshHeader] endRefreshing];
+            [ws.tableView reloadData];
+            [MBProgressHUD hideHUDForView:ws animated:YES];
+        }else{
+            [ws dealErrorResponseWithTableView:ws.tableView info:responseObject];
+        }
+    } failure:failure];
+
 }
 
 - (NSArray *)analysisPoiModelFromArray:(NSArray *)array

@@ -229,6 +229,17 @@
     [self setMapViewSeleteIndexAnomaiton:index];
 }
 
+- (HRPOIInfo *)seletedPoiInfo
+{
+    NSArray * anomationList = [self.mapView selectedAnnotations];
+    if ([anomationList count]) {
+        HRAnomation * seletedAnomaiton = [anomationList firstObject];
+        return seletedAnomaiton.extData;
+    }
+    
+    return nil;
+}
+
 - (void)poiViewDidClickUserPortrait:(HRPoiCardView *)poiSetsview
 {
     if ([_delegate respondsToSelector:@selector(poiSetsMapViewdidClickPortView:withDataSource:)]) {
