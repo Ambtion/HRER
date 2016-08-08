@@ -499,6 +499,7 @@
     
     if (!self.photosArray.count) {
         [self showTotasViewWithMes:@"请上传至少一张图片"];
+        return;
     }
     
     [MBProgressHUD showHUDAddedTo:[[[UIApplication sharedApplication] delegate] window] animated:YES];
