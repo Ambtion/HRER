@@ -20,7 +20,6 @@
 
 @property(nonatomic,strong)NSMutableArray * frameImageViews;
 @property(nonatomic,strong)UIImageView * locIconView;
-@property(nonatomic,strong)UILabel * locLabel;
 
 
 @end
@@ -184,6 +183,7 @@
     self.locLabel.text = distance;
     
 }
+
 
 - (void)fullViewTap:(UITapGestureRecognizer *)tap
 {

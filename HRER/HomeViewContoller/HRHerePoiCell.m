@@ -55,6 +55,11 @@
     [[self cardView] setDataSource:data];
 }
 
+- (void)setLocaitonStr:(NSString *)str
+{
+    self.cardView.locLabel.text = str;
+}
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {}
 

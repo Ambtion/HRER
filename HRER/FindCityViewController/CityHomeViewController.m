@@ -419,6 +419,7 @@
                 cell.delegate = self;
             }
             [cell setData:self.editPoiSource[indexPath.row]];
+//            [cell setLocaitonStr:self.cityName];
             return cell;
         }
             break;

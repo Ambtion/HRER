@@ -23,6 +23,8 @@
 @property(nonatomic,weak)id<HRHerePoiCellDelegate>delegate;
 @property(nonatomic,strong)HRPOIInfo * data;
 
+- (void)setLocaitonStr:(NSString *)str;
+
 + (CGFloat)heightForCell;
 
 @end
