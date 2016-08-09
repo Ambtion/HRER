@@ -211,7 +211,7 @@ static CGFloat const MaxToolbarHeight = 200.0f;
             break;
         case 3:
             //POI评论
-            return self.recomendList.count;
+            return self.recomendList.count ? self.recomendList.count + 2 : 0;
             break;
         default:
             break;
@@ -243,7 +243,7 @@ static CGFloat const MaxToolbarHeight = 200.0f;
                     return 6.f;
                 }
             }
-            return [HRRecomendCell heigthForCellWithData:self.recomendList[indexPath.row]];
+            return [HRRecomendCell heigthForCellWithData:self.recomendList[indexPath.row - 1]];
             break;
         default:
             break;
@@ -324,7 +324,7 @@ static CGFloat const MaxToolbarHeight = 200.0f;
                 cell = [[HRRecomendCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"HRRecomendCell"];
                 cell.delegate = self;
             }
-            [cell setDataSource:self.recomendList[indexPath.row]];
+            [cell setDataSource:self.recomendList[indexPath.row - 1]];
             [cell.lineView setHidden:indexPath.row == [self tableView:tableView numberOfRowsInSection:indexPath.section] - 2];
             return cell;
         }
@@ -336,7 +336,6 @@ static CGFloat const MaxToolbarHeight = 200.0f;
     }
     return [UITableViewCell new];
 }
-
 
 #pragma mark - Action
 - (void)onBackButtonClick:(UIButton *)button
