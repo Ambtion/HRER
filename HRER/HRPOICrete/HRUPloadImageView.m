@@ -525,7 +525,7 @@
                                        [ws showTotasViewWithMes:[[responseObject objectForKey:@"response"] objectForKey:@"errorText"]];
                                    }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [MBProgressHUD hideHUDForView:ws animated:YES];
+        [MBProgressHUD hideHUDForView:[[[UIApplication sharedApplication] delegate] window] animated:YES];
         [ws showTotasViewWithMes:@"网络异常,稍后重试"]; 
     }];
     
