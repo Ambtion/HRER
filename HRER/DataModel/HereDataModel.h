@@ -103,7 +103,7 @@
 @property(nonatomic,assign)BOOL intend;
 
 @property(nonatomic,assign)CGFloat lat;
-@property(nonatomic,assign)CGGlyph lng;
+@property(nonatomic,assign)CGFloat lng;
 
 @property(nonatomic,strong)NSString * city_name;
 @property(nonatomic,assign)NSInteger city_id;
