@@ -143,10 +143,19 @@
 #pragma mark - Data |UI
 - (void)refreshUIWithData:(NSArray *)array
 {
+    if (array.count == 0) {
+        return;
+    }
     self.dataArray = array;
     [self refreshMapPinViews];
     [self refreshScrollViews];
-    [self ceneterMapViewOnSeleteIndexAnomaiton:0];
+    if(array.count == 1){
+        [self ceneterMapViewOnSeleteIndexAnomaiton:0];
+    }else{
+        [self setMapViewSeleteIndexAnomaiton:0];
+    }
+    
+    
 }
 
 #pragma mark ScrollView

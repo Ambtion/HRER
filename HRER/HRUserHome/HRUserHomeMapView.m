@@ -105,7 +105,12 @@
     }
     self.dataArray = array;
     [self refreshMapPinViews];
-    [self ceneterMapViewOnSeleteIndexAnomaiton:0];
+    
+    if(array.count == 1){
+        [self ceneterMapViewOnSeleteIndexAnomaiton:0];
+    }else{
+        [self setMapViewSeleteIndexAnomaiton:0];
+    }
 }
 
 #pragma mark Map

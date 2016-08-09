@@ -113,8 +113,9 @@
         [self.navigationController popViewControllerAnimated:YES];
     }else{
         
-//        HRAnomation * anomaiton = [[self.mapView selectedAnnotations] lastObject];
-        CLLocationCoordinate2D coord = CLLocationCoordinate2DMake(39.904209 , 116.407394);
+        HRAnomation * anomaiton = [[self.mapView selectedAnnotations] lastObject];
+        HRPOIInfo * poiInfo = anomaiton.extData;
+        CLLocationCoordinate2D coord = CLLocationCoordinate2DMake(poiInfo.lat , poiInfo.lng);
         [HRNavigationTool actionSheetByController:self TLocaiton:coord UrlScheme:@"" appName:@"HERE"];
     }
 }
@@ -180,10 +181,8 @@
 {
     [self refreshMapPinViews];
     [self refreshScrollViews];
-    [self ceneterMapViewOnSeleteIndexAnomaiton:0];
+    [self setMapViewSeleteIndexAnomaiton:0];
 }
-
-
 
 #pragma mark ScrollView
 - (void)refreshScrollViews
@@ -234,27 +233,6 @@
     NSInteger index = scrollView.contentOffset.x / self.scrollView.width;
     [self setMapViewSeleteIndexAnomaiton:index];
 }
-
-
-- (void)ceneterMapViewOnSeleteIndexAnomaiton:(NSInteger)index
-{
-    if (index >= 0 && index < [self.mapView annotations].count) {
-        
-        HRAnomation * anomation = (HRAnomation *)[self.mapView annotations][index];
-        //设置图区范围
-        MKCoordinateSpan span;
-        span.latitudeDelta = kNavPoiMapMAOLEVEL;
-        span.longitudeDelta = kNavPoiMapMAOLEVEL;
-        MKCoordinateRegion region;
-        
-        CLLocationCoordinate2D coord = anomation.coordinate;
-        region.center = coord;
-        region.span = span;
-        [self.mapView setRegion:region animated:YES];
-    }
-    
-}
-
 
 - (void)setMapViewSeleteIndexAnomaiton:(NSInteger)index
 {
