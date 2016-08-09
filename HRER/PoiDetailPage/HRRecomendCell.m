@@ -108,6 +108,7 @@
     
     self.porImageView = [[UIImageView alloc] init];
     self.porImageView.layer.cornerRadius = 20.f;
+    self.porImageView.layer.masksToBounds = YES;
     [self.contentView addSubview:self.porImageView];
     
     self.desLabel = [[UILabel alloc] init];

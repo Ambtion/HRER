@@ -37,6 +37,8 @@
 - (void)initUI
 {
     self.porImageView = [[UIImageView alloc] init];
+    self.porImageView.layer.cornerRadius = 24.f;
+    self.porImageView.layer.masksToBounds = YES;
     [self addSubview:self.porImageView];
     
     self.userName = [[UILabel alloc] init];

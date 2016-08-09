@@ -289,6 +289,10 @@
         [self shareHomePage];
     }else{
         
+        if (![[LoginStateManager getInstance] userLoginInfo]) {
+            [HRLoginManager showLoginView];
+            return;
+        }
         //关注
         WS(weakSelf);
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
