@@ -137,6 +137,7 @@
             }
             weakSelf.dataArray = listArray;
             [weakSelf.tableView reloadData];
+            [weakSelf.tableView.refreshHeader endRefreshing];
         }else{
             [self showTotasViewWithMes:[[responseObject objectForKey:@"response"] objectForKey:@"errorText"]];
         }
@@ -322,6 +323,7 @@
     WS(weakSelf);
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [NetWorkEntity favFriends:cell.dataModel.uid isFav:tofavState success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
         if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
             if(tofavState){
                 [self showTotasViewWithMes:@"关注成功"];
