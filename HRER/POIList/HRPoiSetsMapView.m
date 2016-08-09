@@ -224,9 +224,9 @@
 - (void)setMapViewSeleteIndexAnomaiton:(NSInteger)index
 {
     
-    if (index >= 0 && index < [self.mapView annotations].count) {
+    if (index >= 0 && index < self.anotionDataArray.count) {
         
-        HRAnomation * anomation = [self.mapView annotations][index];
+        HRAnomation * anomation = self.anotionDataArray[index];
         [self.mapView selectAnnotation:anomation animated:NO];
         //设置图区范围
         MKCoordinateSpan span;
