@@ -101,7 +101,7 @@ static CGFloat const MaxToolbarHeight = 200.0f;
     [self.view addSubview:barView];
     
     self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, self.view.width, 44)];
-    self.titleLabel.text = @"北京";
+    self.titleLabel.text = @"";
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
     self.titleLabel.textColor = [UIColor whiteColor];
     [barView addSubview:self.titleLabel];
@@ -165,6 +165,7 @@ static CGFloat const MaxToolbarHeight = 200.0f;
             NSDictionary * response = [responseObject objectForKey:@"response"];
             NSDictionary * poiInfo = [response objectForKey:@"poi_detail"];
             ws.poiInfo = [HRPOIInfo yy_modelWithJSON:poiInfo];
+            ws.titleLabel.text = ws.poiInfo.city_name;
             ws.recomendList = [ws analysisPoiModelFromArray:[response objectForKey:@"comments"]];
             [ws.tableView reloadData];
             [[ws.tableView refreshHeader] endRefreshing];
