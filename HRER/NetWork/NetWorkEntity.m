@@ -193,7 +193,7 @@ static CallBack upSucess;
     dic[@"id"] = userId;
     dic[@"isFollow"] = @(isFav);
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager GET:urlStr parameters:dic success:success failure:failure];
+    [manager POST:urlStr parameters:dic success:success failure:failure];
 }
 
 /*
@@ -537,6 +537,37 @@ static CallBack upSucess;
     NSString *  urlStr= [NSString stringWithFormat:@"%@/poi_comment_del",KNETBASEURL];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager POST:urlStr parameters:dic success:success failure:failure];
+}
+
+/**
+ *  获取个人信息
+ *
+ *  @param userId  用户ID
+ *
+ */
+
++ (void)quaryUserInfoWithUserId:(NSString *)userId
+                        success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                        failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+{
+    NSMutableDictionary * dic = [self commonComonPar];
+    [dic setObject:userId forKey:@"user_id"];
+    NSString *  urlStr= [NSString stringWithFormat:@"%@/user_page",KNETBASEURL];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:urlStr parameters:dic success:success failure:failure];
+}
+
++ (void)quaryUserHomePoiListWithUserId:(NSString *)userId
+                             catergory:(NSInteger)catergory
+                               success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                               failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+{
+    NSMutableDictionary * dic = [self commonComonPar];
+    [dic setObject:userId forKey:@"user_id"];
+    [dic setObject:@(catergory) forKey:@"type"];
+    NSString *  urlStr= [NSString stringWithFormat:@"%@/user_page_list",KNETBASEURL];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:urlStr parameters:dic success:success failure:failure];
 }
 
 /**

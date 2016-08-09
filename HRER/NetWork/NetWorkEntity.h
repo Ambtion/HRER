@@ -264,6 +264,23 @@
                         success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                         failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
+
+/**
+ *  获取个人信息
+ *
+ *  @param userId  用户ID
+ *
+ */
+
++ (void)quaryUserInfoWithUserId:(NSString *)userId
+                        success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                        failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+
++ (void)quaryUserHomePoiListWithUserId:(NSString *)userId
+                             catergory:(NSInteger)catergory
+                               success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                               failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+
 /**
  *  创建POI
  *  ===================================================================================================================

@@ -7,6 +7,7 @@
 //
 
 #import "HRUserHomeInfoCardView.h"
+#import "LoginStateManager.h"
 
 @interface HRUserHomeInfoCardView()
 
@@ -75,6 +76,7 @@
     [self.portraitView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.top.equalTo(self).offset(15.f);
         make.width.equalTo(@(90));
+        make.height.equalTo(@(130));
     }];
     
     [self.shareButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -119,15 +121,31 @@
 }
 
 #pragma mark Data
-- (void)setDataSource:(id)dataSource
+- (void)setDataSource:(HRUserHomeInfo *)dataSource
 {
-    self.nameLabel.text = @"姓名: DJ";
-    self.passLabel.text = @"护照号:  BJ01";
-    self.friendsLabel.text = @"拥有178个朋友";
-    self.visitCityLabel.text = @"足迹遍布27个城市";
- 
-    [self.shareButton setImage:[UIImage imageNamed:@"userhome_share"] forState:UIControlStateNormal];
+    if (_dataSource == dataSource) {
+        return;
+    }
+    _dataSource = dataSource;
+    self.nameLabel.text = [NSString stringWithFormat:@"姓名: %@",dataSource.name];
+    self.passLabel.text = [NSString stringWithFormat:@"护照号:  %@",dataSource.passport_num];
+    self.friendsLabel.text = [NSString stringWithFormat:@"拥有%ld个朋友",(long)dataSource.f_num];
+    self.visitCityLabel.text = [NSString stringWithFormat:@"足迹遍布%ld个城市",(long)dataSource.f_city_num];
+    [self.portraitView sd_setImageWithURL:[NSURL URLWithString:dataSource.image] placeholderImage:[UIImage imageNamed:@"man"]];
+    
+    if ([[LoginStateManager getInstance] userLoginInfo] &&
+        [[LoginStateManager getInstance] userLoginInfo].user_id &&
+        [[[LoginStateManager getInstance] userLoginInfo].user_id isEqualToString:dataSource.user_id]) {
+        [self.shareButton setImage:[UIImage imageNamed:@"userhome_share"] forState:UIControlStateNormal];
+        [self.shareButton setImage:[UIImage imageNamed:@"userhome_share"] forState:UIControlStateSelected];
+
+    }else{
+        [self.shareButton setImage:[UIImage imageNamed:@"userhome_follow_add"] forState:UIControlStateSelected];
+        [self.shareButton setImage:[UIImage imageNamed:@"userhome_follow"] forState:UIControlStateNormal];
+        [self.shareButton setSelected:dataSource.is_focus];
+    }
 }
+
 
 #pragma mark Action
 - (void)buttonDidClick:(UIButton *)button

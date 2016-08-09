@@ -438,31 +438,31 @@
         tpye = KPoiSetsCreteHere;
         //编辑
     }
-    HRPoiSetsController * poiSetController = [[HRPoiSetsController alloc] initWithPoiSetCreteType:tpye creteId:cell.data.creatorId creteUserName:cell.data.creatorName category:self.catergoryIndex + 1];
+    HRPoiSetsController * poiSetController = [[HRPoiSetsController alloc] initWithPoiSetCreteType:tpye creteId:cell.data.creator_id creteUserName:cell.data.creator_name category:self.catergoryIndex + 1];
     [self.myNavController pushViewController:poiSetController animated:YES];
 }
 
 - (void)herePoisSetCellDidClickUserPortrait:(HRHerePoiCell *)cell
 {
     NSIndexPath * indexPath = [self.tableView indexPathForCell:cell];
-    if (indexPath.section == 1 || indexPath.section == 3 ) {
-        //附近  //编辑
+    if (indexPath.section == 2 || indexPath.section == 3 ) {
+        //用户创建
+        HRUserHomeController * userHomeController = [[HRUserHomeController alloc] initWithUserID:cell.data.creator_id];
+        [self.myNavController pushViewController:userHomeController animated:YES];
         return;
     }
-    HRUserHomeController * userHomeController = [[HRUserHomeController alloc] initWithUserID:cell.data.creator_id];
-    [self.myNavController pushViewController:userHomeController animated:YES];
     
 }
 
 - (void)herePoiCellDidClickUserPortrait:(HRHerePoiCell *)cell
 {
     NSIndexPath * indexPath = [self.tableView indexPathForCell:cell];
-    if (indexPath.section == 1 || indexPath.section == 3 ) {
-        //附近  //编辑
+    if (indexPath.section == 2 || indexPath.section == 3 ) {
+        //用户创建
+        HRUserHomeController * userHomeController = [[HRUserHomeController alloc] initWithUserID:cell.data.creator_id];
+        [self.myNavController pushViewController:userHomeController animated:YES];
         return;
     }
-    HRUserHomeController * userHomeController = [[HRUserHomeController alloc] initWithUserID:cell.data.creator_id];
-    [self.myNavController pushViewController:userHomeController animated:YES];
 }
 
 #pragma mark - Login

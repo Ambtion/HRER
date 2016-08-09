@@ -19,10 +19,10 @@
 
 @interface HRUserHomeInfoCardView : UIImageView
 
+@property(nonatomic,strong)HRUserHomeInfo * dataSource;
 @property(nonatomic,weak)id<HRUserHomeInfoCardViewDelegate>delegate;
 
-+ (CGFloat)heightForView;
 
-- (void)setDataSource:(id)dataSource;
++ (CGFloat)heightForView;
 
 @end

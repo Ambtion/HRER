@@ -37,12 +37,14 @@
 #pragma mark - InitUI
 - (void)initUI
 {
+    self.backgroundColor = [UIColor whiteColor];
     [self initTableView];
     [self initRefreshView];
 }
 
 - (void)initTableView
 {
+    [self addSubview:[UIView new]];
     self.tableView = [[RefreshTableView alloc] initWithFrame:CGRectMake(0, 0, self.width, self.height) style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -80,10 +82,17 @@
     [self.headView setSeltedAtIndex:index];
 }
 
+- (void)setHeadUserInfo:(HRUserHomeInfo *)homeInfo dataSource:(NSArray *)dataSource
+{
+    [self.headView setDataSource:homeInfo];
+    self.dataSource = dataSource;
+    
+}
+
 #pragma mark - TableDelegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 5;
+    return self.dataSource.count;
 }
 
 
@@ -96,8 +105,10 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
+    HRHomePoiInfo * poiInfo = self.dataSource[section];
+    
     HRUserTimeLineHeadView * lineHeadView = [[HRUserTimeLineHeadView alloc] initWithFrame:CGRectMake(0, 0, tableView.width, [HRUserTimeLineHeadView heightForView])];
-    [lineHeadView setDataSource:nil];
+    [lineHeadView setDataSource:poiInfo];
     return lineHeadView;
 }
 
@@ -109,7 +120,8 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    HRHomePoiInfo * poiInfo = self.dataSource[section];
+    return [self totalPoiInCity:poiInfo];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -118,18 +130,57 @@
     if (!cell) {
         cell = [[HRUserHomeCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"HRUserHomeCell"];
     }
-    [cell setDatsSource:nil];
-    NSInteger count = [self tableView:tableView numberOfRowsInSection:indexPath.section];
-    if (count == 1) {
-        [cell setCellStation:KCellstationFull];
-    }else if(indexPath.row == 0){
-        [cell setCellStation:KCellstationTop];
-    }else if(indexPath.row == count -1){
-        [cell setCellStation:KCellstationBottom];
-    }else{
-        [cell setCellStation:KCellstationMiddle];
-    }
+    HRHomePoiInfo * cityList = self.dataSource[indexPath.section];
+    HRPOIInfo * poiInfo = [self poiInTotalCityInCity:cityList ListAtIndex:indexPath.row];
+    [cell setDataSource:poiInfo];
+    [cell setCellStation:[self poiStationInTotalCityInCity:cityList ListAtIndex:indexPath.row]];
     return cell;
+}
+
+
+#pragma mark - 
+- (NSInteger)totalPoiInCity:(HRHomePoiInfo *)cityInfo
+{
+    NSInteger count = 0;
+    for (HRMouthPoiList * mouthList in cityInfo.cityPoiList) {
+        count += mouthList.timePoiList.count;
+    }
+    return count;
+}
+
+- (HRPOIInfo *)poiInTotalCityInCity:(HRHomePoiInfo *)cityInfo ListAtIndex:(NSInteger)index
+{
+    NSMutableArray * array = [NSMutableArray arrayWithCapacity:0];
+    for (HRMouthPoiList * mouthList in cityInfo.cityPoiList) {
+        [array addObjectsFromArray:mouthList.timePoiList];
+    }
+    if (index >=0 && index < array.count) {
+        return [array objectAtIndex:index];
+    }
+    return nil;
+}
+
+- (KCellStation)poiStationInTotalCityInCity:(HRHomePoiInfo *)cityInfo ListAtIndex:(NSInteger)index
+{
+    
+    for (HRMouthPoiList * mouthList in cityInfo.cityPoiList) {
+        if(index < mouthList.timePoiList.count){
+            if (index == 0) {
+                if (mouthList.timePoiList.count == 1) {
+                    return KCellstationFull;
+                }else{
+                    return KCellstationTop;
+                }
+            }else if (index == mouthList.timePoiList.count - 1){
+                return KCellstationBottom;
+            }else{
+                return KCellstationMiddle;
+            }
+        }else{
+            index -= mouthList.timePoiList.count;
+        }
+    }
+    return KCellstationMiddle;
 }
 
 #pragma mark HEADView
@@ -138,7 +189,6 @@
     if (!_headView) {
         _headView = [[HRUserHomeHeadView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.width, [HRUserHomeHeadView heightForView])];
         _headView.delegate = self;
-        [_headView setDataSource:nil];
     }
     return _headView;
 }
@@ -148,7 +198,7 @@
 {
     HRUserHomeCell * cell = [tableView cellForRowAtIndexPath:indexPath];
     if ([_delegate respondsToSelector:@selector(userHomeListView:DidClickCellWithSource:)]) {
-        [_delegate userHomeListView:self DidClickCellWithSource:cell.datsSource];
+        [_delegate userHomeListView:self DidClickCellWithSource:cell.dataSource];
     }
 }
 

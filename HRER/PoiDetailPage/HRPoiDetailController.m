@@ -388,8 +388,14 @@ static CGFloat const MaxToolbarHeight = 200.0f;
 
 - (BOOL)photoBrowser:(HRPhotoBrowser *)browser loadingImage:(HRImageScaleView *)hrImageView withIndexPath:(NSInteger)index
 {
-    [hrImageView.imageView sd_setImageWithURL:[NSURL URLWithString:@"http://b.hiphotos.baidu.com/zhidao/pic/item/f636afc379310a5562bec3ceb64543a982261075.jpg"] placeholderImage:[UIImage imageNamed:@""]];
-    hrImageView.imageView.frame = CGRectMake(0, 0, self.view.width, 300);
+    HRPotoInfo * photoInfo = [self.photoesCell.photosView.dataArray objectAtIndex:index];
+    
+    [hrImageView.imageView sd_setImageWithURL:[NSURL URLWithString:photoInfo.url] placeholderImage:[UIImage imageNamed:@"man"]];
+    if (photoInfo.width && photoInfo.height ) {
+        
+        CGFloat scale = self.view.width / photoInfo.width;
+        hrImageView.imageView.frame = CGRectMake(0, 0, self.view.width, photoInfo.height * scale);
+    }
     hrImageView.imageView.centerY = self.view.height/2.f;
     return YES;
 }

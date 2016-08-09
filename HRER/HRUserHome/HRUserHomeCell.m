@@ -165,19 +165,68 @@
     
 }
 
-- (void)setDatsSource:(id)datsSource
+- (void)setDataSource:(HRPOIInfo *)dataSource
 {
     
-    self.mouthLabel.text = @"06";
-    self.dayLabel.text = @"22";
-    self.iconImageView.backgroundColor = [UIColor greenColor];
-    self.titleLabel.text = @"CJ推荐了 张家驴肉火烧";
-    self.subTitle.text = @"火烧都是现在做的，驴肉都都特别棒";
-    self.catergortLabel.text = @"美食";
+    if (_dataSource == dataSource) {
+        return;
+    }
+    _dataSource = dataSource;
+    if (dataSource.ctimeStr.length) {
+        NSArray * array = [dataSource.ctimeStr componentsSeparatedByString:@"-"];
+        if (array.count == 3) {
+            self.mouthLabel.text = [array objectAtIndex:1];
+            self.dayLabel.text = [array objectAtIndex:2];
+        }
+    }
+    self.titleLabel.text = dataSource.title;
+    self.subTitle.text = dataSource.intro;
+    self.catergortLabel.text = dataSource.typeName;
+    
+    switch (dataSource.type) {
+        case 0:
+            break;
+        case 1:
+            self.caterBgView.backgroundColor = UIColorFromRGBA(0xdc4630, 1);
+            break;
+        case 2:
+            self.caterBgView.backgroundColor = UIColorFromRGBA(0x43a2fe, 1);
+            
+            break;
+        case 3:
+            self.caterBgView.backgroundColor = RGB_Color(0x3b, 0xc4, 0xba);
+            break;
+        case 4:
+            self.caterBgView.backgroundColor = RGB_Color(0xfb, 0xb3, 0x3a);
+            break;
+        default:
+            break;
+    }
     
     //    颜色酒店：#fbb33a    购物：#3bc4ba    观光：#43a2fe    美食：#dc4630
-    self.caterBgView.backgroundColor = RGB_Color(0xfb, 0xb3, 0x3a);
+    self.caterBgView.backgroundColor = [self caterColorWithType:dataSource.type];
 
+    if (_dataSource.photos.count) {
+        HRPotoInfo * photo = [_dataSource.photos firstObject];
+        [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:photo.url] placeholderImage:[UIImage imageNamed:@"man"]];
+    }else{
+        self.iconImageView.image = [UIImage imageNamed:@"man"];
+    }
+}
+
+
+- (UIColor *)caterColorWithType:(NSInteger)type
+{
+    NSArray * colorArray  = @[
+                              RGB_Color(0xdc, 0x46, 0x30),
+                              RGB_Color(0x43, 0xa2, 0xf3),
+                              RGB_Color(0x3b, 0xc4, 0xba),
+                              RGB_Color(0xfb, 0xb3, 0x3a)
+                              ];
+    if (type >= 0 && type < colorArray.count) {
+        return colorArray[type];
+    }
+    return [UIColor clearColor];
 }
 
 - (void)setCellStation:(KCellStation)station

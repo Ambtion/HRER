@@ -23,7 +23,7 @@
 
 @property(nonatomic,weak)id<HRUserHomeMapViewDelegate>delegate;
 
-- (void)refreshUIWithData:(NSArray *)array;
+- (void)setHeadUserInfo:(HRUserHomeInfo *)homeInfo dataSource:(NSArray *)dataSource;
 - (void)setSeltedAtIndex:(NSInteger)index;
 
 

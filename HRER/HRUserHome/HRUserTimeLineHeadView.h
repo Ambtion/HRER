@@ -12,6 +12,6 @@
 
 + (CGFloat)heightForView;
 
-- (void)setDataSource:(id)dataSource;
+- (void)setDataSource:(HRHomePoiInfo *)dataSource;
 
 @end

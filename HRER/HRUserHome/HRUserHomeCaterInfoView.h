@@ -23,7 +23,7 @@
 
 + (CGFloat)heigthForView;
 
-- (void)setDataSource:(id)dataSource;
+- (void)setDataSource:(HRUserHomeInfo *)dataSource;
 
 - (void)setSeletedAtIndex:(NSInteger)index;
 

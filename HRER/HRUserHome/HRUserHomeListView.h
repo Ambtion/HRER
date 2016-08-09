@@ -18,14 +18,16 @@
 - (void)userHomeListViewDidDetailButton:(HRUserHomeListView *)listView;
 
 - (void)userHomeListView:(HRUserHomeListView *)listView DidCategoryAtIndex:(NSInteger)index;
-- (void)userHomeListView:(HRUserHomeListView *)listView DidClickCellWithSource:(id)dataSource;
+- (void)userHomeListView:(HRUserHomeListView *)listView DidClickCellWithSource:(HRPOIInfo *)dataSource;
 - (void)userHomeListView:(HRUserHomeListView *)listView DidNeedRefreshData:(RefreshTableView *)refreshTableView;
 @end
 
 @interface HRUserHomeListView : UIView
 
 @property(nonatomic,weak)id<HRUserHomeListViewDelegate>delegate;
-@property(nonatomic,strong)id dataSource;
+@property(nonatomic,strong)NSArray * dataSource;
+
+- (void)setHeadUserInfo:(HRUserHomeInfo *)homeInfo dataSource:(NSArray *)dataSource;
 
 - (void)setSeltedAtIndex:(NSInteger)index;
 

@@ -20,11 +20,10 @@
 
 @interface HRUserHomeHeadView : UIView
 
+@property(nonatomic,strong)HRUserHomeInfo * dataSource;
 @property(nonatomic,weak)id<HRUserHomeHeadViewDelegate>delegate;
 
 + (CGFloat)heightForView;
-
-- (void)setDataSource:(id)dataSource;
 
 - (void)setSeltedAtIndex:(NSInteger)index;
 

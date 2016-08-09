@@ -28,6 +28,11 @@ YYModelSynthCoderAndHash
 
 @end
 
+@implementation HRUserHomeInfo
+
+YYModelSynthCoderAndHash
+@end
+
 @implementation HRFriendsInfo
 
 YYModelSynthCoderAndHash
@@ -92,5 +97,25 @@ YYModelSynthCoderAndHash
 @implementation HRRecomend
 
 YYModelSynthCoderAndHash;
+
+@end
+
+@implementation HRHomePoiInfo
+
+YYModelSynthCoderAndHash;
+
++ (NSDictionary *)modelContainerPropertyGenericClass {
+    return @{@"cityPoiList" : [HRMouthPoiList class]};
+}
+@end
+
+@implementation HRMouthPoiList
+
+YYModelSynthCoderAndHash;
+
++ (NSDictionary *)modelContainerPropertyGenericClass {
+    return @{@"timePoiList" : [HRPOIInfo class]};
+}
+
 
 @end

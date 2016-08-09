@@ -51,6 +51,7 @@
 
 - (void)initMapView
 {
+    self.backgroundColor = [UIColor whiteColor];
     self.mapView = [[MKMapView alloc] initWithFrame:CGRectMake(0, self.headView.height, self.width, self.height - self.headView.height)];
     self.mapView.mapType = MKMapTypeStandard;
     self.mapView.showsUserLocation = YES;
@@ -92,11 +93,19 @@
 }
 
 #pragma mark - Data |UI
+- (void)setHeadUserInfo:(HRUserHomeInfo *)homeInfo dataSource:(NSArray *)dataSource
+{
+    [self.headView setDataSource:homeInfo];
+    [self refreshUIWithData:dataSource];
+}
 - (void)refreshUIWithData:(NSArray *)array
 {
-//    self.dataArray = array;
-//    [self refreshMapPinViews];
-    [self setMapViewSeleteIndexAnomaiton:0];
+    if (!array.count) {
+        return;
+    }
+    self.dataArray = array;
+    [self refreshMapPinViews];
+    [self ceneterMapViewOnSeleteIndexAnomaiton:0];
 }
 
 #pragma mark Map
@@ -118,14 +127,32 @@
     [self.mapView addAnnotations:array];
 }
 
-
 #pragma mark - 联动效果
+- (void)ceneterMapViewOnSeleteIndexAnomaiton:(NSInteger)index
+{
+    if (index >= 0 && index < [self.mapView annotations].count) {
+        
+        HRAnomation * anomation = (HRAnomation *)[self.mapView annotations][index];
+        //设置图区范围
+        MKCoordinateSpan span;
+        span.latitudeDelta = kHRMapMAOLEVEL;
+        span.longitudeDelta = kHRMapMAOLEVEL;
+        MKCoordinateRegion region;
+        
+        CLLocationCoordinate2D coord = anomation.coordinate;
+        region.center = coord;
+        region.span = span;
+        [self.mapView setRegion:region animated:YES];
+    }
+
+}
+
 - (void)setMapViewSeleteIndexAnomaiton:(NSInteger)index
 {
     
-    if (index >= 0 && index < self.anotionDataArray.count) {
+    if (index >= 0 && index < [self.mapView annotations].count) {
         
-        HRAnomation * anomation = self.anotionDataArray[index];
+        HRAnomation * anomation = (HRAnomation *)[self.mapView annotations][index];
         [self.mapView selectAnnotation:anomation animated:NO];
         //设置图区范围
         MKCoordinateSpan span;

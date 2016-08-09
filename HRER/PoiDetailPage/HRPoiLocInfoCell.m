@@ -162,9 +162,23 @@
     }
     
 //    颜色酒店：#fbb33a    购物：#3bc4ba    观光：#43a2fe    美食：#dc4630
-    self.caterBgView.backgroundColor = RGB_Color(0xfb, 0xb3, 0x3a);
+    self.caterBgView.backgroundColor = [self caterColorWithType:dataSource.type];
 }
 
+
+- (UIColor *)caterColorWithType:(NSInteger)type
+{
+    NSArray * colorArray  = @[
+                              RGB_Color(0xdc, 0x46, 0x30),
+                              RGB_Color(0x43, 0xa2, 0xf3),
+                              RGB_Color(0x3b, 0xc4, 0xba),
+                              RGB_Color(0xfb, 0xb3, 0x3a)
+                              ];
+    if (type >= 0 && type < colorArray.count) {
+        return colorArray[type];
+    }
+    return [UIColor clearColor];
+}
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {}

@@ -31,6 +31,26 @@
 @end
 
 
+@interface HRUserHomeInfo :  NSObject<NSCopying,NSCoding>
+
+@property(nonatomic,strong)NSString * user_id;
+@property(nonatomic,strong)NSString * cur_user_id;
+@property(nonatomic,strong)NSString * name;
+@property(nonatomic,strong)NSString * passport_num;
+@property(nonatomic,strong)NSString * image;
+@property(nonatomic,assign)NSInteger f_num;
+@property(nonatomic,assign)NSInteger f_city_num;
+@property(nonatomic,assign)NSInteger city_num;
+
+@property(nonatomic,assign)NSInteger food;
+@property(nonatomic,assign)NSInteger tour;
+@property(nonatomic,assign)NSInteger shop;
+@property(nonatomic,assign)NSInteger hotel;
+
+@property(nonatomic,assign)NSInteger is_focus;
+
+@end
+
 @interface HRFriendsInfo : NSObject<NSCopying,NSCoding>
 
 @property(nonatomic,strong)NSString * uid;
@@ -51,11 +71,13 @@
 
 @interface HRPOISetInfo : NSObject<NSCopying,NSCopying>
 
-@property(nonatomic,strong)NSString * creatorId;
-@property(nonatomic,strong)NSString * creatorName;
+@property(nonatomic,strong)NSString * creator_id;
+@property(nonatomic,strong)NSString * creator_name;
+@property(nonatomic,assign)NSInteger city_id;
+@property(nonatomic,strong)NSString * city_name;
 @property(nonatomic,assign)NSInteger type;
 
-@property(nonatomic,strong)NSString * portrait;
+@property(nonatomic,strong)HRPotoInfo  * portrait;
 @property(nonatomic,strong)NSString * title;
 @property(nonatomic,strong)NSArray * photos; ///< Array<HRImageInfo>
 
@@ -118,3 +140,21 @@
 
 @end
 
+
+@interface HRHomePoiInfo : NSObject<NSCopying,NSCopying>
+
+@property(nonatomic,strong)NSString * cityid;
+@property(nonatomic,strong)NSString * city_name;
+
+@property(nonatomic,assign)NSInteger food;
+@property(nonatomic,assign)NSInteger tour;
+@property(nonatomic,assign)NSInteger shop;
+@property(nonatomic,assign)NSInteger hotel;
+
+@property(nonatomic,strong)NSArray * cityPoiList;
+@end
+
+@interface HRMouthPoiList : NSObject<NSCopying,NSCopying>
+@property(nonatomic,strong)NSString * month;
+@property(nonatomic,strong)NSArray * timePoiList;
+@end

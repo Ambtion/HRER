@@ -72,10 +72,14 @@
     
 }
 
-- (void)setDataSource:(id)dataSource
+- (void)setDataSource:(HRUserHomeInfo *)dataSource
 {
-    [self.carView setDataSource:nil];
-    [self.caterInfoView setDataSource:nil];
+    if (_dataSource == dataSource) {
+        return;
+    }
+    _dataSource = dataSource;
+    [self.carView setDataSource:dataSource];
+    [self.caterInfoView setDataSource:dataSource];
 }
 
 - (void)setSeltedAtIndex:(NSInteger)index

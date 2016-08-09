@@ -132,7 +132,6 @@
         make.centerY.equalTo(self.locCityTitle);
         make.size.mas_equalTo(CGSizeMake(17, 17));
     }];
-    
 }
 
 - (UILabel *)creteOneCatLabel
@@ -144,13 +143,13 @@
     return label;
 }
 
-- (void)setDataSource:(id)dataSource
+- (void)setDataSource:(HRHomePoiInfo *)dataSource
 {
-    self.locCityTitle.text = @"北京";
-    self.foodTitle.text = @"2";
-    self.lookTitle.text = @"22";
-    self.shopTitle.text = @"2342";
-    self.hotelTitle.text = @"2342";
+    self.locCityTitle.text = dataSource.city_name;
+    self.foodTitle.text =  [NSString stringWithFormat:@"%ld",(long)dataSource.food];
+    self.lookTitle.text = [NSString stringWithFormat:@"%ld",(long)dataSource.tour];
+    self.shopTitle.text = [NSString stringWithFormat:@"%ld",(long)dataSource.shop];
+    self.hotelTitle.text = [NSString stringWithFormat:@"%ld",(long)dataSource.hotel];
 }
 
 @end

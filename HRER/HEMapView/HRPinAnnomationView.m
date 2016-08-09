@@ -55,9 +55,9 @@
             return [UIImage imageNamed:@"map_look"];
             break;
         case 3:
-            return [UIImage imageNamed:@"shopping"];
+            return [UIImage imageNamed:@"map_shop"];
         case 4:
-            return [UIImage imageNamed:@"map_hotel_click"];
+            return [UIImage imageNamed:@"map_hotel"];
         default:
             break;
     }
@@ -74,7 +74,7 @@
             return [UIImage imageNamed:@"map_look_click"];
             break;
         case 3:
-            return [UIImage imageNamed:@"shopping_click"];
+            return [UIImage imageNamed:@"map_shop_click"];
         case 4:
             return [UIImage imageNamed:@"map_hotel_click_click"];
         default:

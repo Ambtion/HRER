@@ -54,6 +54,8 @@
     [self addSubview:self.bgImageView];
     
     self.portraitImage = [[UIImageView alloc] init];
+    self.portraitImage.layer.cornerRadius = 18.5;
+    self.portraitImage.layer.masksToBounds = YES;
     [self addSubview:self.portraitImage];
     
     self.titleLabel = [[UILabel alloc] init];
@@ -124,7 +126,7 @@
 - (void)setData:(HRPOISetInfo *)data
 {
     
-    [self.portraitImage sd_setImageWithURL:[NSURL URLWithString:data.portrait] placeholderImage:[UIImage imageNamed:@"man"]];
+    [self.portraitImage sd_setImageWithURL:[NSURL URLWithString:data.portrait.url] placeholderImage:[UIImage imageNamed:@"man"]];
     self.titleLabel.text = data.title;
     
     for (int i = 0; i < MIN(data.photos.count, 4); i++) {
@@ -132,7 +134,7 @@
         PhotoFrameView * frameView = self.frameImageViews[i];
         if ([info isKindOfClass:[HRPotoInfo class]] && info.url.length) {
             [frameView setHidden:NO];
-            [frameView.imageView sd_setImageWithURL:[NSURL URLWithString:info.url]];
+            [frameView.imageView sd_setImageWithURL:[NSURL URLWithString:info.url] placeholderImage:[UIImage imageNamed:@"man"]];
         }
     }
 }

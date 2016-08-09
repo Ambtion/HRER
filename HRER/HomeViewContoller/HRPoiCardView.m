@@ -60,6 +60,8 @@
     
     
     self.portraitImage = [[UIImageView alloc] init];
+    self.portraitImage.layer.cornerRadius = 18.5;
+    self.portraitImage.layer.masksToBounds = YES;
     [self addSubview:self.portraitImage];
     
     self.titleLabel = [[UILabel alloc] init];

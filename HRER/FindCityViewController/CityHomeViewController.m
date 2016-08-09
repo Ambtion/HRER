@@ -478,7 +478,7 @@
         tpye = KPoiSetsCreteHere;
         //编辑
     }
-    HRPoiSetsController * poiSetController = [[HRPoiSetsController alloc] initWithPoiSetCreteType:tpye creteId:cell.data.creatorId creteUserName:cell.data.creatorName category:self.catergoryIndex];
+    HRPoiSetsController * poiSetController = [[HRPoiSetsController alloc] initWithPoiSetCreteType:tpye creteId:cell.data.creator_id creteUserName:cell.data.creator_name category:self.catergoryIndex];
     [self.myNavController pushViewController:poiSetController animated:YES];
 }
 

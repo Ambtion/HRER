@@ -12,7 +12,7 @@
 #import "HRPoiDetailController.h"
 #import "LoginStateManager.h"
 #import "HRSettingViewController.h"
-
+#import "LoginStateManager.h"
 
 //Test
 #import "PoiRecomendListController.h"
@@ -25,8 +25,12 @@
 
 @property(nonatomic,strong)HRUserHomeListView * listView;
 @property(nonatomic,strong)HRUserHomeMapView * mapView;
-@property(nonatomic,strong)id dataSorece;
+
+@property(nonatomic,strong)HRUserHomeInfo * homeUserInfo;
+@property(nonatomic,strong)NSArray * poiList;
+
 @property(nonatomic,assign)NSInteger caterIndex;
+
 @end
 
 @implementation HRUserHomeController
@@ -68,6 +72,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginSucess:) name:LOGIN_IN object:nil];
     
     [self initUI];
+    [self quaryDataWithTableView:nil];
 }
 
 - (void)showLoginPage
@@ -104,15 +109,10 @@
 
 - (void)switchView
 {
-//    if (self.listView.dataSource.count == 0) {
-//        return;
-//    }
-    
-    [self.mapView refreshUIWithData:self.dataSorece];
-    [self.listView setDataSource:self.dataSorece];
-    [self.mapView setSeltedAtIndex:self.caterIndex];
-    [self.listView setSeltedAtIndex:self.caterIndex];
-    
+    if (self.listView.dataSource.count == 0) {
+        return;
+    }
+        
     CATransition *animation = [CATransition animation];
     animation.delegate = self;
     animation.duration = 0.3;
@@ -128,6 +128,28 @@
     
 }
 
+- (void)refreshData
+{
+    [self.listView setHeadUserInfo:self.homeUserInfo dataSource:self.poiList];
+    [self.listView setSeltedAtIndex:self.caterIndex];
+    
+    self.mapView.delegate = nil;
+    [self.mapView setHeadUserInfo:self.homeUserInfo dataSource:[self totalPoiListFromDataSource:self.poiList]];
+    [self.mapView setSeltedAtIndex:self.caterIndex];
+    self.mapView.delegate = self;
+}
+
+
+- (NSArray *)totalPoiListFromDataSource:(NSArray *)dataSource
+{
+    NSMutableArray * array = [NSMutableArray arrayWithCapacity:0];
+    for (HRHomePoiInfo * cityList in self.poiList) {
+        for (HRMouthPoiList * mouthList in cityList.cityPoiList) {
+            [array addObjectsFromArray:mouthList.timePoiList];
+        }
+    }
+    return array;
+}
 - (void)initNavBar
 {
     self.backButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 26, 33, 33)];
@@ -140,11 +162,75 @@
 #pragma mark - Data
 - (void)quaryDataWithTableView:(RefreshTableView *)tableView
 {
-    //用户主页，并且未登录，要求登录
-    if (![[LoginStateManager getInstance] userLoginInfo] && [self isRootController]) {
-        [HRLoginManager showLoginView];
-        return;
+    __block NSInteger toutalNetCount = 2;
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    WS(ws);
+    void (^ failure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *operation, NSError *error){
+        [self netErrorWithTableView:tableView];
+    };
+    
+    [NetWorkEntity quaryUserInfoWithUserId:self.userId
+                                   success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
+            NSDictionary * response  = [responseObject objectForKey:@"response"];
+            HRUserHomeInfo * userHomeInfo = [HRUserHomeInfo yy_modelWithJSON:response];
+            if(userHomeInfo){
+                ws.homeUserInfo = userHomeInfo;
+                [ws refreshData];
+                [tableView.refreshHeader endRefreshing];
+                
+                toutalNetCount --;
+                if (toutalNetCount == 0) {
+                    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+                }
+            }else{
+                [ws  dealErrorResponseWithTableView:tableView info:responseObject];
+            }
+        }else{
+            [ws dealErrorResponseWithTableView:tableView info:responseObject];
+        }
+
+        
+    } failure:failure];
+ 
+    
+    [NetWorkEntity quaryUserHomePoiListWithUserId:self.userId
+                                        catergory:self.caterIndex + 1
+                                          success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
+            NSDictionary * response  = [responseObject objectForKey:@"response"];
+            ws.poiList  = [ws analysisPoiListModelFromArray:[response objectForKey:@"city_list"]];
+            [ws refreshData];
+            [tableView.refreshHeader endRefreshing];
+            
+            toutalNetCount --;
+            if (toutalNetCount == 0) {
+                [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+            }
+        }else{
+            [ws dealErrorResponseWithTableView:tableView info:responseObject];
+        }
+        
+    } failure:failure];
+}
+
+- (NSArray *)analysisPoiListModelFromArray:(NSArray *)array
+{
+    if (![array isKindOfClass:[NSArray class]]) {
+        return nil;
     }
+    
+    NSMutableArray * mArray = [NSMutableArray arrayWithCapacity:0];
+    for (NSDictionary * dic  in array) {
+        HRHomePoiInfo * model = [HRHomePoiInfo yy_modelWithJSON:dic];
+        if (model) {
+            [mArray addObject:model];
+        }
+    }
+    return mArray;
 }
 
 - (void)loginSucess:(id)sucess
@@ -173,13 +259,13 @@
 }
 
 #pragma mark PoiDetail
-- (void)userHomeListView:(HRUserHomeListView *)listView DidClickCellWithSource:(id)dataSource
+- (void)userHomeListView:(HRUserHomeListView *)listView DidClickCellWithSource:(HRPOIInfo *)dataSource
 {
-    [self.myNavController pushViewController:[[HRPoiDetailController alloc] initWithPoiId:nil] animated:YES];
+    [self.myNavController pushViewController:[[HRPoiDetailController alloc] initWithPoiId:dataSource.poi_id] animated:YES];
 }
-- (void)userHomeMapView:(HRUserHomeMapView *)mapView DidClickCellWithSource:(id)dataSource
+- (void)userHomeMapView:(HRUserHomeMapView *)mapView DidClickCellWithSource:(HRPOIInfo *)dataSource
 {
-    [self.myNavController pushViewController:[[HRPoiDetailController alloc] initWithPoiId:nil] animated:YES];
+    [self.myNavController pushViewController:[[HRPoiDetailController alloc] initWithPoiId:dataSource.poi_id] animated:YES];
 }
 
 #pragma mark  SwitchView
@@ -196,11 +282,46 @@
 #pragma mark RightButton
 - (void)userHomeListViewDidClickRightButton:(HRUserHomeListView *)listView
 {
-    [self.myNavController pushViewController:[[PoiRecomendListController alloc] init] animated:YES];
+    if ([[LoginStateManager getInstance] userLoginInfo] &&
+        [[LoginStateManager getInstance] userLoginInfo].user_id &&
+        [[[LoginStateManager getInstance] userLoginInfo].user_id isEqualToString:self.userId]) {
+        //进入的是个人主页
+        [self shareHomePage];
+    }else{
+        
+        //关注
+        WS(weakSelf);
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        [NetWorkEntity favFriends:self.homeUserInfo.user_id isFav:!self.homeUserInfo.is_focus success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
+                if(!weakSelf.homeUserInfo.is_focus){
+                    [self showTotasViewWithMes:@"关注成功"];
+                }else{
+                    [self showTotasViewWithMes:@"取消关注成功"];
+                }
+                [weakSelf quaryDataWithTableView:nil];
+            }else{
+                [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+                [self showTotasViewWithMes:[[responseObject objectForKey:@"response"] objectForKey:@"errorText"]];
+            }
+            
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+            [self showTotasViewWithMes:@"网络异常,稍后重试"];
+        }];
+
+    }
+//    [self.myNavController pushViewController:[[PoiRecomendListController alloc] init] animated:YES];
 }
+
 -(void)userHomeMapViewDidClickRightButton:(HRUserHomeMapView *)mapView
 {
+    [self showTotasViewWithMes:@"分享功能暂未实现"];
+}
 
+-(void)shareHomePage
+{
+    
 }
 
 #pragma mark - Detail
@@ -211,9 +332,13 @@
         [self.myNavController pushViewController:[[HRSettingViewController alloc] init] animated:YES];
     }
 }
+
 - (void)userHomeListViewDidDetailButton:(HRUserHomeListView *)listView
 {
-    [self.myNavController pushViewController:[[HRSettingViewController alloc] init] animated:YES];
+    if([self.userId isEqualToString:[[LoginStateManager getInstance] userLoginInfo].user_id] &&
+       [self.myNavController viewControllers].count == 1){
+        [self.myNavController pushViewController:[[HRSettingViewController alloc] init] animated:YES];
+    }
 }
 
 #pragma mar CategoryIndex

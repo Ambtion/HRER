@@ -74,7 +74,9 @@
         UIImageView * imageView = [[UIImageView alloc] init];
         [self.scrollView addSubview:imageView];
         
-        [imageView sd_setImageWithURL:[NSURL URLWithString:@"http://b.hiphotos.baidu.com/zhidao/pic/item/f636afc379310a5562bec3ceb64543a982261075.jpg"] placeholderImage:[UIImage imageNamed:@""]];
+        HRPotoInfo * photoInfo = [_dataArray objectAtIndex:i];
+
+        [imageView sd_setImageWithURL:[NSURL URLWithString:photoInfo.url] placeholderImage:[UIImage imageNamed:@"man"]];
         [imagemArray addObject:imageView];
     }
     self.imageArray = imagemArray;

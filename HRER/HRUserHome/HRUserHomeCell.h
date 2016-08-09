@@ -24,7 +24,7 @@ typedef NS_ENUM(NSUInteger,KCellStation) {
 
 @interface HRUserHomeCell : UITableViewCell
 
-@property(nonatomic,strong)id datsSource;
+@property(nonatomic,strong)HRPOIInfo * dataSource;
 @property(nonatomic,weak)id<HRUserHomeCellDelegate>delegate;
 
 + (CGFloat)heightForView;
