@@ -69,7 +69,7 @@
         return;
     }
     _cityInfo = cityInfo; 
-    self.nameLabel.text = [NSString stringWithFormat:@"%@%@",[_cityInfo objectForKey:@"city_name"],[_cityInfo objectForKey:@"en_name"]];
+    self.nameLabel.text = [NSString stringWithFormat:@"%@%@(%@)",[_cityInfo objectForKey:@"city_name"],[_cityInfo objectForKey:@"en_name"],[_cityInfo objectForKey:@"country_name"]];
 }
 
 - (void)setCellType:(CellPositionType)type
