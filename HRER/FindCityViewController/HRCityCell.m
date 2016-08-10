@@ -30,6 +30,7 @@
 - (void)initUI
 {
     self.nameLabel = [[UILabel alloc] init];
+    self.nameLabel.lineBreakMode = NSLineBreakByTruncatingMiddle;
     self.nameLabel.font = [UIFont systemFontOfSize:14.f];
     self.nameLabel.textColor = RGBA(0x5c, 0x5b, 0x5b, 1);
     [self.contentView addSubview:self.nameLabel];

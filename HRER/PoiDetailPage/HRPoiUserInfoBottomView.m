@@ -41,8 +41,8 @@
     
     self.wantTogoButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.wantTogoButton addTarget:self action:@selector(wantGoButton:) forControlEvents:UIControlEventTouchUpInside];
-    [self.wantTogoButton setImage:[UIImage imageNamed:@"add"] forState:UIControlStateSelected];
-    [self.wantTogoButton setImage:[UIImage imageNamed:@"xiangqu"] forState:UIControlStateNormal];
+    [self.wantTogoButton setImage:[UIImage imageNamed:@"xiangqu"] forState:UIControlStateSelected];
+    [self.wantTogoButton setImage:[UIImage imageNamed:@"xiangqu-1"] forState:UIControlStateNormal];
     [self addSubview:self.wantTogoButton];
     
     self.recomendButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -88,7 +88,7 @@
 - (void)setData:(HRPOIInfo *)data
 {
     self.timeLabel.text = data.ctimeStr;
-    [self.recomendButton setSelected:data.intend];
+    [self.wantTogoButton setSelected:data.intend];
 }
 
 
