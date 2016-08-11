@@ -93,6 +93,13 @@
     }
 }
 
+- (void)hrCatergoryScrollViewDidCancelSeleted:(HRCatergoryScrollView *)view
+{
+    if ([_delegate respondsToSelector:@selector(homeHeadViewDidCancelSeleted:)]) {
+        [_delegate homeHeadViewDidCancelSeleted:self];
+    }
+}
+
 - (void)hrCatergoryScrollView:(HRCatergoryScrollView *)view DidSeletedIndex:(NSInteger)index
 {
     if ([_delegate respondsToSelector:@selector(homeHeadView:DidSeletedIndex:)]) {

@@ -13,8 +13,9 @@
 @protocol HRUserHomeCaterInfoViewDelegate <NSObject>
 
 - (void)userHomeCaterInfoViewDidSeletedIndex:(NSInteger)index;
-- (void)userHomeCaterSwithButtonDidClick:(HRUserHomeCaterInfoView *)view;
+- (void)userHomeCaterInfoViewDidCancelSeleted:(HRUserHomeCaterInfoView *)view;
 
+- (void)userHomeCaterSwithButtonDidClick:(HRUserHomeCaterInfoView *)view;
 @end
 
 @interface HRUserHomeCaterInfoView : UIView

@@ -209,6 +209,13 @@
     }
 }
 
+- (void)userHomeHeadViewDidCancelSeletedButton:(HRUserHomeHeadView *)headView
+{
+    if ([_delegate respondsToSelector:@selector(userHomeHeadViewDidCancelSeletedButton:)]) {
+        [_delegate userHomeListViewDidCalcelSeleted:self];
+    }
+}
+
 - (void)userHomeHeadViewDidClickSwitchButton:(HRUserHomeHeadView *)headView
 {
     if ([_delegate respondsToSelector:@selector(userHomeListViewDidClickSwitchButton:)]) {

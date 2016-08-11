@@ -213,6 +213,13 @@
     }
 }
 
+- (void)userHomeHeadViewDidCancelSeletedButton:(HRUserHomeHeadView *)headView
+{
+    if ([_delegate respondsToSelector:@selector(userHomeMapViewDidCancelSeletedButton:)]) {
+        [_delegate userHomeMapViewDidCancelSeletedButton:self];
+    }
+}
+
 - (void)userHomeHeadViewDidClickSwitchButton:(HRUserHomeHeadView *)headView
 {
     if ([_delegate respondsToSelector:@selector(userHomeMapViewDidClickSwitchButton:)]) {

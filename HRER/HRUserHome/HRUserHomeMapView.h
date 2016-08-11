@@ -15,6 +15,7 @@
 - (void)userHomeMapViewDidClickRightButton:(HRUserHomeMapView *)mapView;
 - (void)userHomeMapViewDidClickDetailButton:(HRUserHomeMapView *)mapView;
 
+- (void)userHomeMapViewDidCancelSeletedButton:(HRUserHomeMapView *)mapView;
 - (void)userHomeMapView:(HRUserHomeMapView *)mapView DidCategoryAtIndex:(NSInteger)index;
 - (void)userHomeMapView:(HRUserHomeMapView *)mapView DidClickCellWithSource:(id)dataSource;
 @end

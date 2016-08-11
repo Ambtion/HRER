@@ -13,6 +13,7 @@
 @protocol HRCatergoryScrollViewDelegate <NSObject>
 
 - (void)hrCatergoryScrollView:(HRCatergoryScrollView *)view DidSeletedIndex:(NSInteger)index;
+- (void)hrCatergoryScrollViewDidCancelSeleted:(HRCatergoryScrollView *)view;
 
 @end
 

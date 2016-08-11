@@ -121,4 +121,11 @@
     }
 }
 
+- (void)userHomeCaterInfoViewDidCancelSeleted:(HRUserHomeCaterInfoView *)view
+{
+    if ([_delegate respondsToSelector:@selector(userHomeHeadViewDidCancelSeletedButton:)]) {
+        [_delegate userHomeHeadViewDidCancelSeletedButton:self];
+    }
+}
+
 @end

@@ -198,19 +198,31 @@
 
 - (void)onSeletedIndex:(UITapGestureRecognizer *)tap
 {
-    [self cancelAllSelted];
     HRCategoryItemView * itemView = (HRCategoryItemView *)tap.view;
-    [itemView setSeleted:YES];
-    if ([_delegate respondsToSelector:@selector(userHomeCaterInfoViewDidSeletedIndex:)]) {
-        [_delegate userHomeCaterInfoViewDidSeletedIndex:[self.caterItemArray indexOfObject:itemView]];
+
+    [self cancelAllSeltedButView:itemView];
+    if ([itemView isSeleted]) {
+        [itemView setSeleted:NO];
+        if ([_delegate respondsToSelector:@selector(userHomeCaterInfoViewDidCancelSeleted:)]) {
+            [_delegate userHomeCaterInfoViewDidCancelSeleted:self];
+        }
+    }else{
+        [itemView setSeleted:YES];
+        if ([_delegate respondsToSelector:@selector(userHomeCaterInfoViewDidSeletedIndex:)]) {
+            [_delegate userHomeCaterInfoViewDidSeletedIndex:[self.caterItemArray indexOfObject:itemView]];
+        }
+
     }
 }
 
 - (void)setSeletedAtIndex:(NSInteger)index
 {
-    HRCategoryItemView * itemView = self.caterItemArray[index];
-    [self cancelAllSelted];
-    [itemView setSeleted:YES];
+    
+    [self cancelAllSeltedButView:nil];
+    if(index >= 0 && index < self.caterItemArray.count){
+        HRCategoryItemView * itemView = self.caterItemArray[index];
+        [itemView setSeleted:YES];
+    }
 }
 
 - (NSInteger)seletedIndex
@@ -223,10 +235,12 @@
     return 0;
 }
 
-- (void)cancelAllSelted
+- (void)cancelAllSeltedButView:(UIView *)view
 {
-    for (HRCategoryItemView * imtemView in self.caterItemArray ) {
-        [imtemView setSeleted:NO];
+    for (HRCategoryItemView * itemView in self.caterItemArray ) {
+        if (view != itemView ) {
+            [itemView setSeleted:NO];
+        }
     }
 }
 

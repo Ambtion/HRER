@@ -41,7 +41,7 @@
     if (self) {
         
         self.userId = userId;
-        self.caterIndex = 0;
+        self.caterIndex = -1;
         
     }
     
@@ -354,6 +354,7 @@
     self.caterIndex = index;
     [self quaryDataWithTableView:nil];
 }
+
 - (void)userHomeMapView:(HRUserHomeMapView *)mapView DidCategoryAtIndex:(NSInteger)index
 {
     if (self.caterIndex == index) {
@@ -362,4 +363,17 @@
     self.caterIndex = index;
     [self quaryDataWithTableView:nil];
 }
+
+-(void)userHomeListViewDidCalcelSeleted:(HRUserHomeListView *)listView
+{
+    self.caterIndex = -1;
+    [self quaryDataWithTableView:nil];
+}
+
+- (void)userHomeMapViewDidCancelSeletedButton:(HRUserHomeMapView *)mapView
+{
+    self.caterIndex = -1;
+    [self quaryDataWithTableView:nil];
+}
+
 @end

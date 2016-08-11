@@ -12,6 +12,7 @@
 
 @protocol HomeHeadViewDelegate <NSObject>
 - (void)homeHeadView:(HomeHeadView *)view DidSeletedIndex:(NSInteger)index;
+- (void)homeHeadViewDidCancelSeleted:(HomeHeadView *)view;
 @end
 
 @interface HomeHeadView : UITableViewCell

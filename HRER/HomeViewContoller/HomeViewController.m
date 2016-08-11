@@ -50,7 +50,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userLoginChnage:) name:LOGIN_IN object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userLoginChnage:) name:LOGIN_OUT object:nil];
-    self.catergoryIndex = 0;
+    self.catergoryIndex = -1;
     [self initUI];
     [self quaryData];
 }
@@ -412,6 +412,12 @@
 - (void)homeHeadView:(HomeHeadView *)view DidSeletedIndex:(NSInteger)index
 {
     self.catergoryIndex = index;
+    [self quaryData];
+}
+
+- (void)homeHeadViewDidCancelSeleted:(HomeHeadView *)view
+{
+    self.catergoryIndex = -1;
     [self quaryData];
 }
 

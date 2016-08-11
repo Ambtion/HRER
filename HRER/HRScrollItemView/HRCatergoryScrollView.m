@@ -100,13 +100,19 @@
 {
     
     for (HRCatergoryItemView * itemView in self.itemArrays) {
-        [itemView.imageButton setSelected:NO];
+        if(button != itemView.imageButton)
+            [itemView.imageButton setSelected:NO];
     }
-    
-    [button setSelected:YES];
-    
-    if ([_delegate respondsToSelector:@selector(hrCatergoryScrollView:DidSeletedIndex:)]) {
-        [_delegate hrCatergoryScrollView:self DidSeletedIndex:button.tag];
+    if(button.isSelected){
+        if ([_delegate respondsToSelector:@selector(hrCatergoryScrollViewDidCancelSeleted:)]) {
+            [_delegate hrCatergoryScrollViewDidCancelSeleted:self];
+        }
+    }else{
+        [button setSelected:YES];
+        if ([_delegate respondsToSelector:@selector(hrCatergoryScrollView:DidSeletedIndex:)]) {
+            [_delegate hrCatergoryScrollView:self DidSeletedIndex:button.tag];
+        }
+
     }
 }
 
