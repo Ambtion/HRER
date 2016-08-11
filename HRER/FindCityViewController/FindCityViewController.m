@@ -230,8 +230,10 @@
         [_delegate findCityViewControllerDidSeltedCityInfo:cityInfo];
     }else{
         NSString * cityName = [cityInfo objectForKey:@"city_name"];
+        NSString * enName =[cityInfo objectForKey:@"en_name"];
         NSInteger cityId = [[cityInfo objectForKey:@"id"] integerValue];
-        [self.myNavController pushViewController:[[CityHomeViewController alloc] initWithCityId:cityId cityName:cityName] animated:YES];
+    
+        [self.myNavController pushViewController:[[CityHomeViewController alloc] initWithCityId:cityId cityName:cityName city_enName:enName] animated:YES];
     }
 
 }
@@ -246,8 +248,9 @@
             [_delegate findCityViewControllerDidCurCity];
         }else{
             NSString * cityName = [[HRLocationManager sharedInstance] cityName];
+//            NSString * enName =[cityInfo objectForKey:@"en_name"];
             NSInteger cityId = [[HRLocationManager sharedInstance] curCityId];
-            [self.myNavController pushViewController:[[CityHomeViewController alloc] initWithCityId:cityId cityName:cityName] animated:YES];
+            [self.myNavController pushViewController:[[CityHomeViewController alloc] initWithCityId:cityId cityName:cityName city_enName:@"写死等服务"] animated:YES];
         }
     }
     
@@ -264,8 +267,11 @@
         [_delegate findCityViewControllerDidSeltedCityInfo:cityInfo];
     }else{
         NSString * cityName = [cityInfo objectForKey:@"city_name"];
+        NSString * enName =[cityInfo objectForKey:@"en_name"];
         NSInteger cityId = [[cityInfo objectForKey:@"id"] integerValue];
-        [self.myNavController pushViewController:[[CityHomeViewController alloc] initWithCityId:cityId cityName:cityName] animated:YES];
+        
+        [self.myNavController pushViewController:[[CityHomeViewController alloc] initWithCityId:cityId cityName:cityName city_enName:enName] animated:YES];
+        
     }
     
 }

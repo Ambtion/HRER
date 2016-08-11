@@ -19,7 +19,6 @@
 @property(nonatomic,strong)UILabel * subLabel;
 
 @property(nonatomic,strong)NSMutableArray * frameImageViews;
-@property(nonatomic,strong)UIImageView * locIconView;
 
 
 @end

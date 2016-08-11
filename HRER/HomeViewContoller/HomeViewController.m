@@ -352,7 +352,9 @@
                 cell = [[HRHerePoiCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identify];
                 cell.delegate = self;
             }
-            [cell setData:self.userPoiSource[indexPath.row]];
+            HRPOIInfo * poiInfo = self.userPoiSource[indexPath.row];
+            [cell setData:poiInfo];
+            [cell setLocaitonStr:poiInfo.city_name];
             return cell;
 
         }

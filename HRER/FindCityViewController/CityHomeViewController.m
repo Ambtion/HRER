@@ -23,6 +23,7 @@
 @interface CityHomeViewController()<UITableViewDelegate,UITableViewDataSource,HomeHeadViewDelegate,HRHerePoisSetCellDelegate,HRHerePoiCellDelegate>
 
 @property(nonatomic,strong)NSString * cityName;
+@property(nonatomic,strong)NSString * cityEnName;
 @property(nonatomic,assign)NSInteger cityID;
 
 @property(nonatomic,strong)RefreshTableView * tableView;
@@ -52,12 +53,13 @@
 //    [self.myNavController setNavigationBarHidden:NO];
 }
 
-- (instancetype)initWithCityId:(NSInteger )cityId cityName:(NSString *)cityName
+- (instancetype)initWithCityId:(NSInteger )cityId cityName:(NSString *)cityName city_enName:(NSString *)en_name
 {
     self = [super init];
     if (self) {
         self.cityID = cityId;
         self.cityName = cityName;
+        self.cityEnName = en_name;
     }
     return self;
 }
@@ -349,7 +351,7 @@
             if (!cell) {
                 cell = [[HomeHeadView alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identify];
                 cell.bgImageView.image = [UIImage imageNamed:@"poi_head_bg"];
-                cell.mainLabel.text = @"ZHELI";
+                cell.mainLabel.text = self.cityEnName;
                 cell.titleLabel.text = self.cityName;
                 UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backButtonDidClick:)];
                 [cell.titleLabel setUserInteractionEnabled:YES];

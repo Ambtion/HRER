@@ -24,6 +24,7 @@
 @property(nonatomic,weak)id<HRPoiCardViewdelegate>delegate;
 @property(nonatomic,weak)UIViewController * controller;
 @property(nonatomic,strong)UILabel * locLabel;
+@property(nonatomic,strong)UIImageView * locIconView;
 
 + (CGFloat)heightForCardView;
 

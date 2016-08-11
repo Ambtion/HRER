@@ -11,6 +11,6 @@
 
 @interface CityHomeViewController : UIViewController
 
-- (instancetype)initWithCityId:(NSInteger)cityId cityName:(NSString *)cityName;
+- (instancetype)initWithCityId:(NSInteger )cityId cityName:(NSString *)cityName city_enName:(NSString *)en_name;
 
 @end

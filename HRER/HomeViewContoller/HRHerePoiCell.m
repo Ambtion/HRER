@@ -58,6 +58,7 @@
 - (void)setLocaitonStr:(NSString *)str
 {
     self.cardView.locLabel.text = str;
+//    [self.cardView.locIconView setHidden:str.length];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
