@@ -26,5 +26,4 @@
 
 + (CGFloat)heightForCell;
 
-
 @end
