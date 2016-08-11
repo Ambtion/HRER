@@ -165,8 +165,6 @@ static CallBack upSucess;
     NSString * urlStr = [NSString stringWithFormat:@"%@/addressbook",KNETBASEURL];
     NSString * str = @"";
     NSInteger totalCout = photoNumbers.count;
-    totalCout = 2;
-#pragma warning
     for (int i = 0; i < totalCout; i++) {
         NSString * pnum = [self strOfPhoto:photoNumbers[i]];
         if (pnum.length) {
