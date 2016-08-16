@@ -306,10 +306,10 @@
         return;
     }
     
-
+    WS(ws);
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [NetWorkEntity loginWithUserName:self.userName.text password:self.password.text success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+        [MBProgressHUD hideAllHUDsForView:ws.view animated:YES];
         if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
             
             NSDictionary * userInfoDic  = [responseObject objectForKey:@"response"];
@@ -317,7 +317,7 @@
             HRUserLoginInfo * userInfo = [HRUserLoginInfo yy_modelWithJSON:userInfoDic];
             if(userInfo){
                 [[LoginStateManager getInstance] LoginWithUserLoginInfo:userInfo];
-                [self showTotasViewWithMes:@"登陆成功"];
+                [ws showTotasViewWithMes:@"登陆成功"];
                 
                 //访问通讯录
                 [HRAddressBookManager readAllPersonAddressWithCallBack:^(NSArray *resultList, ABAuthorizationStatus status) {
@@ -332,24 +332,25 @@
                     }
                 }];
                 
-                if ([self.myNavController presentedViewController]) {
-                    [self.myNavController dismissViewControllerAnimated:YES completion:^{
+                if ([ws.myNavController presentedViewController]) {
+                    [ws.myNavController dismissViewControllerAnimated:YES completion:^{
                     }];
                     
                 }else{
-                    [self.myNavController popToRootViewControllerAnimated:YES];
+                    [ws.myNavController popViewControllerAnimated:YES];
                 }
             }else{
-                [self showTotasViewWithMes:[[responseObject objectForKey:@"response"] objectForKey:@"   "]];
+                
+                [ws showTotasViewWithMes:[[responseObject objectForKey:@"response"] objectForKey:@"   "]];
             }
         }else{
-            [self showTotasViewWithMes:[[responseObject objectForKey:@"response"] objectForKey:@"errorText"]];
+            [ws showTotasViewWithMes:[[responseObject objectForKey:@"response"] objectForKey:@"errorText"]];
             
         }
 
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-        [self showTotasViewWithMes:@"网络异常,稍后重试"];
+        [ws showTotasViewWithMes:@"网络异常,稍后重试"];
     }];
 }
 
