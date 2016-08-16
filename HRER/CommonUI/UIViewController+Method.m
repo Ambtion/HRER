@@ -13,6 +13,7 @@
 #import "SDImageCache.h"
 #import "ToastAlertView.h"
 #import "RefreshTableView.h"
+#import "HomeViewController.h"
 
 @implementation UIViewController(Tips)
 - (MBProgressHUD *)waitForMomentsWithTitle:(NSString*)str withView:(UIView *)view
@@ -157,6 +158,10 @@
 {
     UITabBarController * tabBar = (UITabBarController *)[[[[UIApplication sharedApplication] delegate] window] rootViewController];
     [tabBar setSelectedIndex:0];
+    UINavigationController * nav = [[tabBar viewControllers] objectAtIndex:0];
+    [nav popToRootViewControllerAnimated:NO];
+    HomeViewController * homeC = (HomeViewController *)[nav topViewController];
+    [homeC quaryData];
 }
 
 @end

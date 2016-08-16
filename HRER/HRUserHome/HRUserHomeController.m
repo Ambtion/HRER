@@ -78,9 +78,12 @@
 - (void)showLoginPage
 {
     //未登录弹出登录
-    if (![[LoginStateManager getInstance] userLoginInfo] && [self.myNavController viewControllers].count == 1) {
+    if (![[LoginStateManager getInstance] userLoginInfo] && ![[self.navigationController topViewController] isKindOfClass:[HRLoginViewController class]]) {
         [HRLoginManager showLoginViewWithNavgation:self.myNavController];
-        return;
+    }else{
+        if ([[self.myNavController topViewController] isKindOfClass:[HRLoginViewController class]]) {
+            [self.myNavController popViewControllerAnimated:NO];
+        }
     }
 }
 

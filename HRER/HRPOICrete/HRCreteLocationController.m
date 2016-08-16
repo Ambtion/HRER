@@ -84,7 +84,10 @@
     //未登录弹出登录
     if (![[LoginStateManager getInstance] userLoginInfo] && ![[self.navigationController topViewController] isKindOfClass:[HRLoginViewController class]]) {
         [HRLoginManager showLoginViewWithNavgation:self.myNavController];
-        return;
+    }else{
+        if ([[self.myNavController topViewController] isKindOfClass:[HRLoginViewController class]]) {
+            [self.myNavController popViewControllerAnimated:NO];
+        }
     }
 
 }
@@ -173,7 +176,9 @@
                                     }
                                     [weakSelf.tableView reloadData];
                                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                    weakSelf.dataArray = nil;
                                     [MBProgressHUD hideAllHUDsForView:weakSelf.view animated:YES];
+                                    [weakSelf.tableView reloadData];
                                     [weakSelf.tableView.refreshHeader endRefreshing];
                                 }];
     

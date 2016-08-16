@@ -107,7 +107,7 @@
 - (void)quaryData
 {
     
-    __block NSInteger toutalNetCount = 4 + ([[LoginStateManager getInstance] userLoginInfo] ? 2 : 0);
+    __block NSInteger toutalNetCount = 3 + ([[LoginStateManager getInstance] userLoginInfo] ? 1 : 0);
 
     void (^ failure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *operation, NSError *error){
         [self netErrorWithTableView:self.tableView];

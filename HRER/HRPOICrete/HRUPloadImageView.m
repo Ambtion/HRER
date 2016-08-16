@@ -183,7 +183,7 @@
     self.textDesView.font =[UIFont systemFontOfSize:14];
     self.textDesView.textColor = RGB_Color(0xd4, 0xd4, 0xd4);
     self.textDesView.returnKeyType = UIReturnKeyNext;//返回键的类型
-    self.textDesView.keyboardType = UIKeyboardTypeDefault;//键盘类型
+//    self.textDesView.keyboardType = UIKeyboardTypeDefault;//键盘类型
     [self.contentView addSubview:self.textDesView];
 
     [self.textDesView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -389,7 +389,7 @@
     if (newtxt.length > MAXSEARCHCOUNT ) {
         newtxt = [[newtxt substringWithRange:NSMakeRange(0,MAXSEARCHCOUNT)] mutableCopy];
     }
-    textView.text = newtxt;
+//    textView.text = newtxt;
     return ([newtxt length] <= MAXSEARCHCOUNT);
 }
 
@@ -416,6 +416,7 @@
 
 - (void)uploadImagedidClic:(UIButton *)button
 {
+    [self.textDesView resignFirstResponder];
     //添加图片
     UIActionSheet * action = [[UIActionSheet alloc] initWithTitle:@"选择照片" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"相机",@"相册", nil];
     [action showInView:self];

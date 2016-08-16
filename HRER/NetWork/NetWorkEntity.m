@@ -458,27 +458,29 @@ static CallBack upSucess;
         
         NSString * keytype = nil;
         switch (poiType) {
-            case 0:
+            case 1:
                 // 美食 food
                 keytype = @"bakery | bar | cafe | food | restaurant";
                 break;
-            case 1:
+            case 2:
                 // 观光
                 
                 keytype = @"beauty_salon | bowling_alley | campground | casino | gym | hair_care | movie_rental | movie_theater | night_club | spa";
                 break;
-            case 2:
+            case 3:
                 keytype = @"aquarium | art_gallery | bicycle_store | book_store | church|city_hall | clothing_store | embassy|florist | furniture_store | grocery_or_supermarket | hardware_store | home_goods_store | jewelry_store | library | mosque | museum |park | post_office | university | shoe_store | shopping_mall | stadium | train_station | zoo";
                 // 购物 shopping_mall
                 break;
-            case 3:
+            case 4:
                 keytype = @"lodging";
                 // 酒店
                 break;
             default:
                 break;
         }
-        
+        if (keytype.length) {
+            [dic setValue:keytype forKey:@"types"];
+        }
         NSString *  urlStr = @"https://maps.googleapis.com/maps/api/place/nearbysearch/json?";
         
         
@@ -495,6 +497,25 @@ static CallBack upSucess;
     
 }
 
++ (NSString *)urlencodeString:(NSString *)urlStr {
+    NSMutableString *output = [NSMutableString string];
+    const unsigned char *source = (const unsigned char *)[urlStr UTF8String];
+    NSInteger sourceLen = strlen((const char *)source);
+    for (NSInteger i = 0; i < sourceLen; ++i) {
+        const unsigned char thisChar = source[i];
+        if (thisChar == ' '){
+            [output appendString:@"+"];
+        } else if (thisChar == '.' || thisChar == '-' || thisChar == '_' || thisChar == '~' ||
+                   (thisChar >= 'a' && thisChar <= 'z') ||
+                   (thisChar >= 'A' && thisChar <= 'Z') ||
+                   (thisChar >= '0' && thisChar <= '9')) {
+            [output appendFormat:@"%c", thisChar];
+        } else {
+            [output appendFormat:@"%%%02X", thisChar];
+        }
+    }
+    return output;
+}
 
 /**
  *  POI详情页面

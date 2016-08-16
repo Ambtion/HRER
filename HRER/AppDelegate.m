@@ -109,8 +109,8 @@
 
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
 {
-    if ([[(UINavigationController *)viewController topViewController] respondsToSelector:@selector(showLoginPage)]) {
-        [[(UINavigationController *)viewController topViewController] performSelector:@selector(showLoginPage)];
+    if ([[[(UINavigationController *)viewController viewControllers] firstObject] respondsToSelector:@selector(showLoginPage)]) {
+        [[[(UINavigationController *)viewController viewControllers] firstObject] performSelector:@selector(showLoginPage)];
     }
 }
 
