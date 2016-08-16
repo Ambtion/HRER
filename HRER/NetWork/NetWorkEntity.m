@@ -281,6 +281,26 @@ static CallBack upSucess;
 
 }
 
+
+/**
+ *  获取所欲混合的POI集合
+ */
+
++ (void)quaryAllMixedPoiListWithCityId:(NSInteger)cityId
+                             catergory:(NSInteger)catergory
+                               success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                               failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+{
+    NSMutableDictionary * dic = [self commonComonPar];
+    [dic setValue:@(cityId) forKey:@"city_id"];
+    [dic setValue:@([[[HRLocationManager sharedInstance] curLocation] coordinate].latitude) forKey:@"lat"];
+    [dic setValue:@([[[HRLocationManager sharedInstance] curLocation] coordinate].longitude) forKey:@"lng"];
+    [dic setValue:@(catergory) forKey:@"type"];
+    NSString * urlStr = [NSString stringWithFormat:@"%@/misc_poi",KNETBASEURL];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:urlStr parameters:dic success:success failure:failure];
+}
+
 /**
  *  获取个人和朋友创建的POI集合
  */

@@ -151,33 +151,40 @@
                                   catergory:(NSInteger)catergory
                                     success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                                     failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
-
-
 /**
- *  获取个人和朋友创建的POI集合
+ *  获取所欲混合的POI集合
  */
 
-+ (void)quaryFreindsCretePoiSetListWithCityId:(NSInteger)cityId
-                                    catergory:(NSInteger)catergory
-                                      success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
-                                      failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
++ (void)quaryAllMixedPoiListWithCityId:(NSInteger)cityId
+                     catergory:(NSInteger)catergory
+                       success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                       failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
-/**
- *  获取编辑创建的POI集合
- */
-+ (void)quaryEditorCretePoiSetListWithCityId:(NSInteger)cityId
-                                    catergory:(NSInteger)catergory
-                                      success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
-                                      failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
-
-
-/**
- *  获取编辑创建的POI
- */
-+ (void)quaryEditCretePoiListWithCityId:(NSInteger)cityId
-                                 catergory:(NSInteger)catergory
-                                   success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
-                                   failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+///**
+// *  获取个人和朋友创建的POI集合
+// */
+//
+//+ (void)quaryFreindsCretePoiSetListWithCityId:(NSInteger)cityId
+//                                    catergory:(NSInteger)catergory
+//                                      success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+//                                      failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+//
+///**
+// *  获取编辑创建的POI集合
+// */
+//+ (void)quaryEditorCretePoiSetListWithCityId:(NSInteger)cityId
+//                                    catergory:(NSInteger)catergory
+//                                      success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+//                                      failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+//
+//
+///**
+// *  获取编辑创建的POI
+// */
+//+ (void)quaryEditCretePoiListWithCityId:(NSInteger)cityId
+//                                 catergory:(NSInteger)catergory
+//                                   success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+//                                   failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
 
 /**

@@ -28,10 +28,7 @@
 @property(nonatomic,strong)HRCatergoryInfo * catergoryInfo;
 @property(nonatomic,strong)NSArray * nearyBySource;
 @property(nonatomic,strong)NSArray * userPoiSource;
-@property(nonatomic,strong)NSArray * editPoiSource;
-@property(nonatomic,strong)NSArray * userPoiSetsSource;
-@property(nonatomic,strong)NSArray * editPoiSetsSource;
-
+@property(nonatomic,strong)NSArray * mixPoiSource;
 
 @end
 
@@ -80,7 +77,7 @@
 - (void)quaryData
 {
     
-    __block NSInteger toutalNetCount = 4 + ([[LoginStateManager getInstance] userLoginInfo] ? 2 : 0);
+    __block NSInteger toutalNetCount = 3 + ([[LoginStateManager getInstance] userLoginInfo] ? 1 : 0);
     
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -130,12 +127,12 @@
         
     } failure:failure];
     
-    //编辑创建的POI集合
-    [NetWorkEntity quaryEditorCretePoiSetListWithCityId:-1 catergory:self.catergoryIndex + 1 success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
+    
+    // 编辑创建的POI集合  | 编辑创建的单个POI  | 个人创建POI集合
+    [NetWorkEntity quaryAllMixedPoiListWithCityId:-1 catergory:self.catergoryIndex + 1 success:^(AFHTTPRequestOperation *operation, id responseObject) {
         if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
             NSArray * poiSets = [responseObject objectForKey:@"response"];
-            self.editPoiSetsSource = [self analysisPoiSetsModelFromArray:poiSets];
+            self.mixPoiSource = [self analysisPoiMixModelFromArray:poiSets];
             [self.tableView reloadData];
             [self.tableView.refreshHeader endRefreshing];
             
@@ -146,49 +143,11 @@
         }else{
             [self dealErrorResponseWithTableView:self.tableView info:responseObject];
         }
-        
-    } failure:failure];
-    
-    //编辑创建的单个POI
-    [NetWorkEntity quaryEditCretePoiListWithCityId:-1 catergory:self.catergoryIndex + 1 success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
-            NSArray * poiList = [responseObject objectForKey:@"response"];
-            self.editPoiSource = [self analysisPoiModelFromArray:poiList];
-            [self.tableView reloadData];
-            [self.tableView.refreshHeader endRefreshing];
-            
-            toutalNetCount --;
-            if (toutalNetCount == 0) {
-                [MBProgressHUD hideHUDForView:self.view animated:YES];
-            }
 
-        }else{
-            [self dealErrorResponseWithTableView:self.tableView info:responseObject];
-        }
-        
     } failure:failure];
     
-    //个人创建POI集合
+    
     if([[LoginStateManager getInstance] userLoginInfo]){
-        [NetWorkEntity quaryFreindsCretePoiSetListWithCityId:-1 catergory:self.catergoryIndex + 1 success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            
-            if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
-                NSArray * poiSets = [responseObject objectForKey:@"response"];
-                self.userPoiSetsSource = [self analysisPoiSetsModelFromArray:poiSets];
-                [self.tableView reloadData];
-                [self.tableView.refreshHeader endRefreshing];
-                
-                toutalNetCount --;
-                if (toutalNetCount == 0) {
-                    [MBProgressHUD hideHUDForView:self.view animated:YES];
-                }
-
-            }else{
-                [self dealErrorResponseWithTableView:self.tableView info:responseObject];
-            }
-            
-        } failure:failure];
-        
         
         //个人单个POI
         [NetWorkEntity quaryFreindsCretePoiListWithCityId:-1 catergory:self.catergoryIndex + 1 success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -245,6 +204,29 @@
     return mArray;
 }
 
+- (NSArray *)analysisPoiMixModelFromArray:(NSArray *)array
+{
+    if (![array isKindOfClass:[NSArray class]]) {
+        return nil;
+    }
+    
+    NSMutableArray * mArray = [NSMutableArray arrayWithCapacity:0];
+    for (NSDictionary * dic  in array) {
+        if([dic objectForKey:@"poi_id"]){
+            HRPOIInfo * model = [HRPOIInfo yy_modelWithJSON:dic];
+            if (model) {
+                [mArray addObject:model];
+            }
+        }else{
+            HRPOISetInfo * model = [HRPOISetInfo yy_modelWithJSON:dic];
+            if (model) {
+                [mArray addObject:model];
+            }
+        }
+    }
+    return mArray;
+}
+
 
 #pragma mark - TableViewDelegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -252,11 +234,9 @@
     // HeadView
     // 附件的POI集合
     // 我和朋友创建的单个POI
-    // 我和朋友的POI集合
-    // 编辑创建的单个POI
-    // 编辑推荐的POI集合
+    // 我和朋友的POI集合 | 编辑创建的单个POI | 编辑推荐的POI集合
     
-    return 6;
+    return 4;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -272,14 +252,7 @@
             return self.userPoiSource.count;
             break;
         case 3:
-            return self.userPoiSetsSource.count;
-            break;
-        case 4:
-            return self.editPoiSource.count;
-            break;
-        case 5:
-            return self.editPoiSetsSource.count;
-        default:
+            return self.mixPoiSource.count;
             break;
     }
     return 0;
@@ -291,12 +264,18 @@
         case 0:
             return [HomeHeadView heightForHeadCell];
         case 1:
-        case 3:
-        case 5:
             return [HRHerePoisSetCell heightForCell];
         case 2:
-        case 4:
             return [HRHerePoiCell heightForCell];
+        case 3:
+        {
+            id poiSoure = self.mixPoiSource[indexPath.row];
+            if ([poiSoure isKindOfClass:[HRPOIInfo class]]) {
+                return [HRHerePoiCell heightForCell];
+            }else{
+                return [HRHerePoisSetCell heightForCell];
+            }
+        }
         default:
             break;
     }
@@ -345,7 +324,7 @@
             
         case 2:
         {
-            //我和朋友创建的POI
+            //我和朋友创建的七天以内的POI
             NSString * identify = NSStringFromClass([HRHerePoiCell class]);
             HRHerePoiCell * cell = [tableView dequeueReusableCellWithIdentifier:identify];
             if (!cell) {
@@ -362,43 +341,34 @@
             
         case 3:
         {
-            NSString * identify = NSStringFromClass([HRHerePoisSetCell class]);
-            HRHerePoisSetCell * cell = [tableView dequeueReusableCellWithIdentifier:identify];
-            if (!cell) {
-                cell = [[HRHerePoisSetCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identify];
-                cell.delegate = self;
+            id poiSoure = self.mixPoiSource[indexPath.row];
+            if ([poiSoure isKindOfClass:[HRPOIInfo class]]) {
+                
+                NSString * identify = NSStringFromClass([HRHerePoiCell class]);
+                HRHerePoiCell * cell = [tableView dequeueReusableCellWithIdentifier:identify];
+                if (!cell) {
+                    cell = [[HRHerePoiCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identify];
+                    cell.delegate = self;
+                }
+                HRPOIInfo * poiInfo = poiSoure;
+                [cell setData:poiInfo];
+                [cell setLocaitonStr:poiInfo.city_name];
+                return cell;
+ 
+            }else{
+                
+                NSString * identify = NSStringFromClass([HRHerePoisSetCell class]);
+                HRHerePoisSetCell * cell = [tableView dequeueReusableCellWithIdentifier:identify];
+                if (!cell) {
+                    cell = [[HRHerePoisSetCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identify];
+                    cell.delegate = self;
+                }
+                
+                [cell setData:poiSoure];
+                [cell setLocaitonStr:[(HRPOISetInfo *)poiSoure city_name]];
+                return cell;
             }
-            
-            [cell setData:self.userPoiSetsSource[indexPath.row]];
-            return cell;
-        }
-            break;
-        case 4:
-        {
-            NSString * identify = NSStringFromClass([HRHerePoiCell class]);
-            HRHerePoiCell * cell = [tableView dequeueReusableCellWithIdentifier:identify];
-            if (!cell) {
-                cell = [[HRHerePoiCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identify];
-                cell.delegate = self;
-            }
-            HRPOIInfo * poiInfo = self.editPoiSource[indexPath.row];
-            [cell setData:poiInfo];
-            [cell setLocaitonStr:poiInfo.city_name];
-            return cell;
-        }
-            break;
-            
-        case 5:
-        {
-            NSString * identify = NSStringFromClass([HRHerePoisSetCell class]);
-            HRHerePoisSetCell * cell = [tableView dequeueReusableCellWithIdentifier:identify];
-            if (!cell) {
-                cell = [[HRHerePoisSetCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identify];
-                cell.delegate = self;
-            }
-            
-            [cell setData:self.editPoiSetsSource[indexPath.row]];
-            return cell;
+
         }
             break;
         default:
@@ -439,15 +409,20 @@
         tpye = KPoiSetsCreteNearBy;
     }
     
-    if(indexPath.section == 3){
-        //朋友
+    if(indexPath.section == 2){
+        //我和朋友创建的七天以内的POI
         tpye = KPoiSetsCreteUser;
     }
     
-    if(indexPath.section == 5){
-        tpye = KPoiSetsCreteHere;
-        //编辑
+    if(indexPath.section == 3){
+        if ([cell.data.creator_id isEqualToString:@"0"]) {
+            //编辑
+            tpye = KPoiSetsCreteHere;
+        }else{
+            tpye = KPoiSetsCreteUser;
+        }
     }
+    
     HRPoiSetsController * poiSetController = [[HRPoiSetsController alloc] initWithPoiSetCreteType:tpye creteId:cell.data.creator_id creteUserName:cell.data.creator_name category:self.catergoryIndex + 1];
     [self.myNavController pushViewController:poiSetController animated:YES];
 }
@@ -455,27 +430,42 @@
 - (void)herePoisSetCellDidClickUserPortrait:(HRHerePoiCell *)cell
 {
     NSIndexPath * indexPath = [self.tableView indexPathForCell:cell];
-    if (indexPath.section == 2 || indexPath.section == 3 ) {
-        //用户创建
-        HRUserHomeController * userHomeController = [[HRUserHomeController alloc] initWithUserID:cell.data.creator_id];
-        [self.myNavController pushViewController:userHomeController animated:YES];
-        return;
-    }
     
+    if (indexPath.section == 1) {
+        //附近没有用户头像
+        return;
+    }else{
+        
+        if ([cell.data.creator_id isEqualToString:@"0"]) {
+            //编辑
+        }else{
+            HRUserHomeController * userHomeController = [[HRUserHomeController alloc] initWithUserID:cell.data.creator_id];
+            [self.myNavController pushViewController:userHomeController animated:YES];
+        }
+        //编辑集合 | 用户创建
+    }
 }
 
 - (void)herePoiCellDidClickUserPortrait:(HRHerePoiCell *)cell
 {
     NSIndexPath * indexPath = [self.tableView indexPathForCell:cell];
-    if (indexPath.section == 2 || indexPath.section == 3 ) {
-        //用户创建
-        if (!cell.data.creator_id.length) {
-            [self showTotasViewWithMes:@"服务器bug,数据用户ID是空"];
-            return;
-        }
-        HRUserHomeController * userHomeController = [[HRUserHomeController alloc] initWithUserID:cell.data.creator_id];
-        [self.myNavController pushViewController:userHomeController animated:YES];
+    
+    if (indexPath.section == 1) {
+        //附近没有用户头像
         return;
+    }else{
+        
+        if ([cell.data.creator_id isEqualToString:@"0"]) {
+            //编辑
+        }else{
+            //编辑集合 | 用户创建
+            if (!cell.data.creator_id.length) {
+                [self showTotasViewWithMes:@"服务器bug,数据用户ID是空"];
+                return;
+            }
+            HRUserHomeController * userHomeController = [[HRUserHomeController alloc] initWithUserID:cell.data.creator_id];
+            [self.myNavController pushViewController:userHomeController animated:YES];
+        }
     }
 }
 

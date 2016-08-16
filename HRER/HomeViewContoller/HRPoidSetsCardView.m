@@ -64,6 +64,14 @@
     self.titleLabel.textAlignment = NSTextAlignmentLeft;
     [self addSubview:self.titleLabel];
     
+    self.locIconView = [[UIImageView alloc] init];
+    self.locIconView.image = [UIImage imageNamed:@"km"];
+    [self addSubview:self.locIconView];
+    
+    self.locLabel = [[UILabel alloc] init];
+    self.locLabel.font = [UIFont systemFontOfSize:12.f];
+    self.locLabel.textColor = RGB_Color(0x4c, 0x4c, 0x4c);
+    [self addSubview:self.locLabel];
     
     [self.bgImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).offset(10.f);
@@ -115,12 +123,26 @@
         make.size.mas_equalTo(CGSizeMake(width, width + 2));
     }];
     
+    [self.locLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.bgImageView.mas_right).offset(-10);
+        make.bottom.equalTo(self.bgImageView.mas_bottom).offset(-10);
+        make.height.equalTo(@(14.f));
+    }];
+    
+    [self.locIconView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.locLabel.mas_left).offset(-5);
+        make.centerY.equalTo(self.locLabel);
+    }];
+    
     UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(fullViewTap:)];
     [self addGestureRecognizer:tap];
 
     tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(userPortDidClick:)];
     [self.portraitImage setUserInteractionEnabled:YES];
     [self.portraitImage addGestureRecognizer:tap];
+    
+    [self.locLabel setHidden:YES];
+    [self.locIconView setHidden:YES];
 }
 
 - (void)setData:(HRPOISetInfo *)data

@@ -24,6 +24,8 @@
 
 @property(nonatomic,strong)HRPOISetInfo * data;
 
+- (void)setLocaitonStr:(NSString *)str;
+
 + (CGFloat)heightForCell;
 
 @end

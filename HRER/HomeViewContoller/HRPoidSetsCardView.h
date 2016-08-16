@@ -20,6 +20,8 @@
 @interface HRPoidSetsCardView : UIView
 
 @property(nonatomic,weak)id<HRPoidSetsCardViewdelegate>delegate;
+@property(nonatomic,strong)UILabel * locLabel;
+@property(nonatomic,strong)UIImageView * locIconView;
 
 + (CGFloat)heightForCardView;
 
