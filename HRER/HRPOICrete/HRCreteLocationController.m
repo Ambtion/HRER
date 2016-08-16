@@ -157,7 +157,7 @@
     WS(weakSelf);
     
     [NetWorkEntity quaryPoiListWith:isUseGoogle
-                            keyWord:!self.inputView.textFiled.text.length ? @"美食" : self.inputView.textFiled.text
+                            keyWord:self.inputView.textFiled.text
                             poiType:self.categortIndex + 1
                            countyId:self.countyId
                                 lat:self.lat  loc:self.lng success:^(AFHTTPRequestOperation *operation, id responseObject) {
