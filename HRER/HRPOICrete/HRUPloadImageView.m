@@ -292,17 +292,39 @@
 #pragma mark - Images
 - (NSInteger)numberOfItemsInCarousel:(iCarousel *)carousel
 {
-    return self.photosArray.count;
+    return self.photosArray.count ? self.photosArray.count : 1;
 }
 - (UIView *)carousel:(iCarousel *)carousel viewForItemAtIndex:(NSInteger)index reusingView:(nullable UIView *)view
 {
     if (!view || ![view isKindOfClass:[UIImageView class]]) {
         view = [[UIImageView alloc] initWithFrame:carousel.bounds];
     }
-    [(UIImageView *)view setImage:self.photosArray[index]];
+    if (self.photosArray.count) {
+        [(UIImageView *)view setImage:self.photosArray[index]];
+    }else{
+        UIImage * image = [self defoultImageForType:self.poiType];
+        [(UIImageView *)view setImage:image];
+    }
     return view;
 }
 
+- (UIImage *)defoultImageForType:(NSInteger)type
+{
+    switch (type) {
+        case 1:
+            return [UIImage imageNamed:@"upload_food.jpg"];
+            break;
+        case 2:
+            return [UIImage imageNamed:@"upload_look.jpg"];
+        case 3:
+            return [UIImage imageNamed:@"upload_shop.jpg"];
+        case 4:
+            return [UIImage imageNamed:@"upload_hotel.jpg"];
+        default:
+            break;
+    }
+    return [UIImage imageNamed:@"upload_food"];
+}
 
 - (CGFloat)carousel:(iCarousel *)carousel valueForOption:(iCarouselOption)option withDefault:(CGFloat)value
 {
@@ -497,10 +519,10 @@
 - (void)uploadButtonDidClick:(UIButton *)button
 {
     
-    
-    if (!self.photosArray.count) {
-        [self showTotasViewWithMes:@"请上传至少一张图片"];
-        return;
+    NSArray * imageArray = self.photosArray;
+    if (!imageArray.count) {
+        UIImage * deoult = [self defoultImageForType:self.poiType];
+        imageArray = @[deoult];
     }
     
     [MBProgressHUD showHUDAddedTo:[[[UIApplication sharedApplication] delegate] window] animated:YES];
@@ -514,7 +536,7 @@
                                locDes:self.addressLabel.text cityID:self.cityId
                                   lat:[[locArray lastObject] floatValue]
                                   loc:[[locArray firstObject] floatValue]
-                               images:self.photosArray  success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                               images:imageArray  success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                    [MBProgressHUD hideHUDForView:[[[UIApplication sharedApplication] delegate] window] animated:YES];
                                    if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
                                        

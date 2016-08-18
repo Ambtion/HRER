@@ -12,6 +12,7 @@
 @interface HRLocationManager()<CLLocationManagerDelegate>
 {
     NSInteger  _curCityID;
+    NSString * _en_name;
 }
 
 @property(nonatomic,strong)CLLocationManager * locationManager;
@@ -94,6 +95,7 @@
                         if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
                             NSDictionary * userInfoDic  = [responseObject objectForKey:@"response"];
                             _curCityID = [[userInfoDic objectForKey:@"city_id"] integerValue];
+                            _en_name = [userInfoDic objectForKey:@"en_name"];
                             [[NSNotificationCenter defaultCenter] postNotificationName:LocaitonDidUpdateSucess object:nil];
                         }else{
                             self.isFirstGEO = YES;
@@ -123,6 +125,11 @@
 - (NSString *)subCityName
 {
     return self.placeMark.subLocality;
+}
+
+- (NSString *)cityEnName
+{
+    return _en_name;
 }
 @end
 

@@ -26,5 +26,9 @@
 
 - (NSString *)cityName;
 
+- (NSString *)cityEnName;
+
 - (NSString *)subCityName;
+
+
 @end
