@@ -20,6 +20,7 @@
 @property(nonatomic,assign)KPoiSetsCreteType creteType;
 @property(nonatomic,assign)NSInteger categoryType;
 @property(nonatomic,strong)NSString * userId;
+@property(nonatomic,assign)NSInteger cityId;
 @property(nonatomic,strong)NSString * userName;
 
 @end
@@ -29,6 +30,7 @@
 
 - (instancetype)initWithPoiSetCreteType:(KPoiSetsCreteType)creteType
                                 creteId:(NSString *)userID
+                                city_Id:(NSInteger)cityId
                           creteUserName:(NSString *)creteUserName
                                category:(NSInteger)categoryType
 {
@@ -38,6 +40,7 @@
         self.userName = creteUserName;
         self.creteType = creteType;
         self.categoryType = categoryType;
+        self.cityId = cityId;
     }
     return self;
 }
@@ -124,7 +127,7 @@
 #pragma mark - PoiListView
 - (void)initPoiListView
 {
-    self.poisetsListView = [[HRPoiSetsListView alloc] initWithFrame:self.view.bounds PoiSetCreteType:self.creteType creteId:self.userId creteUserName:self.userName category:self.categoryType];
+    self.poisetsListView = [[HRPoiSetsListView alloc] initWithFrame:self.view.bounds PoiSetCreteType:self.creteType creteId:self.userId city_Id:self.cityId creteUserName:self.userName category:self.categoryType];
     self.poisetsListView.delegate = self;
     [self.poisetsListView.tableView.refreshHeader beginRefreshing];
     [self.view addSubview:self.poisetsListView];

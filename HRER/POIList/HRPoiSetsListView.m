@@ -14,6 +14,7 @@
 @interface HRPoiSetsListView()<UITableViewDelegate,UITableViewDataSource,HRHerePoiCellDelegate>
 
 @property(nonatomic,assign)KPoiSetsCreteType creteType;
+@property(nonatomic,assign)NSInteger cityId;
 @property(nonatomic,assign)NSInteger categoryType;
 @property(nonatomic,strong)NSString * userId;
 @property(nonatomic,strong)NSString * userName;
@@ -25,6 +26,7 @@
 - (instancetype)initWithFrame:(CGRect)frame
               PoiSetCreteType:(KPoiSetsCreteType)creteType
                       creteId:(NSString *)userID
+                      city_Id:(NSInteger)cityId
                 creteUserName:(NSString *)creteUserName
                      category:(NSInteger)categoryType
 {
@@ -33,6 +35,7 @@
         self.userName = creteUserName;
         self.creteType = creteType;
         self.categoryType = categoryType;
+        self.cityId = cityId;
         [self initUI];
     }
     return self;
@@ -66,7 +69,7 @@
         [ws netErrorWithTableView:ws.tableView];
     };
     
-    [NetWorkEntity quaryPoiSetDetailListWithCreteType:ws.creteType cityId:[[HRLocationManager sharedInstance] curCityId] catergory:ws.categoryType creteUserId:ws.userId success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [NetWorkEntity quaryPoiSetDetailListWithCreteType:ws.creteType cityId:ws.cityId catergory:ws.categoryType creteUserId:ws.userId success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
             NSArray * poiList = [responseObject objectForKey:@"response"];

@@ -29,6 +29,7 @@
 - (instancetype)initWithFrame:(CGRect)frame
               PoiSetCreteType:(KPoiSetsCreteType)creteType
                       creteId:(NSString *)userID
+                      city_Id:(NSInteger)cityId
                 creteUserName:(NSString *)creteUserName
                      category:(NSInteger)categoryType;
 - (void)quaryData;
