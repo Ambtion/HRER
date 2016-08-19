@@ -77,7 +77,7 @@
 - (void)quaryData
 {
     
-    __block NSInteger toutalNetCount = 3 + ([[LoginStateManager getInstance] userLoginInfo] ? 1 : 0);
+    __block NSInteger toutalNetCount = 2 + ([[LoginStateManager getInstance] userLoginInfo] ? 2 : 0);
     
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -108,24 +108,6 @@
         }
     } failure:failure];
     
-    //获取附件条目
-    [NetWorkEntity quartCityNearByWithCityId:-1 catergory:self.catergoryIndex + 1 success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
-            NSArray * poiSets = [responseObject objectForKey:@"response"];
-            self.nearyBySource = [self analysisPoiSetsModelFromArray:poiSets];
-            [self.tableView reloadData];
-            [self.tableView.refreshHeader endRefreshing];
-            
-            toutalNetCount --;
-            if (toutalNetCount == 0) {
-                [MBProgressHUD hideHUDForView:self.view animated:YES];
-            }
-
-        }else{
-            [self dealErrorResponseWithTableView:self.tableView info:responseObject];
-        }
-        
-    } failure:failure];
     
     
     // 编辑创建的POI集合  | 编辑创建的单个POI  | 个人创建POI集合
@@ -149,6 +131,26 @@
     
     if([[LoginStateManager getInstance] userLoginInfo]){
         
+        //获取附件条目
+        [NetWorkEntity quartCityNearByWithCityId:-1 catergory:self.catergoryIndex + 1 success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
+                NSArray * poiSets = [responseObject objectForKey:@"response"];
+                self.nearyBySource = [self analysisPoiSetsModelFromArray:poiSets];
+                [self.tableView reloadData];
+                [self.tableView.refreshHeader endRefreshing];
+                
+                toutalNetCount --;
+                if (toutalNetCount == 0) {
+                    [MBProgressHUD hideHUDForView:self.view animated:YES];
+                }
+                
+            }else{
+                [self dealErrorResponseWithTableView:self.tableView info:responseObject];
+            }
+            
+        } failure:failure];
+
+        
         //个人单个POI
         [NetWorkEntity quaryFreindsCretePoiListWithCityId:-1 catergory:self.catergoryIndex + 1 success:^(AFHTTPRequestOperation *operation, id responseObject) {
             
@@ -168,6 +170,7 @@
             
         } failure:failure];
 
+        
         
     }
 }
