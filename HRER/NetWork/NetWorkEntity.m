@@ -366,16 +366,17 @@ static CallBack upSucess;
                                    failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
     NSMutableDictionary * dic = [self commonComonPar];
-    [dic setValue:@(cityId) forKey:@"city_id"];
     [dic setValue:@([[[HRLocationManager sharedInstance] curLocation] coordinate].latitude) forKey:@"lat"];
     [dic setValue:@([[[HRLocationManager sharedInstance] curLocation] coordinate].longitude) forKey:@"lng"];
+    [dic setValue:userId forKey:@"userid"];
+    [dic setValue:@(cityId) forKey:@"city_id"];
     [dic setValue:@(catergory) forKey:@"type"];
-    
+
     NSString * urlStr = @"";
     switch (cretetype) {
         case KPoiSetsCreteHere:
-            urlStr = [NSString stringWithFormat:@"%@/get_poi_by_city",KNETBASEURL];
-            break;
+//            urlStr = [NSString stringWithFormat:@"%@/get_poi_by_city",KNETBASEURL];
+//            break;
         case KPoiSetsCreteUser:
             urlStr = [NSString stringWithFormat:@"%@/get_poi_by_user",KNETBASEURL];
             break;
