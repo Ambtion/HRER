@@ -374,7 +374,11 @@
     self.cityName = [cityInfo objectForKey:@"city_name"];
     self.lat = [[cityInfo objectForKey:@"latitude"] floatValue];
     self.lng = [[cityInfo objectForKey:@"longitude"] floatValue];
-    self.countyId = [[cityInfo objectForKey:@"country_id"] intValue];
+    if ([cityInfo objectForKey:@"country_id"]) {
+        self.countyId = [[cityInfo objectForKey:@"country_id"] intValue];
+    }else{
+        self.countyId = [[cityInfo objectForKey:@"ctry_id"] intValue];
+    }
     [self.rightButton setTitle:self.cityName.length ? self.cityName : @"北京" forState:UIControlStateNormal];
     [self quaryData];
     [self.myNavController popViewControllerAnimated:YES];
