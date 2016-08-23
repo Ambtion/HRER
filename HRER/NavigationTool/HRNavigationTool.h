@@ -17,5 +17,9 @@
                         appName:(NSString *)appName;
 
 + (NSString *)distanceBetwenOriGps:(CLLocationCoordinate2D)oriGps desGps:(CLLocationCoordinate2D)desGps;
+
++ (NSString *)distanceStr:(CGFloat)distance;
+
++ (CGFloat)distancenumberBetwenOriGps:(CLLocationCoordinate2D)oriGps desGps:(CLLocationCoordinate2D)desGps;
 @end
 

@@ -118,8 +118,7 @@
 @property(nonatomic,strong)NSString * location;
 @property(nonatomic,strong)NSString * title;
 @property(nonatomic,strong)NSString * subTitle;
-@property(nonatomic,assign)NSInteger distance;
-
+@property(nonatomic,assign)CGFloat distance;
 @end
 
 @interface HRGooglPoiInfo : HRCretePOIInfo

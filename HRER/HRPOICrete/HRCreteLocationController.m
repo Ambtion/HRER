@@ -16,7 +16,8 @@
 #import "HRUPloadImageView.h"
 #import "FindCityViewController.h"
 #import "RefreshTableView.h"
-
+#import "HRLocationManager.h"
+#import "HRNavigationTool.h"
 
 @interface HRCreteLocationController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,HRCreateCategoryCell,FindCityViewControllerDelegate>
 
@@ -194,10 +195,16 @@
     for (NSDictionary * dic  in array) {
         HRCretePOIInfo * model = [HRCretePOIInfo yy_modelWithJSON:dic];
         if (model) {
+            NSArray * locArray = [[model location] componentsSeparatedByString:@","];
+            if (locArray.count == 2) {
+                CLLocation * desLocaiton = [[CLLocation alloc] initWithLatitude:[[locArray lastObject] floatValue] longitude:[[locArray firstObject] floatValue]];
+                model.distance = [HRNavigationTool distancenumberBetwenOriGps:[[HRLocationManager sharedInstance] curLocation].coordinate desGps:desLocaiton.coordinate];
+                
+            }
             [mArray addObject:model];
         }
     }
-    return mArray;
+    return [self sortArray:mArray];
 }
 
 
@@ -214,10 +221,34 @@
             NSDictionary * geometry = [dic objectForKey:@"geometry"];
             NSDictionary * loc = [geometry objectForKey:@"location"];
             model.location = [NSString stringWithFormat:@"%@,%@",[loc objectForKey:@"lng"],[loc objectForKey:@"lat"]];
+            
+            NSArray * locArray = [[model location] componentsSeparatedByString:@","];
+            if (locArray.count == 2) {
+                CLLocation * desLocaiton = [[CLLocation alloc] initWithLatitude:[[locArray lastObject] floatValue] longitude:[[locArray firstObject] floatValue]];
+                model.distance = [HRNavigationTool distancenumberBetwenOriGps:[[HRLocationManager sharedInstance] curLocation].coordinate desGps:desLocaiton.coordinate];
+                
+            }
+            
             [mArray addObject:model];
         }
     }
-    return mArray;
+    return [self sortArray:mArray];
+}
+
+- (NSArray *)sortArray:(NSArray *)array
+{
+    NSComparator cmptr = ^(HRGooglPoiInfo * obj1, HRGooglPoiInfo * obj2){
+        if ([obj1 distance] > [obj2 distance]) {
+            return (NSComparisonResult)NSOrderedDescending;
+        }
+        
+        if ([obj1 distance] < [obj2 distance]) {
+            return (NSComparisonResult)NSOrderedAscending;
+        }
+        return (NSComparisonResult)NSOrderedSame;
+    };
+    
+    return [array sortedArrayUsingComparator:cmptr];
 }
 
 #pragma mark - SearchBar

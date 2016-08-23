@@ -41,8 +41,11 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
+        
         [self initUI];
+
     }
+    
     return self;
 }
 
@@ -295,9 +298,14 @@
 
 - (void)onClickDetail:(id)sender
 {
-    if ([_delegate respondsToSelector:@selector(userHomeCellDidClickDetalInfo:)]) {
-        [_delegate userHomeCellDidClickDetalInfo:self];
+    if ([_adelegate respondsToSelector:@selector(userHomeCellDidClickDetalInfo:)]) {
+        [_adelegate userHomeCellDidClickDetalInfo:self];
     }
+}
+
+- (void)rightButtonAction
+{
+
 }
 
 #pragma mark 

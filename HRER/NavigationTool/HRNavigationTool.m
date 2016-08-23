@@ -85,12 +85,13 @@
 
 + (NSString *)distanceBetwenOriGps:(CLLocationCoordinate2D)oriGps desGps:(CLLocationCoordinate2D)desGps
 {
-    CLLocation * location = [[CLLocation alloc] initWithLatitude:oriGps.latitude longitude:oriGps.longitude];
-    CLLocation * desLocaiton = [[CLLocation alloc] initWithLatitude:desGps.latitude longitude:desGps.longitude];
-    CLLocationDistance distance = [location distanceFromLocation:desLocaiton];
     
-    
-    
+    CGFloat distance = [self distancenumberBetwenOriGps:oriGps desGps:desGps];
+    return [self distanceStr:distance];
+}
+
++ (NSString *)distanceStr:(CGFloat)distance
+{
     if (distance < 1000) {
         return [NSString stringWithFormat:@"%.1fm",(distance)];
     }else{
@@ -102,6 +103,15 @@
         }
     }
     return @"";
+
 }
 
++ (CGFloat)distancenumberBetwenOriGps:(CLLocationCoordinate2D)oriGps desGps:(CLLocationCoordinate2D)desGps
+{
+    CLLocation * location = [[CLLocation alloc] initWithLatitude:oriGps.latitude longitude:oriGps.longitude];
+    CLLocation * desLocaiton = [[CLLocation alloc] initWithLatitude:desGps.latitude longitude:desGps.longitude];
+    CLLocationDistance distance = [location distanceFromLocation:desLocaiton];
+
+    return distance;
+}
 @end
