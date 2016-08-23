@@ -160,6 +160,20 @@
             CLPlacemark * placeMark = [array objectAtIndex:0];
             cityName = placeMark.locality;
             placeName = placeMark.name;
+            if (placeName.length) {
+                self.addressInputView.textField.text = placeName;
+            }
+            
+            if (cityName.length) {
+                [NetWorkEntity  quaryCityInfoWithCityName:cityName  lat:self.pinLocation.coordinate.latitude lng:self.pinLocation.coordinate.longitude success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                    if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
+                        NSDictionary * userInfoDic  = [responseObject objectForKey:@"response"];
+                        self.cityId = [[userInfoDic objectForKey:@"city_id"] integerValue];
+                    }
+                } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                    
+                }];
+            }
             
         }else{
             [NetWorkEntity geoLocationWithLag:ws.pinLocation.coordinate.latitude lng:ws.pinLocation.coordinate.longitude success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -167,26 +181,27 @@
                 if (array.count) {
                     NSDictionary * dic = [array firstObject];
                     placeName = [dic objectForKey:@"formatted_address"];
+                    if (placeName.length) {
+                        self.addressInputView.textField.text = placeName;
+                    }
+                    
+                    if (cityName.length) {
+                        [NetWorkEntity  quaryCityInfoWithCityName:cityName  lat:self.pinLocation.coordinate.latitude lng:self.pinLocation.coordinate.longitude success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                            if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
+                                NSDictionary * userInfoDic  = [responseObject objectForKey:@"response"];
+                                self.cityId = [[userInfoDic objectForKey:@"city_id"] integerValue];
+                            }
+                        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                            
+                        }];
+                    }
+
                 }
             } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                 
             }];
         }
         
-        if (placeName.length) {
-            self.addressInputView.textField.text = placeName;
-        }
-        
-        if (cityName.length) {
-            [NetWorkEntity  quaryCityInfoWithCityName:cityName  lat:self.pinLocation.coordinate.latitude lng:self.pinLocation.coordinate.longitude success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
-                    NSDictionary * userInfoDic  = [responseObject objectForKey:@"response"];
-                    self.cityId = [[userInfoDic objectForKey:@"city_id"] integerValue];
-                }
-            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                
-            }];
-        }
     
 
         

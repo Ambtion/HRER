@@ -100,7 +100,6 @@
     return self.dataSource.count;
 }
 
-
 #pragma mark - HeadView
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section

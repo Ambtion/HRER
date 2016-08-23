@@ -499,8 +499,8 @@ static CallBack upSucess;
 {
     NSMutableDictionary * dic = [NSMutableDictionary dictionaryWithCapacity:0];
     NSString * loc = [NSString stringWithFormat:@"%f,%f",lat,lng];;
-    [dic setValue:loc forKey:@"location"];
-    [dic setValue:@"en" forKey:@"language"];
+    [dic setValue:loc forKey:@"latlng"];
+//    [dic setValue:@"en" forKey:@"language"];
 //    [dic setValue:@"AIzaSyBsTx01ji0GeUdg04EdZuvACrKcnJwZxmo" forKey:@"key"];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager GET:@"http://47.89.13.167/geocode" parameters:dic success:success failure:failure];
