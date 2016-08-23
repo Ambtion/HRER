@@ -21,7 +21,7 @@
 
 @property(nonatomic,strong)HRUserHomeHeadView * headView;
 
-
+@property(nonatomic,strong)NSMutableArray * sectionFlag;
 @end
 
 @implementation HRUserHomeListView
@@ -74,7 +74,12 @@
 -(void)setDataSource:(id)dataSource
 {
     _dataSource = dataSource;
-    [[self tableView] reloadData];
+    NSMutableArray* array = [NSMutableArray arrayWithCapacity:0];
+    for (int i = 0; i < _dataSource.count; i++) {
+        [array addObject:@(YES)];
+    }
+    self.sectionFlag = array;
+    [self.tableView reloadData];
 }
 
 - (void)setSeltedAtIndex:(NSInteger)index
@@ -108,10 +113,21 @@
     HRHomePoiInfo * poiInfo = self.dataSource[section];
     
     HRUserTimeLineHeadView * lineHeadView = [[HRUserTimeLineHeadView alloc] initWithFrame:CGRectMake(0, 0, tableView.width, [HRUserTimeLineHeadView heightForView])];
+    lineHeadView.tag = section;
     [lineHeadView setDataSource:poiInfo];
+    UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(segTap:)];
+    [lineHeadView addGestureRecognizer:tap];
     return lineHeadView;
 }
 
+- (void)segTap:(UITapGestureRecognizer *)tap
+{
+    UIView * view = tap.view;
+    BOOL value = [self.sectionFlag[view.tag] boolValue];
+    [self.sectionFlag replaceObjectAtIndex:view.tag withObject:@(!value)];
+    [[self tableView] reloadSections:[NSIndexSet indexSetWithIndex:view.tag] withRowAnimation:UITableViewRowAnimationAutomatic];
+    
+}
 #pragma mark - Cell
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -121,7 +137,8 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     HRHomePoiInfo * poiInfo = self.dataSource[section];
-    return [self totalPoiInCity:poiInfo];
+    BOOL flag = [self.sectionFlag[section] boolValue];
+    return flag ? [self totalPoiInCity:poiInfo] : 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -136,7 +153,6 @@
     [cell setCellStation:[self poiStationInTotalCityInCity:cityList ListAtIndex:indexPath.row]];
     return cell;
 }
-
 
 #pragma mark - 
 - (NSInteger)totalPoiInCity:(HRHomePoiInfo *)cityInfo
