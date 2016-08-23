@@ -20,4 +20,6 @@
 @property(nonatomic,assign)CGFloat lat;
 @property(nonatomic,assign)CGFloat lng;
 
+- (void)initMapShow;
+
 @end

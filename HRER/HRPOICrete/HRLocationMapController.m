@@ -33,6 +33,8 @@
 {
     [super viewWillAppear:animated];
     [self.myNavController setNavigationBarHidden:YES];
+    [self initMapShow];
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -115,17 +117,22 @@
     self.mapView.delegate = self;
     [self.view addSubview:self.mapView];
     
+    
+}
+
+- (void)initMapShow
+{
     //设置图区范围
     MKCoordinateSpan span;
     span.latitudeDelta = MAPLocationLEVEL;
     span.longitudeDelta = MAPLocationLEVEL;
     MKCoordinateRegion region;
     
-    CLLocationCoordinate2D coord = [[HRLocationManager sharedInstance] curLocation].coordinate;
+    CLLocationCoordinate2D coord = CLLocationCoordinate2DMake(self.lat, self.lng);
     region.center = coord;
     region.span = span;
     [self.mapView setRegion:region animated:YES];
-    
+
 }
 
 - (void)initCenterPinView
@@ -142,23 +149,47 @@
     
     self.pinLocation = [[CLLocation alloc] initWithLatitude:coor2D.latitude longitude:coor2D.longitude];
     
+    WS(ws);
     CLGeocoder *geocoder = [[CLGeocoder alloc] init];
     [geocoder reverseGeocodeLocation:self.pinLocation completionHandler:^(NSArray *array, NSError *error) {
         
+        NSString * cityName = @"";
+       __block NSString * placeName = @"";
+        
         if (array.count > 0) {
             CLPlacemark * placeMark = [array objectAtIndex:0];
-            [NetWorkEntity  quaryCityInfoWithCityName:placeMark.locality  lat:self.pinLocation.coordinate.latitude lng:self.pinLocation.coordinate.longitude success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
-                    NSDictionary * userInfoDic  = [responseObject objectForKey:@"response"];
-                    self.cityId = [[userInfoDic objectForKey:@"city_id"] integerValue];
-                    self.addressInputView.textField.text = placeMark.name;
+            cityName = placeMark.locality;
+            placeName = placeMark.name;
+            
+        }else{
+            [NetWorkEntity geoLocationWithLag:ws.pinLocation.coordinate.latitude lng:ws.pinLocation.coordinate.longitude success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                NSArray * array = [responseObject objectForKey:@"results"];
+                if (array.count) {
+                    NSDictionary * dic = [array firstObject];
+                    placeName = [dic objectForKey:@"formatted_address"];
                 }
-                
             } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                 
             }];
-
         }
+        
+        if (placeName.length) {
+            self.addressInputView.textField.text = placeName;
+        }
+        
+        if (cityName.length) {
+            [NetWorkEntity  quaryCityInfoWithCityName:cityName  lat:self.pinLocation.coordinate.latitude lng:self.pinLocation.coordinate.longitude success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
+                    NSDictionary * userInfoDic  = [responseObject objectForKey:@"response"];
+                    self.cityId = [[userInfoDic objectForKey:@"city_id"] integerValue];
+                }
+            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                
+            }];
+        }
+    
+
+        
      }];
 
 }

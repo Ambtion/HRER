@@ -72,6 +72,7 @@
 
 + (void)bindPhoneNumber:(NSString *)photoNumber
                 VerCode:(NSString *)verCode
+                  token:(NSString *)bindToken
                      success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                      failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
@@ -160,33 +161,6 @@
                        success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                        failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
-///**
-// *  获取个人和朋友创建的POI集合
-// */
-//
-//+ (void)quaryFreindsCretePoiSetListWithCityId:(NSInteger)cityId
-//                                    catergory:(NSInteger)catergory
-//                                      success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
-//                                      failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
-//
-///**
-// *  获取编辑创建的POI集合
-// */
-//+ (void)quaryEditorCretePoiSetListWithCityId:(NSInteger)cityId
-//                                    catergory:(NSInteger)catergory
-//                                      success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
-//                                      failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
-//
-//
-///**
-// *  获取编辑创建的POI
-// */
-//+ (void)quaryEditCretePoiListWithCityId:(NSInteger)cityId
-//                                 catergory:(NSInteger)catergory
-//                                   success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
-//                                   failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
-
-
 /**
  *  获取POISet详情信息
  *
@@ -222,7 +196,14 @@
                  success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                  failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
-
+/**
+ *  https://developers.google.com/maps/documentation/geocoding/intro
+ *
+ */
++ (void)geoLocationWithLag:(CGFloat)lat
+                       lng:(CGFloat)lng
+                   success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                   failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 /**
  *  POI详情页面
  ===================================================================================================================

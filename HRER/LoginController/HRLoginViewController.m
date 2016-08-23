@@ -377,7 +377,10 @@
                         [[LoginStateManager getInstance] LoginWithUserLoginInfo:userInfo];
                         [self.navigationController popViewControllerAnimated:YES];
                     }else{
-                        [self.navigationController  pushViewController:[[HRBindPhoneController alloc] init] animated:YES];
+                        HRBindPhoneController * binC = [[HRBindPhoneController alloc] init];
+                        binC.bindToken = userInfo.token;
+                        [self.navigationController  pushViewController:binC animated:YES];
+                        binC.navigationItem.leftBarButtonItems = nil;
                     }
                     
                 }else{

@@ -6,7 +6,7 @@
 //  Copyright (c) 2015年 jewelry. All rights reserved.
 //
 
-#import "NetWorkEntity.h"
+#import "NetWorkEntity.h" 
 #import "LoginStateManager.h"
 #import "HRLocationManager.h"
 
@@ -97,11 +97,14 @@ static CallBack upSucess;
 
 + (void)bindPhoneNumber:(NSString *)photoNumber
                 VerCode:(NSString *)verCode
+                  token:(NSString *)bindToken
                 success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                 failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
     
     NSMutableDictionary * dic = [self commonComonPar];
+    if (bindToken)
+        [dic setValue:bindToken forKey:@"token"];
     [dic setValue:photoNumber forKey:@"phone"];
     [dic setValue:verCode forKey:@"verificationCode"];
     //等待协议
@@ -263,7 +266,7 @@ static CallBack upSucess;
 
 
 /**
- *  获取个人和朋友创建的POI | 获取个人和朋友想去的POI
+ *  获取个人和朋友创建的POI|获取个人和朋友想去的POI
  */
 + (void)quaryFreindsCretePoiListWithCityId:(NSInteger)cityId
                                   catergory:(NSInteger)catergory
@@ -453,7 +456,7 @@ static CallBack upSucess;
         [dic setValue:loc forKey:@"location"];
         [dic setValue:@"en" forKey:@"language"];
         [dic setValue:@(50000) forKey:@"radius"];
-        [dic setValue:@"AIzaSyBsTx01ji0GeUdg04EdZuvACrKcnJwZxmo" forKey:@"key"];
+//        [dic setValue:@"AIzaSyBsTx01ji0GeUdg04EdZuvACrKcnJwZxmo" forKey:@"key"];
         
         [dic setValue:keyWord forKey:@"name"];
         
@@ -461,15 +464,15 @@ static CallBack upSucess;
         switch (poiType) {
             case 1:
                 // 美食 food
-                keytype = @"bakery | bar | cafe | food | restaurant";
+                keytype = @"bakery|bar|cafe|food|restaurant";
                 break;
             case 2:
                 // 观光
                 
-                keytype = @"beauty_salon | bowling_alley | campground | casino | gym | hair_care | movie_rental | movie_theater | night_club | spa";
+                keytype = @"beauty_salon|bowling_alley|campground|casino|gym|hair_care|movie_rental|movie_theater|night_club|spa";
                 break;
             case 3:
-                keytype = @"aquarium | art_gallery | bicycle_store | book_store | church|city_hall | clothing_store | embassy|florist | furniture_store | grocery_or_supermarket | hardware_store | home_goods_store | jewelry_store | library | mosque | museum |park | post_office | university | shoe_store | shopping_mall | stadium | train_station | zoo";
+                keytype = @"aquarium|art_gallery|bicycle_store|book_store|church|city_hall|clothing_store|embassy|florist|furniture_store|grocery_or_supermarket|hardware_store|home_goods_store|jewelry_store|library|mosque|museum |park|post_office|university|shoe_store|shopping_mall|stadium|train_station|zoo";
                 // 购物 shopping_mall
                 break;
             case 4:
@@ -482,20 +485,26 @@ static CallBack upSucess;
         if (keytype.length) {
             [dic setValue:keytype forKey:@"types"];
         }
-        NSString *  urlStr = @"https://maps.googleapis.com/maps/api/place/nearbysearch/json?";
-        
-        
-        for (NSString * key in [dic allKeys]) {
-            urlStr = [urlStr stringByAppendingString:[NSString stringWithFormat:@"%@=%@&",key,[dic objectForKey:key]]];
-        }
         
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-        [manager GET:@"http://47.89.13.167/redirect_request" parameters:@{
-                                         @"url":urlStr
-                                         } success:success failure:failure];
-        
+        [manager GET:@"http://47.89.13.167/nearbysearch" parameters:dic success:success failure:failure];
     }
     
+}
+
++ (void)geoLocationWithLag:(CGFloat)lat
+                       lng:(CGFloat)lng
+                   success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                   failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+{
+    NSMutableDictionary * dic = [NSMutableDictionary dictionaryWithCapacity:0];
+    NSString * loc = [NSString stringWithFormat:@"%f,%f",lat,lng];;
+    [dic setValue:loc forKey:@"location"];
+    [dic setValue:@"en" forKey:@"language"];
+//    [dic setValue:@"AIzaSyBsTx01ji0GeUdg04EdZuvACrKcnJwZxmo" forKey:@"key"];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:@"http://47.89.13.167/geocode" parameters:dic success:success failure:failure];
+
 }
 
 + (NSString *)urlencodeString:(NSString *)urlStr {

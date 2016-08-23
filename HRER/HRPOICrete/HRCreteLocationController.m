@@ -394,7 +394,13 @@
 - (void)onNoFoundTipsDidClick:(id)sender
 {
     HRLocationMapController * controller =  [[HRLocationMapController alloc] init];
+    controller.lat = self.lat;
+    controller.lng = self.lng;
+    controller.cityName = self.cityName;
+    controller.cityId = self.cityId;
     [self.myNavController pushViewController:controller animated:YES];
+//    [controller initMapShow];
+
 }
 
 @end

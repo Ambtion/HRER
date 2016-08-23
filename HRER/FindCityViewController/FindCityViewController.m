@@ -269,7 +269,7 @@
     }else{
         NSString * cityName = [cityInfo objectForKey:@"city_name"];
         NSString * enName =[cityInfo objectForKey:@"en_name"];
-        NSInteger cityId = [[cityInfo objectForKey:@"id"] integerValue];
+        NSInteger cityId = [[cityInfo objectForKey:@"city_id"] integerValue];
         
         [self.myNavController pushViewController:[[CityHomeViewController alloc] initWithCityId:cityId cityName:cityName city_enName:enName] animated:YES];
         

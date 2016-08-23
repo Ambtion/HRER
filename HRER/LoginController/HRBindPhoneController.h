@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface HRBindPhoneController : UIViewController
-
+@property(nonatomic,strong)NSString * bindToken;
 @end
