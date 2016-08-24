@@ -4,6 +4,7 @@ platform :ios, '7.0'
 target 'HRER' do
 
 pod 'Masonry'
+pod 'SWTableViewCell'
 pod 'AFNetworking', '~> 2.0'
 pod 'SDWebImage'
 pod 'iCarousel'

@@ -286,6 +286,10 @@
                    failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
 
+
++ (void)deletePoiWithPoiId:(NSString *)poiId
+                   success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                   failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 /**
  *  修改用户信息
  */

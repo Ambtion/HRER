@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+#import "SWTableViewCell.h"
+
+
 typedef NS_ENUM(NSUInteger,KCellStation) {
     KCellstationTop,
     KCellstationMiddle,
@@ -22,7 +25,7 @@ typedef NS_ENUM(NSUInteger,KCellStation) {
 
 @end
 
-@interface HRUserHomeCell : UITableViewCell
+@interface HRUserHomeCell : SWTableViewCell
 
 @property(nonatomic,strong)HRPOIInfo * dataSource;
 @property(nonatomic,weak)id<HRUserHomeCellDelegate>adelegate;

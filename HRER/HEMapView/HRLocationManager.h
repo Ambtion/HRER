@@ -16,7 +16,6 @@
 @interface HRLocationManager : NSObject
 
 @property(nonatomic,strong,readonly)CLLocation * curLocation;
-@property(nonatomic,strong,readonly)CLPlacemark * placeMark;
 
 + (HRLocationManager *)sharedInstance;
 
@@ -28,7 +27,7 @@
 
 - (NSString *)cityEnName;
 
-- (NSString *)subCityName;
+//- (NSString *)subCityName;
 
 
 @end

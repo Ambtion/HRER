@@ -10,8 +10,9 @@
 #import "HRUserHomeHeadView.h"
 #import "HRUserTimeLineHeadView.h"
 #import "HRUserHomeCell.h"
+#import "NetWorkEntity.h"
 
-@interface HRUserHomeListView()<UITableViewDelegate,UITableViewDataSource,HRUserHomeHeadViewDelegate>
+@interface HRUserHomeListView()<UITableViewDelegate,UITableViewDataSource,HRUserHomeHeadViewDelegate,SWTableViewCellDelegate>
 
 @property(nonatomic,strong)NSString * userId;
 
@@ -145,6 +146,10 @@
     HRUserHomeCell * cell = [tableView dequeueReusableCellWithIdentifier:@"HRUserHomeCell"];
     if (!cell) {
         cell = [[HRUserHomeCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"HRUserHomeCell"];
+        cell.rightUtilityButtons = [self rightButtons];
+        cell.leftUtilityButtons = nil;
+        cell.delegate = self;
+        
     }
     HRHomePoiInfo * cityList = self.dataSource[indexPath.section];
     HRPOIInfo * poiInfo = [self poiInTotalCityInCity:cityList ListAtIndex:indexPath.row];
@@ -153,7 +158,62 @@
     return cell;
 }
 
-#pragma mark - 
+
+- (NSArray *)rightButtons
+{
+    NSMutableArray *rightUtilityButtons = [NSMutableArray new];
+    [rightUtilityButtons sw_addUtilityButtonWithColor:
+     [UIColor colorWithRed:1.0f green:0.231f blue:0.188 alpha:1.0f]
+                                                title:@"删除"];
+    
+    return rightUtilityButtons;
+}
+
+-(void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerRightUtilityButtonWithIndex:(NSInteger)index
+{
+    UIAlertController * alertController = [UIAlertController alertControllerWithTitle:@"确定删除POI？" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+    
+    __weak typeof(self) weakSelf = self;
+    
+    UIAlertAction * cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        [cell hideUtilityButtonsAnimated:YES];
+    }];
+    
+    UIAlertAction * ensureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [MBProgressHUD showHUDAddedTo:weakSelf animated:YES];
+        [NetWorkEntity deletePoiWithPoiId:[(HRUserHomeCell *)cell dataSource].poi_id success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            
+            [MBProgressHUD hideHUDForView:weakSelf animated:YES];
+            if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
+                [weakSelf showTotasViewWithMes:@"删除成功"];
+                [[[weakSelf tableView] refreshHeader] beginRefreshing];
+            }else{
+                [weakSelf showTotasViewWithMes:[[responseObject objectForKey:@"response"] objectForKey:@"errorText"]];
+                
+            }
+
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            [MBProgressHUD hideHUDForView:weakSelf animated:YES];
+            [weakSelf showTotasViewWithMes:@"网络异常,稍后重试"];
+        }];
+       
+    }];
+    
+    [alertController addAction:cancelAction];
+    [alertController addAction:ensureAction];
+    
+    [[[[[UIApplication sharedApplication] delegate] window] rootViewController] presentViewController:alertController animated:YES completion:^{
+        
+    }];
+}
+
+
+- (BOOL)swipeableTableViewCellShouldHideUtilityButtonsOnSwipe:(SWTableViewCell *)cell
+{
+    return YES;
+}
+
+#pragma mark -
 - (NSInteger)totalPoiInCity:(HRHomePoiInfo *)cityInfo
 {
     NSInteger count = 0;

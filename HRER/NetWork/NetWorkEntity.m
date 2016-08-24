@@ -702,6 +702,18 @@ static CallBack upSucess;
     } success:success failure:failure];
 }
 
++ (void)deletePoiWithPoiId:(NSString *)poiId
+                   success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                   failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+{
+    NSMutableDictionary * dic = [self commonComonPar];
+    [dic setValue:poiId forKey:@"poi_id"];
+    NSString *  urlStr= [NSString stringWithFormat:@"%@/poi_del",KNETBASEURL];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager POST:urlStr parameters:dic success:success failure:failure];
+}
+
+
 /**
  *  修改用户信息
  */

@@ -103,10 +103,10 @@
     [self.contentView addSubview:self.catergortLabel];
 
     [self.contentBgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self).offset(47.f);
-        make.top.equalTo(self).offset(10);
-        make.right.equalTo(self).offset(-10);
-        make.bottom.equalTo(self).offset(-10);
+        make.left.equalTo(self.contentView).offset(47.f);
+        make.top.equalTo(self.contentView).offset(10);
+        make.right.equalTo(self.contentView).offset(-10);
+        make.bottom.equalTo(self.contentView).offset(-10);
     }];
     
     [self.iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -142,14 +142,14 @@
     
     //左边线
     [self.mouthLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self);
+        make.top.equalTo(self.contentView);
         make.left.equalTo(@(7.f));
         make.width.equalTo(@(50.f));
         make.height.equalTo(@(20));
     }];
     
     [self.dayLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self);
+        make.centerY.equalTo(self.contentView);
         make.size.mas_equalTo(CGSizeMake(21, 21.f));
         make.centerX.equalTo(self.mouthLabel);
     }];
@@ -163,7 +163,7 @@
         make.top.equalTo(self.mouthLine.mas_bottom);
         make.width.equalTo(@(0.5));
         make.centerX.equalTo(self.mouthLabel);
-        make.bottom.equalTo(self);
+        make.bottom.equalTo(self.contentView);
     }];
     
 }
