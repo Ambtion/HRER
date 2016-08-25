@@ -42,7 +42,7 @@
         
         self.userId = userId;
         self.caterIndex = -1;
-        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginSucess:) name:LOGIN_IN object:nil];
     }
     
     return self;
@@ -69,7 +69,6 @@
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginSucess:) name:LOGIN_IN object:nil];
     
     [self initUI];
     [self quaryDataWithTableView:nil];
@@ -249,7 +248,8 @@
 
 - (BOOL)isRootController
 {
-    return [self.myNavController viewControllers].count == 1;
+    return ([self.myNavController viewControllers].count == 1) ||
+            ([self.myNavController viewControllers].count == 2 && [[self.myNavController topViewController] isKindOfClass:[HRLoginViewController class]]);
 }
 
 #pragma mark - Action
