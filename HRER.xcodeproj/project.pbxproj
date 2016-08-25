@@ -95,6 +95,12 @@
 		E14BD4CA1CEF0AC900C66E14 /* Localization.strings in Resources */ = {isa = PBXBuildFile; fileRef = E14BD4CC1CEF0AC900C66E14 /* Localization.strings */; };
 		E14BD4F01CF2CAD200C66E14 /* HRAnomation.m in Sources */ = {isa = PBXBuildFile; fileRef = E14BD4EF1CF2CAD200C66E14 /* HRAnomation.m */; };
 		E14BD4F51CF2D76700C66E14 /* HRPinAnnomationView.m in Sources */ = {isa = PBXBuildFile; fileRef = E14BD4F41CF2D76700C66E14 /* HRPinAnnomationView.m */; };
+		E18AA8971D6EB65D004C1BF1 /* JRSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = E18AA88A1D6EB65D004C1BF1 /* JRSwizzle.m */; };
+		E18AA8981D6EB65D004C1BF1 /* LJException.m in Sources */ = {isa = PBXBuildFile; fileRef = E18AA88C1D6EB65D004C1BF1 /* LJException.m */; };
+		E18AA8991D6EB65D004C1BF1 /* LJSwizzleMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = E18AA8901D6EB65D004C1BF1 /* LJSwizzleMethod.m */; };
+		E18AA89A1D6EB65D004C1BF1 /* NSArray+adapter.m in Sources */ = {isa = PBXBuildFile; fileRef = E18AA8921D6EB65D004C1BF1 /* NSArray+adapter.m */; };
+		E18AA89B1D6EB65D004C1BF1 /* NSDictionary+adapter.m in Sources */ = {isa = PBXBuildFile; fileRef = E18AA8941D6EB65D004C1BF1 /* NSDictionary+adapter.m */; };
+		E18AA89C1D6EB65D004C1BF1 /* NSMutableArray+adapter.m in Sources */ = {isa = PBXBuildFile; fileRef = E18AA8961D6EB65D004C1BF1 /* NSMutableArray+adapter.m */; };
 		E19385301D47356F0097018B /* PoiRecomendListController.m in Sources */ = {isa = PBXBuildFile; fileRef = E193852F1D47356F0097018B /* PoiRecomendListController.m */; };
 		E19385331D47375C0097018B /* PoiRecomendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E19385321D47375C0097018B /* PoiRecomendCell.m */; };
 		E193857B1D487F7D0097018B /* HRSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E193857A1D487F7D0097018B /* HRSettingViewController.m */; };
@@ -313,6 +319,18 @@
 		E14BD4EF1CF2CAD200C66E14 /* HRAnomation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HRAnomation.m; path = ../HEMapView/HRAnomation.m; sourceTree = "<group>"; };
 		E14BD4F31CF2D76700C66E14 /* HRPinAnnomationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HRPinAnnomationView.h; path = ../HEMapView/HRPinAnnomationView.h; sourceTree = "<group>"; };
 		E14BD4F41CF2D76700C66E14 /* HRPinAnnomationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HRPinAnnomationView.m; path = ../HEMapView/HRPinAnnomationView.m; sourceTree = "<group>"; };
+		E18AA8891D6EB65D004C1BF1 /* JRSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRSwizzle.h; sourceTree = "<group>"; };
+		E18AA88A1D6EB65D004C1BF1 /* JRSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRSwizzle.m; sourceTree = "<group>"; };
+		E18AA88B1D6EB65D004C1BF1 /* LJException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJException.h; sourceTree = "<group>"; };
+		E18AA88C1D6EB65D004C1BF1 /* LJException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJException.m; sourceTree = "<group>"; };
+		E18AA88F1D6EB65D004C1BF1 /* LJSwizzleMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJSwizzleMethod.h; sourceTree = "<group>"; };
+		E18AA8901D6EB65D004C1BF1 /* LJSwizzleMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJSwizzleMethod.m; sourceTree = "<group>"; };
+		E18AA8911D6EB65D004C1BF1 /* NSArray+adapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+adapter.h"; sourceTree = "<group>"; };
+		E18AA8921D6EB65D004C1BF1 /* NSArray+adapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+adapter.m"; sourceTree = "<group>"; };
+		E18AA8931D6EB65D004C1BF1 /* NSDictionary+adapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+adapter.h"; sourceTree = "<group>"; };
+		E18AA8941D6EB65D004C1BF1 /* NSDictionary+adapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+adapter.m"; sourceTree = "<group>"; };
+		E18AA8951D6EB65D004C1BF1 /* NSMutableArray+adapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+adapter.h"; sourceTree = "<group>"; };
+		E18AA8961D6EB65D004C1BF1 /* NSMutableArray+adapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+adapter.m"; sourceTree = "<group>"; };
 		E193852E1D47356F0097018B /* PoiRecomendListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PoiRecomendListController.h; sourceTree = "<group>"; };
 		E193852F1D47356F0097018B /* PoiRecomendListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PoiRecomendListController.m; sourceTree = "<group>"; };
 		E19385311D47375C0097018B /* PoiRecomendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PoiRecomendCell.h; sourceTree = "<group>"; };
@@ -646,6 +664,7 @@
 		B89663F21CF32FD100B2A6CA /* ThirdPary */ = {
 			isa = PBXGroup;
 			children = (
+				E18AA8881D6EB65D004C1BF1 /* LJException */,
 				B89663F71CF32FD100B2A6CA /* Refresh */,
 				B89663FD1CF32FD100B2A6CA /* RFSegmentView */,
 				B89664001CF32FD100B2A6CA /* UIView+Sizes */,
@@ -848,6 +867,41 @@
 				E14BD4C41CEEFC0700C66E14 /* HRLocationManager.m */,
 			);
 			path = HEMapView;
+			sourceTree = "<group>";
+		};
+		E18AA8881D6EB65D004C1BF1 /* LJException */ = {
+			isa = PBXGroup;
+			children = (
+				E18AA8891D6EB65D004C1BF1 /* JRSwizzle.h */,
+				E18AA88A1D6EB65D004C1BF1 /* JRSwizzle.m */,
+				E18AA88B1D6EB65D004C1BF1 /* LJException.h */,
+				E18AA88C1D6EB65D004C1BF1 /* LJException.m */,
+				E18AA88D1D6EB65D004C1BF1 /* LJRumtime */,
+				E18AA8911D6EB65D004C1BF1 /* NSArray+adapter.h */,
+				E18AA8921D6EB65D004C1BF1 /* NSArray+adapter.m */,
+				E18AA8931D6EB65D004C1BF1 /* NSDictionary+adapter.h */,
+				E18AA8941D6EB65D004C1BF1 /* NSDictionary+adapter.m */,
+				E18AA8951D6EB65D004C1BF1 /* NSMutableArray+adapter.h */,
+				E18AA8961D6EB65D004C1BF1 /* NSMutableArray+adapter.m */,
+			);
+			path = LJException;
+			sourceTree = "<group>";
+		};
+		E18AA88D1D6EB65D004C1BF1 /* LJRumtime */ = {
+			isa = PBXGroup;
+			children = (
+				E18AA88E1D6EB65D004C1BF1 /* LJRumtime */,
+			);
+			path = LJRumtime;
+			sourceTree = "<group>";
+		};
+		E18AA88E1D6EB65D004C1BF1 /* LJRumtime */ = {
+			isa = PBXGroup;
+			children = (
+				E18AA88F1D6EB65D004C1BF1 /* LJSwizzleMethod.h */,
+				E18AA8901D6EB65D004C1BF1 /* LJSwizzleMethod.m */,
+			);
+			path = LJRumtime;
 			sourceTree = "<group>";
 		};
 		E193852D1D4735610097018B /* POiRecomendListController */ = {
@@ -1163,6 +1217,8 @@
 				E1E3AB151CF6F2AC00DD5608 /* AppSysConfig.m in Sources */,
 				B896640C1CF32FD100B2A6CA /* YiRefreshHeader.m in Sources */,
 				B805392F1D23B40300C8EF06 /* HRImageScaleView.m in Sources */,
+				E18AA8981D6EB65D004C1BF1 /* LJException.m in Sources */,
+				E18AA8971D6EB65D004C1BF1 /* JRSwizzle.m in Sources */,
 				E198B9EE1D3DCB6200BC8237 /* HRUserHomeInfoCardView.m in Sources */,
 				B88F10611CF5D005007C930F /* HRLoginViewController.m in Sources */,
 				E1C303AC1CF58BE9001C016B /* HRQQManager.m in Sources */,
@@ -1183,6 +1239,7 @@
 				B89663F01CF32F7700B2A6CA /* ToastAlertView.m in Sources */,
 				B8CDA7641D37BD6B00136AF7 /* HRPoiUserInfo.m in Sources */,
 				B856FF451D3F929A002EF2C4 /* HRLocationInputView.m in Sources */,
+				E18AA89C1D6EB65D004C1BF1 /* NSMutableArray+adapter.m in Sources */,
 				B856FF481D3F9720002EF2C4 /* HRLocationCategoryView.m in Sources */,
 				B8954EAA1CFC7E10006A706A /* HRRegisterViewController.m in Sources */,
 				B816B1101D3671C200318662 /* HRPoiDetailController.m in Sources */,
@@ -1227,11 +1284,14 @@
 				E1C3037F1CF43E71001C016B /* HRWebCatLogin.m in Sources */,
 				E133FD771D1283F400503D83 /* HRPoidSetsCardView.m in Sources */,
 				B816B1161D367A8D00318662 /* HRPoiDetailPhotosCell.m in Sources */,
+				E18AA89B1D6EB65D004C1BF1 /* NSDictionary+adapter.m in Sources */,
 				B88F107C1CF5E273007C930F /* HRNagationController.m in Sources */,
 				E198B9F71D3DFF9800BC8237 /* HRUserHomeListView.m in Sources */,
 				B8DF93381CFB2AD8007C4DF9 /* SMPageControl.m in Sources */,
 				B88F10721CF5E23B007C930F /* HomeViewController.m in Sources */,
 				E1E3AB621CFBEE6600DD5608 /* HereDataModel.m in Sources */,
+				E18AA89A1D6EB65D004C1BF1 /* NSArray+adapter.m in Sources */,
+				E18AA8991D6EB65D004C1BF1 /* LJSwizzleMethod.m in Sources */,
 				E10DF7881CF6DAB600D5E146 /* MainTabBarController.m in Sources */,
 				B8DF93341CFB2AB1007C4DF9 /* ProjectGuideView.m in Sources */,
 				B816B11C1D367B0300318662 /* HRPoiCreateInfoCell.m in Sources */,

@@ -8,6 +8,7 @@
 
 #import "HRBindPhoneController.h"
 #import "HRInPutView.h"
+#import "LoginStateManager.h"
 
 @interface HRBindPhoneController()
 
@@ -211,7 +212,12 @@
                            success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
-            [self showTotasViewWithMes:@"绑定成功"]; 
+            [self showTotasViewWithMes:@"绑定成功"];
+            
+            NSDictionary * userInfoDic  = [responseObject objectForKey:@"response"];
+            HRUserLoginInfo * userInfo = [HRUserLoginInfo yy_modelWithJSON:userInfoDic];
+            [[LoginStateManager getInstance] LoginWithUserLoginInfo:userInfo];
+            
             if (self.navigationController.presentingViewController) {
                 [self.navigationController dismissViewControllerAnimated:YES completion:^{
                     

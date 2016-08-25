@@ -22,6 +22,7 @@
 #import "NetWorkEntity.h"
 #import "HRUserHomeController.h"
 #import "HRCreteLocationController.h"
+#import "LJException.h"
 //Test
 #import "HRLoginManager.h"
 
@@ -118,6 +119,9 @@
 
 - (void)initAllComCore
 {
+    
+    [LJException startExtern];
+    
     //注册微信
     [[HRWeCatManager shareInstance] registerWeixin];
     

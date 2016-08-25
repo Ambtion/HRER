@@ -156,18 +156,28 @@
     
     if (index >= 0 && index < self.anotionDataArray.count) {
         
-        HRAnomation * anomation = self.anotionDataArray[index];
-        [self.mapView selectAnnotation:anomation animated:NO];
-        //设置图区范围
-        MKCoordinateSpan span;
-        span.latitudeDelta = kHRMapMAOLEVEL;
-        span.longitudeDelta = kHRMapMAOLEVEL;
-        MKCoordinateRegion region;
+        @try {
+            HRAnomation * anomation = self.anotionDataArray[index];
+            [self.mapView selectAnnotation:anomation animated:NO];
+            //设置图区范围
+            
+            MKCoordinateSpan span;
+            span.latitudeDelta = kHRMapMAOLEVEL;
+            span.longitudeDelta = kHRMapMAOLEVEL;
+            MKCoordinateRegion region;
+            
+            CLLocationCoordinate2D coord = anomation.coordinate;
+            region.center = coord;
+            region.span = span;
+            
+            [self.mapView setRegion:region animated:YES];
+
+        } @catch (NSException *exception) {
+            
+        } @finally {
+            
+        }
         
-        CLLocationCoordinate2D coord = anomation.coordinate;
-        region.center = coord;
-        region.span = span;
-        [self.mapView setRegion:region animated:YES];
     }
     
 }
