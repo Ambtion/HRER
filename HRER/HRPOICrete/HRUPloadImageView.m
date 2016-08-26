@@ -154,16 +154,17 @@
     [self.contentView addSubview:self.addressLabel];
     
     [self.locIconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.lessThanOrEqualTo(self.icarousel.mas_left).offset(6);
         make.right.equalTo(self.addressLabel.mas_left).offset(-6);
         make.top.equalTo(self.titleLabel.mas_bottom).offset(14.f);
     }];
     
     [self.addressLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.locIconImageView.mas_right).offset(6);
+        make.right.lessThanOrEqualTo(self.icarousel.mas_right).offset(-6);
         make.centerX.equalTo(self.contentView);
         make.centerY.equalTo(self.locIconImageView);
     }];
-    
     
     UIView * bgView = [[UIView alloc] init];
     bgView.layer.cornerRadius = 4.f;
