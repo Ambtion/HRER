@@ -76,7 +76,23 @@
     uploadView.cityId = cityId;
     uploadView.location = loc;
     uploadView.poiType = poiType;
-    
+    NSString * buttonTitle = @"";
+    switch (poiType) {
+        case 1:
+            buttonTitle = @"加入我的美食地图";
+            break;
+        case 2:
+            buttonTitle = @"加入我的观光地图";
+            break;
+        case 3:
+            buttonTitle = @"加入我的娱乐地图";
+            break;
+        case 4:
+            buttonTitle = @"加入我的酒店地图";
+        default:
+            break;
+    }
+    [uploadView.uploadbutton setTitle:buttonTitle forState:UIControlStateNormal];
     [uploadView showInView:view completion:^(BOOL finished) {
         
     }];
@@ -156,6 +172,7 @@
     [self.locIconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.lessThanOrEqualTo(self.icarousel.mas_left).offset(6);
         make.right.equalTo(self.addressLabel.mas_left).offset(-6);
+        make.width.priorityHigh();
         make.top.equalTo(self.titleLabel.mas_bottom).offset(14.f);
     }];
     

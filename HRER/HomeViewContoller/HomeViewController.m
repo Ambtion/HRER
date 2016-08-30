@@ -345,11 +345,8 @@
             }
             HRPOIInfo * poiInfo = self.userPoiSource[indexPath.row];
             [cell setData:poiInfo];
-            if (poiInfo.city_id == [[HRLocationManager sharedInstance] curCityId]) {
-                [cell setLocaitonStr:poiInfo.city_name];
-            }else{
-                [cell setLocaitonStr:nil];
-            }
+            [cell setLocaitonStr:poiInfo.city_name];
+
             return cell;
 
         }
@@ -368,11 +365,8 @@
                 }
                 HRPOIInfo * poiInfo = poiSoure;
                 [cell setData:poiInfo];
-                if (poiInfo.city_id == [[HRLocationManager sharedInstance] curCityId]) {
-                    [cell setLocaitonStr:poiInfo.city_name];
-                }else{
-                    [cell setLocaitonStr:nil];
-                }
+                [cell setLocaitonStr:poiInfo.city_name];
+
                 return cell;
  
             }else{
@@ -385,12 +379,7 @@
                 }
                 
                 [cell setData:poiSoure];
-                if ([(HRPOISetInfo *)poiSoure city_id] == [[HRLocationManager sharedInstance] curCityId]) {
-                    [cell setLocaitonStr:[(HRPOISetInfo *)poiSoure city_name]];
-                }else{
-                    [cell setLocaitonStr:nil];
-                }
-
+                [cell setLocaitonStr:[(HRPOISetInfo *)poiSoure city_name]];
                 return cell;
             }
 
