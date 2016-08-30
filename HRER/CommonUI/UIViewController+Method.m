@@ -175,3 +175,21 @@
 }
 
 @end
+
+@implementation UIViewController(Hot)
+
+- (void)showMessCountInTabBar:(NSInteger)mesCount
+{
+    AppDelegate * appdelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    UITabBarController * tabController = (UITabBarController *)[[appdelegate window] rootViewController];
+    [tabController.tabBar showBadgeOnItemIndex:3 withMessageCount:mesCount];
+}
+
+- (void)hiddenMessCountInTabBar
+{
+    AppDelegate * appdelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    UITabBarController * tabController = (UITabBarController *)[[appdelegate window] rootViewController];
+    [tabController.tabBar hideBadgeOnItemIndex:3];
+}
+
+@end

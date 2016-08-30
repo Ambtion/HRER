@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "MBProgressHUD.h"
 #import "AppDelegate.h"
+#import "UITabBar+RedHot.h"
 
 #define WRITEIMAGE @"WriteImage"
 
@@ -46,4 +47,9 @@
 
 @interface UIViewController(TopTableView)
 - (UIView *)footView;
+@end
+
+@interface UIViewController(Hot)
+- (void)showMessCountInTabBar:(NSInteger)mesCount;
+- (void)hiddenMessCountInTabBar;
 @end

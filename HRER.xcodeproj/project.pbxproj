@@ -61,6 +61,7 @@
 		B896640E1CF32FD100B2A6CA /* UIView+Sizes.m in Sources */ = {isa = PBXBuildFile; fileRef = B89664041CF32FD100B2A6CA /* UIView+Sizes.m */; };
 		B896640F1CF32FD100B2A6CA /* UIView+TKCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = B89664061CF32FD100B2A6CA /* UIView+TKCategory.m */; };
 		B89664101CF32FD100B2A6CA /* UIViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = B89664081CF32FD100B2A6CA /* UIViewAdditions.m */; };
+		B89BCD4C1D75D1C800777373 /* UITabBar+RedHot.m in Sources */ = {isa = PBXBuildFile; fileRef = B89BCD4B1D75D1C800777373 /* UITabBar+RedHot.m */; };
 		B8AC37C41D40FD7C00D99BF8 /* HRUPloadImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = B8AC37C31D40FD7C00D99BF8 /* HRUPloadImageView.m */; };
 		B8ACA4291D3E4C7400011763 /* HRUserHomeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B8ACA4281D3E4C7400011763 /* HRUserHomeCell.m */; };
 		B8C00DFB1D3CFEAA009FB17F /* CityHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8C00DFA1D3CFEAA009FB17F /* CityHomeViewController.m */; };
@@ -257,6 +258,8 @@
 		B89664071CF32FD100B2A6CA /* UIViewAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewAdditions.h; sourceTree = "<group>"; };
 		B89664081CF32FD100B2A6CA /* UIViewAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewAdditions.m; sourceTree = "<group>"; };
 		B89664111CF32FF700B2A6CA /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PrefixHeader.pch; path = ../PrefixHeader.pch; sourceTree = "<group>"; };
+		B89BCD4A1D75D1C800777373 /* UITabBar+RedHot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITabBar+RedHot.h"; sourceTree = "<group>"; };
+		B89BCD4B1D75D1C800777373 /* UITabBar+RedHot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITabBar+RedHot.m"; sourceTree = "<group>"; };
 		B8AC37C21D40FD7C00D99BF8 /* HRUPloadImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRUPloadImageView.h; sourceTree = "<group>"; };
 		B8AC37C31D40FD7C00D99BF8 /* HRUPloadImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRUPloadImageView.m; sourceTree = "<group>"; };
 		B8ACA4271D3E4C7400011763 /* HRUserHomeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRUserHomeCell.h; sourceTree = "<group>"; };
@@ -711,6 +714,15 @@
 			path = "UIView+Sizes";
 			sourceTree = "<group>";
 		};
+		B89BCD491D75D1C800777373 /* TabBarHot */ = {
+			isa = PBXGroup;
+			children = (
+				B89BCD4A1D75D1C800777373 /* UITabBar+RedHot.h */,
+				B89BCD4B1D75D1C800777373 /* UITabBar+RedHot.m */,
+			);
+			path = TabBarHot;
+			sourceTree = "<group>";
+		};
 		B8ACA9181D105F7800D58232 /* POIList */ = {
 			isa = PBXGroup;
 			children = (
@@ -826,6 +838,7 @@
 		E14BD48F1CEEF53F00C66E14 /* HRER */ = {
 			isa = PBXGroup;
 			children = (
+				B89BCD491D75D1C800777373 /* TabBarHot */,
 				E126BCAF1D75484700BBF434 /* MaskView */,
 				B88F10651CF5E1D3007C930F /* HomeFeedViewContoller */,
 				B88F10661CF5E1E2007C930F /* FindCityViewController */,
@@ -1304,6 +1317,7 @@
 				B8DF93381CFB2AD8007C4DF9 /* SMPageControl.m in Sources */,
 				B88F10721CF5E23B007C930F /* HomeViewController.m in Sources */,
 				E1E3AB621CFBEE6600DD5608 /* HereDataModel.m in Sources */,
+				B89BCD4C1D75D1C800777373 /* UITabBar+RedHot.m in Sources */,
 				E18AA89A1D6EB65D004C1BF1 /* NSArray+adapter.m in Sources */,
 				E18AA8991D6EB65D004C1BF1 /* LJSwizzleMethod.m in Sources */,
 				E10DF7881CF6DAB600D5E146 /* MainTabBarController.m in Sources */,

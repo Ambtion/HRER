@@ -7,11 +7,8 @@
 //
 
 #import "BMGuideMaskView.h"
-#import "systemConfigModel.h"
-#import "DeviceInfo.h"
 
 #define CONFIG_ROUTE_MASK_SHOWED     @"__CONFIG_ROUTE_MASK_SHOWED__"
-
 
 
 @interface BMGuideMaskView()

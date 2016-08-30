@@ -19,6 +19,7 @@
 #import "HereDataModel.h"
 #import "LoginStateManager.h"
 #import "HRUserHomeController.h"
+#import "BMGuideMaskView.h"
 
 @interface HomeViewController()<UITableViewDelegate,UITableViewDataSource,HomeHeadViewDelegate,HRHerePoisSetCellDelegate,HRHerePoiCellDelegate>
 
@@ -50,6 +51,14 @@
     self.catergoryIndex = -1;
     [self initUI];
     [self quaryData];
+    [self showMessCountInTabBar:4];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.view.clipsToBounds = YES;
+    [BMGuideMaskView showMaskViewWithKey:NSStringFromClass([self class]) containerView:self.view image:[UIImage imageNamed:@"home_guide"] imageViewRect:self.view.bounds];
 }
 
 - (void)initUI
