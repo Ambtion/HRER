@@ -495,7 +495,7 @@
         }else{
             //编辑集合 | 用户创建
             if (!cell.data.creator_id.length) {
-                [self showTotasViewWithMes:@"服务器bug,数据用户ID是空"];
+//                [self showTotasViewWithMes:@"服务器bug,数据用户ID是空"];
                 return;
             }
             HRUserHomeController * userHomeController = [[HRUserHomeController alloc] initWithUserID:cell.data.creator_id];

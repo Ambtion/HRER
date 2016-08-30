@@ -81,6 +81,7 @@
 		E10DF78C1CF6DB6F00D5E146 /* btn_card@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E10DF7891CF6DB6F00D5E146 /* btn_card@2x.png */; };
 		E11876A91D3F29B900A23429 /* HRCreteLocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = E11876A81D3F29B900A23429 /* HRCreteLocationController.m */; };
 		E11876AC1D3F29C800A23429 /* HRLocationMapController.m in Sources */ = {isa = PBXBuildFile; fileRef = E11876AB1D3F29C800A23429 /* HRLocationMapController.m */; };
+		E126BCB21D75484700BBF434 /* BMGuideMaskView.m in Sources */ = {isa = PBXBuildFile; fileRef = E126BCB11D75484700BBF434 /* BMGuideMaskView.m */; };
 		E133FD771D1283F400503D83 /* HRPoidSetsCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = E133FD761D1283F400503D83 /* HRPoidSetsCardView.m */; };
 		E133FD7A1D12854900503D83 /* HRPoiCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = E133FD791D12854900503D83 /* HRPoiCardView.m */; };
 		E141782D1D323C34000CBB2E /* BMNewFriendsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E141782C1D323C34000CBB2E /* BMNewFriendsCell.m */; };
@@ -293,6 +294,8 @@
 		E11876A81D3F29B900A23429 /* HRCreteLocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRCreteLocationController.m; sourceTree = "<group>"; };
 		E11876AA1D3F29C800A23429 /* HRLocationMapController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRLocationMapController.h; sourceTree = "<group>"; };
 		E11876AB1D3F29C800A23429 /* HRLocationMapController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRLocationMapController.m; sourceTree = "<group>"; };
+		E126BCB01D75484700BBF434 /* BMGuideMaskView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMGuideMaskView.h; sourceTree = "<group>"; };
+		E126BCB11D75484700BBF434 /* BMGuideMaskView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMGuideMaskView.m; sourceTree = "<group>"; };
 		E133FD751D1283F400503D83 /* HRPoidSetsCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRPoidSetsCardView.h; sourceTree = "<group>"; };
 		E133FD761D1283F400503D83 /* HRPoidSetsCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRPoidSetsCardView.m; sourceTree = "<group>"; };
 		E133FD781D12854900503D83 /* HRPoiCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRPoiCardView.h; sourceTree = "<group>"; };
@@ -786,6 +789,15 @@
 			path = NetWork;
 			sourceTree = "<group>";
 		};
+		E126BCAF1D75484700BBF434 /* MaskView */ = {
+			isa = PBXGroup;
+			children = (
+				E126BCB01D75484700BBF434 /* BMGuideMaskView.h */,
+				E126BCB11D75484700BBF434 /* BMGuideMaskView.m */,
+			);
+			path = MaskView;
+			sourceTree = "<group>";
+		};
 		E14BD4841CEEF53F00C66E14 = {
 			isa = PBXGroup;
 			children = (
@@ -814,6 +826,7 @@
 		E14BD48F1CEEF53F00C66E14 /* HRER */ = {
 			isa = PBXGroup;
 			children = (
+				E126BCAF1D75484700BBF434 /* MaskView */,
 				B88F10651CF5E1D3007C930F /* HomeFeedViewContoller */,
 				B88F10661CF5E1E2007C930F /* FindCityViewController */,
 				E11876A01D3F27D000A23429 /* HRPOICreteController */,
@@ -1287,6 +1300,7 @@
 				E18AA89B1D6EB65D004C1BF1 /* NSDictionary+adapter.m in Sources */,
 				B88F107C1CF5E273007C930F /* HRNagationController.m in Sources */,
 				E198B9F71D3DFF9800BC8237 /* HRUserHomeListView.m in Sources */,
+				E126BCB21D75484700BBF434 /* BMGuideMaskView.m in Sources */,
 				B8DF93381CFB2AD8007C4DF9 /* SMPageControl.m in Sources */,
 				B88F10721CF5E23B007C930F /* HomeViewController.m in Sources */,
 				E1E3AB621CFBEE6600DD5608 /* HereDataModel.m in Sources */,
