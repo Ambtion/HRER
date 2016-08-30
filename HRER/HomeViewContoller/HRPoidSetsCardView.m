@@ -149,6 +149,12 @@
 {
     
     [self.portraitImage sd_setImageWithURL:[NSURL URLWithString:data.portrait.url] placeholderImage:[UIImage imageNamed:@"man"]];
+    NSString * str = [NSString stringWithFormat:@"%@ 推荐了 %@",data.creator_name,data.title];
+    NSMutableAttributedString * attr = [[NSMutableAttributedString alloc] initWithString:str];
+    [attr addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:15] range:NSMakeRange(data.creator_name.length + 5, data.title.length)];
+    [attr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:15] range:NSMakeRange(0, data.creator_name.length + 5)];
+    [self.titleLabel setAttributedText:attr];
+    
     self.titleLabel.text = data.title;
     
     for (int i = 0; i < MIN(data.photos.count, 4); i++) {
