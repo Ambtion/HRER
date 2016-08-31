@@ -203,7 +203,7 @@
 - (void)startTimeCheck
 {
     [self startCheckNewFriend];
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:60 * 5 target:self selector:@selector(startCheckNewFriend) userInfo:nil repeats:YES];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:60 * 60 * 6 target:self selector:@selector(startCheckNewFriend) userInfo:nil repeats:YES];
 }
 - (void)startCheckNewFriend
 {
