@@ -186,7 +186,7 @@
     CLLocation * desLocaiton = [[CLLocation alloc] initWithLatitude:data.lat longitude:data.lng];
     NSString * distance = [HRNavigationTool distanceBetwenOriGps:[[HRLocationManager sharedInstance] curLocation].coordinate desGps:desLocaiton.coordinate];
     self.locLabel.text = distance;
-    
+    [self.locIconView setHidden:NO];
 }
 
 
