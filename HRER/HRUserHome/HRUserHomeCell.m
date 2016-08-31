@@ -226,8 +226,8 @@
                               RGB_Color(0x3b, 0xc4, 0xba),
                               RGB_Color(0xfb, 0xb3, 0x3a)
                               ];
-    if (type >= 0 && type < colorArray.count) {
-        return colorArray[type];
+    if (type -1 >= 0 && type -1 < colorArray.count) {
+        return colorArray[type -1];
     }
     return [UIColor clearColor];
 }

@@ -19,6 +19,15 @@
 {
     self = [super initWithRootViewController:rootViewController];
     if (self) {
+        
+        [self.navigationBar setBarTintColor:[UIColor clearColor]];
+        NSDictionary *textAttributes1 = @{NSFontAttributeName: [UIFont systemFontOfSize:16.f],
+                                          NSForegroundColorAttributeName: [UIColor whiteColor]
+                                          };
+        [self.navigationBar setTitleTextAttributes:textAttributes1];
+        [self.navigationBar setBackgroundImage:[UIImage imageNamed:@"NavigationBarBG"] forBarMetrics:UIBarMetricsDefault];
+        [self.navigationBar setShadowImage:[UIImage imageNamed:@"NavigationBarBG"]];
+
         self.delegate = self;
         self.interactivePopGestureRecognizer.delegate = self;
         self.isAnimaiton = NO;

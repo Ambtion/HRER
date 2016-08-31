@@ -10,13 +10,17 @@
 #import "HRUPloadImageView.h"
 #import "iCarousel.h"
 #import "NetWorkEntity.h"
+#import "LGPhotoPickerViewController.h"
+#import "LGPhotoPickerCommon.h"
+#import "LGPhotoAssets.h"
+#import "ZLCameraViewController.h"
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
 
 #define MAXSEARCHCOUNT (100)
 
-@interface HRUPloadImageView()<iCarouselDelegate,iCarouselDataSource,UITextViewDelegate,UITextFieldDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+@interface HRUPloadImageView()<iCarouselDelegate,iCarouselDataSource,UITextViewDelegate,UITextFieldDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,LGPhotoPickerViewControllerDelegate>
 
 @property(nonatomic,copy)UPloadCallBack callBack;
 
@@ -481,58 +485,78 @@
 
 - (void)addImmagesFormCamera:(BOOL)isFromCamera
 {
-    UIImagePickerController* imagePickerController = [[UIImagePickerController alloc] init];
     if (isFromCamera) {
-        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-            imagePickerController.sourceType =
-            UIImagePickerControllerSourceTypeCamera;
-        }
-        
+        [self presentCameraContinuous];
     }else{
-        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
-            imagePickerController.sourceType =
-            UIImagePickerControllerSourceTypePhotoLibrary;
-        }
-        
+        [self presentPhotoPickerViewController];
     }
-    imagePickerController.allowsEditing = YES;
-    //设置委托对象
-    imagePickerController.delegate = self;
-    [[self appController] presentViewController:imagePickerController animated:YES completion:^{
-        
-    }];
 }
 
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
+- (void)presentPhotoPickerViewController
 {
-    
-    //获得编辑过的图片
-    UIImage * editImage = [editingInfo objectForKey: @"UIImagePickerControllerEditedImage"];
-    [self.photosArray addObject:editImage];
+    LGPhotoPickerViewController *pickerVc = [[LGPhotoPickerViewController alloc] initWithShowType:LGShowImageTypeImagePicker];
+    pickerVc.status = PickerViewShowStatusGroup;
+    pickerVc.maxCount =  9 - self.photosArray.count;;
+    pickerVc.delegate = self;
+    [pickerVc showPickerVc:[self appController]];
+}
+
+- (void)presentCameraContinuous
+{
+    ZLCameraViewController *cameraVC = [[ZLCameraViewController alloc] init];
+    cameraVC.maxCount = 9 - self.photosArray.count;
+    cameraVC.cameraType = ZLCameraContinuous;
+    cameraVC.callback = ^(NSArray *cameras){
+        
+        for (ZLCamera *canamer in cameras) {
+            
+            [self.photosArray addObject:canamer.photoImage];
+        }
+        [self.icarousel reloadData];
+    };
+
+    [cameraVC showPickerVc:[self appController]];
+}
+
+- (void)pickerViewControllerDoneAsstes:(NSArray *)assets isOriginal:(BOOL)original
+{
+    for (LGPhotoAssets *photo in assets) {
+        //原图
+        [self.photosArray addObject:photo.originImage];
+    }
     [self.icarousel reloadData];
-    
-    [[self appController] dismissViewControllerAnimated:YES completion:^{
-        
-    }];
 }
 
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
-{
-    //获得编辑过的图片
-    UIImage * editImage = [info objectForKey: @"UIImagePickerControllerEditedImage"];
-    [self.photosArray addObject:editImage];
-    [self.icarousel reloadData];
-    
-    [[[[UIApplication sharedApplication] delegate] window].rootViewController dismissViewControllerAnimated:YES completion:^{
-        
-    }];}
-
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
-{
-    [[self appController] dismissViewControllerAnimated:YES completion:^{
-        
-    }];
-}
+//- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
+//{
+//    
+//    //获得编辑过的图片
+//    UIImage * editImage = [editingInfo objectForKey: @"UIImagePickerControllerEditedImage"];
+//    [self.photosArray addObject:editImage];
+//    [self.icarousel reloadData];
+//    
+//    [[self appController] dismissViewControllerAnimated:YES completion:^{
+//        
+//    }];
+//}
+//
+//- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+//{
+//    //获得编辑过的图片
+//    UIImage * editImage = [info objectForKey: @"UIImagePickerControllerEditedImage"];
+//    [self.photosArray addObject:editImage];
+//    [self.icarousel reloadData];
+//    
+//    [[[[UIApplication sharedApplication] delegate] window].rootViewController dismissViewControllerAnimated:YES completion:^{
+//        
+//    }];}
+//
+//- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+//{
+//    [[self appController] dismissViewControllerAnimated:YES completion:^{
+//        
+//    }];
+//}
 
 - (void)uploadButtonDidClick:(UIButton *)button
 {

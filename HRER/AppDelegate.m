@@ -158,13 +158,13 @@
 - (void)setDefoultNavBarStyle
 {
     
-    [[UINavigationBar appearance] setBarTintColor:[UIColor clearColor]];
-     NSDictionary *textAttributes1 = @{NSFontAttributeName: [UIFont systemFontOfSize:16.f],
-                                      NSForegroundColorAttributeName: [UIColor whiteColor]
-                                      };
-    [[UINavigationBar appearance] setTitleTextAttributes:textAttributes1];
-    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"NavigationBarBG"] forBarMetrics:UIBarMetricsDefault];
-    [[UINavigationBar appearance] setShadowImage:[UIImage imageNamed:@"NavigationBarBG"]];
+//    [[UINavigationBar appearance] setBarTintColor:[UIColor clearColor]];
+//     NSDictionary *textAttributes1 = @{NSFontAttributeName: [UIFont systemFontOfSize:16.f],
+//                                      NSForegroundColorAttributeName: [UIColor whiteColor]
+//                                      };
+//    [[UINavigationBar appearance] setTitleTextAttributes:textAttributes1];
+//    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"NavigationBarBG"] forBarMetrics:UIBarMetricsDefault];
+//    [[UINavigationBar appearance] setShadowImage:[UIImage imageNamed:@"NavigationBarBG"]];
  
 }
 
