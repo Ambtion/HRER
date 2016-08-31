@@ -94,7 +94,12 @@
                           success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                           failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
-
+/**
+ *  检查是否有新朋友
+ *
+ */
++ (void)quaryNewFriendTipsSuccess:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                          failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
 /**
  *  上传通讯录
@@ -152,6 +157,9 @@
                                   catergory:(NSInteger)catergory
                                     success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                                     failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+
+
+
 /**
  *  获取所欲混合的POI集合
  */
@@ -300,6 +308,7 @@
             bindweixin:(NSInteger)bindWeixin
                success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+
 
 
 @end

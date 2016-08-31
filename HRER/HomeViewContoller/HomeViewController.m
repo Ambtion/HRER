@@ -51,7 +51,6 @@
     self.catergoryIndex = -1;
     [self initUI];
     [self quaryData];
-    [self showMessCountInTabBar:4];
 }
 
 - (void)viewWillAppear:(BOOL)animated

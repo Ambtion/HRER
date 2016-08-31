@@ -20,7 +20,7 @@
     //新建小红点
     UILabel *badgeView = [[UILabel alloc]init];
     badgeView.textColor = [UIColor whiteColor];
-    badgeView.text = [NSString stringWithFormat:@"%lu",count];
+//    badgeView.text = [NSString stringWithFormat:@"%lu",count];
     badgeView.tag = 888 + index;
     badgeView.layer.cornerRadius = 5;//圆形
     badgeView.layer.masksToBounds = YES;

@@ -142,6 +142,20 @@ static CallBack upSucess;
     [manager GET:urlStr parameters:dic success:success failure:failure];
 }
 
+
+/**
+ *  检查是否有新朋友
+ *
+ */
++ (void)quaryNewFriendTipsSuccess:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                          failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+{
+    NSMutableDictionary * dic = [self commonComonPar];
+    NSString * urlStr = [NSString stringWithFormat:@"%@/newFriend",KNETBASEURL];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:urlStr parameters:dic success:success failure:failure];
+}
+
 + (NSString *)strOfPhoto:(NSDictionary *)dic
 {
     NSString * name = [dic objectForKey:@"name"];
@@ -283,6 +297,8 @@ static CallBack upSucess;
     [manager GET:urlStr parameters:dic success:success failure:failure];
 
 }
+
+
 
 
 /**
