@@ -400,6 +400,7 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     [[LoginStateManager getInstance] logout];
+    [self hiddenMessCountInTabBar];
     [self.myNavController popToRootViewControllerAnimated:NO];
     [self  jumpToHomePage];
 }
