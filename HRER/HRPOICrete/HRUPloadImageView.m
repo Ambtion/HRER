@@ -583,7 +583,7 @@
                                    if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
                                        
                                        [ws showTotasViewWithMes:@"上传成功"];
-                                       [ws jumpToHomePage];
+                                       [ws jumpToHomePageWithQuary:YES];
                                        [ws disAppear];
                                        
                                    }else{

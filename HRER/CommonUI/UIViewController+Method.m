@@ -154,14 +154,16 @@
 
 @implementation NSObject(HomePage)
 
-- (void)jumpToHomePage
+- (void)jumpToHomePageWithQuary:(BOOL)quary
 {
     UITabBarController * tabBar = (UITabBarController *)[[[[UIApplication sharedApplication] delegate] window] rootViewController];
     [tabBar setSelectedIndex:0];
     UINavigationController * nav = [[tabBar viewControllers] objectAtIndex:0];
     [nav popToRootViewControllerAnimated:NO];
     HomeViewController * homeC = (HomeViewController *)[nav topViewController];
-    [homeC quaryData];
+    if (quary) {
+        [homeC quaryData];
+    }
 }
 
 @end

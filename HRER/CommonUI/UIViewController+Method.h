@@ -42,7 +42,7 @@
 
 
 @interface NSObject(HomePage)
-- (void)jumpToHomePage;
+- (void)jumpToHomePageWithQuary:(BOOL)quary;
 @end
 
 @interface UIViewController(TopTableView)

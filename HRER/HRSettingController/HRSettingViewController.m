@@ -401,7 +401,7 @@
     [[LoginStateManager getInstance] logout];
     [self hiddenMessCountInTabBar];
     [self.myNavController popToRootViewControllerAnimated:NO];
-    [self  jumpToHomePage];
+    [self  jumpToHomePageWithQuary:NO];
 }
 
 @end
