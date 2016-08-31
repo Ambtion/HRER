@@ -174,14 +174,25 @@
 
     if (data.intro.length)
         self.subLabel.text = data.intro;
+    else
+        self.subLabel.text = @"";
     
-    for (int i = 0; i < MIN(data.photos.count, 4); i++) {
-        HRPotoInfo * info = data.photos[i];
+    for (int i = 0; i < 4; i++) {
+        
         PhotoFrameView * frameView = self.frameImageViews[i];
-        if ([info isKindOfClass:[HRPotoInfo class]] && info.url.length) {
-            [frameView setHidden:NO];
-            [frameView.imageView sd_setImageWithURL:[NSURL URLWithString:info.url]];
+        
+        if(i < data.photos.count){
+            HRPotoInfo * info = data.photos[i];
+            if ([info isKindOfClass:[HRPotoInfo class]] && info.url.length) {
+                [frameView setHidden:NO];
+                [frameView.imageView sd_setImageWithURL:[NSURL URLWithString:info.url]];
+            }else{
+                [frameView setHidden:YES];
+            }
+        }else{
+            [frameView setHidden:YES];
         }
+      
     }
     CLLocation * desLocaiton = [[CLLocation alloc] initWithLatitude:data.lat longitude:data.lng];
     NSString * distance = [HRNavigationTool distanceBetwenOriGps:[[HRLocationManager sharedInstance] curLocation].coordinate desGps:desLocaiton.coordinate];

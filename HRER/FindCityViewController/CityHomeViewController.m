@@ -281,7 +281,7 @@
             return 1;
             break;
         case 1:
-            return (self.cityID == [[HRLocationManager sharedInstance] curCityId]) ? 0 :  self.nearyBySource.count;
+            return self.nearyBySource.count;
             break;
         case 2:
             return self.userPoiSource.count;

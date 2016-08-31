@@ -154,16 +154,24 @@
     [attr addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:15] range:NSMakeRange(data.creator_name.length + 5, data.title.length)];
     [attr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:15] range:NSMakeRange(0, data.creator_name.length + 5)];
     [self.titleLabel setAttributedText:attr];
-    
     self.titleLabel.text = data.title;
     
-    for (int i = 0; i < MIN(data.photos.count, 4); i++) {
-        HRPotoInfo * info = data.photos[i];
+    for (int i = 0; i < 4; i++) {
+        
         PhotoFrameView * frameView = self.frameImageViews[i];
-        if ([info isKindOfClass:[HRPotoInfo class]] && info.url.length) {
-            [frameView setHidden:NO];
-            [frameView.imageView sd_setImageWithURL:[NSURL URLWithString:info.url] placeholderImage:[UIImage imageNamed:@"man"]];
+        
+        if(i < data.photos.count){
+            HRPotoInfo * info = data.photos[i];
+            if ([info isKindOfClass:[HRPotoInfo class]] && info.url.length) {
+                [frameView setHidden:NO];
+                [frameView.imageView sd_setImageWithURL:[NSURL URLWithString:info.url]];
+            }else{
+                [frameView setHidden:YES];
+            }
+        }else{
+            [frameView setHidden:YES];
         }
+
     }
 }
 
