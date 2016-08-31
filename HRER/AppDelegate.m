@@ -28,7 +28,6 @@
 
 
 @interface AppDelegate ()<UITabBarControllerDelegate>
-@property(nonatomic,strong)NSTimer * timer;
 @end
 
 @implementation AppDelegate
@@ -146,15 +145,21 @@
             if (resultList.count && [[LoginStateManager getInstance] userLoginInfo]) {
                 //用户登录方法
                 [NetWorkEntity sendPhotoNumberWithPhotoNumber:resultList success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                    
+                    if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
+                        NSDictionary * response = [responseObject objectForKey:@"response"];
+                        if ([[response objectForKey:@"newFriend"] boolValue]) {
+                            [self.window.rootViewController showMessCountInTabBar:0];
+                        }else{
+                            [self.window.rootViewController hiddenMessCountInTabBar];
+                        }
+                    }
                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                     
                 }];
             }
         }];
     });
-    
-    [self startTimeCheck];
+//    [self startCheckNewFriend];
 }
 
 - (void)setDefoultNavBarStyle
@@ -198,27 +203,13 @@
 }
 
 
-#pragma mark - NewFirend
-
-- (void)startTimeCheck
-{
-    [self startCheckNewFriend];
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:60 * 60 * 6 target:self selector:@selector(startCheckNewFriend) userInfo:nil repeats:YES];
-}
-- (void)startCheckNewFriend
-{
-    [NetWorkEntity quaryNewFriendTipsSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
-            NSDictionary * response = [responseObject objectForKey:@"response"];
-            if ([[response objectForKey:@"newFriend"] boolValue]) {
-                [self.window.rootViewController showMessCountInTabBar:0];
-            }else{
-                [self.window.rootViewController hiddenMessCountInTabBar];
-            }
-        }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
-    }];
-}
-
+//#pragma mark - NewFirend
+//- (void)startCheckNewFriend
+//{
+//    [NetWorkEntity quaryNewFriendTipsSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        
+//    }];
+//}
+//
 @end
