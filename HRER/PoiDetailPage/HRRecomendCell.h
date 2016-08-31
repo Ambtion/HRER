@@ -13,7 +13,7 @@
 @protocol HRRecomendCellDelegate <NSObject>
 
 - (void)recomendCellDidClickRecomendButton:(HRRecomendCell *)cell;
-- (void)recomendCellDidClickUserButton:(HRRecomendCell *)cell;
+- (void)recomendCellDidClickUserButton:(HRRecomendCell *)cell withUserid:(NSString *)userid;
 
 @end
 

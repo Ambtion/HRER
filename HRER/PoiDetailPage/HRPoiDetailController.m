@@ -545,27 +545,34 @@ static CGFloat const MaxToolbarHeight = 200.0f;
     [self.textView resignFirstResponder];
 }
 
-- (void)recomendCellDidClickUserButton:(HRRecomendCell *)cell
+- (void)recomendCellDidClickUserButton:(HRRecomendCell *)cell withUserid:(NSString *)userid
 {
-    HRUserHomeController * userHomeController = [[HRUserHomeController alloc] initWithUserID:cell.dataSource.user_id];
+    [self.textView resignFirstResponder];
+    if (!userid.length) {
+        return;
+    }
+    HRUserHomeController * userHomeController = [[HRUserHomeController alloc] initWithUserID:userid];
     [self.myNavController pushViewController:userHomeController animated:YES];
 }
 
 - (void)recomendCellDidClickRecomendButton:(HRRecomendCell *)cell
 {
+    [self.textView resignFirstResponder];
     if([cell.dataSource.user_id isEqualToString:[[LoginStateManager getInstance] userLoginInfo].user_id] ||
        [cell.dataSource.reply_id isEqualToString:[[LoginStateManager getInstance] userLoginInfo].user_id]){
         //删除个人评论或者个人的回复
         [self  deleteRecoemdWithCmtId:cell.dataSource.cmnt_id];
-    }else if (cell.dataSource.reply_id.length) {
-        
-        self.cmt_id = cell.dataSource.cmnt_id;
-        //回复回复了评论的某人的评论
-        [self.textView setPlaceText:[NSString stringWithFormat:@"回复%@:",cell.dataSource.reply_name]];
-        [self.textView becomeFirstResponder];
+//    }else if (cell.dataSource.reply_id.length) {
+//        
+//        self.cmt_id = cell.dataSource.cmnt_id;
+//        //回复回复了评论的某人的评论
+//        [self.textView setPlaceText:[NSString stringWithFormat:@"回复%@:",cell.dataSource.reply_name]];
+//        [self.textView becomeFirstResponder];
+//    }else{
     }else{
-        self.cmt_id = cell.dataSource.cmnt_id;
+     
         //回复某条评论
+        self.cmt_id = cell.dataSource.cmnt_id;
         [self.textView setPlaceText:[NSString stringWithFormat:@"回复%@:",cell.dataSource.user_name]];
         [self.textView becomeFirstResponder];
     }

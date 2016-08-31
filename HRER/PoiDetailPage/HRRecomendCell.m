@@ -54,6 +54,7 @@
 @property(nonatomic,strong)UIView * bgView;
 @property(nonatomic,strong)UILabel * desLabel;
 @property(nonatomic,strong)HRUIButton * userButton;
+@property(nonatomic,strong)HRUIButton * replyButton;
 @property(nonatomic,strong)HRUIButton * recomendButton;
 @end
 
@@ -102,9 +103,19 @@
     [self.contentView addSubview:self.recomendButton];
     
     self.userButton = [HRUIButton buttonWithType:UIButtonTypeCustom];
-    self.userButton.highColor = RGB_Color(0xe1, 0xe1, 0xe1);
+//    self.userButton.highColor = RGB_Color(0xe1, 0xe1, 0xe1);
     [self.userButton addTarget:self action:@selector(onUserButtonDidClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:self.userButton];
+    
+    
+    self.replyButton = [HRUIButton buttonWithType:UIButtonTypeCustom];
+//    self.replyButton.highColor = RGB_Color(0xe1, 0xe1, 0xe1);
+    [self.replyButton addTarget:self action:@selector(onReplayButtonDidClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.contentView addSubview:self.replyButton];
+
+//    self.recomendButton.backgroundColor = [UIColor redColor];
+//    self.userButton.backgroundColor = [UIColor greenColor];
+//    self.replyButton.backgroundColor = [UIColor greenColor];
     
     self.porImageView = [[UIImageView alloc] init];
     self.porImageView.layer.cornerRadius = 20.f;
@@ -170,26 +181,49 @@
     [self.porImageView sd_setImageWithURL:nil placeholderImage:[UIImage imageNamed:@"man"]];
     NSString * str = [NSString stringWithFormat:@"%@",dataSource.content];
     if (dataSource.reply_name.length) {
-        str = [NSString stringWithFormat:@"%@回复:%@",dataSource.reply_name,str];
-    }
-    
-    NSMutableAttributedString * attS = [[NSMutableAttributedString alloc] initWithString:str];
-    NSInteger replyLenth = dataSource.reply_name.length + 2;
-    
-    if (dataSource.reply_name.length) {
-        [self.userButton setHidden:NO];
-        [attS addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0, replyLenth)];
-        CGRect rect  = [[self desLabel] boundingRectForCharacterRange:NSMakeRange(0, replyLenth)];
-        rect.size.width += 3.f;
-        [self.userButton mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.top.equalTo(self.desLabel);
-            make.size.mas_equalTo(rect.size);
-        }];
+        str = [NSString stringWithFormat:@"%@回复%@:%@",dataSource.user_name,dataSource.reply_name,str];
     }else{
-        [self.userButton setHidden:YES];
+        
+        [self.replyButton setHidden:NO];
+        str = [NSString stringWithFormat:@"%@:%@",dataSource.user_name,str];
+        
     }
+    
+//    e5ecf5
+    NSMutableAttributedString * attS = [[NSMutableAttributedString alloc] initWithString:str];
+    
+    NSRange userRang = [str rangeOfString:_dataSource.user_name];
+
+    [attS addAttribute:NSForegroundColorAttributeName value:UIColorFromRGB(0x9dafc9) range:userRang];
+    
+
+    if (dataSource.reply_name.length) {
+        NSRange replayRang = [str rangeOfString:dataSource.reply_name];
+        [attS addAttribute:NSForegroundColorAttributeName value:UIColorFromRGB(0x9dafc9) range:replayRang];
+    }
+
     self.desLabel.attributedText = attS;
     
+    CGRect userRect  = [[self desLabel] boundingRectForCharacterRange:userRang];
+    [self.userButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.centerY.equalTo(self.desLabel);
+        make.width.equalTo(@(userRect.size.width + 5));
+    }];
+
+    if (dataSource.reply_name.length) {
+        NSRange replayRang = [str rangeOfString:dataSource.reply_name];
+        CGRect replyRect  = [[self desLabel] boundingRectForCharacterRange:replayRang];
+        [self.replyButton setHidden:NO];
+        [self.replyButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.desLabel.mas_left).offset(replyRect.origin.x + 10);
+            make.centerY.equalTo(self.desLabel);
+            make.width.equalTo(@(replyRect.size.width + 5));
+        }];
+        
+    }else{
+        [self.replyButton setHidden:YES];
+    }
+
 }
 
 #pragma mark -
@@ -207,9 +241,17 @@
 
 - (void)onUserButtonDidClick:(UIButton *)button
 {
-    if ([_delegate respondsToSelector:@selector(recomendCellDidClickUserButton:)]) {
-        [_delegate recomendCellDidClickUserButton:self];
+    if ([_delegate respondsToSelector:@selector(recomendCellDidClickUserButton: withUserid:)]) {
+        [_delegate recomendCellDidClickUserButton:self withUserid:self.dataSource.user_id];
     }
+}
+
+- (void)onReplayButtonDidClick:(UIButton *)button
+{
+    if ([_delegate respondsToSelector:@selector(recomendCellDidClickUserButton: withUserid:)]) {
+        [_delegate recomendCellDidClickUserButton:self withUserid:self.dataSource.reply_id];
+    }
+
 }
 
 @end

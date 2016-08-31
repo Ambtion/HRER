@@ -387,7 +387,6 @@
     }
 }
 
-
 #pragma mark - LoginOut
 - (void)loginButtonClick:(UIButton *)button
 {
