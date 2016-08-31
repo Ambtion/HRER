@@ -385,11 +385,8 @@
                 }
                 HRPOISetInfo * poiInfo = poiSoure;
                 [cell setData:poiSoure];                
-                if (poiInfo.city_id != [[HRLocationManager sharedInstance] curCityId]) {
-                    [cell setLocaitonStr:poiInfo.city_name];
-                }else{
-                    [cell setData:poiInfo];
-                }
+                [cell setLocaitonStr:poiInfo.city_name];
+
                 return cell;
             }
 

@@ -375,9 +375,9 @@
             HRPOIInfo * poiInfo = self.userPoiSource[indexPath.row];
             [cell setData:poiInfo];
             if (poiInfo.city_id == [[HRLocationManager sharedInstance] curCityId]) {
-                [cell setLocaitonStr:poiInfo.city_name];
+                [cell setData:poiInfo];
             }else{
-                [cell setLocaitonStr:nil];
+                [cell setLocaitonStr:poiInfo.city_name];
             }
             return cell;
             
@@ -399,11 +399,10 @@
                 [cell setData:poiInfo];
                 
                 if (poiInfo.city_id == [[HRLocationManager sharedInstance] curCityId]) {
-                    [cell setLocaitonStr:poiInfo.city_name];
+                    [cell setData:poiInfo];
                 }else{
-                    [cell setLocaitonStr:nil];
+                    [cell setLocaitonStr:poiInfo.city_name];
                 }
-
                 return cell;
                 
             }else{
@@ -414,8 +413,8 @@
                     cell = [[HRHerePoisSetCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identify];
                     cell.delegate = self;
                 }
-                
                 [cell setData:poiSoure];
+                [cell setLocaitonStr:nil];
                 return cell;
             }
             
