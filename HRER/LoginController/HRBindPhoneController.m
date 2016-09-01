@@ -9,6 +9,7 @@
 #import "HRBindPhoneController.h"
 #import "HRInPutView.h"
 #import "LoginStateManager.h"
+#import "HRAddressBookManager.h"
 
 @interface HRBindPhoneController()
 
@@ -217,6 +218,27 @@
             NSDictionary * userInfoDic  = [responseObject objectForKey:@"response"];
             HRUserLoginInfo * userInfo = [HRUserLoginInfo yy_modelWithJSON:userInfoDic];
             [[LoginStateManager getInstance] LoginWithUserLoginInfo:userInfo];
+            
+            //访问通讯录
+            [HRAddressBookManager readAllPersonAddressWithCallBack:^(NSArray *resultList, ABAuthorizationStatus status) {
+                
+                if (resultList.count && [[LoginStateManager getInstance] userLoginInfo]) {
+                    //用户登录方法
+                    [NetWorkEntity sendPhotoNumberWithPhotoNumber:resultList success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                        if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
+                            NSDictionary * response = [responseObject objectForKey:@"response"];
+                            if ([[response objectForKey:@"newFriend"] boolValue]) {
+                                [self showMessCountInTabBar:0];
+                            }else{
+                                [self hiddenMessCountInTabBar];
+                            }
+                        }
+                        
+                    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                        
+                    }];
+                }
+            }];
             
             if (self.navigationController.presentingViewController) {
                 [self.navigationController dismissViewControllerAnimated:YES completion:^{

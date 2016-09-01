@@ -68,10 +68,11 @@
         //名
         NSString *firstName = (__bridge NSString *)(ABRecordCopyValue(person, kABPersonFirstNameProperty));
 
-        if (firstName) {
+        if (name.length && firstName.length) {
             name = [NSString stringWithFormat:@"%@%@",name,firstName];
+        }else if(firstName.length){
+            name = firstName;
         }
-
         //读取电话多值
         ABMultiValueRef phone = ABRecordCopyValue(person, kABPersonPhoneProperty);
         NSMutableArray * phoneNumbers = [NSMutableArray arrayWithCapacity:0];
