@@ -178,7 +178,7 @@
     }
     _dataSource = dataSource;
     
-    [self.porImageView sd_setImageWithURL:nil placeholderImage:[UIImage imageNamed:@"man"]];
+    [self.porImageView sd_setImageWithURL:[NSURL URLWithString:dataSource.portrait] placeholderImage:[UIImage imageNamed:@"man"]];
     NSString * str = [NSString stringWithFormat:@"%@",dataSource.content];
     if (dataSource.reply_name.length) {
         str = [NSString stringWithFormat:@"%@回复%@:%@",dataSource.user_name,dataSource.reply_name,str];

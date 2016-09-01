@@ -162,9 +162,10 @@
         
         if(i < data.photos.count){
             HRPotoInfo * info = data.photos[i];
-            if ([info isKindOfClass:[HRPotoInfo class]] && info.url.length) {
+            if ([info isKindOfClass:[HRPotoInfo class]]) {
                 [frameView setHidden:NO];
-                [frameView.imageView sd_setImageWithURL:[NSURL URLWithString:info.url]];
+                NSURL * url = [NSURL URLWithString:info.url.length ? info.url : @""];
+                [frameView.imageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"man"]];
             }else{
                 [frameView setHidden:YES];
             }

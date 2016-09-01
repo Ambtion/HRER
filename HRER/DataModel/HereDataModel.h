@@ -134,9 +134,11 @@
 
 @property(nonatomic,strong)NSString * user_id;
 @property(nonatomic,strong)NSString * user_name;
+@property(nonatomic,strong)NSString * portrait;
 
 @property(nonatomic,strong)NSString * reply_id; //回复人
 @property(nonatomic,strong)NSString * reply_name;
+
 
 @end
 
