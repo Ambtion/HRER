@@ -151,8 +151,19 @@
     [self.portraitImage sd_setImageWithURL:[NSURL URLWithString:data.portrait.url] placeholderImage:[UIImage imageNamed:@"man"]];
     NSString * str = [NSString stringWithFormat:@"%@ 推荐了 %@",data.creator_name,data.title];
     NSMutableAttributedString * attr = [[NSMutableAttributedString alloc] initWithString:str];
-    [attr addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:15] range:NSMakeRange(data.creator_name.length + 5, data.title.length)];
-    [attr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:15] range:NSMakeRange(0, data.creator_name.length + 5)];
+    
+    NSRange titleNormal =  NSMakeRange(0, 0);
+    NSRange nameRang = NSMakeRange(0, 0);
+    if(data.creator_name)
+        nameRang  = [str rangeOfString:data.creator_name];
+    if (data.title)
+        titleNormal = [str rangeOfString:data.title];
+    
+    [attr addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:15] range:titleNormal];
+    [attr addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:15] range:nameRang];
+
+    [self.titleLabel setAttributedText:attr];
+
     [self.titleLabel setAttributedText:attr];
     self.titleLabel.text = data.title;
     
