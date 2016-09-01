@@ -42,6 +42,7 @@
 
 
 @interface NSObject(HomePage)
+- (UITabBarController *)myTabBarcontroller;
 - (void)jumpToHomePageWithQuary:(BOOL)quary;
 @end
 

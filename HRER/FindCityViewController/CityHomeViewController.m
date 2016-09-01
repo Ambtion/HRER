@@ -450,6 +450,14 @@
 
 - (void)herePoisSetCellDidClick:(HRHerePoisSetCell *)cell
 {
+    
+    if (cell.data.poi_type == 16) {
+        //引导页面
+        [self.navigationController popViewControllerAnimated:NO];
+        [[self myTabBarcontroller] setSelectedIndex:2];
+        return;
+    }
+
     NSIndexPath * indexPath = [self.tableView indexPathForCell:cell];
     KPoiSetsCreteType tpye = KPoiSetsCreteNearBy;
     if (indexPath.section == 1) {

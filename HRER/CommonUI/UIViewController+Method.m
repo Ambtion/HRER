@@ -154,6 +154,12 @@
 
 @implementation NSObject(HomePage)
 
+- (UITabBarController *)myTabBarcontroller
+{
+    UITabBarController * tabBar = (UITabBarController *)[[[[UIApplication sharedApplication] delegate] window] rootViewController];
+    return tabBar;
+}
+
 - (void)jumpToHomePageWithQuary:(BOOL)quary
 {
     UITabBarController * tabBar = (UITabBarController *)[[[[UIApplication sharedApplication] delegate] window] rootViewController];

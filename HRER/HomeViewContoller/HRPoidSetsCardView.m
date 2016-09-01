@@ -90,7 +90,7 @@
         make.left.equalTo(self.portraitImage.mas_right).offset(14.f);
         make.right.equalTo(self.bgImageView).offset(-14.f);
         make.top.equalTo(self.portraitImage);
-        make.height.equalTo(@(16.f));
+//        make.height.equalTo(@(16.f));
     }];
     
     self.frameImageViews = [NSMutableArray arrayWithCapacity:4];
@@ -173,6 +173,8 @@
         }
 
     }
+    
+    self.titleLabel.numberOfLines = data.poi_type == 16 ? 2 : 1;
 }
 
 - (void)fullViewTap:(UITapGestureRecognizer *)tap
