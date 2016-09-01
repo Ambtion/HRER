@@ -324,12 +324,38 @@
             break;
     }
     
+    if(tofavState == NO){
+        UIAlertController * alertController = [UIAlertController alertControllerWithTitle:[NSString stringWithFormat:@"是否取消关注%@?",cell.dataModel.name] message:@"" preferredStyle:UIAlertControllerStyleAlert];
+        
+        __weak typeof(self) weakSelf = self;
+        
+        UIAlertAction * cancelAction = [UIAlertAction actionWithTitle:@"否" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            
+        }];
+        
+        UIAlertAction * ensureAction = [UIAlertAction actionWithTitle:@"是" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [weakSelf favFriendWithUid:cell.dataModel.uid favStatu:tofavState];
+        }];
+        
+        [alertController addAction:cancelAction];
+        [alertController addAction:ensureAction];
+        
+        [[[[[UIApplication sharedApplication] delegate] window] rootViewController] presentViewController:alertController animated:YES completion:^{
+            
+        }];
+
+    }
+    
+}
+
+- (void)favFriendWithUid:(NSString *)uid favStatu:(BOOL)favStatu
+{
     WS(weakSelf);
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [NetWorkEntity favFriends:cell.dataModel.uid isFav:tofavState success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [NetWorkEntity favFriends:uid isFav:favStatu success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
-            if(tofavState){
+            if(favStatu){
                 [self showTotasViewWithMes:@"关注成功"];
             }else{
                 [self showTotasViewWithMes:@"取消关注成功"];
@@ -344,6 +370,7 @@
         [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
         [self showTotasViewWithMes:@"网络异常,稍后重试"];
     }];
+
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
