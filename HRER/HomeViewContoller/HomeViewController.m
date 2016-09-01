@@ -20,6 +20,7 @@
 #import "LoginStateManager.h"
 #import "HRUserHomeController.h"
 #import "BMGuideMaskView.h"
+#import "PoiRecomendListController.h"
 
 @interface HomeViewController()<UITableViewDelegate,UITableViewDataSource,HomeHeadViewDelegate,HRHerePoisSetCellDelegate,HRHerePoiCellDelegate>
 
@@ -70,6 +71,18 @@
     [self.view addSubview:self.tableView];
     [self initRefreshView];
     self.tableView.tableFooterView  = [self footView];
+    
+    [self  initDebugButton];
+}
+
+- (void)initDebugButton
+{
+#ifdef DEBUG
+    UIButton * button = [[UIButton alloc] initWithFrame:CGRectMake(0, self.view.height /2.f - 25, 50, 50)];
+    button.backgroundColor = [UIColor redColor];
+    [button addTarget:self action:@selector(debugButtonDidclick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:button];
+#endif
 }
 
 - (void)initRefreshView
@@ -180,6 +193,9 @@
 
         
         
+    }else{
+        self.userPoiSource = nil;
+        self.nearyBySource = nil;
     }
 }
 
@@ -500,5 +516,11 @@
 - (void)userLoginChnage:(id)sender
 {
     [self quaryData];
+}
+
+#pragma mark Debug
+- (void)debugButtonDidclick:(UIButton *)button
+{
+    [self.myNavController pushViewController:[[PoiRecomendListController alloc] init] animated:YES];
 }
 @end

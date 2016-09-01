@@ -202,6 +202,9 @@
             
         } failure:failure];        
         
+    }else{
+        self.userPoiSource = nil;
+        self.nearyBySource = nil;
     }
 }
 
