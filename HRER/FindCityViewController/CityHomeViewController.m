@@ -380,7 +380,7 @@
             if (poiInfo.city_id == [[HRLocationManager sharedInstance] curCityId]) {
                 [cell setData:poiInfo];
             }else{
-                [cell setLocaitonStr:poiInfo.city_name];
+                [cell setLocaitonStr:nil];
             }
             return cell;
             
@@ -404,7 +404,7 @@
                 if (poiInfo.city_id == [[HRLocationManager sharedInstance] curCityId]) {
                     [cell setData:poiInfo];
                 }else{
-                    [cell setLocaitonStr:poiInfo.city_name];
+                    [cell setLocaitonStr:nil];
                 }
                 return cell;
                 

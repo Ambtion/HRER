@@ -212,7 +212,7 @@
     
     BOOL showSection = [[self.dataSource[section - 1] objectForKey:@"list"] count] != 0;
     //only show the section title if there are rows in the section
-    return (showSection) ?  [self.dataSource[section - 1] objectForKey:@"section"] : nil;
+    return (showSection) ?  [[self.dataSource[section - 1] objectForKey:@"section"] uppercaseString] : nil;
     
 }
 

@@ -135,6 +135,27 @@
                 [_locationManager requestWhenInUseAuthorization];
             }
             break;
+        case kCLAuthorizationStatusDenied:
+        {
+            UIAlertController * alertController = [UIAlertController alertControllerWithTitle:@"打开定位开关" message:@"定位服务未开启，请进入系统【设置】>【隐私】>【定位服务】中打开开关，并允许这里使用定位服务" preferredStyle:UIAlertControllerStyleAlert];
+                        
+            UIAlertAction * cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                
+            }];
+            
+            UIAlertAction * ensureAction = [UIAlertAction actionWithTitle:@"立即开启" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+            }];
+            
+            [alertController addAction:cancelAction];
+            [alertController addAction:ensureAction];
+            
+            [[[[[UIApplication sharedApplication] delegate] window] rootViewController] presentViewController:alertController animated:YES completion:^{
+                
+            }];
+
+        }
+            break;
         default:
             break;
     }
