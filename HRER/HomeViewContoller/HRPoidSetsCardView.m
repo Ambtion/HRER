@@ -148,7 +148,7 @@
 - (void)setData:(HRPOISetInfo *)data
 {
     
-    [self.portraitImage sd_setImageWithURL:[NSURL URLWithString:data.portrait.url] placeholderImage:[UIImage imageNamed:@"man"]];
+    [self.portraitImage sd_setImageWithURL:[NSURL URLWithString:data.portrait] placeholderImage:[UIImage imageNamed:@"man"]];
     NSString * str = [NSString stringWithFormat:@"%@ 推荐了 %@",data.creator_name,data.title];
     NSMutableAttributedString * attr = [[NSMutableAttributedString alloc] initWithString:str];
     

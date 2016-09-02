@@ -77,7 +77,7 @@
 @property(nonatomic,strong)NSString * city_name;
 @property(nonatomic,assign)NSInteger type;
 
-@property(nonatomic,strong)HRPotoInfo  * portrait;
+@property(nonatomic,strong)NSString  * portrait;
 @property(nonatomic,strong)NSString * title;
 @property(nonatomic,strong)NSArray * photos; ///< Array<HRImageInfo>
 
