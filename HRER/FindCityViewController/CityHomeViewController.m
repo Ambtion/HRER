@@ -327,7 +327,7 @@
     switch (indexPath.section) {
         case 0:
         {
-            NSString * identify = NSStringFromClass([HomeHeadView class]);
+            NSString * identify = @"POINearBy";
             HomeHeadView * cell = [tableView dequeueReusableCellWithIdentifier:identify];
             if (!cell) {
                 cell = [[HomeHeadView alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identify];

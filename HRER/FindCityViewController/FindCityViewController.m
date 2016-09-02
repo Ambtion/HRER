@@ -80,7 +80,7 @@
     [titleArray addObject:UITableViewIndexSearch];
     [titleArray addObject:@"#"];
     for (NSDictionary * dic in self.dataSource) {
-        [titleArray addObject:[dic objectForKey:@"section"]];
+        [titleArray addObject:[[dic objectForKey:@"section"] uppercaseString]];
     }
     [titleArray addObject:@"#"];
     self.sectionIndexTitles = titleArray;

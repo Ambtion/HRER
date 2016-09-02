@@ -337,7 +337,7 @@
         case 1:
         {
             //附近
-            NSString * identify = NSStringFromClass([HRHerePoisSetCell class]);
+            NSString * identify = @"NearByCell";
             HRHerePoisSetCell * cell = [tableView dequeueReusableCellWithIdentifier:identify];
             if (!cell) {
                 cell = [[HRHerePoisSetCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identify];
