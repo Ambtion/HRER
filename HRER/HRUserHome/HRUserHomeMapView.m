@@ -106,11 +106,11 @@
     self.dataArray = array;
     [self refreshMapPinViews];
     
-    if(array.count == 1){
-        [self ceneterMapViewOnSeleteIndexAnomaiton:0];
-    }else{
-        [self setMapViewSeleteIndexAnomaiton:0];
-    }
+//    if(array.count == 1){
+//        [self ceneterMapViewOnSeleteIndexAnomaiton:0];
+//    }else{
+//        [self setMapViewSeleteIndexAnomaiton:0];
+//    }
 }
 
 #pragma mark Map
@@ -130,6 +130,7 @@
     }
     self.anotionDataArray = array;
     [self.mapView addAnnotations:array];
+    [self.mapView showAnnotations:array animated:YES];
 }
 
 #pragma mark - 联动效果
