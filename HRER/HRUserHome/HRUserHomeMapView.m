@@ -134,23 +134,23 @@
 }
 
 #pragma mark - 联动效果
-- (void)ceneterMapViewOnSeleteIndexAnomaiton:(NSInteger)index
-{
-    if (index >= 0 && index < [self.mapView annotations].count) {
-        
-        HRAnomation * anomation = (HRAnomation *)[self.mapView annotations][index];
-        //设置图区范围
-        MKCoordinateSpan span;
-        span.latitudeDelta = kHRMapMAOLEVEL;
-        span.longitudeDelta = kHRMapMAOLEVEL;
-        MKCoordinateRegion region;
-        
-        CLLocationCoordinate2D coord = anomation.coordinate;
-        region.center = coord;
-        region.span = span;
-        [self.mapView setRegion:region animated:YES];
-    }
-}
+//- (void)ceneterMapViewOnSeleteIndexAnomaiton:(NSInteger)index
+//{
+//    if (index >= 0 && index < [self.mapView annotations].count) {
+//        
+//        HRAnomation * anomation = (HRAnomation *)[self.mapView annotations][index];
+//        //设置图区范围
+//        MKCoordinateSpan span;
+//        span.latitudeDelta = kHRMapMAOLEVEL;
+//        span.longitudeDelta = kHRMapMAOLEVEL;
+//        MKCoordinateRegion region;
+//        
+//        CLLocationCoordinate2D coord = anomation.coordinate;
+//        region.center = coord;
+//        region.span = span;
+//        [self.mapView setRegion:region animated:YES];
+//    }
+//}
 
 - (void)setMapViewSeleteIndexAnomaiton:(NSInteger)index
 {
@@ -163,13 +163,14 @@
             //设置图区范围
             
             MKCoordinateSpan span;
-            span.latitudeDelta = kHRMapMAOLEVEL;
-            span.longitudeDelta = kHRMapMAOLEVEL;
+            span.latitudeDelta = self.mapView.region.span.latitudeDelta;
+            span.longitudeDelta = self.mapView.region.span.longitudeDelta;
             MKCoordinateRegion region;
             
             CLLocationCoordinate2D coord = anomation.coordinate;
             region.center = coord;
             region.span = span;
+            
             
             [self.mapView setRegion:region animated:YES];
 
