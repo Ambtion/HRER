@@ -149,6 +149,17 @@
     self.timer = nil;
     self.timeCount = 60;
     self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(reduceTime:) userInfo:sender repeats:YES];
+    
+    [NetWorkEntity sendVerCodeWithPhoneNumber:self.phoneNumber.textField.text success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
+            [self showTotasViewWithMes:@"发送成功"];
+        }else{
+            [self showTotasViewWithMes:@"方式失败"];
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self showTotasViewWithMes:@"网络异常,稍后重试"];
+    }];
+
 }
 
 - (void)reduceTime:(NSTimer *)codeTimer
