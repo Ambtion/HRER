@@ -239,18 +239,20 @@
     
     NSMutableArray * mArray = [NSMutableArray arrayWithCapacity:0];
     for (NSDictionary * dic  in array) {
-        if([dic objectForKey:@"poi_id"]){
-            HRPOIInfo * model = [HRPOIInfo yy_modelWithJSON:dic];
-            if (model) {
-                [mArray addObject:model];
-            }
-        }else{
-            HRPOISetInfo * model = [HRPOISetInfo yy_modelWithJSON:dic];
-            if (model) {
-                [mArray addObject:model];
+        if ([dic isKindOfClass:[NSDictionary class]]) {
+            if([dic objectForKey:@"poi_id"]){
+                HRPOIInfo * model = [HRPOIInfo yy_modelWithJSON:dic];
+                if (model) {
+                    [mArray addObject:model];
+                }
+            }else{
+                HRPOISetInfo * model = [HRPOISetInfo yy_modelWithJSON:dic];
+                if (model) {
+                    [mArray addObject:model];
+                }
             }
         }
-    }
+            }
     return mArray;
 }
 

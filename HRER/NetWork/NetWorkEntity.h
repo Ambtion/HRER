@@ -311,6 +311,19 @@
 
 
 
+
+/**
+ *  评论相关
+ *  ===================================================================================================================
+ */
++ (void)hasRecomentSuccess:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                    failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+
++ (void)quaryRecomendList:(NSInteger)start
+                    count:(NSInteger)count
+                  success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                  failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+
 @end
 
 

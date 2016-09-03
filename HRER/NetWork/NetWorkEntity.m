@@ -774,6 +774,27 @@ static CallBack upSucess;
 }
 
 
+/**
+ *  评论相关
+ *  ===================================================================================================================
+ */
++ (void)hasRecomentSuccess:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                   failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+{
+    NSMutableDictionary * dic = [self commonComonPar];
+    NSString *  urlStr= [NSString stringWithFormat:@"%@/has_new_comment",KNETBASEURL];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:urlStr parameters:dic success:success failure:failure];
+}
+
++ (void)quaryRecomendList:(NSInteger)start
+                    count:(NSInteger)count
+                  success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                  failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+{
+    
+}
+
 #pragma mark - Common
 + (NSMutableDictionary *)commonComonPar
 {
