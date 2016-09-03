@@ -16,7 +16,7 @@
 @interface PoiRecomendListController ()<UITableViewDataSource,UITableViewDelegate,PoiRecomendCellDelegate>
 
 @property(nonatomic,strong)UITableView * tableView;
-@property(nonatomic,strong)NSArray * dataArray;
+@property(nonatomic,strong)NSMutableArray * dataArray;
 
 
 @end
@@ -100,17 +100,25 @@
     [NetWorkEntity  quaryRecomendList:self.dataArray.count count:20 success:^(AFHTTPRequestOperation *operation, id responseObject) {
         if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
             NSArray * recomends = [[responseObject objectForKey:@"response"] objectForKey:@"comments"];
-            self.dataArray = [self analysisModelFromArray:recomends];
+            NSMutableArray * source = [self analysisModelFromArray:recomends];
+            if (self.dataArray.count) {
+                [self.dataArray addObject:source];
+            }else{
+                self.dataArray = source;
+            }
             [self.tableView reloadData];
+        }else{
+            [self showTotasViewWithMes:[[responseObject objectForKey:@"response"] objectForKey:@"errorText"]];
         }
         [MBProgressHUD hideHUDForView:self.view animated:YES];
 
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [self showTotasViewWithMes:@"网络异常,稍后重试"];
     }];
 }
 
-- (NSArray *)analysisModelFromArray:(NSArray *)array
+- (NSMutableArray *)analysisModelFromArray:(NSArray *)array
 {
     if (![array isKindOfClass:[NSArray class]]) {
         return nil;
@@ -156,18 +164,18 @@
 
 - (void)onMoreRecomendClick:(UIButton *)button
 {
-    
+    [self quaryData];
 }
 
 - (void)poiRecomendCellDidClickPortrait:(PoiRecomendCell *)cell
 {
-    HRUserHomeController * userHomeController = [[HRUserHomeController alloc] initWithUserID:nil];
+    HRUserHomeController * userHomeController = [[HRUserHomeController alloc] initWithUserID:cell.dataSource.user_id];
     [self.myNavController pushViewController:userHomeController animated:YES];
 }
 
 -(void)poiRecomendCellDidClickDetailPage:(PoiRecomendCell *)cell
 {
-    [self.myNavController pushViewController:[[HRPoiDetailController alloc] initWithPoiId:nil] animated:YES];
+    [self.myNavController pushViewController:[[HRPoiDetailController alloc] initWithPoiId:cell.dataSource.poi_id] animated:YES];
 
 }
 @end

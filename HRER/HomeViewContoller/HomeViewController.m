@@ -32,6 +32,7 @@
 @property(nonatomic,strong)NSArray * userPoiSource;
 @property(nonatomic,strong)NSArray * mixPoiSource;
 
+@property(nonatomic,strong)UIButton * recomendButton;
 @end
 
 @implementation HomeViewController
@@ -72,7 +73,13 @@
     [self initRefreshView];
     self.tableView.tableFooterView  = [self footView];
     
-    [self  initDebugButton];
+    [self initDebugButton];
+    
+    self.recomendButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 50, 50, 50)];
+    self.recomendButton.backgroundColor = [UIColor greenColor];
+    [self.recomendButton addTarget:self action:@selector(recomendButtonDidClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.recomendButton setHidden:YES];
+    [self.view addSubview:self.recomendButton];
 }
 
 - (void)initDebugButton
@@ -199,9 +206,14 @@
     }
     
     [NetWorkEntity hasRecomentSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
+        if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
+            NSDictionary * dic = [responseObject objectForKey:@"response"];
+            [self.recomendButton setHidden:[[dic objectForKey:@"count"] boolValue]];
+        }else{
+            [self.recomendButton setHidden:YES];
+        }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
+        [self.recomendButton setHidden:YES];
     }];
 }
 
@@ -524,6 +536,11 @@
 - (void)userLoginChnage:(id)sender
 {
     [self quaryData];
+}
+
+- (void)recomendButtonDidClick:(UIButton *)button
+{
+    [self.myNavController pushViewController:[[PoiRecomendListController alloc] init] animated:YES];
 }
 
 #pragma mark Debug
