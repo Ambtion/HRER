@@ -84,7 +84,7 @@
 {
     self.userName.text = data.creator_name;
     self.recomendLabel.text = [NSString stringWithFormat:@"推荐%ld%@",(long)data.recommand,data.typeName];
-    [self.porImageView sd_setImageWithURL:[NSURL URLWithString:data.portrait] placeholderImage:[UIImage imageNamed:@"man"]];
+    [self.porImageView sd_setImageWithURL:[NSURL URLWithString:data.portrait.length ? data.portrait : @""] placeholderImage:[UIImage imageNamed:@"man"]];
 }
 
 

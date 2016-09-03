@@ -192,8 +192,11 @@
 //    e5ecf5
     NSMutableAttributedString * attS = [[NSMutableAttributedString alloc] initWithString:str];
     
-    NSRange userRang = [str rangeOfString:_dataSource.user_name];
-
+    NSRange userRang = NSMakeRange(0, 0);
+    if (_dataSource.user_name.length) {
+        userRang = [str rangeOfString:_dataSource.user_name];
+    }
+    
     [attS addAttribute:NSForegroundColorAttributeName value:UIColorFromRGB(0x9dafc9) range:userRang];
     
 
