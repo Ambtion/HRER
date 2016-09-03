@@ -197,6 +197,12 @@
         self.userPoiSource = nil;
         self.nearyBySource = nil;
     }
+    
+    [NetWorkEntity hasRecomentSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
 }
 
 - (NSArray *)analysisPoiSetsModelFromArray:(NSArray *)array

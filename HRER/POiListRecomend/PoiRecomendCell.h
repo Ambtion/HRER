@@ -19,7 +19,7 @@
 @interface PoiRecomendCell : UITableViewCell
 
 @property(nonatomic,weak)id<PoiRecomendCellDelegate> delegate;
-@property(nonatomic,strong)id dataSource;
+@property(nonatomic,strong)HRRecomendDetail * dataSource;
 
 + (CGFloat)heightForCell;
 

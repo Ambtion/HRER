@@ -160,3 +160,25 @@
 @property(nonatomic,strong)NSString * month;
 @property(nonatomic,strong)NSArray * timePoiList;
 @end
+
+@interface HRRecomendDetail : NSObject<NSCopying,NSCopying>
+
+@property (nonatomic,strong)NSString * poi_id;
+@property (nonatomic,strong)NSString * cityid;
+@property (nonatomic,strong)NSString * city_name;
+@property (nonatomic,strong)NSString * englishname;
+
+@property (nonatomic,assign)NSInteger  type;
+
+
+@property (nonatomic,strong)NSString * cmt_id;
+
+@property (nonatomic,strong)NSString * user_id;
+@property (nonatomic,strong)NSString * user_name;
+@property (nonatomic,strong)NSString * portrait;
+
+@property (nonatomic,strong)NSString *  title;
+@property (nonatomic,strong)NSString * content;
+@property (nonatomic,strong)NSString * time;
+
+@end

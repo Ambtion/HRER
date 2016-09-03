@@ -792,7 +792,13 @@ static CallBack upSucess;
                   success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                   failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
-    
+    NSMutableDictionary * dic = [self commonComonPar];
+    [dic setValue:@(start) forKey:@"start"];
+    [dic setValue:@(count) forKey:@"count"];
+    NSString *  urlStr= [NSString stringWithFormat:@"%@/get_new_comment",KNETBASEURL];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:urlStr parameters:dic success:success failure:failure];
+
 }
 
 #pragma mark - Common

@@ -59,6 +59,7 @@
     
     self.porImageView = [[UIImageView alloc] init];
     self.porImageView.layer.cornerRadius = 25.f;
+    self.porImageView.layer.masksToBounds = YES;
     [self.bgView addSubview:self.porImageView];
     
     self.nameLabel = [[UILabel alloc] init];
@@ -144,14 +145,18 @@
     
 }
 
-- (void)setDataSource:(id)dataSource
+- (void)setDataSource:(HRRecomendDetail *)dataSource
 {
-    self.porImageView.image =[UIImage imageNamed:@"man"];
-    self.nameLabel.text = @"CJ";
-    self.poiTitleLabel.text = @"驴肉火烧";
-    self.recomendLabel.text = @"味道不错";
-    self.timeLabel.text = @"2016-10-23";
-    self.locLabel.text = @"北京>";
+    if (_dataSource == dataSource) {
+        return;
+    }
+    _dataSource = dataSource;
+    [self.porImageView sd_setImageWithURL:[NSURL URLWithString:dataSource.portrait] placeholderImage:[UIImage imageNamed:@"man"]];
+    self.nameLabel.text = dataSource.user_name;
+    self.poiTitleLabel.text = dataSource.title;
+    self.recomendLabel.text = dataSource.content;
+    self.timeLabel.text = dataSource.time;
+    self.locLabel.text = dataSource.city_name;
 }
 
 #pragma mark - Action

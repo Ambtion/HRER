@@ -10,6 +10,8 @@
 #import "PoiRecomendCell.h"
 #import "HRUserHomeController.h"
 #import "HRPoiDetailController.h"
+#import "NetWorkEntity.h"
+
 
 @interface PoiRecomendListController ()<UITableViewDataSource,UITableViewDelegate,PoiRecomendCellDelegate>
 
@@ -39,6 +41,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     [self initUI];
+    [self quaryData];
 }
 
 - (void)initUI
@@ -94,12 +97,39 @@
 - (void)quaryData
 {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [NetWorkEntity  quaryRecomendList:self.dataArray.count count:20 success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
+            NSArray * recomends = [[responseObject objectForKey:@"response"] objectForKey:@"comments"];
+            self.dataArray = [self analysisModelFromArray:recomends];
+            [self.tableView reloadData];
+        }
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+    }];
 }
+
+- (NSArray *)analysisModelFromArray:(NSArray *)array
+{
+    if (![array isKindOfClass:[NSArray class]]) {
+        return nil;
+    }
+    
+    NSMutableArray * mArray = [NSMutableArray arrayWithCapacity:0];
+    for (NSDictionary * dic  in array) {
+        HRRecomendDetail * model = [HRRecomendDetail yy_modelWithJSON:dic];
+        if (model) {
+            [mArray addObject:model];
+        }
+    }
+    return mArray;
+}
+
 
 #pragma mark - Delegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 20.f;
     return self.dataArray.count;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -114,7 +144,7 @@
         cell = [[PoiRecomendCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:iden];
         cell.delegate = self;
     }
-    cell.dataSource = nil;
+    cell.dataSource = self.dataArray[indexPath.row];
     return cell;
 }
 

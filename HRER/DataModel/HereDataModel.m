@@ -119,3 +119,9 @@ YYModelSynthCoderAndHash;
 
 
 @end
+
+@implementation HRRecomendDetail
+
+YYModelSynthCoderAndHash;
+
+@end
