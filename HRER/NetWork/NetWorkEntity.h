@@ -14,7 +14,7 @@
 @interface NetWorkEntity : NSObject
 
 /*
- 登陆模块
+ 登录模块
 ===================================================================================================================
 */
 
@@ -38,7 +38,7 @@
                            failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
 /*
- * 登陆
+ * 登录
  */
 
 + (void)loginWithUserName:(NSString *)userName
@@ -57,7 +57,7 @@
                 failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
 /**
- *  微信登陆
+ *  微信登录
  *  https://open.weixin.qq.com/cgi-bin/showdocument?action=dir_list&t=resource/res_list&verify=1&id=open1419317851&token=&lang=zh_CN
  */
 

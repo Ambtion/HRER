@@ -29,7 +29,7 @@
 
 + (CGFloat)heightForCell
 {
-    return 16 + 73.f;
+    return 8 + 73.f;
 }
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -51,7 +51,7 @@
     [self.bgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.top.equalTo(self);
         make.width.equalTo(self);
-        make.bottom.equalTo(self).offset(-16);
+        make.bottom.equalTo(self).offset(-8);
     }];
     
     self.titleLabel = [[UILabel alloc] init];
@@ -60,7 +60,7 @@
     [self.contentView addSubview:self.titleLabel];
     
     self.caterBgView = [[UIView alloc] init];
-    self.caterBgView.layer.cornerRadius = 4.f;
+    self.caterBgView.layer.cornerRadius = 7.f;
     self.caterBgView.clipsToBounds = YES;
     [self.contentView addSubview:self.caterBgView];
     
@@ -91,10 +91,12 @@
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self).offset(15.f);
         make.left.equalTo(self).offset(12.f);
+        make.right.lessThanOrEqualTo(self.caterBgView.mas_left).offset(-10);
+
     }];
-    
+        
     [self.caterBgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.titleLabel.mas_right).offset(6.f);
+        make.right.equalTo(self).offset(-10.f);
         make.centerY.equalTo(self.titleLabel);
         make.height.equalTo(self.catergortLabel);
     }];
@@ -103,19 +105,18 @@
         make.left.equalTo(self.caterBgView).offset(3.f);
         make.right.equalTo(self.caterBgView).offset(-3.f);
         make.centerY.equalTo(self.caterBgView);
-
     }];
     
     [self.addressLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.titleLabel);
-        make.top.equalTo(self.titleLabel.mas_bottom).offset(11.f);
+        make.top.equalTo(self.titleLabel.mas_bottom).offset(9.f);
         make.right.lessThanOrEqualTo(self.locIcon.mas_left);
         make.width.priorityLow();
     }];
     
     [self.cityName mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.addressLabel);
-        make.right.equalTo(self).offset(-4.f);
+        make.right.equalTo(self).offset(-10.f);
         
     }];
     

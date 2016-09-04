@@ -34,6 +34,7 @@
 
 - (void)initUI
 {
+    self.contentView.backgroundColor = UIColorFromRGB(0xebebeb);
     self.cardView = [[HRPoiCardView alloc] init];
     self.cardView.delegate = self;
     [self.contentView addSubview:self.cardView];

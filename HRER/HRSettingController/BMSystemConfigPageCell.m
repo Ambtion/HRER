@@ -83,6 +83,14 @@
 
 - (void)setCellType:(CellPositionType)type
 {
+    
+    [self.bottomLineView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.titleLabel);
+        make.right.equalTo(self.sperIcon);
+        make.bottom.equalTo(self);
+        make.height.equalTo(@(0.5));
+    }];
+
     switch (type) {
         case CellPositionTop:
         {
@@ -94,18 +102,34 @@
         {
             [self.toplineView setHidden:YES];
             [self.bottomLineView setHidden:NO];
+            
         }
             break;
         case CellPositionBottom:
         {
             [self.toplineView setHidden:YES];
             [self.bottomLineView setHidden:NO];
+            
+            [self.bottomLineView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(self);
+                make.right.equalTo(self);
+                make.bottom.equalTo(self);
+                make.height.equalTo(@(0.5));
+            }];
+
         }
             break;
         case CellPositionFull:
         {
             [self.toplineView setHidden:NO];
             [self.bottomLineView setHidden:NO];
+            [self.bottomLineView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(self);
+                make.right.equalTo(self);
+                make.bottom.equalTo(self);
+                make.height.equalTo(@(0.5));
+            }];
+
         }
         default:
             break;

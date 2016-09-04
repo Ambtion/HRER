@@ -103,9 +103,12 @@
     UIView * view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 80)];
     self.tableView.tableFooterView = view;
     
-    self.loginOutButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 20, self.tableView.width - 20, 53)];
-    [self.loginOutButton setBackgroundImage:[[UIImage imageNamed:@"button_bg"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 40, 0, 40)] forState:UIControlStateNormal];
-    [self.loginOutButton setTitle:@"退出登陆" forState:UIControlStateNormal];
+    self.loginOutButton = [[UIButton alloc] initWithFrame:CGRectMake(16, 20, self.tableView.width - 32, 44)];
+    self.loginOutButton.layer.cornerRadius = 4.f;
+    [self.loginOutButton setTitle:@"退出登录" forState:UIControlStateNormal];
+    [[self.loginOutButton titleLabel] setFont:[UIFont systemFontOfSize:14.f]];
+    [self.loginOutButton setTitleColor:RGB_Color(0xf9, 0xda, 0xd5) forState:UIControlStateNormal];
+    [self.loginOutButton setBackgroundColor:RGBA(225, 68, 48, 1)];
     [self.loginOutButton titleLabel].font = [UIFont systemFontOfSize:14.f];
     [self.loginOutButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.loginOutButton addTarget:self action:@selector(loginButtonClick:) forControlEvents:UIControlEventTouchUpInside];

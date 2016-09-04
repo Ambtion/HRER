@@ -52,7 +52,7 @@
     
     self.recomendLabel = [[UILabel alloc] init];
     self.recomendLabel.textColor =  RGB_Color(0xa6, 0xa6, 0xa6);
-    self.recomendLabel.font = [UIFont systemFontOfSize:14.f];
+    self.recomendLabel.font = [UIFont systemFontOfSize:13.f];
     [self addSubview:self.recomendLabel];
     
     [self.porImageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -83,7 +83,7 @@
 - (void)setDtata:(HRPOIInfo *)data
 {
     self.userName.text = data.creator_name;
-    self.recomendLabel.text = [NSString stringWithFormat:@"推荐%ld%@",(long)data.recommand,data.typeName];
+    self.recomendLabel.text = [NSString stringWithFormat:@"推荐过%ld%@",(long)data.recommand,data.typeName];
     [self.porImageView sd_setImageWithURL:[NSURL URLWithString:data.portrait.length ? data.portrait : @""] placeholderImage:[UIImage imageNamed:@"man"]];
 }
 

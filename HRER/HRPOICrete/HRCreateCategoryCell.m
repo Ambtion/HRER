@@ -62,6 +62,7 @@
     for (int i = 0; i < array.count; i++) {
         HRCreteCategoryItemView * categoryView = [[HRCreteCategoryItemView alloc] init];
         categoryView.titleLabel.text = array[i];
+        categoryView.tag = i;
         categoryView.textColor = colorArray[i];
         [categoryView setSeleted:NO];
         [self addSubview:categoryView];

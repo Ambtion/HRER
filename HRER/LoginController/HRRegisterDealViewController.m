@@ -50,7 +50,7 @@
 
     
     UIScrollView * scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 64, self.view.width, self.view.height - 64)];
-    UIImageView * imageview = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 300, 6980/2.f + 10)];
+    UIImageView * imageview = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, self.view.width - 20, 6980/2.f + 10)];
     imageview.image = [UIImage imageNamed:@"serviceitem.png"];
     imageview.backgroundColor = [UIColor whiteColor];
     [scrollView addSubview:imageview];

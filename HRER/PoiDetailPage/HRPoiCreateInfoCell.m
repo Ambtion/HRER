@@ -49,7 +49,7 @@ static NSInteger boundsOffset = 12.f;
     self.desLabel = [[UILabel alloc] init];
     self.desLabel.textColor = RGB_Color(0x60, 0x60, 0x60);
     self.desLabel.numberOfLines = 0;
-    self.desLabel.font = [UIFont systemFontOfSize:13.f];
+    self.desLabel.font = [UIFont systemFontOfSize:14.f];
     [self.contentView addSubview:self.desLabel];
     
     self.bottomView = [[HRPoiUserInfoBottomView alloc] init];

@@ -92,7 +92,7 @@
     [self.contentView addSubview:self.subTitle];
     
     self.caterBgView = [[UIView alloc] init];
-    self.caterBgView.layer.cornerRadius = 4.f;
+    self.caterBgView.layer.cornerRadius = 7.f;
     self.caterBgView.clipsToBounds = YES;
     [self.contentView addSubview:self.caterBgView];
 
@@ -110,7 +110,7 @@
     }];
     
     [self.iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.contentBgView).offset(12.f);
+        make.left.equalTo(self.contentBgView).offset(18.f);
         make.size.mas_equalTo(CGSizeMake(50.f, 50.f));
         make.centerY.equalTo(self.contentBgView);
     }];

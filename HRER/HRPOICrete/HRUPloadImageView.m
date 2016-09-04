@@ -155,11 +155,13 @@
     
     self.titleLabel = [[UILabel alloc] init];
     self.titleLabel.font = [UIFont systemFontOfSize:18.f];
-    self.titleLabel.textColor = RGB_Color(0xd4, 0xd4, 0xd4);
+    self.titleLabel.textColor = RGB_Color(0x4c, 0x4c, 0x4c);
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
     [self.contentView addSubview:self.titleLabel];
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self);
+        make.left.equalTo(self.icarousel.mas_left);
+        make.right.equalTo(self.icarousel.mas_right);
         make.top.equalTo(self.icarousel.mas_bottom).offset(18.f);
     }];
     
@@ -203,15 +205,14 @@
     self.textDesView = [[UITextView alloc] init];
     self.textDesView.delegate = self;
     self.textDesView.font =[UIFont systemFontOfSize:14];
-    self.textDesView.textColor = RGB_Color(0xd4, 0xd4, 0xd4);
+    self.textDesView.textColor = RGB_Color(0x4c, 0x4c, 0x4c);
     self.textDesView.returnKeyType = UIReturnKeyNext;//返回键的类型
-//    self.textDesView.keyboardType = UIKeyboardTypeDefault;//键盘类型
     [self.contentView addSubview:self.textDesView];
 
     [self.textDesView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(bgView).offset(11.f);
         make.right.equalTo(bgView).offset(-11);
-        make.top.equalTo(bgView).offset(11);
+        make.top.equalTo(bgView).offset(6);
         make.height.equalTo(@(78));
     }];
     
@@ -222,8 +223,8 @@
     [self.contentView addSubview:self.placeLabel];
     
     [self.placeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.textDesView).offset(4);
-        make.top.equalTo(self.textDesView).offset(8);
+        make.left.equalTo(self.textDesView).offset(2);
+        make.top.equalTo(self.textDesView).offset(5);
     }];
     
     self.lineView = [[UIView alloc] init];

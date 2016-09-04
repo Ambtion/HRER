@@ -78,7 +78,7 @@
     [self.codeButton addTarget:self action:@selector(getValidCode:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.codeButton];
     
-    self.phoneCode = [self createTextFileWithFont:[UIFont systemFontOfSize:13] placeholderPlaceText:@"发送验证码"];
+    self.phoneCode = [self createTextFileWithFont:[UIFont systemFontOfSize:13] placeholderPlaceText:@"收到验证码"];
     self.phoneCode.textField.keyboardType = UIKeyboardTypeNumberPad;
     [self.view addSubview:self.phoneCode];
     

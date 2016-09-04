@@ -109,7 +109,7 @@
     //登录
     UIButton * loginButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [loginButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [loginButton setTitle:@"登陆" forState:UIControlStateNormal];
+    [loginButton setTitle:@"登录" forState:UIControlStateNormal];
     [[loginButton titleLabel] setFont:[UIFont systemFontOfSize:14.f]];
     [loginButton setBackgroundImage:[UIImage imageNamed:@"Login-box"] forState:UIControlStateNormal];
     [loginButton setBackgroundImage:[UIImage imageNamed:@"Login-box_click"] forState:UIControlStateHighlighted];
@@ -147,7 +147,7 @@
     
     UILabel * webLoginTitl = [[UILabel alloc] init];
     webLoginTitl.textColor = RGB_Color(0xcf, 0xc7, 0xc2);
-    webLoginTitl.text = @"微信登陆";
+//    webLoginTitl.text = @"微信登录";
     webLoginTitl.font = [UIFont systemFontOfSize:14.f];
     webLoginTitl.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:webLoginTitl];
@@ -317,7 +317,7 @@
             HRUserLoginInfo * userInfo = [HRUserLoginInfo yy_modelWithJSON:userInfoDic];
             if(userInfo){
                 [[LoginStateManager getInstance] LoginWithUserLoginInfo:userInfo];
-                [ws showTotasViewWithMes:@"登陆成功"];
+                [ws showTotasViewWithMes:@"登录成功"];
                 
                 //访问通讯录
                 [HRAddressBookManager readAllPersonAddressWithCallBack:^(NSArray *resultList, ABAuthorizationStatus status) {

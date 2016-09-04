@@ -44,7 +44,7 @@
 {
     _seleted = isSeleted;
     if(_seleted){
-        self.bgView.backgroundColor = RGB_Color(0xdc, 0x46, 0x30);
+        self.bgView.backgroundColor = [self caterColorWithType:self.tag + 1];
         self.titleLabel.textColor = [UIColor whiteColor];
     }else{
         self.titleLabel.textColor = self.textColor;
@@ -52,5 +52,18 @@
     }
 }
 
+- (UIColor *)caterColorWithType:(NSInteger)type
+{
+    NSArray * colorArray  = @[
+                              RGB_Color(0xdc, 0x46, 0x30),
+                              RGB_Color(0x43, 0xa2, 0xf3),
+                              RGB_Color(0x3b, 0xc4, 0xba),
+                              RGB_Color(0xfb, 0xb3, 0x3a)
+                              ];
+    if (type -1 >= 0 && type -1 < colorArray.count) {
+        return colorArray[type -1];
+    }
+    return [UIColor clearColor];
+}
 
 @end

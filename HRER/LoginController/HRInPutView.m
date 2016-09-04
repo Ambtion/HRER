@@ -27,6 +27,7 @@
 
 - (void)initUI
 {
+    
     self.imageView = [[UIImageView alloc] init];
     self.imageView.image = [UIImage imageNamed:@"Input-box"];
     [self addSubview:self.imageView];
@@ -37,6 +38,7 @@
     [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.equalTo(self);
         make.top.left.equalTo(@(0));
+        make.centerY.equalTo(self);
     }];
     
     [self.textField mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -45,6 +47,9 @@
         make.height.equalTo(self);
         make.centerY.equalTo(self);
     }];
+    
+//    self.backgroundColor = [UIColor redColor];
+//    self.textField.backgroundColor = [UIColor greenColor];
 }
 
 @end
