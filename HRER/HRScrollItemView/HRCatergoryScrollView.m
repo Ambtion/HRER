@@ -78,6 +78,7 @@
         HRCatergoryItemView * itemView = [[HRCatergoryItemView alloc] initWithFrame:CGRectMake(offsetX + (50 + spacingX) * i, 0, 50, self.height)];
         [itemView setCategoryImage:nImages[i] seletedImage:hImages[i] target:self seletor:@selector(buttonClick:) categoryNumber:0];
         itemView.imageButton.tag = i;
+        [itemView.label setHidden:YES];
         [self.scrollView addSubview:itemView];
         [self.itemArrays addObject:itemView];
         

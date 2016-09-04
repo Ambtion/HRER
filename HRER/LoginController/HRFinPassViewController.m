@@ -70,11 +70,12 @@
     [self.codeButton addTarget:self action:@selector(getValidCode:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.codeButton];
     
-    self.phoneCode = [self createTextFileWithFont:[UIFont systemFontOfSize:14] placeholderPlaceText:@"发送验证码"];
+    self.phoneCode = [self createTextFileWithFont:[UIFont systemFontOfSize:14] placeholderPlaceText:@"收到验证码"];
     self.phoneCode.textField.keyboardType = UIKeyboardTypeNumberPad;
     [self.view addSubview:self.phoneCode];
     
     self.passWord = [self createTextFileWithFont:[UIFont systemFontOfSize:14] placeholderPlaceText:@"新密码"];
+    self.passWord.textField.secureTextEntry = YES;
     [self.view addSubview:self.passWord];
     
     //注册

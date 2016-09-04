@@ -85,14 +85,15 @@
     [self.codeButton addTarget:self action:@selector(getValidCode:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.codeButton];
     
-    self.phoneCode = [self createTextFileWithFont:[UIFont systemFontOfSize:14] placeholderPlaceText:@"发送验证码"];
+    self.phoneCode = [self createTextFileWithFont:[UIFont systemFontOfSize:14] placeholderPlaceText:@"收到验证码"];
     self.phoneCode.textField.keyboardType = UIKeyboardTypeNumberPad;
     [self.view addSubview:self.phoneCode];
     
-    self.passWord = [self createTextFileWithFont:[UIFont systemFontOfSize:14] placeholderPlaceText:@"密码 密码不少于6位"];
+    self.passWord = [self createTextFileWithFont:[UIFont systemFontOfSize:14] placeholderPlaceText:@"设置一个不少于6位的密码"];
+    self.passWord.textField.secureTextEntry = YES;
     [self.view addSubview:self.passWord];
     
-    self.nick = [self createTextFileWithFont:[UIFont systemFontOfSize:14] placeholderPlaceText:@"昵称"];
+    self.nick = [self createTextFileWithFont:[UIFont systemFontOfSize:14] placeholderPlaceText:@"在这里取一个昵称"];
     [self.view addSubview:self.nick];
     
     //注册
