@@ -25,6 +25,7 @@
 
 @interface HRUserHomeListView : UIView
 
+@property(nonatomic,strong)RefreshTableView * tableView;
 @property(nonatomic,weak)id<HRUserHomeListViewDelegate>delegate;
 @property(nonatomic,strong)NSArray * dataSource;
 

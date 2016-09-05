@@ -13,9 +13,7 @@
 #import "LoginStateManager.h"
 #import "HRSettingViewController.h"
 #import "LoginStateManager.h"
-
-//Test
-#import "PoiRecomendListController.h"
+#import "DHSmartScreenshot.h"
 
 @interface HRUserHomeController()<HRUserHomeListViewDelegate,HRUserHomeMapViewDelegate>
 
@@ -330,6 +328,7 @@
 
 -(void)shareHomePage
 {
+    UIImage * image = [self.listView.tableView screenshot];
     
 }
 

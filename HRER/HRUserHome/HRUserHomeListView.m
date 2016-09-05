@@ -18,7 +18,6 @@
 
 @property(nonatomic,strong)UIButton * backButton;
 
-@property(nonatomic,strong)RefreshTableView * tableView;
 
 @property(nonatomic,strong)HRUserHomeHeadView * headView;
 

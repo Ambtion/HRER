@@ -180,6 +180,10 @@
 		E1C303A91CF58232001C016B /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E1C303A71CF58232001C016B /* TencentOpenApi_IOS_Bundle.bundle */; };
 		E1C303AC1CF58BE9001C016B /* HRQQManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E1C303AB1CF58BE9001C016B /* HRQQManager.m */; };
 		E1C303C01CF596BF001C016B /* HRWebCatShare.m in Sources */ = {isa = PBXBuildFile; fileRef = E1C303BF1CF596BF001C016B /* HRWebCatShare.m */; };
+		E1C926271D7D5C170003AE54 /* UIImage+DHImageAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = E1C926201D7D5C170003AE54 /* UIImage+DHImageAdditions.m */; };
+		E1C926281D7D5C170003AE54 /* UIScrollView+DHSmartScreenshot.m in Sources */ = {isa = PBXBuildFile; fileRef = E1C926221D7D5C170003AE54 /* UIScrollView+DHSmartScreenshot.m */; };
+		E1C926291D7D5C170003AE54 /* UITableView+DHSmartScreenshot.m in Sources */ = {isa = PBXBuildFile; fileRef = E1C926241D7D5C170003AE54 /* UITableView+DHSmartScreenshot.m */; };
+		E1C9262A1D7D5C170003AE54 /* UIView+DHSmartScreenshot.m in Sources */ = {isa = PBXBuildFile; fileRef = E1C926261D7D5C170003AE54 /* UIView+DHSmartScreenshot.m */; };
 		E1CC469A1D409BE500202F98 /* BaseAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1CC46951D409BE500202F98 /* BaseAlertView.m */; };
 		E1CC46EA1D41E7F900202F98 /* HRBaseSearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1CC46E91D41E7F900202F98 /* HRBaseSearchTableViewController.m */; };
 		E1CC46ED1D41E80500202F98 /* HRBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1CC46EC1D41E80500202F98 /* HRBaseTableViewController.m */; };
@@ -511,6 +515,15 @@
 		E1C303AB1CF58BE9001C016B /* HRQQManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRQQManager.m; sourceTree = "<group>"; };
 		E1C303BE1CF596BF001C016B /* HRWebCatShare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRWebCatShare.h; sourceTree = "<group>"; };
 		E1C303BF1CF596BF001C016B /* HRWebCatShare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRWebCatShare.m; sourceTree = "<group>"; };
+		E1C9261E1D7D5C170003AE54 /* DHSmartScreenshot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHSmartScreenshot.h; sourceTree = "<group>"; };
+		E1C9261F1D7D5C170003AE54 /* UIImage+DHImageAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+DHImageAdditions.h"; sourceTree = "<group>"; };
+		E1C926201D7D5C170003AE54 /* UIImage+DHImageAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+DHImageAdditions.m"; sourceTree = "<group>"; };
+		E1C926211D7D5C170003AE54 /* UIScrollView+DHSmartScreenshot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+DHSmartScreenshot.h"; sourceTree = "<group>"; };
+		E1C926221D7D5C170003AE54 /* UIScrollView+DHSmartScreenshot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+DHSmartScreenshot.m"; sourceTree = "<group>"; };
+		E1C926231D7D5C170003AE54 /* UITableView+DHSmartScreenshot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+DHSmartScreenshot.h"; sourceTree = "<group>"; };
+		E1C926241D7D5C170003AE54 /* UITableView+DHSmartScreenshot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+DHSmartScreenshot.m"; sourceTree = "<group>"; };
+		E1C926251D7D5C170003AE54 /* UIView+DHSmartScreenshot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+DHSmartScreenshot.h"; sourceTree = "<group>"; };
+		E1C926261D7D5C170003AE54 /* UIView+DHSmartScreenshot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+DHSmartScreenshot.m"; sourceTree = "<group>"; };
 		E1CC46941D409BE500202F98 /* BaseAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseAlertView.h; sourceTree = "<group>"; };
 		E1CC46951D409BE500202F98 /* BaseAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseAlertView.m; sourceTree = "<group>"; };
 		E1CC46E81D41E7F900202F98 /* HRBaseSearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRBaseSearchTableViewController.h; sourceTree = "<group>"; };
@@ -1109,6 +1122,7 @@
 		E14BD48F1CEEF53F00C66E14 /* HRER */ = {
 			isa = PBXGroup;
 			children = (
+				E1C9261D1D7D5C170003AE54 /* DHSmartScreenshot */,
 				B86CA9ED1D770513005349D5 /* DzyImgPicker */,
 				B89BCD491D75D1C800777373 /* TabBarHot */,
 				E126BCAF1D75484700BBF434 /* MaskView */,
@@ -1336,6 +1350,22 @@
 			path = TencentSDK;
 			sourceTree = "<group>";
 		};
+		E1C9261D1D7D5C170003AE54 /* DHSmartScreenshot */ = {
+			isa = PBXGroup;
+			children = (
+				E1C9261E1D7D5C170003AE54 /* DHSmartScreenshot.h */,
+				E1C9261F1D7D5C170003AE54 /* UIImage+DHImageAdditions.h */,
+				E1C926201D7D5C170003AE54 /* UIImage+DHImageAdditions.m */,
+				E1C926211D7D5C170003AE54 /* UIScrollView+DHSmartScreenshot.h */,
+				E1C926221D7D5C170003AE54 /* UIScrollView+DHSmartScreenshot.m */,
+				E1C926231D7D5C170003AE54 /* UITableView+DHSmartScreenshot.h */,
+				E1C926241D7D5C170003AE54 /* UITableView+DHSmartScreenshot.m */,
+				E1C926251D7D5C170003AE54 /* UIView+DHSmartScreenshot.h */,
+				E1C926261D7D5C170003AE54 /* UIView+DHSmartScreenshot.m */,
+			);
+			path = DHSmartScreenshot;
+			sourceTree = "<group>";
+		};
 		E1CC46931D409BD400202F98 /* UploadView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1534,6 +1564,7 @@
 				E1A23FB71D3F74B200D73CE6 /* HRPoiNoFoundTipsView.m in Sources */,
 				B805E1F21D0DAE970011E2F7 /* HRHereBannerCell.m in Sources */,
 				B86CAA441D77053E005349D5 /* DACircularProgressView.m in Sources */,
+				E1C926291D7D5C170003AE54 /* UITableView+DHSmartScreenshot.m in Sources */,
 				B8954EAE1CFC7E1D006A706A /* HRFinPassViewController.m in Sources */,
 				B89664101CF32FD100B2A6CA /* UIViewAdditions.m in Sources */,
 				E19385301D47356F0097018B /* PoiRecomendListController.m in Sources */,
@@ -1591,6 +1622,7 @@
 				B805392E1D23B40300C8EF06 /* HRCycleScrollView.m in Sources */,
 				B86CAA301D770513005349D5 /* LGPhotoPickerDatas.m in Sources */,
 				E1A23F901D3F530D00D73CE6 /* HRCretePoiCell.m in Sources */,
+				E1C9262A1D7D5C170003AE54 /* UIView+DHSmartScreenshot.m in Sources */,
 				B89663ED1CF32F7700B2A6CA /* JWCollectionViewFlowLayout.m in Sources */,
 				B893807D1D117E8D005A24FB /* HRPoiSetsController.m in Sources */,
 				B89663F01CF32F7700B2A6CA /* ToastAlertView.m in Sources */,
@@ -1639,6 +1671,7 @@
 				E1A23F8A1D3F45D700D73CE6 /* HRCreateCategoryCell.m in Sources */,
 				E198B99D1D3C80A400BC8237 /* HRNavMapController.m in Sources */,
 				B86CAA2B1D770513005349D5 /* LGPhotoPickerBrowserPhotoImageView.m in Sources */,
+				E1C926271D7D5C170003AE54 /* UIImage+DHImageAdditions.m in Sources */,
 				E19385331D47375C0097018B /* PoiRecomendCell.m in Sources */,
 				B80539311D23B40300C8EF06 /* HRWaitingView.m in Sources */,
 				E198B9FA1D3DFFA500BC8237 /* HRUserHomeMapView.m in Sources */,
@@ -1653,6 +1686,7 @@
 				E18AA89B1D6EB65D004C1BF1 /* NSDictionary+adapter.m in Sources */,
 				B86CAA351D770513005349D5 /* LGPhotoPickerCollectionView.m in Sources */,
 				B88F107C1CF5E273007C930F /* HRNagationController.m in Sources */,
+				E1C926281D7D5C170003AE54 /* UIScrollView+DHSmartScreenshot.m in Sources */,
 				E198B9F71D3DFF9800BC8237 /* HRUserHomeListView.m in Sources */,
 				B86CAA721D770A2B005349D5 /* UIView+Layout.m in Sources */,
 				B86CAA2D1D770513005349D5 /* LGPhotoPickerBrowserPhotoView.m in Sources */,
