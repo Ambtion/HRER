@@ -67,6 +67,7 @@
 		<string>wechat</string>
 		<string>mqqOpensdkSSoLogin</string>
 		<string>mqqapi</string>
+		<string>mqzone</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>

@@ -24,6 +24,8 @@
 		B816B1191D367AA000318662 /* HRPoiLocInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B816B1181D367AA000318662 /* HRPoiLocInfoCell.m */; };
 		B816B11C1D367B0300318662 /* HRPoiCreateInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B816B11B1D367B0300318662 /* HRPoiCreateInfoCell.m */; };
 		B845AC8B1D2D3C6900D26A2A /* HRInPutView.m in Sources */ = {isa = PBXBuildFile; fileRef = B845AC8A1D2D3C6900D26A2A /* HRInPutView.m */; };
+		B84F4D821D7D87D800FE46BD /* HRRecomendNotificationView.m in Sources */ = {isa = PBXBuildFile; fileRef = B84F4D811D7D87D800FE46BD /* HRRecomendNotificationView.m */; };
+		B84F4D851D7D8B3D00FE46BD /* PortraitView.m in Sources */ = {isa = PBXBuildFile; fileRef = B84F4D841D7D8B3D00FE46BD /* PortraitView.m */; };
 		B85520101D098F2C00C56FC5 /* HomeHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = B855200F1D098F2C00C56FC5 /* HomeHeadView.m */; };
 		B85520191D098FB900C56FC5 /* HRCatergoryItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = B85520181D098FB900C56FC5 /* HRCatergoryItemView.m */; };
 		B85629411D3BBBF200E5BD4C /* HRUserHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = B85629401D3BBBF200E5BD4C /* HRUserHomeController.m */; };
@@ -231,6 +233,10 @@
 		B816B11B1D367B0300318662 /* HRPoiCreateInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRPoiCreateInfoCell.m; sourceTree = "<group>"; };
 		B845AC891D2D3C6900D26A2A /* HRInPutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRInPutView.h; sourceTree = "<group>"; };
 		B845AC8A1D2D3C6900D26A2A /* HRInPutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRInPutView.m; sourceTree = "<group>"; };
+		B84F4D801D7D87D800FE46BD /* HRRecomendNotificationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRRecomendNotificationView.h; sourceTree = "<group>"; };
+		B84F4D811D7D87D800FE46BD /* HRRecomendNotificationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRRecomendNotificationView.m; sourceTree = "<group>"; };
+		B84F4D831D7D8B3D00FE46BD /* PortraitView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PortraitView.h; sourceTree = "<group>"; };
+		B84F4D841D7D8B3D00FE46BD /* PortraitView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PortraitView.m; sourceTree = "<group>"; };
 		B855200E1D098F2C00C56FC5 /* HomeHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeHeadView.h; sourceTree = "<group>"; };
 		B855200F1D098F2C00C56FC5 /* HomeHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeHeadView.m; sourceTree = "<group>"; };
 		B85520171D098FB900C56FC5 /* HRCatergoryItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRCatergoryItemView.h; sourceTree = "<group>"; };
@@ -866,8 +872,12 @@
 		B88F10651CF5E1D3007C930F /* HomeFeedViewContoller */ = {
 			isa = PBXGroup;
 			children = (
+				B84F4D831D7D8B3D00FE46BD /* PortraitView.h */,
+				B84F4D841D7D8B3D00FE46BD /* PortraitView.m */,
 				B88F10701CF5E23B007C930F /* HomeViewController.h */,
 				B88F10711CF5E23B007C930F /* HomeViewController.m */,
+				B84F4D801D7D87D800FE46BD /* HRRecomendNotificationView.h */,
+				B84F4D811D7D87D800FE46BD /* HRRecomendNotificationView.m */,
 				B805E1EA1D0DAE970011E2F7 /* HRHereBannerCell.h */,
 				B805E1EB1D0DAE970011E2F7 /* HRHereBannerCell.m */,
 				B805E1EC1D0DAE970011E2F7 /* HRHerePoiCell.h */,
@@ -1567,6 +1577,7 @@
 				E1C926291D7D5C170003AE54 /* UITableView+DHSmartScreenshot.m in Sources */,
 				B8954EAE1CFC7E1D006A706A /* HRFinPassViewController.m in Sources */,
 				B89664101CF32FD100B2A6CA /* UIViewAdditions.m in Sources */,
+				B84F4D851D7D8B3D00FE46BD /* PortraitView.m in Sources */,
 				E19385301D47356F0097018B /* PoiRecomendListController.m in Sources */,
 				B80E94A91D07FB62000C979A /* RefreshTableView.m in Sources */,
 				E1D9BF611D48A89F003F9849 /* HRSettingUserinfoCell.m in Sources */,
@@ -1588,6 +1599,7 @@
 				B8ACA4291D3E4C7400011763 /* HRUserHomeCell.m in Sources */,
 				B86CAA2E1D770513005349D5 /* LGPhotoPickerCustomToolBarView.m in Sources */,
 				B856FF4B1D3F9734002EF2C4 /* HRCreteCategoryItemView.m in Sources */,
+				B84F4D821D7D87D800FE46BD /* HRRecomendNotificationView.m in Sources */,
 				B86CAA311D770513005349D5 /* LGPhotoPickerGroup.m in Sources */,
 				E11876A91D3F29B900A23429 /* HRCreteLocationController.m in Sources */,
 				E1CC46ED1D41E80500202F98 /* HRBaseTableViewController.m in Sources */,

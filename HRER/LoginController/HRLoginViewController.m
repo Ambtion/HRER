@@ -12,6 +12,7 @@
 #import "HRWebCatLogin.h"
 #import "HRBindPhoneController.h"
 #import "HRAddressBookManager.h"
+#import "HRQQManager.h"
 
 @interface HRLoginViewController()
 @property(nonatomic,strong)UIImageView * bgView;
@@ -145,6 +146,16 @@
     [webLogin addTarget:self action:@selector(webCatLogin:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:webLogin];
     
+    
+    
+    //QQ登陆
+    UIButton * qqLogin = [UIButton buttonWithType:UIButtonTypeCustom];
+    [qqLogin setImage:[UIImage imageNamed:@"WeChat"] forState:UIControlStateNormal];
+    [qqLogin setImage:[UIImage imageNamed:@"WeChat_click"] forState:UIControlStateHighlighted];
+    [qqLogin addTarget:self action:@selector(qqLogin:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:qqLogin];
+
+    
     UILabel * webLoginTitl = [[UILabel alloc] init];
     webLoginTitl.textColor = RGB_Color(0xcf, 0xc7, 0xc2);
 //    webLoginTitl.text = @"微信登录";
@@ -224,11 +235,17 @@
         make.centerX.equalTo(self.view);
     }];
 
+    CGFloat offset = self.view.width  * 0.15;
+    
     [webLogin mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(webLoginTitl.mas_top).offset(-8);
-        make.centerX.equalTo(self.view);
+        make.centerX.equalTo(self.view).offset(-offset);
     }];
 
+    [qqLogin mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(webLoginTitl.mas_top).offset(-8);
+        make.centerX.equalTo(self.view).offset(offset);
+    }];
     
     [imageLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(webLogin.mas_top).offset(-50.f);
@@ -436,6 +453,13 @@
             [self showTotasViewWithMes:@"网络异常,稍后重试"];
 
         }];
+    }];
+}
+
+- (void)qqLogin:(UIButton *)button
+{
+    [[HRQQManager shareInstance] loginWithLoginCallBack:^(BOOL isSucess, BOOL isCanceled) {
+        
     }];
 }
 

@@ -72,7 +72,8 @@
     [self.view addSubview:self.tableView];
     [self initRefreshView];
     self.tableView.tableFooterView  = [self footView];
-    
+    self.tableView.backgroundColor = UIColorFromRGB(0xebebeb);
+
     [self initDebugButton];
     
     self.recomendButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 50, 50, 50)];
@@ -273,7 +274,6 @@
             }
     return mArray;
 }
-
 
 #pragma mark - TableViewDelegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

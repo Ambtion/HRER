@@ -153,7 +153,7 @@
     CLGeocoder *geocoder = [[CLGeocoder alloc] init];
     [geocoder reverseGeocodeLocation:self.pinLocation completionHandler:^(NSArray *array, NSError *error) {
         
-        NSString * cityName = @"";
+       __block  NSString * cityName = @"";
        __block NSString * placeName = @"";
         
         if (array.count > 0) {
@@ -184,17 +184,21 @@
                     if (placeName.length) {
                         self.addressInputView.textField.text = placeName;
                     }
-                    
-                    if (cityName.length) {
-                        [NetWorkEntity  quaryCityInfoWithCityName:cityName  lat:self.pinLocation.coordinate.latitude lng:self.pinLocation.coordinate.longitude success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                            if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
-                                NSDictionary * userInfoDic  = [responseObject objectForKey:@"response"];
-                                self.cityId = [[userInfoDic objectForKey:@"city_id"] integerValue];
-                            }
-                        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                            
-                        }];
-                    }
+//                    cityName  = [self getNameForType:@"administrative_area_level_1" formList:[dic objectForKey:@"address_components"]];
+//                    if (!cityName.length) {
+//                        cityName = [self getNameForType:@"administrative_area_level_2" formList:[dic objectForKey:@"address_components"]];
+//                    }
+//                    
+//                    if (cityName.length) {
+//                        [NetWorkEntity  quaryCityInfoWithCityName:cityName  lat:self.pinLocation.coordinate.latitude lng:self.pinLocation.coordinate.longitude success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//                            if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
+//                                NSDictionary * userInfoDic  = [responseObject objectForKey:@"response"];
+//                                self.cityId = [[userInfoDic objectForKey:@"city_id"] integerValue];
+//                            }
+//                        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//                            
+//                        }];
+//                    }
 
                 }
             } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -207,6 +211,21 @@
         
      }];
 
+}
+
+- (NSString *)getNameForType:(NSString *)searchType formList:(NSArray *)list
+{
+    for (NSDictionary * dic in list) {
+        if ([dic isKindOfClass:[NSDictionary class]]) {
+            NSArray * types = [dic objectForKey:@"types"];
+            for (NSString * type in types) {
+                if ([type isKindOfClass:[NSString class]] && [type isEqualToString:searchType]) {
+                    return [dic objectForKey:@"long_name"];
+                }
+            }
+        }
+    }
+    return @"";
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
@@ -232,7 +251,7 @@
     }
     
     [self.titleInputView.textField resignFirstResponder];
-    [HRUPloadImageView showInView:[self.myNavController view] withPoiTitle:self.titleInputView.textField.text cityId:self.cityId address:self.addressInputView.textField.text loc:[NSString stringWithFormat:@"%f,%f",self.pinLocation.coordinate.latitude,self.pinLocation.coordinate.longitude] categoryType:[self.categoryView seletedIndex] callBack:^(BOOL isSucesss) {
+    [HRUPloadImageView showInView:[self.myNavController view] withPoiTitle:self.titleInputView.textField.text cityId:self.cityId address:self.addressInputView.textField.text loc:[NSString stringWithFormat:@"%f,%f",self.pinLocation.coordinate.latitude,self.pinLocation.coordinate.longitude] categoryType:[self.categoryView seletedIndex] + 1 callBack:^(BOOL isSucesss) {
         
     }];
 

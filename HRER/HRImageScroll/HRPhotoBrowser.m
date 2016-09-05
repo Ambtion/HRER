@@ -162,42 +162,7 @@
     }
 }
 
-- (void)imageViewScale:(HRImageScaleView *)imageScale clickCurImage:(UIImageView *)imageview
-{
-    _scrollView.hidden = YES;
-    _willDisappear = YES;
-    
-    HRImageScaleView *currentImageView = (HRImageScaleView *)imageScale;
-    NSInteger currentIndex = currentImageView.tag;
-    
-    UIView *sourceView = self.sourceImagesContainerView.subviews[currentIndex];
-    CGRect targetTemp = [self.sourceImagesContainerView convertRect:sourceView.frame toView:self];
-    
-    UIImageView *tempView = [[UIImageView alloc] init];
-    tempView.contentMode = sourceView.contentMode;
-    tempView.clipsToBounds = YES;
-    tempView.image = currentImageView.imageView.image;
-    CGFloat h = (self.bounds.size.width / currentImageView.imageView.image.size.width) * currentImageView.imageView.image.size.height;
-    
-    if (!currentImageView.imageView.image) {
-        h = self.bounds.size.height;
-    }
-    
-    tempView.bounds = CGRectMake(0, 0, self.bounds.size.width, h);
-    tempView.center = self.center;
-    
-    [self addSubview:tempView];
-    
-    
-    [UIView animateWithDuration:SDPhotoBrowserHideImageAnimationDuration animations:^{
-        tempView.frame = targetTemp;
-        self.backgroundColor = [UIColor clearColor];
-        _pageControll.alpha = 0.1;
-    } completion:^(BOOL finished) {
-        [self removeFromSuperview];
-    }];
 
-}
 
 - (void)imageViewScale:(HRImageScaleView *)imageScale longPressCurImage:(UIImageView *)imageview
 {
@@ -243,6 +208,7 @@
 {
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
     self.frame = window.bounds;
+    self.alpha = 0;
     [window addObserver:self forKeyPath:@"frame" options:0 context:nil];
     [window addSubview:self];
 }
@@ -260,32 +226,70 @@
 
 - (void)showFirstImage
 {
-    UIView *sourceView = self.sourceImagesContainerView.subviews[self.currentImageIndex];
-    CGRect rect = [self.sourceImagesContainerView convertRect:sourceView.frame toView:self];
+//    UIView *sourceView = self.sourceImagesContainerView.subviews[self.currentImageIndex];
+//    CGRect rect = [self.sourceImagesContainerView convertRect:sourceView.frame toView:self];
     
     
-    HRImageScaleView *currentImageView = _scrollView.subviews[_currentImageIndex];
-    UIImageView *tempView = [[UIImageView alloc] init];
-    tempView.image = currentImageView.imageView.image;
-    [self addSubview:tempView];
+//    HRImageScaleView *currentImageView = _scrollView.subviews[_currentImageIndex];
+//    UIImageView *tempView = [[UIImageView alloc] init];
+//    tempView.image = currentImageView.imageView.image;
+//    [self addSubview:tempView];
     
-    CGRect targetTemp = [[(HRImageScaleView *)_scrollView.subviews[self.currentImageIndex] imageView] frame];
-    
-    tempView.frame = rect;
-    tempView.contentMode = [_scrollView.subviews[self.currentImageIndex] contentMode];
-    _scrollView.hidden = YES;
+//    CGRect targetTemp = [[(HRImageScaleView *)_scrollView.subviews[self.currentImageIndex] imageView] frame];
+//    
+//    tempView.frame = rect;
+//    tempView.contentMode = [_scrollView.subviews[self.currentImageIndex] contentMode];
+//    _scrollView.alpha = 0;
     
     
     [UIView animateWithDuration:SDPhotoBrowserShowImageAnimationDuration animations:^{
-        tempView.center = self.center;
-        tempView.bounds = (CGRect){CGPointZero, targetTemp.size};
+//        tempView.center = self.center;
+//        tempView.bounds = (CGRect){CGPointZero, targetTemp.size};
+        self.alpha = 1;
     } completion:^(BOOL finished) {
         _hasShowedFistView = YES;
-        [tempView removeFromSuperview];
-        _scrollView.hidden = NO;
+//        [tempView removeFromSuperview];
+//        _scrollView.hidden = NO;
     }];
 }
 
+- (void)imageViewScale:(HRImageScaleView *)imageScale clickCurImage:(UIImageView *)imageview
+{
+    //    _scrollView.hidden = YES;
+    _willDisappear = YES;
+    
+    //    HRImageScaleView *currentImageView = (HRImageScaleView *)imageScale;
+    //    NSInteger currentIndex = currentImageView.tag;
+    
+    //    UIView *sourceView = self.sourceImagesContainerView.subviews[currentIndex];
+    //    CGRect targetTemp = [self.sourceImagesContainerView convertRect:sourceView.frame toView:self];
+    
+    //    UIImageView *tempView = [[UIImageView alloc] init];
+    //    tempView.contentMode = sourceView.contentMode;
+    //    tempView.clipsToBounds = YES;
+    //    tempView.image = currentImageView.imageView.image;
+    //    CGFloat h = (self.bounds.size.width / currentImageView.imageView.image.size.width) * currentImageView.imageView.image.size.height;
+    //
+    //    if (!currentImageView.imageView.image) {
+    //        h = self.bounds.size.height;
+    //    }
+    //
+    //    tempView.bounds = CGRectMake(0, 0, self.bounds.size.width, h);
+    //    tempView.center = self.center;
+    //
+    //    [self addSubview:tempView];
+    
+    
+    [UIView animateWithDuration:SDPhotoBrowserHideImageAnimationDuration animations:^{
+        //        tempView.frame = targetTemp;
+        self.backgroundColor = [UIColor clearColor];
+        self.alpha = 0;
+//        _scrollView.alpha = 0;
+    } completion:^(BOOL finished) {
+        [self removeFromSuperview];
+    }];
+    
+}
 #pragma mark - scrollview代理方法
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView

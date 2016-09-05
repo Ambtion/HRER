@@ -7,7 +7,7 @@
 //
 
 #import "HRPhotoScrollView.h"
-
+#import "PortraitView.h"
 @interface HRPhotoScrollView()<UIScrollViewDelegate>
 
 @property(nonatomic,strong)UIScrollView * scrollView;
@@ -71,12 +71,12 @@
     
     NSMutableArray * imagemArray = [NSMutableArray arrayWithCapacity:0];
     for (int i =0 ; i < count; i++) {
-        UIImageView * imageView = [[UIImageView alloc] init];
+        PortraitView * imageView = [[PortraitView alloc] init];
         [self.scrollView addSubview:imageView];
         
         HRPotoInfo * photoInfo = [_dataArray objectAtIndex:i];
 
-        [imageView sd_setImageWithURL:[NSURL URLWithString:photoInfo.url] placeholderImage:[UIImage imageNamed:@"man"]];
+        [imageView.imageView sd_setImageWithURL:[NSURL URLWithString:photoInfo.url] placeholderImage:[UIImage imageNamed:@"man"]];
         [imagemArray addObject:imageView];
     }
     self.imageArray = imagemArray;
