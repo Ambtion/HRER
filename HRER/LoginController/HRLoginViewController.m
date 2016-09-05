@@ -340,7 +340,7 @@
                     }
                 }];
                 
-                if ([ws.myNavController presentedViewController]) {
+                if ([ws.myNavController presentingViewController]) {
                     [ws.myNavController dismissViewControllerAnimated:YES completion:^{
                     }];
                     
@@ -406,7 +406,14 @@
                             }
                         }];
                         
-                        [self.navigationController popViewControllerAnimated:YES];
+                        if(self.navigationController.presentingViewController){
+                            [self.navigationController dismissViewControllerAnimated:YES completion:^{
+                            
+                            }];
+                        }else{
+                            [self.navigationController popViewControllerAnimated:YES];
+                        }
+                        
                         
                         
                     }else{

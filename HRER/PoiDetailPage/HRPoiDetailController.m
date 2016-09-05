@@ -404,6 +404,11 @@ static CGFloat const MaxToolbarHeight = 200.0f;
 #pragma nark WantTogo
 - (void)poiUserInfoCell:(HRPoiCreateInfoCell *)cell DidClickWantTogo:(UIButton *)button
 {
+    if (![[LoginStateManager getInstance] userLoginInfo]) {
+        //未登录
+        [HRLoginManager showLoginView];
+        return;
+    }
     
     WS(ws);
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -529,6 +534,13 @@ static CGFloat const MaxToolbarHeight = 200.0f;
 #pragma mark - Recomend
 - (void)poiUserInfoCellDidClickRecomend:(HRPoiCreateInfoCell *)cell
 {
+    
+    if (![[LoginStateManager getInstance] userLoginInfo]) {
+        //未登录
+        [HRLoginManager showLoginView];
+        return;
+    }
+
     self.cmt_id = nil;
     [self.textView setPlaceText:@"评论"];
     [self.textView becomeFirstResponder];
@@ -557,6 +569,8 @@ static CGFloat const MaxToolbarHeight = 200.0f;
 
 - (void)recomendCellDidClickRecomendButton:(HRRecomendCell *)cell
 {
+   
+    
     [self.textView resignFirstResponder];
     if([cell.dataSource.user_id isEqualToString:[[LoginStateManager getInstance] userLoginInfo].user_id] ||
        [cell.dataSource.reply_id isEqualToString:[[LoginStateManager getInstance] userLoginInfo].user_id]){

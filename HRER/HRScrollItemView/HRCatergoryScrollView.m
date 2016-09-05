@@ -72,8 +72,8 @@
     
     CGFloat offsetX = 18.f;
     CGFloat spacingX = (self.width - 4 * 50 - offsetX * 2) / 3.f;
-    
-    for (int i = 0; i < 4; i ++) {
+    CGFloat rightbouds = 0;
+    for (int i = 0; i < 5; i ++) {
         
         HRCatergoryItemView * itemView = [[HRCatergoryItemView alloc] initWithFrame:CGRectMake(offsetX + (50 + spacingX) * i, 0, 50, self.height)];
         [itemView setCategoryImage:nImages[i] seletedImage:hImages[i] target:self seletor:@selector(buttonClick:) categoryNumber:0];
@@ -81,8 +81,10 @@
         [itemView.label setHidden:YES];
         [self.scrollView addSubview:itemView];
         [self.itemArrays addObject:itemView];
-        
-    }       
+        rightbouds = itemView.right;
+    }
+    
+    self.scrollView.contentSize = CGSizeMake(rightbouds + offsetX, self.scrollView.height);
 }
 
 - (void)setButtonSeletedAtIndex:(NSInteger)index
