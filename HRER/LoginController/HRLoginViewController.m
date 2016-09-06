@@ -508,7 +508,6 @@
                         }
                         
                         
-                        
                     }else{
                         HRBindPhoneController * binC = [[HRBindPhoneController alloc] init];
                         binC.bindToken = userInfo.token;

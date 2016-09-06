@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HRRecomendNotificationView : UIView
-@property(nonatomic,strong)UILabel * titleLabel;
-@property(nonatomic,strong)UIImageView * potImageView;
-@property(nonatomic,strong)UIButton * recomendButton;
+@interface HRRecomendNotificationView : UIControl
+
 @end

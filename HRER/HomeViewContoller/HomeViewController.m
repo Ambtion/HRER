@@ -21,10 +21,14 @@
 #import "HRUserHomeController.h"
 #import "BMGuideMaskView.h"
 #import "PoiRecomendListController.h"
+#import "HRRecomendNotificationView.h"
+
 
 @interface HomeViewController()<UITableViewDelegate,UITableViewDataSource,HomeHeadViewDelegate,HRHerePoisSetCellDelegate,HRHerePoiCellDelegate>
 
 @property(nonatomic,strong)RefreshTableView * tableView;
+@property(nonatomic,strong)HRRecomendNotificationView * notificationView;
+
 @property(nonatomic,assign)NSUInteger catergoryIndex;
 
 @property(nonatomic,strong)HRCatergoryInfo * catergoryInfo;
@@ -75,14 +79,19 @@
     self.tableView.backgroundColor = UIColorFromRGB(0xebebeb);
 
     [self initDebugButton];
-    
-    self.recomendButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 50, 50, 50)];
-    self.recomendButton.backgroundColor = [UIColor greenColor];
-    [self.recomendButton addTarget:self action:@selector(recomendButtonDidClick:) forControlEvents:UIControlEventTouchUpInside];
-    [self.recomendButton setHidden:YES];
-    [self.view addSubview:self.recomendButton];
+
 }
 
+
+- (HRRecomendNotificationView *)notificationView
+{
+    if (!_notificationView) {
+        _notificationView = [[HRRecomendNotificationView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 40)];
+        [_notificationView addTarget:self action:@selector(recomendButtonDidClick:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _notificationView;
+    
+}
 - (void)initDebugButton
 {
 #ifdef DEBUG
@@ -209,12 +218,17 @@
     [NetWorkEntity hasRecomentSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
             NSDictionary * dic = [responseObject objectForKey:@"response"];
-            [self.recomendButton setHidden:[[dic objectForKey:@"count"] boolValue]];
+            if ([[dic objectForKey:@"count"] boolValue]) {
+                self.tableView.tableHeaderView = self.notificationView;
+            }else{
+                self.tableView.tableHeaderView = nil;
+
+            }
         }else{
-            [self.recomendButton setHidden:YES];
+            self.tableView.tableHeaderView = nil;
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [self.recomendButton setHidden:YES];
+        self.tableView.tableHeaderView = nil;
     }];
 }
 
@@ -271,7 +285,7 @@
                 }
             }
         }
-            }
+    }
     return mArray;
 }
 

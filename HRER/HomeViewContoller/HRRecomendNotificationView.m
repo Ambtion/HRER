@@ -15,18 +15,13 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        
+        [self initUI];
     }
     return self;
 }
 
 - (void)initUI
 {
-    self.titleLabel = [[UILabel alloc] init];
-    self.titleLabel.textAlignment = NSTextAlignmentCenter;
-    self.titleLabel.font = [UIFont systemFontOfSize:12.f];
-    self.titleLabel.textColor = [UIColor whiteColor];
-    [self addSubview:self.titleLabel];
     
     
 }
