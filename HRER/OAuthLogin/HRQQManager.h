@@ -9,8 +9,10 @@
 #import <Foundation/Foundation.h>
 #import <TencentOpenAPI/sdkdef.h>
 #import <TencentOpenAPI/QQApiInterface.h>
+#import <TencentOpenAPI/TencentOAuth.h>
 
-typedef void(^LoginCallBack)(BOOL isSucess,BOOL isCanceled);
+
+typedef void(^LoginCallBack)(TencentOAuth * oauth,BOOL isCanceled);
 typedef void(^ReqCallBack)(QQBaseResp * response);
 
 

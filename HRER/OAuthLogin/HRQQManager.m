@@ -8,7 +8,6 @@
 
 #import "HRQQManager.h"
 
-#import <TencentOpenAPI/TencentOAuth.h>
 #import <TencentOpenAPI/TencentOAuthObject.h>
 #import <TencentOpenAPI/TencentApiInterface.h>
 #import <TencentOpenAPI/QQApiInterfaceObject.h>
@@ -56,7 +55,7 @@ static HRQQManager *gInstance = nil;
 
 - (BOOL)handdleOpneUrl:(NSURL *)url
 {
-   return [QQApiInterface handleOpenURL:url delegate:self];
+    return [TencentOAuth HandleOpenURL:url];
 }
 
 
@@ -77,10 +76,15 @@ static HRQQManager *gInstance = nil;
     [_oauth authorize:qqPermissions inSafari:NO];
 }
 
+- (void)loginSuccessed
+{
+    
+}
+
 - (void)tencentDidLogin
 {
     if (self.loginCallBack) {
-        self.loginCallBack(YES,NO);
+        self.loginCallBack(_oauth,NO);
         self.loginCallBack = nil;
     }
 }
@@ -88,7 +92,7 @@ static HRQQManager *gInstance = nil;
 - (void)tencentDidNotLogin:(BOOL)cancelled
 {
     if (self.loginCallBack) {
-        self.loginCallBack(NO,cancelled);
+        self.loginCallBack(nil,cancelled);
         self.loginCallBack = nil;
     }
 }
@@ -96,7 +100,7 @@ static HRQQManager *gInstance = nil;
 - (void)tencentDidNotNetWork
 {
     if (self.loginCallBack) {
-        self.loginCallBack(NO,NO);
+        self.loginCallBack(nil,NO);
         self.loginCallBack = nil;
     }
 }
@@ -145,11 +149,9 @@ static HRQQManager *gInstance = nil;
     }
 }
 
-- (void)onReq:(QQBaseReq *)req
-{}
+- (void)onReq:(QQBaseReq *)req{}
 
-- (void)isOnlineResponse:(NSDictionary *)response
-{}
+- (void)isOnlineResponse:(NSDictionary *)response{}
 
 @end
 

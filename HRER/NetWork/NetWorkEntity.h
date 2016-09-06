@@ -66,6 +66,10 @@
                             failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
 
++ (void)loginWithqqAccess_token:(NSString *)accessToken
+                            success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                            failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+
 /**
  *  绑定手机
  */

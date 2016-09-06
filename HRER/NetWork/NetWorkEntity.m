@@ -95,6 +95,16 @@ static CallBack upSucess;
     [manager POST:urlStr parameters:dic success:success failure:failure];
 }
 
++ (void)loginWithqqAccess_token:(NSString *)accessToken
+                        success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                        failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+{
+    NSDictionary * dic = @{@"access_token":accessToken};
+    NSString * urlStr = [NSString stringWithFormat:@"%@/loginQQ",KNETBASEURL];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager POST:urlStr parameters:dic success:success failure:failure];
+}
+
 + (void)bindPhoneNumber:(NSString *)photoNumber
                 VerCode:(NSString *)verCode
                   token:(NSString *)bindToken

@@ -458,8 +458,77 @@
 
 - (void)qqLogin:(UIButton *)button
 {
-    [[HRQQManager shareInstance] loginWithLoginCallBack:^(BOOL isSucess, BOOL isCanceled) {
-        
+    WS(ws);
+
+    [[HRQQManager shareInstance] loginWithLoginCallBack:^(TencentOAuth *oauth, BOOL isCanceled) {
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        if (!oauth) {
+            [self showTotasViewWithMes:@"登录失败"];
+            return ;
+        }
+        [NetWorkEntity loginWithqqAccess_token:oauth.accessToken success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            
+            [MBProgressHUD hideHUDForView:ws.view animated:YES];
+            if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
+                
+                NSDictionary * userInfoDic  = [responseObject objectForKey:@"response"];
+                HRUserLoginInfo * userInfo = [HRUserLoginInfo yy_modelWithJSON:userInfoDic];
+                if(userInfo){
+                    if (userInfo.phone.length) {
+                        
+                        [[LoginStateManager getInstance] LoginWithUserLoginInfo:userInfo];
+                        
+                        //访问通讯录
+                        [HRAddressBookManager readAllPersonAddressWithCallBack:^(NSArray *resultList, ABAuthorizationStatus status) {
+                            
+                            if (resultList.count && [[LoginStateManager getInstance] userLoginInfo]) {
+                                //用户登录方法
+                                [NetWorkEntity sendPhotoNumberWithPhotoNumber:resultList success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                    if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
+                                        NSDictionary * response = [responseObject objectForKey:@"response"];
+                                        if ([[response objectForKey:@"newFriend"] boolValue]) {
+                                            [self showMessCountInTabBar:0];
+                                        }else{
+                                            [self hiddenMessCountInTabBar];
+                                        }
+                                    }
+                                    
+                                } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                    
+                                }];
+                            }
+                        }];
+                        
+                        if(self.navigationController.presentingViewController){
+                            [self.navigationController dismissViewControllerAnimated:YES completion:^{
+                                
+                            }];
+                        }else{
+                            [self.navigationController popViewControllerAnimated:YES];
+                        }
+                        
+                        
+                        
+                    }else{
+                        HRBindPhoneController * binC = [[HRBindPhoneController alloc] init];
+                        binC.bindToken = userInfo.token;
+                        [self.navigationController  pushViewController:binC animated:YES];
+                        binC.navigationItem.leftBarButtonItems = nil;
+                    }
+                    
+                }else{
+                    [self showTotasViewWithMes:[[responseObject objectForKey:@"response"] objectForKey:@"errorText"]];
+                }
+            }else{
+                [self showTotasViewWithMes:[[responseObject objectForKey:@"response"] objectForKey:@"errorText"]];
+                
+            }
+            
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+            [self showTotasViewWithMes:@"网络异常,稍后重试"];
+            
+        }];
     }];
 }
 
