@@ -11,9 +11,14 @@
 
 @implementation HRRecomendNotificationView
 
-- (instancetype)initWithFrame:(CGRect)frame
++ (CGFloat)heightForCell
 {
-    self = [super initWithFrame:frame];
+    return 50.f;
+}
+
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         [self initUI];
     }
@@ -22,7 +27,14 @@
 
 - (void)initUI
 {
-    
-    
+    self.action = [[UIButton alloc] init];
+    [self.contentView addSubview:self.action];
+    [self.action mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.width.height.equalTo(self);
+    }];
 }
+
+- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated{}
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated{}
+
 @end

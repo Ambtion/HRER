@@ -68,7 +68,6 @@
         WXMediaMessage *message = [WXMediaMessage message];
         message.title = title;
         message.description = description;
-        [message setThumbImage:thumbImage];
         
         WXImageObject *imgObject = [WXImageObject object];
         imgObject.imageData = UIImageJPEGRepresentation(img, 0.8); //UIImagePNGRepresentation(img); ////UIImagePNGRepresentation会把图片大小由放大，不要采用；
@@ -79,6 +78,13 @@
         req.bText = NO;
         req.message = message;
         req.scene = (int)scene;
+
+        if (!thumbImage) {
+//            NSData * data = UIImageJPEGRepresentation(img, 0.00001);
+//            thumbImage = [[UIImage alloc] initWithData:data];
+        }
+        [message setThumbImage:thumbImage];
+
         res = [[HRWeCatManager shareInstance]sendReq:req callBack:callBack];
         
     }else{

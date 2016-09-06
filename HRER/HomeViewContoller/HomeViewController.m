@@ -27,7 +27,7 @@
 @interface HomeViewController()<UITableViewDelegate,UITableViewDataSource,HomeHeadViewDelegate,HRHerePoisSetCellDelegate,HRHerePoiCellDelegate>
 
 @property(nonatomic,strong)RefreshTableView * tableView;
-@property(nonatomic,strong)HRRecomendNotificationView * notificationView;
+@property(nonatomic,strong)HRRecomendNotificationView * notificationCell;
 
 @property(nonatomic,assign)NSUInteger catergoryIndex;
 
@@ -35,8 +35,7 @@
 @property(nonatomic,strong)NSArray * nearyBySource;
 @property(nonatomic,strong)NSArray * userPoiSource;
 @property(nonatomic,strong)NSArray * mixPoiSource;
-
-@property(nonatomic,strong)UIButton * recomendButton;
+@property(nonatomic,assign)BOOL hasRecomend;
 @end
 
 @implementation HomeViewController
@@ -55,6 +54,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userLoginChnage:) name:LOGIN_IN object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userLoginChnage:) name:LOGIN_OUT object:nil];
     self.catergoryIndex = -1;
+    self.hasRecomend = NO;
     [self initUI];
     [self quaryData];
 }
@@ -83,15 +83,15 @@
 }
 
 
-- (HRRecomendNotificationView *)notificationView
+- (HRRecomendNotificationView *)notificationCell
 {
-    if (!_notificationView) {
-        _notificationView = [[HRRecomendNotificationView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 40)];
-        [_notificationView addTarget:self action:@selector(recomendButtonDidClick:) forControlEvents:UIControlEventTouchUpInside];
+    if (!_notificationCell) {
+        _notificationCell = [[HRRecomendNotificationView alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"HRRecomendNotificationView"];
+        [_notificationCell.action addTarget:self action:@selector(recomendButtonDidClick:) forControlEvents:UIControlEventTouchUpInside];
     }
-    return _notificationView;
-    
+    return _notificationCell;
 }
+
 - (void)initDebugButton
 {
 #ifdef DEBUG
@@ -219,16 +219,19 @@
         if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
             NSDictionary * dic = [responseObject objectForKey:@"response"];
             if ([[dic objectForKey:@"count"] boolValue]) {
-                self.tableView.tableHeaderView = self.notificationView;
+                self.hasRecomend = YES;
+                [self.tableView reloadData];
             }else{
-                self.tableView.tableHeaderView = nil;
-
+                self.hasRecomend = NO;
+                [self.tableView reloadData];
             }
         }else{
-            self.tableView.tableHeaderView = nil;
+            self.hasRecomend = NO;
+            [self.tableView reloadData];
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        self.tableView.tableHeaderView = nil;
+        self.hasRecomend = NO;
+        [self.tableView reloadData];
     }];
 }
 
@@ -297,7 +300,7 @@
     // 我和朋友创建的单个POI
     // 我和朋友的POI集合 | 编辑创建的单个POI | 编辑推荐的POI集合
     
-    return 4;
+    return 5;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -307,12 +310,14 @@
             return 1;
             break;
         case 1:
+            return self.hasRecomend ? 1 : 0;
+        case 2:
             return self.nearyBySource.count;
             break;
-        case 2:
+        case 3:
             return self.userPoiSource.count;
             break;
-        case 3:
+        case 4:
             return self.mixPoiSource.count;
             break;
     }
@@ -325,10 +330,12 @@
         case 0:
             return [HomeHeadView heightForHeadCell];
         case 1:
-            return [HRHerePoisSetCell heightForCell];
+            return [HRRecomendNotificationView heightForCell];
         case 2:
-            return [HRHerePoiCell heightForCell];
+            return [HRHerePoisSetCell heightForCell];
         case 3:
+            return [HRHerePoiCell heightForCell];
+        case 4:
         {
             id poiSoure = self.mixPoiSource[indexPath.row];
             if ([poiSoure isKindOfClass:[HRPOIInfo class]]) {
@@ -370,6 +377,10 @@
             break;
         case 1:
         {
+            return self.notificationCell;
+        }
+        case 2:
+        {
             //附近
             NSString * identify = @"NearByCell";
             HRHerePoisSetCell * cell = [tableView dequeueReusableCellWithIdentifier:identify];
@@ -383,7 +394,7 @@
         }
             break;
             
-        case 2:
+        case 3:
         {
             //我和朋友创建的七天以内的POI
             NSString * identify = NSStringFromClass([HRHerePoiCell class]);
@@ -405,7 +416,7 @@
         }
             break;
             
-        case 3:
+        case 4:
         {
             id poiSoure = self.mixPoiSource[indexPath.row];
             if ([poiSoure isKindOfClass:[HRPOIInfo class]]) {
@@ -481,17 +492,17 @@
     }
     NSIndexPath * indexPath = [self.tableView indexPathForCell:cell];
     KPoiSetsCreteType tpye = KPoiSetsCreteNearBy;
-    if (indexPath.section == 1) {
+    if (indexPath.section == 2) {
         //附近
         tpye = KPoiSetsCreteNearBy;
     }
     
-    if(indexPath.section == 2){
+    if(indexPath.section == 3){
         //我和朋友创建的七天以内的POI
         tpye = KPoiSetsCreteUser;
     }
     
-    if(indexPath.section == 3){
+    if(indexPath.section == 4){
         if ([cell.data.creator_id isEqualToString:@"0"]) {
             //编辑
             tpye = KPoiSetsCreteHere;
@@ -508,7 +519,7 @@
 {
     NSIndexPath * indexPath = [self.tableView indexPathForCell:cell];
     
-    if (indexPath.section == 1) {
+    if (indexPath.section == 2) {
         //附近没有用户头像
         return;
     }else{
@@ -527,7 +538,7 @@
 {
     NSIndexPath * indexPath = [self.tableView indexPathForCell:cell];
     
-    if (indexPath.section == 1) {
+    if (indexPath.section == 2) {
         //附近没有用户头像
         return;
     }else{

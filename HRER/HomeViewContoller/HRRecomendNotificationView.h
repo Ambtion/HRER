@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HRRecomendNotificationView : UIControl
+@interface HRRecomendNotificationView : UITableViewCell
+@property(nonatomic,strong)UIButton * action;
+
++ (CGFloat)heightForCell;
 
 @end
