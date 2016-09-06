@@ -11,8 +11,10 @@
 @interface HRUserHomeController : UIViewController
 
 
+
 - (instancetype)initWithUserID:(NSString *)userId;
 
 - (void)showLoginPage;
+
 
 @end

@@ -24,7 +24,7 @@
 
 + (CGFloat)heightForView
 {
-    CGFloat height = 20.f;
+    CGFloat height = 0.f;
     height += [HRUserHomeInfoCardView heightForView];
     height += [HRUserHomeCaterInfoView heigthForView];
     return height;
@@ -60,7 +60,7 @@
     
     [self.carView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.width.equalTo(self);
-        make.top.equalTo(self).offset(20.f);
+        make.top.equalTo(self);
         make.height.equalTo(@([HRUserHomeInfoCardView heightForView]));
     }];
     

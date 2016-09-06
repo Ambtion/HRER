@@ -14,6 +14,9 @@
 #import "HRSettingViewController.h"
 #import "LoginStateManager.h"
 #import "DHSmartScreenshot.h"
+#import "HcdActionSheet.h"
+#import "HRWebCatShare.h"
+#import "HRQQManager.h"
 
 @interface HRUserHomeController()<HRUserHomeListViewDelegate,HRUserHomeMapViewDelegate>
 
@@ -323,13 +326,79 @@
 
 -(void)userHomeMapViewDidClickRightButton:(HRUserHomeMapView *)mapView
 {
-    [self showTotasViewWithMes:@"分享功能暂未实现"];
+    [self shareHomePage];
 }
 
 -(void)shareHomePage
 {
-    UIImage * image = [self.listView.tableView screenshot];
     
+    NSUInteger map = [[self.view subviews] indexOfObject:self.mapView];
+    NSUInteger list = [[self.view subviews] indexOfObject:self.listView];
+    
+    UIImage * shareImage = nil;
+    if(map > list){
+        
+        CGRect croppingRect = self.mapView.frame;
+        
+        UIGraphicsBeginImageContextWithOptions(CGSizeMake(croppingRect.size.width, croppingRect.size.height - 20), NO, [UIScreen mainScreen].scale);
+        // Create a graphics context and translate it the view we want to crop so
+        // that even in grabbing (0,0), that origin point now represents the actual
+        // cropping origin desired:
+        CGContextRef context = UIGraphicsGetCurrentContext();
+        if (context == NULL) return ;
+        
+        CGContextTranslateCTM(context, -croppingRect.origin.x, -croppingRect.origin.y + 20);
+        
+        [self.mapView.layer renderInContext:context];
+        
+        shareImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+
+    
+    }else{
+        self.listView.isShareStatue = YES;
+        [self.listView.tableView reloadData];
+        shareImage = [self.listView.tableView screenshot];
+        self.listView.isShareStatue = NO;
+        [self.listView.tableView reloadData];
+    }
+    
+    
+    for (UIView * view in [UIApplication sharedApplication].keyWindow.subviews) {
+        if ([view isKindOfClass:[HcdActionSheet class]]) {
+            return;
+        }
+    }
+    
+    if (!shareImage) {
+        return;
+    }
+    HcdActionSheet *sheet = [[HcdActionSheet alloc] initWithCancelStr:@"取消"
+                                                    otherButtonTitles:@[@"微信好友",@"朋友圈",@"QQ好友"]
+                                                          attachTitle:nil];
+    
+    sheet.selectButtonAtIndex = ^(NSInteger index) {
+        if (index == 1) {
+            [HRWebCatShare sendWeixinWebContentTitle:@"" description:@"" thumbImage:nil image:shareImage webpageURL:nil scene:WXSceneSession withcallBack:^(BaseResp *resp) {
+                
+            }];
+        }
+        
+        if (index == 2) {
+            [HRWebCatShare sendWeixinWebContentTitle:@"" description:@"" thumbImage:nil image:shareImage webpageURL:nil scene:WXSceneTimeline withcallBack:^(BaseResp *resp) {
+                
+            }];
+        }
+        
+        if (index == 3) {
+            [[HRQQManager shareInstance] shareImageToQQWithThumbImage:nil orignalImage:shareImage title:@"" withDes:@"" WithCallBack:^(QQBaseResp *response) {
+                
+            }];
+        }
+    };
+    [[UIApplication sharedApplication].keyWindow addSubview:sheet];
+    [sheet showHcdActionSheet];
+
 }
 
 #pragma mark - Detail

@@ -29,6 +29,7 @@
 - (instancetype)initWithFrame:(CGRect)frame
 {
     if(self = [super initWithFrame:frame]){
+        self.isShareStatue = NO;
         [self initUI];
     }
     return self;
@@ -137,7 +138,7 @@
 {
     HRHomePoiInfo * poiInfo = self.dataSource[section];
     BOOL flag = [self.sectionFlag[section] boolValue];
-    return flag ? [self totalPoiInCity:poiInfo] : 0;
+    return (flag || self.isShareStatue) ? [self totalPoiInCity:poiInfo] : 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

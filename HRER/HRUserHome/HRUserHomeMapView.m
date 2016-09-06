@@ -28,6 +28,7 @@
 @property(nonatomic,strong)NSArray * dataArray;
 @property(nonatomic,strong)NSArray * anotionDataArray;
 
+@property(nonatomic,strong)UIView * renderView;
 @end
 
 @implementation HRUserHomeMapView
@@ -43,6 +44,7 @@
 
 - (void)initUI
 {
+//    self.renderView = [[UIView alloc] initWithFrame:CGRectMake(0, 20, self.width, self.height - 20)];
     [self addSubview:self.headView];
     [self initMapView];
 }

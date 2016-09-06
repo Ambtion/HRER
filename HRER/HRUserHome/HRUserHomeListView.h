@@ -28,6 +28,7 @@
 @property(nonatomic,strong)RefreshTableView * tableView;
 @property(nonatomic,weak)id<HRUserHomeListViewDelegate>delegate;
 @property(nonatomic,strong)NSArray * dataSource;
+@property(nonatomic,assign)BOOL isShareStatue;
 
 - (void)setHeadUserInfo:(HRUserHomeInfo *)homeInfo dataSource:(NSArray *)dataSource;
 

@@ -137,7 +137,7 @@
         [[LoginStateManager getInstance] userLoginInfo].user_id &&
         [[[LoginStateManager getInstance] userLoginInfo].user_id isEqualToString:dataSource.user_id]) {
         [self.shareButton setImage:[UIImage imageNamed:@"userhome_share"] forState:UIControlStateNormal];
-        [self.shareButton setImage:[UIImage imageNamed:@"userhome_share"] forState:UIControlStateSelected];
+        [self.shareButton setImage:[UIImage imageNamed:@"userhome_share"] forState:UIControlStateHighlighted];
 
     }else{
         [self.shareButton setImage:[UIImage imageNamed:@"userhome_follow_add"] forState:UIControlStateSelected];
