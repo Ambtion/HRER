@@ -191,16 +191,22 @@
     for (int i = 0; i < 4; i++) {
         
         PhotoFrameView * frameView = self.frameImageViews[i];
-        
+//        frameView.imageView.imageView.image = [UIImage imageNamed:@"man"];
+//        [(PortraitView * )frameView.imageView autoJustImageSize];
+
         if(i < data.photos.count){
             HRPotoInfo * info = data.photos[i];
             if ([info isKindOfClass:[HRPotoInfo class]]) {
                 [frameView setHidden:NO];
                 NSURL * url = [NSURL URLWithString:info.url.length ? info.url : @""];
-                [frameView.imageView.imageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"man"]];
+                [frameView.imageView.imageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"man"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+//                    [(PortraitView * )frameView.imageView autoJustImageSize];
+                }];
+                
             }else{
                 [frameView setHidden:YES];
             }
+        
         }else{
             [frameView setHidden:YES];
         }

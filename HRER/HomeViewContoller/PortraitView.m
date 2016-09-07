@@ -30,11 +30,9 @@
     if (self) {
         self.clipsToBounds = YES;
         self.porContentModel = KPortraitViewContentModelScaleToFill;
-        self.imageView = [[UIImageView alloc] initWithFrame:self.bounds];
-        self.imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight |
-        UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin |
-        UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+        self.imageView = [[UIImageView alloc] init];
         [self addSubview:_imageView];
+        self.imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         [self.imageView addObserver:self forKeyPath:@"image" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
         [self addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
     }
@@ -49,10 +47,9 @@
         self.clipsToBounds = YES;
         self.porContentModel = KPortraitViewContentModelScaleToFill;
         self.imageView = [[UIImageView alloc] initWithFrame:self.bounds];
-        self.imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight |
-        UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin |
-        UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+        self.imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         [self addSubview:_imageView];
+        
         [self.imageView addObserver:self forKeyPath:@"image" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
         [self addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
         
@@ -62,13 +59,19 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
+    [self autoJustImageSize];
+}
+
+- (void)autoJustImageSize
+{
     if (!self.imageView.image) return;
     CGSize size = [self getRectofProtrait:self.imageView.image];
     [CATransaction begin];
     [CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
     self.imageView.frame = CGRectMake(0, 0, size.width, size.height);
     self.imageView.center = CGPointMake(self.frame.size.width /2.f, self.frame.size.height /2.f);
-    [CATransaction commit];   
+    [CATransaction commit];
+
 }
 
 - (CGSize)getRectofProtrait:(UIImage *)image

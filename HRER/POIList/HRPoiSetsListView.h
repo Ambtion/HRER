@@ -31,8 +31,11 @@
               PoiSetCreteType:(KPoiSetsCreteType)creteType
                       creteId:(NSString *)userID
                       city_Id:(NSInteger)cityId
+                     cityName:(NSString *)cityName
+                     poiTitle:(NSString *)poiTitle
                 creteUserName:(NSString *)creteUserName
                      category:(NSInteger)categoryType;
+
 - (void)quaryData;
 
 @end

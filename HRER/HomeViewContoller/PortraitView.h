@@ -20,4 +20,6 @@ typedef NS_ENUM(NSInteger, KPortraitViewContentModel) {
 
 - (void)setBackgroundImage:(UIImage *)image;
 
+//- (void)autoJustImageSize;
+
 @end

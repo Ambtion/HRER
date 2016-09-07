@@ -49,9 +49,9 @@
 
 - (void)setData:(HRPOIInfo *)data
 {
-    if (_data == data) {
-        return;
-    }
+//    if (_data == data) {
+//        return;
+//    }
     _data = data;
     [[self cardView] setDataSource:data];
 }

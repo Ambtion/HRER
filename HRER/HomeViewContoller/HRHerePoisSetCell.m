@@ -51,9 +51,9 @@
 
 - (void)setData:(HRPOISetInfo *)data
 {
-    if(_data == data){
-        return;
-    }
+//    if(_data == data){
+//        return;
+//    }
     _data = data;
     [self.cardView setData:_data];
 }

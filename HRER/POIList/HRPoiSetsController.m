@@ -21,8 +21,10 @@
 @property(nonatomic,assign)NSInteger categoryType;
 @property(nonatomic,strong)NSString * userId;
 @property(nonatomic,assign)NSInteger cityId;
+@property(nonatomic,strong)NSString * cityName;
 @property(nonatomic,strong)NSString * userName;
 @property(nonatomic,assign)NSInteger poiNumber;
+@property(nonatomic,strong)NSString * poiTitle;
 @end
 
 @implementation HRPoiSetsController
@@ -31,9 +33,12 @@
 - (instancetype)initWithPoiSetCreteType:(KPoiSetsCreteType)creteType
                                 creteId:(NSString *)userID
                                 city_Id:(NSInteger)cityId
+                               cityName:(NSString *)cityName
                               poiNumber:(NSInteger)poiNumber
+                                poiName:(NSString *)poiTitle
                           creteUserName:(NSString *)creteUserName
                                category:(NSInteger)categoryType
+
 {
     self = [super init];
     if (self) {
@@ -42,7 +47,9 @@
         self.creteType = creteType;
         self.categoryType = categoryType;
         self.cityId = cityId;
+        self.cityName = cityName;
         self.poiNumber = poiNumber;
+        self.poiTitle = poiTitle;
     }
     return self;
 }
@@ -129,7 +136,7 @@
 #pragma mark - PoiListView
 - (void)initPoiListView
 {
-    self.poisetsListView = [[HRPoiSetsListView alloc] initWithFrame:self.view.bounds PoiSetCreteType:self.creteType creteId:self.userId city_Id:self.cityId creteUserName:self.userName category:self.categoryType];
+    self.poisetsListView = [[HRPoiSetsListView alloc] initWithFrame:self.view.bounds PoiSetCreteType:self.creteType creteId:self.userId city_Id:self.cityId cityName:self.cityName poiTitle:self.poiTitle creteUserName:self.userName category:self.categoryType];
     self.poisetsListView.poiListNumber = self.poiNumber;
     self.poisetsListView.delegate = self;
     [self.poisetsListView.tableView.refreshHeader beginRefreshing];

@@ -59,7 +59,7 @@
     [self addSubview:self.portraitImage];
     
     self.titleLabel = [[UILabel alloc] init];
-    self.titleLabel.font = [UIFont systemFontOfSize:15.f];
+    self.titleLabel.font = [UIFont boldSystemFontOfSize:15.f];
     self.titleLabel.textColor = RGB_Color(0x4c, 0x4c, 0x4c);
     self.titleLabel.textAlignment = NSTextAlignmentLeft;
     [self addSubview:self.titleLabel];
@@ -145,38 +145,48 @@
     [self.locIconView setHidden:YES];
 }
 
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    
+}
+
 - (void)setData:(HRPOISetInfo *)data
 {
     
     [self.portraitImage sd_setImageWithURL:[NSURL URLWithString:data.portrait] placeholderImage:[UIImage imageNamed:@"man"]];
-    NSString * str = [NSString stringWithFormat:@"%@ 推荐了 %@",data.creator_name,data.title];
-    NSMutableAttributedString * attr = [[NSMutableAttributedString alloc] initWithString:str];
     
-    NSRange titleNormal =  NSMakeRange(0, 0);
-    NSRange nameRang = NSMakeRange(0, 0);
-    if(data.creator_name)
-        nameRang  = [str rangeOfString:data.creator_name];
-    if (data.title)
-        titleNormal = [str rangeOfString:data.title];
-    
-    [attr addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:15] range:titleNormal];
-    [attr addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:15] range:nameRang];
-
-    [self.titleLabel setAttributedText:attr];
-
-    [self.titleLabel setAttributedText:attr];
-    self.titleLabel.text = data.title;
+    if(data.creator_name.length){
+        NSString * str = [NSString stringWithFormat:@"%@ 推荐了 %@",data.creator_name,data.title];
+        NSMutableAttributedString * attr = [[NSMutableAttributedString alloc] initWithString:str];
+        
+        NSRange titleNormal =  NSMakeRange(0, 0);
+        NSRange nameRang = NSMakeRange(0, 0);
+        if(data.creator_name)
+            nameRang  = [str rangeOfString:data.creator_name];
+        if (data.title)
+            titleNormal = [str rangeOfString:data.title];
+        
+        [attr addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:15] range:titleNormal];
+        [attr addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:15] range:nameRang];
+        
+        [self.titleLabel setAttributedText:attr];
+    }else{
+        self.titleLabel.text = data.title;
+    }
     
     for (int i = 0; i < 4; i++) {
         
         PhotoFrameView * frameView = self.frameImageViews[i];
-        
         if(i < data.photos.count){
             HRPotoInfo * info = data.photos[i];
+            
             if ([info isKindOfClass:[HRPotoInfo class]]) {
                 [frameView setHidden:NO];
                 NSURL * url = [NSURL URLWithString:info.url.length ? info.url : @""];
-                [frameView.imageView.imageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"man"]];
+                
+                [frameView.imageView.imageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"man"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                }];
             }else{
                 [frameView setHidden:YES];
             }

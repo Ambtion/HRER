@@ -15,10 +15,11 @@
 
 @property(nonatomic,assign)KPoiSetsCreteType creteType;
 @property(nonatomic,assign)NSInteger cityId;
+@property(nonatomic,strong)NSString * cityName;
 @property(nonatomic,assign)NSInteger categoryType;
 @property(nonatomic,strong)NSString * userId;
 @property(nonatomic,strong)NSString * userName;
-
+@property(nonatomic,strong)NSString * poiTitle;
 @end
 
 @implementation HRPoiSetsListView
@@ -27,6 +28,8 @@
               PoiSetCreteType:(KPoiSetsCreteType)creteType
                       creteId:(NSString *)userID
                       city_Id:(NSInteger)cityId
+                     cityName:(NSString *)cityName
+                     poiTitle:(NSString *)poiTitle
                 creteUserName:(NSString *)creteUserName
                      category:(NSInteger)categoryType
 {
@@ -36,6 +39,8 @@
         self.creteType = creteType;
         self.categoryType = categoryType;
         self.cityId = cityId;
+        self.poiTitle = poiTitle;
+        self.cityName = cityName;
         [self initUI];
     }
     return self;
@@ -191,7 +196,15 @@
         cell = [[HRHerePoiCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identify];
         cell.delegate = self;
     }
-    [cell setData:self.dataSource[indexPath.row]];
+    
+    HRPOIInfo * poiInfo = self.dataSource[indexPath.row];
+    [cell setData:poiInfo];
+    if (poiInfo.city_id != [[HRLocationManager sharedInstance] curCityId]) {
+        [cell setLocaitonStr:poiInfo.city_name];
+    }else{
+        [cell setData:poiInfo];
+    }
+
     return cell;
 }
 
@@ -218,19 +231,22 @@
     switch (self.creteType) {
         case KPoiSetsCreteNearBy: {
             str =  @"附近";
+            if (catergory.length) {
+                str = [str stringByAppendingFormat:@" %@",catergory];
+            }
             break;
         }
         case KPoiSetsCreteUser: {
-            str = [NSString stringWithFormat:@"%@",self.userName];
+            str = self.poiTitle;
             break;
         }
         case KPoiSetsCreteHere: {
-            str = @"这里";
+            str = self.cityName;
+            if (catergory.length) {
+                str = [str stringByAppendingFormat:@" %@",catergory];
+            }
             break;
         }
-    }
-    if (catergory.length) {
-        str = [str stringByAppendingFormat:@" %@",catergory];
     }
     return str;
 }
