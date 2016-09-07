@@ -345,6 +345,8 @@
             
         }];
 
+    }else{
+        [self favFriendWithUid:cell.dataModel.uid favStatu:tofavState];
     }
     
 }
