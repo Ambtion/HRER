@@ -52,7 +52,6 @@
 - (void)dealloc
 {
     [self removeObserver:self forKeyPath:@"frame"];
-    
 }
 
 - (instancetype)init
@@ -69,25 +68,6 @@
     }
     return self;
 }
-
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        
-        self.clipsToBounds = YES;
-        self.porContentModel = KPortraitViewContentModelScaleToFill;
-        self.imageView = [[UIImageView alloc] initWithFrame:self.bounds];
-        self.imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        [self addSubview:_imageView];
-        
-        [self.imageView addObserver:self forKeyPath:@"image" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
-        [self addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
-        
-    }
-    return self;
-}
-
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     [self autoJustImageSize];

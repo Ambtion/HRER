@@ -322,7 +322,8 @@
 - (UIView *)carousel:(iCarousel *)carousel viewForItemAtIndex:(NSInteger)index reusingView:(nullable UIView *)view
 {
     if (!view || ![view isKindOfClass:[PortraitView class]]) {
-        view = [[PortraitView alloc] initWithFrame:carousel.bounds];
+        view = [[PortraitView alloc] init];
+        view.frame = carousel.bounds;
     }
     if (self.photosArray.count) {
         [[(PortraitView *)view imageView] setImage:self.photosArray[index]];
