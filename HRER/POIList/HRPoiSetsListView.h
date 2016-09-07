@@ -25,6 +25,7 @@
 @property(nonatomic,strong)RefreshTableView * tableView;
 @property(nonatomic,strong)NSArray * dataSource;
 @property(nonatomic,strong)UILabel * titelLabel;
+@property(nonatomic,assign)NSInteger poiListNumber;
 
 - (instancetype)initWithFrame:(CGRect)frame
               PoiSetCreteType:(KPoiSetsCreteType)creteType

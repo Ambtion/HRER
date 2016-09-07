@@ -183,6 +183,7 @@
  */
 + (void)quaryPoiSetDetailListWithCreteType:(KPoiSetsCreteType)cretetype
                                     cityId:(NSInteger)cityId
+                                   poi_num:(NSInteger)poiNumber
                                 catergory:(NSInteger)catergory
                                creteUserId:(NSString *)userId
                                    success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success

@@ -82,6 +82,7 @@
 @property(nonatomic,strong)NSArray * photos; ///< Array<HRImageInfo>
 
 @property(nonatomic,assign)NSInteger poi_type;
+@property(nonatomic,assign)NSInteger poi_num;
 @end
 
 

@@ -63,7 +63,7 @@
 {
     [super viewWillAppear:animated];
     self.view.clipsToBounds = YES;
-    [BMGuideMaskView showMaskViewWithKey:NSStringFromClass([self class]) containerView:self.view image:[UIImage imageNamed:@"home_guide"] imageViewRect:self.view.bounds];
+//    [BMGuideMaskView showMaskViewWithKey:NSStringFromClass([self class]) containerView:self.view image:[UIImage imageNamed:@"home_guide"] imageViewRect:self.view.bounds];
 }
 
 - (void)initUI
@@ -511,7 +511,7 @@
         }
     }
     
-    HRPoiSetsController * poiSetController = [[HRPoiSetsController alloc] initWithPoiSetCreteType:tpye creteId:cell.data.creator_id city_Id:cell.data.city_id creteUserName:cell.data.creator_name category:self.catergoryIndex + 1];
+    HRPoiSetsController * poiSetController = [[HRPoiSetsController alloc] initWithPoiSetCreteType:tpye creteId:cell.data.creator_id city_Id:cell.data.city_id poiNumber:cell.data.poi_num creteUserName:cell.data.creator_name  category:self.catergoryIndex + 1];
     [self.myNavController pushViewController:poiSetController animated:YES];
 }
 

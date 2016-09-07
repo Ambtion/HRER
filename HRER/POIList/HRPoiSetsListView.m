@@ -69,7 +69,12 @@
         [ws netErrorWithTableView:ws.tableView];
     };
     
-    [NetWorkEntity quaryPoiSetDetailListWithCreteType:ws.creteType cityId:ws.cityId catergory:ws.categoryType creteUserId:ws.userId success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [NetWorkEntity quaryPoiSetDetailListWithCreteType:ws.creteType
+                                               cityId:ws.cityId
+                                              poi_num:self.poiListNumber
+                                            catergory:ws.categoryType
+                                          creteUserId:ws.userId
+                                              success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
             NSArray * poiList = [responseObject objectForKey:@"response"];

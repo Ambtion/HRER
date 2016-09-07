@@ -389,6 +389,7 @@ static CallBack upSucess;
 
 + (void)quaryPoiSetDetailListWithCreteType:(KPoiSetsCreteType)cretetype
                                     cityId:(NSInteger)cityId
+                                   poi_num:(NSInteger)poiNumber
                                  catergory:(NSInteger)catergory
                                creteUserId:(NSString *)userId
                                    success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
@@ -400,7 +401,7 @@ static CallBack upSucess;
     [dic setValue:userId forKey:@"userid"];
     [dic setValue:@(cityId) forKey:@"city_id"];
     [dic setValue:@(catergory) forKey:@"type"];
-
+    [dic setValue:@(poiNumber) forKey:@"poi_num"];
     NSString * urlStr = @"";
     switch (cretetype) {
         case KPoiSetsCreteHere:

@@ -14,6 +14,7 @@
 - (instancetype)initWithPoiSetCreteType:(KPoiSetsCreteType)creteType
                                 creteId:(NSString *)userID
                                 city_Id:(NSInteger)cityId
+                              poiNumber:(NSInteger)poiNumber
                           creteUserName:(NSString *)creteUserName
                                category:(NSInteger)categoryType;
 
