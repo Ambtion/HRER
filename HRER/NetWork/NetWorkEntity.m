@@ -598,7 +598,7 @@ static CallBack upSucess;
     if (content.length) {
         [dic setValue:content forKey:@"content"];
     }
-    NSString *  urlStr= [NSString stringWithFormat:@"%@/poi_comment",KNETBASEURL];
+    NSString *  urlStr= [NSString stringWithFormat:@"%@/poi_comment_add",KNETBASEURL];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager POST:urlStr parameters:dic success:success failure:failure];
 
