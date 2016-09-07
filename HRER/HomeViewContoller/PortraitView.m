@@ -8,7 +8,39 @@
 
 #import "PortraitView.h"
 
-@interface PortraitView()
+@protocol KVOUIImageViewDelegate <NSObject>
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context;
+@end
+
+@interface KVOUIImageView : UIImageView
+@property(nonatomic,weak)id<KVOUIImageViewDelegate> kvoDelegate;
+@end
+
+@implementation  KVOUIImageView
+-(void)dealloc
+{
+    [self removeObserver:self forKeyPath:@"image"];
+}
+-(instancetype)init
+{
+    self = [super init];
+    if (self) {
+        [self addObserver:self forKeyPath:@"image" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
+
+    }
+    return self;
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if ([_kvoDelegate respondsToSelector:@selector(observeValueForKeyPath:ofObject:change:context:)]) {
+        [_kvoDelegate observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+    }
+}
+
+@end
+
+@interface PortraitView()<KVOUIImageViewDelegate>
 {
     UIImageView * _bgView;
 }
@@ -19,7 +51,6 @@
 
 - (void)dealloc
 {
-    [self.imageView removeObserver:self forKeyPath:@"image"];
     [self removeObserver:self forKeyPath:@"frame"];
     
 }
@@ -30,10 +61,10 @@
     if (self) {
         self.clipsToBounds = YES;
         self.porContentModel = KPortraitViewContentModelScaleToFill;
-        self.imageView = [[UIImageView alloc] init];
+        self.imageView = [[KVOUIImageView alloc] init];
+        [(KVOUIImageView *)self.imageView setKvoDelegate:self];
         [self addSubview:_imageView];
         self.imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        [self.imageView addObserver:self forKeyPath:@"image" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
         [self addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
     }
     return self;
