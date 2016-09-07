@@ -359,10 +359,16 @@
     return [UIImage imageNamed:@"man"];
 }
 
+- (void)touchesCancelled:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
+}
+
 #pragma mark - Action
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
     HRCretePOIInfo * creteInfo = self.dataArray[indexPath.row];
     [HRUPloadImageView showInView:[self.myNavController view] withPoiTitle:creteInfo.title cityId:self.cityId address:creteInfo.subTitle loc:creteInfo.location categoryType:self.categortIndex + 1 callBack:^(BOOL isSucesss) {
     }];
@@ -370,10 +376,16 @@
 
 - (void)onRignthButtonDidClick:(UIButton *)button
 {
+    [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
     FindCityViewController * controller = [[FindCityViewController alloc] init];
     controller.delegate = self;
     [self.myNavController pushViewController:controller animated:YES];
     
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
 }
 
 - (void)findCityViewControllerDidCurCity

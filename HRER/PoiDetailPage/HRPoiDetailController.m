@@ -599,7 +599,7 @@ static CGFloat const MaxToolbarHeight = 200.0f;
 
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 
-    [NetWorkEntity recomendPoiWithPoiId:self.poiInfo.poi_id cmtToRec:recId content:self.textView.text success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [NetWorkEntity recomendPoiWithPoiId:self.poiInfo.poi_id cmtToRec:recId content:[self.textView.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         [MBProgressHUD hideHUDForView:ws.view animated:YES];
         if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {

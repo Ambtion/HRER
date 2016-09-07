@@ -564,13 +564,13 @@
 - (void)uploadButtonDidClick:(UIButton *)button
 {
     
-    if([EmojiUnit stringContainsEmoji:self.titleLabel.text]){
-        return [self showTotasViewWithMes:@"标题不支持表情"];
-    }
-    
-    if([EmojiUnit stringContainsEmoji:self.textDesView.text]){
-        return [self showTotasViewWithMes:@"描述不支持表情"];
-    }
+//    if([EmojiUnit stringContainsEmoji:self.titleLabel.text]){
+//        return [self showTotasViewWithMes:@"标题不支持表情"];
+//    }
+//    
+//    if([EmojiUnit stringContainsEmoji:self.textDesView.text]){
+//        return [self showTotasViewWithMes:@"描述不支持表情"];
+//    }
     
     NSArray * imageArray = self.photosArray;
     if (!imageArray.count) {
@@ -582,8 +582,8 @@
 
     NSArray * locArray = [self.location componentsSeparatedByString:@","];
     WS(ws);
-    [NetWorkEntity uploadPoiWithTitle:self.titleLabel.text
-                                  des:self.textDesView.text
+    [NetWorkEntity uploadPoiWithTitle:[self.titleLabel.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]
+                                  des:[self.textDesView.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]
                                  type:self.poiType
                                 price:[self.priceTextField.text integerValue]
                                locDes:self.addressLabel.text

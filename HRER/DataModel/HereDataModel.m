@@ -25,17 +25,42 @@ YYModelSynthCoderAndHash
 @implementation HRUserLoginInfo
 
 YYModelSynthCoderAndHash
+- (NSString *)name
+{
+    if (_name) {
+        return [_name stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    }
+    return @"";
+}
 
 @end
 
 @implementation HRUserHomeInfo
 
 YYModelSynthCoderAndHash
+
+
+- (NSString *)name
+{
+    if (_name) {
+        return [_name stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    }
+    return @"";
+}
+
 @end
 
 @implementation HRFriendsInfo
 
 YYModelSynthCoderAndHash
+
+- (NSString *)name
+{
+    if (_name) {
+        return [_name stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    }
+    return @"";
+}
 
 @end
 
@@ -47,6 +72,24 @@ YYModelSynthCoderAndHash
     return @{@"photos" : [HRPotoInfo class]};
 }
 
+
+- (NSString *)creator_name
+{
+    if (_creator_name) {
+        return [_creator_name stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    }
+    return @"";
+
+}
+
+- (NSString *)title
+{
+    if (_title) {
+        return [_title stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    }
+    return @"";
+
+}
 @end
 
 @implementation HRCatergoryInfo
@@ -61,6 +104,22 @@ YYModelSynthCoderAndHash
 
 + (NSDictionary *)modelContainerPropertyGenericClass {
     return @{@"photos" : [HRPotoInfo class]};
+}
+
+- (NSString *)title
+{
+    if (_title) {
+        return [_title stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    }
+    return @"";
+}
+
+- (NSString *)intro
+{
+    if (_intro) {
+        return [_intro stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    }
+    return @"";
 }
 
 @end
@@ -98,6 +157,35 @@ YYModelSynthCoderAndHash
 
 YYModelSynthCoderAndHash;
 
+- (NSString *)content
+{
+    if (_content.length) {
+        return [_content stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    }
+    return @"";
+}
+
+
+
+- (NSString *)user_name
+{
+    if (_user_name) {
+        return [_user_name stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    }
+    return @"";
+    
+}
+
+
+- (NSString *)reply_name
+{
+    if (_reply_name) {
+        return [_reply_name stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    }
+    return @"";
+    
+}
+
 @end
 
 @implementation HRHomePoiInfo
@@ -123,5 +211,24 @@ YYModelSynthCoderAndHash;
 @implementation HRRecomendDetail
 
 YYModelSynthCoderAndHash;
+
+- (NSString *)user_name
+{
+    if (_user_name) {
+        return [_user_name stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    }
+    return @"";
+    
+}
+
+- (NSString *)content
+{
+    if (_content) {
+        return [_content stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    }
+    return @"";
+    
+}
+
 
 @end
