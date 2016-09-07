@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PortraitView.h"
 
 @interface PhotoFrameView : UIView
-@property(nonatomic,strong)UIImageView * imageView;
+@property(nonatomic,strong)PortraitView * imageView;
 @property(nonatomic,strong)UIImageView * bgImageView;
 @end

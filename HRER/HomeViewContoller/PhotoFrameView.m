@@ -29,7 +29,7 @@
         make.edges.equalTo(self);
     }];
     
-    self.imageView = [[UIImageView alloc] init];
+    self.imageView = [[PortraitView alloc] init];
     [self addSubview:self.imageView];
     [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self);

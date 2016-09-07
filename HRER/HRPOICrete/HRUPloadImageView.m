@@ -14,6 +14,7 @@
 #import "LGPhotoPickerCommon.h"
 #import "LGPhotoAssets.h"
 #import "ZLCameraViewController.h"
+#import "PortraitView.h"
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
@@ -319,14 +320,14 @@
 }
 - (UIView *)carousel:(iCarousel *)carousel viewForItemAtIndex:(NSInteger)index reusingView:(nullable UIView *)view
 {
-    if (!view || ![view isKindOfClass:[UIImageView class]]) {
-        view = [[UIImageView alloc] initWithFrame:carousel.bounds];
+    if (!view || ![view isKindOfClass:[PortraitView class]]) {
+        view = [[PortraitView alloc] initWithFrame:carousel.bounds];
     }
     if (self.photosArray.count) {
-        [(UIImageView *)view setImage:self.photosArray[index]];
+        [[(PortraitView *)view imageView] setImage:self.photosArray[index]];
     }else{
         UIImage * image = [self defoultImageForType:self.poiType];
-        [(UIImageView *)view setImage:image];
+        [[(PortraitView *)view imageView] setImage:image];
     }
     return view;
 }

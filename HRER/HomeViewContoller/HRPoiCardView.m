@@ -197,7 +197,7 @@
             if ([info isKindOfClass:[HRPotoInfo class]]) {
                 [frameView setHidden:NO];
                 NSURL * url = [NSURL URLWithString:info.url.length ? info.url : @""];
-                [frameView.imageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"man"]];
+                [frameView.imageView.imageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"man"]];
             }else{
                 [frameView setHidden:YES];
             }
