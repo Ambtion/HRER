@@ -126,6 +126,7 @@
 		E14BD4CA1CEF0AC900C66E14 /* Localization.strings in Resources */ = {isa = PBXBuildFile; fileRef = E14BD4CC1CEF0AC900C66E14 /* Localization.strings */; };
 		E14BD4F01CF2CAD200C66E14 /* HRAnomation.m in Sources */ = {isa = PBXBuildFile; fileRef = E14BD4EF1CF2CAD200C66E14 /* HRAnomation.m */; };
 		E14BD4F51CF2D76700C66E14 /* HRPinAnnomationView.m in Sources */ = {isa = PBXBuildFile; fileRef = E14BD4F41CF2D76700C66E14 /* HRPinAnnomationView.m */; };
+		E168F4D91D7FC68D00A8F52C /* EmojiUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = E168F4D81D7FC68D00A8F52C /* EmojiUnit.m */; };
 		E17D49FD1D780C8C00956F31 /* broswerPic0.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E17D49E91D780C8C00956F31 /* broswerPic0.jpg */; };
 		E17D49FE1D780C8C00956F31 /* broswerPic1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E17D49EA1D780C8C00956F31 /* broswerPic1.jpg */; };
 		E17D49FF1D780C8C00956F31 /* broswerPic2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E17D49EB1D780C8C00956F31 /* broswerPic2.jpg */; };
@@ -436,6 +437,8 @@
 		E14BD4EF1CF2CAD200C66E14 /* HRAnomation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HRAnomation.m; path = ../HEMapView/HRAnomation.m; sourceTree = "<group>"; };
 		E14BD4F31CF2D76700C66E14 /* HRPinAnnomationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HRPinAnnomationView.h; path = ../HEMapView/HRPinAnnomationView.h; sourceTree = "<group>"; };
 		E14BD4F41CF2D76700C66E14 /* HRPinAnnomationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HRPinAnnomationView.m; path = ../HEMapView/HRPinAnnomationView.m; sourceTree = "<group>"; };
+		E168F4D71D7FC68D00A8F52C /* EmojiUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmojiUnit.h; sourceTree = "<group>"; };
+		E168F4D81D7FC68D00A8F52C /* EmojiUnit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmojiUnit.m; sourceTree = "<group>"; };
 		E17D49E91D780C8C00956F31 /* broswerPic0.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = broswerPic0.jpg; sourceTree = "<group>"; };
 		E17D49EA1D780C8C00956F31 /* broswerPic1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = broswerPic1.jpg; sourceTree = "<group>"; };
 		E17D49EB1D780C8C00956F31 /* broswerPic2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = broswerPic2.jpg; sourceTree = "<group>"; };
@@ -1132,6 +1135,7 @@
 		E14BD48F1CEEF53F00C66E14 /* HRER */ = {
 			isa = PBXGroup;
 			children = (
+				E168F4D61D7FC68300A8F52C /* EmojiUnit */,
 				E1C9261D1D7D5C170003AE54 /* DHSmartScreenshot */,
 				B86CA9ED1D770513005349D5 /* DzyImgPicker */,
 				B89BCD491D75D1C800777373 /* TabBarHot */,
@@ -1189,6 +1193,15 @@
 				E14BD4C41CEEFC0700C66E14 /* HRLocationManager.m */,
 			);
 			path = HEMapView;
+			sourceTree = "<group>";
+		};
+		E168F4D61D7FC68300A8F52C /* EmojiUnit */ = {
+			isa = PBXGroup;
+			children = (
+				E168F4D71D7FC68D00A8F52C /* EmojiUnit.h */,
+				E168F4D81D7FC68D00A8F52C /* EmojiUnit.m */,
+			);
+			path = EmojiUnit;
 			sourceTree = "<group>";
 		};
 		E17D49E81D780C8C00956F31 /* Images */ = {
@@ -1653,6 +1666,7 @@
 				B845AC8B1D2D3C6900D26A2A /* HRInPutView.m in Sources */,
 				E198B9F11D3DD2D500BC8237 /* HRUserHomeCaterInfoView.m in Sources */,
 				E1C303921CF442C4001C016B /* HRWeCatManager.m in Sources */,
+				E168F4D91D7FC68D00A8F52C /* EmojiUnit.m in Sources */,
 				B8F75D131D4F88D600004AB2 /* HcdActionSheet.m in Sources */,
 				B85629411D3BBBF200E5BD4C /* HRUserHomeController.m in Sources */,
 				B8DF933B1CFB2BF1007C4DF9 /* LoginStateManager.m in Sources */,

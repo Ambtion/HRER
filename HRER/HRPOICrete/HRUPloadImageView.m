@@ -15,6 +15,7 @@
 #import "LGPhotoAssets.h"
 #import "ZLCameraViewController.h"
 #import "PortraitView.h"
+#import "EmojiUnit.h"
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
@@ -563,6 +564,14 @@
 - (void)uploadButtonDidClick:(UIButton *)button
 {
     
+    if([EmojiUnit stringContainsEmoji:self.titleLabel.text]){
+        return [self showTotasViewWithMes:@"标题不支持表情"];
+    }
+    
+    if([EmojiUnit stringContainsEmoji:self.textDesView.text]){
+        return [self showTotasViewWithMes:@"描述不支持表情"];
+    }
+    
     NSArray * imageArray = self.photosArray;
     if (!imageArray.count) {
         UIImage * deoult = [self defoultImageForType:self.poiType];
@@ -577,7 +586,8 @@
                                   des:self.textDesView.text
                                  type:self.poiType
                                 price:[self.priceTextField.text integerValue]
-                               locDes:self.addressLabel.text cityID:self.cityId
+                               locDes:self.addressLabel.text
+                               cityID:self.cityId
                                   lat:[[locArray lastObject] floatValue]
                                   loc:[[locArray firstObject] floatValue]
                                images:imageArray  success:^(AFHTTPRequestOperation *operation, id responseObject) {

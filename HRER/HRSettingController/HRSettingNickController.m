@@ -8,6 +8,7 @@
 
 #import "HRSettingNickController.h"
 #import "HRInPutView.h"
+#import "EmojiUnit.h"
 
 @interface HRSettingNickController()
 
@@ -123,6 +124,10 @@
         return;
     }
     
+    if([EmojiUnit stringContainsEmoji:self.nickText.textField.text]){
+        return [self showTotasViewWithMes:@"昵称不支持表情"];
+    }
+        
     WS(ws);
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
