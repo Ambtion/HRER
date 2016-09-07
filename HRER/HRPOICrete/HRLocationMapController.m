@@ -153,27 +153,27 @@
     CLGeocoder *geocoder = [[CLGeocoder alloc] init];
     [geocoder reverseGeocodeLocation:self.pinLocation completionHandler:^(NSArray *array, NSError *error) {
         
-       __block  NSString * cityName = @"";
+//       __block  NSString * cityName = @"";
        __block NSString * placeName = @"";
         
         if (array.count > 0) {
             CLPlacemark * placeMark = [array objectAtIndex:0];
-            cityName = placeMark.locality;
+//            cityName = placeMark.locality;
             placeName = placeMark.name;
             if (placeName.length) {
                 self.addressInputView.textField.text = placeName;
             }
             
-            if (cityName.length) {
-                [NetWorkEntity  quaryCityInfoWithCityName:cityName  lat:self.pinLocation.coordinate.latitude lng:self.pinLocation.coordinate.longitude success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                    if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
-                        NSDictionary * userInfoDic  = [responseObject objectForKey:@"response"];
-                        self.cityId = [[userInfoDic objectForKey:@"city_id"] integerValue];
-                    }
-                } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                    
-                }];
-            }
+//            if (cityName.length) {
+//                [NetWorkEntity  quaryCityInfoWithCityName:ws.cityName  lat:self.pinLocation.coordinate.latitude lng:self.pinLocation.coordinate.longitude success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//                    if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
+//                        NSDictionary * userInfoDic  = [responseObject objectForKey:@"response"];
+//                        self.cityId = [[userInfoDic objectForKey:@"city_id"] integerValue];
+//                    }
+//                } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//                    
+//                }];
+//            }
             
         }else{
             [NetWorkEntity geoLocationWithLag:ws.pinLocation.coordinate.latitude lng:ws.pinLocation.coordinate.longitude success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -251,7 +251,7 @@
     }
     
     [self.titleInputView.textField resignFirstResponder];
-    [HRUPloadImageView showInView:[self.myNavController view] withPoiTitle:self.titleInputView.textField.text cityId:self.cityId address:self.addressInputView.textField.text loc:[NSString stringWithFormat:@"%f,%f",self.pinLocation.coordinate.latitude,self.pinLocation.coordinate.longitude] categoryType:[self.categoryView seletedIndex] + 1 callBack:^(BOOL isSucesss) {
+    [HRUPloadImageView showInView:[self.myNavController view] withPoiTitle:self.titleInputView.textField.text cityId:self.cityId address:self.addressInputView.textField.text loc:[NSString stringWithFormat:@"%f,%f",self.pinLocation.coordinate.longitude,self.pinLocation.coordinate.latitude] categoryType:[self.categoryView seletedIndex] + 1 callBack:^(BOOL isSucesss) {
         
     }];
 

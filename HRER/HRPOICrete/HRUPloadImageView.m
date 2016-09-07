@@ -585,6 +585,11 @@
                                        
                                        [ws showTotasViewWithMes:@"上传成功"];
                                        [ws jumpToHomePageWithQuary:YES];
+                                       UITabBarController * tabBar = (UITabBarController *)[[[[UIApplication sharedApplication] delegate] window] rootViewController];
+                                       UINavigationController * nav = [[tabBar viewControllers] objectAtIndex:2];
+                                       [nav popToRootViewControllerAnimated:NO];
+                                       
+                                       [[NSNotificationCenter defaultCenter] postNotificationName:@"HomeNeedRefresh" object:nil];
                                        [ws disAppear];
                                        
                                    }else{

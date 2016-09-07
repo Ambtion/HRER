@@ -44,6 +44,8 @@
         self.userId = userId;
         self.caterIndex = -1;
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginSucess:) name:LOGIN_IN object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginSucess:) name:@"HomeNeedRefresh" object:nil];
+
     }
     
     return self;
