@@ -15,6 +15,7 @@
 #import "HRWebCatShare.h"
 #import "HRQQManager.h"
 #import "HRUserHomeController.h"
+#import "LoginStateManager.h"
 
 @interface FriendsViewController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,BMOldFriendCellDelegate>
 
@@ -391,13 +392,17 @@
 
 - (void)shareToQQ
 {
-    [[HRQQManager shareInstance] shareNewsWithImage:[UIImage imageNamed:@"add"] title:@"这里" Des:@"这里不错" link:@"http://www.baidu.com" WithCallBack:^(QQBaseResp *response) {
+    NSString * userId = [[LoginStateManager getInstance] userLoginInfo].user_id;
+    NSString * url = [NSString stringWithFormat:@"http://58.135.93.4:8089/sharePage?id=%@",userId];
+    [[HRQQManager shareInstance] shareNewsWithImage:[UIImage imageNamed:@"add"] title:@"这里" Des:@"这里不错" link:url WithCallBack:^(QQBaseResp *response) {
     }];
 }
 
 - (void)shareToWeb
 {
-    [HRWebCatShare sendWeixinWebContentTitle:@"这里" description:@"这里不错"  thumbImage:[UIImage imageNamed:@"add"] webpageURL:@"http://www.baidu.com" scene:WXSceneSession withcallBack:^(BaseResp *resp) {
+    NSString * userId = [[LoginStateManager getInstance] userLoginInfo].user_id;
+    NSString * url = [NSString stringWithFormat:@"http://58.135.93.4:8089/sharePage?id=%@",userId];
+    [HRWebCatShare sendWeixinWebContentTitle:@"这里" description:@"这里不错"  thumbImage:[UIImage imageNamed:@"add"] webpageURL:url scene:WXSceneSession withcallBack:^(BaseResp *resp) {
         
     }];
 }
