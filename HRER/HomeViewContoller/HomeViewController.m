@@ -511,7 +511,7 @@
         }
     }
     
-    HRPoiSetsController * poiSetController = [[HRPoiSetsController alloc] initWithPoiSetCreteType:tpye creteId:cell.data.creator_id city_Id:cell.data.city_id cityName:cell.data.city_name poiNumber:cell.data.poi_num poiName:cell.data.title creteUserName:cell.data.creator_name  category:self.catergoryIndex + 1];
+    HRPoiSetsController * poiSetController = [[HRPoiSetsController alloc] initWithPoiSetCreteType:tpye creteId:cell.data.creator_id city_Id:cell.data.city_id cityName:cell.data.city_name poiNumber:cell.data.poi_num poiName:cell.data.title creteUserName:cell.data.creator_name  category:cell.data.type];
     [self.myNavController pushViewController:poiSetController animated:YES];
 
 }
