@@ -9,6 +9,10 @@
 #import "HRRecomendNotificationView.h"
 
 
+@interface HRRecomendNotificationView()
+@property(nonatomic,strong)UIImageView * bgImageView;
+
+@end
 @implementation HRRecomendNotificationView
 
 + (CGFloat)heightForCell
@@ -27,6 +31,16 @@
 
 - (void)initUI
 {
+    
+    self.contentView.backgroundColor = UIColorFromRGB(0xebebeb);
+
+    self.bgImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"comment"]];
+    [self.contentView addSubview:self.bgImageView];
+    [self.bgImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.width.equalTo(self);
+        make.centerY.equalTo(self);
+    }];
+
     self.action = [[UIButton alloc] init];
     [self.contentView addSubview:self.action];
     [self.action mas_makeConstraints:^(MASConstraintMaker *make) {

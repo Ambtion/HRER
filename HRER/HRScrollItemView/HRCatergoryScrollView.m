@@ -48,8 +48,8 @@
     UIImage * hotel = [UIImage imageNamed:@"hotel"];
     UIImage * hotels = [UIImage imageNamed:@"hotel_select"];
     
-    UIImage * goWhere = [UIImage imageNamed:@"food"];
-    UIImage * goWheres = [UIImage imageNamed:@"food_select"];
+    UIImage * goWhere = [UIImage imageNamed:@"go"];
+    UIImage * goWheres = [UIImage imageNamed:@"go_seleted"];
     
     
     NSArray * nImages = @[

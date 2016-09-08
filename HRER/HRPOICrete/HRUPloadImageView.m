@@ -29,6 +29,8 @@
 @property(nonatomic,strong)UIImageView * bgImageView;
 
 @property(nonatomic,strong)iCarousel * icarousel;
+@property(nonatomic,strong)UIImageView * icBackView;
+
 @property(nonatomic,strong)UIButton * cancelButton;
 @property(nonatomic,strong)UIButton * uploadImageButton;
 
@@ -130,14 +132,19 @@
     self.contentView.image = [[UIImage imageNamed:@"card_ba"] resizableImageWithCapInsets:UIEdgeInsetsMake(20, 20, 20, 20)];
     
     
+    
+    self.icBackView = [[UIImageView alloc] init];
+    self.icBackView.frame = CGRectMake(12, 15, self.contentView.width - 24, 150.f);
+    self.icBackView.image = [UIImage imageNamed:@"photo_bg"];
+    [self.contentView addSubview:self.icBackView];
+    
     self.icarousel = [[iCarousel alloc] initWithFrame:CGRectMake(12, 15, self.contentView.width - 24 - 20, 150.f)];
     self.icarousel.type = iCarouselTypeInvertedTimeMachine;
     self.icarousel.delegate = self;
     self.icarousel.pagingEnabled = YES;
     self.icarousel.dataSource = self;
     self.icarousel.bounces = NO;
-//    self.icarousel.layer.borderColor = [RGB_Color(0xe5, 0xe5, 0xe5) CGColor];
-//    self.icarousel.layer.borderWidth = 0.5;
+    self.icarousel.backgroundColor = [UIColor clearColor];
     [self.icarousel reloadData];
     [self.contentView addSubview:self.icarousel];
     
@@ -317,6 +324,7 @@
 #pragma mark - Images
 - (NSInteger)numberOfItemsInCarousel:(iCarousel *)carousel
 {
+    [self.icarousel setHidden:self.photosArray.count];
     return self.photosArray.count ? self.photosArray.count : 1;
 }
 - (UIView *)carousel:(iCarousel *)carousel viewForItemAtIndex:(NSInteger)index reusingView:(nullable UIView *)view

@@ -14,6 +14,7 @@
 
 @property(nonatomic,strong)HRCatergoryScrollView * catergoryView;
 @property(nonatomic,strong)UIImageView * iconImageView;
+@property(nonatomic,strong)UIImageView * subBgView;
 
 @end
 
@@ -35,6 +36,11 @@
 
 - (void)initUI
 {
+    
+    self.subBgView = [[UIImageView alloc] init];
+    self.subBgView.image = [UIImage imageNamed:@"poi_sub_bg"];
+    [self.contentView addSubview:self.subBgView];
+    
     self.bgImageView = [[UIImageView alloc] init];
     [self.contentView addSubview:self.bgImageView];
     
@@ -72,6 +78,8 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
+    
+    self.subBgView.frame = self.bounds;
     self.bgImageView.frame = self.bounds;
     
     

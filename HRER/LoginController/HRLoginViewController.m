@@ -150,8 +150,8 @@
     
     //QQ登陆
     UIButton * qqLogin = [UIButton buttonWithType:UIButtonTypeCustom];
-    [qqLogin setImage:[UIImage imageNamed:@"WeChat"] forState:UIControlStateNormal];
-    [qqLogin setImage:[UIImage imageNamed:@"WeChat_click"] forState:UIControlStateHighlighted];
+    [qqLogin setImage:[UIImage imageNamed:@"QQ"] forState:UIControlStateNormal];
+    [qqLogin setImage:[UIImage imageNamed:@"QQ_click"] forState:UIControlStateHighlighted];
     [qqLogin addTarget:self action:@selector(qqLogin:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:qqLogin];
 
