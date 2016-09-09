@@ -12,7 +12,6 @@
 
 @interface HRUserHomeHeadView()<HRUserHomeInfoCardViewDelegate,HRUserHomeCaterInfoViewDelegate>
 
-
 @property(nonatomic,strong)UIImageView * bgImageView;
 
 @property(nonatomic,strong)HRUserHomeInfoCardView * carView;
@@ -24,6 +23,8 @@
 
 + (CGFloat)heightForView
 {
+    return 523.f;
+    
     CGFloat height = 0.f;
     height += [HRUserHomeInfoCardView heightForView];
     height += [HRUserHomeCaterInfoView heigthForView];
@@ -34,6 +35,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        [self setUserInteractionEnabled:YES];
         [self initUI];
     }
     return self;
@@ -41,32 +43,36 @@
 
 - (void)initUI
 {
+    
+    self.image = [UIImage imageNamed:@"home_bg.jpg"];
+    
     self.bgImageView = [[UIImageView alloc] init];
     self.bgImageView.image = [UIImage imageNamed:@"image_bg"];
     [self addSubview:self.bgImageView];
+    
+    
+    [self.bgImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self).offset(15.f);
+        make.left.equalTo(self).offset(10.f);
+        make.right.equalTo(self).offset(-10.f);
+    }];
     
     self.carView = [[HRUserHomeInfoCardView alloc] init];
     self.carView.delegate = self;
     [self addSubview:self.carView];
     
-    self.caterInfoView = [[HRUserHomeCaterInfoView alloc] init];
-    self.caterInfoView.delegate = self;
-    [self addSubview:self.caterInfoView];
-    
-    [self.bgImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.bottom.equalTo(self);
-        make.left.right.equalTo(self);
-    }];
-    
     [self.carView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.width.equalTo(self);
-        make.top.equalTo(self);
+        make.left.width.equalTo(self.bgImageView);
+        make.top.equalTo(self.bgImageView).offset(30.f);
         make.height.equalTo(@([HRUserHomeInfoCardView heightForView]));
     }];
     
+    self.caterInfoView = [[HRUserHomeCaterInfoView alloc] init];
+    self.caterInfoView.delegate = self;
+    [self addSubview:self.caterInfoView];
     [self.caterInfoView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.width.equalTo(self);
-        make.bottom.equalTo(self);
+        make.top.equalTo(self.carView.mas_bottom);
         make.height.equalTo(@([HRUserHomeCaterInfoView heigthForView]));
     }];
     

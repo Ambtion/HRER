@@ -63,7 +63,7 @@
 {
     [super viewWillAppear:animated];
     self.view.clipsToBounds = YES;
-//    [BMGuideMaskView showMaskViewWithKey:NSStringFromClass([self class]) containerView:self.view image:[UIImage imageNamed:@"home_guide"] imageViewRect:self.view.bounds];
+    [self refreshComment];
 }
 
 - (void)initUI
@@ -215,6 +215,12 @@
         self.nearyBySource = nil;
     }
     
+    [self refreshComment];
+    
+}
+
+- (void)refreshComment
+{
     [NetWorkEntity hasRecomentSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
             NSDictionary * dic = [responseObject objectForKey:@"response"];
@@ -233,6 +239,7 @@
         self.hasRecomend = NO;
         [self.tableView reloadData];
     }];
+
 }
 
 - (NSArray *)analysisPoiSetsModelFromArray:(NSArray *)array

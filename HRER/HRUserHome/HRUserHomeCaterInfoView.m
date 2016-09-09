@@ -30,30 +30,32 @@
 - (void)initUI
 {
     self.valueLabel = [[UILabel alloc] init];
-    self.valueLabel.font = [UIFont boldSystemFontOfSize:21.f];
+    self.valueLabel.font = [UIFont boldSystemFontOfSize:15.f];
     self.valueLabel.textAlignment = NSTextAlignmentCenter;
     self.valueLabel.textColor = [UIColor whiteColor];
     [self addSubview:self.valueLabel];
     
     self.titleLabel = [[UILabel alloc] init];
-    self.titleLabel.font = [UIFont systemFontOfSize:14.f];
+    self.titleLabel.font = [UIFont systemFontOfSize:11.f];
     self.titleLabel.textColor = RGB_Color(0xcc, 0xcc, 0xcc);
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
     [self addSubview:self.titleLabel];
     
-    [self.valueLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self);
-        make.left.equalTo(self);
-        make.width.equalTo(self);
-        make.height.equalTo(@(16.f));
-    }];
-    
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self);
         make.width.equalTo(self);
-        make.height.equalTo(@(12.f));
-        make.bottom.equalTo(self);
+        make.height.equalTo(@(11.f));
+        make.top.equalTo(self);
     }];
+    
+    [self.valueLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self);
+        make.left.equalTo(self);
+        make.width.equalTo(self);
+        make.height.equalTo(@(15.f));
+    }];
+    
+ 
     
 //    self.titleLabel.backgroundColor = [UIColor greenColor];
 //    self.valueLabel.backgroundColor = [UIColor greenColor];
@@ -67,15 +69,14 @@
         self.titleLabel.textColor = RGB_Color(0xd7, 0x47, 0x2a);
         self.valueLabel.textColor = RGB_Color(0xd7, 0x47, 0x2a);
     }else{
-        self.titleLabel.textColor = RGB_Color(0xcc, 0xcc, 0xcc);
-        self.valueLabel.textColor = RGB_Color(0xcc, 0xcc, 0xcc);
+        self.titleLabel.textColor = RGB_Color(0xdb, 0x4d, 0x30);
+        self.valueLabel.textColor = RGB_Color(0x4e, 0x4e, 0x4e);
     }
 }
 
 @end
 
 @interface HRUserHomeCaterInfoView()
-@property(nonatomic,strong)UIImageView * cityImageBgView;
 
 @property(nonatomic,strong)HRUserHomeInfoCardView * cardView;
 @property(nonatomic,strong)HRCategoryItemView * cityItemView;
@@ -89,7 +90,7 @@
 
 + (CGFloat)heigthForView
 {
-    CGFloat heigth = 50.f;
+    CGFloat heigth = 35.f;
     return heigth;
 }
 
@@ -104,15 +105,6 @@
 
 - (void)initUI
 {
-    self.cityImageBgView = [[UIImageView alloc] init];
-    self.cityImageBgView.image = [UIImage imageNamed:@"userHome_city"];
-    [self addSubview:self.cityImageBgView];
-    
-    [self.cityImageBgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self).offset(16.f);
-        make.top.equalTo(self);
-        make.size.mas_equalTo(CGSizeMake(38, 46.f));
-    }];
     
     self.cityItemView = [[HRCategoryItemView alloc] init];
     self.cityItemView.titleLabel.text = @"城市";
@@ -120,9 +112,9 @@
     [self addSubview:self.cityItemView];
     
     [self.cityItemView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.cityImageBgView).offset(5);
-        make.width.left.equalTo(self.cityImageBgView);
-        make.height.equalTo(@(32));
+        make.top.equalTo(self);
+        make.width.left.equalTo(self);
+        make.height.equalTo(@([HRUserHomeCaterInfoView heigthForView]));
     }];
     
     self.switchButton = [UIButton buttonWithType:UIButtonTypeCustom];

@@ -1,5 +1,5 @@
 //
-//  PortraitImageView.h
+//  PortraitView.h
 //  POIDemonConroller
 //
 //  Created by quke on 14-4-22.

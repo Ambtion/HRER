@@ -111,6 +111,7 @@
 		E10DF78C1CF6DB6F00D5E146 /* btn_card@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E10DF7891CF6DB6F00D5E146 /* btn_card@2x.png */; };
 		E11876A91D3F29B900A23429 /* HRCreteLocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = E11876A81D3F29B900A23429 /* HRCreteLocationController.m */; };
 		E11876AC1D3F29C800A23429 /* HRLocationMapController.m in Sources */ = {isa = PBXBuildFile; fileRef = E11876AB1D3F29C800A23429 /* HRLocationMapController.m */; };
+		E11EE8611D82B2F0009A3984 /* home_bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E11EE8601D82B2F0009A3984 /* home_bg.jpg */; };
 		E126BCB21D75484700BBF434 /* BMGuideMaskView.m in Sources */ = {isa = PBXBuildFile; fileRef = E126BCB11D75484700BBF434 /* BMGuideMaskView.m */; };
 		E133FD771D1283F400503D83 /* HRPoidSetsCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = E133FD761D1283F400503D83 /* HRPoidSetsCardView.m */; };
 		E133FD7A1D12854900503D83 /* HRPoiCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = E133FD791D12854900503D83 /* HRPoiCardView.m */; };
@@ -409,6 +410,7 @@
 		E11876A81D3F29B900A23429 /* HRCreteLocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRCreteLocationController.m; sourceTree = "<group>"; };
 		E11876AA1D3F29C800A23429 /* HRLocationMapController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRLocationMapController.h; sourceTree = "<group>"; };
 		E11876AB1D3F29C800A23429 /* HRLocationMapController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRLocationMapController.m; sourceTree = "<group>"; };
+		E11EE8601D82B2F0009A3984 /* home_bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = home_bg.jpg; sourceTree = "<group>"; };
 		E126BCB01D75484700BBF434 /* BMGuideMaskView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMGuideMaskView.h; sourceTree = "<group>"; };
 		E126BCB11D75484700BBF434 /* BMGuideMaskView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMGuideMaskView.m; sourceTree = "<group>"; };
 		E133FD751D1283F400503D83 /* HRPoidSetsCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRPoidSetsCardView.h; sourceTree = "<group>"; };
@@ -1111,6 +1113,7 @@
 			isa = PBXGroup;
 			children = (
 				B8954EB21CFC8877006A706A /* serviceitem.png */,
+				E11EE8601D82B2F0009A3984 /* home_bg.jpg */,
 				E14BD4C61CEF073100C66E14 /* Default-568h@2x.png */,
 				E10DF7891CF6DB6F00D5E146 /* btn_card@2x.png */,
 				E14BD4931CEEF53F00C66E14 /* AppDelegate.h */,
@@ -1508,6 +1511,7 @@
 				E17D4A0F1D780C8C00956F31 /* xiang.png in Resources */,
 				E17D49FE1D780C8C00956F31 /* broswerPic1.jpg in Resources */,
 				B8954EB31CFC8877006A706A /* serviceitem.png in Resources */,
+				E11EE8611D82B2F0009A3984 /* home_bg.jpg in Resources */,
 				E14BD4CA1CEF0AC900C66E14 /* Localization.strings in Resources */,
 				E14BD4C71CEF073100C66E14 /* Default-568h@2x.png in Resources */,
 				B8DF93321CFB2AB1007C4DF9 /* xiaoyuanquan-cur@2x.png in Resources */,

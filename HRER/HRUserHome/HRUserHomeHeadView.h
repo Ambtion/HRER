@@ -19,7 +19,7 @@
 
 @end
 
-@interface HRUserHomeHeadView : UIView
+@interface HRUserHomeHeadView : UIImageView
 
 @property(nonatomic,strong)HRUserHomeInfo * dataSource;
 @property(nonatomic,weak)id<HRUserHomeHeadViewDelegate>delegate;
