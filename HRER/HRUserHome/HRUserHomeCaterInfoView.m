@@ -69,8 +69,8 @@
         self.titleLabel.textColor = RGB_Color(0xd7, 0x47, 0x2a);
         self.valueLabel.textColor = RGB_Color(0xd7, 0x47, 0x2a);
     }else{
-        self.titleLabel.textColor = RGB_Color(0xdb, 0x4d, 0x30);
-        self.valueLabel.textColor = RGB_Color(0x4e, 0x4e, 0x4e);
+        self.titleLabel.textColor = UIColorFromRGB(0xdb4d30);
+        self.valueLabel.textColor = UIColorFromRGB(0x4c4c4c);
     }
 }
 
@@ -90,7 +90,7 @@
 
 + (CGFloat)heigthForView
 {
-    CGFloat heigth = 35.f;
+    CGFloat heigth = 34.f;
     return heigth;
 }
 
@@ -109,25 +109,16 @@
     self.cityItemView = [[HRCategoryItemView alloc] init];
     self.cityItemView.titleLabel.text = @"城市";
     self.cityItemView.valueLabel.text = @"0";
+    [self.cityItemView setSeleted:NO];
     [self addSubview:self.cityItemView];
     
-    [self.cityItemView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self);
-        make.width.left.equalTo(self);
-        make.height.equalTo(@([HRUserHomeCaterInfoView heigthForView]));
-    }];
     
     self.switchButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.switchButton setImage:[UIImage imageNamed:@"user_home_switch_change"] forState:UIControlStateNormal];
     [self.switchButton addTarget:self action:@selector(switchButtonDidClick:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:self.switchButton];
     
-    [self.switchButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self).offset(-10.f);
-        make.centerY.equalTo(self);
-        make.size.mas_equalTo(CGSizeMake(25, 30.f));
-    }];
-        
+    
     NSArray * array = @[
                         @"美食",
                         @"观光",
@@ -135,12 +126,27 @@
                         @"酒店"
                         ];
     
-    CGFloat totalWidth = [[UIScreen mainScreen] bounds].size.width - 16 - 38 - 25 - 10;
+    CGFloat totalWidth = [[UIScreen mainScreen] bounds].size.width - 36 * 2 - 25.f;
     CGFloat itemWidth =  30.f;
     CGFloat itemHeight = 34.f;
-    CGFloat xSpacing = (totalWidth - itemWidth * 4 ) /  5.f;
+    CGFloat xSpacing = (totalWidth - itemWidth * 5 ) /  6.f;
     
-    UIView  * lastView = self.cityImageBgView;
+    
+    [self.cityItemView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self);
+        make.left.equalTo(self).offset(26.f);
+        make.width.equalTo(@(itemWidth));
+        make.height.equalTo(@([HRUserHomeCaterInfoView heigthForView]));
+    }];
+    
+    [self.switchButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self).offset(-20.f);
+        make.centerY.equalTo(self);
+        make.size.mas_equalTo(CGSizeMake(25, 30.f));
+    }];
+
+    
+    UIView  * lastView = self.cityItemView;
     
     NSMutableArray * mArray = [NSMutableArray arrayWithCapacity:0];
     for (int i = 0; i < array.count; i++) {

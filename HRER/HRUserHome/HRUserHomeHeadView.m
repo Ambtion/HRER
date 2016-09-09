@@ -70,9 +70,10 @@
     self.caterInfoView = [[HRUserHomeCaterInfoView alloc] init];
     self.caterInfoView.delegate = self;
     [self addSubview:self.caterInfoView];
+    
     [self.caterInfoView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.width.equalTo(self);
-        make.top.equalTo(self.carView.mas_bottom);
+        make.left.width.equalTo(self.bgImageView);
+        make.top.equalTo(self.carView.mas_bottom).offset(10);
         make.height.equalTo(@([HRUserHomeCaterInfoView heigthForView]));
     }];
     

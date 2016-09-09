@@ -286,7 +286,7 @@
 
 - (void)userHomeHeadViewDidCancelSeletedButton:(HRUserHomeHeadView *)headView
 {
-    if ([_delegate respondsToSelector:@selector(userHomeHeadViewDidCancelSeletedButton:)]) {
+    if ([_delegate respondsToSelector:@selector(userHomeListViewDidCalcelSeleted:)]) {
         [_delegate userHomeListViewDidCalcelSeleted:self];
     }
 }
