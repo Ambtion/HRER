@@ -204,7 +204,10 @@
     }else{
         [cell setData:poiInfo];
     }
-
+    
+    if (self.creteType == KPoiSetsCreteNearBy) {
+        [cell setData:poiInfo];
+    }
     return cell;
 }
 
