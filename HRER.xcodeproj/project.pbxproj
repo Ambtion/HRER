@@ -112,6 +112,9 @@
 		E11876A91D3F29B900A23429 /* HRCreteLocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = E11876A81D3F29B900A23429 /* HRCreteLocationController.m */; };
 		E11876AC1D3F29C800A23429 /* HRLocationMapController.m in Sources */ = {isa = PBXBuildFile; fileRef = E11876AB1D3F29C800A23429 /* HRLocationMapController.m */; };
 		E11EE8611D82B2F0009A3984 /* home_bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E11EE8601D82B2F0009A3984 /* home_bg.jpg */; };
+		E11EE88F1D82D4CB009A3984 /* HRUserHomeMapInfoCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = E11EE8891D82D4CB009A3984 /* HRUserHomeMapInfoCardView.m */; };
+		E11EE8901D82D4CB009A3984 /* HRUserHomeMapCaterInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = E11EE88B1D82D4CB009A3984 /* HRUserHomeMapCaterInfoView.m */; };
+		E11EE8911D82D4CB009A3984 /* HRUserHomeMapHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = E11EE88D1D82D4CB009A3984 /* HRUserHomeMapHeadView.m */; };
 		E126BCB21D75484700BBF434 /* BMGuideMaskView.m in Sources */ = {isa = PBXBuildFile; fileRef = E126BCB11D75484700BBF434 /* BMGuideMaskView.m */; };
 		E133FD771D1283F400503D83 /* HRPoidSetsCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = E133FD761D1283F400503D83 /* HRPoidSetsCardView.m */; };
 		E133FD7A1D12854900503D83 /* HRPoiCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = E133FD791D12854900503D83 /* HRPoiCardView.m */; };
@@ -411,6 +414,12 @@
 		E11876AA1D3F29C800A23429 /* HRLocationMapController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRLocationMapController.h; sourceTree = "<group>"; };
 		E11876AB1D3F29C800A23429 /* HRLocationMapController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRLocationMapController.m; sourceTree = "<group>"; };
 		E11EE8601D82B2F0009A3984 /* home_bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = home_bg.jpg; sourceTree = "<group>"; };
+		E11EE8891D82D4CB009A3984 /* HRUserHomeMapInfoCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRUserHomeMapInfoCardView.m; sourceTree = "<group>"; };
+		E11EE88A1D82D4CB009A3984 /* HRUserHomeMapCaterInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRUserHomeMapCaterInfoView.h; sourceTree = "<group>"; };
+		E11EE88B1D82D4CB009A3984 /* HRUserHomeMapCaterInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRUserHomeMapCaterInfoView.m; sourceTree = "<group>"; };
+		E11EE88C1D82D4CB009A3984 /* HRUserHomeMapHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRUserHomeMapHeadView.h; sourceTree = "<group>"; };
+		E11EE88D1D82D4CB009A3984 /* HRUserHomeMapHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRUserHomeMapHeadView.m; sourceTree = "<group>"; };
+		E11EE88E1D82D4CB009A3984 /* HRUserHomeMapInfoCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRUserHomeMapInfoCardView.h; sourceTree = "<group>"; };
 		E126BCB01D75484700BBF434 /* BMGuideMaskView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMGuideMaskView.h; sourceTree = "<group>"; };
 		E126BCB11D75484700BBF434 /* BMGuideMaskView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMGuideMaskView.m; sourceTree = "<group>"; };
 		E133FD751D1283F400503D83 /* HRPoidSetsCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRPoidSetsCardView.h; sourceTree = "<group>"; };
@@ -669,6 +678,12 @@
 				E198B9ED1D3DCB6200BC8237 /* HRUserHomeInfoCardView.m */,
 				E198B9EF1D3DD2D500BC8237 /* HRUserHomeCaterInfoView.h */,
 				E198B9F01D3DD2D500BC8237 /* HRUserHomeCaterInfoView.m */,
+				E11EE88C1D82D4CB009A3984 /* HRUserHomeMapHeadView.h */,
+				E11EE88D1D82D4CB009A3984 /* HRUserHomeMapHeadView.m */,
+				E11EE88E1D82D4CB009A3984 /* HRUserHomeMapInfoCardView.h */,
+				E11EE8891D82D4CB009A3984 /* HRUserHomeMapInfoCardView.m */,
+				E11EE88A1D82D4CB009A3984 /* HRUserHomeMapCaterInfoView.h */,
+				E11EE88B1D82D4CB009A3984 /* HRUserHomeMapCaterInfoView.m */,
 			);
 			name = HRUserHomeController;
 			path = HRUserHome;
@@ -1682,10 +1697,12 @@
 				B87AE39E1D4A4FC100FF83BA /* HRHotCityCell.m in Sources */,
 				B86CAA2F1D770513005349D5 /* LGPhotoAssets.m in Sources */,
 				B89663F11CF32F7700B2A6CA /* UIViewController+Method.m in Sources */,
+				E11EE88F1D82D4CB009A3984 /* HRUserHomeMapInfoCardView.m in Sources */,
 				B86CAA3C1D770513005349D5 /* ZLCameraImageView.m in Sources */,
 				B816B1131D36731500318662 /* HRPhotoScrollView.m in Sources */,
 				B8AC37C41D40FD7C00D99BF8 /* HRUPloadImageView.m in Sources */,
 				B896640E1CF32FD100B2A6CA /* UIView+Sizes.m in Sources */,
+				E11EE8901D82D4CB009A3984 /* HRUserHomeMapCaterInfoView.m in Sources */,
 				B87AE39B1D4A3D6E00FF83BA /* HRLocationCurCityCell.m in Sources */,
 				B86CAA271D770513005349D5 /* LGPhotoPickerBrowserPhoto.m in Sources */,
 				B805E1F41D0DAE970011E2F7 /* HRHerePoisSetCell.m in Sources */,
@@ -1694,6 +1711,7 @@
 				E10DF7741CF6C1A400D5E146 /* HRNavigationTool.m in Sources */,
 				B8CDA76A1D37C7E900136AF7 /* HRRecomendCell.m in Sources */,
 				E1C303C01CF596BF001C016B /* HRWebCatShare.m in Sources */,
+				E11EE8911D82D4CB009A3984 /* HRUserHomeMapHeadView.m in Sources */,
 				B89380841D117ED7005A24FB /* HRPoiSetsListView.m in Sources */,
 				B86CAA2A1D770513005349D5 /* LGImagePickerSelectView.m in Sources */,
 				B85520101D098F2C00C56FC5 /* HomeHeadView.m in Sources */,

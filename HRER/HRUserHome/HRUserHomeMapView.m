@@ -14,16 +14,16 @@
 #import "HRPoiCardView.h"
 #import "HRAnomation.h"
 #import "HereDataModel.h"
-#import "HRUserHomeHeadView.h"
+#import "HRUserHomeMapHeadView.h"
 
 #define kHRMapMAOLEVEL        (0.1f)
 
 
-@interface HRUserHomeMapView()<MKMapViewDelegate,UIScrollViewDelegate,HRUserHomeHeadViewDelegate>
+@interface HRUserHomeMapView()<MKMapViewDelegate,UIScrollViewDelegate,HRUserHomeMapHeadViewDelegate>
 
 @property(nonatomic,strong)MKMapView * mapView;
 
-@property(nonatomic,strong)HRUserHomeHeadView * headView;
+@property(nonatomic,strong)HRUserHomeMapHeadView * headView;
 
 @property(nonatomic,strong)NSArray * dataArray;
 @property(nonatomic,strong)NSArray * anotionDataArray;
@@ -193,10 +193,10 @@
 }
 
 #pragma mark HEADView
-- (HRUserHomeHeadView *)headView
+- (HRUserHomeMapHeadView *)headView
 {
     if (!_headView) {
-        _headView = [[HRUserHomeHeadView alloc] initWithFrame:CGRectMake(0, 0, self.width, [HRUserHomeHeadView heightForView])];
+        _headView = [[HRUserHomeMapHeadView alloc] initWithFrame:CGRectMake(0, 0, self.width, [HRUserHomeMapHeadView heightForView])];
         _headView.delegate = self;
         [_headView setDataSource:nil];
     }
@@ -220,35 +220,35 @@
 }
 
 
-- (void)userHomeHeadView:(HRUserHomeHeadView *)headView DidClickCateAtIndex:(NSInteger)index
+- (void)userHomeHeadView:(HRUserHomeMapHeadView *)headView DidClickCateAtIndex:(NSInteger)index
 {
     if ([_delegate respondsToSelector:@selector(userHomeMapView:DidCategoryAtIndex:)]) {
         [_delegate userHomeMapView:self DidCategoryAtIndex:index];
     }
 }
 
-- (void)userHomeHeadViewDidCancelSeletedButton:(HRUserHomeHeadView *)headView
+- (void)userHomeHeadViewDidCancelSeletedButton:(HRUserHomeMapHeadView *)headView
 {
     if ([_delegate respondsToSelector:@selector(userHomeMapViewDidCancelSeletedButton:)]) {
         [_delegate userHomeMapViewDidCancelSeletedButton:self];
     }
 }
 
-- (void)userHomeHeadViewDidClickSwitchButton:(HRUserHomeHeadView *)headView
+- (void)userHomeHeadViewDidClickSwitchButton:(HRUserHomeMapHeadView *)headView
 {
     if ([_delegate respondsToSelector:@selector(userHomeMapViewDidClickSwitchButton:)]) {
         [_delegate userHomeMapViewDidClickSwitchButton:self];
     }
 }
 
-- (void)userHomeHeadView:(HRUserHomeHeadView *)headView DidClickRightButton:(UIButton *)button
+- (void)userHomeHeadView:(HRUserHomeMapHeadView *)headView DidClickRightButton:(UIButton *)button
 {
     if ([_delegate respondsToSelector:@selector(userHomeMapViewDidClickRightButton:)]) {
         [_delegate userHomeMapViewDidClickRightButton:self];
     }
 }
 
-- (void)userHomeHeadViewDidClickDetail:(HRUserHomeHeadView *)headView
+- (void)userHomeHeadViewDidClickDetail:(HRUserHomeMapHeadView *)headView
 {
     if ([_delegate respondsToSelector:@selector(userHomeMapViewDidClickDetailButton:)]) {
         [_delegate userHomeMapViewDidClickDetailButton:self];
