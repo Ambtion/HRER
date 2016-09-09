@@ -132,6 +132,7 @@
         make.left.equalTo(self.iconImageView.mas_right).offset(8.f);
         make.top.equalTo(self.iconImageView);
         make.right.lessThanOrEqualTo(self.caterBgView.mas_left).offset(-10);
+        make.width.priorityLow();
     }];
 
     [self.subTitle mas_makeConstraints:^(MASConstraintMaker *make) {

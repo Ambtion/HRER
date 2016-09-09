@@ -104,6 +104,9 @@
 
 - (void)initUI
 {
+    
+    self.backgroundColor = [UIColor whiteColor];
+    
     self.cityImageBgView = [[UIImageView alloc] init];
     self.cityImageBgView.image = [UIImage imageNamed:@"userHome_city"];
     [self addSubview:self.cityImageBgView];
