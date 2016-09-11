@@ -34,6 +34,7 @@
 @property(nonatomic,strong)NSArray * userPoiSource;
 @property(nonatomic,strong)NSArray * mixPoiSource;
 
+@property(nonatomic,strong)UIImageView * barView;
 @end
 
 @implementation CityHomeViewController
@@ -41,14 +42,13 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-//    [self.myNavController setNavigationBarHidden:YES];
-    
+    [self.myNavController setNavigationBarHidden:YES];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-//    [self.myNavController setNavigationBarHidden:NO];
+    [self.myNavController setNavigationBarHidden:NO];
 }
 
 - (instancetype)initWithCityId:(NSInteger )cityId cityName:(NSString *)cityName city_enName:(NSString *)en_name
@@ -86,14 +86,42 @@
 {
     UIView * view  = [UIView new];
     [self.view addSubview:view];
+    [self initNavBar];
     
-    self.tableView = [[RefreshTableView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height) style:UITableViewStylePlain];
+    self.tableView = [[RefreshTableView alloc] initWithFrame:CGRectMake(0, 64, self.view.width, self.view.height - 64) style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.view addSubview:self.tableView];
     [self initRefreshView];
 }
 
+
+- (void)initNavBar
+{
+    
+    self.barView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 64)];
+    [self.barView setUserInteractionEnabled:YES];
+    self.barView.image = [UIImage imageNamed:@"nav_bg"];
+    [self.view addSubview:self.barView];
+    
+    UILabel *titelLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, self.view.width, 44)];
+    titelLabel.textAlignment = NSTextAlignmentCenter;
+    titelLabel.textColor = [UIColor whiteColor];
+    titelLabel.text = self.cityName;
+    [self.barView addSubview:titelLabel];
+    
+    UIButton * backButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 26, 33, 33)];
+    [backButton setImage:[UIImage imageNamed:@"list_back"] forState:UIControlStateNormal];
+    [backButton addTarget:self action:@selector(buttonDidClick:) forControlEvents:UIControlEventTouchUpInside];
+    backButton.tag = 0;
+    [self.barView addSubview:backButton];
+    
+}
+
+- (void)buttonDidClick:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 - (void)initRefreshView
 {
     self.tableView.refreshFooter.scrollView = nil;
@@ -430,7 +458,31 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    [self.myNavController setNavigationBarHidden:scrollView.contentOffset.y > 0 animated:NO];
+    CGPoint vPoint = [scrollView.panGestureRecognizer velocityInView:scrollView];
+    if(!scrollView.isDragging) return;
+    if (vPoint.y < - 100) {
+        [self hidenNav];
+    }
+    if (vPoint.y > 100) {
+        [self showNav];
+
+    }
+}
+
+- (void)hidenNav
+{
+    [UIView animateWithDuration:0.3 animations:^{
+        self.barView.top = -64;
+        self.tableView.frame = CGRectMake(0, 0, self.view.width, self.view.height);
+    }];
+}
+
+- (void)showNav
+{
+    [UIView animateWithDuration:0.3 animations:^{
+        self.barView.top = 0;
+        self.tableView.frame = CGRectMake(0, 64, self.view.width, self.view.height - 64);
+    }];
 }
 
 #pragma mark - Action

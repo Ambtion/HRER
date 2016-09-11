@@ -234,13 +234,13 @@
     switch (self.creteType) {
         case KPoiSetsCreteNearBy: {
             str =  @"附近";
-            if (catergory.length) {
-                str = [str stringByAppendingFormat:@" %@",catergory];
-            }
             break;
         }
         case KPoiSetsCreteUser: {
-            str = self.poiTitle;
+            str = [NSString stringWithFormat:@"%@ %@",self.userName,self.cityName];
+            if (catergory.length) {
+                str = [str stringByAppendingFormat:@" %@",catergory];
+            }
             break;
         }
         case KPoiSetsCreteHere: {
