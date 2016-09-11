@@ -444,7 +444,6 @@
     controller.cityName = self.cityName;
     controller.cityId = self.cityId;
     [self.myNavController pushViewController:controller animated:YES];
-//    [controller initMapShow];
 
 }
 
