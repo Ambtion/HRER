@@ -358,11 +358,27 @@
 
     
     }else{
-        self.listView.isShareStatue = YES;
-        [self.listView.tableView reloadData];
-        shareImage = [self.listView.tableView screenshot];
-        self.listView.isShareStatue = NO;
-        [self.listView.tableView reloadData];
+//        self.listView.isShareStatue = YES;
+//        [self.listView.tableView reloadData];
+//        shareImage = [self.listView.tableView screenshot];
+//        self.listView.isShareStatue = NO;
+//        [self.listView.tableView reloadData];
+        
+        CGRect croppingRect = self.listView.tableView.tableHeaderView.frame;
+        
+        UIGraphicsBeginImageContextWithOptions(CGSizeMake(croppingRect.size.width, croppingRect.size.height), NO, [UIScreen mainScreen].scale);
+        // Create a graphics context and translate it the view we want to crop so
+        // that even in grabbing (0,0), that origin point now represents the actual
+        // cropping origin desired:
+        CGContextRef context = UIGraphicsGetCurrentContext();
+        if (context == NULL) return ;
+        
+        CGContextTranslateCTM(context, -croppingRect.origin.x, -croppingRect.origin.y);
+        
+        [self.listView.tableView.tableHeaderView.layer renderInContext:context];
+        
+        shareImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
     }
     
     

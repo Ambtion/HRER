@@ -22,6 +22,9 @@
 @property(nonatomic,strong)HRUserHomeHeadView * headView;
 
 @property(nonatomic,strong)NSMutableArray * sectionFlag;
+
+@property(nonatomic,strong)UIButton * navRightButton;
+
 @end
 
 @implementation HRUserHomeListView
@@ -39,14 +42,54 @@
 - (void)initUI
 {
     self.backgroundColor = [UIColor whiteColor];
+    [self initNavBar];
     [self initTableView];
     [self initRefreshView];
+}
+
+- (void)initNavBar
+{
+    
+    UIImageView * barView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.width, 64)];
+    [barView setUserInteractionEnabled:YES];
+    barView.image = [UIImage imageNamed:@"nav_bg"];
+    [self addSubview:barView];
+    
+    UILabel * titelLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, self.width, 44)];
+    titelLabel.textAlignment = NSTextAlignmentCenter;
+    titelLabel.textColor = [UIColor whiteColor];
+    titelLabel.text = @"个人信息";
+    [barView addSubview:titelLabel];
+    
+    self.navRightButton = [[UIButton alloc] initWithFrame:CGRectMake(self.width - 17 - 33, 26, 33, 33)];
+    [self.navRightButton addTarget:self action:@selector(rightButtonDidClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:self.navRightButton];
+}
+
+- (void)rightButtonDidClick:(UIButton *)button
+{
+    [self userHomeHeadView:nil DidClickRightButton:nil];
+}
+
+- (void)refreshNavRightButtonWithHomeInfo:(HRUserHomeInfo *)dataSource
+{
+    if ([[LoginStateManager getInstance] userLoginInfo] &&
+        [[LoginStateManager getInstance] userLoginInfo].user_id &&
+        [[[LoginStateManager getInstance] userLoginInfo].user_id isEqualToString:dataSource.user_id]) {
+        [self.navRightButton setImage:[UIImage imageNamed:@"userhome_share"] forState:UIControlStateNormal];
+        [self.navRightButton setImage:[UIImage imageNamed:@"userhome_share"] forState:UIControlStateHighlighted];
+        
+    }else{
+        [self.navRightButton setImage:[UIImage imageNamed:@"userhome_follow_add"] forState:UIControlStateSelected];
+        [self.navRightButton setImage:[UIImage imageNamed:@"userhome_follow"] forState:UIControlStateNormal];
+        [self.navRightButton setSelected:dataSource.is_focus];
+    }
 }
 
 - (void)initTableView
 {
     [self addSubview:[UIView new]];
-    self.tableView = [[RefreshTableView alloc] initWithFrame:CGRectMake(0, 0, self.width, self.height) style:UITableViewStylePlain];
+    self.tableView = [[RefreshTableView alloc] initWithFrame:CGRectMake(0, 64, self.width, self.height - 64) style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.tableHeaderView = self.headView;
@@ -90,6 +133,7 @@
 
 - (void)setHeadUserInfo:(HRUserHomeInfo *)homeInfo dataSource:(NSArray *)dataSource
 {
+    [self refreshNavRightButtonWithHomeInfo:homeInfo];
     [self.headView setDataSource:homeInfo];
     self.dataSource = dataSource;
     
