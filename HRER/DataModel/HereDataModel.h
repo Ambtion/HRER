@@ -49,6 +49,9 @@
 
 @property(nonatomic,assign)NSInteger is_focus;
 
+
+@property(nonatomic,strong)NSArray * photos; ///< Array<HRImageInfo>
+
 @end
 
 @interface HRFriendsInfo : NSObject<NSCopying,NSCoding>

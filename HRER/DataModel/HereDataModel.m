@@ -48,6 +48,11 @@ YYModelSynthCoderAndHash
     return @"";
 }
 
++ (NSDictionary *)modelContainerPropertyGenericClass {
+    return @{@"photos" : [HRPotoInfo class]};
+}
+
+
 @end
 
 @implementation HRFriendsInfo

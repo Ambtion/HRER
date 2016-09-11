@@ -9,6 +9,7 @@
 #import "HRUserHomeHeadView.h"
 #import "HRUserHomeInfoCardView.h"
 #import "HRUserHomeCaterInfoView.h"
+#import "HRUserHomeSealHeadView.h"
 
 @interface HRUserHomeHeadView()<HRUserHomeInfoCardViewDelegate,HRUserHomeCaterInfoViewDelegate>
 
@@ -16,6 +17,7 @@
 
 @property(nonatomic,strong)HRUserHomeInfoCardView * carView;
 @property(nonatomic,strong)HRUserHomeCaterInfoView * caterInfoView;
+@property(nonatomic,strong)HRUserHomeSealHeadView * sealView;
 
 @end
 
@@ -25,10 +27,10 @@
 {
     return 523.f;
     
-    CGFloat height = 0.f;
-    height += [HRUserHomeInfoCardView heightForView];
-    height += [HRUserHomeCaterInfoView heigthForView];
-    return height;
+//    CGFloat height = 0.f;
+//    height += [HRUserHomeInfoCardView heightForView];
+//    height += [HRUserHomeCaterInfoView heigthForView];
+//    return height;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -77,8 +79,23 @@
         make.height.equalTo(@([HRUserHomeCaterInfoView heigthForView]));
     }];
     
+    
+    self.sealView = [[HRUserHomeSealHeadView alloc] init];
+    [self addSubview:self.sealView];
+    
+    [self.sealView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.caterInfoView.mas_bottom).offset(10);
+        make.left.equalTo(self.bgImageView).offset(10);
+        make.right.equalTo(self.bgImageView).offset(-10);
+        make.height.equalTo(@([HRUserHomeSealHeadView heightForView]));
+    }];
 }
 
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    
+}
 - (void)setDataSource:(HRUserHomeInfo *)dataSource
 {
     if (_dataSource == dataSource) {
@@ -87,6 +104,7 @@
     _dataSource = dataSource;
     [self.carView setDataSource:dataSource];
     [self.caterInfoView setDataSource:dataSource];
+    [self.sealView setDataSource:dataSource.photos];
 }
 
 - (void)setSeltedAtIndex:(NSInteger)index

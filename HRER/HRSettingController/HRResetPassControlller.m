@@ -84,7 +84,9 @@
     
     [self.codeButton setTitle:@"验证码" forState:UIControlStateNormal];
     [[self.codeButton titleLabel] setFont:[UIFont systemFontOfSize:12.f]];
-    [self.codeButton setBackgroundImage:[UIImage imageNamed:@"code_fasong"] forState:UIControlStateNormal];
+//    [self.codeButton setBackgroundImage:[UIImage imageNamed:@"code_fasong"] forState:UIControlStateNormal];
+    self.codeButton.layer.cornerRadius = 2.f;
+    self.codeButton.backgroundColor = UIColorFromRGB(0xdd4267);
     [self.codeButton addTarget:self action:@selector(getValidCode:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.codeButton];
     

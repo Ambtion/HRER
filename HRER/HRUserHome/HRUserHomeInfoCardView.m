@@ -113,7 +113,7 @@
     
     
     [self.nameValue mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.height.equalTo(self.nameLabel);
+        make.left.right.equalTo(self.nameLabel);
         make.height.equalTo(@(15));
         make.top.equalTo(self.nameLabel.mas_bottom).offset(10.f);
     }];

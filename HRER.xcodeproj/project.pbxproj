@@ -32,6 +32,8 @@
 		B856FF451D3F929A002EF2C4 /* HRLocationInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = B856FF441D3F929A002EF2C4 /* HRLocationInputView.m */; };
 		B856FF481D3F9720002EF2C4 /* HRLocationCategoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = B856FF471D3F9720002EF2C4 /* HRLocationCategoryView.m */; };
 		B856FF4B1D3F9734002EF2C4 /* HRCreteCategoryItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = B856FF4A1D3F9734002EF2C4 /* HRCreteCategoryItemView.m */; };
+		B858D64A1D858ED90075678C /* HRUserHomeSealHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = B858D6491D858ED90075678C /* HRUserHomeSealHeadView.m */; };
+		B858D64D1D8592510075678C /* HRUserHomeCollectionSealCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B858D64C1D8592510075678C /* HRUserHomeCollectionSealCell.m */; };
 		B8697D6B1CFC395E00F1BC4B /* HRLoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B8697D6A1CFC395E00F1BC4B /* HRLoginManager.m */; };
 		B86CAA271D770513005349D5 /* LGPhotoPickerBrowserPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = B86CA9F11D770513005349D5 /* LGPhotoPickerBrowserPhoto.m */; };
 		B86CAA281D770513005349D5 /* LGPhotoRect.m in Sources */ = {isa = PBXBuildFile; fileRef = B86CA9F31D770513005349D5 /* LGPhotoRect.m */; };
@@ -255,6 +257,10 @@
 		B856FF471D3F9720002EF2C4 /* HRLocationCategoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRLocationCategoryView.m; sourceTree = "<group>"; };
 		B856FF491D3F9734002EF2C4 /* HRCreteCategoryItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRCreteCategoryItemView.h; sourceTree = "<group>"; };
 		B856FF4A1D3F9734002EF2C4 /* HRCreteCategoryItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRCreteCategoryItemView.m; sourceTree = "<group>"; };
+		B858D6481D858ED90075678C /* HRUserHomeSealHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRUserHomeSealHeadView.h; sourceTree = "<group>"; };
+		B858D6491D858ED90075678C /* HRUserHomeSealHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRUserHomeSealHeadView.m; sourceTree = "<group>"; };
+		B858D64B1D8592510075678C /* HRUserHomeCollectionSealCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRUserHomeCollectionSealCell.h; sourceTree = "<group>"; };
+		B858D64C1D8592510075678C /* HRUserHomeCollectionSealCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRUserHomeCollectionSealCell.m; sourceTree = "<group>"; };
 		B8697D691CFC395E00F1BC4B /* HRLoginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRLoginManager.h; sourceTree = "<group>"; };
 		B8697D6A1CFC395E00F1BC4B /* HRLoginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRLoginManager.m; sourceTree = "<group>"; };
 		B86CA9F01D770513005349D5 /* LGPhotoPickerBrowserPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGPhotoPickerBrowserPhoto.h; sourceTree = "<group>"; };
@@ -674,6 +680,10 @@
 				E198B9F91D3DFFA500BC8237 /* HRUserHomeMapView.m */,
 				B8C00E0C1D3D0518009FB17F /* HRUserHomeHeadView.h */,
 				B8C00E0D1D3D0518009FB17F /* HRUserHomeHeadView.m */,
+				B858D6481D858ED90075678C /* HRUserHomeSealHeadView.h */,
+				B858D6491D858ED90075678C /* HRUserHomeSealHeadView.m */,
+				B858D64B1D8592510075678C /* HRUserHomeCollectionSealCell.h */,
+				B858D64C1D8592510075678C /* HRUserHomeCollectionSealCell.m */,
 				E198B9EC1D3DCB6200BC8237 /* HRUserHomeInfoCardView.h */,
 				E198B9ED1D3DCB6200BC8237 /* HRUserHomeInfoCardView.m */,
 				E198B9EF1D3DD2D500BC8237 /* HRUserHomeCaterInfoView.h */,
@@ -1646,6 +1656,7 @@
 				E18AA8981D6EB65D004C1BF1 /* LJException.m in Sources */,
 				E18AA8971D6EB65D004C1BF1 /* JRSwizzle.m in Sources */,
 				B86CAA381D770513005349D5 /* LGPhotoPickerGroupTableViewCell.m in Sources */,
+				B858D64D1D8592510075678C /* HRUserHomeCollectionSealCell.m in Sources */,
 				E198B9EE1D3DCB6200BC8237 /* HRUserHomeInfoCardView.m in Sources */,
 				B86CAA2C1D770513005349D5 /* LGPhotoPickerBrowserPhotoScrollView.m in Sources */,
 				B88F10611CF5D005007C930F /* HRLoginViewController.m in Sources */,
@@ -1711,6 +1722,7 @@
 				E10DF7741CF6C1A400D5E146 /* HRNavigationTool.m in Sources */,
 				B8CDA76A1D37C7E900136AF7 /* HRRecomendCell.m in Sources */,
 				E1C303C01CF596BF001C016B /* HRWebCatShare.m in Sources */,
+				B858D64A1D858ED90075678C /* HRUserHomeSealHeadView.m in Sources */,
 				E11EE8911D82D4CB009A3984 /* HRUserHomeMapHeadView.m in Sources */,
 				B89380841D117ED7005A24FB /* HRPoiSetsListView.m in Sources */,
 				B86CAA2A1D770513005349D5 /* LGImagePickerSelectView.m in Sources */,
