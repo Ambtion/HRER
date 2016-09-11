@@ -439,8 +439,15 @@
 - (void)onNoFoundTipsDidClick:(id)sender
 {
     HRLocationMapController * controller =  [[HRLocationMapController alloc] init];
-    controller.lat = -1;
-    controller.lng = -1;
+    if (self.lat == [[[HRLocationManager  sharedInstance] curLocation] coordinate].latitude &&
+        self.lng == [[[HRLocationManager  sharedInstance] curLocation] coordinate].longitude) {
+        controller.lat = -1;
+        controller.lng = -1;
+    }else{
+        controller.lat = self.lat;
+        controller.lng = self.lng;
+
+    }
     controller.cityName = self.cityName;
     controller.cityId = self.cityId;
     [self.myNavController pushViewController:controller animated:YES];
