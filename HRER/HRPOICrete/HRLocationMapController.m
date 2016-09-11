@@ -33,6 +33,12 @@
 {
     [super viewWillAppear:animated];
     [self.myNavController setNavigationBarHidden:YES];
+
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
     [self initMapShow];
 
 }
@@ -128,6 +134,10 @@
     span.longitudeDelta = MAPLocationLEVEL;
     MKCoordinateRegion region;
     
+    if(self.lat == -1 && self.lng == -1){
+        self.lat = self.mapView.userLocation.location.coordinate.latitude;
+        self.lng = self.mapView.userLocation.location.coordinate.longitude;
+    }
     CLLocationCoordinate2D coord = CLLocationCoordinate2DMake(self.lat, self.lng);
     region.center = coord;
     region.span = span;
@@ -138,7 +148,7 @@
 - (void)initCenterPinView
 {
     self.pinCenterView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 35, 38)];
-    self.pinCenterView.center = self.mapView.center;
+    self.pinCenterView.center = CGPointMake(self.mapView.centerX, self.mapView.centerY - self.pinCenterView.height/2.f);
     self.pinCenterView.image = [UIImage imageNamed:@"map_food"];
     [self.view addSubview:self.pinCenterView];
 }

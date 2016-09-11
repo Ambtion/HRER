@@ -31,8 +31,8 @@
  */
 @property(nonatomic,strong)NSString * cityName;
 @property(nonatomic,assign)NSInteger cityId;
-@property(nonatomic,assign)CGFloat lat;
-@property(nonatomic,assign)CGFloat lng;
+@property(nonatomic,assign)double lat;
+@property(nonatomic,assign)double lng;
 @property(nonatomic,assign)NSInteger countyId;
 
 /**
@@ -439,8 +439,8 @@
 - (void)onNoFoundTipsDidClick:(id)sender
 {
     HRLocationMapController * controller =  [[HRLocationMapController alloc] init];
-    controller.lat = self.lat;
-    controller.lng = self.lng;
+    controller.lat = -1;
+    controller.lng = -1;
     controller.cityName = self.cityName;
     controller.cityId = self.cityId;
     [self.myNavController pushViewController:controller animated:YES];
