@@ -454,7 +454,9 @@
                 HRPOISetInfo * poiInfo = poiSoure;
                 [cell setData:poiSoure];                
                 [cell setLocaitonStr:poiInfo.city_name];
-
+                BOOL isShowMask = poiInfo.poi_type == 17;
+                [cell setUserInteractionEnabled:!isShowMask];
+                [cell showMask:isShowMask];
                 return cell;
             }
 

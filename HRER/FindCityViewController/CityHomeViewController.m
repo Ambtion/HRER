@@ -448,7 +448,10 @@
                 }
                 [cell setData:poiSoure];
                 [cell setLocaitonStr:nil];
-                [cell setUserInteractionEnabled:cell.data.poi_type != 17];
+                BOOL isShowMask = ((HRPOISetInfo *)poiSoure).poi_type == 17;
+                [cell setUserInteractionEnabled:!isShowMask];
+                [cell showMask:isShowMask];
+
                 return cell;
             }
             
