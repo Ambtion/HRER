@@ -356,7 +356,7 @@
         default:
             break;
     }
-    return [UIImage imageNamed:@"man"];
+    return [UIImage imageNamed:@"not_loaded"];
 }
 
 - (void)touchesCancelled:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event

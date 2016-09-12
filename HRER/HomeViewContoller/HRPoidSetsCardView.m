@@ -185,7 +185,7 @@
                 [frameView setHidden:NO];
                 NSURL * url = [NSURL URLWithString:info.url.length ? info.url : @""];
                 
-                [frameView.imageView.imageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"man"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                [frameView.imageView.imageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"not_loaded"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
                 }];
             }else{
                 [frameView setHidden:YES];

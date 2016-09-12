@@ -76,7 +76,7 @@
         
         HRPotoInfo * photoInfo = [_dataArray objectAtIndex:i];
 
-        [imageView.imageView sd_setImageWithURL:[NSURL URLWithString:photoInfo.url] placeholderImage:[UIImage imageNamed:@"man"]];
+        [imageView.imageView sd_setImageWithURL:[NSURL URLWithString:photoInfo.url] placeholderImage:[UIImage imageNamed:@"not_loaded"]];
         [imagemArray addObject:imageView];
     }
     self.imageArray = imagemArray;

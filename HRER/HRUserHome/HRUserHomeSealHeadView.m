@@ -73,7 +73,7 @@
     
     HRUserHomeCollectionSealCell * sealCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"SealCell" forIndexPath:indexPath];
     HRPotoInfo * photoInfo = [self.dataSource objectAtIndex:indexPath.row];
-    [sealCell.imageView.imageView sd_setImageWithURL:[NSURL URLWithString:photoInfo.url] placeholderImage:[UIImage imageNamed:@"man"]];
+    [sealCell.imageView.imageView sd_setImageWithURL:[NSURL URLWithString:photoInfo.url] placeholderImage:[UIImage imageNamed:@"not_loaded"]];
     return sealCell;
     
 }

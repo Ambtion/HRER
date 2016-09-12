@@ -390,7 +390,7 @@ static CGFloat const MaxToolbarHeight = 200.0f;
 {
     HRPotoInfo * photoInfo = [self.photoesCell.photosView.dataArray objectAtIndex:index];
     
-    [hrImageView.imageView sd_setImageWithURL:[NSURL URLWithString:photoInfo.url] placeholderImage:[UIImage imageNamed:@"man"]];
+    [hrImageView.imageView sd_setImageWithURL:[NSURL URLWithString:photoInfo.url] placeholderImage:[UIImage imageNamed:@"not_loaded"]];
     if (photoInfo.width && photoInfo.height ) {
         
         CGFloat scale = self.view.width / photoInfo.width;
