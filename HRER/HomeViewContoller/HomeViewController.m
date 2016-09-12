@@ -523,8 +523,15 @@
 
 }
 
-- (void)herePoisSetCellDidClickUserPortrait:(HRHerePoiCell *)cell
+- (void)herePoisSetCellDidClickUserPortrait:(HRHerePoisSetCell *)cell
 {
+    
+    
+    if (cell.data.poi_type == 16) {
+        //引导页面
+        return;
+    }
+    
     NSIndexPath * indexPath = [self.tableView indexPathForCell:cell];
     
     if (indexPath.section == 2) {
