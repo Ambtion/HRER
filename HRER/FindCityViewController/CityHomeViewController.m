@@ -461,11 +461,10 @@
     CGPoint vPoint = [scrollView.panGestureRecognizer velocityInView:scrollView];
     if(!scrollView.isDragging) return;
     if (vPoint.y < - 100) {
-        [self hidenNav];
+        [self showNav];
     }
     if (vPoint.y > 100) {
-        [self showNav];
-
+        [self hidenNav];
     }
 }
 
