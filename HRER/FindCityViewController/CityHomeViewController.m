@@ -93,6 +93,8 @@
     self.tableView.dataSource = self;
     [self.view addSubview:self.tableView];
     [self initRefreshView];
+    
+    [self hidenNav];
 }
 
 
@@ -458,18 +460,27 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    CGPoint vPoint = [scrollView.panGestureRecognizer velocityInView:scrollView];
-    if(!scrollView.isDragging) return;
-    if (vPoint.y < - 100) {
+    
+    CGPoint offset = scrollView.contentOffset;
+    if (offset.y > [HomeHeadView heightForHeadCell]) {
+        //头图消失
         [self showNav];
-    }
-    if (vPoint.y > 100) {
+    }else{
         [self hidenNav];
     }
+//    CGPoint vPoint = [scrollView.panGestureRecognizer velocityInView:scrollView];
+//    if(!scrollView.isDragging) return;
+//    if (vPoint.y < - 100) {
+//        [self showNav];
+//    }
+//    if (vPoint.y > 100) {
+//        [self hidenNav];
+//    }
 }
 
 - (void)hidenNav
 {
+    [self.myNavController setNavigationBarHidden:NO];
     [UIView animateWithDuration:0.3 animations:^{
         self.barView.top = -64;
         self.tableView.frame = CGRectMake(0, 0, self.view.width, self.view.height);
@@ -478,9 +489,12 @@
 
 - (void)showNav
 {
+    
+    [self.myNavController setNavigationBarHidden:YES];
     [UIView animateWithDuration:0.3 animations:^{
         self.barView.top = 0;
         self.tableView.frame = CGRectMake(0, 64, self.view.width, self.view.height - 64);
+
     }];
 }
 
