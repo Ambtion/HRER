@@ -51,7 +51,7 @@
 
 - (void)showMask:(BOOL)isShow
 {
-    [[self.cardView maskView] setHidden:isShow];
+    [[self.cardView maskView] setHidden:!isShow];
 }
 
 - (void)setData:(HRPOISetInfo *)data
