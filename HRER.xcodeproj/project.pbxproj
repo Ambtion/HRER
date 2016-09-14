@@ -97,6 +97,7 @@
 		B8ACA4291D3E4C7400011763 /* HRUserHomeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B8ACA4281D3E4C7400011763 /* HRUserHomeCell.m */; };
 		B8C00DFB1D3CFEAA009FB17F /* CityHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8C00DFA1D3CFEAA009FB17F /* CityHomeViewController.m */; };
 		B8C00E0E1D3D0518009FB17F /* HRUserHomeHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = B8C00E0D1D3D0518009FB17F /* HRUserHomeHeadView.m */; };
+		B8C5ABED1D86F29D0042CFDB /* HRShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = B8C5ABEC1D86F29D0042CFDB /* HRShareView.m */; };
 		B8CDA7641D37BD6B00136AF7 /* HRPoiUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B8CDA7631D37BD6B00136AF7 /* HRPoiUserInfo.m */; };
 		B8CDA7671D37BDE800136AF7 /* HRPoiUserInfoBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = B8CDA7661D37BDE800136AF7 /* HRPoiUserInfoBottomView.m */; };
 		B8CDA76A1D37C7E900136AF7 /* HRRecomendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B8CDA7691D37C7E900136AF7 /* HRRecomendCell.m */; };
@@ -390,6 +391,8 @@
 		B8C00DFA1D3CFEAA009FB17F /* CityHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityHomeViewController.m; sourceTree = "<group>"; };
 		B8C00E0C1D3D0518009FB17F /* HRUserHomeHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRUserHomeHeadView.h; sourceTree = "<group>"; };
 		B8C00E0D1D3D0518009FB17F /* HRUserHomeHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRUserHomeHeadView.m; sourceTree = "<group>"; };
+		B8C5ABEB1D86F29D0042CFDB /* HRShareView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRShareView.h; sourceTree = "<group>"; };
+		B8C5ABEC1D86F29D0042CFDB /* HRShareView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRShareView.m; sourceTree = "<group>"; };
 		B8CDA7621D37BD6B00136AF7 /* HRPoiUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRPoiUserInfo.h; sourceTree = "<group>"; };
 		B8CDA7631D37BD6B00136AF7 /* HRPoiUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRPoiUserInfo.m; sourceTree = "<group>"; };
 		B8CDA7651D37BDE800136AF7 /* HRPoiUserInfoBottomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRPoiUserInfoBottomView.h; sourceTree = "<group>"; };
@@ -1064,6 +1067,15 @@
 			path = POIList;
 			sourceTree = "<group>";
 		};
+		B8C5ABEA1D86F2840042CFDB /* ShareViewController */ = {
+			isa = PBXGroup;
+			children = (
+				B8C5ABEB1D86F29D0042CFDB /* HRShareView.h */,
+				B8C5ABEC1D86F29D0042CFDB /* HRShareView.m */,
+			);
+			path = ShareViewController;
+			sourceTree = "<group>";
+		};
 		B8DF92F31CFB2AB1007C4DF9 /* FunctionGuide */ = {
 			isa = PBXGroup;
 			children = (
@@ -1163,6 +1175,7 @@
 		E14BD48F1CEEF53F00C66E14 /* HRER */ = {
 			isa = PBXGroup;
 			children = (
+				B8C5ABEA1D86F2840042CFDB /* ShareViewController */,
 				E168F4D61D7FC68300A8F52C /* EmojiUnit */,
 				E1C9261D1D7D5C170003AE54 /* DHSmartScreenshot */,
 				B86CA9ED1D770513005349D5 /* DzyImgPicker */,
@@ -1645,6 +1658,7 @@
 				B86CAA311D770513005349D5 /* LGPhotoPickerGroup.m in Sources */,
 				E11876A91D3F29B900A23429 /* HRCreteLocationController.m in Sources */,
 				E1CC46ED1D41E80500202F98 /* HRBaseTableViewController.m in Sources */,
+				B8C5ABED1D86F29D0042CFDB /* HRShareView.m in Sources */,
 				B877334E1D33CBE000CC43CD /* SearchInPutView.m in Sources */,
 				E198B9A01D3C82E000BC8237 /* HRPoiCardAddressView.m in Sources */,
 				B8697D6B1CFC395E00F1BC4B /* HRLoginManager.m in Sources */,

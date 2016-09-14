@@ -42,7 +42,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.myNavController setNavigationBarHidden:YES];
+//    [self.myNavController setNavigationBarHidden:YES];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -94,7 +94,7 @@
     [self.view addSubview:self.tableView];
     [self initRefreshView];
     
-    [self hidenNav];
+    [self hidenNavWithAnimation:NO];
 }
 
 
@@ -470,7 +470,7 @@
         //头图消失
         [self showNav];
     }else{
-        [self hidenNav];
+        [self hidenNavWithAnimation:YES];
     }
 //    CGPoint vPoint = [scrollView.panGestureRecognizer velocityInView:scrollView];
 //    if(!scrollView.isDragging) return;
@@ -482,13 +482,20 @@
 //    }
 }
 
-- (void)hidenNav
+- (void)hidenNavWithAnimation:(BOOL)animation
 {
     [self.myNavController setNavigationBarHidden:NO];
-    [UIView animateWithDuration:0.3 animations:^{
+    if (animation) {
+        [UIView animateWithDuration:0.3 animations:^{
+            self.barView.top = -64;
+            self.tableView.frame = CGRectMake(0, 0, self.view.width, self.view.height);
+        }];
+   
+    }else{
         self.barView.top = -64;
         self.tableView.frame = CGRectMake(0, 0, self.view.width, self.view.height);
-    }];
+   
+    }
 }
 
 - (void)showNav
