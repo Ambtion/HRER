@@ -258,14 +258,14 @@
 {
     switch (type) {
         case 1:
-            return @"美食";
+            return @"餐厅美食";
             break;
         case 2:
-            return @"观光";
+            return @"观光购物";
         case 3:
-            return @"购物";
+            return @"休闲娱乐";
         case 4:
-            return @"酒店";
+            return @"酒店民宿";
         default:
             break;
     }
