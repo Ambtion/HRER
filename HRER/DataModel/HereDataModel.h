@@ -115,6 +115,8 @@
 
 @property(nonatomic,strong)NSArray * photos; ///< Array<HRImageInfo>
 
+@property(nonatomic,assign)NSInteger single_type;
+
 @end
 
 @interface HRCretePOIInfo : NSObject<NSCopying,NSCopying>
@@ -158,6 +160,7 @@
 @property(nonatomic,assign)NSInteger hotel;
 
 @property(nonatomic,strong)NSArray * cityPoiList;
+
 @end
 
 @interface HRMouthPoiList : NSObject<NSCopying,NSCopying>

@@ -33,7 +33,7 @@ static CGFloat const MaxToolbarHeight = 200.0f;
 
 @property(nonatomic,strong)UILabel * titleLabel;
 
-@property(nonatomic,strong)RefreshTableView * tableView;
+@property(nonatomic,strong)UITableView * tableView;
 @property(nonatomic,strong)NSString * poiId;
 
 @property(nonatomic,strong)HRPoiDetailPhotosCell * photoesCell;
@@ -125,7 +125,7 @@ static CGFloat const MaxToolbarHeight = 200.0f;
     
     UIView * view = [UIView new];
     [self.view addSubview:view];
-    self.tableView = [[RefreshTableView alloc] initWithFrame:CGRectMake(0, -20, self.view.width, self.view.height + 20) style:UITableViewStylePlain];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, -20, self.view.width, self.view.height + 20) style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.separatorStyle  = UITableViewCellSeparatorStyleNone;
@@ -133,20 +133,20 @@ static CGFloat const MaxToolbarHeight = 200.0f;
     
 //    UIView * view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 100)];
 //    self.tableView.tableFooterView = view;
-    [self initRefreshView];
+//    [self initRefreshView];
     
 }
 
 #pragma mark - Data
-- (void)initRefreshView
-{
-    self.tableView.refreshFooter.scrollView = nil;
-    
-    WS(ws);
-    self.tableView.refreshHeader.beginRefreshingBlock = ^(){
-        [ws quartData];
-    };
-}
+//- (void)initRefreshView
+//{
+//    self.tableView.refreshFooter.scrollView = nil;
+//    self.tableView.refreshHeader.scrollView = nil;
+////    WS(ws);
+////    self.tableView.refreshHeader.beginRefreshingBlock = ^(){
+////        [ws quartData];
+////    };
+//}
 
 - (void)quartData
 {
@@ -155,7 +155,7 @@ static CGFloat const MaxToolbarHeight = 200.0f;
     
     WS(ws);
     void (^ failure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *operation, NSError *error){
-        [ws netErrorWithTableView:ws.tableView];
+        [ws netErrorWithTableView:nil];
     };
     
     [NetWorkEntity quaryPoiDetailInfoWithPoiId:self.poiId success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -168,9 +168,9 @@ static CGFloat const MaxToolbarHeight = 200.0f;
             ws.titleLabel.text = ws.poiInfo.city_name;
             ws.recomendList = [ws analysisPoiModelFromArray:[response objectForKey:@"comments"]];
             [ws.tableView reloadData];
-            [[ws.tableView refreshHeader] endRefreshing];
+//            [[ws.tableView refreshHeader] endRefreshing];
         }else{
-            [ws dealErrorResponseWithTableView:self.tableView info:responseObject];
+            [ws dealErrorResponseWithTableView:nil info:responseObject];
         }
     } failure:failure];
 }
@@ -550,6 +550,16 @@ static CGFloat const MaxToolbarHeight = 200.0f;
 {
     if(scrollView.isDragging)
         [self.textView resignFirstResponder];
+    
+    //通过滑动的便宜距离重新给图片设置大小
+    CGFloat yOffset = scrollView.contentOffset.y;
+    if(yOffset < 0)
+    {
+        CGFloat heigth = [HRPoiDetailPhotosCell heightForCell] - yOffset;
+        CGFloat scale = heigth / [HRPoiDetailPhotosCell heightForCell];
+        self.photoesCell.frame = CGRectMake(0, yOffset, self.tableView.width * scale, [HRPoiDetailPhotosCell heightForCell] * scale);
+        self.photoesCell.centerX = self.tableView.width/2.f;
+    }
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -653,6 +663,5 @@ static CGFloat const MaxToolbarHeight = 200.0f;
     };
     [[UIApplication sharedApplication].keyWindow addSubview:sheet];
     [sheet showHcdActionSheet];
-
 }
 @end

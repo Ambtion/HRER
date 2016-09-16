@@ -166,7 +166,14 @@
 - (void)setDataSource:(HRPOIInfo *)data
 {
     [self.portraitImage sd_setImageWithURL:[NSURL URLWithString:data.portrait] placeholderImage:[UIImage imageNamed:@"man"]];
-    NSString * str = [NSString stringWithFormat:@"%@ 推荐了 %@",data.creator_name,data.title];
+    
+    NSString * str = @"";
+    if (data.single_type == 1) {
+        str = [NSString stringWithFormat:@"%@ 推荐了 %@",data.creator_name,data.title];
+
+    }else if(data.single_type == 2){
+        str = [NSString stringWithFormat:@"%@ 想去 你推荐的 %@",data.creator_name,data.title];
+    }
     NSMutableAttributedString * attr = [[NSMutableAttributedString alloc] initWithString:str];
     
     NSRange titleNormal =  NSMakeRange(0, 0);
