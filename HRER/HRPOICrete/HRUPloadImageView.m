@@ -168,7 +168,6 @@
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
     [self.contentView addSubview:self.titleLabel];
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self);
         make.left.equalTo(self.icarousel.mas_left);
         make.right.equalTo(self.icarousel.mas_right);
         make.top.equalTo(self.icarousel.mas_bottom).offset(18.f);
@@ -460,6 +459,11 @@
     [self.textDesView resignFirstResponder];
 }
 
+- (void)resetToNormal
+{
+    [self.textDesView resignFirstResponder];
+    [self.priceTextField resignFirstResponder];
+}
 #pragma mark - Action
 - (void)cancanButtonDidClick:(UIButton *)button
 {
@@ -497,6 +501,27 @@
 
 - (void)addImmagesFormCamera:(BOOL)isFromCamera
 {
+    
+//    UIImagePickerController* imagePickerController = [[UIImagePickerController alloc] init];
+//    if (isFromCamera) {
+//        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+//            imagePickerController.sourceType =
+//            UIImagePickerControllerSourceTypeCamera;
+//        }
+//        
+//    }else{
+//        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
+//            imagePickerController.sourceType =
+//            UIImagePickerControllerSourceTypePhotoLibrary;
+//        }
+//        
+//    }
+//    imagePickerController.allowsEditing = YES;
+//    //设置委托对象
+//    imagePickerController.delegate = self;
+//    [[self appController] presentViewController:imagePickerController animated:YES completion:^{
+//        
+//    }];
     if (isFromCamera) {
         [self presentCameraContinuous];
     }else{
@@ -506,6 +531,8 @@
 
 - (void)presentPhotoPickerViewController
 {
+    
+    [self resetToNormal];
     LGPhotoPickerViewController *pickerVc = [[LGPhotoPickerViewController alloc] initWithShowType:LGShowImageTypeImagePicker];
     pickerVc.status = PickerViewShowStatusGroup;
     pickerVc.maxCount =  9 - self.photosArray.count;;
@@ -539,47 +566,39 @@
     [self.icarousel reloadData];
 }
 
-//- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
-//{
-//    
-//    //获得编辑过的图片
-//    UIImage * editImage = [editingInfo objectForKey: @"UIImagePickerControllerEditedImage"];
-//    [self.photosArray addObject:editImage];
-//    [self.icarousel reloadData];
-//    
-//    [[self appController] dismissViewControllerAnimated:YES completion:^{
-//        
-//    }];
-//}
-//
-//- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
-//{
-//    //获得编辑过的图片
-//    UIImage * editImage = [info objectForKey: @"UIImagePickerControllerEditedImage"];
-//    [self.photosArray addObject:editImage];
-//    [self.icarousel reloadData];
-//    
-//    [[[[UIApplication sharedApplication] delegate] window].rootViewController dismissViewControllerAnimated:YES completion:^{
-//        
-//    }];}
-//
-//- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
-//{
-//    [[self appController] dismissViewControllerAnimated:YES completion:^{
-//        
-//    }];
-//}
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
+{
+    
+    //获得编辑过的图片
+    UIImage * editImage = [editingInfo objectForKey: @"UIImagePickerControllerEditedImage"];
+    [self.photosArray addObject:editImage];
+    [self.icarousel reloadData];
+    
+    [[self appController] dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    //获得编辑过的图片
+    UIImage * editImage = [info objectForKey: @"UIImagePickerControllerEditedImage"];
+    [self.photosArray addObject:editImage];
+    [self.icarousel reloadData];
+    
+    [[[[UIApplication sharedApplication] delegate] window].rootViewController dismissViewControllerAnimated:YES completion:^{
+        
+    }];}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [[self appController] dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+}
 
 - (void)uploadButtonDidClick:(UIButton *)button
 {
-    
-//    if([EmojiUnit stringContainsEmoji:self.titleLabel.text]){
-//        return [self showTotasViewWithMes:@"标题不支持表情"];
-//    }
-//    
-//    if([EmojiUnit stringContainsEmoji:self.textDesView.text]){
-//        return [self showTotasViewWithMes:@"描述不支持表情"];
-//    }
     
     NSArray * imageArray = self.photosArray;
     if (!imageArray.count) {
