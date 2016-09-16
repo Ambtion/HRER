@@ -93,6 +93,7 @@
         imageView.frame = CGRectMake(self.scrollView.width * i, 0, self.scrollView.width, self.scrollView.height);
     }
     [self.scrollView setContentSize:CGSizeMake(self.scrollView.width * self.imageArray.count, self.scrollView.height)];
+    self.scrollView.contentOffset = CGPointMake(self.scrollView.width * _curPage, 0);
     
     [self.idLabel sizeToFit];
     self.idLabel.width = self.idLabel.width + 20;

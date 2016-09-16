@@ -58,6 +58,12 @@
     [self.photosView setDataArray:array];
 }
 
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    [self.photosView layoutSubviews];
+}
+
 - (NSInteger)seletedIndex
 {
     return self.photosView.curPage;
