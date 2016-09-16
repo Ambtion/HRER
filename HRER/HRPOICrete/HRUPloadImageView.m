@@ -323,7 +323,7 @@
 #pragma mark - Images
 - (NSInteger)numberOfItemsInCarousel:(iCarousel *)carousel
 {
-    [self.icarousel setHidden:self.photosArray.count];
+    [self.icBackView setHidden:self.photosArray.count];
     return self.photosArray.count ? self.photosArray.count : 1;
 }
 - (UIView *)carousel:(iCarousel *)carousel viewForItemAtIndex:(NSInteger)index reusingView:(nullable UIView *)view

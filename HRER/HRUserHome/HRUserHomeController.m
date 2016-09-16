@@ -122,7 +122,6 @@
     }
         
     CATransition *animation = [CATransition animation];
-    animation.delegate = self;
     animation.duration = 0.3;
     animation.timingFunction = UIViewAnimationCurveEaseInOut;
     animation.type = @"cube";/*立方体 */
