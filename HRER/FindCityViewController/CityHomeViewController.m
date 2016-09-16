@@ -42,7 +42,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-//    [self.myNavController setNavigationBarHidden:YES];
+    [self refreshNavWithAnimation:NO];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -94,7 +94,7 @@
     [self.view addSubview:self.tableView];
     [self initRefreshView];
     
-    [self hidenNavWithAnimation:NO];
+    
 }
 
 
@@ -464,22 +464,19 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    
-    CGPoint offset = scrollView.contentOffset;
+    [self refreshNavWithAnimation:YES];
+}
+
+- (void)refreshNavWithAnimation:(BOOL)isAnimation
+{
+    CGPoint offset = self.tableView.contentOffset;
     if (offset.y > [HomeHeadView heightForHeadCell]) {
         //头图消失
         [self showNav];
     }else{
-        [self hidenNavWithAnimation:YES];
+        [self hidenNavWithAnimation:isAnimation];
     }
-//    CGPoint vPoint = [scrollView.panGestureRecognizer velocityInView:scrollView];
-//    if(!scrollView.isDragging) return;
-//    if (vPoint.y < - 100) {
-//        [self showNav];
-//    }
-//    if (vPoint.y > 100) {
-//        [self hidenNav];
-//    }
+
 }
 
 - (void)hidenNavWithAnimation:(BOOL)animation
