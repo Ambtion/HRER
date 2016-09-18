@@ -375,7 +375,23 @@ static CGFloat const MaxToolbarHeight = 200.0f;
         }
         
         if(index == 4){
-            [self showTotasViewWithMes:@"已举报"];
+            UIAlertController * alertController = [UIAlertController alertControllerWithTitle:@"确认举报该信息" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+            
+            
+            UIAlertAction * cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                
+            }];
+            
+            UIAlertAction * ensureAction = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                [self showTotasViewWithMes:@"已举报"];
+            }];
+            
+            [alertController addAction:cancelAction];
+            [alertController addAction:ensureAction];
+            
+            [[[[[UIApplication sharedApplication] delegate] window] rootViewController] presentViewController:alertController animated:YES completion:^{
+                
+            }];
         }
     };
     [[UIApplication sharedApplication].keyWindow addSubview:sheet];
