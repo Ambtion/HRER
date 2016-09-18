@@ -83,7 +83,7 @@
 - (void)setDtata:(HRPOIInfo *)data
 {
     self.userName.text = data.creator_name;
-    self.recomendLabel.text = [NSString stringWithFormat:@"推荐过%ld%@",(long)data.recommand,data.typeName];
+    self.recomendLabel.text = [NSString stringWithFormat:@"推荐过%ld个%@",(long)data.recommand,data.typeName];
     [self.porImageView sd_setImageWithURL:[NSURL URLWithString:data.portrait.length ? data.portrait : @""] placeholderImage:[UIImage imageNamed:@"man"]];
 }
 
