@@ -216,6 +216,7 @@
     }
     
     [self refreshComment];
+    [self refreshTip];
     
 }
 
@@ -240,6 +241,22 @@
         [self.tableView reloadData];
     }];
 
+}
+
+- (void)refreshTip
+{
+    [NetWorkEntity quaryHotCityListSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
+            NSDictionary * response = [responseObject objectForKey:@"response"];
+            if ([[response objectForKey:@"newFriend"] boolValue]) {
+                [self showMessCountInTabBar:0];
+            }else{
+                [self hiddenMessCountInTabBar];
+            }
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
 }
 
 - (NSArray *)analysisPoiSetsModelFromArray:(NSArray *)array
