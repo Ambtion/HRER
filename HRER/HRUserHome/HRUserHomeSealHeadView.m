@@ -58,6 +58,12 @@
 
 #pragma mark -
 #pragma mark - Delegate | DataSource
+
+- (void)setDataSource:(NSArray *)dataSource
+{
+    _dataSource = dataSource;
+    [[self colletctionView] reloadData];
+}
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
     return 1;

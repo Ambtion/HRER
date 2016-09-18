@@ -415,7 +415,7 @@
     plantocounts = 6;
     status = 1;
 */
-    self.cityId = [[cityInfo objectForKey:@"id"] integerValue];
+    self.cityId = [[cityInfo objectForKey:@"city_id"] integerValue];
     self.cityName = [cityInfo objectForKey:@"city_name"];
     self.lat = [[cityInfo objectForKey:@"latitude"] floatValue];
     self.lng = [[cityInfo objectForKey:@"longitude"] floatValue];

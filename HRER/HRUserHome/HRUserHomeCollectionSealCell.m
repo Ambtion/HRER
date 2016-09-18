@@ -15,6 +15,7 @@
     if (self) {
         self.contentView.backgroundColor = [UIColor clearColor];
         self.imageView = [[PortraitView alloc] init];
+        [self.contentView addSubview:self.imageView];
         [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.mas_equalTo(UIEdgeInsetsZero);
         }];
