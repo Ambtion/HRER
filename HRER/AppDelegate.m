@@ -112,7 +112,7 @@
     if ([[[(UINavigationController *)viewController viewControllers] firstObject] respondsToSelector:@selector(showLoginPage)]) {
         [[[(UINavigationController *)viewController viewControllers] firstObject] performSelector:@selector(showLoginPage)];
     }
-    if([viewController isKindOfClass:[FriendsViewController class]]){
+    if([[[(UINavigationController *)viewController viewControllers] firstObject] isKindOfClass:[FriendsViewController class]]){
         [viewController hiddenMessCountInTabBar];
     }
 }
