@@ -7,6 +7,7 @@
 //
 
 #import "HRQQManager.h"
+#import "UIImage+Scale.h"
 
 #import <TencentOpenAPI/TencentOAuthObject.h>
 #import <TencentOpenAPI/TencentApiInterface.h>
@@ -119,7 +120,10 @@ static HRQQManager *gInstance = nil;
 - (void)shareImageToQQWithThumbImage:(UIImage *)thumbImage orignalImage:(UIImage *)oImage title:(NSString *)title withDes:(NSString *)des WithCallBack:(ReqCallBack)callback;
 {
     
-    NSData * tData = UIImageJPEGRepresentation(thumbImage, 0.8);
+    if(thumbImage == nil){
+        thumbImage = [oImage imageByScalingAndCroppingForSize:CGSizeMake(100, 100)];
+    }
+    NSData * tData = UIImageJPEGRepresentation(thumbImage, 1);
     NSData * oData = UIImageJPEGRepresentation(oImage, 0.8);
     
     QQApiImageObject *imgObj = [QQApiImageObject objectWithData:oData
@@ -140,6 +144,8 @@ static HRQQManager *gInstance = nil;
     SendMessageToQQReq* req = [SendMessageToQQReq reqWithContent:img];
     [QQApiInterface sendReq:req];
 }
+
+
 #pragma mark - CallBack
 - (void)onResp:(QQBaseResp *)resp
 {

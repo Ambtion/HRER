@@ -92,6 +92,7 @@
 		B896640E1CF32FD100B2A6CA /* UIView+Sizes.m in Sources */ = {isa = PBXBuildFile; fileRef = B89664041CF32FD100B2A6CA /* UIView+Sizes.m */; };
 		B896640F1CF32FD100B2A6CA /* UIView+TKCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = B89664061CF32FD100B2A6CA /* UIView+TKCategory.m */; };
 		B89664101CF32FD100B2A6CA /* UIViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = B89664081CF32FD100B2A6CA /* UIViewAdditions.m */; };
+		B899FDA31D8EC318000560EA /* UIImage+Scale.m in Sources */ = {isa = PBXBuildFile; fileRef = B899FDA21D8EC318000560EA /* UIImage+Scale.m */; };
 		B89BCD4C1D75D1C800777373 /* UITabBar+RedHot.m in Sources */ = {isa = PBXBuildFile; fileRef = B89BCD4B1D75D1C800777373 /* UITabBar+RedHot.m */; };
 		B8AC37C41D40FD7C00D99BF8 /* HRUPloadImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = B8AC37C31D40FD7C00D99BF8 /* HRUPloadImageView.m */; };
 		B8ACA4291D3E4C7400011763 /* HRUserHomeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B8ACA4281D3E4C7400011763 /* HRUserHomeCell.m */; };
@@ -381,6 +382,8 @@
 		B89664071CF32FD100B2A6CA /* UIViewAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewAdditions.h; sourceTree = "<group>"; };
 		B89664081CF32FD100B2A6CA /* UIViewAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewAdditions.m; sourceTree = "<group>"; };
 		B89664111CF32FF700B2A6CA /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PrefixHeader.pch; path = ../PrefixHeader.pch; sourceTree = "<group>"; };
+		B899FDA11D8EC318000560EA /* UIImage+Scale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Scale.h"; sourceTree = "<group>"; };
+		B899FDA21D8EC318000560EA /* UIImage+Scale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Scale.m"; sourceTree = "<group>"; };
 		B89BCD4A1D75D1C800777373 /* UITabBar+RedHot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITabBar+RedHot.h"; sourceTree = "<group>"; };
 		B89BCD4B1D75D1C800777373 /* UITabBar+RedHot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITabBar+RedHot.m"; sourceTree = "<group>"; };
 		B8AC37C21D40FD7C00D99BF8 /* HRUPloadImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRUPloadImageView.h; sourceTree = "<group>"; };
@@ -1401,6 +1404,8 @@
 				E1C303BF1CF596BF001C016B /* HRWebCatShare.m */,
 				E1C303901CF442C4001C016B /* HRWeCatManager.h */,
 				E1C303911CF442C4001C016B /* HRWeCatManager.m */,
+				B899FDA11D8EC318000560EA /* UIImage+Scale.h */,
+				B899FDA21D8EC318000560EA /* UIImage+Scale.m */,
 			);
 			path = OAuthLogin;
 			sourceTree = "<group>";
@@ -1730,6 +1735,7 @@
 				B896640E1CF32FD100B2A6CA /* UIView+Sizes.m in Sources */,
 				E11EE8901D82D4CB009A3984 /* HRUserHomeMapCaterInfoView.m in Sources */,
 				B87AE39B1D4A3D6E00FF83BA /* HRLocationCurCityCell.m in Sources */,
+				B899FDA31D8EC318000560EA /* UIImage+Scale.m in Sources */,
 				B86CAA271D770513005349D5 /* LGPhotoPickerBrowserPhoto.m in Sources */,
 				B805E1F41D0DAE970011E2F7 /* HRHerePoisSetCell.m in Sources */,
 				B89663EE1CF32F7700B2A6CA /* NSDictionary+StrDic.m in Sources */,

@@ -245,7 +245,7 @@
 
 - (void)refreshTip
 {
-    [NetWorkEntity quaryHotCityListSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [NetWorkEntity quaryNewFriendTipsSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
             NSDictionary * response = [responseObject objectForKey:@"response"];
             if ([[response objectForKey:@"newFriend"] boolValue]) {

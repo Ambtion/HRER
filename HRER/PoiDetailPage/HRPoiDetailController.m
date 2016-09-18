@@ -352,7 +352,7 @@ static CGFloat const MaxToolbarHeight = 200.0f;
     UIImage * shareImage = nil;
     
     HcdActionSheet *sheet = [[HcdActionSheet alloc] initWithCancelStr:@"取消"
-                                                    otherButtonTitles:@[@"微信好友",@"朋友圈",@"QQ好友",@"是否要举报该消息"]
+                                                    otherButtonTitles:@[@"微信好友",@"朋友圈",@"QQ好友",@"举报该消息"]
                                                           attachTitle:nil];
     
     sheet.selectButtonAtIndex = ^(NSInteger index) {

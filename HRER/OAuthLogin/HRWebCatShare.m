@@ -7,6 +7,7 @@
 //
 
 #import "HRWebCatShare.h"
+#import "UIImage+Scale.h"
 
 
 @implementation HRWebCatShare
@@ -80,8 +81,7 @@
         req.scene = (int)scene;
 
         if (!thumbImage) {
-//            NSData * data = UIImageJPEGRepresentation(img, 0.00001);
-//            thumbImage = [[UIImage alloc] initWithData:data];
+            thumbImage = [img imageByScalingAndCroppingForSize:CGSizeMake(100, 100)];
         }
         [message setThumbImage:thumbImage];
 
