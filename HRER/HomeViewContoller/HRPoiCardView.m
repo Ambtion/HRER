@@ -169,10 +169,13 @@
     
     
     
-    NSString * str = [NSString stringWithFormat:@"%@ 推荐了 %@",data.creator_name,data.title];
-
-    if(data.single_type == 2){
-        str = [NSString stringWithFormat:@"%@ 想去 你推荐的 %@",data.creator_name,data.title];
+    NSString * str = @"";
+    
+    if(data.single_type == 5){
+        //想去
+        str = [NSString stringWithFormat:@"想去 %@ 推荐的 %@",data.creator_name,data.title];
+    }else{
+        str = [NSString stringWithFormat:@"%@ 推荐了 %@",data.creator_name,data.title];
     }
     
     NSMutableAttributedString * attr = [[NSMutableAttributedString alloc] initWithString:str];

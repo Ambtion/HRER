@@ -165,7 +165,7 @@ static CGFloat const MaxToolbarHeight = 200.0f;
             NSDictionary * response = [responseObject objectForKey:@"response"];
             NSDictionary * poiInfo = [response objectForKey:@"poi_detail"];
             ws.poiInfo = [HRPOIInfo yy_modelWithJSON:poiInfo];
-            ws.titleLabel.text = ws.poiInfo.city_name;
+            ws.titleLabel.text = ws.poiInfo.title;
             ws.recomendList = [ws analysisPoiModelFromArray:[response objectForKey:@"comments"]];
             [ws.tableView reloadData];
 //            [[ws.tableView refreshHeader] endRefreshing];
@@ -358,7 +358,7 @@ static CGFloat const MaxToolbarHeight = 200.0f;
         case 1:
             //POI地理信息
         {
-            HRNavMapController * navMap = [[HRNavMapController alloc] initWithPoiInfo:@[self.poiInfo] barTitle:self.poiInfo.city_name];
+            HRNavMapController * navMap = [[HRNavMapController alloc] initWithPoiInfo:@[self.poiInfo] barTitle:self.poiInfo.title];
             [self.navigationController  pushViewController:navMap animated:YES];
         }
             break;

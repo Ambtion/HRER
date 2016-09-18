@@ -90,6 +90,7 @@
     titelLabel.textAlignment = NSTextAlignmentCenter;
     titelLabel.textColor = [UIColor whiteColor];
     [barView addSubview:titelLabel];
+    titelLabel.text = self.barTitle;
     
     UIButton * backButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 26, 33, 33)];
     [backButton setImage:[UIImage imageNamed:@"list_back"] forState:UIControlStateNormal];

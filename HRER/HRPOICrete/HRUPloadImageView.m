@@ -456,7 +456,7 @@
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-    [self.textDesView resignFirstResponder];
+    [self resetToNormal];
 }
 
 - (void)resetToNormal

@@ -171,7 +171,7 @@
     [self.portraitImage sd_setImageWithURL:[NSURL URLWithString:data.portrait] placeholderImage:[UIImage imageNamed:@"man"]];
     
     if(data.creator_name.length){
-        NSString * str = [NSString stringWithFormat:@"%@ 推荐了 %@",data.creator_name,data.title];
+        NSString * str = [NSString stringWithFormat:@"%@ 推荐了 %ld个 %@",data.creator_name,(long)data.poi_num,data.title];
         NSMutableAttributedString * attr = [[NSMutableAttributedString alloc] initWithString:str];
         
         NSRange titleNormal =  NSMakeRange(0, 0);
