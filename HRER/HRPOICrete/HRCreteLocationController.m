@@ -415,7 +415,12 @@
     plantocounts = 6;
     status = 1;
 */
-    self.cityId = [[cityInfo objectForKey:@"city_id"] integerValue];
+    
+    if ([cityInfo objectForKey:@"city_id"]) {
+        self.cityId = [[cityInfo objectForKey:@"city_id"] integerValue];
+    }else{
+        self.countyId = [[cityInfo objectForKey:@"id"] intValue];
+    }
     self.cityName = [cityInfo objectForKey:@"city_name"];
     self.lat = [[cityInfo objectForKey:@"latitude"] floatValue];
     self.lng = [[cityInfo objectForKey:@"longitude"] floatValue];
