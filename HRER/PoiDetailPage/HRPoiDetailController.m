@@ -17,6 +17,8 @@
 #import "RDRGrowingTextView.h"
 #import "RefreshTableView.h"
 #import "HcdActionSheet.h"
+#import "HRWebCatShare.h"
+#import "HRQQManager.h"
 
 static CGFloat const MaxToolbarHeight = 200.0f;
 
@@ -347,6 +349,37 @@ static CGFloat const MaxToolbarHeight = 200.0f;
 - (void)onShareButtonClick:(UIButton *)button
 {
     
+    UIImage * shareImage = nil;
+    
+    HcdActionSheet *sheet = [[HcdActionSheet alloc] initWithCancelStr:@"取消"
+                                                    otherButtonTitles:@[@"微信好友",@"朋友圈",@"QQ好友",@"是否要举报该消息"]
+                                                          attachTitle:nil];
+    
+    sheet.selectButtonAtIndex = ^(NSInteger index) {
+        if (index == 1) {
+            [HRWebCatShare sendWeixinWebContentTitle:@"" description:@"" thumbImage:nil image:shareImage webpageURL:nil scene:WXSceneSession withcallBack:^(BaseResp *resp) {
+                
+            }];
+        }
+        
+        if (index == 2) {
+            [HRWebCatShare sendWeixinWebContentTitle:@"" description:@"" thumbImage:nil image:shareImage webpageURL:nil scene:WXSceneTimeline withcallBack:^(BaseResp *resp) {
+                
+            }];
+        }
+        
+        if (index == 3) {
+            [[HRQQManager shareInstance] shareImageToQQWithThumbImage:nil orignalImage:shareImage title:@"" withDes:@"" WithCallBack:^(QQBaseResp *response) {
+                
+            }];
+        }
+        
+        if(index == 4){
+            [self showTotasViewWithMes:@"已举报"];
+        }
+    };
+    [[UIApplication sharedApplication].keyWindow addSubview:sheet];
+    [sheet showHcdActionSheet];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

@@ -41,7 +41,6 @@
 {
     [super viewWillAppear:animated];
     [self.myNavController setNavigationBarHidden:YES];
-    [self hiddenMessCountInTabBar];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
