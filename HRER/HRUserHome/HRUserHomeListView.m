@@ -142,22 +142,28 @@
 #pragma mark - TableDelegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return self.dataSource.count;
+    return self.dataSource.count ? self.dataSource.count * 2 : 0;
 }
 
 #pragma mark - HeadView
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return [HRUserTimeLineHeadView heightForView];
+    
+    if (section % 2) { return 0; }
+    
+    return section % 2 == 0 ?  [HRUserTimeLineHeadView heightForView] : 0;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    HRHomePoiInfo * poiInfo = self.dataSource[section];
+    
+    if (section % 2) { return nil; }
+    
+    HRHomePoiInfo * poiInfo = self.dataSource[section / 2];
     
     HRUserTimeLineHeadView * lineHeadView = [[HRUserTimeLineHeadView alloc] initWithFrame:CGRectMake(0, 0, tableView.width, [HRUserTimeLineHeadView heightForView])];
-    lineHeadView.tag = section;
+    lineHeadView.tag = section / 2;
     [lineHeadView setDataSource:poiInfo];
     UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(segTap:)];
     [lineHeadView addGestureRecognizer:tap];
@@ -169,24 +175,33 @@
     UIView * view = tap.view;
     BOOL value = [self.sectionFlag[view.tag] boolValue];
     [self.sectionFlag replaceObjectAtIndex:view.tag withObject:@(!value)];
-    [[self tableView] reloadSections:[NSIndexSet indexSetWithIndex:view.tag] withRowAnimation:UITableViewRowAnimationAutomatic];
+    [[self tableView] reloadSections:[NSIndexSet indexSetWithIndex:view.tag * 2 + 1] withRowAnimation:UITableViewRowAnimationAutomatic];
     
 }
 #pragma mark - Cell
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    if(indexPath.section % 2 == 0) return 0;
+    
     return [HRUserHomeCell heightForView];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    HRHomePoiInfo * poiInfo = self.dataSource[section];
-    BOOL flag = [self.sectionFlag[section] boolValue];
+    
+    if(section % 2 == 0) return 0;
+    
+    HRHomePoiInfo * poiInfo = self.dataSource[section / 2];
+    BOOL flag = [self.sectionFlag[section / 2] boolValue];
     return (flag || self.isShareStatue) ? [self totalPoiInCity:poiInfo] : 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    if(indexPath.section % 2 == 0) return [UITableViewCell new];
+
     HRUserHomeCell * cell = [tableView dequeueReusableCellWithIdentifier:@"HRUserHomeCell"];
     if (!cell) {
         cell = [[HRUserHomeCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"HRUserHomeCell"];
@@ -195,7 +210,7 @@
         cell.delegate = self;
         
     }
-    HRHomePoiInfo * cityList = self.dataSource[indexPath.section];
+    HRHomePoiInfo * cityList = self.dataSource[indexPath.section / 2];
     HRPOIInfo * poiInfo = [self poiInTotalCityInCity:cityList ListAtIndex:indexPath.row];
     [cell setDataSource:poiInfo];
     [cell setCellStation:[self poiStationInTotalCityInCity:cityList ListAtIndex:indexPath.row]];
