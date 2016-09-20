@@ -58,7 +58,7 @@
     UILabel * titelLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, self.width, 44)];
     titelLabel.textAlignment = NSTextAlignmentCenter;
     titelLabel.textColor = [UIColor whiteColor];
-    titelLabel.text = @"个人信息";
+    titelLabel.text = @"这里护照";
     [barView addSubview:titelLabel];
     
     self.navRightButton = [[UIButton alloc] initWithFrame:CGRectMake(self.width - 17 - 33, 26, 33, 33)];

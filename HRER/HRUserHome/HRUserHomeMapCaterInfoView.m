@@ -30,13 +30,13 @@
 - (void)initUI
 {
     self.valueLabel = [[UILabel alloc] init];
-    self.valueLabel.font = [UIFont boldSystemFontOfSize:21.f];
+    self.valueLabel.font = [UIFont boldSystemFontOfSize:15.f];
     self.valueLabel.textAlignment = NSTextAlignmentCenter;
     self.valueLabel.textColor = [UIColor whiteColor];
     [self addSubview:self.valueLabel];
     
     self.titleLabel = [[UILabel alloc] init];
-    self.titleLabel.font = [UIFont systemFontOfSize:14.f];
+    self.titleLabel.font = [UIFont systemFontOfSize:11.f];
     self.titleLabel.textColor = RGB_Color(0xcc, 0xcc, 0xcc);
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
     [self addSubview:self.titleLabel];
@@ -60,17 +60,17 @@
 //    self.backgroundColor = [UIColor redColor];
 }
 
-- (void)setSeleted:(BOOL)isSeleted
-{
-    _seleted = isSeleted;
-    if(_seleted){
-        self.titleLabel.textColor = RGB_Color(0xd7, 0x47, 0x2a);
-        self.valueLabel.textColor = RGB_Color(0xd7, 0x47, 0x2a);
-    }else{
-        self.titleLabel.textColor = RGB_Color(0xcc, 0xcc, 0xcc);
-        self.valueLabel.textColor = RGB_Color(0xcc, 0xcc, 0xcc);
-    }
-}
+//- (void)setSeleted:(BOOL)isSeleted
+//{
+//    _seleted = isSeleted;
+//    if(_seleted){
+//        self.titleLabel.textColor = RGB_Color(0xd7, 0x47, 0x2a);
+//        self.valueLabel.textColor = RGB_Color(0xd7, 0x47, 0x2a);
+//    }else{
+//        self.titleLabel.textColor = RGB_Color(0xcc, 0xcc, 0xcc);
+//        self.valueLabel.textColor = RGB_Color(0xcc, 0xcc, 0xcc);
+//    }
+//}
 
 @end
 
@@ -140,14 +140,19 @@
     }];
         
     NSArray * array = @[
-                        @"美食",
-                        @"观光",
-                        @"购物",
-                        @"酒店"
+                        @"餐厅美食",
+                        @"观光购物",
+                        @"休闲娱乐",
+                        @"酒店住宿"
                         ];
-    
+    NSArray * colorArray  = @[
+                              RGB_Color(0xdc, 0x46, 0x30),
+                              RGB_Color(0x43, 0xa2, 0xf3),
+                              RGB_Color(0x3b, 0xc4, 0xba),
+                              RGB_Color(0xfb, 0xb3, 0x3a)
+                              ];
     CGFloat totalWidth = [[UIScreen mainScreen] bounds].size.width - 16 - 38 - 25 - 10;
-    CGFloat itemWidth =  30.f;
+    CGFloat itemWidth =  60.f;
     CGFloat itemHeight = 34.f;
     CGFloat xSpacing = (totalWidth - itemWidth * 4 ) /  5.f;
     
@@ -158,6 +163,8 @@
         HRCategoryMapItemView * categoryView = [[HRCategoryMapItemView alloc] init];
         categoryView.titleLabel.text = array[i];
         categoryView.valueLabel.text = @"0";
+        categoryView.titleLabel.textColor = colorArray[i];
+        categoryView.valueLabel.textColor = colorArray[i];
         [self addSubview:categoryView];
         [mArray addObject:categoryView];
         
@@ -172,8 +179,8 @@
         
         lastView = categoryView;
 
-        UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onSeletedIndex:)];
-        [categoryView addGestureRecognizer:tap];
+//        UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onSeletedIndex:)];
+//        [categoryView addGestureRecognizer:tap];
     }
     self.caterItemArray = mArray;
   

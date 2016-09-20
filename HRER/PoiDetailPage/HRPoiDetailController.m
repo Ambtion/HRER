@@ -115,8 +115,8 @@ static CGFloat const MaxToolbarHeight = 200.0f;
     [self.view addSubview:backButton];
     [backButton setHidden:[self.myNavController viewControllers].count == 1 ? YES : NO];
     
-    UIButton * shareButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.width - 33 - 12, 26, 33, 33)];
-    [shareButton setTitle:@"分享" forState:UIControlStateNormal];
+    UIButton * shareButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.width - 33 - 12, 20, 33, 33)];
+    [shareButton setImage:[[UIImage imageNamed:@"icon_bar_Share"] resizableImageWithCapInsets:UIEdgeInsetsMake(1, 1, 1, 1)] forState:UIControlStateNormal];
     [shareButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     shareButton.titleLabel.font = [UIFont systemFontOfSize:12.f];
     [shareButton addTarget:self action:@selector(onShareButtonClick:) forControlEvents:UIControlEventTouchUpInside];
