@@ -444,6 +444,7 @@ static CallBack upSucess;
         NSMutableDictionary * dic = [NSMutableDictionary dictionaryWithCapacity:0];
         [dic setValue:@"b5646e547c5bc722d99bdd34795fcf11" forKey:@"key"];
         [dic setValue:keyWord forKey:@"keywords"];
+        [dic setValue:@(50) forKey:@"offset"];
         [dic setValue:[NSString stringWithFormat:@"%.5f,%.5f",lat,lng] forKey:@"location"];
         NSString *  urlStr = @"http://restapi.amap.com/v3/place/around";
         

@@ -181,7 +181,7 @@
  *  @param catergory 行业类型
  *  @param userId    用户ID
  */
-+ (void)quaryPoiSetDetailListWithCreteType:(KPoiSetsCreteType)cretetype
++ (void)quaryPoiSetDetailListWquaryPoiListWithithCreteType:(KPoiSetsCreteType)cretetype
                                     cityId:(NSInteger)cityId
                                    poi_num:(NSInteger)poiNumber
                                 catergory:(NSInteger)catergory
@@ -197,7 +197,7 @@
  */
 /**
  *  https://developers.google.com/places/web-service/search
- *
+ *   http://lbs.amap.com/api/webservice/guide/api/search/
  *  @param poiType  0 -> 美食 1 ->观光 2->购物 3->酒店
  */
 + (void)quaryPoiListWith:(BOOL)isUseGoogleSearve

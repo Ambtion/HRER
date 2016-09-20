@@ -37,9 +37,9 @@
     self.titleLabel = [[UILabel alloc] init];
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
     self.titleLabel.backgroundColor = [UIColor whiteColor];
-    self.titleLabel.font = [UIFont systemFontOfSize:8.f];
+    self.titleLabel.font = [UIFont systemFontOfSize:10.f];
     self.titleLabel.textColor = RGB_Color(0x4c, 0x4c, 0x4c);
-    self.titleLabel.text = @"没有找到想推荐的点? 去地图扎店";
+    self.titleLabel.text = @"没有找到想推荐的地点? 去地图扎点创建>>";
     [self addSubview:self.titleLabel];
     
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
