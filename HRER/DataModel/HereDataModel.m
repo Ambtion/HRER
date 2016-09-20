@@ -111,6 +111,8 @@ YYModelSynthCoderAndHash
     return @{@"photos" : [HRPotoInfo class]};
 }
 
+
+
 - (NSString *)title
 {
     if (_title) {

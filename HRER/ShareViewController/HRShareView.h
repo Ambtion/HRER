@@ -7,7 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HereDataModel.h"
 
-@interface HRShareView : UIView
 
+@interface HRShareView : UIImageView
+
++ (void)creteShareImageWithPoiInfo:(HRPOIInfo *)poiInfo
+                   withLoadingView:(UIView *)loadingView
+                          callBack:(void (^)(UIImage * shareImage))callBack;
+
+- (void)creteShareImageWithPoiInfo:(HRPOIInfo *)poiInfo
+                          callBack:(void (^)(UIImage * shareImage))callBack;
 @end

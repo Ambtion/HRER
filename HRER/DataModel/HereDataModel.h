@@ -117,6 +117,8 @@
 
 @property(nonatomic,assign)NSInteger single_type;
 
+@property(nonatomic,strong)HRPotoInfo * seal;
+
 @end
 
 @interface HRCretePOIInfo : NSObject<NSCopying,NSCopying>
