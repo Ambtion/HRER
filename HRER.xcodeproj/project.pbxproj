@@ -442,7 +442,7 @@
 		E141782C1D323C34000CBB2E /* BMNewFriendsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMNewFriendsCell.m; sourceTree = "<group>"; };
 		E141782E1D323C42000CBB2E /* BMOldFriendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMOldFriendCell.h; sourceTree = "<group>"; };
 		E141782F1D323C42000CBB2E /* BMOldFriendCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMOldFriendCell.m; sourceTree = "<group>"; };
-		E14BD48D1CEEF53F00C66E14 /* HRER.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HRER.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E14BD48D1CEEF53F00C66E14 /* 这里.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "这里.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E14BD4911CEEF53F00C66E14 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E14BD4931CEEF53F00C66E14 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = HRER/AppDelegate.h; sourceTree = "<group>"; };
 		E14BD4941CEEF53F00C66E14 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = HRER/AppDelegate.m; sourceTree = "<group>"; };
@@ -1170,7 +1170,7 @@
 		E14BD48E1CEEF53F00C66E14 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E14BD48D1CEEF53F00C66E14 /* HRER.app */,
+				E14BD48D1CEEF53F00C66E14 /* 这里.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1494,7 +1494,7 @@
 			);
 			name = HRER;
 			productName = HRER;
-			productReference = E14BD48D1CEEF53F00C66E14 /* HRER.app */;
+			productReference = E14BD48D1CEEF53F00C66E14 /* 这里.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1922,7 +1922,7 @@
 					"$(PROJECT_DIR)/HRER/WebCatSDK",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Here;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "这里";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1960,7 +1960,7 @@
 					"$(PROJECT_DIR)/HRER/WebCatSDK",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Here;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "这里";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
