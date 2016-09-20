@@ -122,7 +122,7 @@
 - (NSInteger)seletedIndex
 {
     for (HRCreteCategoryItemView * view in self.caterItemArray) {
-        if (view.isSeleted) {
+        if (view.seleted) {
             return [self.caterItemArray indexOfObject:view];
         }
     }

@@ -13,6 +13,6 @@
 @property(nonatomic,strong)UIImageView * bgView;
 @property(nonatomic,strong)UILabel * titleLabel;
 @property(nonatomic,strong)UIColor * textColor;
-@property(nonatomic,assign,getter=isSeleted)BOOL seleted;
+@property(nonatomic,assign)BOOL seleted;
 
 @end

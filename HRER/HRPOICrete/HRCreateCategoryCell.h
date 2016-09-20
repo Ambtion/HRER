@@ -12,6 +12,8 @@
 @class HRCreateCategoryCell;
 @protocol HRCreateCategoryCell <NSObject>
 - (void)createCategoryCellDidSeletedIndex:(NSInteger)index;
+- (void)createCategoryCellDidCancelSeletedIndex;
+
 @end
 
 

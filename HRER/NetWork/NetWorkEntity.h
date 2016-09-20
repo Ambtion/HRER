@@ -181,7 +181,7 @@
  *  @param catergory 行业类型
  *  @param userId    用户ID
  */
-+ (void)quaryPoiSetDetailListWquaryPoiListWithithCreteType:(KPoiSetsCreteType)cretetype
++ (void)quaryPoiSetDetailListWithCreteType:(KPoiSetsCreteType)cretetype
                                     cityId:(NSInteger)cityId
                                    poi_num:(NSInteger)poiNumber
                                 catergory:(NSInteger)catergory

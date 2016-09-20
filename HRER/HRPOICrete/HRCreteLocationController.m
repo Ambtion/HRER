@@ -75,7 +75,7 @@
     self.lat = [[[HRLocationManager  sharedInstance] curLocation] coordinate].latitude;
     self.lng = [[[HRLocationManager  sharedInstance] curLocation] coordinate].longitude;
     self.countyId = 11;
-    self.categortIndex = 0;
+    self.categortIndex = -1;
     [self initUI];
     [self quaryData];
 }
@@ -437,6 +437,12 @@
 - (void)createCategoryCellDidSeletedIndex:(NSInteger)index
 {
     self.categortIndex = index;
+    [self quaryData];
+}
+
+- (void)createCategoryCellDidCancelSeletedIndex
+{
+    self.categortIndex = -1;
     [self quaryData];
 }
 

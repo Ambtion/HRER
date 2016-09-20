@@ -92,16 +92,31 @@
 
 - (void)onSeletedIndex:(UITapGestureRecognizer *)tap
 {
-    [self cancelAllSelted];
-    HRCreteCategoryItemView * itemView = (HRCreteCategoryItemView *)tap.view;
-    [itemView setSeleted:YES];
-    if ([_delegate respondsToSelector:@selector(createCategoryCellDidSeletedIndex:)]) {
-        [_delegate createCategoryCellDidSeletedIndex:[self.caterItemArray indexOfObject:itemView]];
+//    [self cancelAllSelted];
+    HRCreteCategoryItemView * tapItemView = (HRCreteCategoryItemView *)tap.view;
+    for (HRCreteCategoryItemView * itemView in self.caterItemArray) {
+        if(tapItemView != itemView)
+            [itemView setSeleted:NO];
     }
+    
+    if(tapItemView.seleted){
+        [tapItemView setSeleted:NO];
+        if ([_delegate respondsToSelector:@selector(createCategoryCellDidCancelSeletedIndex)]) {
+            [_delegate createCategoryCellDidCancelSeletedIndex];
+        }
+    }else{
+        [tapItemView setSeleted:YES];
+        if ([_delegate respondsToSelector:@selector(createCategoryCellDidSeletedIndex:)]) {
+            [_delegate createCategoryCellDidSeletedIndex:[self.caterItemArray indexOfObject:tapItemView]];
+        }
+    }
+
 }
 
 - (void)setSeletedAtIndex:(NSInteger)index
 {
+    if(index < 0 || index > self.caterItemArray.count) return;
+    
     HRCreteCategoryItemView * itemView = self.caterItemArray[index];
     [self cancelAllSelted];
     [itemView setSeleted:YES];
@@ -110,7 +125,7 @@
 - (NSInteger)seletedIndex
 {
     for (HRCreteCategoryItemView * view in self.caterItemArray) {
-        if (view.isSeleted) {
+        if (view.seleted) {
             return [self.caterItemArray indexOfObject:view];
         }
     }
