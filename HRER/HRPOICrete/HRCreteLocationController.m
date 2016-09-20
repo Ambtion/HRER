@@ -114,12 +114,18 @@
     label.textColor = [UIColor whiteColor];
     [barView addSubview:label];
     
-    self.rightButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.width - 66, 26, 66, 33)];
+    self.rightButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.width - 86, 26, 66, 33)];
     self.rightButton.backgroundColor = [UIColor clearColor];
     [self.rightButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.rightButton addTarget:self action:@selector(onRignthButtonDidClick:) forControlEvents:UIControlEventTouchUpInside];
     self.rightButton.titleLabel.font = [UIFont systemFontOfSize:15.f];
     [self.view addSubview:self.rightButton];
+    
+    UIImageView * imageDwon = [[UIImageView alloc] initWithFrame:CGRectMake(self.rightButton.right - 2, 0, 9, 9)];
+    imageDwon.image = [UIImage imageNamed:@"home_head_down"];
+    imageDwon.centerY = self.rightButton.centerY;
+    [self.view addSubview:imageDwon];
+    
 }
 
 - (void)initContentView
