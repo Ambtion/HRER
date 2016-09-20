@@ -117,10 +117,10 @@
 
 - (void)switchView
 {
-    if (self.listView.dataSource.count == 0) {
-        return;
-    }
-        
+//    if (self.listView.dataSource.count == 0) {
+//        return;
+//    }
+    
     CATransition *animation = [CATransition animation];
     animation.duration = 0.3;
     animation.timingFunction = UIViewAnimationCurveEaseInOut;

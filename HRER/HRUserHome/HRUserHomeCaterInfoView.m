@@ -56,6 +56,8 @@
     }];
     
  
+    self.titleLabel.textColor = UIColorFromRGB(0xdb4d30);
+    self.valueLabel.textColor = UIColorFromRGB(0x4c4c4c);
     
 //    self.titleLabel.backgroundColor = [UIColor greenColor];
 //    self.valueLabel.backgroundColor = [UIColor greenColor];
@@ -109,8 +111,8 @@
     self.cityItemView = [[HRCategoryItemView alloc] init];
     self.cityItemView.titleLabel.text = @"城市";
     self.cityItemView.valueLabel.text = @"0";
-    self.cityItemView.titleLabel.textColor = UIColorFromRGB(0x4c4c4c);
-    self.cityItemView.valueLabel.textColor = UIColorFromRGB(0x4c4c4c);
+//    self.cityItemView.titleLabel.textColor = UIColorFromRGB(0x4c4c4c);
+//    self.cityItemView.valueLabel.textColor = UIColorFromRGB(0x4c4c4c);
     [self.cityItemView setSeleted:NO];
     [self addSubview:self.cityItemView];
     
@@ -128,12 +130,12 @@
                         @"酒店住宿"
                         ];
     
-    NSArray * colorArray  = @[
-                              RGB_Color(0xdc, 0x46, 0x30),
-                              RGB_Color(0x43, 0xa2, 0xf3),
-                              RGB_Color(0x3b, 0xc4, 0xba),
-                              RGB_Color(0xfb, 0xb3, 0x3a)
-                              ];
+//    NSArray * colorArray  = @[
+//                              RGB_Color(0xdc, 0x46, 0x30),
+//                              RGB_Color(0x43, 0xa2, 0xf3),
+//                              RGB_Color(0x3b, 0xc4, 0xba),
+//                              RGB_Color(0xfb, 0xb3, 0x3a)
+//                              ];
     
     CGFloat totalWidth = [[UIScreen mainScreen] bounds].size.width - 36 * 2 - 25.f;
     CGFloat itemWidth =  50.f;
@@ -162,8 +164,8 @@
         HRCategoryItemView * categoryView = [[HRCategoryItemView alloc] init];
         categoryView.titleLabel.text = array[i];
         categoryView.valueLabel.text = @"0";
-        categoryView.titleLabel.textColor = colorArray[i];
-        categoryView.valueLabel.textColor = colorArray[i];
+//        categoryView.titleLabel.textColor = colorArray[i];
+//        categoryView.valueLabel.textColor = colorArray[i];
         [self addSubview:categoryView];
         [mArray addObject:categoryView];
         

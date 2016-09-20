@@ -76,10 +76,10 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>只有开启定位功能才能正常使用。</string>
 	<key>NSContactsUsageDescription</key>
 	<string>读取通讯录帮助你更好找到朋友</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>只有开启定位功能才能正常使用。</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>location</string>
