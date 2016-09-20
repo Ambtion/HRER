@@ -463,6 +463,7 @@ static CallBack upSucess;
                 type = @"100100";
                 break;
             default:
+                type = @"050000|050100|050101|050102|050103|050104|050105|050106|050107|050108|050109|050110|050111|050112|050113|050114|050115|050116|050117|050118|050119|050120|050121|050122|050123|050200|050201|050202|050203|050204|050205|050206|050207|050208|050209|050210|050211|050212|050213|050214|050215|050216|050217|050400|050500|050501|050502|050503|050504|050600|050700|050800|050900060100|060101|060102|060103|060401|060402|060407|060408|060409|060700|060706|060907|061000|061001|061200|061201|110000|110100|110101|110102|110103|110104|110105|110200|110201|110202|110203|110204|110205|110206|110208|110207|080000|080100|080101|080102|080106|080107|080109|080115|080116|080117|080201|080300|080301|080302|080303|080304|080305|080306|080400|080401|080500|080501|080503|080504|080505|080600|080601|080602|080603|100100";
                 break;
         }
         
@@ -508,6 +509,7 @@ static CallBack upSucess;
                 // 酒店
                 break;
             default:
+                keytype = @"bakery|bar|cafe|food|restaurant|beauty_salon|bowling_alley|campground|casino|gym|hair_care|movie_rental|movie_theater|night_club|spa|aquarium|art_gallery|bicycle_store|book_store|church|city_hall|clothing_store|embassy|florist|furniture_store|grocery_or_supermarket|hardware_store|home_goods_store|jewelry_store|library|mosque|museum |park|post_office|university|shoe_store|shopping_mall|stadium|train_station|zoo|lodging";
                 break;
         }
         if (keytype.length) {
@@ -697,6 +699,7 @@ static CallBack upSucess;
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager POST:baseUrl parameters:dic success:success failure:failure];
 }
+
 + (void)uploadImags:(NSArray*)images sucess:(void(^)(NSArray *array))sucess
 {
     

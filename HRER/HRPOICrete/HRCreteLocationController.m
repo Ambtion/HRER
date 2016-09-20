@@ -75,7 +75,7 @@
     self.lat = [[[HRLocationManager  sharedInstance] curLocation] coordinate].latitude;
     self.lng = [[[HRLocationManager  sharedInstance] curLocation] coordinate].longitude;
     self.countyId = 11;
-    self.categortIndex = -1;
+    self.categortIndex = 0;
     [self initUI];
     [self quaryData];
 }

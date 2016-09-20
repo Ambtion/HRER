@@ -98,6 +98,7 @@
         case 4:
             buttonTitle = @"加入我的酒店地图";
         default:
+            buttonTitle = @"加入我的这里地图";
             break;
     }
     [uploadView.uploadbutton setTitle:buttonTitle forState:UIControlStateNormal];
@@ -606,9 +607,21 @@
         imageArray = @[deoult];
     }
     
+    NSArray * locArray = [self.location componentsSeparatedByString:@","];
+
+    if(self.cityId == 0){
+        [self showTotasViewWithMes:@"城市id不能是空"];
+        return;
+    }
+    
+    
+    if ([[locArray lastObject] floatValue] == 0 ||  [[locArray firstObject] floatValue] == 0) {
+        [self showTotasViewWithMes:@"坐标不能零"];
+        return;
+    }
+    
     [MBProgressHUD showHUDAddedTo:[[[UIApplication sharedApplication] delegate] window] animated:YES];
 
-    NSArray * locArray = [self.location componentsSeparatedByString:@","];
     WS(ws);
     [NetWorkEntity uploadPoiWithTitle:[self.titleLabel.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]
                                   des:[self.textDesView.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]
