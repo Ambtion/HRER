@@ -1922,7 +1922,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/HRER/WebCatSDK",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ibox.here;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Here;
 				PRODUCT_NAME = "这里";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1934,7 +1934,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: CJ Cheng (AX5CHV2TGZ)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = AX5CHV2TGZ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1961,7 +1962,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/HRER/WebCatSDK",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ibox.here;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Here;
 				PRODUCT_NAME = "这里";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
