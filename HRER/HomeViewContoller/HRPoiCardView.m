@@ -171,19 +171,28 @@
     
     NSString * str = @"";
     
+    NSString * userName = data.creator_name;
+    
     if(data.single_type == 5){
         //想去
-        str = [NSString stringWithFormat:@"想去 %@ 推荐的 %@",data.creator_name,data.title];
+        if (data.userWantTo.length) {
+            //想去我推荐的poi
+            userName = data.userWantTo;
+            str = [NSString stringWithFormat:@"%@想去你推荐的 %@",userName,data.title];
+        }else{
+            str = [NSString stringWithFormat:@"想去 %@ 推荐的 %@",userName,data.title];
+        }
+        
     }else{
-        str = [NSString stringWithFormat:@"%@ 推荐了 %@",data.creator_name,data.title];
+        str = [NSString stringWithFormat:@"%@ 推荐了 %@",userName,data.title];
     }
     
     NSMutableAttributedString * attr = [[NSMutableAttributedString alloc] initWithString:str];
     
     NSRange titleNormal =  NSMakeRange(0, 0);
     NSRange nameRang = NSMakeRange(0, 0);
-    if(data.creator_name)
-      nameRang  = [str rangeOfString:data.creator_name];
+    if(userName)
+      nameRang  = [str rangeOfString:userName];
     if (data.title)
         titleNormal = [str rangeOfString:data.title];
     
