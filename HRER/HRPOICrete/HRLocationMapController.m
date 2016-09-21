@@ -24,7 +24,7 @@
 @property(nonatomic,strong)MKMapView * mapView;
 @property(nonatomic,strong)UIImageView * pinCenterView;
 @property(nonatomic,strong)CLLocation * pinLocation;
-
+@property(nonatomic,assign)BOOL firstLocatoon;
 @end
 
 @implementation HRLocationMapController
@@ -52,6 +52,7 @@
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
+    self.firstLocatoon = NO;
     [self initUI];
 }
 
@@ -127,17 +128,26 @@
 
 - (void)initMapShow
 {
+    
+    if (self.firstLocatoon) {
+        return;
+    }
     //设置图区范围
     MKCoordinateSpan span;
     span.latitudeDelta = MAPLocationLEVEL;
     span.longitudeDelta = MAPLocationLEVEL;
     MKCoordinateRegion region;
-    
+    self.firstLocatoon = YES;
+
     if(self.lat == -1 && self.lng == -1){
         self.lat = self.mapView.userLocation.location.coordinate.latitude;
         self.lng = self.mapView.userLocation.location.coordinate.longitude;
+        self.pinLocation = self.mapView.userLocation.location;
+    }else{
+        self.pinLocation = [[CLLocation alloc] initWithLatitude:self.lat longitude:self.lng];
     }
-    CLLocationCoordinate2D coord = CLLocationCoordinate2DMake(self.lat, self.lng);
+    
+    CLLocationCoordinate2D coord = CLLocationCoordinate2DMake(self.pinLocation.coordinate.latitude, self.pinLocation.coordinate.longitude);
     region.center = coord;
     region.span = span;
     [self.mapView setRegion:region animated:YES];
