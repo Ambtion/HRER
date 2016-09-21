@@ -49,7 +49,7 @@
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.iconView.mas_right).offset(7.f);
         make.top.height.equalTo(self);
-        make.width.equalTo(@(70));
+        make.width.equalTo(@(75));
     }];
     
     [self.textField mas_makeConstraints:^(MASConstraintMaker *make) {

@@ -39,7 +39,6 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self initMapShow];
 
 }
 
@@ -151,6 +150,11 @@
     self.pinCenterView.center = CGPointMake(self.mapView.centerX, self.mapView.centerY - self.pinCenterView.height/2.f);
     self.pinCenterView.image = [UIImage imageNamed:@"map_food"];
     [self.view addSubview:self.pinCenterView];
+}
+
+- (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
+{
+    [self initMapShow];
 }
 
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated

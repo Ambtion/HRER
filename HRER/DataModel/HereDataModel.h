@@ -116,7 +116,7 @@
 @property(nonatomic,strong)NSArray * photos; ///< Array<HRImageInfo>
  //想去逻辑
 @property(nonatomic,assign)NSInteger single_type;
-@property(nonatomic,assign)NSString * userWantTo;
+@property(nonatomic,assign)NSArray * userWantToList;
 
 @property(nonatomic,strong)HRPotoInfo * seal;
 

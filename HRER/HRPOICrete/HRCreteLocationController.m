@@ -34,7 +34,7 @@
 @property(nonatomic,assign)double lat;
 @property(nonatomic,assign)double lng;
 @property(nonatomic,assign)NSInteger countyId;
-
+@property(nonatomic,assign)BOOL isCurLocaiton;
 /**
  *  搜索框
  */
@@ -74,6 +74,7 @@
     self.cityName = [[HRLocationManager  sharedInstance] cityName];
     self.lat = [[[HRLocationManager  sharedInstance] curLocation] coordinate].latitude;
     self.lng = [[[HRLocationManager  sharedInstance] curLocation] coordinate].longitude;
+    self.isCurLocaiton = YES;
     self.countyId = 11;
     self.categortIndex = 0;
     [self initUI];
@@ -396,6 +397,7 @@
 
 - (void)findCityViewControllerDidCurCity
 {
+    self.isCurLocaiton = YES;
     self.cityName = [[HRLocationManager sharedInstance] cityName];
     self.cityId = [[HRLocationManager sharedInstance] curCityId];
     self.lat = [[HRLocationManager sharedInstance] curLocation].coordinate.latitude;
@@ -421,7 +423,7 @@
     plantocounts = 6;
     status = 1;
 */
-    
+    self.isCurLocaiton = NO;
     if ([cityInfo objectForKey:@"city_id"]) {
         self.cityId = [[cityInfo objectForKey:@"city_id"] integerValue];
     }else{
@@ -456,8 +458,7 @@
 - (void)onNoFoundTipsDidClick:(id)sender
 {
     HRLocationMapController * controller =  [[HRLocationMapController alloc] init];
-    if (self.lat == [[[HRLocationManager  sharedInstance] curLocation] coordinate].latitude &&
-        self.lng == [[[HRLocationManager  sharedInstance] curLocation] coordinate].longitude) {
+    if (self.isCurLocaiton) {
         controller.lat = -1;
         controller.lng = -1;
     }else{
@@ -467,6 +468,7 @@
     }
     controller.cityName = self.cityName;
     controller.cityId = self.cityId;
+//    [controller initMapShow];
     [self.myNavController pushViewController:controller animated:YES];
 
 }
