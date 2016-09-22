@@ -11,11 +11,12 @@
 #import "HRLocationCategoryView.h"
 #import "HRLocationManager.h"
 #import "HRUPloadImageView.h"
+#import <AMapSearchKit/AMapSearchKit.h>
 
 #define MAPLocationLEVEL        (0.03f)
 
 
-@interface HRLocationMapController ()<UITextFieldDelegate,MKMapViewDelegate>
+@interface HRLocationMapController ()<UITextFieldDelegate,MKMapViewDelegate,AMapSearchDelegate>
 
 @property(nonatomic,strong)HRLocationInputView * titleInputView;
 @property(nonatomic,strong)HRLocationInputView * addressInputView;
@@ -25,6 +26,9 @@
 @property(nonatomic,strong)UIImageView * pinCenterView;
 @property(nonatomic,strong)CLLocation * pinLocation;
 @property(nonatomic,assign)BOOL firstLocatoon;
+
+@property(nonatomic,strong)AMapSearchAPI * mapSearch;
+
 @end
 
 @implementation HRLocationMapController
@@ -54,6 +58,11 @@
     self.view.backgroundColor = [UIColor whiteColor];
     self.firstLocatoon = NO;
     [self initUI];
+    
+    self.mapSearch = [[AMapSearchAPI alloc] init];
+    self.mapSearch.delegate = self;
+    
+
 }
 
 - (void)initUI
@@ -173,31 +182,24 @@
     
     self.pinLocation = [[CLLocation alloc] initWithLatitude:coor2D.latitude longitude:coor2D.longitude];
     
+    AMapReGeocodeSearchRequest *regeo = [[AMapReGeocodeSearchRequest alloc] init];
+    regeo.location = [AMapGeoPoint locationWithLatitude:self.pinLocation.coordinate.latitude longitude:self.pinLocation.coordinate.longitude];
+    regeo.requireExtension = YES;
+    //发起逆地理编码
+    [self.mapSearch AMapReGoecodeSearch:regeo];
+
     WS(ws);
     CLGeocoder *geocoder = [[CLGeocoder alloc] init];
     [geocoder reverseGeocodeLocation:self.pinLocation completionHandler:^(NSArray *array, NSError *error) {
         
-//       __block  NSString * cityName = @"";
        __block NSString * placeName = @"";
         
         if (array.count > 0) {
             CLPlacemark * placeMark = [array objectAtIndex:0];
-//            cityName = placeMark.locality;
             placeName = placeMark.name;
             if (placeName.length) {
                 self.addressInputView.textField.text = placeName;
             }
-            
-//            if (cityName.length) {
-//                [NetWorkEntity  quaryCityInfoWithCityName:ws.cityName  lat:self.pinLocation.coordinate.latitude lng:self.pinLocation.coordinate.longitude success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//                    if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
-//                        NSDictionary * userInfoDic  = [responseObject objectForKey:@"response"];
-//                        self.cityId = [[userInfoDic objectForKey:@"city_id"] integerValue];
-//                    }
-//                } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//                    
-//                }];
-//            }
             
         }else{
             [NetWorkEntity geoLocationWithLag:ws.pinLocation.coordinate.latitude lng:ws.pinLocation.coordinate.longitude success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -208,33 +210,24 @@
                     if (placeName.length) {
                         self.addressInputView.textField.text = placeName;
                     }
-//                    cityName  = [self getNameForType:@"administrative_area_level_1" formList:[dic objectForKey:@"address_components"]];
-//                    if (!cityName.length) {
-//                        cityName = [self getNameForType:@"administrative_area_level_2" formList:[dic objectForKey:@"address_components"]];
-//                    }
-//                    
-//                    if (cityName.length) {
-//                        [NetWorkEntity  quaryCityInfoWithCityName:cityName  lat:self.pinLocation.coordinate.latitude lng:self.pinLocation.coordinate.longitude success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//                            if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
-//                                NSDictionary * userInfoDic  = [responseObject objectForKey:@"response"];
-//                                self.cityId = [[userInfoDic objectForKey:@"city_id"] integerValue];
-//                            }
-//                        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//                            
-//                        }];
-//                    }
-
                 }
             } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                 
             }];
         }
         
-    
-
         
      }];
 
+}
+
+/* 逆地理编码回调. */
+- (void)onReGeocodeSearchDone:(AMapReGeocodeSearchRequest *)request response:(AMapReGeocodeSearchResponse *)response
+{
+    if (response.regeocode != nil)
+    {
+        self.addressInputView.textField.text = response.regeocode.formattedAddress;
+    }
 }
 
 - (NSString *)getNameForType:(NSString *)searchType formList:(NSArray *)list
