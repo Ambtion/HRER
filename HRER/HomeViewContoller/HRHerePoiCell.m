@@ -53,6 +53,7 @@
 //        return;
 //    }
     _data = data;
+    [self showMask:data.poiBannerType];
     [[self cardView] setDataSource:data];
 }
 
@@ -60,6 +61,12 @@
 {
     self.cardView.locLabel.text = str;
     [self.cardView.locIconView setHidden:!str.length];
+}
+
+- (void)showMask:(BOOL)isShow
+{
+    [self setUserInteractionEnabled:!isShow];
+    [[self.cardView maskView] setHidden:!isShow];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

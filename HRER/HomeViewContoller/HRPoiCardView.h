@@ -25,6 +25,7 @@
 @property(nonatomic,weak)UIViewController * controller;
 @property(nonatomic,strong)UILabel * locLabel;
 @property(nonatomic,strong)UIImageView * locIconView;
+@property(nonatomic,strong)UIView * maskView;
 
 + (CGFloat)heightForCardView;
 

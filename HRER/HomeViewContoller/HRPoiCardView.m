@@ -155,12 +155,28 @@
         make.centerY.equalTo(self.locLabel);
     }];
     
+    
+    
     UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(fullViewTap:)];
     [self addGestureRecognizer:tap];
     
     tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(userPortDidClick:)];
     [self.portraitImage setUserInteractionEnabled:YES];
     [self.portraitImage addGestureRecognizer:tap];
+    
+    self.maskView = [[UIView alloc] init];
+    self.maskView.layer.cornerRadius = 4.f;
+    self.maskView.layer.borderColor = UIColorFromRGB(0xdf4f29).CGColor;
+    self.maskView.layer.borderWidth = 0.5;
+    self.maskView.backgroundColor = RGBA(0xfe, 0x98, 0x7f, 0.5);
+    [self addSubview:self.maskView];
+    [self.maskView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.top.equalTo(self.bgImageView);
+        make.width.equalTo(self.bgImageView);
+        make.height.equalTo(self.bgImageView).offset(-2);
+    }];
+    [self.maskView setHidden:YES];
+
 }
 
 - (void)setDataSource:(HRPOIInfo *)data

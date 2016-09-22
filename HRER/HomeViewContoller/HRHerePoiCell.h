@@ -27,4 +27,6 @@
 
 + (CGFloat)heightForCell;
 
+- (void)showMask:(BOOL)isShow;
+
 @end

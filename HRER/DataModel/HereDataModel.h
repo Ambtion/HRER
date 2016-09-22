@@ -120,6 +120,8 @@
 
 @property(nonatomic,strong)HRPotoInfo * seal;
 
+@property(nonatomic,assign)BOOL poiBannerType;
+
 @end
 
 @interface HRCretePOIInfo : NSObject<NSCopying,NSCopying>
