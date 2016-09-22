@@ -176,16 +176,16 @@
     
     if (!isUseGoogle) {
         
-        AMapPOIKeywordsSearchRequest *request = [[AMapPOIKeywordsSearchRequest alloc] init];
+        AMapPOIAroundSearchRequest *request = [[AMapPOIAroundSearchRequest alloc] init];
         
         request.keywords            = self.inputView.textFiled.text;
-        request.city                = self.cityName;
+//        request.city                = self.cityName;
         request.types               = [NetWorkEntity poitypeForGaode:self.categortIndex + 1];
+        request.location            = [AMapGeoPoint locationWithLatitude:self.lat longitude:self.lng];
         request.requireExtension    = YES;
-        request.cityLimit           = YES;
+        request.radius = 50000;
         request.offset = 50;
-        
-        [self.mapSearch AMapPOIKeywordsSearch:request];
+        [self.mapSearch AMapPOIAroundSearch:request];
         
         return;
     }
