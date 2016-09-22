@@ -8,6 +8,7 @@
 
 #import "HRLocationManager.h"
 #import "NetWorkEntity.h"
+#import "AMapLocationManager.h"
 
 @interface HRLocationManager(Cache)
 - (void)writeCityName:(NSString *)cityName;
@@ -65,7 +66,7 @@
 }
 
 @end
-@interface HRLocationManager()<CLLocationManagerDelegate>
+@interface HRLocationManager()<CLLocationManagerDelegate,AMapLocationManagerDelegate>
 {
     NSInteger  _curCityID;
     NSString * _en_name;
@@ -73,10 +74,14 @@
 
 @property(nonatomic,assign)BOOL isFirstGEO;
 
-@property(nonatomic,strong)CLLocationManager * locationManager;
+
 @property(nonatomic,strong)CLLocation * curLocation;
 @property(nonatomic,strong)NSString * cityName;
+
+@property(nonatomic,strong)AMapLocationManager * locationManager;
 //@property(nonatomic,strong)NSString * subCityName;
+
+//@property(nonatomic,strong)CLLocationManager * locationManager;
 
 @end
 
@@ -101,39 +106,42 @@
         _curCityID = [self readCityId];
         _en_name = [self readEnname];
         self.cityName = [self readCityName];
-        
+     
+        [self configLocationManager];
+        [self startLocaiton];
     }
     return self;
 }
 
 
-- (void)startLocaiton
-{
-    if (!_locationManager) {
-        
-        _locationManager = [[CLLocationManager alloc] init];
-        
-        _locationManager.delegate = self;
-        
-        [_locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
-        
-        if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8) {
-            [self.locationManager requestAlwaysAuthorization]; //
-        }
-        if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 9) {
-            _locationManager.allowsBackgroundLocationUpdates = YES;
-        }
-    }
-    [_locationManager startUpdatingLocation];
-}
+//- (void)startLocaiton
+//{
+//    if (!_locationManager) {
+//        
+//        _locationManager = [[CLLocationManager alloc] init];
+//        
+//        _locationManager.delegate = self;
+//        
+//        [_locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
+//        
+//        if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8) {
+//            [self.locationManager requestAlwaysAuthorization]; //
+//        }
+//        if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 9) {
+//            _locationManager.allowsBackgroundLocationUpdates = YES;
+//        }
+//    }
+//    [_locationManager startUpdatingLocation];
+//}
+
+
 
 #pragma mark - Locaiton
-- (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
+//
+- (void)amapLocationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
     switch (status) {
         case kCLAuthorizationStatusNotDetermined:
-            if ([_locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
-                [_locationManager requestWhenInUseAuthorization];
-            }
+
             break;
         case kCLAuthorizationStatusDenied:
         {
@@ -161,10 +169,10 @@
     }
 }
 
-- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations
+- (void)amapLocationManager:(AMapLocationManager *)manager didUpdateLocation:(CLLocation *)location
 {
     
-    self.curLocation = [locations lastObject];
+    self.curLocation = location;
     if (self.isFirstGEO) {
         
         self.isFirstGEO = NO;
@@ -175,7 +183,6 @@
                 CLPlacemark * placeMark = [array objectAtIndex:0];
                 if (placeMark) {
                     self.cityName = placeMark.locality;
-//                    self.subCityName = placeMark.subLocality;
                     
                     [NetWorkEntity  quaryCityInfoWithCityName:placeMark.locality  lat:self.curLocation.coordinate.latitude lng:self.curLocation.coordinate.longitude success:^(AFHTTPRequestOperation *operation, id responseObject) {
                         if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
@@ -198,6 +205,32 @@
     }
     
 }
+
+
+#pragma mark - Lccation
+- (void)configLocationManager
+{
+    self.locationManager = [[AMapLocationManager alloc] init];
+    
+    [self.locationManager setDelegate:self];
+    
+    [self.locationManager setPausesLocationUpdatesAutomatically:NO];
+    
+    [self.locationManager setAllowsBackgroundLocationUpdates:YES];
+}
+
+- (void)startLocaiton
+{
+    //开始定位
+    [self.locationManager startUpdatingLocation];
+}
+
+- (void)stopSerialLocation
+{
+    //停止定位
+    [self.locationManager stopUpdatingLocation];
+}
+
 
 #pragma mark - Cache
 - (void)writeData

@@ -26,6 +26,8 @@ PODS:
   - AMap2DMap (4.3.0):
     - AMapFoundation (~> 1.2)
   - AMapFoundation (1.3.0)
+  - AMapLocation (2.1.1):
+    - AMapFoundation (~> 1.2)
   - AMapSearch (4.2.0):
     - AMapFoundation (~> 1.0)
   - GCJSONKit (1.5.0)
@@ -43,6 +45,7 @@ DEPENDENCIES:
   - AFNetworkActivityLogger
   - AFNetworking (~> 2.0)
   - AMap2DMap
+  - AMapLocation
   - AMapSearch
   - GCJSONKit
   - iCarousel
@@ -58,6 +61,7 @@ SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
   AMap2DMap: f3f0fc5cdbf0242ff22da0c8605f24f8d7187b35
   AMapFoundation: 95799945466ccabfe1d3d5d9c1d524501c327b90
+  AMapLocation: dd203f76b034ef5cb546600f4e1ffad2a3a14072
   AMapSearch: 788020fca7ed18819e8bc2bfca716a6775a05ada
   GCJSONKit: 8ad0067945efd217af8e610fa09ca0d02283b36b
   iCarousel: 67c8a43da5a46795b56aadfc96cd36a16f6149b2
@@ -68,6 +72,6 @@ SPEC CHECKSUMS:
   UMengAnalytics: 19b28253793d77dff10fb7d502faad1fb6b8ce4a
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
 
-PODFILE CHECKSUM: 9b5bf7ec1721ba47c53d4d14361caf868cfffb90
+PODFILE CHECKSUM: f43b0a5fac304e40d5a7b1aaab5a9dc95eb616bc
 
 COCOAPODS: 1.1.0.beta.2

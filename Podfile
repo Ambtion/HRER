@@ -16,5 +16,6 @@ pod 'UMengAnalytics'
 pod 'iCarousel'
 pod 'AMapSearch' 
 pod 'AMap2DMap' 
+pod 'AMapLocation'
 end
 
