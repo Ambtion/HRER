@@ -1481,12 +1481,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E14BD4A41CEEF53F00C66E14 /* Build configuration list for PBXNativeTarget "HRER" */;
 			buildPhases = (
-				B5E3EEBFFB163B0A4D465853 /* 📦 Check Pods Manifest.lock */,
+				B5E3EEBFFB163B0A4D465853 /* [CP] Check Pods Manifest.lock */,
 				E14BD4891CEEF53F00C66E14 /* Sources */,
 				E14BD48A1CEEF53F00C66E14 /* Frameworks */,
 				E14BD48B1CEEF53F00C66E14 /* Resources */,
-				508F7EEA610F00A8AB1A8133 /* 📦 Embed Pods Frameworks */,
-				396543CA4BA5E0BD97782CB4 /* 📦 Copy Pods Resources */,
+				508F7EEA610F00A8AB1A8133 /* [CP] Embed Pods Frameworks */,
+				396543CA4BA5E0BD97782CB4 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1577,14 +1577,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		396543CA4BA5E0BD97782CB4 /* 📦 Copy Pods Resources */ = {
+		396543CA4BA5E0BD97782CB4 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1592,14 +1592,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HRER/Pods-HRER-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		508F7EEA610F00A8AB1A8133 /* 📦 Embed Pods Frameworks */ = {
+		508F7EEA610F00A8AB1A8133 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1607,19 +1607,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HRER/Pods-HRER-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		B5E3EEBFFB163B0A4D465853 /* 📦 Check Pods Manifest.lock */ = {
+		B5E3EEBFFB163B0A4D465853 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1902,6 +1902,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/HRER/TencentSDK",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/HRER",
 				);
 				GCC_PREFIX_HEADER = PrefixHeader.pch;
 				HEADER_SEARCH_PATHS = (
@@ -1943,6 +1944,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/HRER/TencentSDK",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/HRER",
 				);
 				GCC_PREFIX_HEADER = PrefixHeader.pch;
 				HEADER_SEARCH_PATHS = (

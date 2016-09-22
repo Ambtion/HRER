@@ -14,7 +14,7 @@ pod 'AFNetworkActivityLogger'
 pod 'YYModel'
 pod 'UMengAnalytics'
 pod 'iCarousel'
-pod 'AMapSearch'
-
+pod 'AMapSearch' 
+pod 'AMap2DMap' 
 end
 

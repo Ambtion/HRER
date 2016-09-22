@@ -23,21 +23,26 @@ PODS:
   - AFNetworking/UIKit (2.6.3):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - AMapSearch (3.3.0)
+  - AMap2DMap (4.3.0):
+    - AMapFoundation (~> 1.2)
+  - AMapFoundation (1.3.0)
+  - AMapSearch (4.2.0):
+    - AMapFoundation (~> 1.0)
   - GCJSONKit (1.5.0)
   - iCarousel (1.8.2)
-  - Masonry (1.0.0)
-  - MBProgressHUD (0.9.2)
-  - SDWebImage (3.7.6):
-    - SDWebImage/Core (= 3.7.6)
-  - SDWebImage/Core (3.7.6)
+  - Masonry (1.0.2)
+  - MBProgressHUD (1.0.0)
+  - SDWebImage (3.8.2):
+    - SDWebImage/Core (= 3.8.2)
+  - SDWebImage/Core (3.8.2)
   - SWTableViewCell (0.3.7)
-  - UMengAnalytics (4.0.2)
-  - YYModel (1.0.3)
+  - UMengAnalytics (4.1.0)
+  - YYModel (1.0.4)
 
 DEPENDENCIES:
   - AFNetworkActivityLogger
   - AFNetworking (~> 2.0)
+  - AMap2DMap
   - AMapSearch
   - GCJSONKit
   - iCarousel
@@ -51,16 +56,18 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFNetworkActivityLogger: 121486778117d53b3ab1c61d264b88081d0c3eee
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
-  AMapSearch: cff4faf59c007f7d1f2bae2d7170c3912783981a
+  AMap2DMap: f3f0fc5cdbf0242ff22da0c8605f24f8d7187b35
+  AMapFoundation: 95799945466ccabfe1d3d5d9c1d524501c327b90
+  AMapSearch: 788020fca7ed18819e8bc2bfca716a6775a05ada
   GCJSONKit: 8ad0067945efd217af8e610fa09ca0d02283b36b
   iCarousel: 67c8a43da5a46795b56aadfc96cd36a16f6149b2
-  Masonry: b529bb169217897b6354d4b56b1fada6d475b13d
-  MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
-  SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
+  Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
+  MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
+  SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   SWTableViewCell: 2a94aadc9d47b2b611fa064566bf57948b95b579
-  UMengAnalytics: ecddd7b9545804a980446fe0d691f7ae8694516f
-  YYModel: 63142c2f07c5c8c9d1c261689cf3827ea6ab2886
+  UMengAnalytics: 19b28253793d77dff10fb7d502faad1fb6b8ce4a
+  YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
 
-PODFILE CHECKSUM: 7c10d0ef6be125a9ae06c850dfb18b6991f6cf8f
+PODFILE CHECKSUM: 9b5bf7ec1721ba47c53d4d14361caf868cfffb90
 
-COCOAPODS: 1.0.0
+COCOAPODS: 1.1.0.beta.2

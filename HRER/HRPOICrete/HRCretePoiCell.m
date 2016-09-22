@@ -127,15 +127,15 @@
 //    [self.portraitImage sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"man"]];
     self.titleLabel.text = data.title;
     self.subLabel.text = data.subTitle;
-    
-    NSArray * locArray = [[_data location] componentsSeparatedByString:@","];
-    if (locArray.count == 2) {
-        CLLocation * desLocaiton = [[CLLocation alloc] initWithLatitude:[[locArray lastObject] floatValue] longitude:[[locArray firstObject] floatValue]];
-        NSString * distance = [HRNavigationTool distanceBetwenOriGps:[[HRLocationManager sharedInstance] curLocation].coordinate desGps:desLocaiton.coordinate];
+    self.locLabel.text = [HRNavigationTool distanceStr:data.distance];
         
-        self.locLabel.text = distance;
-
-    }
+//    NSArray * locArray = [[_data location] componentsSeparatedByString:@","];
+//    if (locArray.count == 2) {
+//        CLLocation * desLocaiton = [[CLLocation alloc] initWithLatitude:[[locArray lastObject] floatValue] longitude:[[locArray firstObject] floatValue]];
+//        NSString * distance = [HRNavigationTool distanceBetwenOriGps:[[HRLocationManager sharedInstance] curLocation].coordinate desGps:desLocaiton.coordinate];
+//        
+//
+//    }
 }
 
 #pragma mark

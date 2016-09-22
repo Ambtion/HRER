@@ -167,37 +167,39 @@
 - (void)quaryData
 {
     
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     BOOL isUseGoogle = (self.countyId != 11);
 
-//    暂时写死
-//    isUseGoogle = YES;
     
-    WS(weakSelf);
-    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+
     
     if (!isUseGoogle) {
         
-        AMapPOIAroundSearchRequest *request = [[AMapPOIAroundSearchRequest alloc] init];
-        request.location            = [AMapGeoPoint locationWithLatitude:self.lat longitude:self.lng];
-
+        AMapPOIKeywordsSearchRequest *request = [[AMapPOIKeywordsSearchRequest alloc] init];
+        
         request.keywords            = self.inputView.textFiled.text;
-        request.types               = @"美食";
-        request.sortrule            = 0;
-        request.requireSubPOIs      = YES;
-        [self.mapSearch AMapPOIAroundSearch:request];
+        request.city                = self.cityName;
+        request.types               = [NetWorkEntity poitypeForGaode:self.categortIndex + 1];
+        request.requireExtension    = YES;
+        request.cityLimit           = YES;
+        request.offset = 50;
+        
+        [self.mapSearch AMapPOIKeywordsSearch:request];
+        
         return;
     }
     
-    
+
+    WS(weakSelf);
+
     [NetWorkEntity quaryPoiListWith:isUseGoogle
                             keyWord:self.inputView.textFiled.text
                             poiType:self.categortIndex + 1
                            countyId:self.countyId
                                 lat:self.lat  loc:self.lng success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                     
-                                    [MBProgressHUD hideAllHUDsForView:weakSelf.view animated:YES];
+                                    [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
                                     [weakSelf.tableView.refreshHeader endRefreshing];
                                     if(!isUseGoogle){
                                         NSArray * poiS = [responseObject objectForKey:@"pois"];
@@ -209,7 +211,7 @@
                                     [weakSelf.tableView reloadData];
                                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                     weakSelf.dataArray = nil;
-                                    [MBProgressHUD hideAllHUDsForView:weakSelf.view animated:YES];
+                                    [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
                                     [weakSelf.tableView reloadData];
                                     [weakSelf.tableView.refreshHeader endRefreshing];
                                 }];
@@ -218,7 +220,33 @@
 
 - (void)onPOISearchDone:(AMapPOISearchBaseRequest *)request response:(AMapPOISearchResponse *)response
 {
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    self.dataArray = [self analysisPoiNavSdkModelFromArray:response.pois];
+    [self.tableView reloadData];
+    [self.tableView.refreshHeader endRefreshing];
+}
+
+- (NSArray *)analysisPoiNavSdkModelFromArray:(NSArray *)array
+{
+    if (![array isKindOfClass:[NSArray class]]) {
+        return nil;
+    }
     
+    NSMutableArray * mArray = [NSMutableArray arrayWithCapacity:0];
+    for (AMapPOI * poi  in array) {
+        HRCretePOIInfo * model = [[HRCretePOIInfo alloc] init];
+        model.title = poi.name;
+        model.subTitle = poi.address;
+        model.location = [NSString stringWithFormat:@"%f,%f",poi.location.longitude,poi.location.latitude];
+        CLLocation * desLocaiton = [[CLLocation alloc] initWithLatitude:poi.location.latitude longitude:poi.location.longitude];
+        model.distance = [HRNavigationTool distancenumberBetwenOriGps:[[HRLocationManager sharedInstance] curLocation].coordinate desGps:desLocaiton.coordinate];
+                
+        [mArray addObject:model];
+        
+    }
+
+    NSArray * sourtArray = [self sortArray:mArray];
+    return sourtArray;
 }
 
 - (NSArray *)analysisPoiModelFromArray:(NSArray *)array

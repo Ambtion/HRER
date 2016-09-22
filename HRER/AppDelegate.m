@@ -23,8 +23,7 @@
 #import "HRUserHomeController.h"
 #import "HRCreteLocationController.h"
 #import "LJException.h"
-//Test
-#import "HRLoginManager.h"
+#import <AMapFoundationKit/AMapFoundationKit.h>
 
 
 @interface AppDelegate ()<UITabBarControllerDelegate>
@@ -129,6 +128,10 @@
     
     //注册QQ
     [[HRQQManager shareInstance] registerQQ];
+
+    //高德SDK
+    [AMapServices sharedServices].apiKey =@"84178d6274bba036f5c532447cd7ea5e";
+
     
     //启动定位模块
     [[HRLocationManager sharedInstance] startLocaiton];

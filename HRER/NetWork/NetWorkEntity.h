@@ -213,6 +213,8 @@
  *  https://developers.google.com/maps/documentation/geocoding/intro
  *
  */
++ (NSString *)poitypeForGaode:(NSInteger )poiType;
+
 + (void)geoLocationWithLag:(CGFloat)lat
                        lng:(CGFloat)lng
                    success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
