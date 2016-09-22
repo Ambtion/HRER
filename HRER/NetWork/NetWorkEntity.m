@@ -10,7 +10,6 @@
 #import "LoginStateManager.h"
 #import "HRLocationManager.h"
 
-
 typedef     void (^CallBack)(AFHTTPRequestOperation *operation, id responseObject);
 static CallBack upSucess;
 
@@ -437,7 +436,7 @@ static CallBack upSucess;
 {
     
     if(!isUseGoogleSearve){
-    
+        
         /**
          *  国内用高德
          */

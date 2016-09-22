@@ -18,8 +18,10 @@
 #import "RefreshTableView.h"
 #import "HRLocationManager.h"
 #import "HRNavigationTool.h"
+#import <AMapFoundationKit/AMapFoundationKit.h>
+#import <AMapSearchKit/AMapSearchKit.h>
 
-@interface HRCreteLocationController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,HRCreateCategoryCell,FindCityViewControllerDelegate>
+@interface HRCreteLocationController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,HRCreateCategoryCell,FindCityViewControllerDelegate,AMapSearchDelegate>
 
 @property(nonatomic,strong)RefreshTableView * tableView;
 @property(nonatomic,strong)NSArray * dataArray;
@@ -42,6 +44,8 @@
 
 
 @property(nonatomic,assign)NSInteger categortIndex;
+
+@property(nonatomic,strong)AMapSearchAPI * mapSearch;
 
 @end
 
@@ -78,6 +82,10 @@
     self.countyId = 11;
     self.categortIndex = 0;
     [self initUI];
+    
+    self.mapSearch = [[AMapSearchAPI alloc] init];
+    self.mapSearch.delegate = self;
+    
     [self quaryData];
 }
 
