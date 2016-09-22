@@ -187,7 +187,7 @@
         [self.titleLabel setAttributedText:attr];
     }else{
         
-        self.titleLabel.text = @"这里 还没有好友的推荐, 你可以邀请朋友来这里记录他的旅行\n 推荐邀请好朋友来 这里>>>";
+        self.titleLabel.text = data.title;
     }
     
     for (int i = 0; i < 4; i++) {
