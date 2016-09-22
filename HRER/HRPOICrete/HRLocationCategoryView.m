@@ -51,10 +51,10 @@
 
     
     NSArray * array = @[
-                        @"美食",
-                        @"观光",
-                        @"购物",
-                        @"酒店"
+                        @"餐厅美食",
+                        @"观光购物",
+                        @"休闲娱乐",
+                        @"酒店住宿"
                         ];
     
     //    颜色酒店：#fbb33a    购物：#3bc4ba    观光：#43a2fe    美食：#dc4630
@@ -65,7 +65,7 @@
                               RGB_Color(0xfb, 0xb3, 0x3a)
                               ];
     
-    CGFloat itemWidth =  50.f;
+    CGFloat itemWidth =  70.f;
     CGFloat itemHeight = 30.f;
     CGFloat xSpacing = 14.f;
     CGFloat offsetX =  ([[UIScreen mainScreen] bounds].size.width - itemWidth * 4 - xSpacing * 3)/2.f;
