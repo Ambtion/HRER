@@ -501,6 +501,7 @@
 {
     self.categortIndex = index;
     [self quaryData];
+    [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
 }
 
 - (void)createCategoryCellDidCancelSeletedIndex
