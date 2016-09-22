@@ -53,7 +53,7 @@
 //        return;
 //    }
     _data = data;
-    [self showMask:data.poiBannerType];
+    [self showMask:data.poi_type == 17];
     [[self cardView] setDataSource:data];
 }
 

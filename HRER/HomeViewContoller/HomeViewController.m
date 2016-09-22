@@ -300,7 +300,7 @@
     NSMutableArray * mArray = [NSMutableArray arrayWithCapacity:0];
     for (NSDictionary * dic  in array) {
         if ([dic isKindOfClass:[NSDictionary class]]) {
-            if([dic objectForKey:@"poi_id"] || [[dic objectForKey:@"poiBannerType"] boolValue]){
+            if([dic objectForKey:@"poi_id"]){
                 HRPOIInfo * model = [HRPOIInfo yy_modelWithJSON:dic];
                 if (model) {
                     [mArray addObject:model];
