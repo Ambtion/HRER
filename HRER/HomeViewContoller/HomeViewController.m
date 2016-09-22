@@ -516,6 +516,14 @@
         [[self myTabBarcontroller] setSelectedIndex:2];
         return;
     }
+    
+    if (cell.data.poi_type == 18) {
+        //引导页面
+        [[self myTabBarcontroller] setSelectedIndex:3];
+        return;
+    }
+
+    
     NSIndexPath * indexPath = [self.tableView indexPathForCell:cell];
     KPoiSetsCreteType tpye = KPoiSetsCreteNearBy;
     if (indexPath.section == 2) {
@@ -546,7 +554,7 @@
 {
     
     
-    if (cell.data.poi_type == 16) {
+    if (cell.data.poi_type == 16 || cell.data.poi_type == 18) {
         //引导页面
         return;
     }
