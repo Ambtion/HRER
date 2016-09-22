@@ -170,7 +170,7 @@
     
     [self.portraitImage sd_setImageWithURL:[NSURL URLWithString:data.portrait] placeholderImage:[UIImage imageNamed:@"man"]];
     
-    if(data.creator_name.length){
+    if(data.creator_name.length && data.poi_type != 16){
         NSString * str = [NSString stringWithFormat:@"%@ 推荐了 %ld个 %@",data.creator_name,(long)data.poi_num,data.title];
         NSMutableAttributedString * attr = [[NSMutableAttributedString alloc] initWithString:str];
         
@@ -186,7 +186,8 @@
         
         [self.titleLabel setAttributedText:attr];
     }else{
-        self.titleLabel.text = data.title;
+        
+        self.titleLabel.text = @"这里 还没有好友的推荐, 你可以邀请朋友来这里记录他的旅行\n 推荐邀请好朋友来 这里>>>";
     }
     
     for (int i = 0; i < 4; i++) {
