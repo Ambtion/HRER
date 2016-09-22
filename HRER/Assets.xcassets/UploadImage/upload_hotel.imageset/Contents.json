@@ -2,15 +2,16 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "upload_hotel.jpg",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "upload_hotel@2x.jpg",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
+      "filename" : "upload_hotel@3x.jpg",
       "scale" : "3x"
     }
   ],
