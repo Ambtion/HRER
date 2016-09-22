@@ -130,7 +130,7 @@
     [[HRQQManager shareInstance] registerQQ];
 
     //高德SDK
-    [AMapServices sharedServices].apiKey =@"84178d6274bba036f5c532447cd7ea5e";
+    [AMapServices sharedServices].apiKey =@"de9d2ca33d97ac9eebc98b70162bd366";
 
     
     //启动定位模块
