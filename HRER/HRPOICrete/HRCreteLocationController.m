@@ -18,7 +18,6 @@
 #import "RefreshTableView.h"
 #import "HRLocationManager.h"
 #import "HRNavigationTool.h"
-#import <AMapFoundationKit/AMapFoundationKit.h>
 #import <AMapSearchKit/AMapSearchKit.h>
 
 @interface HRCreteLocationController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,HRCreateCategoryCell,FindCityViewControllerDelegate,AMapSearchDelegate>
@@ -177,6 +176,21 @@
     
     WS(weakSelf);
     
+    
+    if (!isUseGoogle) {
+        
+        AMapPOIAroundSearchRequest *request = [[AMapPOIAroundSearchRequest alloc] init];
+        request.location            = [AMapGeoPoint locationWithLatitude:self.lat longitude:self.lng];
+
+        request.keywords            = self.inputView.textFiled.text;
+        request.types               = @"美食";
+        request.sortrule            = 0;
+        request.requireSubPOIs      = YES;
+        [self.mapSearch AMapPOIAroundSearch:request];
+        return;
+    }
+    
+    
     [NetWorkEntity quaryPoiListWith:isUseGoogle
                             keyWord:self.inputView.textFiled.text
                             poiType:self.categortIndex + 1
@@ -199,6 +213,11 @@
                                     [weakSelf.tableView reloadData];
                                     [weakSelf.tableView.refreshHeader endRefreshing];
                                 }];
+    
+}
+
+- (void)onPOISearchDone:(AMapPOISearchBaseRequest *)request response:(AMapPOISearchResponse *)response
+{
     
 }
 

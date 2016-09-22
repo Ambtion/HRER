@@ -23,6 +23,7 @@ PODS:
   - AFNetworking/UIKit (2.6.3):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - AMapSearch (3.3.0)
   - GCJSONKit (1.5.0)
   - iCarousel (1.8.2)
   - Masonry (1.0.0)
@@ -37,6 +38,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworkActivityLogger
   - AFNetworking (~> 2.0)
+  - AMapSearch
   - GCJSONKit
   - iCarousel
   - Masonry
@@ -49,6 +51,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFNetworkActivityLogger: 121486778117d53b3ab1c61d264b88081d0c3eee
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
+  AMapSearch: cff4faf59c007f7d1f2bae2d7170c3912783981a
   GCJSONKit: 8ad0067945efd217af8e610fa09ca0d02283b36b
   iCarousel: 67c8a43da5a46795b56aadfc96cd36a16f6149b2
   Masonry: b529bb169217897b6354d4b56b1fada6d475b13d
@@ -58,6 +61,6 @@ SPEC CHECKSUMS:
   UMengAnalytics: ecddd7b9545804a980446fe0d691f7ae8694516f
   YYModel: 63142c2f07c5c8c9d1c261689cf3827ea6ab2886
 
-PODFILE CHECKSUM: 9e514c12bbdae120c4f285400da37a31e6142074
+PODFILE CHECKSUM: 7c10d0ef6be125a9ae06c850dfb18b6991f6cf8f
 
 COCOAPODS: 1.0.0
