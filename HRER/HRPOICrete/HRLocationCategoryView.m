@@ -79,6 +79,7 @@
         HRCreteCategoryItemView * categoryView = [[HRCreteCategoryItemView alloc] init];
         categoryView.titleLabel.text = array[i];
         categoryView.textColor = colorArray[i];
+        categoryView.tag = i;
         [categoryView setSeleted:NO];
         [self addSubview:categoryView];
         [mArray addObject:categoryView];
@@ -135,6 +136,5 @@
         [imtemView setSeleted:NO];
     }
 }
-
 
 @end

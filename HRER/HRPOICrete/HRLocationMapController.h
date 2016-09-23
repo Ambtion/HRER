@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
+#import "HRLocationCategoryView.h"
 
 
 @interface HRLocationMapController : UIViewController
@@ -19,6 +20,9 @@
 @property(nonatomic,assign)NSInteger cityId;
 @property(nonatomic,assign)CGFloat lat;
 @property(nonatomic,assign)CGFloat lng;
+@property(nonatomic,assign)NSInteger categoryIndex;
+
+@property(nonatomic,strong)HRLocationCategoryView * categoryView;
 
 - (void)initMapShow;
 

@@ -8,18 +8,16 @@
 
 #import "HRLocationMapController.h"
 #import "HRLocationInputView.h"
-#import "HRLocationCategoryView.h"
 #import "HRLocationManager.h"
 #import "HRUPloadImageView.h"
 
 #define MAPLocationLEVEL        (0.03f)
 
 
-@interface HRLocationMapController ()<UITextFieldDelegate,MKMapViewDelegate>
+@interface HRLocationMapController ()<UITextFieldDelegate,MKMapViewDelegate,HRLocationCategoryViewDelegate>
 
 @property(nonatomic,strong)HRLocationInputView * titleInputView;
 @property(nonatomic,strong)HRLocationInputView * addressInputView;
-@property(nonatomic,strong)HRLocationCategoryView * categoryView;
 
 @property(nonatomic,strong)MKMapView * mapView;
 @property(nonatomic,strong)UIImageView * pinCenterView;
@@ -108,12 +106,17 @@
     [self.view addSubview:self.addressInputView];
     
     self.categoryView =  [[HRLocationCategoryView alloc] initWithFrame:CGRectMake(0, self.addressInputView.bottom, self.view.width, 56.f)];
-    [self.categoryView setSeletedAtIndex:0];
+    self.categoryView.delegate = self;
+    [self.categoryView setSeletedAtIndex:self.categoryIndex];
     [self.view addSubview:self.categoryView];
     
 }
 
-
+- (void)locationCategoryViewDidSeletedIndex:(NSInteger)index
+{
+    self.categoryIndex = index;
+    self.pinCenterView.image = [self  normalImageForType:self.categoryIndex + 1];
+}
 
 - (void)initMapView
 {
@@ -158,9 +161,30 @@
 {
     self.pinCenterView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 35, 38)];
     self.pinCenterView.center = CGPointMake(self.mapView.centerX, self.mapView.centerY - self.pinCenterView.height/2.f);
-    self.pinCenterView.image = [UIImage imageNamed:@"map_food"];
+    self.pinCenterView.image = [self  normalImageForType:self.categoryIndex + 1];
     [self.view addSubview:self.pinCenterView];
 }
+
+- (UIImage *)normalImageForType:(NSInteger)type
+{
+    switch (type) {
+        case 1:
+            return [UIImage imageNamed:@"map_food"];
+            break;
+        case 2:
+            return [UIImage imageNamed:@"map_look"];
+            break;
+        case 3:
+            return [UIImage imageNamed:@"map_shop"];
+        case 4:
+            return [UIImage imageNamed:@"map_hotel"];
+        default:
+            break;
+    }
+    return [UIImage imageNamed:@"map_food"];;
+}
+
+
 
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
@@ -187,17 +211,7 @@
             if (placeName.length) {
                 self.addressInputView.textField.text = placeName;
             }
-            
-//            if (cityName.length) {
-//                [NetWorkEntity  quaryCityInfoWithCityName:ws.cityName  lat:self.pinLocation.coordinate.latitude lng:self.pinLocation.coordinate.longitude success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//                    if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
-//                        NSDictionary * userInfoDic  = [responseObject objectForKey:@"response"];
-//                        self.cityId = [[userInfoDic objectForKey:@"city_id"] integerValue];
-//                    }
-//                } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//                    
-//                }];
-//            }
+
             
         }else{
             [NetWorkEntity geoLocationWithLag:ws.pinLocation.coordinate.latitude lng:ws.pinLocation.coordinate.longitude success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -208,21 +222,6 @@
                     if (placeName.length) {
                         self.addressInputView.textField.text = placeName;
                     }
-//                    cityName  = [self getNameForType:@"administrative_area_level_1" formList:[dic objectForKey:@"address_components"]];
-//                    if (!cityName.length) {
-//                        cityName = [self getNameForType:@"administrative_area_level_2" formList:[dic objectForKey:@"address_components"]];
-//                    }
-//                    
-//                    if (cityName.length) {
-//                        [NetWorkEntity  quaryCityInfoWithCityName:cityName  lat:self.pinLocation.coordinate.latitude lng:self.pinLocation.coordinate.longitude success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//                            if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
-//                                NSDictionary * userInfoDic  = [responseObject objectForKey:@"response"];
-//                                self.cityId = [[userInfoDic objectForKey:@"city_id"] integerValue];
-//                            }
-//                        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//                            
-//                        }];
-//                    }
 
                 }
             } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
