@@ -301,7 +301,7 @@
 
     [NetWorkEntity regisWithPhotoNumber:self.phoneNumber.textField.text password:self.passWord.textField.text nickName:self.nick.textField.text verCode:self.phoneCode.textField.text success:^(AFHTTPRequestOperation *operation, id responseObject) {
   
-        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
         if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
             
             NSDictionary * userInfoDic  = [responseObject objectForKey:@"response"];
@@ -327,7 +327,7 @@
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self showTotasViewWithMes:@"网络异常，注册失败"];
-        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
     }];
 }
 

@@ -320,7 +320,7 @@
 {
     if (!_inputView) {
         _inputView = [[SearchInPutView alloc] initWithFrame:CGRectMake(0, 0, 200, 55)];
-        _inputView.textFiled.placeholder = @"搜索想推荐地点";
+        _inputView.textFiled.placeholder = @"搜索想推荐的地点";
         [_inputView.textButton addTarget:self action:@selector(searchButtonClick:) forControlEvents:UIControlEventTouchUpInside];
         _inputView.textFiled.delegate = self;
     }

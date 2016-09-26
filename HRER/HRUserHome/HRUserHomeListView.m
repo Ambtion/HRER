@@ -230,40 +230,26 @@
 
 -(void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerRightUtilityButtonWithIndex:(NSInteger)index
 {
-    UIAlertController * alertController = [UIAlertController alertControllerWithTitle:@"确定删除POI？" message:@"" preferredStyle:UIAlertControllerStyleAlert];
     
     __weak typeof(self) weakSelf = self;
-    
-    UIAlertAction * cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        [cell hideUtilityButtonsAnimated:YES];
-    }];
-    
-    UIAlertAction * ensureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [MBProgressHUD showHUDAddedTo:weakSelf animated:YES];
-        [NetWorkEntity deletePoiWithPoiId:[(HRUserHomeCell *)cell dataSource].poi_id success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            
-            [MBProgressHUD hideHUDForView:weakSelf animated:YES];
-            if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
-                [weakSelf showTotasViewWithMes:@"删除成功"];
-                [[[weakSelf tableView] refreshHeader] beginRefreshing];
-            }else{
-                [weakSelf showTotasViewWithMes:[[responseObject objectForKey:@"response"] objectForKey:@"errorText"]];
-                
-            }
-
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            [MBProgressHUD hideHUDForView:weakSelf animated:YES];
-            [weakSelf showTotasViewWithMes:@"网络异常,稍后重试"];
-        }];
-       
-    }];
-    
-    [alertController addAction:cancelAction];
-    [alertController addAction:ensureAction];
-    
-    [[[[[UIApplication sharedApplication] delegate] window] rootViewController] presentViewController:alertController animated:YES completion:^{
+    [NetWorkEntity deletePoiWithPoiId:[(HRUserHomeCell *)cell dataSource].poi_id success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
+        [MBProgressHUD hideHUDForView:weakSelf animated:YES];
+        if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
+            [weakSelf showTotasViewWithMes:@"删除成功"];
+            [[[weakSelf tableView] refreshHeader] beginRefreshing];
+        }else{
+            [weakSelf showTotasViewWithMes:[[responseObject objectForKey:@"response"] objectForKey:@"errorText"]];
+            [cell hideUtilityButtonsAnimated:YES];
+        }
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [MBProgressHUD hideHUDForView:weakSelf animated:YES];
+        [weakSelf showTotasViewWithMes:@"网络异常,稍后重试"];
+        [cell hideUtilityButtonsAnimated:YES];
+
     }];
+
 }
 
 

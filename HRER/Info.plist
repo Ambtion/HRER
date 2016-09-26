@@ -80,6 +80,10 @@
 	<string>读取通讯录帮助你更好找到朋友</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>只有开启定位功能才能正常使用。</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>这里将在您使用上传图片等功能时查看相册。</string>
+	<key>NSCameraUsageDescription</key>
+	<string>这里将在您使用上传图片等功能时使用相机。</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>location</string>

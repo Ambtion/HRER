@@ -126,7 +126,7 @@
     WS(weakSelf);
     
     [NetWorkEntity quaryFriendsListWithFillter:self.inputView.textFiled.text  success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
         if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
             NSArray * list = [[responseObject objectForKey:@"response"] objectForKey:@"dataList"];
             NSMutableArray * listArray = [NSMutableArray arrayWithCapacity:0];

@@ -190,7 +190,7 @@
                 
                 toutalNetCount --;
                 if (toutalNetCount == 0) {
-                    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+                    [MBProgressHUD hideHUDForView:self.view animated:YES];
                 }
             }else{
                 [ws  dealErrorResponseWithTableView:tableView info:responseObject];
@@ -215,7 +215,7 @@
             
             toutalNetCount --;
             if (toutalNetCount == 0) {
-                [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
             }
         }else{
             [ws dealErrorResponseWithTableView:tableView info:responseObject];
