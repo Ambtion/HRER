@@ -1924,7 +1924,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/HRER/WebCatSDK",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.Here;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ibox.here;
 				PRODUCT_NAME = "这里";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1966,7 +1966,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/HRER/WebCatSDK",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.Here;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ibox.here;
 				PRODUCT_NAME = "这里";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
