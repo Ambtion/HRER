@@ -8,10 +8,11 @@
 
 #import "HRUserHomeMapInfoCardView.h"
 #import "LoginStateManager.h"
+#import "PortraitView.h"
 
 @interface HRUserHomeMapInfoCardView()
 
-@property(nonatomic,strong)UIImageView * portraitView;
+@property(nonatomic,strong)PortraitView * portraitView;
 @property(nonatomic,strong)UILabel * nameLabel;
 @property(nonatomic,strong)UILabel * passLabel;
 @property(nonatomic,strong)UILabel * friendsLabel;
@@ -42,7 +43,7 @@
 - (void)initUI
 {
     self.image = [UIImage imageNamed:@"information_bg"];
-    self.portraitView = [[UIImageView alloc] init];
+    self.portraitView = [[PortraitView alloc] init];
     [self addSubview:self.portraitView];
     
     self.nameLabel = [[UILabel alloc] init];
@@ -131,7 +132,7 @@
     self.passLabel.text = [NSString stringWithFormat:@"护照号:  %@",dataSource.passport_num];
     self.friendsLabel.text = [NSString stringWithFormat:@"拥有%ld个朋友",(long)dataSource.f_num];
     self.visitCityLabel.text = [NSString stringWithFormat:@"足迹遍布%ld个城市",(long)dataSource.f_city_num];
-    [self.portraitView sd_setImageWithURL:[NSURL URLWithString:dataSource.image] placeholderImage:[UIImage imageNamed:@"man"]];
+    [self.portraitView.imageView sd_setImageWithURL:[NSURL URLWithString:dataSource.image] placeholderImage:[UIImage imageNamed:@"man"]];
     
     if ([[LoginStateManager getInstance] userLoginInfo] &&
         [[LoginStateManager getInstance] userLoginInfo].user_id &&
