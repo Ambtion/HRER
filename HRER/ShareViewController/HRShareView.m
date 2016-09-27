@@ -140,6 +140,7 @@
     CGSize maxSize = CGSizeMake(self.width - 44, self.height - (self.shareDesLabel.bottom + 17) - 90);
     
     size = [self.introLabel sizeThatFits:maxSize];
+    size.height = MIN(size.height, maxSize.height);
     
     self.introLabel.frame = CGRectMake(self.titleLabel.left, self.shareDesLabel.bottom + 20.f, size.width, size.height);
 
