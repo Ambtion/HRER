@@ -49,6 +49,10 @@
     self.textButton.backgroundColor = [UIColor clearColor];
     [self addSubview:self.textButton];
     
+    self.searchIconView = [[UIImageView alloc] init];
+    self.searchIconView.image = [UIImage imageNamed:@"search"];
+    [self addSubview:self.searchIconView];
+    
 }
 
 - (void)layoutSubviews
@@ -57,7 +61,13 @@
 
     self.borderbgView.frame = CGRectMake(8, 8, self.width - 16, self.height - 16);
     self.borderbgView.layer.cornerRadius = 4.f;
-    self.textFiled.frame = CGRectMake(6, 0, self.borderbgView.width - 12, self.borderbgView.height);
+    
+    self.searchIconView.frame = CGRectMake(6 + 12, 0, 14, 14);
+    
+    self.textFiled.frame = CGRectMake(self.searchIconView.right, 0, self.borderbgView.width - (self.searchIconView.right + 6 + 6 ), self.borderbgView.height);
+    
+    self.searchIconView.centerY = self.height/2.f;
+    
     self.textButton.frame = self.borderbgView.frame;
     
 }
