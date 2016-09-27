@@ -121,6 +121,7 @@
 @property(nonatomic,strong)HRPotoInfo * seal;
 
 @property(nonatomic,assign)NSInteger poi_type;
+@property(nonatomic,assign)CGFloat price;
 
 @end
 

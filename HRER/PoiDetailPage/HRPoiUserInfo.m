@@ -15,6 +15,8 @@
 @property(nonatomic,strong)UIImageView * iconImageView;
 @property(nonatomic,strong)UILabel * recomendLabel;
 
+@property(nonatomic,strong)UILabel * priceLabel;
+@property(nonatomic,strong)UIImageView * priceImageView;
 @end
 
 @implementation HRPoiUserInfo
@@ -55,6 +57,16 @@
     self.recomendLabel.font = [UIFont systemFontOfSize:13.f];
     [self addSubview:self.recomendLabel];
     
+    self.priceLabel = [[UILabel alloc] init];
+    self.priceLabel.textColor =  RGB_Color(0xa6, 0xa6, 0xa6);
+    self.priceLabel.font = [UIFont systemFontOfSize:13.f];
+    self.priceLabel.textAlignment = NSTextAlignmentRight;
+    [self addSubview:self.priceLabel];
+    
+    self.priceImageView = [[UIImageView alloc] init];
+    self.priceImageView.image = [UIImage imageNamed:@"price-1"];
+    [self addSubview:self.priceImageView];
+    
     [self.porImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).offset(12.f);
         make.size.mas_equalTo(CGSizeMake(48, 48));
@@ -78,6 +90,22 @@
         make.top.equalTo(self.userName.mas_bottom).offset(9.f);
         make.left.equalTo(self.iconImageView.mas_right).offset(5);
     }];
+    
+    
+    
+    [self.priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self).offset(-12.f);
+        make.top.equalTo(self.recomendLabel);
+    }];
+    
+    [self.priceImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_equalTo(CGSizeMake(15, 15));
+        make.centerY.equalTo(self.priceLabel);
+        make.right.equalTo(self.priceLabel.mas_left).offset(-5);
+
+    }];
+    
+
 }
 
 - (void)setDtata:(HRPOIInfo *)data
@@ -85,6 +113,9 @@
     self.userName.text = data.creator_name;
     self.recomendLabel.text = [NSString stringWithFormat:@"推荐过%ld个%@",(long)data.recommand,data.typeName];
     [self.porImageView sd_setImageWithURL:[NSURL URLWithString:data.portrait.length ? data.portrait : @""] placeholderImage:[UIImage imageNamed:@"man"]];
+    self.priceLabel.text = [NSString stringWithFormat:@"%.0f/人",data.price];
+    [self.priceLabel setHidden:data.price == 0];
+    [self.priceImageView setHidden:data.price == 0];
 }
 
 
