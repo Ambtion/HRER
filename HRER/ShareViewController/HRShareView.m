@@ -122,7 +122,7 @@
     
     self.titleLabel.frame = CGRectMake(22, 50, self.width - 44, 22);
     self.locationView.frame = CGRectMake(self.titleLabel.left, 0, 13, 17);
-    CGSize size = [self.addressLabel sizeThatFits:CGSizeMake(self.width - (self.locationView.right + 6) - 140 - 20, 10000)];
+    CGSize size = [self.addressLabel sizeThatFits:CGSizeMake(self.width - (self.locationView.right + 6) - 140, 10000)];
     self.addressLabel.frame = CGRectMake(self.locationView.right + 6, self.titleLabel.bottom + 19, size.width, size.height);
     self.locationView.top = self.addressLabel.top;
     
