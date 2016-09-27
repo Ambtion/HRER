@@ -114,6 +114,7 @@
     self.introLabel.numberOfLines = 0;
     self.introLabel.textColor = UIColorFromRGB(0xcccccc);
     [self addSubview:self.introLabel];
+    
 }
 
 - (void)layoutSubviews
@@ -136,7 +137,11 @@
     
     self.shareDesLabel.frame = CGRectMake(self.titleLabel.left, self.nameLbael.bottom + 17, self.width - self.titleLabel.left - 22, 22);
     
-    self.introLabel.frame = CGRectMake(self.titleLabel.left, self.shareDesLabel.bottom + 20.f, self.width - 44, self.height - (self.shareDesLabel.bottom + 17) - 90);
+    CGSize maxSize = CGSizeMake(self.width - 44, self.height - (self.shareDesLabel.bottom + 17) - 90);
+    
+    size = [self.introLabel sizeThatFits:maxSize];
+    
+    self.introLabel.frame = CGRectMake(self.titleLabel.left, self.shareDesLabel.bottom + 20.f, size.width, size.height);
 
     
 }
@@ -148,7 +153,7 @@
     self.addressLabel.text = poiInfo.address;
     
     self.nameLbael.text = poiInfo.creator_name;
-    self.shareDesLabel.text = [NSString stringWithFormat:@"在这里分享的第%ld个%@",(long)poiInfo.recommand,poiInfo.typeName];
+    self.shareDesLabel.text = [NSString stringWithFormat:@"在这里推荐的第%ld个%@",(long)poiInfo.recommand,poiInfo.typeName];
     
     NSString * intro = poiInfo.intro;
     if (!intro.length) {
