@@ -72,7 +72,7 @@
     HRNagationController * navcrete = [[HRNagationController alloc] initWithRootViewController:creteC];
     HRNagationController * navFriend = [[HRNagationController alloc] initWithRootViewController:fVC];
     HRNagationController * navUser = [[HRNagationController alloc] initWithRootViewController:fuserHome];
-    return [self getTabWithTitleArray:@[@"推荐    ",@"发现城市",@"",@"朋友",@"PASSPORT"]
+    return [self getTabWithTitleArray:@[@"推荐",@"发现城市",@"",@"朋友",@"PASSPORT"]
                    nimagesArray:@[nHome,nFind,nHere,nFriend,nMy]
                         himages:@[hHome,hFind,hHere,hFriend,hMy]
                  andControllers:@[navHc,navfc,navcrete,navFriend,navUser]];

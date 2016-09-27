@@ -86,6 +86,7 @@
     self.addressLabel = [[UILabel alloc] init];
     self.addressLabel.font = [UIFont systemFontOfSize:15.f];
     self.addressLabel.textColor = UIColorFromRGB(0xcccccc);
+    self.addressLabel.numberOfLines = 2;
     [self addSubview:self.addressLabel];
     
     self.portraitView = [[PortraitView alloc] init];
@@ -113,26 +114,31 @@
     self.introLabel.numberOfLines = 0;
     self.introLabel.textColor = UIColorFromRGB(0xcccccc);
     [self addSubview:self.introLabel];
-    
-    
+}
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
     
     self.titleLabel.frame = CGRectMake(22, 50, self.width - 44, 22);
     self.locationView.frame = CGRectMake(self.titleLabel.left, 0, 13, 17);
-    self.addressLabel.frame = CGRectMake(self.locationView.right + 6, self.titleLabel.bottom + 19, self.width - (self.locationView.right + 6) - 140 - 20, 17);
-    self.locationView.centerY = self.addressLabel.centerY;
+    CGSize size = [self.addressLabel sizeThatFits:CGSizeMake(self.width - (self.locationView.right + 6) - 140 - 20, 10000)];
+    self.addressLabel.frame = CGRectMake(self.locationView.right + 6, self.titleLabel.bottom + 19, size.width, size.height);
+    self.locationView.top = self.addressLabel.top;
     
-    self.selImageView.frame = CGRectMake(self.width - 140, 82, 180, 180);
+    self.selImageView.frame = CGRectMake(self.width - 140, 75 - 20, 180, 180);
     self.selImageView.layer.cornerRadius = 90.f;
     
     
     
     self.portraitView.frame = CGRectMake(self.titleLabel.left, self.addressLabel.bottom + 60, 55, 55);
     self.nameLbael.frame = CGRectMake(self.titleLabel.left, self.portraitView.bottom + 17, self.selImageView.left - self.titleLabel.left - 20, 22);
- 
+    
     self.shareDesLabel.frame = CGRectMake(self.titleLabel.left, self.nameLbael.bottom + 17, self.width - self.titleLabel.left - 22, 22);
     
-    self.introLabel.frame = CGRectMake(self.titleLabel.left, self.shareDesLabel.bottom + 27.f, self.width - 44, self.height - (self.shareDesLabel.bottom + 17) - 90);
-        
+    self.introLabel.frame = CGRectMake(self.titleLabel.left, self.shareDesLabel.bottom + 20.f, self.width - 44, self.height - (self.shareDesLabel.bottom + 17) - 90);
+
+    
 }
 
 - (void)creteShareImageWithPoiInfo:(HRPOIInfo *)poiInfo
@@ -151,7 +157,8 @@
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:intro];
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     
-    [paragraphStyle setLineSpacing:15.f];//调整行间距
+    [paragraphStyle setLineSpacing:10.f];//调整行间距
+    [paragraphStyle setLineBreakMode:NSLineBreakByTruncatingTail];
     [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [intro length])];
     self.introLabel.attributedText = attributedString;
     
