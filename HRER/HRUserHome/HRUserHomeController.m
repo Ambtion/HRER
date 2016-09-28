@@ -170,8 +170,10 @@
 - (void)quaryDataWithTableView:(RefreshTableView *)tableView
 {
     __block NSInteger toutalNetCount = 2;
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
+    if(![MBProgressHUD HUDForView:self.view]){
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    }
     WS(ws);
     void (^ failure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *operation, NSError *error){
         [self netErrorWithTableView:tableView];
