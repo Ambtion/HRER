@@ -174,6 +174,12 @@
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     }
     
+    //当前定位城市，每次刷新数据更新坐标
+    if (self.cityId == [[HRLocationManager  sharedInstance] curCityId]) {
+        self.lat = [[[HRLocationManager  sharedInstance] curLocation] coordinate].latitude;
+        self.lng = [[[HRLocationManager  sharedInstance] curLocation] coordinate].longitude;
+    }
+    
     if (!isUseGoogle) {
         
         AMapPOIAroundSearchRequest *request = [[AMapPOIAroundSearchRequest alloc] init];
