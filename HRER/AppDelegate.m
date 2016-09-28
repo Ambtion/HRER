@@ -116,7 +116,7 @@
     }
     
     if([[[(UINavigationController *)viewController viewControllers] firstObject] isKindOfClass:[HRCreteLocationController class]]){
-        [(HRCreteLocationController *)viewController quaryData];
+        [(HRCreteLocationController *)[[(UINavigationController *)viewController viewControllers] firstObject] quaryData];
     }
 
 }

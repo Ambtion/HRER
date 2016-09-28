@@ -170,9 +170,9 @@
     
     BOOL isUseGoogle = (self.countyId != 11);
 
-    
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-
+    if(![MBProgressHUD HUDForView:self.view]){
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    }
     
     if (!isUseGoogle) {
         
