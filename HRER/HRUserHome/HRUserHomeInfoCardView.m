@@ -51,13 +51,13 @@
     [self addSubview:self.portraitView];
     
     self.nameLabel = [[UILabel alloc] init];
-    self.nameLabel.font = [UIFont systemFontOfSize:11.f];
-    self.nameLabel.text = @"姓名/Name";
+    self.nameLabel.font = [UIFont systemFontOfSize:14.f];
+    self.nameLabel.text = @"姓名";
     self.nameLabel.textColor =UIColorFromRGB(0xdb4d30);
     [self addSubview:self.nameLabel];
     
     self.nameValue = [[UILabel alloc] init];
-    self.nameValue.font = [UIFont systemFontOfSize:15.f];
+    self.nameValue.font = [UIFont systemFontOfSize:13.f];
     self.nameValue.textColor = UIColorFromRGB(0x4c4c4c);
     [self addSubview:self.nameValue];
     
@@ -65,11 +65,11 @@
     self.passLabel = [[UILabel alloc] init];
     self.passLabel.font = [UIFont systemFontOfSize:14.f];
     self.passLabel.textColor =UIColorFromRGB(0xdb4d30);
-    self.passLabel.text = @"护照号/Passport No";
+    self.passLabel.text = @"护照号";
     [self addSubview:self.passLabel];
     
     self.passValueLabel = [[UILabel alloc] init];
-    self.passValueLabel.font = [UIFont systemFontOfSize:15.f];
+    self.passValueLabel.font = [UIFont systemFontOfSize:13.f];
     self.passValueLabel.textColor = UIColorFromRGB(0x4c4c4c);
     [self addSubview:self.passValueLabel];
 
@@ -87,7 +87,7 @@
 //    [self.shareButton addTarget:self action:@selector(buttonDidClick:) forControlEvents:UIControlEventTouchUpInside];
 //    [self addSubview:self.shareButton];
     
-    self.identifyImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"barcode"]];
+    self.identifyImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"barcode1"]];
     [self addSubview:self.identifyImageView];
     
     

@@ -118,7 +118,7 @@
     
     
     self.switchButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.switchButton setImage:[UIImage imageNamed:@"user_home_switch_change"] forState:UIControlStateNormal];
+    [self.switchButton setImage:[UIImage imageNamed:@"map_icon"] forState:UIControlStateNormal];
     [self.switchButton addTarget:self action:@selector(switchButtonDidClick:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:self.switchButton];
     
