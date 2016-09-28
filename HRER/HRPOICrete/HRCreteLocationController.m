@@ -62,6 +62,27 @@
     [self.rightButton setTitle:self.cityName.length ? self.cityName : @"北京" forState:UIControlStateNormal];
 }
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(quaryData) name:LOGIN_IN object:nil];
+        self.cityId = [[HRLocationManager  sharedInstance] curCityId];
+        self.cityName = [[HRLocationManager  sharedInstance] cityName];
+        self.lat = [[[HRLocationManager  sharedInstance] curLocation] coordinate].latitude;
+        self.lng = [[[HRLocationManager  sharedInstance] curLocation] coordinate].longitude;
+        self.isCurLocaiton = YES;
+        self.countyId = 11;
+        self.categortIndex = 0;
+        [self initUI];
+        
+        self.mapSearch = [[AMapSearchAPI alloc] init];
+        self.mapSearch.delegate = self;
+    
+    }
+    return self;
+}
+
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
@@ -72,20 +93,7 @@
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(quaryData) name:LOGIN_IN object:nil];
-    self.cityId = [[HRLocationManager  sharedInstance] curCityId];
-    self.cityName = [[HRLocationManager  sharedInstance] cityName];
-    self.lat = [[[HRLocationManager  sharedInstance] curLocation] coordinate].latitude;
-    self.lng = [[[HRLocationManager  sharedInstance] curLocation] coordinate].longitude;
-    self.isCurLocaiton = YES;
-    self.countyId = 11;
-    self.categortIndex = 0;
-    [self initUI];
-    
-    self.mapSearch = [[AMapSearchAPI alloc] init];
-    self.mapSearch.delegate = self;
-    
-    [self quaryData];
+ 
 }
 
 - (void)showLoginPage
