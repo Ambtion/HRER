@@ -115,9 +115,9 @@
         [viewController hiddenMessCountInTabBar];
     }
     
-    if([[[(UINavigationController *)viewController viewControllers] firstObject] isKindOfClass:[HRCreteLocationController class]]){
-        [(HRCreteLocationController *)[[(UINavigationController *)viewController viewControllers] firstObject] quaryData];
-    }
+//    if([[[(UINavigationController *)viewController viewControllers] firstObject] isKindOfClass:[HRCreteLocationController class]]){
+//        [(HRCreteLocationController *)[[(UINavigationController *)viewController viewControllers] firstObject] quaryData];
+//    }
 
 }
 
