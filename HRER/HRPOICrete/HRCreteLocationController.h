@@ -12,4 +12,6 @@
 
 - (void)showLoginPage;
 
+- (void)quaryData;
+
 @end

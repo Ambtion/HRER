@@ -114,6 +114,11 @@
     if([[[(UINavigationController *)viewController viewControllers] firstObject] isKindOfClass:[FriendsViewController class]]){
         [viewController hiddenMessCountInTabBar];
     }
+    
+    if([[[(UINavigationController *)viewController viewControllers] firstObject] isKindOfClass:[HRCreteLocationController class]]){
+        [(HRCreteLocationController *)viewController quaryData];
+    }
+
 }
 
 #pragma mark - Init
