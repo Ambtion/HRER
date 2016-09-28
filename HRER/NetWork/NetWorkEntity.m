@@ -39,8 +39,7 @@ static CallBack upSucess;
                            };
     
     NSString * urlStr = [NSString stringWithFormat:@"%@/register",KNETBASEURL];
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager POST:urlStr parameters:dic success:success failure:failure];
+    [self postMethodWithUrl:urlStr parameters:dic success:success failure:failure];
 }
 
 + (void)sendVerCodeWithPhoneNumber:(NSString *)photoNumber
@@ -49,8 +48,8 @@ static CallBack upSucess;
 {
     NSDictionary * dic = @{@"phone":photoNumber};
     NSString * urlStr = [NSString stringWithFormat:@"%@/sendCode",KNETBASEURL];
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager POST:urlStr parameters:dic success:success failure:failure];
+    [self postMethodWithUrl:urlStr parameters:dic success:success failure:failure];
+
 }
 
 + (void)loginWithUserName:(NSString *)userName password:(NSString *)password
@@ -61,8 +60,7 @@ static CallBack upSucess;
     NSDictionary * dic = @{@"phone":userName,@"password":password};
     NSString * urlStr = [NSString stringWithFormat:@"%@/login",KNETBASEURL];
     
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager POST:urlStr parameters:dic success:success failure:failure];
+    [self postMethodWithUrl:urlStr parameters:dic success:success failure:failure];
     
 }
 
@@ -77,8 +75,7 @@ static CallBack upSucess;
                            @"verificationCode":verCode};
     NSString * urlStr = [NSString stringWithFormat:@"%@/findPassword",KNETBASEURL];
     
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager POST:urlStr parameters:dic success:success failure:failure];
+    [self postMethodWithUrl:urlStr parameters:dic success:success failure:failure];
     
 }
 
@@ -90,8 +87,8 @@ static CallBack upSucess;
     NSDictionary * dic = @{@"code":accessToken};
     //等待协议
     NSString * urlStr = [NSString stringWithFormat:@"%@/loginWeixin",KNETBASEURL];
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager POST:urlStr parameters:dic success:success failure:failure];
+    [self postMethodWithUrl:urlStr parameters:dic success:success failure:failure];
+
 }
 
 + (void)loginWithqqAccess_token:(NSString *)accessToken
@@ -100,8 +97,7 @@ static CallBack upSucess;
 {
     NSDictionary * dic = @{@"access_token":accessToken};
     NSString * urlStr = [NSString stringWithFormat:@"%@/loginQQ",KNETBASEURL];
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager POST:urlStr parameters:dic success:success failure:failure];
+    [self postMethodWithUrl:urlStr parameters:dic success:success failure:failure];
 }
 
 + (void)bindPhoneNumber:(NSString *)photoNumber
@@ -118,8 +114,7 @@ static CallBack upSucess;
     [dic setValue:verCode forKey:@"verificationCode"];
     //等待协议
     NSString * urlStr = [NSString stringWithFormat:@"%@/bindPhone",KNETBASEURL];
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager POST:urlStr parameters:dic success:success failure:failure];
+    [self postMethodWithUrl:urlStr parameters:dic success:success failure:failure];
 }
 
 + (void)mofifyPassWord:(NSString *)pasWord
@@ -129,8 +124,8 @@ static CallBack upSucess;
     NSMutableDictionary * dic = [self commonComonPar];
     NSString * urlStr = [NSString stringWithFormat:@"%@/user/change_password",KNETBASEURL];
     dic[@"password"] = pasWord;
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager GET:urlStr parameters:dic success:success failure:failure];
+    [self getMethodWithUrl:urlStr parameters:dic success:success failure:failure];
+
 }
 
 
@@ -147,8 +142,8 @@ static CallBack upSucess;
     if (filler.length) {
         dic[@"content"] = filler;
     }
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager GET:urlStr parameters:dic success:success failure:failure];
+    [self getMethodWithUrl:urlStr parameters:dic success:success failure:failure];
+
 }
 
 
@@ -161,8 +156,7 @@ static CallBack upSucess;
 {
     NSMutableDictionary * dic = [self commonComonPar];
     NSString * urlStr = [NSString stringWithFormat:@"%@/newFriend",KNETBASEURL];
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager GET:urlStr parameters:dic success:success failure:failure];
+    [self getMethodWithUrl:urlStr parameters:dic success:success failure:failure];
 }
 
 + (NSString *)strOfPhoto:(NSDictionary *)dic
@@ -203,8 +197,7 @@ static CallBack upSucess;
     if (str.length) {
         dic[@"addressbook"] = str;
     }
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager POST:urlStr parameters:dic success:success failure:failure];
+    [self postMethodWithUrl:urlStr parameters:dic success:success failure:failure];
 }
 
 + (void)favFriends:(NSString *)userId
@@ -216,8 +209,8 @@ static CallBack upSucess;
     NSString * urlStr = [NSString stringWithFormat:@"%@/follow",KNETBASEURL];
     dic[@"id"] = userId;
     dic[@"isFollow"] = @(isFav);
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager POST:urlStr parameters:dic success:success failure:failure];
+    [self postMethodWithUrl:urlStr parameters:dic success:success failure:failure];
+
 }
 
 /*
@@ -237,8 +230,8 @@ static CallBack upSucess;
     [dic setValue:@(lat) forKey:@"lat"];
     [dic setValue:@(lng) forKey:@"lng"];
     NSString * urlStr = [NSString stringWithFormat:@"%@/get_city_id",KNETBASEURL];
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager GET:urlStr parameters:dic success:success failure:failure];
+    [self getMethodWithUrl:urlStr parameters:dic success:success failure:failure];
+
 
 }
 
@@ -247,8 +240,7 @@ static CallBack upSucess;
 {
     NSMutableDictionary * dic = [self commonComonPar];
     NSString * urlStr = [NSString stringWithFormat:@"%@/hot_city",KNETBASEURL];
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager GET:urlStr parameters:dic success:success failure:failure];
+    [self getMethodWithUrl:urlStr parameters:dic success:success failure:failure];
 
 }
 
@@ -263,8 +255,7 @@ static CallBack upSucess;
     NSMutableDictionary * dic = [self commonComonPar];
     [dic setValue:@(cityId) forKey:@"city_id"];
     NSString * urlStr = [NSString stringWithFormat:@"%@/poi_summary",KNETBASEURL];
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager GET:urlStr parameters:dic success:success failure:failure];
+    [self getMethodWithUrl:urlStr parameters:dic success:success failure:failure];
 }
 
 
@@ -283,8 +274,7 @@ static CallBack upSucess;
     [dic setValue:@([[[HRLocationManager sharedInstance] curLocation] coordinate].longitude) forKey:@"lng"];
     [dic setValue:@(catergory) forKey:@"type"];
     NSString * urlStr = [NSString stringWithFormat:@"%@/near_poi_search",KNETBASEURL];
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager GET:urlStr parameters:dic success:success failure:failure];
+    [self getMethodWithUrl:urlStr parameters:dic success:success failure:failure];
 }
 
 
@@ -302,9 +292,7 @@ static CallBack upSucess;
     [dic setValue:@([[[HRLocationManager sharedInstance] curLocation] coordinate].longitude) forKey:@"lng"];
     [dic setValue:@(catergory) forKey:@"type"];
     NSString * urlStr = [NSString stringWithFormat:@"%@/single_poi",KNETBASEURL];
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager GET:urlStr parameters:dic success:success failure:failure];
-
+    [self getMethodWithUrl:urlStr parameters:dic success:success failure:failure];
 }
 
 
@@ -325,8 +313,7 @@ static CallBack upSucess;
     [dic setValue:@([[[HRLocationManager sharedInstance] curLocation] coordinate].longitude) forKey:@"lng"];
     [dic setValue:@(catergory) forKey:@"type"];
     NSString * urlStr = [NSString stringWithFormat:@"%@/misc_poi",KNETBASEURL];
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager GET:urlStr parameters:dic success:success failure:failure];
+    [self getMethodWithUrl:urlStr parameters:dic success:success failure:failure];
 }
 
 /**
@@ -344,8 +331,8 @@ static CallBack upSucess;
     [dic setValue:@([[[HRLocationManager sharedInstance] curLocation] coordinate].longitude) forKey:@"lng"];
     [dic setValue:@(catergory) forKey:@"type"];
     NSString * urlStr = [NSString stringWithFormat:@"%@/poi_set",KNETBASEURL];
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager GET:urlStr parameters:dic success:success failure:failure];
+    [self getMethodWithUrl:urlStr parameters:dic success:success failure:failure];
+
 }
 
 
@@ -363,8 +350,7 @@ static CallBack upSucess;
     [dic setValue:@([[[HRLocationManager sharedInstance] curLocation] coordinate].longitude) forKey:@"lng"];
     [dic setValue:@(catergory) forKey:@"type"];
     NSString * urlStr = [NSString stringWithFormat:@"%@/editor_set",KNETBASEURL];
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager GET:urlStr parameters:dic success:success failure:failure];
+    [self getMethodWithUrl:urlStr parameters:dic success:success failure:failure];
 
 }
 
@@ -382,8 +368,8 @@ static CallBack upSucess;
     [dic setValue:@([[[HRLocationManager sharedInstance] curLocation] coordinate].longitude) forKey:@"lng"];
     [dic setValue:@(catergory) forKey:@"type"];
     NSString * urlStr = [NSString stringWithFormat:@"%@/editor_single",KNETBASEURL];
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager GET:urlStr parameters:dic success:success failure:failure];
+    [self getMethodWithUrl:urlStr parameters:dic success:success failure:failure];
+
 }
 
 + (void)quaryPoiSetDetailListWithCreteType:(KPoiSetsCreteType)cretetype
@@ -416,8 +402,7 @@ static CallBack upSucess;
             break;
     }
     
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager GET:urlStr parameters:dic success:success failure:failure];
+    [self getMethodWithUrl:urlStr parameters:dic success:success failure:failure];
 
 }
 
@@ -476,9 +461,7 @@ static CallBack upSucess;
         if (type.length) {
             [dic setValue:type forKey:@"types"];
         }
-        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-        [manager GET:urlStr parameters:dic success:success failure:failure];
-
+        [self getMethodWithUrl:urlStr parameters:dic success:success failure:failure];
     }else{
         
 //        http://47.89.13.167/redirect_request
@@ -521,9 +504,8 @@ static CallBack upSucess;
         if (keytype.length) {
             [dic setValue:keytype forKey:@"types"];
         }
-        
-        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-        [manager GET:@"http://47.89.13.167/nearbysearch" parameters:dic success:success failure:failure];
+        [self getMethodWithUrl:@"http://47.89.13.167/nearbysearch" parameters:dic success:success failure:failure];
+
     }
     
 }
@@ -536,10 +518,7 @@ static CallBack upSucess;
     NSMutableDictionary * dic = [NSMutableDictionary dictionaryWithCapacity:0];
     NSString * loc = [NSString stringWithFormat:@"%f,%f",lat,lng];;
     [dic setValue:loc forKey:@"latlng"];
-//    [dic setValue:@"en" forKey:@"language"];
-//    [dic setValue:@"AIzaSyBsTx01ji0GeUdg04EdZuvACrKcnJwZxmo" forKey:@"key"];
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager GET:@"http://47.89.13.167/geocode" parameters:dic success:success failure:failure];
+    [self getMethodWithUrl:@"http://47.89.13.167/geocode" parameters:dic success:success failure:failure];
 
 }
 
@@ -575,8 +554,8 @@ static CallBack upSucess;
     NSMutableDictionary * dic = [self commonComonPar];
     [dic setObject:poiId forKey:@"poi_id"];
     NSString *  urlStr= [NSString stringWithFormat:@"%@/poi_detail",KNETBASEURL];
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager GET:urlStr parameters:dic success:success failure:failure];
+    [self getMethodWithUrl:urlStr parameters:dic success:success failure:failure];
+
 }
 
 + (void)quaryWantTogoPoidetailWithPoiId:(NSString *)poiId
@@ -588,8 +567,7 @@ static CallBack upSucess;
     [dic setObject:poiId forKey:@"poi_id"];
     [dic setObject:@(wantTogo) forKey:@"intend"];
     NSString *  urlStr= [NSString stringWithFormat:@"%@/poi_intend",KNETBASEURL];
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager POST:urlStr parameters:dic success:success failure:failure];
+    [self postMethodWithUrl:urlStr parameters:dic success:success failure:failure];
 
 }
 
@@ -608,8 +586,8 @@ static CallBack upSucess;
         [dic setValue:content forKey:@"content"];
     }
     NSString *  urlStr= [NSString stringWithFormat:@"%@/poi_comment_add",KNETBASEURL];
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager POST:urlStr parameters:dic success:success failure:failure];
+    [self postMethodWithUrl:urlStr parameters:dic success:success failure:failure];
+
 
 }
 
@@ -620,8 +598,7 @@ static CallBack upSucess;
     NSMutableDictionary * dic = [self commonComonPar];
     [dic setObject:cmtId forKey:@"cmt_id"];
     NSString *  urlStr= [NSString stringWithFormat:@"%@/poi_comment_del",KNETBASEURL];
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager POST:urlStr parameters:dic success:success failure:failure];
+    [self postMethodWithUrl:urlStr parameters:dic success:success failure:failure];
 }
 
 /**
@@ -638,8 +615,8 @@ static CallBack upSucess;
     NSMutableDictionary * dic = [self commonComonPar];
     [dic setObject:userId forKey:@"user_id"];
     NSString *  urlStr= [NSString stringWithFormat:@"%@/user_page",KNETBASEURL];
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager GET:urlStr parameters:dic success:success failure:failure];
+    
+    [self getMethodWithUrl:urlStr parameters:dic success:success failure:failure];
 }
 
 + (void)quaryUserHomePoiListWithUserId:(NSString *)userId
@@ -651,8 +628,7 @@ static CallBack upSucess;
     [dic setObject:userId forKey:@"user_id"];
     [dic setObject:@(catergory) forKey:@"type"];
     NSString *  urlStr= [NSString stringWithFormat:@"%@/user_page_list",KNETBASEURL];
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager GET:urlStr parameters:dic success:success failure:failure];
+    [self getMethodWithUrl:urlStr parameters:dic success:success failure:failure];
 }
 
 /**
@@ -702,8 +678,7 @@ static CallBack upSucess;
 {
     NSString * str = [netImages  componentsJoinedByString:@","];
     [dic setValue:str forKey:@"image"];
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager POST:baseUrl parameters:dic success:success failure:failure];
+    [self postMethodWithUrl:str parameters:dic success:success failure:failure];
 }
 
 + (void)uploadImags:(NSArray*)images sucess:(void(^)(NSArray *array))sucess
@@ -746,8 +721,7 @@ static CallBack upSucess;
     NSMutableDictionary * dic = [self commonComonPar];
     [dic setValue:poiId forKey:@"poi_id"];
     NSString *  urlStr= [NSString stringWithFormat:@"%@/poi_del",KNETBASEURL];
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager POST:urlStr parameters:dic success:success failure:failure];
+    [self postMethodWithUrl:urlStr parameters:dic success:success failure:failure];
 }
 
 
@@ -781,16 +755,14 @@ static CallBack upSucess;
             if(array.count){
                 [dic setValue:[array firstObject] forKey:@"image"];
                 NSString *  urlStr= [NSString stringWithFormat:@"%@/edit_user_info",KNETBASEURL];
-                AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-                [manager POST:urlStr parameters:dic success:success failure:failure];
+                [self postMethodWithUrl:urlStr parameters:dic success:success failure:failure];
             }else{
                 return [self missParagramercallBackFailure:failure];
             }
         }];
     }else{
         NSString *  urlStr= [NSString stringWithFormat:@"%@/edit_user_info",KNETBASEURL];
-        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-        [manager POST:urlStr parameters:dic success:success failure:failure];
+        [self postMethodWithUrl:urlStr parameters:dic success:success failure:failure];
     }
 }
 
@@ -804,8 +776,8 @@ static CallBack upSucess;
 {
     NSMutableDictionary * dic = [self commonComonPar];
     NSString *  urlStr= [NSString stringWithFormat:@"%@/has_new_comment",KNETBASEURL];
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager GET:urlStr parameters:dic success:success failure:failure];
+    [self getMethodWithUrl:urlStr parameters:dic success:success failure:failure];
+    
 }
 
 + (void)quaryRecomendList:(NSInteger)start
@@ -817,8 +789,7 @@ static CallBack upSucess;
     [dic setValue:@(start) forKey:@"start"];
     [dic setValue:@(count) forKey:@"count"];
     NSString *  urlStr= [NSString stringWithFormat:@"%@/get_new_comment",KNETBASEURL];
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager GET:urlStr parameters:dic success:success failure:failure];
+    [self getMethodWithUrl:urlStr parameters:dic success:success failure:failure];
 
 }
 
@@ -839,4 +810,32 @@ static CallBack upSucess;
                                       userInfo:@{@"error":@"缺少参数"}];
     failure(nil,error);
 }
+
++ (void)getMethodWithUrl:(NSString *)url
+              parameters:(id)parameters
+                 success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                 failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+
+{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager.requestSerializer willChangeValueForKey:@"timeoutInterval"];
+    manager.requestSerializer.timeoutInterval = 10.f;
+    [manager.requestSerializer didChangeValueForKey:@"timeoutInterval"];
+
+    [manager GET:url parameters:parameters success:success failure:failure];
+}
+
++ (void)postMethodWithUrl:(NSString *)url
+               parameters:(id)parameters
+                  success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                  failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager.requestSerializer willChangeValueForKey:@"timeoutInterval"];
+    manager.requestSerializer.timeoutInterval = 10.f;
+    [manager.requestSerializer didChangeValueForKey:@"timeoutInterval"];
+    [manager POST:url parameters:parameters success:success failure:failure];
+
+}
+
 @end

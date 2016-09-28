@@ -176,7 +176,7 @@
     }
     WS(ws);
     void (^ failure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *operation, NSError *error){
-        [self netErrorWithTableView:tableView];
+        [ws netErrorWithTableView:tableView];
     };
     
     [NetWorkEntity quaryUserInfoWithUserId:self.userId
