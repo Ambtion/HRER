@@ -23,9 +23,9 @@
     }
     MBProgressHUD * progressView = [[MBProgressHUD alloc] initWithView:view];
     progressView.animationType = MBProgressHUDAnimationZoomOut;
-    progressView.labelText = str;
+    progressView.label.text = str;
     [view addSubview:progressView];
-    [progressView show:YES];
+    [progressView showAnimated:YES];
     return progressView;
 }
 
