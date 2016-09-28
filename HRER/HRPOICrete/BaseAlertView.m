@@ -56,7 +56,7 @@
     self.backGroudView.alpha = 0.f;
     [view addSubview:self];
     
-    [UIView animateWithDuration:0.4 animations:^{
+    [UIView animateWithDuration:0.6 animations:^{
         self.contentView.frame = CGRectOffset(self.contentView.frame, 0, -CGRectGetHeight(self.bounds));
         self.backGroudView.alpha = 1.f;
     } completion:completion];
