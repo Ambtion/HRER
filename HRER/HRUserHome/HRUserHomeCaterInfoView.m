@@ -30,13 +30,13 @@
 - (void)initUI
 {
     self.valueLabel = [[UILabel alloc] init];
-    self.valueLabel.font = [UIFont boldSystemFontOfSize:15.f];
+    self.valueLabel.font = [UIFont boldSystemFontOfSize:11];
     self.valueLabel.textAlignment = NSTextAlignmentCenter;
     self.valueLabel.textColor = [UIColor whiteColor];
     [self addSubview:self.valueLabel];
     
     self.titleLabel = [[UILabel alloc] init];
-    self.titleLabel.font = [UIFont systemFontOfSize:11.f];
+    self.titleLabel.font = [UIFont systemFontOfSize:11];
     self.titleLabel.textColor = RGB_Color(0xcc, 0xcc, 0xcc);
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
     [self addSubview:self.titleLabel];
@@ -44,7 +44,6 @@
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self);
         make.width.equalTo(self);
-        make.height.equalTo(@(11.f));
         make.top.equalTo(self);
     }];
     
@@ -52,7 +51,6 @@
         make.bottom.equalTo(self);
         make.left.equalTo(self);
         make.width.equalTo(self);
-        make.height.equalTo(@(15.f));
     }];
     
  
