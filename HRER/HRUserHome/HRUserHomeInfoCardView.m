@@ -17,8 +17,8 @@
 @property(nonatomic,strong)UILabel * nameValue;
 @property(nonatomic,strong)UILabel * passLabel;
 @property(nonatomic,strong)UILabel * passValueLabel;
-@property(nonatomic,strong)UILabel * friendsLabel;
-@property(nonatomic,strong)UILabel * visitCityLabel;
+//@property(nonatomic,strong)UILabel * friendsLabel;
+//@property(nonatomic,strong)UILabel * visitCityLabel;
 @property(nonatomic,strong)UIImageView * identifyImageView;
 
 @property(nonatomic,strong)UIButton * shareButton;
@@ -73,29 +73,29 @@
     self.passValueLabel.textColor = UIColorFromRGB(0x4c4c4c);
     [self addSubview:self.passValueLabel];
 
-    self.friendsLabel = [[UILabel alloc] init];
-    self.friendsLabel.font = [UIFont systemFontOfSize:12.f];
-    self.friendsLabel.textColor =  UIColorFromRGB(0x999999);
-    [self addSubview:self.friendsLabel];
-    
-    self.visitCityLabel = [[UILabel alloc] init];
-    self.visitCityLabel.font = [UIFont systemFontOfSize:12.f];
-    self.visitCityLabel.textColor = UIColorFromRGB(0x999999);
-    [self addSubview:self.visitCityLabel];
+//    self.friendsLabel = [[UILabel alloc] init];
+//    self.friendsLabel.font = [UIFont systemFontOfSize:12.f];
+//    self.friendsLabel.textColor =  UIColorFromRGB(0x999999);
+//    [self addSubview:self.friendsLabel];
+//    
+//    self.visitCityLabel = [[UILabel alloc] init];
+//    self.visitCityLabel.font = [UIFont systemFontOfSize:12.f];
+//    self.visitCityLabel.textColor = UIColorFromRGB(0x999999);
+//    [self addSubview:self.visitCityLabel];
     
 //    self.shareButton = [UIButton buttonWithType:UIButtonTypeCustom];
 //    [self.shareButton addTarget:self action:@selector(buttonDidClick:) forControlEvents:UIControlEventTouchUpInside];
 //    [self addSubview:self.shareButton];
     
-//    self.identifyImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"barcode"]];
-//    [self addSubview:self.identifyImageView];
+    self.identifyImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"barcode"]];
+    [self addSubview:self.identifyImageView];
     
     
     [self.portraitView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self).offset(19.f);
         make.left.equalTo(self).offset(25.f);
         make.width.equalTo(@(109));
-        make.bottom.equalTo(self.visitCityLabel);
+        make.height.equalTo(@(140));
     }];
     
 //    [self.shareButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -132,22 +132,24 @@
     }];
     
     
-    [self.friendsLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.height.equalTo(@(12));
-        make.left.right.equalTo(self.nameLabel);
-        make.top.equalTo(self.passValueLabel.mas_bottom).offset(20.f);
-    }];
-    
-    [self.visitCityLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.equalTo(self.nameLabel);
-        make.top.equalTo(self.friendsLabel.mas_bottom).offset(8.f);
-        make.height.equalTo(@(12));
-    }];
-    
-//    [self.identifyImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.equalTo(self.nameLabel);
-//        make.top.equalTo(self.visitCityLabel.mas_bottom).offset(12.f);
+//    [self.friendsLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.height.equalTo(@(12));
+//        make.left.right.equalTo(self.nameLabel);
+//        make.top.equalTo(self.passValueLabel.mas_bottom).offset(20.f);
 //    }];
+//    
+//    [self.visitCityLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.right.equalTo(self.nameLabel);
+//        make.top.equalTo(self.friendsLabel.mas_bottom).offset(8.f);
+//        make.height.equalTo(@(12));
+//    }];
+    
+    [self.identifyImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.nameLabel);
+        make.bottom.equalTo(self.portraitView.mas_bottom).offset(-15);
+    }];
+    
+//    self.identifyImageView.backgroundColor = [UIColor redColor];
     
     [self setUserInteractionEnabled:YES];
     UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onClickDetailInfo:)];
@@ -163,9 +165,9 @@
     _dataSource = dataSource;
     self.nameValue.text = dataSource.name;
     self.passValueLabel.text = dataSource.passport_num;
-    self.friendsLabel.text = [NSString stringWithFormat:@"拥有%ld个朋友",(long)dataSource.f_num];
-    self.visitCityLabel.text = [NSString stringWithFormat:@"足迹遍布%ld个城市",(long)dataSource.f_city_num];
-    [self.portraitView.imageView sd_setImageWithURL:[NSURL URLWithString:dataSource.image] placeholderImage:[UIImage imageNamed:@"man"]];    
+//    self.friendsLabel.text = [NSString stringWithFormat:@"拥有%ld个朋友",(long)dataSource.f_num];
+//    self.visitCityLabel.text = [NSString stringWithFormat:@"足迹遍布%ld个城市",(long)dataSource.f_city_num];
+    [self.portraitView.imageView sd_setImageWithURL:[NSURL URLWithString:dataSource.image] placeholderImage:[UIImage imageNamed:@"man"]];
 //    if ([[LoginStateManager getInstance] userLoginInfo] &&
 //        [[LoginStateManager getInstance] userLoginInfo].user_id &&
 //        [[[LoginStateManager getInstance] userLoginInfo].user_id isEqualToString:dataSource.user_id]) {
