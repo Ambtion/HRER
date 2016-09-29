@@ -211,8 +211,8 @@
 
     }
     
-    self.titleLabel.numberOfLines = data.poi_type == 16 ? 3 : 1;
-    self.titleLabel.font = data.poi_type == 16 ? [UIFont boldSystemFontOfSize:15.f] : [UIFont boldSystemFontOfSize:15.f];
+    self.titleLabel.numberOfLines = (data.poi_type == 16 || data.poi_type == 18) ? 0 : 1;
+    self.titleLabel.font = (data.poi_type == 16 || data.poi_type == 18)? [UIFont boldSystemFontOfSize:15.f] : [UIFont boldSystemFontOfSize:15.f];
 }
 
 - (void)fullViewTap:(UITapGestureRecognizer *)tap
