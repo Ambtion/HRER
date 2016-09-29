@@ -130,11 +130,16 @@
     [NetWorkEntity quaryFriendsListWithFillter:self.inputView.textFiled.text  success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
-            NSArray * list = [[responseObject objectForKey:@"response"] objectForKey:@"dataList"];
+            
+            
+            NSArray * oldlist = [[responseObject objectForKey:@"response"] objectForKey:@"oldList"];
+            NSArray * newlist = [[responseObject objectForKey:@"response"] objectForKey:@"newList"];
+            
+            
             NSMutableArray * listArray = [NSMutableArray arrayWithCapacity:0];
-            if([list isKindOfClass:[NSArray class]]){
-                for (int i = 0 ; i < list.count; i++) {
-                    NSDictionary * dic = list[i];
+            if([oldlist isKindOfClass:[NSArray class]]){
+                for (int i = 0 ; i < oldlist.count; i++) {
+                    NSDictionary * dic = oldlist[i];
                     HRFriendsInfo * friends = [HRFriendsInfo  yy_modelWithJSON:dic];
                     if (friends) {
                         [listArray addObject:friends];
@@ -142,6 +147,20 @@
                 }
             }
             weakSelf.dataArray = listArray;
+            
+            
+            NSMutableArray * newlistArray = [NSMutableArray arrayWithCapacity:0];
+            if([newlist isKindOfClass:[NSArray class]]){
+                for (int i = 0 ; i < newlist.count; i++) {
+                    NSDictionary * dic = newlistArray[i];
+                    HRFriendsInfo * friends = [HRFriendsInfo  yy_modelWithJSON:dic];
+                    if (friends) {
+                        [newlistArray addObject:friends];
+                    }
+                }
+            }
+            weakSelf.ndataArray = newlistArray;
+
             [weakSelf.tableView reloadData];
             [weakSelf.tableView.refreshHeader endRefreshing];
         }else{

@@ -237,7 +237,9 @@
         [MBProgressHUD hideHUDForView:weakSelf animated:YES];
         if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
             [weakSelf showTotasViewWithMes:@"删除成功"];
-            [[[weakSelf tableView] refreshHeader] beginRefreshing];
+            if ([weakSelf.delegate respondsToSelector:@selector(userHomeListView:DidNeedRefreshData:)]) {
+                [weakSelf.delegate userHomeListView:weakSelf DidNeedRefreshData:weakSelf.tableView];
+            }
         }else{
             [weakSelf showTotasViewWithMes:[[responseObject objectForKey:@"response"] objectForKey:@"errorText"]];
             [cell hideUtilityButtonsAnimated:YES];
