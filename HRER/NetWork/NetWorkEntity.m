@@ -678,7 +678,8 @@ static CallBack upSucess;
 {
     NSString * str = [netImages  componentsJoinedByString:@","];
     [dic setValue:str forKey:@"image"];
-    [self postMethodWithUrl:str parameters:dic success:success failure:failure];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager POST:baseUrl parameters:dic success:success failure:failure];
 }
 
 + (void)uploadImags:(NSArray*)images sucess:(void(^)(NSArray *array))sucess
