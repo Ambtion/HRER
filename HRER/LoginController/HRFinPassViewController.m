@@ -222,8 +222,9 @@
         [self showTotasViewWithMes:@"密码不能小于6位"];
         return;
     }
-    
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+
+    if(![MBProgressHUD HUDForView:self.view])
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 
     [NetWorkEntity resetPassNumber:self.phoneNumber.textField.text  verCode:self.phoneCode.textField.text password:self.passWord.textField.text success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];

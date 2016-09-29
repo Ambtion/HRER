@@ -626,7 +626,8 @@
         return;
     }
     
-    [MBProgressHUD showHUDAddedTo:[[[UIApplication sharedApplication] delegate] window] animated:YES];
+    if(![MBProgressHUD HUDForView:[[[UIApplication sharedApplication] delegate] window]])
+        [MBProgressHUD showHUDAddedTo:[[[UIApplication sharedApplication] delegate] window] animated:YES];
 
     WS(ws);
     [NetWorkEntity uploadPoiWithTitle:[self.titleLabel.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]

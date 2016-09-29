@@ -297,7 +297,8 @@
         return;
     }
     
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    if(![MBProgressHUD HUDForView:self.view])
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 
     [NetWorkEntity regisWithPhotoNumber:self.phoneNumber.textField.text password:self.passWord.textField.text nickName:self.nick.textField.text verCode:self.phoneCode.textField.text success:^(AFHTTPRequestOperation *operation, id responseObject) {
   

@@ -129,7 +129,9 @@
 //    }
     
     WS(ws);
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+
+    if(![MBProgressHUD HUDForView:self.view])
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     [NetWorkEntity updateUserName:[self.nickText.textField.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] password:nil image:nil bindweixin:-1 success:^(AFHTTPRequestOperation *operation, id responseObject) {
         

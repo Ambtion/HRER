@@ -216,7 +216,10 @@
 
 - (void)bindPhotoNumber:(id)sender
 {
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    if(![MBProgressHUD HUDForView:self.view])
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
     [NetWorkEntity bindPhoneNumber:self.phoneNumber.textField.text
                            VerCode:self.phoneCode.textField.text
                              token:nil

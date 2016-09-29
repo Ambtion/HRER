@@ -123,7 +123,8 @@
 - (void)quaryData
 {
     
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    if(![MBProgressHUD HUDForView:self.view])
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     WS(weakSelf);
     
@@ -382,7 +383,10 @@
 - (void)favFriendWithUid:(NSString *)uid favStatu:(BOOL)favStatu
 {
     WS(weakSelf);
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    if(![MBProgressHUD HUDForView:self.view])
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
     [NetWorkEntity favFriends:uid isFav:favStatu success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {

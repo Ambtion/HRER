@@ -143,7 +143,8 @@
         [self netErrorWithTableView:self.tableView];
     };
     
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    if(![MBProgressHUD HUDForView:self.view])
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 
     //获取类别数目
     [NetWorkEntity quaryCityTypeCount:self.cityID success:^(AFHTTPRequestOperation *operation, id responseObject) {

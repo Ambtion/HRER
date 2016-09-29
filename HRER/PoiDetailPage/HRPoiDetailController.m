@@ -153,8 +153,8 @@ static CGFloat const MaxToolbarHeight = 200.0f;
 
 - (void)quartData
 {
-    
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    if(![MBProgressHUD HUDForView:self.view])
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     WS(ws);
     void (^ failure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *operation, NSError *error){
@@ -471,7 +471,9 @@ static CGFloat const MaxToolbarHeight = 200.0f;
     }
     
     WS(ws);
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    if(![MBProgressHUD HUDForView:self.view])
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
     [NetWorkEntity quaryWantTogoPoidetailWithPoiId:self.poiInfo.poi_id wantTogo:!button.isSelected success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         [MBProgressHUD hideHUDForView:self.view animated:YES];
@@ -666,8 +668,9 @@ static CGFloat const MaxToolbarHeight = 200.0f;
 {
     
     WS(ws);
-
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    if(![MBProgressHUD HUDForView:self.view])
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 
     [NetWorkEntity recomendPoiWithPoiId:self.poiInfo.poi_id cmtToRec:recId content:[self.textView.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
@@ -703,7 +706,9 @@ static CGFloat const MaxToolbarHeight = 200.0f;
     
     sheet.selectButtonAtIndex = ^(NSInteger index) {
         if (index == 1) {
-            [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            
+            if(![MBProgressHUD HUDForView:self.view])
+                [MBProgressHUD showHUDAddedTo:self.view animated:YES];
             
             [NetWorkEntity deleteRecomendWithCmtId:cmtId success:^(AFHTTPRequestOperation *operation, id responseObject) {
                 [MBProgressHUD hideHUDForView:self.view animated:YES];

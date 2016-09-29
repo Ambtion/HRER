@@ -117,8 +117,8 @@
     
     __block NSInteger toutalNetCount = 2 + ([[LoginStateManager getInstance] userLoginInfo] ? 2 : 0);
     
-    
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    if(![MBProgressHUD HUDForView:self.view])
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     void (^ failure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *operation, NSError *error){
         [self netErrorWithTableView:self.tableView];

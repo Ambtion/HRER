@@ -94,8 +94,9 @@
 {
     
     WS(weakSelf);
-
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    if(![MBProgressHUD HUDForView:self.view])
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [NetWorkEntity quaryHotCityListSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
         if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {

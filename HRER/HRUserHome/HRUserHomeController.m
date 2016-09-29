@@ -305,7 +305,10 @@
         }
         //关注
         WS(weakSelf);
-        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        
+        if(![MBProgressHUD HUDForView:self.view])
+            [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        
         [NetWorkEntity favFriends:self.homeUserInfo.user_id isFav:!self.homeUserInfo.is_focus success:^(AFHTTPRequestOperation *operation, id responseObject) {
             if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
                 if(!weakSelf.homeUserInfo.is_focus){

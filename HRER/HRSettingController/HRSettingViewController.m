@@ -322,7 +322,9 @@
 {
     
     WS(ws);
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    if(![MBProgressHUD HUDForView:self.view])
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     [NetWorkEntity updateUserName:nil password:nil image:image bindweixin:-1 success:^(AFHTTPRequestOperation *operation, id responseObject) {
         

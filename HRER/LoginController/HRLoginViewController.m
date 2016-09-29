@@ -324,7 +324,11 @@
     }
     
     WS(ws);
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    if(![MBProgressHUD HUDForView:self.view])
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    
     [NetWorkEntity loginWithUserName:self.userName.text password:self.password.text success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [MBProgressHUD hideAllHUDsForView:ws.view animated:YES];
         if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
@@ -384,8 +388,10 @@
     
     WS(ws);
     [HRWebCatLogin sendAuthRequestcallBack:^(BaseResp *resp) {
-         
-        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        
+        if(![MBProgressHUD HUDForView:self.view])
+            [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        
         if (![(SendAuthResp *)resp code] ) {
             [self showTotasViewWithMes:@"登录失败"];
             return ;
@@ -461,7 +467,10 @@
     WS(ws);
 
     [[HRQQManager shareInstance] loginWithLoginCallBack:^(TencentOAuth *oauth, BOOL isCanceled) {
-        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        
+        if(![MBProgressHUD HUDForView:self.view])
+            [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        
         if (!oauth) {
             [self showTotasViewWithMes:@"登录失败"];
             return ;

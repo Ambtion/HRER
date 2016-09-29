@@ -96,7 +96,10 @@
 
 - (void)quaryData
 {
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    if(![MBProgressHUD HUDForView:self.view])
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
     [NetWorkEntity  quaryRecomendList:self.dataArray.count count:20 success:^(AFHTTPRequestOperation *operation, id responseObject) {
         if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
             NSArray * recomends = [[responseObject objectForKey:@"response"] objectForKey:@"comments"];
