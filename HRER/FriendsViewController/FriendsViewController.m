@@ -152,7 +152,7 @@
             NSMutableArray * newlistArray = [NSMutableArray arrayWithCapacity:0];
             if([newlist isKindOfClass:[NSArray class]]){
                 for (int i = 0 ; i < newlist.count; i++) {
-                    NSDictionary * dic = newlistArray[i];
+                    NSDictionary * dic = newlist[i];
                     HRFriendsInfo * friends = [HRFriendsInfo  yy_modelWithJSON:dic];
                     if (friends) {
                         [newlistArray addObject:friends];
