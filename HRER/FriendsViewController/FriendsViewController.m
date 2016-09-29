@@ -20,6 +20,8 @@
 @interface FriendsViewController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,BMOldFriendCellDelegate>
 
 @property(nonatomic,strong)RefreshTableView * tableView;
+
+@property(nonatomic,strong)NSArray * ndataArray;
 @property(nonatomic,strong)NSArray * dataArray;
 
 /**
@@ -226,7 +228,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section == 1) {
-        return 2;
+        return 2  + self.ndataArray.count;
     }
     if (section == 3) {
         return self.dataArray.count;
@@ -237,7 +239,11 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 1) {
-        return [BMNewFriendsCell heighForCell];
+        if (indexPath.row < 2) {
+            return [BMNewFriendsCell heighForCell];
+        }else{
+            return [BMOldFriendCell heighForCell];
+        }
     }
     if (indexPath.section == 3) {
         return [BMOldFriendCell heighForCell];
@@ -247,26 +253,43 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section ==1) {
+    if (indexPath.section == 1) {
         
-        NSString * identify = NSStringFromClass([BMNewFriendsCell class]);
         
-        BMNewFriendsCell * newCell = [tableView dequeueReusableCellWithIdentifier:identify];
-        
-        if (!newCell) {
+        if(indexPath.row < 2){
+            NSString * identify = NSStringFromClass([BMNewFriendsCell class]);
             
-            newCell = [[BMNewFriendsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identify];
-            if (indexPath.row == 0) {
-                newCell.maintitle.text = @"微信朋友";
-                newCell.subTitle.text =  @"去微信邀请朋友>";
-            }else{
-                newCell.maintitle.text = @"QQ朋友";
-                newCell.subTitle.text =  @"去QQ邀请朋友>";
+            BMNewFriendsCell * newCell = [tableView dequeueReusableCellWithIdentifier:identify];
+            
+            if (!newCell) {
+                
+                newCell = [[BMNewFriendsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identify];
+                if (indexPath.row == 0) {
+                    newCell.maintitle.text = @"微信朋友";
+                    newCell.subTitle.text =  @"去微信邀请朋友>";
+                }else{
+                    newCell.maintitle.text = @"QQ朋友";
+                    newCell.subTitle.text =  @"去QQ邀请朋友>";
+                }
             }
+            //        [newCell.lineView setHidden:indexPath.row != 1];
+            
+            return newCell;
+
+        }else{
+            NSString * identify = NSStringFromClass([BMOldFriendCell class]);
+            
+            BMOldFriendCell * oldCell = [tableView dequeueReusableCellWithIdentifier:identify];
+            
+            if (!oldCell) {
+                
+                oldCell = [[BMOldFriendCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identify];
+                oldCell.delegate = self;
+            }
+            [oldCell setDataModel:self.ndataArray[indexPath.row - 2]];
+            return oldCell;
+
         }
-//        [newCell.lineView setHidden:indexPath.row != 1];
-        
-        return newCell;
         
     }else if (indexPath.section == 3) {
         
@@ -369,8 +392,11 @@
     if (indexPath.section == 1) {
         if (indexPath.row == 1) {
             [self shareToQQ];
-        }else{
+        }else if(indexPath.row == 2){
             [self shareToWeb];
+        }else{
+            HRFriendsInfo * info = [self.ndataArray objectAtIndex:indexPath.row - 2];
+            [self.navigationController pushViewController:[[HRUserHomeController alloc] initWithUserID:info.uid] animated:YES];
         }
     }else{
         HRFriendsInfo * info = [self.dataArray objectAtIndex:indexPath.row];
