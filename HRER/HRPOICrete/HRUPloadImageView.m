@@ -121,9 +121,15 @@
         NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
         [center addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
         [center addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLogout:) name:LOGIN_OUT object:nil];
 
     }
     return self;
+}
+
+- (void)didLogout:(id)sender
+{
+    [self disAppear];
 }
 
 -(void)initContentView
