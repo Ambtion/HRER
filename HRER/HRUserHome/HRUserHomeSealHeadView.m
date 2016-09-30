@@ -47,12 +47,18 @@
     self.colletctionView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     self.colletctionView.clipsToBounds = YES;
     self.colletctionView.backgroundColor = [UIColor clearColor];
+    
     self.colletctionView.delegate = self;
     self.colletctionView.dataSource = self;
     [self addSubview:self.colletctionView];
     
     [self.colletctionView registerClass:[HRUserHomeCollectionSealCell class] forCellWithReuseIdentifier:@"SealCell"];
-    
+    UIImageView * bgImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"yinzhang_morentu"]];
+    [self.colletctionView addSubview:bgImage];
+    [bgImage mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.colletctionView);
+        make.left.equalTo(self.colletctionView);
+    }];
 }
 
 
