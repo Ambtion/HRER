@@ -52,7 +52,7 @@
     
     self.nameLabel = [[UILabel alloc] init];
     self.nameLabel.font = [UIFont systemFontOfSize:14.f];
-    self.nameLabel.text = @"姓名";
+    self.nameLabel.text = @"姓名/Name";
     self.nameLabel.textColor =UIColorFromRGB(0xdb4d30);
     [self addSubview:self.nameLabel];
     
@@ -65,7 +65,7 @@
     self.passLabel = [[UILabel alloc] init];
     self.passLabel.font = [UIFont systemFontOfSize:14.f];
     self.passLabel.textColor =UIColorFromRGB(0xdb4d30);
-    self.passLabel.text = @"护照号";
+    self.passLabel.text = @"护照号/Passport Nu";
     [self addSubview:self.passLabel];
     
     self.passValueLabel = [[UILabel alloc] init];
@@ -106,7 +106,7 @@
     
     [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.portraitView.mas_right).offset(20.f);
-        make.height.equalTo(@(11));
+        make.height.equalTo(@(11 + 5));
         make.top.equalTo(self.portraitView);
         make.right.equalTo(self).offset(-20);
     }];
@@ -146,7 +146,7 @@
     
     [self.identifyImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.nameLabel);
-        make.bottom.equalTo(self.portraitView.mas_bottom).offset(-15);
+        make.bottom.equalTo(self.portraitView.mas_bottom).offset(-10);
     }];
     
 //    self.identifyImageView.backgroundColor = [UIColor redColor];
