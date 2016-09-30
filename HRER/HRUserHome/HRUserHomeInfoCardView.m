@@ -65,7 +65,7 @@
     self.passLabel = [[UILabel alloc] init];
     self.passLabel.font = [UIFont systemFontOfSize:14.f];
     self.passLabel.textColor =UIColorFromRGB(0xdb4d30);
-    self.passLabel.text = @"护照号/Passport Nu";
+    self.passLabel.text = @"护照号/Passport Num";
     [self addSubview:self.passLabel];
     
     self.passValueLabel = [[UILabel alloc] init];
