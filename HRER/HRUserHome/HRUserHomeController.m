@@ -60,6 +60,7 @@
 {
     [super viewWillAppear:animated];
     [self.myNavController setNavigationBarHidden:YES];
+    [self.backButton setHidden:[self.myNavController viewControllers].count == 1 ? YES : NO];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -163,7 +164,6 @@
     [self.backButton setImage:[UIImage imageNamed:@"list_back"] forState:UIControlStateNormal];
     [self.backButton addTarget:self action:@selector(backButtonDidClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.backButton];
-    [self.backButton setHidden:[self.myNavController viewControllers].count == 1 ? YES : NO];
 }
 
 #pragma mark - Data

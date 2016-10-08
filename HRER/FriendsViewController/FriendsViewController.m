@@ -415,7 +415,7 @@
     if (indexPath.section == 1) {
         if (indexPath.row == 1) {
             [self shareToQQ];
-        }else if(indexPath.row == 2){
+        }else if(indexPath.row == 0){
             [self shareToWeb];
         }else{
             HRFriendsInfo * info = [self.ndataArray objectAtIndex:indexPath.row - 2];
