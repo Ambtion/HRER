@@ -511,7 +511,7 @@
 - (void)herePoisSetCellDidClick:(HRHerePoisSetCell *)cell
 {
     
-    if (cell.data.poi_type == 16) {
+    if (cell.data.poi_type == 18) {
         //引导页面
         [[self myTabBarcontroller] setSelectedIndex:2];
         
@@ -522,7 +522,7 @@
         return;
     }
     
-    if (cell.data.poi_type == 18) {
+    if (cell.data.poi_type == 16) {
         //引导页面
         [[self myTabBarcontroller] setSelectedIndex:3];
         if ([[[(UINavigationController *) [[self myTabBarcontroller]  selectedViewController] viewControllers] firstObject] respondsToSelector:@selector(showLoginPage)]) {

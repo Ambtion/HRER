@@ -443,7 +443,6 @@
                         HRBindPhoneController * binC = [[HRBindPhoneController alloc] init];
                         binC.bindToken = userInfo.token;
                         [self.navigationController  pushViewController:binC animated:YES];
-                        binC.navigationItem.leftBarButtonItems = nil;
                     }
                     
                 }else{
@@ -521,7 +520,6 @@
                         HRBindPhoneController * binC = [[HRBindPhoneController alloc] init];
                         binC.bindToken = userInfo.token;
                         [self.navigationController  pushViewController:binC animated:YES];
-                        binC.navigationItem.leftBarButtonItems = nil;
                     }
                     
                 }else{
