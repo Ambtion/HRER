@@ -9,7 +9,7 @@
 #import "AFNetworking.h"
 #import "ModelDefine.h"
 
-#define  KNETBASEURL           @"http://58.135.93.4:8089"
+#define  KNETBASEURL           @"http://223.223.185.4:8089"
 
 @interface NetWorkEntity : NSObject
 
