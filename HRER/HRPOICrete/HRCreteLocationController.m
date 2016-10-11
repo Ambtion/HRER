@@ -486,10 +486,10 @@
     status = 1;
 */
     self.isCurLocaiton = NO;
-    if ([cityInfo objectForKey:@"city_id"]) {
+    if ([[cityInfo objectForKey:@"city_id"] integerValue]) {
         self.cityId = [[cityInfo objectForKey:@"city_id"] integerValue];
     }else{
-        self.countyId = [[cityInfo objectForKey:@"id"] intValue];
+        self.cityId = [[cityInfo objectForKey:@"id"] intValue];
     }
     self.cityName = [cityInfo objectForKey:@"city_name"];
     self.lat = [[cityInfo objectForKey:@"latitude"] floatValue];

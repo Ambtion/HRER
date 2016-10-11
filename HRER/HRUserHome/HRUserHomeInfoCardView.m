@@ -52,7 +52,7 @@
     
     self.nameLabel = [[UILabel alloc] init];
     self.nameLabel.font = [UIFont systemFontOfSize:14.f];
-    self.nameLabel.text = @"姓名/Name";
+    self.nameLabel.text = @"姓名/NAME";
     self.nameLabel.textColor =UIColorFromRGB(0xdb4d30);
     [self addSubview:self.nameLabel];
     
@@ -65,7 +65,7 @@
     self.passLabel = [[UILabel alloc] init];
     self.passLabel.font = [UIFont systemFontOfSize:14.f];
     self.passLabel.textColor =UIColorFromRGB(0xdb4d30);
-    self.passLabel.text = @"护照号/Passport Num";
+    self.passLabel.text = @"护照号/PASSPORT NO.";
     [self addSubview:self.passLabel];
     
     self.passValueLabel = [[UILabel alloc] init];
