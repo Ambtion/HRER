@@ -15,8 +15,8 @@
 @property(nonatomic,strong)PortraitView * portraitView;
 @property(nonatomic,strong)UILabel * nameLabel;
 @property(nonatomic,strong)UILabel * passLabel;
-@property(nonatomic,strong)UILabel * friendsLabel;
-@property(nonatomic,strong)UILabel * visitCityLabel;
+//@property(nonatomic,strong)UILabel * friendsLabel;
+//@property(nonatomic,strong)UILabel * visitCityLabel;
 @property(nonatomic,strong)UIImageView * identifyImageView;
 
 @property(nonatomic,strong)UIButton * shareButton;
@@ -56,15 +56,15 @@
     self.passLabel.textColor = [UIColor whiteColor];
     [self addSubview:self.passLabel];
     
-    self.friendsLabel = [[UILabel alloc] init];
-    self.friendsLabel.font = [UIFont systemFontOfSize:14.f];
-    self.friendsLabel.textColor = [[UIColor whiteColor] colorWithAlphaComponent:0.6];
-    [self addSubview:self.friendsLabel];
-    
-    self.visitCityLabel = [[UILabel alloc] init];
-    self.visitCityLabel.font = [UIFont systemFontOfSize:14.f];
-    self.visitCityLabel.textColor = [[UIColor whiteColor] colorWithAlphaComponent:0.6];
-    [self addSubview:self.visitCityLabel];
+//    self.friendsLabel = [[UILabel alloc] init];
+//    self.friendsLabel.font = [UIFont systemFontOfSize:14.f];
+//    self.friendsLabel.textColor = [[UIColor whiteColor] colorWithAlphaComponent:0.6];
+//    [self addSubview:self.friendsLabel];
+//    
+//    self.visitCityLabel = [[UILabel alloc] init];
+//    self.visitCityLabel.font = [UIFont systemFontOfSize:14.f];
+//    self.visitCityLabel.textColor = [[UIColor whiteColor] colorWithAlphaComponent:0.6];
+//    [self addSubview:self.visitCityLabel];
     
     self.shareButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.shareButton addTarget:self action:@selector(buttonDidClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -98,22 +98,22 @@
         make.top.equalTo(self.nameLabel.mas_bottom).offset(12.f);
     }];
     
-    [self.friendsLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.equalTo(self.nameLabel);
-        make.left.equalTo(self.nameLabel);
-        make.top.equalTo(self.passLabel.mas_bottom).offset(12.f);
-    }];
-    
-    [self.visitCityLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.equalTo(self.nameLabel);
-        make.left.equalTo(self.nameLabel);
-        make.top.equalTo(self.friendsLabel.mas_bottom).offset(12.f);
-
-    }];
+//    [self.friendsLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.size.equalTo(self.nameLabel);
+//        make.left.equalTo(self.nameLabel);
+//        make.top.equalTo(self.passLabel.mas_bottom).offset(12.f);
+//    }];
+//    
+//    [self.visitCityLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.size.equalTo(self.nameLabel);
+//        make.left.equalTo(self.nameLabel);
+//        make.top.equalTo(self.friendsLabel.mas_bottom).offset(12.f);
+//
+//    }];
     
     [self.identifyImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.nameLabel);
-        make.top.equalTo(self.visitCityLabel.mas_bottom).offset(12.f);
+        make.top.equalTo(self.passLabel.mas_bottom).offset(12.f);
     }];
     
     [self setUserInteractionEnabled:YES];
@@ -130,8 +130,8 @@
     _dataSource = dataSource;
     self.nameLabel.text = [NSString stringWithFormat:@"姓名: %@",dataSource.name];
     self.passLabel.text = [NSString stringWithFormat:@"护照号:  %@",dataSource.passport_num];
-    self.friendsLabel.text = [NSString stringWithFormat:@"拥有%ld个朋友",(long)dataSource.f_num];
-    self.visitCityLabel.text = [NSString stringWithFormat:@"足迹遍布%ld个城市",(long)dataSource.f_city_num];
+//    self.friendsLabel.text = [NSString stringWithFormat:@"拥有%ld个朋友",(long)dataSource.f_num];
+//    self.visitCityLabel.text = [NSString stringWithFormat:@"足迹遍布%ld个城市",(long)dataSource.f_city_num];
     [self.portraitView.imageView sd_setImageWithURL:[NSURL URLWithString:dataSource.image] placeholderImage:[UIImage imageNamed:@"man"]];
     
     if ([[LoginStateManager getInstance] userLoginInfo] &&
