@@ -74,6 +74,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(quaryData) name:LOGIN_IN object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resetInputSerch:) name:@"resetInputSerch" object:nil];
     self.cityId = [[HRLocationManager  sharedInstance] curCityId];
     self.cityName = [[HRLocationManager  sharedInstance] cityName];
     self.lat = [[[HRLocationManager  sharedInstance] curLocation] coordinate].latitude;
@@ -86,6 +87,12 @@
     self.mapSearch = [[AMapSearchAPI alloc] init];
     self.mapSearch.delegate = self;
     
+    [self quaryData];
+}
+
+- (void)resetInputSerch:(id)sedner
+{
+    self.inputView.textFiled.text = @"";
     [self quaryData];
 }
 

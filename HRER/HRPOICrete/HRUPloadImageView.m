@@ -45,6 +45,7 @@
 
 @property(nonatomic,strong)UIImageView * priceIcon;
 @property(nonatomic,strong)UITextField * priceTextField;
+@property(nonatomic,strong)UILabel * priceTextFieldLabel;
 @property(nonatomic,strong)UILabel * countUnitLabel;
 
 @property(nonatomic,strong)UIButton * uploadbutton;
@@ -135,7 +136,7 @@
 -(void)initContentView
 {
     
-    
+    self.contentView.clipsToBounds = NO;
     self.contentView.frame = CGRectMake(0, 0, 300, 470.f);
     self.contentView.center = CGPointMake(self.width/2.f, self.height/2.f);
     self.contentView.image = [[UIImage imageNamed:@"card_ba"] resizableImageWithCapInsets:UIEdgeInsetsMake(20, 20, 20, 20)];
@@ -149,13 +150,23 @@
     
     self.cancelButton = [[UIButton alloc] initWithFrame:CGRectMake(self.contentView.width - 40, 0, 40, 40)];
     [self.cancelButton setImage:[UIImage imageNamed:@"close"] forState:UIControlStateNormal];
-    [self.cancelButton addTarget:self action:@selector(cancanButtonDidClick:) forControlEvents:UIControlEventTouchUpInside];
+//    [self.cancelButton addTarget:self action:@selector(cancanButtonDidClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:self.cancelButton];
 
     [self.cancelButton mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.contentView).offset(-5);
-        make.top.equalTo(self.contentView).offset(5);
+        make.centerX.equalTo(self.contentView.mas_right);
+        make.centerY.equalTo(self.contentView.mas_top);
     }];
+    
+    UIButton * cancelButton = [[UIButton alloc] initWithFrame:CGRectMake(self.contentView.width - 40, 0, 40, 40)];
+    [self.contentView addSubview:cancelButton];
+    [cancelButton addTarget:self action:@selector(cancanButtonDidClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.contentView addSubview:cancelButton];
+    [cancelButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.contentView.mas_right);
+        make.top.equalTo(self.contentView.mas_top);
+    }];
+
     
     self.icarousel = [[iCarousel alloc] initWithFrame:CGRectMake(12, 15, self.contentView.width - 24 - 20, 150.f)];
     self.icarousel.type = iCarouselTypeInvertedTimeMachine;
@@ -282,8 +293,19 @@
     self.priceTextField.font = [UIFont systemFontOfSize:13.f];
     self.priceTextField.keyboardType = UIKeyboardTypeNumberPad;
     self.priceTextField.textColor = RGB_Color(0x4d, 0x4d, 0x4d);
-    self.priceTextField.placeholder = @"0";
+    
     [priceBgView addSubview:self.priceTextField];
+    
+    self.priceTextFieldLabel = [[UILabel alloc] init];
+    self.priceTextFieldLabel.font = [UIFont systemFontOfSize:14.f];
+    self.priceTextFieldLabel.textColor = RGB_Color(0xa6, 0xa6, 0xa6);
+    self.priceTextFieldLabel.text = @"0";
+    self.priceTextFieldLabel.textAlignment = NSTextAlignmentCenter;
+    [priceBgView addSubview:self.priceTextFieldLabel];
+    
+    [self.priceTextFieldLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.width.centerY.equalTo(self.priceTextField);
+    }];
     
     self.countUnitLabel = [[UILabel alloc] init];
     self.countUnitLabel.textAlignment = NSTextAlignmentLeft;
@@ -442,6 +464,14 @@
 }
 
 #pragma mark TextFied
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    [self.priceTextFieldLabel setHidden:YES];
+}
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    [self.priceTextFieldLabel setHidden:textField.text.length];
+}
 #pragma mark 字数限制
 - (void)textViewDidBeginEditing:(UITextView *)textView
 {
@@ -650,7 +680,7 @@
                                images:imageArray  success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                    [MBProgressHUD hideHUDForView:[[[UIApplication sharedApplication] delegate] window] animated:YES];
                                    if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {
-                                       
+                                       [[NSNotificationCenter defaultCenter] postNotificationName:@"resetInputSerch" object:nil];
                                        [ws showTotasViewWithMes:@"上传成功"];
                                        [ws jumpToHomePageWithQuary:YES];
                                        UITabBarController * tabBar = (UITabBarController *)[[[[UIApplication sharedApplication] delegate] window] rootViewController];
