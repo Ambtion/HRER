@@ -69,6 +69,7 @@
     self.shareButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.shareButton addTarget:self action:@selector(buttonDidClick:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:self.shareButton];
+    [self.shareButton setHidden:YES];
     
     self.identifyImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"barcode"]];
     [self addSubview:self.identifyImageView];
