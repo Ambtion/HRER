@@ -220,6 +220,7 @@
                     break;
             }
         }
+        
         CellPositionType postion = CellPositionFull;
         if(indexPath.row == 0 || (indexPath.row == 1 && indexPath.section == 0)){
             postion = CellPositionTop;
