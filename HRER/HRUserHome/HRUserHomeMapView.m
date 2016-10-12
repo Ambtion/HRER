@@ -44,7 +44,7 @@
 
 - (void)initUI
 {
-    [self initNavBar];
+//    [self initNavBar];
 //    self.renderView = [[UIView alloc] initWithFrame:CGRectMake(0, 20, self.width, self.height - 20)];
     [self addSubview:self.headView];
     [self initMapView];
@@ -213,7 +213,7 @@
 - (HRUserHomeMapHeadView *)headView
 {
     if (!_headView) {
-        _headView = [[HRUserHomeMapHeadView alloc] initWithFrame:CGRectMake(0, 64, self.width, [HRUserHomeMapHeadView heightForView])];
+        _headView = [[HRUserHomeMapHeadView alloc] initWithFrame:CGRectMake(0, 0, self.width, [HRUserHomeMapHeadView heightForView])];
         _headView.delegate = self;
         [_headView setDataSource:nil];
     }
