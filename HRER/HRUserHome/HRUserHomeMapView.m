@@ -44,9 +44,9 @@
 
 - (void)initUI
 {
-//    [self initNavBar];
+    [self initNavBar];
 //    self.renderView = [[UIView alloc] initWithFrame:CGRectMake(0, 20, self.width, self.height - 20)];
-    [self addSubview:self.headView];
+//    [self addSubview:self.headView];
     [self initMapView];
 }
 
@@ -63,6 +63,11 @@
     titelLabel.textColor = [UIColor whiteColor];
     titelLabel.text = @"这里护照";
     [barView addSubview:titelLabel];
+    
+    UIButton * backButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 26, 33, 33)];
+    [backButton setImage:[UIImage imageNamed:@"list_back"] forState:UIControlStateNormal];
+    [backButton addTarget:self action:@selector(userHomeHeadViewDidClickSwitchButton:) forControlEvents:UIControlEventTouchUpInside];
+    [barView addSubview:backButton];
 }
 
 
@@ -71,7 +76,7 @@
 - (void)initMapView
 {
     self.backgroundColor = [UIColor whiteColor];
-    self.mapView = [[MKMapView alloc] initWithFrame:CGRectMake(0, self.headView.bottom, self.width, self.height - self.headView.bottom)];
+    self.mapView = [[MKMapView alloc] initWithFrame:CGRectMake(0, 64, self.width, self.height - 64)];
     self.mapView.mapType = MKMapTypeStandard;
     self.mapView.showsUserLocation = YES;
     self.mapView.delegate = self;

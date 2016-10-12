@@ -166,6 +166,7 @@
     }];
     
     self.cancelButton = [[UIButton alloc] initWithFrame:CGRectMake(self.contentView.width - 40, 0, 40, 40)];
+    [self.cancelButton setImage:[UIImage imageNamed:@"close"] forState:UIControlStateNormal];
     [self.cancelButton addTarget:self action:@selector(cancanButtonDidClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:self.cancelButton];
     
