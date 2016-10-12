@@ -134,6 +134,8 @@
 
 -(void)initContentView
 {
+    
+    
     self.contentView.frame = CGRectMake(0, 0, 300, 470.f);
     self.contentView.center = CGPointMake(self.width/2.f, self.height/2.f);
     self.contentView.image = [[UIImage imageNamed:@"card_ba"] resizableImageWithCapInsets:UIEdgeInsetsMake(20, 20, 20, 20)];
@@ -144,6 +146,16 @@
     self.icBackView.frame = CGRectMake(12, 15, self.contentView.width - 24, 150.f);
     self.icBackView.image = [UIImage imageNamed:@"photo_bg"];
     [self.contentView addSubview:self.icBackView];
+    
+    self.cancelButton = [[UIButton alloc] initWithFrame:CGRectMake(self.contentView.width - 40, 0, 40, 40)];
+    [self.cancelButton setImage:[UIImage imageNamed:@"close"] forState:UIControlStateNormal];
+    [self.cancelButton addTarget:self action:@selector(cancanButtonDidClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.contentView addSubview:self.cancelButton];
+
+    [self.cancelButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.contentView).offset(-5);
+        make.top.equalTo(self.contentView).offset(5);
+    }];
     
     self.icarousel = [[iCarousel alloc] initWithFrame:CGRectMake(12, 15, self.contentView.width - 24 - 20, 150.f)];
     self.icarousel.type = iCarouselTypeInvertedTimeMachine;
@@ -165,10 +177,6 @@
         make.bottom.equalTo(self.icarousel.mas_bottom).offset(-9);
     }];
     
-    self.cancelButton = [[UIButton alloc] initWithFrame:CGRectMake(self.contentView.width - 40, 0, 40, 40)];
-    [self.cancelButton setImage:[UIImage imageNamed:@"close"] forState:UIControlStateNormal];
-    [self.cancelButton addTarget:self action:@selector(cancanButtonDidClick:) forControlEvents:UIControlEventTouchUpInside];
-    [self.contentView addSubview:self.cancelButton];
     
     self.titleLabel = [[UILabel alloc] init];
     self.titleLabel.font = [UIFont systemFontOfSize:18.f];
