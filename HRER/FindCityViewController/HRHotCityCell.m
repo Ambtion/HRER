@@ -90,7 +90,7 @@
 {
     UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setTitleColor:RGBA(0x5c, 0x5b, 0x5b, 1) forState:UIControlStateNormal];
-//    [button setTitleColor:UIColorFromRGB(0xffffff) forState:UIControlStateHighlighted];
+    [button setTitleColor:UIColorFromRGB(0xffffff) forState:UIControlStateHighlighted];
     button.titleLabel.font = [UIFont systemFontOfSize:16.f];
     button.layer.cornerRadius = 2.f;
     button.layer.borderColor = RGBA(0xd7, 0xd7, 0xd7, 1).CGColor;

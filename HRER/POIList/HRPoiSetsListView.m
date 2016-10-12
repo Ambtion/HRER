@@ -171,6 +171,7 @@
 - (void)initTableView
 {
     self.tableView = [[RefreshTableView alloc] initWithFrame:CGRectMake(0, 64, self.width, self.height - 64) style:UITableViewStylePlain];
+    self.tableView.backgroundColor  = UIColorFromRGB(0xebebeb);
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self addSubview:self.tableView];
