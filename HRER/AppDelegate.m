@@ -183,7 +183,8 @@
 //    [[UINavigationBar appearance] setTitleTextAttributes:textAttributes1];
 //    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"NavigationBarBG"] forBarMetrics:UIBarMetricsDefault];
 //    [[UINavigationBar appearance] setShadowImage:[UIImage imageNamed:@"NavigationBarBG"]];
- 
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+
 }
 
 

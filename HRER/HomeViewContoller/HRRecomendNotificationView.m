@@ -34,7 +34,7 @@
     
     self.contentView.backgroundColor = UIColorFromRGB(0xebebeb);
 
-    self.bgImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"comment"]];
+    self.bgImageView = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"comment"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 20, 0, 20)]];
     [self.contentView addSubview:self.bgImageView];
     [self.bgImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.width.equalTo(self);

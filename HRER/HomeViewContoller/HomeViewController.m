@@ -624,4 +624,5 @@
 {
     [self.myNavController pushViewController:[[PoiRecomendListController alloc] init] animated:YES];
 }
+
 @end

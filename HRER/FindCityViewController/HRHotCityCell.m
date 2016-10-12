@@ -90,15 +90,31 @@
 {
     UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setTitleColor:RGBA(0x5c, 0x5b, 0x5b, 1) forState:UIControlStateNormal];
-    [button setTitleColor:UIColorFromRGB(0xffffff) forState:UIControlStateHighlighted];
+//    [button setTitleColor:UIColorFromRGB(0xffffff) forState:UIControlStateHighlighted];
     button.titleLabel.font = [UIFont systemFontOfSize:16.f];
     button.layer.cornerRadius = 2.f;
     button.layer.borderColor = RGBA(0xd7, 0xd7, 0xd7, 1).CGColor;
     button.layer.borderWidth = 0.5;
     [button setTitle:@"#" forState:UIControlStateNormal];
+    [button setBackgroundImage:[self imageWithColor:[UIColor whiteColor]] forState:UIControlStateNormal];
+    [button setBackgroundImage:[self imageWithColor:UIColorFromRGB(0xf65d47)] forState:UIControlStateHighlighted];
+
     [button addTarget:self action:@selector(buttonDidClick:) forControlEvents:UIControlEventTouchUpInside];
-    button.backgroundColor = [UIColor whiteColor];
     return button;
+}
+
+- (UIImage *)imageWithColor:(UIColor *)color {
+    CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return image;
 }
 
 - (void)setHotArray:(NSArray *)hotArray

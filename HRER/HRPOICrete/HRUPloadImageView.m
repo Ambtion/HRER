@@ -273,7 +273,7 @@
     self.priceTextField.font = [UIFont systemFontOfSize:13.f];
     self.priceTextField.keyboardType = UIKeyboardTypeNumberPad;
     self.priceTextField.textColor = RGB_Color(0x4d, 0x4d, 0x4d);
-    self.priceTextField.text = @"0";
+    self.priceTextField.placeholder = @"0";
     [priceBgView addSubview:self.priceTextField];
     
     self.countUnitLabel = [[UILabel alloc] init];

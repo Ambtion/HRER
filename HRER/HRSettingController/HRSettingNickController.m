@@ -75,7 +75,6 @@
 - (void)initContentView
 {
     self.nickText = [self createTextFileWithFont:[UIFont systemFontOfSize:14] placeholderPlaceText:@"输入昵称"];
-    self.nickText.textField.keyboardType = UIKeyboardTypeNumberPad;
     [self.view  addSubview:self.nickText];
     
     [self.nickText mas_makeConstraints:^(MASConstraintMaker *make) {

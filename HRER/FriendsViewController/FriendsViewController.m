@@ -431,7 +431,7 @@
 {
     NSString * userId = [[LoginStateManager getInstance] userLoginInfo].user_id;
     NSString * url = [NSString stringWithFormat:@"http://www.herelike.com:8089/sharePage?id=%@",userId];
-    [[HRQQManager shareInstance] shareNewsWithImage:[UIImage imageNamed:@"add"] title:@"邀请你来这里" Des:@"这里是你和好朋友的旅行朋友圈\n在这里朋友越多，出门靠谱的选择越多。从这里，发现世界！" link:url WithCallBack:^(QQBaseResp *response) {
+    [[HRQQManager shareInstance] shareNewsWithImage:[UIImage imageNamed:@"Logo"] title:@"邀请你来这里，从这里\n发现世界！" Des:@"这里是你和朋友的旅行朋友圈，这里朋友越多，出门靠谱的选择也越多。" link:url WithCallBack:^(QQBaseResp *response) {
     }];
 }
 
@@ -439,7 +439,7 @@
 {
     NSString * userId = [[LoginStateManager getInstance] userLoginInfo].user_id;
     NSString * url = [NSString stringWithFormat:@"http://www.herelike.com:8089/sharePage?id=%@",userId];
-    [HRWebCatShare sendWeixinWebContentTitle:@"邀请你来这里" description:@"这里是你和好朋友的旅行朋友圈\n在这里朋友越多，出门靠谱的选择越多。从这里，发现世界！"  thumbImage:[UIImage imageNamed:@"add"] webpageURL:url scene:WXSceneSession withcallBack:^(BaseResp *resp) {
+    [HRWebCatShare sendWeixinWebContentTitle:@"邀请你来这里，从这里\n发现世界！" description:@"这里是你和朋友的旅行朋友圈，这里朋友越多，出门靠谱的选择也越多。"  thumbImage:[UIImage imageNamed:@"Logo"] webpageURL:url scene:WXSceneSession withcallBack:^(BaseResp *resp) {
         
     }];
 }
