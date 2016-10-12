@@ -95,7 +95,6 @@
     CGFloat heigth = 50.f;
     return heigth;
 }
-
 - (instancetype)init
 {
     self = [super init];
@@ -116,7 +115,7 @@
     
     [self.cityImageBgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).offset(16.f);
-        make.top.equalTo(self);
+        make.top.equalTo(self).offset(-2);
         make.size.mas_equalTo(CGSizeMake(38, 46.f));
     }];
     

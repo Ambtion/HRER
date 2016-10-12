@@ -42,7 +42,7 @@
 
 - (void)initUI
 {
-    self.image = [UIImage imageNamed:@"information_bg"];
+    self.image = [[UIImage imageNamed:@"information_bg"] resizableImageWithCapInsets:UIEdgeInsetsMake(20, 50, 150, 150)];
     self.portraitView = [[PortraitView alloc] init];
     [self addSubview:self.portraitView];
     

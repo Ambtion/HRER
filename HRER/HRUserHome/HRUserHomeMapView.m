@@ -44,17 +44,34 @@
 
 - (void)initUI
 {
+    [self initNavBar];
 //    self.renderView = [[UIView alloc] initWithFrame:CGRectMake(0, 20, self.width, self.height - 20)];
     [self addSubview:self.headView];
     [self initMapView];
 }
+
+- (void)initNavBar
+{
+    
+    UIImageView * barView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.width, 64)];
+    [barView setUserInteractionEnabled:YES];
+    barView.image = [UIImage imageNamed:@"nav_bg"];
+    [self addSubview:barView];
+    
+    UILabel * titelLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, self.width, 44)];
+    titelLabel.textAlignment = NSTextAlignmentCenter;
+    titelLabel.textColor = [UIColor whiteColor];
+    titelLabel.text = @"这里护照";
+    [barView addSubview:titelLabel];
+}
+
 
 #pragma mark - MapView
 
 - (void)initMapView
 {
     self.backgroundColor = [UIColor whiteColor];
-    self.mapView = [[MKMapView alloc] initWithFrame:CGRectMake(0, self.headView.height, self.width, self.height - self.headView.height)];
+    self.mapView = [[MKMapView alloc] initWithFrame:CGRectMake(0, self.headView.bottom, self.width, self.height - self.headView.bottom)];
     self.mapView.mapType = MKMapTypeStandard;
     self.mapView.showsUserLocation = YES;
     self.mapView.delegate = self;
@@ -196,7 +213,7 @@
 - (HRUserHomeMapHeadView *)headView
 {
     if (!_headView) {
-        _headView = [[HRUserHomeMapHeadView alloc] initWithFrame:CGRectMake(0, 0, self.width, [HRUserHomeMapHeadView heightForView])];
+        _headView = [[HRUserHomeMapHeadView alloc] initWithFrame:CGRectMake(0, 64, self.width, [HRUserHomeMapHeadView heightForView])];
         _headView.delegate = self;
         [_headView setDataSource:nil];
     }
