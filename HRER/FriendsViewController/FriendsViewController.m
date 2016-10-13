@@ -430,7 +430,7 @@
 - (void)shareToQQ
 {
     NSString * userId = [[LoginStateManager getInstance] userLoginInfo].user_id;
-    NSString * url = [NSString stringWithFormat:@"http://www.herelike.com:8089/sharePage?id=%@",userId];
+    NSString * url = [NSString stringWithFormat:@"www.herelike.com/sharePage?id=%@",userId];
     [[HRQQManager shareInstance] shareNewsWithImage:[UIImage imageNamed:@"Logo"] title:@"邀请你来这里，从这里\n发现世界！" Des:@"这里是你和朋友的旅行朋友圈，这里朋友越多，出门靠谱的选择也越多。" link:url WithCallBack:^(QQBaseResp *response) {
     }];
 }
@@ -438,7 +438,7 @@
 - (void)shareToWeb
 {
     NSString * userId = [[LoginStateManager getInstance] userLoginInfo].user_id;
-    NSString * url = [NSString stringWithFormat:@"http://www.herelike.com:8089/sharePage?id=%@",userId];
+    NSString * url = [NSString stringWithFormat:@"www.herelike.com/sharePage?id=%@",userId];
     [HRWebCatShare sendWeixinWebContentTitle:@"邀请你来这里，从这里\n发现世界！" description:@"这里是你和朋友的旅行朋友圈，这里朋友越多，出门靠谱的选择也越多。"  thumbImage:[UIImage imageNamed:@"Logo"] webpageURL:url scene:WXSceneSession withcallBack:^(BaseResp *resp) {
         
     }];
