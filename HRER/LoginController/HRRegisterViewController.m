@@ -300,7 +300,7 @@
     if(![MBProgressHUD HUDForView:self.view])
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 
-    [NetWorkEntity regisWithPhotoNumber:self.phoneNumber.textField.text password:self.passWord.textField.text nickName:self.nick.textField.text verCode:self.phoneCode.textField.text success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [NetWorkEntity regisWithPhotoNumber:self.phoneNumber.textField.text password:self.passWord.textField.text nickName:[self.nick.textField.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]verCode:self.phoneCode.textField.text success:^(AFHTTPRequestOperation *operation, id responseObject) {
   
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         if ([[responseObject objectForKey:@"result"] isEqualToString:@"OK"]) {

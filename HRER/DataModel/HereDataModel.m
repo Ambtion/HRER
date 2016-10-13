@@ -137,6 +137,18 @@ YYModelSynthCoderAndHash
     return @"";
 }
 
+- (NSArray *)userWantToList
+{
+    if (_userWantToList) {
+        NSMutableArray * array = [NSMutableArray arrayWithCapacity:0];
+        for (NSString * str in _userWantToList) {
+            [array addObject:[str stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        }
+        return array;
+    }
+    return nil;
+}
+
 @end
 
 @implementation HRCretePOIInfo
