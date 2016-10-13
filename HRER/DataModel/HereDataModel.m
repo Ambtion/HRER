@@ -111,8 +111,6 @@ YYModelSynthCoderAndHash
     return @{@"photos" : [HRPotoInfo class]};
 }
 
-
-
 - (NSString *)title
 {
     if (_title) {
@@ -137,16 +135,12 @@ YYModelSynthCoderAndHash
     return @"";
 }
 
-- (NSArray *)userWantToList
+- (NSString *)xq_user
 {
-    if (_userWantToList) {
-        NSMutableArray * array = [NSMutableArray arrayWithCapacity:0];
-        for (NSString * str in _userWantToList) {
-            [array addObject:[str stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-        }
-        return array;
+    if (_xq_user) {
+        return [_xq_user stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     }
-    return nil;
+    return @"";
 }
 
 @end

@@ -191,9 +191,9 @@
     
     if(data.single_type == 5){
         //想去
-        if (data.userWantToList.count) {
+        if (data.xq_user.length) {
             //想去我推荐的poi
-            userName = [data.userWantToList componentsJoinedByString:@" "];
+            userName = data.xq_user;
             str = [NSString stringWithFormat:@"%@ 想去你推荐的 %@",userName,data.title];
         }else{
             str = [NSString stringWithFormat:@"想去 %@ 推荐的 %@",userName,data.title];
