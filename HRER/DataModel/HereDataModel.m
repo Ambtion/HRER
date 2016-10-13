@@ -129,6 +129,14 @@ YYModelSynthCoderAndHash
     return @"";
 }
 
+- (NSString *)creator_name
+{
+    if (_creator_name) {
+        return [_creator_name stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    }
+    return @"";
+}
+
 @end
 
 @implementation HRCretePOIInfo
