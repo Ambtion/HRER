@@ -214,7 +214,8 @@
     
     [attr addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:15] range:titleNormal];
     [attr addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:15] range:nameRang];
-    
+    [attr addAttribute:NSForegroundColorAttributeName value:UIColorFromRGB(0xe14430) range:titleNormal];
+
 //    [attr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:15] range:NSMakeRange(nameRang.location + nameRang.length, titleNormal.location)];
 
     [self.titleLabel setAttributedText:attr];

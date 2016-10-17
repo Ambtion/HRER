@@ -183,6 +183,7 @@
         
         [attr addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:15] range:titleNormal];
         [attr addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:15] range:nameRang];
+        [attr addAttribute:NSForegroundColorAttributeName value:UIColorFromRGB(0xe14430) range:titleNormal];
         
         [self.titleLabel setAttributedText:attr];
     }else{
