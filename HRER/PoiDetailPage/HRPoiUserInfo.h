@@ -10,6 +10,9 @@
 
 @interface HRPoiUserInfo : UIView
 
+@property(nonatomic,strong)UIImageView * porImageView;
+
+
 + (CGFloat)heightForView;
 
 - (void)setDtata:(HRPOIInfo *)data;

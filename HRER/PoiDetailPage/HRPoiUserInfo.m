@@ -10,7 +10,6 @@
 
 @interface HRPoiUserInfo()
 
-@property(nonatomic,strong)UIImageView * porImageView;
 @property(nonatomic,strong)UILabel * userName;
 @property(nonatomic,strong)UIImageView * iconImageView;
 @property(nonatomic,strong)UILabel * recomendLabel;
@@ -117,6 +116,7 @@
     [self.priceLabel setHidden:data.price == 0];
     [self.priceImageView setHidden:data.price == 0];
 }
+
 
 
 @end

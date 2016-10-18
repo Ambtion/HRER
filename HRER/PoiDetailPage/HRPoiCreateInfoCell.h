@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#import "HRPoiUserInfo.h"
+
 @class HRPoiCreateInfoCell;
 @protocol HRPoiCreateInfoCellDelegate <NSObject>
 
@@ -18,6 +20,8 @@
 
 
 @interface HRPoiCreateInfoCell : UITableViewCell
+
+@property(nonatomic,strong)HRPoiUserInfo * userInfo;
 
 @property(nonatomic,weak)id<HRPoiCreateInfoCellDelegate>delegate;
 

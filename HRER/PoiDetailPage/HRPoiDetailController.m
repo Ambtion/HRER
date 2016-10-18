@@ -278,9 +278,9 @@ static CGFloat const MaxToolbarHeight = 200.0f;
             HRPoiLocInfoCell * cell = [tableView dequeueReusableCellWithIdentifier:@"HRPoiLocInfoCell"];
             if (!cell) {
                 cell = [[HRPoiLocInfoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"HRPoiLocInfoCell"];
-                
             }
             [cell setDataSource:self.poiInfo];
+            
             return cell;
         }
             break;
@@ -291,6 +291,9 @@ static CGFloat const MaxToolbarHeight = 200.0f;
             if (!cell) {
                 cell = [[HRPoiCreateInfoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"HRPoiCreateInfoCell"];
                 cell.delegate = self;
+                UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onPortapDidClick:)];
+                [cell.userInfo.porImageView addGestureRecognizer:tap];
+                [cell.userInfo.porImageView setUserInteractionEnabled:YES];
             }
             [cell setDataSource:self.poiInfo];
             return cell;
@@ -341,7 +344,14 @@ static CGFloat const MaxToolbarHeight = 200.0f;
     return [UITableViewCell new];
 }
 
+
 #pragma mark - Action
+- (void)onPortapDidClick:(UITapGestureRecognizer *)tap
+{
+    HRUserHomeController * userHomeController = [[HRUserHomeController alloc] initWithUserID:self.poiInfo.creator_id];
+    [self.myNavController pushViewController:userHomeController animated:YES];
+}
+
 - (void)onBackButtonClick:(UIButton *)button
 {
     [self.navigationController popViewControllerAnimated:YES];

@@ -7,12 +7,10 @@
 //
 
 #import "HRPoiCreateInfoCell.h"
-#import "HRPoiUserInfo.h"
 #import "HRPoiUserInfoBottomView.h"
 
 @interface HRPoiCreateInfoCell()<HRPoiUserInfoBottomViewDelegate>
 
-@property(nonatomic,strong)HRPoiUserInfo * userInfo;
 @property(nonatomic,strong)UILabel * desLabel;
 @property(nonatomic,strong)HRPoiUserInfoBottomView * bottomView;
 
