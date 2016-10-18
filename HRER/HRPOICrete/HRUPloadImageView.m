@@ -580,7 +580,7 @@
     
     [self resetToNormal];
     LGPhotoPickerViewController *pickerVc = [[LGPhotoPickerViewController alloc] initWithShowType:LGShowImageTypeImagePicker];
-    pickerVc.status = PickerViewShowStatusGroup;
+    pickerVc.status = PickerViewShowStatusCameraRoll;
     pickerVc.maxCount =  9 - self.photosArray.count;;
     pickerVc.delegate = self;
     [pickerVc showPickerVc:[self appController]];
