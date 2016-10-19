@@ -259,8 +259,8 @@
         
     }
 
-    NSArray * sourtArray = [self sortArray:mArray];
-    return sourtArray;
+//    NSArray * sourtArray = [self sortArray:mArray];
+    return mArray;
 }
 
 - (NSArray *)analysisPoiModelFromArray:(NSArray *)array
