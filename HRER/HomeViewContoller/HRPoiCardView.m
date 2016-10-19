@@ -190,15 +190,17 @@
     NSString * userName = data.creator_name;
     
     if(data.single_type == 5){
-        //想去
-        if (data.xq_user.length) {
-            //想去我推荐的poi
-            userName = data.xq_user;
-            str = [NSString stringWithFormat:@"%@ 想去你推荐的 %@",userName,data.title];
-        }else{
-            str = [NSString stringWithFormat:@"想去 %@ 推荐的 %@",userName,data.title];
-        }
-        
+        userName = data.xq_user;
+//        //想去
+//        if ([data.creator_id isEqualToString:[[[LoginStateManager getInstance] userLoginInfo] user_id]]) {
+//            //想去我推荐的poi
+//            userName = data.xq_user;
+//            str = [NSString stringWithFormat:@"%@ 想去你推荐的 %@",userName,data.title];
+//        }else{
+//            userName = data.creator_name;
+//            str = [NSString stringWithFormat:@"想去 %@ 推荐的 %@",userName,data.title];
+//        }
+        str = [NSString stringWithFormat:@"%@ 想去%@推荐的%@",data.xq_user,data.creator_name,data.title];
     }else{
         str = [NSString stringWithFormat:@"%@ 推荐了 %@",userName,data.title];
     }

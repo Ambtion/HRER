@@ -602,8 +602,15 @@
 //                [self showTotasViewWithMes:@"服务器bug,数据用户ID是空"];
                 return;
             }
-            HRUserHomeController * userHomeController = [[HRUserHomeController alloc] initWithUserID:cell.data.creator_id];
-            [self.myNavController pushViewController:userHomeController animated:YES];
+            
+            if (cell.data.single_type == 5) {
+                HRUserHomeController * userHomeController = [[HRUserHomeController alloc] initWithUserID:cell.data.xq_user_id];
+                [self.myNavController pushViewController:userHomeController animated:YES];
+            }else{
+                HRUserHomeController * userHomeController = [[HRUserHomeController alloc] initWithUserID:cell.data.creator_id];
+                [self.myNavController pushViewController:userHomeController animated:YES];
+            }
+          
         }
     }
 }

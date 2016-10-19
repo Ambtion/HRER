@@ -117,6 +117,7 @@
  //想去逻辑
 @property(nonatomic,assign)NSInteger single_type;
 @property(nonatomic,strong)NSString * xq_user;
+@property(nonatomic,strong)NSString * xq_user_id;
 
 @property(nonatomic,strong)HRPotoInfo * seal;
 
