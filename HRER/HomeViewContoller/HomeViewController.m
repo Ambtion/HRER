@@ -532,6 +532,7 @@
         return;
     }
 
+    if(cell.data.poi_type == 15) return;
     
     NSIndexPath * indexPath = [self.tableView indexPathForCell:cell];
     KPoiSetsCreteType tpye = KPoiSetsCreteNearBy;
@@ -563,7 +564,7 @@
 {
     
     
-    if (cell.data.poi_type == 16 || cell.data.poi_type == 18) {
+    if (cell.data.poi_type == 16 || cell.data.poi_type == 18 || cell.data.poi_type == 15) {
         //引导页面
         return;
     }

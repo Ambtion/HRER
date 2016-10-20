@@ -170,7 +170,7 @@
     
     [self.portraitImage sd_setImageWithURL:[NSURL URLWithString:data.portrait] placeholderImage:[UIImage imageNamed:@"man"]];
     
-    if(data.creator_name.length && data.poi_type != 16 && data.poi_type != 18){
+    if(data.creator_name.length && data.poi_type != 16 && data.poi_type != 18 && data.poi_type != 15){
         NSString * str = [NSString stringWithFormat:@"%@ 推荐了 %ld个 %@",data.creator_name,(long)data.poi_num,data.title];
         NSMutableAttributedString * attr = [[NSMutableAttributedString alloc] initWithString:str];
         
@@ -212,8 +212,8 @@
 
     }
     
-    self.titleLabel.numberOfLines = (data.poi_type == 16 || data.poi_type == 18) ? 0 : 1;
-    self.titleLabel.font = (data.poi_type == 16 || data.poi_type == 18)? [UIFont boldSystemFontOfSize:15.f] : [UIFont boldSystemFontOfSize:15.f];
+    self.titleLabel.numberOfLines = (data.poi_type == 16 || data.poi_type == 18 || data.poi_type == 15) ? 0 : 1;
+    self.titleLabel.font = (data.poi_type == 16 || data.poi_type == 18 || data.poi_type == 15)? [UIFont boldSystemFontOfSize:15.f] : [UIFont boldSystemFontOfSize:15.f];
 }
 
 - (void)fullViewTap:(UITapGestureRecognizer *)tap
