@@ -10,7 +10,6 @@
 
 @interface BaseAlertView()
 
-@property(nonatomic,strong)UIView * backGroudView;
 
 @end
 

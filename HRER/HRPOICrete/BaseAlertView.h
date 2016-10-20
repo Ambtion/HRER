@@ -12,6 +12,8 @@
 
 @property(nonatomic,strong)UIImageView * contentView;
 
+@property(nonatomic,strong)UIView * backGroudView;
+
 - (void)disAppear;
 
 - (void)showInView:(UIView *)view completion:(void (^)(BOOL finished))completion;

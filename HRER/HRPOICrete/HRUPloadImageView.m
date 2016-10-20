@@ -150,22 +150,23 @@
     
     self.cancelButton = [[UIButton alloc] initWithFrame:CGRectMake(self.contentView.width - 40, 0, 40, 40)];
     [self.cancelButton setImage:[UIImage imageNamed:@"close"] forState:UIControlStateNormal];
-//    [self.cancelButton addTarget:self action:@selector(cancanButtonDidClick:) forControlEvents:UIControlEventTouchUpInside];
-    [self.contentView addSubview:self.cancelButton];
+    [self.cancelButton addTarget:self action:@selector(cancanButtonDidClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:self.cancelButton];
 
     [self.cancelButton mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.contentView.mas_right);
         make.centerY.equalTo(self.contentView.mas_top);
     }];
+    self.cancelButton.alpha = 0.f;
     
-    UIButton * cancelButton = [[UIButton alloc] initWithFrame:CGRectMake(self.contentView.width - 40, 0, 40, 40)];
-    [self.contentView addSubview:cancelButton];
-    [cancelButton addTarget:self action:@selector(cancanButtonDidClick:) forControlEvents:UIControlEventTouchUpInside];
-    [self.contentView addSubview:cancelButton];
-    [cancelButton mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.contentView.mas_right);
-        make.top.equalTo(self.contentView.mas_top);
-    }];
+//    UIButton * cancelButton = [[UIButton alloc] initWithFrame:CGRectMake(self.contentView.width - 40, 0, 40, 40)];
+//    [self.contentView addSubview:cancelButton];
+//    [cancelButton addTarget:self action:@selector(cancanButtonDidClick:) forControlEvents:UIControlEventTouchUpInside];
+//    [self.contentView addSubview:cancelButton];
+//    [cancelButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+//        make.right.equalTo(self.contentView.mas_right);
+//        make.top.equalTo(self.contentView.mas_top);
+//    }];
 
     
     self.icarousel = [[iCarousel alloc] initWithFrame:CGRectMake(12, 15, self.contentView.width - 24 - 20, 150.f)];
@@ -700,6 +701,34 @@
     
 }
 
+
+- (void)showInView:(UIView *)view completion:(void (^)(BOOL))completion
+{
+    self.contentView.frame = CGRectOffset(self.contentView.frame, 0, CGRectGetHeight(self.bounds));
+    self.backGroudView.alpha = 0.f;
+    self.cancelButton.alpha = 0.f;
+    [view addSubview:self];
+    
+    [UIView animateWithDuration:0.6 animations:^{
+        self.contentView.frame = CGRectOffset(self.contentView.frame, 0, -CGRectGetHeight(self.bounds));
+        self.backGroudView.alpha = 1.f;
+    } completion:^(BOOL finished) {
+        self.cancelButton.alpha = 1.f;
+        if(completion) completion(finished);
+    }];
+    
+}
+
+- (void)disAppear
+{
+    [UIView animateWithDuration:0.3  delay:0.f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        self.backGroudView.alpha = 0.f;
+        self.cancelButton.alpha = 0.f;
+        self.contentView.frame = CGRectOffset(self.contentView.frame, 0, CGRectGetHeight(self.bounds));
+    } completion:^(BOOL finished) {
+        [self removeFromSuperview];
+    }];
+}
 
 
 @end
