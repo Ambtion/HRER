@@ -528,10 +528,16 @@
 - (void)herePoisSetCellDidClick:(HRHerePoisSetCell *)cell
 {
     
+  
     if (cell.data.poi_type == 18) {
         //引导页面
         [self.navigationController popViewControllerAnimated:NO];
         [[self myTabBarcontroller] setSelectedIndex:2];
+        
+        if ([[[(UINavigationController *) [[self myTabBarcontroller]  selectedViewController] viewControllers] firstObject] respondsToSelector:@selector(showLoginPage)]) {
+            [[[(UINavigationController *) [[self myTabBarcontroller]  selectedViewController] viewControllers] firstObject] performSelector:@selector(showLoginPage)];
+        }
+        
         return;
     }
     
@@ -539,8 +545,13 @@
         //引导页面
         [self.navigationController popViewControllerAnimated:NO];
         [[self myTabBarcontroller] setSelectedIndex:3];
+        if ([[[(UINavigationController *) [[self myTabBarcontroller]  selectedViewController] viewControllers] firstObject] respondsToSelector:@selector(showLoginPage)]) {
+            [[[(UINavigationController *) [[self myTabBarcontroller]  selectedViewController] viewControllers] firstObject] performSelector:@selector(showLoginPage)];
+        }
+        
         return;
     }
+
 
     if(cell.data.poi_type == 15) return;
     
