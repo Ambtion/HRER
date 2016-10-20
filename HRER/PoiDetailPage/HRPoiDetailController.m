@@ -348,6 +348,9 @@ static CGFloat const MaxToolbarHeight = 200.0f;
 #pragma mark - Action
 - (void)onPortapDidClick:(UITapGestureRecognizer *)tap
 {
+    if ([self.poiInfo.creator_id isEqualToString:@"0"]) {
+        return;
+    }
     HRUserHomeController * userHomeController = [[HRUserHomeController alloc] initWithUserID:self.poiInfo.creator_id];
     [self.myNavController pushViewController:userHomeController animated:YES];
 }
