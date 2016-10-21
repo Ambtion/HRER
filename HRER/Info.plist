@@ -52,7 +52,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>2</string>
 	<key>LSApplicationCategoryType</key>
 	<dict/>
 	<key>LSApplicationQueriesSchemes</key>
@@ -84,10 +84,6 @@
 	<string>只有开启定位功能才能正常使用。</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>这里将使用您相册中图片</string>
-	<key>UIBackgroundModes</key>
-	<array>
-		<string>location</string>
-	</array>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

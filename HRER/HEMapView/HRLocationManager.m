@@ -216,7 +216,7 @@
     
     [self.locationManager setPausesLocationUpdatesAutomatically:NO];
     
-    [self.locationManager setAllowsBackgroundLocationUpdates:YES];
+    [self.locationManager setAllowsBackgroundLocationUpdates:NO];
 }
 
 - (void)startLocaiton
