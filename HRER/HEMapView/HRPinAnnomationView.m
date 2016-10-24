@@ -76,7 +76,7 @@
         case 3:
             return [UIImage imageNamed:@"map_shop_click"];
         case 4:
-            return [UIImage imageNamed:@"map_hotel_click_click"];
+            return [UIImage imageNamed:@"map_hotel_click"];
         default:
             break;
     }
