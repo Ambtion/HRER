@@ -10,6 +10,8 @@
 #import "HRLocationInputView.h"
 #import "HRLocationManager.h"
 #import "HRUPloadImageView.h"
+#import <AddressBookUI/AddressBookUI.h>
+
 
 #define MAPLocationLEVEL        (0.03f)
 
@@ -211,8 +213,8 @@
             if (placeName.length) {
                 self.addressInputView.textField.text = placeName;
             }
+            NSLog(@"FormattedAddressLines,%@",ABCreateStringWithAddressDictionary(placeMark.addressDictionary, NO));;
 
-            
         }else{
             [NetWorkEntity geoLocationWithLag:ws.pinLocation.coordinate.latitude lng:ws.pinLocation.coordinate.longitude success:^(AFHTTPRequestOperation *operation, id responseObject) {
                 NSArray * array = [responseObject objectForKey:@"results"];
