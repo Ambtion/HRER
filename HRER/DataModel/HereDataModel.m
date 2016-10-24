@@ -251,5 +251,14 @@ YYModelSynthCoderAndHash;
     
 }
 
+- (NSString *)title
+{
+    if (_title) {
+        return [_title stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    }
+    return @"";
+    
+}
+
 
 @end
