@@ -209,11 +209,14 @@
         if (array.count > 0) {
             CLPlacemark * placeMark = [array objectAtIndex:0];
 //            cityName = placeMark.locality;
-            placeName = placeMark.name;
+            
+            NSArray *lines = placeMark.addressDictionary[@"FormattedAddressLines"];
+            NSString *addressString = [lines componentsJoinedByString:@"\n"];
+            
+            placeName = addressString;
             if (placeName.length) {
                 self.addressInputView.textField.text = placeName;
             }
-            NSLog(@"FormattedAddressLines,%@",ABCreateStringWithAddressDictionary(placeMark.addressDictionary, NO));;
 
         }else{
             [NetWorkEntity geoLocationWithLag:ws.pinLocation.coordinate.latitude lng:ws.pinLocation.coordinate.longitude success:^(AFHTTPRequestOperation *operation, id responseObject) {
