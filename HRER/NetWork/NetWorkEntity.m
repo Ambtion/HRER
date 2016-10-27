@@ -709,7 +709,7 @@ static CallBack upSucess;
     NSString * urlStr = [NSString stringWithFormat:@"%@/upload_image",KNETBASEURL];
     NSMutableDictionary * dic = [self commonComonPar];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    NSData * data = UIImageJPEGRepresentation(image, 0.1);
+    NSData * data = UIImageJPEGRepresentation(image, 0.8);
     [manager POST:urlStr parameters:dic constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         [formData appendPartWithFileData:data name:@"image" fileName:@"1" mimeType:@"image/jpeg"];
     } success:success failure:failure];
