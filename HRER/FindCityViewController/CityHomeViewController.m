@@ -130,6 +130,7 @@
     
     WS(ws);
     self.tableView.refreshHeader.beginRefreshingBlock = ^(){
+        self.catergoryIndex = -1;
         [ws quaryData];
     };
 }
