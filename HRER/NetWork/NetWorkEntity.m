@@ -682,6 +682,7 @@ static CallBack upSucess;
     [manager POST:baseUrl parameters:dic success:success failure:failure];
 }
 
+
 + (void)uploadImags:(NSArray*)images sucess:(void(^)(NSArray *array))sucess
 {
     
@@ -703,17 +704,34 @@ static CallBack upSucess;
     [self uploadImage:images[index] success:upSucess failure:upSucess];
 }
 
+
 + (void)uploadImage:(UIImage *)image success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
             failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
     NSString * urlStr = [NSString stringWithFormat:@"%@/upload_image",KNETBASEURL];
     NSMutableDictionary * dic = [self commonComonPar];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    NSData * data = UIImageJPEGRepresentation(image, 0.8);
+    NSData * data = [self compreImage:image ToFileSize:1024 * 1024]; //1M
     [manager POST:urlStr parameters:dic constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         [formData appendPartWithFileData:data name:@"image" fileName:@"1" mimeType:@"image/jpeg"];
     } success:success failure:failure];
 }
+
++ (NSData *)compreImage:(UIImage *)image ToFileSize:(NSInteger )maxFileSize
+{
+    CGFloat compression = 0.9f;
+    CGFloat maxCompression = 0.1f;
+    
+    NSData *imageData = UIImageJPEGRepresentation(image, compression);
+    
+    while ([imageData length] > maxFileSize && compression > maxCompression)
+    {
+        compression -= 0.1;
+        imageData = UIImageJPEGRepresentation(image , compression);
+    }
+    return imageData;
+}
+
 
 + (void)deletePoiWithPoiId:(NSString *)poiId
                    success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
