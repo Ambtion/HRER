@@ -1974,7 +1974,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.herelike.zheli;
 				PRODUCT_NAME = "这里";
-				PROVISIONING_PROFILE = "5101061d-750d-44b8-a2a3-f7db472ea8e8";
+				PROVISIONING_PROFILE = "ccebcf83-ccf9-4cbf-9431-f1dddec386d7";
 				PROVISIONING_PROFILE_SPECIFIER = "XC iOS Ad Hoc: com.herelike";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
