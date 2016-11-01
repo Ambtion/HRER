@@ -19,13 +19,6 @@
 @implementation HRPotoInfo
 
 YYModelSynthCoderAndHash
-<<<<<<< 30343756007ff3d15a44dc3be55ef6bb9846a93a
-- (NSString *)url
-{
-    return @"";
-}
-=======
->>>>>>> 修改默认图
 @end
 
 @implementation HRUserLoginInfo
