@@ -11,7 +11,7 @@
 @interface HRPhotoScrollView : UIView
 
 @property(nonatomic,assign,readonly)NSInteger curPage;
-
+@property(nonatomic,assign)NSInteger poiType;
 @property(nonatomic,strong)NSArray * dataArray;
 
 @end

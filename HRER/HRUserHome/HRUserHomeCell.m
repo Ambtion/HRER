@@ -212,11 +212,30 @@
 
     if (_dataSource.photos.count) {
         HRPotoInfo * photo = [_dataSource.photos firstObject];
-        [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:photo.url] placeholderImage:[UIImage imageNamed:@"man"]];
+        [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:photo.url] placeholderImage:[self imageForType:_dataSource.type]];
     }else{
-        self.iconImageView.image = [UIImage imageNamed:@"man"];
+        self.iconImageView.image = [self imageForType:_dataSource.type];
     }
 }
+
+- (UIImage *)imageForType:(NSInteger)type
+{
+    switch (type) {
+        case 1:
+            return [UIImage imageNamed:@"not_loaded_food"];
+            break;
+        case 2:
+            return [UIImage imageNamed:@"not_loaded_look"];
+        case 3:
+            return [UIImage imageNamed:@"not_loaded_shop"];
+        case 4:
+            return [UIImage imageNamed:@"not_loaded_hotel"];
+        default:
+            break;
+    }
+    return [UIImage imageNamed:@"not_loaded"];
+}
+
 
 
 - (UIColor *)caterColorWithType:(NSInteger)type

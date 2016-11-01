@@ -201,7 +201,7 @@
                 [frameView setHidden:NO];
                 NSURL * url = [NSURL URLWithString:info.url.length ? info.url : @""];
                 
-                [frameView.imageView.imageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"not_loaded"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                [frameView.imageView.imageView sd_setImageWithURL:url placeholderImage:[self imageForType:data.type] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
                 }];
             }else{
                 [frameView setHidden:YES];
@@ -214,6 +214,24 @@
     
     self.titleLabel.numberOfLines = (data.poi_type == 16 || data.poi_type == 18 || data.poi_type == 15) ? 0 : 1;
     self.titleLabel.font = (data.poi_type == 16 || data.poi_type == 18 || data.poi_type == 15)? [UIFont boldSystemFontOfSize:15.f] : [UIFont boldSystemFontOfSize:15.f];
+}
+
+- (UIImage *)imageForType:(NSInteger)type
+{
+    switch (type) {
+        case 1:
+            return [UIImage imageNamed:@"food_select"];
+            break;
+        case 2:
+            return [UIImage imageNamed:@"look_select"];
+        case 3:
+            return [UIImage imageNamed:@"shopping_select"];
+        case 4:
+            return [UIImage imageNamed:@"hotel_select"];
+        default:
+            break;
+    }
+    return [UIImage imageNamed:@"not_loaded"];
 }
 
 - (void)fullViewTap:(UITapGestureRecognizer *)tap

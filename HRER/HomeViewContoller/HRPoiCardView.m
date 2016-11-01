@@ -182,8 +182,7 @@
 - (void)setDataSource:(HRPOIInfo *)data
 {
     [self.portraitImage sd_setImageWithURL:[NSURL URLWithString:data.portrait] placeholderImage:[UIImage imageNamed:@"man"]];
-    
-    
+        
     
     NSString * str = @"";
     
@@ -238,7 +237,7 @@
             if ([info isKindOfClass:[HRPotoInfo class]]) {
                 [frameView setHidden:NO];
                 NSURL * url = [NSURL URLWithString:info.url.length ? info.url : @""];
-                [frameView.imageView.imageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"not_loaded"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                [frameView.imageView.imageView sd_setImageWithURL:url placeholderImage:[self imageForType:data.type] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
 //                    [(PortraitView * )frameView.imageView autoJustImageSize];
                 }];
                 
@@ -255,6 +254,25 @@
     NSString * distance = [HRNavigationTool distanceBetwenOriGps:[[HRLocationManager sharedInstance] curLocation].coordinate desGps:desLocaiton.coordinate];
     self.locLabel.text = distance;
     [self.locIconView setHidden:NO];
+}
+
+
+- (UIImage *)imageForType:(NSInteger)type
+{
+    switch (type) {
+        case 1:
+            return [UIImage imageNamed:@"not_loaded_food"];
+            break;
+        case 2:
+            return [UIImage imageNamed:@"not_loaded_look"];
+        case 3:
+            return [UIImage imageNamed:@"not_loaded_shop"];
+        case 4:
+            return [UIImage imageNamed:@"not_loaded_hotel"];
+        default:
+            break;
+    }
+    return [UIImage imageNamed:@"not_loaded"];
 }
 
 

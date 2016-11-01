@@ -76,7 +76,7 @@
         
         HRPotoInfo * photoInfo = [_dataArray objectAtIndex:i];
 
-        [imageView.imageView sd_setImageWithURL:[NSURL URLWithString:photoInfo.url] placeholderImage:[UIImage imageNamed:@"not_loaded"]];
+        [imageView.imageView sd_setImageWithURL:[NSURL URLWithString:photoInfo.url] placeholderImage:[self imageForType:self.poiType]];
         [imagemArray addObject:imageView];
     }
     self.imageArray = imagemArray;
@@ -84,6 +84,26 @@
 
     [self setNeedsLayout];
 }
+
+
+- (UIImage *)imageForType:(NSInteger)type
+{
+    switch (type) {
+        case 1:
+            return [UIImage imageNamed:@"upload_food"];
+            break;
+        case 2:
+            return [UIImage imageNamed:@"upload_look"];
+        case 3:
+            return [UIImage imageNamed:@"upload_shop"];
+        case 4:
+            return [UIImage imageNamed:@"upload_hotel"];
+        default:
+            break;
+    }
+    return [UIImage imageNamed:@"upload_food"];
+}
+
 
 - (void)layoutSubviews
 {

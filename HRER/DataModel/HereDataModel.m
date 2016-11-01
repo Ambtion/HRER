@@ -19,7 +19,10 @@
 @implementation HRPotoInfo
 
 YYModelSynthCoderAndHash
-
+- (NSString *)url
+{
+    return @"";
+}
 @end
 
 @implementation HRUserLoginInfo
@@ -142,6 +145,7 @@ YYModelSynthCoderAndHash
     }
     return @"";
 }
+
 
 @end
 

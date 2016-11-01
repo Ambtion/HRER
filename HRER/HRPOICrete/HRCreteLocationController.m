@@ -420,14 +420,14 @@
 - (UIImage *)imageForType:(NSInteger)type
 {
     switch (type) {
-        case 0:
+        case 1:
             return [UIImage imageNamed:@"food_select"];
             break;
-        case 1:
-            return [UIImage imageNamed:@"look_select"];
         case 2:
-            return [UIImage imageNamed:@"shopping_select"];
+            return [UIImage imageNamed:@"look_select"];
         case 3:
+            return [UIImage imageNamed:@"shopping_select"];
+        case 4:
             return [UIImage imageNamed:@"hotel_select"];
         default:
             break;

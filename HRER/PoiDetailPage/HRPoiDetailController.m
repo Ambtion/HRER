@@ -267,6 +267,7 @@ static CGFloat const MaxToolbarHeight = 200.0f;
                 self.photoesCell.delegate = self;
                 
             }
+            self.photoesCell.photosView.poiType = self.poiInfo.type;
             [self.photoesCell setDataImages:self.poiInfo.photos];
             return self.photoesCell;
         }
@@ -463,7 +464,7 @@ static CGFloat const MaxToolbarHeight = 200.0f;
 {
     HRPotoInfo * photoInfo = [self.photoesCell.photosView.dataArray objectAtIndex:index];
     
-    [hrImageView.imageView sd_setImageWithURL:[NSURL URLWithString:photoInfo.url] placeholderImage:[UIImage imageNamed:@"not_loaded"]];
+    [hrImageView.imageView sd_setImageWithURL:[NSURL URLWithString:photoInfo.url] placeholderImage:[self imageForType:self.photoesCell.photosView.poiType]];
     if (photoInfo.width && photoInfo.height ) {
         
         CGFloat scale = self.view.width / photoInfo.width;
@@ -471,6 +472,24 @@ static CGFloat const MaxToolbarHeight = 200.0f;
     }
     hrImageView.imageView.centerY = self.view.height/2.f;
     return YES;
+}
+
+- (UIImage *)imageForType:(NSInteger)type
+{
+    switch (type) {
+        case 1:
+            return [UIImage imageNamed:@"upload_food"];
+            break;
+        case 2:
+            return [UIImage imageNamed:@"upload_look"];
+        case 3:
+            return [UIImage imageNamed:@"upload_shop"];
+        case 4:
+            return [UIImage imageNamed:@"upload_hotel"];
+        default:
+            break;
+    }
+    return [UIImage imageNamed:@"upload_food"];
 }
 
 
