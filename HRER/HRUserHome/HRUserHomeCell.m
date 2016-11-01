@@ -225,9 +225,9 @@
             return [UIImage imageNamed:@"not_loaded_food"];
             break;
         case 2:
-            return [UIImage imageNamed:@"not_loaded_look"];
+            return [UIImage imageNamed:@"not_loaded_lookShop"];
         case 3:
-            return [UIImage imageNamed:@"not_loaded_shop"];
+            return [UIImage imageNamed:@"not_loaded_yule"];
         case 4:
             return [UIImage imageNamed:@"not_loaded_hotel"];
         default:
