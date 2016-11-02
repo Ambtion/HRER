@@ -145,7 +145,7 @@
     [webLogin setImage:[UIImage imageNamed:@"WeChat_click"] forState:UIControlStateHighlighted];
     [webLogin addTarget:self action:@selector(webCatLogin:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:webLogin];
-    
+    [webLogin setHidden:![WXApi isWXAppInstalled]];
     
     
     //QQ登陆
@@ -154,7 +154,7 @@
     [qqLogin setImage:[UIImage imageNamed:@"QQ_click"] forState:UIControlStateHighlighted];
     [qqLogin addTarget:self action:@selector(qqLogin:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:qqLogin];
-
+    [qqLogin setHidden:![QQApiInterface isQQInstalled]];
     
     UILabel * webLoginTitl = [[UILabel alloc] init];
     webLoginTitl.textColor = RGB_Color(0xcf, 0xc7, 0xc2);
