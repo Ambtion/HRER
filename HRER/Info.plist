@@ -80,8 +80,8 @@
 	<string>这里将使用您相册中图片</string>
 	<key>NSContactsUsageDescription</key>
 	<string>读取通讯录帮助你更好找到朋友</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>只有开启定位功能才能正常使用。</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>我们需要您的地理位置信息帮助您定位和查找周边朋友推荐的地点</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>这里将使用您相册中图片</string>
 	<key>UIRequiredDeviceCapabilities</key>
