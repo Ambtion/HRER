@@ -408,7 +408,7 @@
         if (!poiCell) {
             poiCell = [[HRCretePoiCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"HRCretePoiCell"];
         }
-        UIImage * image =  [self imageForType:self.categortIndex];
+        UIImage * image =  [self imageForType:self.categortIndex + 1];
         poiCell.portraitImage.image = image;
         poiCell.data = self.dataArray[indexPath.row];
         return poiCell;

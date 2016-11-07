@@ -1974,8 +1974,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.herelike.zheli;
 				PRODUCT_NAME = "这里";
-				PROVISIONING_PROFILE = "fcea40e6-1b5f-46f3-b6a8-7a81078cda4d";
-				PROVISIONING_PROFILE_SPECIFIER = AppStore_Here;
+				PROVISIONING_PROFILE = "ccebcf83-ccf9-4cbf-9431-f1dddec386d7";
+				PROVISIONING_PROFILE_SPECIFIER = "XC iOS Ad Hoc: com.herelike";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
