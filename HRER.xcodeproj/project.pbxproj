@@ -1899,7 +1899,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = AX5CHV2TGZ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1930,8 +1930,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.herelike.zheli;
 				PRODUCT_NAME = "这里";
-				PROVISIONING_PROFILE = "6d12319d-76a3-437b-83fa-c56655d534a4";
-				PROVISIONING_PROFILE_SPECIFIER = HereDevProfile;
+				PROVISIONING_PROFILE = "fcea40e6-1b5f-46f3-b6a8-7a81078cda4d";
+				PROVISIONING_PROFILE_SPECIFIER = AppStore_Here;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -1974,8 +1974,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.herelike.zheli;
 				PRODUCT_NAME = "这里";
-				PROVISIONING_PROFILE = "ccebcf83-ccf9-4cbf-9431-f1dddec386d7";
-				PROVISIONING_PROFILE_SPECIFIER = "XC iOS Ad Hoc: com.herelike";
+				PROVISIONING_PROFILE = "fcea40e6-1b5f-46f3-b6a8-7a81078cda4d";
+				PROVISIONING_PROFILE_SPECIFIER = AppStore_Here;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
